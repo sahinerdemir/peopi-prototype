@@ -41,7 +41,7 @@ body{background:#f4f5f7;color:#1c2635}
 .workspace-brand strong{display:block;font-size:15px;letter-spacing:-.5px}.workspace-brand small{display:block;color:#8b94a3;font-size:10px;margin-top:2px;font-weight:600}
 .nav-caption{display:flex;justify-content:space-between;padding:25px 21px 12px;color:#9099a8;font-size:10px;font-weight:800;letter-spacing:1.1px}.nav-caption span{letter-spacing:0;color:#a7afbb}
 .tree{padding:0 10px 24px;flex:1}.tree-group{margin:5px 0 14px}.group-toggle{width:100%;display:flex;align-items:center;gap:11px;padding:11px 12px;background:transparent;border:0;color:#9aa3b0;text-align:left;font-size:10px;font-weight:800}.group-toggle span{flex:1;color:#3e4a5a;font-size:12px;letter-spacing:0}.group-toggle b{font-size:16px;font-weight:500}.tree-group.collapsed .tree-children{display:none}.tree-group.collapsed .group-toggle b{transform:rotate(-90deg)}
-.tree-children{padding-left:10px;border-left:1px solid #e6e9ee;margin-left:17px}.tree-link{display:flex;align-items:center;gap:10px;width:100%;padding:10px 10px;margin:2px 0;border:0;border-radius:8px;background:transparent;text-align:left;color:#9ba4b2;font-size:10px;font-weight:800}.tree-link span{flex:1;color:#596577;font-size:12px;font-weight:600}.tree-link i{font-size:9px;font-style:normal;color:#a7aebb;font-weight:600}.tree-link .ready-dot{width:6px;height:6px;background:#49aa87;border-radius:50%}.tree-link:hover{background:#f5f6f8}.tree-link.selected{background:#fff1ec;color:#f43c13}.tree-link.selected span{color:#dc3816;font-weight:800}.tree-link.planned{opacity:.75}.tree-link.planned.selected{opacity:1}
+.tree-children{padding-left:10px;border-left:1px solid #e6e9ee;margin-left:17px}.tree-link{display:flex;align-items:center;gap:10px;width:100%;padding:10px 10px;margin:2px 0;border:0;border-radius:8px;background:transparent;text-align:left;color:#9ba4b2;font-size:10px;font-weight:800}.tree-link span{flex:1;color:#596577;font-size:12px;font-weight:600}.tree-link i{font-size:9px;font-style:normal;color:#a7aebb;font-weight:600}.tree-link .tree-code-ready{color:#f43c13;font:inherit;font-weight:800}.tree-link:hover{background:#f5f6f8}.tree-link.selected{background:#fff1ec;color:#f43c13}.tree-link.selected span{color:#dc3816;font-weight:800}.tree-link.planned{opacity:.75}.tree-link.planned.selected{opacity:1}
 .sidebar-footer{border-top:1px solid #e9ecf1;padding:22px}.footer-label{font-size:10px;letter-spacing:1px;color:#9aa4b1;font-weight:800}.theme-row{display:flex;align-items:center;justify-content:space-between;margin:15px 0;font-size:12px;font-weight:700}.theme-row button{background:#f1f3f6;color:#364152;border:0;padding:9px 12px;border-radius:9px;font-size:11px;font-weight:700}.workspace-note{font-size:10px;color:#929cab;display:flex;align-items:center;gap:7px}.indicator{display:inline-block;width:7px;height:7px;background:#2daf80;border-radius:50%}
 .preview-area{min-width:0;display:flex;flex-direction:column}.preview-header{height:94px;display:flex;align-items:center;justify-content:space-between;padding:22px 34px;border-bottom:1px solid #e4e7ec;background:#fafbfc}.preview-kicker{font-size:10px;color:#9aa3b1;font-weight:800;letter-spacing:1.1px}.preview-kicker span{margin:0 5px}.preview-header strong{display:block;font-size:18px;letter-spacing:-.5px;margin-top:7px}.preview-status{font-size:11px;font-weight:700;color:#677486;display:flex;align-items:center;gap:8px;border:1px solid #e3e7ed;background:white;padding:9px 12px;border-radius:99px}
 .device-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:35px 20px;min-height:920px;background:radial-gradient(ellipse at center,#ffffff 0%,#f2f4f7 75%)}.phone{transform:scale(.88);transform-origin:center;box-shadow:0 32px 70px #29334427,0 0 0 1px #5b6577}.stage-footer{display:flex;justify-content:space-between;padding:16px 32px;border-top:1px solid #e4e7ec;color:#9ca5b2;font-size:10px;font-weight:700}.stage-footer span{color:#b2b8c2}
@@ -155,7 +155,7 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 .tree-link.tree-sub-link.selected{background:#fff1ec;color:#f43c13}
 .tree-link.tree-sub-link.selected span{color:#dc3816;font-weight:800}
 .tree-link.tree-sub-link.selected:before{border-color:#ff9a7d}
-.tree-link.tree-sub-link .ready-dot{width:5px;height:5px;opacity:.8}
+
 .tree-link.tree-sub-link:hover{background:#f5f6f8}
 /* Intent setup: checkmark only for selected choices */
 #on-intent-options .journey-choice:not(.selected) svg{visibility:hidden}
@@ -568,36 +568,36 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
   <div class="nav-caption">PRODUCT STRUCTURE <span>v0.3.5</span></div>
   <nav class="tree" id="tree">
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">01 <span>Onboarding & Auth</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
-      <button class="tree-link" data-go="welcome">A01 <span>Welcome</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="auth">A02 <span>Sign in</span><i class="ready-dot"></i></button>
-      <button class="tree-link tree-sub-link" data-parent="auth" data-go="recovery">A02.1 <span>Account recovery</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="firstprofile">A03 <span>Profile setup</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="firstintent">A04 <span>Intent setup</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="permissions">A05 <span>Permissions</span><i class="ready-dot"></i></button>
+      <button class="tree-link" data-go="welcome"><strong class="tree-code-ready">A01</strong> <span>Welcome</span></button>
+      <button class="tree-link" data-go="auth"><strong class="tree-code-ready">A02</strong> <span>Sign in</span></button>
+      <button class="tree-link tree-sub-link" data-parent="auth" data-go="recovery"><strong class="tree-code-ready">A02.1</strong> <span>Account recovery</span></button>
+      <button class="tree-link" data-go="firstprofile"><strong class="tree-code-ready">A03</strong> <span>Profile setup</span></button>
+      <button class="tree-link" data-go="firstintent"><strong class="tree-code-ready">A04</strong> <span>Intent setup</span></button>
+      <button class="tree-link" data-go="permissions"><strong class="tree-code-ready">A05</strong> <span>Permissions</span></button>
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">02 <span>Discover</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
-      <button class="tree-link selected" data-go="closed">B01 <span>Invisible state</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="setup">B02 <span>Start session</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="active">B03 <span>Active discovery</span><i class="ready-dot"></i></button>
-      <button class="tree-link" id="openDemoProfile">B04 <span>Professional profile</span><i class="ready-dot"></i></button>
+      <button class="tree-link selected" data-go="closed"><strong class="tree-code-ready">B01</strong> <span>Invisible state</span></button>
+      <button class="tree-link" data-go="setup"><strong class="tree-code-ready">B02</strong> <span>Start session</span></button>
+      <button class="tree-link" data-go="active"><strong class="tree-code-ready">B03</strong> <span>Active discovery</span></button>
+      <button class="tree-link" id="openDemoProfile"><strong class="tree-code-ready">B04</strong> <span>Professional profile</span></button>
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">03 <span>Connections</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
-      <button class="tree-link" data-go="network">C01 <span>My network</span><i class="ready-dot"></i></button>
-      <button class="tree-link tree-sub-link" data-parent="network" data-go="connectiondetail">C01.1 <span>Connection detail</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="requests">C02 <span>Requests</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="messages">C03 <span>Messages</span><i class="ready-dot"></i></button>
-      <button class="tree-link tree-sub-link" data-parent="messages" data-go="conversation">C03.1 <span>Conversation</span><i class="ready-dot"></i></button>
+      <button class="tree-link" data-go="network"><strong class="tree-code-ready">C01</strong> <span>My network</span></button>
+      <button class="tree-link tree-sub-link" data-parent="network" data-go="connectiondetail"><strong class="tree-code-ready">C01.1</strong> <span>Connection detail</span></button>
+      <button class="tree-link" data-go="requests"><strong class="tree-code-ready">C02</strong> <span>Requests</span></button>
+      <button class="tree-link" data-go="messages"><strong class="tree-code-ready">C03</strong> <span>Messages</span></button>
+      <button class="tree-link tree-sub-link" data-parent="messages" data-go="conversation"><strong class="tree-code-ready">C03.1</strong> <span>Conversation</span></button>
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">04 <span>Profile & Privacy</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
-      <button class="tree-link" data-go="myprofile">D01 <span>My profile</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="editprofile">D02 <span>Edit profile</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="privacy">D03 <span>Privacy & safety</span><i class="ready-dot"></i></button>
-      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="hiddenconnections">D03.1 <span>Hidden connections</span><i class="ready-dot"></i></button>
-      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="blockedaccounts">D03.2 <span>Blocked accounts</span><i class="ready-dot"></i></button>
-      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="reportuser">D03.3 <span>Report user</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="verification">D04 <span>Verification</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="appsettings">D05 <span>Settings</span><i class="ready-dot"></i></button>
-      <button class="tree-link tree-sub-link" data-parent="appsettings" data-go="notifications">D05.1 <span>Notifications</span><i class="ready-dot"></i></button>
+      <button class="tree-link" data-go="myprofile"><strong class="tree-code-ready">D01</strong> <span>My profile</span></button>
+      <button class="tree-link" data-go="editprofile"><strong class="tree-code-ready">D02</strong> <span>Edit profile</span></button>
+      <button class="tree-link" data-go="privacy"><strong class="tree-code-ready">D03</strong> <span>Privacy & safety</span></button>
+      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="hiddenconnections"><strong class="tree-code-ready">D03.1</strong> <span>Hidden connections</span></button>
+      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="blockedaccounts"><strong class="tree-code-ready">D03.2</strong> <span>Blocked accounts</span></button>
+      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="reportuser"><strong class="tree-code-ready">D03.3</strong> <span>Report user</span></button>
+      <button class="tree-link" data-go="verification"><strong class="tree-code-ready">D04</strong> <span>Verification</span></button>
+      <button class="tree-link" data-go="appsettings"><strong class="tree-code-ready">D05</strong> <span>Settings</span></button>
+      <button class="tree-link tree-sub-link" data-parent="appsettings" data-go="notifications"><strong class="tree-code-ready">D05.1</strong> <span>Notifications</span></button>
     </div></div>
   </nav>
   <div class="sidebar-footer"><div class="footer-label">PREVIEW SETTINGS</div><div class="theme-row"><span>Appearance</span><button id="theme"><i data-lucide="moon"></i> <span>Dark mode</span></button></div></div>
