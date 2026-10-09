@@ -368,7 +368,7 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 <button class="sheetclose" id="closeprofile" aria-label="Close profile">✕</button>
 <div class="sheeteyebrow">PROFESSIONAL PROFILE · DEMO</div>
 <div class="profilehero"><div class="anonavatar" id="detailinitials" aria-hidden="true">AM</div><div><h3 id="detailname">A.M.</h3><p id="detailrole">Product Designer</p><p id="detailsector">Early-stage products · Startup</p></div></div>
-<div class="privacyhint" id="detail-privacy-hint"><i data-lucide="shield-check"></i><span>Profile photo is blurred and the name is abbreviated until you connect.</span></div>
+<div class="privacyhint" id="detail-privacy-hint"><i data-lucide="shield-check"></i><span>Photo and name hidden until connected.</span></div>
 <div class="detailblock"><label>ABOUT</label><p id="detailbio"></p></div>
 <div class="detailblock"><label>LOOKING FOR</label><p id="detaillooking"></p></div>
 <div class="detailblock"><label>SKILLS & INTERESTS</label><div class="detailtags" id="detailtags"></div></div>
@@ -391,7 +391,7 @@ function openProfile(){
  const p=people[person];
  paintDemoPortrait($('#detailinitials'),person);
  $('#detailname').textContent=typeof journey!=='undefined'&&journey.connections.includes(person)?p.name:p.initial.split('').join('.')+'.';
- markVerifiedName($('#detailname'),person);const connected=journey.connections.includes(person);$('#detail-privacy-hint').classList.toggle('connected-hint',connected);$('#detail-privacy-hint').innerHTML=connected?'<i data-lucide="check-circle-2"></i><span>You\'re connected. Full name and profile photo are visible.</span>':'<i data-lucide="shield-check"></i><span>Profile photo is blurred and the name is abbreviated until you connect.</span>';refreshIcons();$('#detailrole').textContent=p.headline;
+ markVerifiedName($('#detailname'),person);const connected=journey.connections.includes(person);$('#detail-privacy-hint').classList.toggle('connected-hint',connected);$('#detail-privacy-hint').innerHTML=connected?'<i data-lucide="check-circle-2"></i><span>You\'re connected. Full name and profile photo are visible.</span>':'<i data-lucide="shield-check"></i><span>Photo and name hidden until connected.</span>';refreshIcons();$('#detailrole').textContent=p.headline;
  $('#detailsector').textContent=p.sector;
  $('#detailbio').textContent=p.bio;
  $('#detaillooking').textContent=p.looking;
