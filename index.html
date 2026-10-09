@@ -373,6 +373,8 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #privacy .privacy-header h2::after,
 #appsettings .settings-head h2::after,
 #editprofile .editprofile-top h2::after{content:".";color:var(--accent)}
+/* Connected confirmation should be legible but not bold. */
+#active #profilecard .discovery-connected-hint{font-weight:400}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi logo"><svg viewBox="0 0 1200 1200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M274 520C274 341 416 207 601 207C795 207 926 330 926 513C926 678 814 768 657 768C614 768 584 749 584 719C584 687 610 661 652 654C734 640 770 596 770 522C770 424 705 369 603 369C498 369 431 433 431 534C431 600 452 655 485 722C508 769 526 817 526 865C526 944 477 992 408 992C326 992 274 932 274 839V520Z" fill="#FF3300"/></svg></span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -485,7 +487,7 @@ function openProfile(){
  $('#projectblock').classList.toggle('hide',!p.project);
  $('#onepager').classList.toggle('hide',!p.onepager);
  if(p.onepager)$('#onepager').href=p.onepager;
- $('#requestFromProfile').textContent=typeof journey!=='undefined'&&journey.connections.includes(person)?'Connected ✓':typeof journey!=='undefined'&&journey.requests[person]==='sent'?'Request pending ✓':'Request to connect ↗';
+ $('#requestFromProfile').textContent=typeof journey!=='undefined'&&journey.connections.includes(person)?'Go to profile ↗':typeof journey!=='undefined'&&journey.requests[person]==='sent'?'Request pending ✓':'Request to connect ↗';
  const sendMessage=$('#profile-send-message');if(sendMessage)sendMessage.onclick=()=>{setJourneyView(person);$('#profsheet').classList.add('hide');go('conversation')};
  $('#profsheet .profile-sheet-scroll').scrollTop=0;
  $('#profsheet').classList.remove('hide');
@@ -494,7 +496,7 @@ $('#viewprofile').onclick=openProfile;
 $('#openDemoProfile').onclick=()=>{if(page!=='active')go('active');showPerson(0);openProfile()};
 $('#closeprofile').onclick=()=>$('#profsheet').classList.add('hide');
 $('#profsheet').addEventListener('click',e=>{if(e.target===$('#profsheet'))$('#profsheet').classList.add('hide')});
-$('#requestFromProfile').onclick=()=>{$('#requestFromProfile').textContent='Request sent ✓';toast('Demo: request sent to an anonymous professional')};
+$('#requestFromProfile').onclick=()=>{if(journey.connections.includes(person)){setJourneyView(person);$('#profsheet').classList.add('hide');go('connectiondetail');return}$('#requestFromProfile').textContent='Request sent ✓';toast('Demo: request sent to an anonymous professional')};
 $('#completeness').onclick=()=>modal('Complete your profile','Demo progress: 65%. Add your professional bio, skills, and what you are looking for. A dedicated Edit Profile screen comes next.','Got it');
 $('#settings').onclick=()=>toast('Settings will be designed in a later stage');
 
