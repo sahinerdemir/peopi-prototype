@@ -400,6 +400,12 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #active #listview .discovery-list-connected svg{width:12px;height:12px;color:var(--accent)}
 #active #listview .discovery-list-verified{width:13px;height:13px;color:#2684d9}
 #active #listview .discovery-list-chevron{width:16px;height:16px;color:var(--sub);flex:none}
+/* More prominent, tightly stacked network portraits without divider lines. */
+#profsheet .profile-network-preview{border:0;padding:10px 0;margin:4px 0 10px;gap:11px}
+#profsheet .profile-network-avatars{min-width:0;flex:0 1 auto}
+#profsheet .profile-network-avatars img{width:32px;height:32px;margin-left:-14px;flex:0 0 32px}
+#profsheet .profile-network-avatars img:first-child{margin-left:0}
+#profsheet .profile-network-total{white-space:nowrap;flex:none}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi logo"><svg viewBox="0 0 1200 1200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M274 520C274 341 416 207 601 207C795 207 926 330 926 513C926 678 814 768 657 768C614 768 584 749 584 719C584 687 610 661 652 654C734 640 770 596 770 522C770 424 705 369 603 369C498 369 431 433 431 534C431 600 452 655 485 722C508 769 526 817 526 865C526 944 477 992 408 992C326 992 274 932 274 839V520Z" fill="#FF3300"/></svg></span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -473,7 +479,7 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 <div class="profile-sheet-scroll">
 <div class="profilehero"><div class="anonavatar connection-avatar" id="detailinitials" aria-hidden="true">AM</div><div class="connection-profile-heading"><h3 id="detailname">A.M.</h3><p id="detailrole">Product Designer</p><p id="detailsector">Early-stage products · Startup</p></div></div>
 <div class="privacyhint" id="detail-privacy-hint"><i data-lucide="shield-check"></i><span>Photo and name hidden until connected.</span></div>
-<div class="profile-network-preview hide" id="detail-connection-count"><div class="profile-network-avatars" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=12" alt=""><img src="https://i.pravatar.cc/80?img=47" alt=""><img src="https://i.pravatar.cc/80?img=33" alt=""><img src="https://i.pravatar.cc/80?img=49" alt=""></div><span class="profile-network-total"></span></div><div class="detailblock"><label>ABOUT</label><p id="detailbio"></p></div>
+<div class="profile-network-preview hide" id="detail-connection-count"><div class="profile-network-avatars" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=12" alt=""><img src="https://i.pravatar.cc/80?img=47" alt=""><img src="https://i.pravatar.cc/80?img=33" alt=""><img src="https://i.pravatar.cc/80?img=49" alt=""><img src="https://i.pravatar.cc/80?img=15" alt=""><img src="https://i.pravatar.cc/80?img=44" alt=""><img src="https://i.pravatar.cc/80?img=68" alt=""><img src="https://i.pravatar.cc/80?img=24" alt=""><img src="https://i.pravatar.cc/80?img=36" alt=""><img src="https://i.pravatar.cc/80?img=52" alt=""></div><span class="profile-network-total"></span></div><div class="detailblock"><label>ABOUT</label><p id="detailbio"></p></div>
 <div class="detailblock"><label>LOOKING FOR</label><p id="detaillooking"></p></div>
 <div class="detailblock"><label>SKILLS & INTERESTS</label><div class="detailtags" id="detailtags"></div></div>
 <div class="detailblock" id="projectblock"><label>PROJECT / STARTUP</label><strong id="projectname"></strong><p id="projectdesc"></p><a id="onepager" href="#" class="onepager hide" target="_blank" rel="noopener noreferrer">View one-pager ↗</a></div>
