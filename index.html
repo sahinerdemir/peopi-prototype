@@ -422,12 +422,37 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
  padding:16px 20px;background:var(--bg);
  border-bottom:1px solid var(--line);z-index:2;
 }
-/* Secondary screens only: white header in light mode, theme-aware in dark mode. */
+/* Glass treatment applies to subpage headers only, not primary destinations. */
 .journey-screen:not(#network) .journey-head,
 #editprofile .editprofile-top,
 #privacy .privacy-header,
 #appsettings .settings-head,
-#verification .verify-top{background:var(--card)}
+#verification .verify-top{
+ background:rgba(255,255,255,.78);
+ -webkit-backdrop-filter:blur(18px) saturate(160%);
+ backdrop-filter:blur(18px) saturate(160%);
+ border-bottom:0;
+}
+.phone.dark .journey-screen:not(#network) .journey-head,
+.phone.dark #editprofile .editprofile-top,
+.phone.dark #privacy .privacy-header,
+.phone.dark #appsettings .settings-head,
+.phone.dark #verification .verify-top{background:rgba(34,42,55,.78)}
+/* Status bar matches the glass header only while a secondary screen is active. */
+.phone:has(.screen.active.journey-screen:not(#network)) .status,
+.phone:has(#editprofile.active) .status,
+.phone:has(#privacy.active) .status,
+.phone:has(#appsettings.active) .status,
+.phone:has(#verification.active) .status{
+ background:rgba(255,255,255,.78);
+ -webkit-backdrop-filter:blur(18px) saturate(160%);
+ backdrop-filter:blur(18px) saturate(160%);
+}
+.phone.dark:has(.screen.active.journey-screen:not(#network)) .status,
+.phone.dark:has(#editprofile.active) .status,
+.phone.dark:has(#privacy.active) .status,
+.phone.dark:has(#appsettings.active) .status,
+.phone.dark:has(#verification.active) .status{background:rgba(34,42,55,.78)}
 .journey-screen .journey-head>button:first-child,
 #editprofile .editprofile-top>button:first-child,
 #privacy .privacy-header>button:first-child,
