@@ -320,10 +320,12 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #connectiondetail #connection-privacy-hint>svg{width:13px;height:13px;flex:0 0 13px;color:var(--accent)}
 #connectiondetail #connection-privacy-hint .profile-message-link{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;height:20px;margin:0;padding:0;border:0;background:none;color:var(--accent);font-size:10px;font-weight:600;line-height:16px;white-space:nowrap;cursor:pointer}
 /* Connection detail: floating icon-only message action above bottom navigation. */
-#connectiondetail .connection-message-fab{position:absolute;right:18px;bottom:18px;z-index:8;width:52px;height:52px;border:0;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px #ff33004d;cursor:pointer}
+#connectiondetail .connection-message-fab{position:fixed;right:18px;bottom:18px;z-index:8;width:52px;height:52px;border:0;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px #ff33004d;cursor:pointer}
 #connectiondetail .connection-message-fab svg{width:23px;height:23px;stroke-width:2}
 #connectiondetail .connection-message-fab.hide{display:none!important}
 #connectiondetail #connection-privacy-hint{padding-right:10px}
+/* Establish the phone screen as the containing block for the fixed FAB. */
+#connectiondetail{transform:translateZ(0)}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi logo"><svg viewBox="0 0 1200 1200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M274 520C274 341 416 207 601 207C795 207 926 330 926 513C926 678 814 768 657 768C614 768 584 749 584 719C584 687 610 661 652 654C734 640 770 596 770 522C770 424 705 369 603 369C498 369 431 433 431 534C431 600 452 655 485 722C508 769 526 817 526 865C526 944 477 992 408 992C326 992 274 932 274 839V520Z" fill="#FF3300"/></svg></span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
