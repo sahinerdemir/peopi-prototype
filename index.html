@@ -604,7 +604,7 @@ function openProfile(){
  const p=people[person];
  paintDemoPortrait($('#detailinitials'),person);
  $('#detailname').textContent=typeof journey!=='undefined'&&journey.connections.includes(person)?p.name:p.initial.split('').join('.')+'.';
- markVerifiedName($('#detailname'),person);const connected=journey.connections.includes(person);paintConnectionCount('#detail-connection-count',person,connected);$('#detail-privacy-hint').classList.toggle('connected-hint',connected);$('#detail-privacy-hint').innerHTML=connected?'<i data-lucide="check-circle-2"></i><span>You\'re connected.</span><button type="button" class="profile-message-link" id="profile-send-message">Send Message</button>':'<i data-lucide="shield-check"></i><span>Photo and name hidden until connected.</span>';refreshIcons();$('#detailrole').textContent=p.headline;
+ markVerifiedName($('#detailname'),person);const connected=journey.connections.includes(person);paintConnectionCount('#detail-connection-count',person,true);$('#detail-privacy-hint').classList.toggle('connected-hint',connected);$('#detail-privacy-hint').innerHTML=connected?'<i data-lucide="check-circle-2"></i><span>You\'re connected.</span><button type="button" class="profile-message-link" id="profile-send-message">Send Message</button>':'<i data-lucide="shield-check"></i><span>Photo and name hidden until connected.</span>';refreshIcons();$('#detailrole').textContent=p.headline;
  $('#detailsector').textContent=p.sector;
  $('#detailbio').textContent=p.bio;
  $('#detaillooking').textContent=p.looking;
