@@ -507,7 +507,6 @@ const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];le
  all('[data-listperson]').forEach(el=>el.onclick=()=>{showPerson(+el.dataset.listperson);openProfile()});
  refreshIcons();
 }
-renderDiscoveryList();
 function modal(title,body,confirm){$('#modaltitle').textContent=title;$('#modaltext').textContent=body;$('#confirm').textContent=confirm;$('#modal').classList.remove('hide')}$('#end').onclick=()=>modal('Go invisible?','You will no longer appear in nearby discovery. Your connections and chats stay available.','Go invisible');$('#dismiss').onclick=()=>$('#modal').classList.add('hide');$('#confirm').onclick=()=>{const isEnd=$('#confirm').textContent==='Go invisible';$('#modal').classList.add('hide');if(isEnd){clearInterval(interval);endTime=null;$('#session-alert').classList.add('hide');go('closed');toast('You are invisible again.')}else toast('Filters are illustrative in this prototype.')};$('#filters').onclick=()=>modal('Discovery filters','Future filters: professional role, interests, and collaboration goals. No real user data is loaded.','Got it');let toastTimeout;function toast(message){clearTimeout(toastTimeout);$('#toast').textContent=message;$('#toast').classList.remove('hide');toastTimeout=setTimeout(()=>$('#toast').classList.add('hide'),3000)}all('[data-toast]').forEach(b=>b.onclick=()=>toast(b.dataset.toast));
 /* Prototype-only connection counts; not real user/network data. */
 const demoConnectionCounts=[128,96,74,183,112,65,209];
@@ -664,6 +663,7 @@ $('#openDemoProfile').addEventListener('click',()=>renderSpec('profile'));
 $('#closeprofile').addEventListener('click',()=>renderSpec(page));
 function resizePhonePreview(){const stage=document.querySelector('.device-stage'),phone=document.getElementById('phone');if(!stage||!phone)return;const availableWidth=Math.max(200,stage.clientWidth-28),availableHeight=Math.max(300,stage.clientHeight-24);const scale=Math.min(availableWidth/393,availableHeight/852,1.18);phone.style.setProperty('--device-scale',String(Math.max(.35,scale)))}
 window.addEventListener('resize',resizePhonePreview);if('ResizeObserver' in window)new ResizeObserver(resizePhonePreview).observe(document.querySelector('.device-stage'));requestAnimationFrame(resizePhonePreview);
+renderDiscoveryList();
 renderSpec('closed');
 if(document.readyState==='complete')refreshIcons();else window.addEventListener('load',refreshIcons);
 </script></body></html>
