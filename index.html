@@ -411,6 +411,57 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #privacy .privacy-header h2,
 #appsettings .settings-head h2,
 #editprofile .editprofile-top h2{font-size:23px;letter-spacing:-1px}
+/* Peopi header system: one consistent back-navigation tier across every subpage. */
+.journey-screen .journey-head,
+#editprofile .editprofile-top,
+#privacy .privacy-header,
+#appsettings .settings-head,
+#verification .verify-top{
+ position:absolute;top:0;left:0;right:0;height:84px;
+ display:flex;align-items:center;gap:13px;
+ padding:16px 20px;background:var(--bg);
+ border-bottom:1px solid var(--line);z-index:2;
+}
+.journey-screen .journey-head>button:first-child,
+#editprofile .editprofile-top>button:first-child,
+#privacy .privacy-header>button:first-child,
+#appsettings .settings-head>button:first-child,
+#verification .verify-top>button:first-child{
+ width:37px;height:37px;min-width:37px;
+ display:grid;place-items:center;padding:0;
+ border:1px solid var(--line);border-radius:12px;
+ background:var(--card);color:var(--ink);
+}
+.journey-screen .journey-head>button:first-child svg,
+#editprofile .editprofile-top>button:first-child svg,
+#privacy .privacy-header>button:first-child svg,
+#appsettings .settings-head>button:first-child svg,
+#verification .verify-top>button:first-child svg{width:17px;height:17px}
+.journey-screen .journey-head>div,
+#editprofile .editprofile-top>div,
+#privacy .privacy-header>div,
+#appsettings .settings-head>div,
+#verification .verify-top>div{min-width:0;flex:1}
+.journey-screen .journey-head small,
+#editprofile .editprofile-top>div>span,
+#privacy .privacy-header>div>span,
+#appsettings .settings-head>div>span,
+#verification .verify-top>div>span{display:none}
+.journey-screen .journey-head h2,
+#editprofile .editprofile-top h2,
+#privacy .privacy-header h2,
+#appsettings .settings-head h2,
+#verification .verify-top h2{
+ font-family:Manrope,system-ui,sans-serif;
+ font-size:23px;font-weight:800;letter-spacing:-1px;line-height:1.2;
+ color:var(--ink);margin:0;
+}
+#verification .verify-top h2::after{content:".";color:var(--accent)}
+#editprofile .editprofile-scroll,
+#privacy .privacy-scroll,
+#appsettings .settings-scroll,
+#verification .verify-scroll{top:84px}
+/* Primary screens keep their own no-back header tier (27px + orange dot). */
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi logo"><svg viewBox="0 0 1200 1200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M274 520C274 341 416 207 601 207C795 207 926 330 926 513C926 678 814 768 657 768C614 768 584 749 584 719C584 687 610 661 652 654C734 640 770 596 770 522C770 424 705 369 603 369C498 369 431 433 431 534C431 600 452 655 485 722C508 769 526 817 526 865C526 944 477 992 408 992C326 992 274 932 274 839V520Z" fill="#FF3300"/></svg></span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
