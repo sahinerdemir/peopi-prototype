@@ -148,6 +148,15 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 /* C04 connection profile */
 #connectiondetail .journey-body{padding:0 0 34px}
 .connection-profile{padding-bottom:10px}.connection-cover{height:108px;position:relative;overflow:hidden;background:radial-gradient(circle at 72% 28%,#ffb09b88,transparent 46%),linear-gradient(125deg,#f5e4de,#e4e8ee 72%);border-radius:0 0 24px 24px}.connection-cover-ring{position:absolute;width:175px;height:175px;border:1px solid #ff33004a;border-radius:50%;right:-12px;top:-62px;box-shadow:0 0 0 28px #ff33000d,0 0 0 56px #ff330008}.connection-cover-label{position:absolute;top:18px;left:20px;display:flex;align-items:center;gap:5px;font-size:9px;font-weight:800;letter-spacing:1px;color:#634b48}.connection-cover-label svg{width:13px;height:13px}.connection-identity{padding:0 20px;display:flex;align-items:flex-end;gap:13px;margin-top:-26px;position:relative;z-index:1}.connection-avatar{height:76px;width:76px;flex-shrink:0;border:4px solid var(--bg);border-radius:25px;display:grid;place-items:center;font-size:23px;font-weight:800;color:#443b43;box-shadow:0 7px 24px #00000012}.connection-profile-heading{padding-bottom:4px;min-width:0}.connection-eyebrow{font-size:8px;font-weight:800;letter-spacing:1px;color:var(--accent)}.connection-profile-heading h3{font-size:20px;letter-spacing:-.6px;margin:4px 0 2px}.connection-profile-heading p{font-size:11px;color:var(--sub);margin:0}.connection-meta{display:flex;flex-direction:column;gap:9px;margin:18px 20px 0;padding:13px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.connection-meta>span{display:flex;align-items:center;gap:9px;font-size:10px;color:var(--sub);line-height:1.5}.connection-meta svg{width:15px;height:15px;color:var(--accent);flex-shrink:0}.connection-section{margin:21px 20px 0}.connection-section-label,.connection-actions-heading{display:block;font-size:9px;letter-spacing:1.2px;font-weight:800;color:var(--sub);margin-bottom:9px}.connection-section p{font-size:11px;line-height:1.8;color:var(--ink);margin:0}.connection-skill-list{display:flex;gap:7px;flex-wrap:wrap}.connection-skill-list span{font-size:9px;font-weight:700;border-radius:20px;padding:7px 10px;background:var(--muted);color:var(--ink)}.connection-project{padding:14px;border:1px solid var(--line);border-radius:15px;margin-left:20px;margin-right:20px}.connection-project strong{font-size:12px}.connection-project p{margin-top:6px;color:var(--sub)}.connection-actions-heading{margin:27px 20px 0}.connection-profile+.connection-actions-heading+.journey-inline-links{margin:0 20px}.connection-profile+.connection-actions-heading+.journey-inline-links .journey-card{padding:15px 0}
+/* Workspace information architecture: child screen indentation */
+.tree-link.tree-sub-link{position:relative;margin:0 0 0 17px;width:calc(100% - 17px);padding:8px 8px 8px 23px;gap:8px;font-size:9px;font-weight:750;color:#a0aab8;border-radius:7px}
+.tree-link.tree-sub-link span{font-size:11px;font-weight:550;color:#8792a2}
+.tree-link.tree-sub-link:before{content:"";position:absolute;left:8px;top:-4px;height:calc(50% + 4px);width:11px;border-left:1px solid #d8dee7;border-bottom:1px solid #d8dee7;border-bottom-left-radius:6px;pointer-events:none}
+.tree-link.tree-sub-link.selected{background:#fff1ec;color:#f43c13}
+.tree-link.tree-sub-link.selected span{color:#dc3816;font-weight:800}
+.tree-link.tree-sub-link.selected:before{border-color:#ff9a7d}
+.tree-link.tree-sub-link .ready-dot{width:5px;height:5px;opacity:.8}
+.tree-link.tree-sub-link:hover{background:#f5f6f8}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi logo"><svg viewBox="0 0 1200 1200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M274 520C274 341 416 207 601 207C795 207 926 330 926 513C926 678 814 768 657 768C614 768 584 749 584 719C584 687 610 661 652 654C734 640 770 596 770 522C770 424 705 369 603 369C498 369 431 433 431 534C431 600 452 655 485 722C508 769 526 817 526 865C526 944 477 992 408 992C326 992 274 932 274 839V520Z" fill="#FF3300"/></svg></span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -156,10 +165,10 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">01 <span>Onboarding & Auth</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
       <button class="tree-link" data-go="welcome">A01 <span>Welcome</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="auth">A02 <span>Sign in</span><i class="ready-dot"></i></button>
+      <button class="tree-link tree-sub-link" data-parent="auth" data-go="recovery">A06 <span>Account recovery</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="firstprofile">A03 <span>Profile setup</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="firstintent">A04 <span>Intent setup</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="permissions">A05 <span>Permissions</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="recovery">A06 <span>Account recovery</span><i class="ready-dot"></i></button>
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">02 <span>Discover</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
       <button class="tree-link selected" data-go="closed">B01 <span>Invisible state</span><i class="ready-dot"></i></button>
@@ -169,21 +178,21 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">03 <span>Connections</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
       <button class="tree-link" data-go="network">C01 <span>My network</span><i class="ready-dot"></i></button>
+      <button class="tree-link tree-sub-link" data-parent="network" data-go="connectiondetail">C04 <span>Connection detail</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="requests">C02 <span>Requests</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="messages">C03 <span>Messages</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="conversation">C03b <span>Conversation</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="connectiondetail">C04 <span>Connection detail</span><i class="ready-dot"></i></button>
+      <button class="tree-link tree-sub-link" data-parent="messages" data-go="conversation">C03b <span>Conversation</span><i class="ready-dot"></i></button>
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">04 <span>Profile & Privacy</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
       <button class="tree-link" data-go="myprofile">D01 <span>My profile</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="editprofile">D02 <span>Edit profile</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="privacy">D03 <span>Privacy & safety</span><i class="ready-dot"></i></button>
+      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="hiddenconnections">D06 <span>Hidden connections</span><i class="ready-dot"></i></button>
+      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="blockedaccounts">D07 <span>Blocked accounts</span><i class="ready-dot"></i></button>
+      <button class="tree-link tree-sub-link" data-parent="privacy" data-go="reportuser">D08 <span>Report user</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="verification">D04 <span>Verification</span><i class="ready-dot"></i></button>
       <button class="tree-link" data-go="appsettings">D05 <span>Settings</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="hiddenconnections">D06 <span>Hidden connections</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="blockedaccounts">D07 <span>Blocked accounts</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="reportuser">D08 <span>Report user</span><i class="ready-dot"></i></button>
-      <button class="tree-link" data-go="notifications">D09 <span>Notifications</span><i class="ready-dot"></i></button>
+      <button class="tree-link tree-sub-link" data-parent="appsettings" data-go="notifications">D09 <span>Notifications</span><i class="ready-dot"></i></button>
     </div></div>
   </nav>
   <div class="sidebar-footer"><div class="footer-label">PREVIEW SETTINGS</div><div class="theme-row"><span>Appearance</span><button id="theme"><i data-lucide="moon"></i> <span>Dark mode</span></button></div></div>
