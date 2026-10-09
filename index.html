@@ -442,11 +442,15 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #privacy .privacy-header>div,
 #appsettings .settings-head>div,
 #verification .verify-top>div{min-width:0;flex:1}
+/* Secondary headers retain their compact uppercase parent label above the title. */
 .journey-screen .journey-head small,
 #editprofile .editprofile-top>div>span,
 #privacy .privacy-header>div>span,
 #appsettings .settings-head>div>span,
-#verification .verify-top>div>span{display:none}
+#verification .verify-top>div>span{
+ display:block;font-size:9px;font-weight:800;letter-spacing:1.5px;
+ line-height:1.35;color:var(--sub);margin-bottom:3px;
+}
 .journey-screen .journey-head h2,
 #editprofile .editprofile-top h2,
 #privacy .privacy-header h2,
