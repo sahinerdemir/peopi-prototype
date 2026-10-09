@@ -483,6 +483,8 @@ body.prototype-immersive .preview-fullscreen-toggle{position:fixed;top:22px;righ
 body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
 #connectiondetail #connection-privacy-hint{padding-right:10px;white-space:normal}
 #connectiondetail #connection-privacy-hint .connection-since{margin-left:auto;flex:none;font-size:10px;color:var(--sub);font-weight:500;white-space:nowrap}
+.preview-area:fullscreen{position:relative!important;inset:auto!important;width:100vw!important;height:100vh!important;background:#050505!important}
+.preview-area:fullscreen .device-stage{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi logo"><svg viewBox="0 0 1200 1200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M274 520C274 341 416 207 601 207C795 207 926 330 926 513C926 678 814 768 657 768C614 768 584 749 584 719C584 687 610 661 652 654C734 640 770 596 770 522C770 424 705 369 603 369C498 369 431 433 431 534C431 600 452 655 485 722C508 769 526 817 526 865C526 944 477 992 408 992C326 992 274 932 274 839V520Z" fill="#FF3300"/></svg></span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -740,6 +742,7 @@ $('#openDemoProfile').addEventListener('click',()=>renderSpec('profile'));
 $('#closeprofile').addEventListener('click',()=>renderSpec(page));
 function resizePhonePreview(){const stage=document.querySelector('.device-stage'),phone=document.getElementById('phone');if(!stage||!phone)return;const availableWidth=Math.max(200,stage.clientWidth-28),availableHeight=Math.max(300,stage.clientHeight-24);const scale=Math.min(availableWidth/393,availableHeight/852,1.18);phone.style.setProperty('--device-scale',String(Math.max(.35,scale)))}
 const fullscreenPreviewButton=document.getElementById('preview-fullscreen');
+const fullscreenPreviewArea=document.querySelector('.preview-area');
 function setPrototypeImmersive(enabled){
  document.body.classList.toggle('prototype-immersive',enabled);
  fullscreenPreviewButton.innerHTML=enabled?'<i data-lucide="minimize"></i>':'<i data-lucide="maximize"></i>';
@@ -747,8 +750,23 @@ function setPrototypeImmersive(enabled){
  fullscreenPreviewButton.title=enabled?'Return to workspace':'Fullscreen preview';
  refreshIcons();requestAnimationFrame(resizePhonePreview);
 }
-fullscreenPreviewButton.addEventListener('click',()=>setPrototypeImmersive(!document.body.classList.contains('prototype-immersive')));
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.body.classList.contains('prototype-immersive'))setPrototypeImmersive(false)});
+fullscreenPreviewButton.addEventListener('click',async()=>{
+ if(document.fullscreenElement){
+  try{await document.exitFullscreen()}catch(e){setPrototypeImmersive(false)}
+  return;
+ }
+ if(document.body.classList.contains('prototype-immersive')){setPrototypeImmersive(false);return}
+ setPrototypeImmersive(true);
+ if(fullscreenPreviewArea.requestFullscreen){
+  try{await fullscreenPreviewArea.requestFullscreen()}catch(e){/* Browser denied fullscreen; keep immersive in-page fallback. */}
+ }
+});
+document.addEventListener('fullscreenchange',()=>{
+ setPrototypeImmersive(Boolean(document.fullscreenElement));
+});
+document.addEventListener('keydown',event=>{
+ if(event.key==='Escape'&&!document.fullscreenElement&&document.body.classList.contains('prototype-immersive'))setPrototypeImmersive(false)
+});
 window.addEventListener('resize',resizePhonePreview);if('ResizeObserver' in window)new ResizeObserver(resizePhonePreview).observe(document.querySelector('.device-stage'));requestAnimationFrame(resizePhonePreview);
 renderDiscoveryList();
 renderSpec('closed');
