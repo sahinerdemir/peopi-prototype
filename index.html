@@ -298,6 +298,13 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #profsheet #detail-privacy-hint.connected-hint{width:100%;gap:7px}
 #profsheet .profile-message-link{margin-left:auto;padding:0;border:0;background:none;color:var(--accent);font:inherit;font-weight:600;white-space:nowrap;cursor:pointer}
 #profsheet .profile-message-link:hover{text-decoration:underline}
+/* Professional Profile popup: mirror Connection Detail hero geometry and typography. */
+#profsheet .profilehero{display:flex;align-items:center;gap:14px}
+#profsheet .profilehero .connection-avatar{width:59px;height:59px;flex:none;border:0;border-radius:50%!important;box-shadow:none;font-size:23px;background:var(--muted)}
+#profsheet .profilehero .connection-profile-heading{padding:0;min-width:0}
+#profsheet .profilehero .connection-profile-heading h3{font-size:21px;line-height:1.25;letter-spacing:-.7px;margin:0 0 4px}
+#profsheet .profilehero .connection-profile-heading p{font-size:11px;margin:0!important;line-height:1.6;color:var(--sub)}
+#profsheet .profilehero #detailrole{font-size:12px;font-weight:750;color:var(--ink)}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi logo"><svg viewBox="0 0 1200 1200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M274 520C274 341 416 207 601 207C795 207 926 330 926 513C926 678 814 768 657 768C614 768 584 749 584 719C584 687 610 661 652 654C734 640 770 596 770 522C770 424 705 369 603 369C498 369 431 433 431 534C431 600 452 655 485 722C508 769 526 817 526 865C526 944 477 992 408 992C326 992 274 932 274 839V520Z" fill="#FF3300"/></svg></span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -370,7 +377,7 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 <div class="profile-sheet-scroll">
 <button class="sheetclose" id="closeprofile" aria-label="Close profile">✕</button>
 <div class="sheeteyebrow">PROFESSIONAL PROFILE · DEMO</div>
-<div class="profilehero"><div class="anonavatar" id="detailinitials" aria-hidden="true">AM</div><div><h3 id="detailname">A.M.</h3><p id="detailrole">Product Designer</p><p id="detailsector">Early-stage products · Startup</p></div></div>
+<div class="profilehero"><div class="anonavatar connection-avatar" id="detailinitials" aria-hidden="true">AM</div><div class="connection-profile-heading"><h3 id="detailname">A.M.</h3><p id="detailrole">Product Designer</p><p id="detailsector">Early-stage products · Startup</p></div></div>
 <div class="privacyhint" id="detail-privacy-hint"><i data-lucide="shield-check"></i><span>Photo and name hidden until connected.</span></div>
 <div class="detailblock"><label>ABOUT</label><p id="detailbio"></p></div>
 <div class="detailblock"><label>LOOKING FOR</label><p id="detaillooking"></p></div>
