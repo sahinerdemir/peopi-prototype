@@ -422,6 +422,12 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
  padding:16px 20px;background:var(--bg);
  border-bottom:1px solid var(--line);z-index:2;
 }
+/* Secondary screens only: white header in light mode, theme-aware in dark mode. */
+.journey-screen:not(#network) .journey-head,
+#editprofile .editprofile-top,
+#privacy .privacy-header,
+#appsettings .settings-head,
+#verification .verify-top{background:var(--card)}
 .journey-screen .journey-head>button:first-child,
 #editprofile .editprofile-top>button:first-child,
 #privacy .privacy-header>button:first-child,
