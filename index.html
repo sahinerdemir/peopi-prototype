@@ -797,6 +797,13 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 .ds-subgroup-toggle svg{transform:none!important;rotate:none!important}
 .ds-subgroup-toggle .ds-nav-code{flex:none;font-size:10px;color:#8b95a4;font-variant-numeric:tabular-nums}.ds-subgroup-items .ds-leaf-code{font-size:10px;font-weight:700;color:#9aa3b0;min-width:43px;display:inline-block;font-variant-numeric:tabular-nums}.ds-subgroup-items .tree-link{display:flex;align-items:center;gap:5px;padding-left:35px}.ds-subgroup-items .tree-link span{min-width:0}
 .ds-subgroup-toggle{padding:10px 12px 10px 21px;gap:9px;color:#556174}.ds-subgroup-toggle>.ds-nav-code{flex:none;font:700 11px Manrope,system-ui;color:#9aa3b0;min-width:30px}.ds-subgroup-toggle>span{flex:1;min-width:0}.ds-subgroup-chevron{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;color:#9aa3b0;flex:none}.ds-subgroup-chevron svg{width:15px;height:15px;stroke-width:2}.ds-subgroup-toggle[aria-expanded="true"] .ds-subgroup-chevron{color:#9aa3b0}.ds-subgroup-items .tree-link{padding-left:35px}
+/* Compact sidebar number-to-label spacing across every hierarchy level */
+#tree .group-toggle,.ds-tree .group-toggle{gap:5px}
+#tree .tree-link,.ds-tree .tree-link{gap:5px}
+.ds-tree .ds-subgroup-toggle{gap:5px}
+.ds-tree .ds-subgroup-toggle>.ds-nav-code{min-width:0}
+.ds-tree .ds-subgroup-items .tree-link{gap:4px}
+.ds-tree .ds-subgroup-items .ds-leaf-code{min-width:0}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
