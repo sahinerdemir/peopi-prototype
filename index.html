@@ -805,6 +805,27 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 .ds-tree .ds-subgroup-items .tree-link{gap:4px}
 .ds-tree .ds-subgroup-items .ds-leaf-code{min-width:0}
 .ds-screen-ref{width:min(100%,340px);min-height:450px;padding:20px;border:1px solid #e4e7ec;border-radius:28px;background:#fff;display:flex;flex-direction:column;gap:14px}.ds-screen-ref>strong{font-size:24px;letter-spacing:-1px}.ds-screen-ref>strong span{color:#ff3300}.ds-screen-ref h3{font-size:24px;line-height:1.2;margin:0}.ds-ref-map{background:repeating-linear-gradient(35deg,#eef1f3 0 35px,#e2e6e9 36px 38px,#eef1f3 39px 70px);border-radius:18px;min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;padding:14px}.ds-ref-map span{background:white;border-radius:30px;padding:9px;font-size:11px}.ds-ref-map strong{font-size:11px;background:white;padding:9px;border-radius:30px}.ds-ref-map small{font-size:10px}.ds-ref-primary{border:0;background:#ff3300;color:white;border-radius:13px;padding:15px;font:800 12px Manrope;cursor:pointer}.ds-ref-card{max-width:420px;border:1px solid #e4e7ec;border-radius:18px;padding:20px;display:grid;gap:12px}.ds-ref-card h3{margin:0}.ds-ref-card p{font-size:12px;color:#687386}.ds-ref-line{display:flex;align-items:center;justify-content:space-between;gap:12px}.ds-ref-line input{accent-color:#ff3300;width:20px;height:20px}.ds-ref-track{height:7px;border-radius:10px;background:#e4e7ec;overflow:hidden}.ds-ref-track i{display:block;background:#ff3300;width:65%;height:100%}.ds-peopi-duration{display:flex;gap:10px;flex-wrap:wrap}.ds-peopi-duration button{border:1px solid #e4e7ec;border-radius:12px;background:white;padding:12px 16px;cursor:pointer}.ds-peopi-duration button.active{background:#ff3300;border-color:#ff3300;color:white}
+
+/* Design system theme preview — scoped to documentation, independent of phone theme */
+.ds-mode-switch{display:inline-flex;align-items:center;gap:9px;flex:none;padding:9px 12px;border:1px solid #dce1e9;border-radius:999px;background:#fff;color:#141922;font:800 12px Manrope,system-ui;cursor:pointer}.ds-mode-switch>svg{width:16px;height:16px;color:#697585}.ds-mode-track{width:36px;height:20px;background:#dce1e9;border-radius:999px;padding:3px;display:flex;align-items:center;transition:background .18s}.ds-mode-track>span{width:14px;height:14px;background:white;border-radius:50%;box-shadow:0 1px 3px #0002;transition:transform .18s}.ds-mode-switch[aria-checked="true"] .ds-mode-track{background:#ff3300}.ds-mode-switch[aria-checked="true"] .ds-mode-track>span{transform:translateX(16px)}.ds-mode-switch:focus-visible{outline:3px solid #ff3300;outline-offset:3px}
+#ds-workspace.ds-dark{--ds-dark-bg:#10151d;--ds-dark-surface:#1b222d;--ds-dark-border:#343e4d;--ds-dark-text:#f2f4f7;--ds-dark-muted:#a9b4c3;background:var(--ds-dark-bg);color:var(--ds-dark-text)}
+#ds-workspace.ds-dark .ds-head p,#ds-workspace.ds-dark .ds-panel p{color:var(--ds-dark-muted)}
+#ds-workspace.ds-dark .ds-panel,#ds-workspace.ds-dark .ds-ref-card,#ds-workspace.ds-dark .ds-screen-ref,#ds-workspace.ds-dark .ds-sample-card,#ds-workspace.ds-dark .ds-peopi-progress,#ds-workspace.ds-dark .ds-peopi-phone,#ds-workspace.ds-dark .ds-dialog-demo,#ds-workspace.ds-dark .ds-sheet,#ds-workspace.ds-dark .ds-choice-field,#ds-workspace.ds-dark .ds-peopi-settings,#ds-workspace.ds-dark .ds-peopi-notice{background:var(--ds-dark-surface);color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
+#ds-workspace.ds-dark .ds-mode-switch,#ds-workspace.ds-dark .ds-icon-action,#ds-workspace.ds-dark .ds-details summary,#ds-workspace.ds-dark .ds-menu-list,#ds-workspace.ds-dark .ds-color,#ds-workspace.ds-dark .ds-segment,#ds-workspace.ds-dark .ds-bottom-nav,#ds-workspace.ds-dark .ds-app-bar,#ds-workspace.ds-dark .ds-rail,#ds-workspace.ds-dark .ds-list-demo,#ds-workspace.ds-dark .ds-accordion,#ds-workspace.ds-dark .ds-carousel>div,#ds-workspace.ds-dark .ds-pill-tag:not(.orange):not(.dark),#ds-workspace.ds-dark .ds-peopi-duration button:not(.active),#ds-workspace.ds-dark .ds-chat-preview .incoming{background:#252e3a;color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
+#ds-workspace.ds-dark .ds-form-grid input,#ds-workspace.ds-dark .ds-form-grid select,#ds-workspace.ds-dark .ds-form-grid textarea,#ds-workspace.ds-dark .ds-field input,#ds-workspace.ds-dark .ds-field select,#ds-workspace.ds-dark .ds-field textarea{background:#252e3a;color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
+#ds-workspace.ds-dark input::placeholder,#ds-workspace.ds-dark textarea::placeholder{color:#a9b4c3}
+#ds-workspace.ds-dark .ds-tabs button,#ds-workspace.ds-dark .ds-menu-list button,#ds-workspace.ds-dark .ds-segment button,#ds-workspace.ds-dark .ds-bottom-nav button,#ds-workspace.ds-dark .ds-rail button{color:var(--ds-dark-muted)}
+#ds-workspace.ds-dark .ds-tabs button.active,#ds-workspace.ds-dark .ds-bottom-nav button.active,#ds-workspace.ds-dark .ds-rail button.active{color:#ff7655}
+#ds-workspace.ds-dark .ds-segment button.active,#ds-workspace.ds-dark .ds-peopi-duration button.active{background:#ff3300;color:#fff}
+#ds-workspace.ds-dark .ds-ref-map{background:repeating-linear-gradient(35deg,#252f39 0 35px,#313c48 36px 38px,#252f39 39px 70px)}
+#ds-workspace.ds-dark .ds-ref-map span,#ds-workspace.ds-dark .ds-ref-map strong{background:#343e4d;color:#f2f4f7}
+#ds-workspace.ds-dark .ds-peopi-track,#ds-workspace.ds-dark .ds-ref-track,#ds-workspace.ds-dark .ds-skeleton-card>span,#ds-workspace.ds-dark .ds-skeleton-card i{background:#343e4d}
+#ds-workspace.ds-dark .ds-chat-preview .outgoing,#ds-workspace.ds-dark .ds-ref-primary,#ds-workspace.ds-dark .ds-peopi-cta{background:#ff3300;color:white}
+#ds-workspace.ds-dark .ds-spec-table td,#ds-workspace.ds-dark .ds-spec-table th{border-color:var(--ds-dark-border)}
+#ds-workspace.ds-dark .ds-color>span,#ds-workspace.ds-dark .ds-list-demo small,#ds-workspace.ds-dark .ds-ref-card p,#ds-workspace.ds-dark .ds-peopi-settings small{color:var(--ds-dark-muted)}
+#ds-workspace.ds-dark .ds-card-art{background:linear-gradient(120deg,#ff3300,#7e2b27)}
+@media(max-width:680px){.ds-head{flex-wrap:wrap}.ds-mode-switch{margin-left:auto}}
+@media(prefers-reduced-motion:reduce){.ds-mode-track,.ds-mode-track>span{transition:none}}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -907,7 +928,7 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 <div class="detailblock" id="projectblock"><label>PROJECT / STARTUP</label><strong id="projectname"></strong><p id="projectdesc"></p><a id="onepager" href="#" class="onepager hide" target="_blank" rel="noopener noreferrer">View one-pager ↗</a></div>
 <button class="primary" id="requestFromProfile">Request to connect ↗</button>
 <p class="profiledisclaimer">Sample profile only. No real identities, locations, or external documents.</p>
-</div></div></div><div class="modal hide" id="modal"><div class="sheet"><h3 id="modaltitle">Go invisible?</h3><p id="modaltext">You'll become invisible immediately. Existing connections and messages remain available.</p><button class="primary" id="confirm">Go invisible</button><button class="cancel" id="dismiss">Cancel</button></div></div><div id="toast" class="toast hide"></div></main></div><section class="ds-workspace" id="ds-workspace" hidden><div class="ds-head"><div><small>PEOPI / DESIGN SYSTEM V1.0</small><h1 id="ds-title">Foundations</h1><p id="ds-description"></p></div></div><div id="ds-content"></div></section></div>
+</div></div></div><div class="modal hide" id="modal"><div class="sheet"><h3 id="modaltitle">Go invisible?</h3><p id="modaltext">You'll become invisible immediately. Existing connections and messages remain available.</p><button class="primary" id="confirm">Go invisible</button><button class="cancel" id="dismiss">Cancel</button></div></div><div id="toast" class="toast hide"></div></main></div><section class="ds-workspace" id="ds-workspace" hidden><div class="ds-head"><div><small>PEOPI / DESIGN SYSTEM V1.0</small><h1 id="ds-title">Foundations</h1><p id="ds-description"></p></div><button type="button" id="ds-mode-switch" class="ds-mode-switch" role="switch" aria-checked="false" aria-label="Show dark mode components"><i data-lucide="sun"></i><span>Light</span><span class="ds-mode-track" aria-hidden="true"><span></span></span><i data-lucide="moon"></i></button></div><div id="ds-content"></div></section></div>
 <aside class="ds-inspector" id="ds-inspector" aria-label="Design system notes" hidden>
 <div class="inspector-header"><div class="inspector-context"><span class="context-label">DESIGN SYSTEM / NOTES</span><div class="context-path" id="ds-note-path">FOUNDATIONS / E01</div></div></div>
 <div class="inspector-scroll"><div class="spec-heading"><span id="ds-note-category">FOUNDATIONS</span><h2 id="ds-note-title">Colors & Typography</h2><p id="ds-note-intro"></p></div>
@@ -1346,6 +1367,13 @@ all('.ds-subgroup-toggle').forEach(btn=>{
  });
 });
 
+const dsModeButton=$('#ds-mode-switch');
+dsModeButton.addEventListener('click',()=>{
+ const dark=$('#ds-workspace').classList.toggle('ds-dark');
+ dsModeButton.setAttribute('aria-checked',String(dark));
+ dsModeButton.setAttribute('aria-label',dark?'Show light mode components':'Show dark mode components');
+ dsModeButton.querySelector('span:not(.ds-mode-track)').textContent=dark?'Dark':'Light';
+});
 all('.ds-link').forEach(b=>b.addEventListener('click',()=>showDesign(b.dataset.ds)));
 function closeDesign(){document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;$('#ds-inspector').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(page);requestAnimationFrame(resizePhonePreview)}
 all('#tree .tree-link').forEach(b=>b.addEventListener('click',()=>{if(document.body.classList.contains('ds-open')){closeDesign()}}));
