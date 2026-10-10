@@ -794,6 +794,7 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 .ds-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}.ds-sample-card{border:1px solid #e4e7ec;border-radius:20px;padding:20px;max-width:420px;min-width:0}.ds-sample-card h3{font-size:18px;margin:12px 0}.ds-card-art{height:90px;background:linear-gradient(120deg,#ff3300,#ffb5a0);border-radius:12px}.ds-list-demo{max-width:480px}.ds-list-demo>div{display:flex;align-items:center;gap:15px;border-bottom:1px solid #e4e7ec;padding:15px}.ds-list-demo svg{width:22px;height:22px}.ds-list-demo span{flex:1;display:grid;gap:5px}.ds-list-demo small{font-size:11px;color:#687386}.ds-list-demo strong{font-size:13px}.ds-list-demo hr{border:0;border-top:1px solid #dce1e9}.ds-accordion details{border-bottom:1px solid #dce1e9;padding:14px}.ds-accordion summary{cursor:pointer;font-size:13px;font-weight:700}.ds-sheet-stage{background:#e9ecf1;border-radius:20px;max-width:450px;padding:90px 0 0;overflow:hidden}.ds-sheet{border-radius:24px 24px 0 0;background:#fff;padding:22px}.ds-sheet-handle{width:40px;height:5px;border-radius:8px;background:#cbd1da;margin:0 auto 20px}.ds-dialog-demo{max-width:430px;border:1px solid #dce1e9;border-radius:20px;box-shadow:0 15px 50px #14192217;padding:24px}.ds-dialog-demo h3{margin:0}.ds-toast-preview{background:#141922;color:#fff;display:flex;gap:12px;align-items:center;padding:15px;border-radius:12px;max-width:440px;font-size:12px}.ds-toast-preview svg{width:18px;color:#56d6a2}.ds-toast-preview button{margin-left:auto;border:0;background:transparent;color:#fff;cursor:pointer}.ds-progress-examples{display:grid;gap:20px}.ds-progress-examples progress{accent-color:#ff3300;max-width:420px;width:100%}.ds-pill-tag{border:1px solid #dce1e9;background:#f8f9fb;border-radius:999px;padding:8px 12px;color:#141922;font:700 11px Manrope}.ds-pill-tag.orange{background:#ff3300;color:white;border-color:#ff3300}.ds-pill-tag.dark{background:#141922;color:white}.ds-skeleton-card{display:flex;gap:18px;max-width:400px;padding:20px;border:1px solid #e4e7ec;border-radius:16px}.ds-skeleton-card>span{width:70px;height:70px;border-radius:50%;background:#e9ecf1}.ds-skeleton-card>div{flex:1;display:grid;gap:10px}.ds-skeleton-card i{height:12px;background:#e9ecf1;border-radius:10px}.ds-skeleton-card i:last-child{width:60%}.ds-avatar{width:56px;height:56px;display:grid;place-items:center;border-radius:50%;background:#ffe8e1;color:#ff3300;font-weight:800}.ds-carousel{display:flex;gap:12px;overflow-x:auto}.ds-carousel>div{flex:0 0 150px;padding:20px;background:#f8f9fb;border:1px solid #e4e7ec;border-radius:16px}.ds-carousel strong{color:#ff3300}.ds-media-grid{display:flex;align-items:flex-start;flex-wrap:wrap;gap:12px}.ds-media-grid>div{width:170px;max-width:100%;background:#e9ecf1;border-radius:12px;display:grid;place-items:center;color:#687386}.ds-media-grid>div:first-child{aspect-ratio:16/9}.ds-media-grid>div:nth-child(2){aspect-ratio:1}.ds-media-grid>div:last-child{aspect-ratio:4/5}.ds-chat-preview{display:grid;gap:12px;max-width:450px}.ds-chat-preview>div{padding:14px 18px;border-radius:18px;max-width:80%;font-size:13px}.ds-chat-preview .incoming{background:#f0f2f5;justify-self:start}.ds-chat-preview .outgoing{background:#ff3300;color:white;justify-self:end}
 .ds-icon-action:focus-visible,.ds-fab:focus-visible,.ds-subgroup-toggle:focus-visible,.ds-segment button:focus-visible{outline:3px solid #ff3300;outline-offset:3px}
 .ds-demo-active{box-shadow:0 0 0 3px #ff33004a!important}.ds-subgroup-toggle[aria-expanded="true"]{color:#ff3300}.ds-subgroup-items .tree-link.selected{color:#ff3300}
+.ds-subgroup-toggle svg{transform:none!important;rotate:none!important}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -841,7 +842,7 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
       <button class="tree-link ds-link" data-ds="tokens"><strong>E04</strong> <span>Design Tokens & Export</span></button>
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">F <span>Components</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
-      <button class="tree-link ds-link" data-ds="components"><strong>F00</strong> <span>Overview & Inventory</span></button>
+      <button class="tree-link ds-link" data-ds="components"><strong>F01</strong> <span>Overview & Inventory</span></button>
 <div class="ds-subgroup"><button type="button" class="ds-subgroup-toggle" aria-expanded="true"><i data-lucide="chevron-down"></i><span>Actions</span><small>4</small></button><div class="ds-subgroup-items" ><button class="tree-link ds-link" data-ds="button-spec"><span>Buttons</span></button><button class="tree-link ds-link" data-ds="icon-button"><span>Icon buttons</span></button><button class="tree-link ds-link" data-ds="fab"><span>Floating action buttons</span></button><button class="tree-link ds-link" data-ds="segmented"><span>Segmented buttons</span></button></div></div>
 <div class="ds-subgroup"><button type="button" class="ds-subgroup-toggle" aria-expanded="false"><i data-lucide="chevron-right"></i><span>Inputs & Selection</span><small>7</small></button><div class="ds-subgroup-items" hidden><button class="tree-link ds-link" data-ds="text-field"><span>Text fields</span></button><button class="tree-link ds-link" data-ds="search-field"><span>Search</span></button><button class="tree-link ds-link" data-ds="checkbox"><span>Checkboxes</span></button><button class="tree-link ds-link" data-ds="radio"><span>Radio buttons</span></button><button class="tree-link ds-link" data-ds="switch"><span>Switches</span></button><button class="tree-link ds-link" data-ds="slider"><span>Sliders</span></button><button class="tree-link ds-link" data-ds="select"><span>Select & dropdown</span></button></div></div>
 <div class="ds-subgroup"><button type="button" class="ds-subgroup-toggle" aria-expanded="false"><i data-lucide="chevron-right"></i><span>Navigation</span><small>5</small></button><div class="ds-subgroup-items" hidden><button class="tree-link ds-link" data-ds="bottom-nav"><span>Bottom navigation</span></button><button class="tree-link ds-link" data-ds="tabs"><span>Tabs</span></button><button class="tree-link ds-link" data-ds="app-bar"><span>App bars</span></button><button class="tree-link ds-link" data-ds="nav-rail"><span>Navigation rail</span></button><button class="tree-link ds-link" data-ds="menu"><span>Menus</span></button></div></div>
@@ -1074,7 +1075,7 @@ function renderSpec(key){
  document.querySelectorAll('.tree-link').forEach(x=>x.classList.toggle('selected',x.dataset.go===key||(key==='profile'&&x.id==='openDemoProfile')));const current=document.querySelector('.tree-link.selected');if(current)openTreeGroup(current.closest('.tree-group'));
 }
 function openTreeGroup(group){document.querySelectorAll('.tree-group').forEach(g=>{const active=g===group;g.classList.toggle('collapsed',!active);g.querySelector('.group-toggle').setAttribute('aria-expanded',String(active))})}
-document.querySelectorAll('.group-toggle').forEach(b=>b.addEventListener('click',()=>{const group=b.closest('.tree-group');if(group.classList.contains('collapsed'))openTreeGroup(group);else{group.classList.add('collapsed');b.setAttribute('aria-expanded','false')}}));
+document.querySelectorAll('.group-toggle').forEach(b=>b.addEventListener('click',()=>{const group=b.closest('.tree-group');if(group.classList.contains('collapsed')){const parent=group.parentElement;parent.querySelectorAll(':scope > .tree-group').forEach(other=>{if(other!==group){other.classList.add('collapsed');const toggle=other.querySelector(':scope > .group-toggle');if(toggle)toggle.setAttribute('aria-expanded','false')}});openTreeGroup(group)}else{group.classList.add('collapsed');b.setAttribute('aria-expanded','false')}}));
 document.querySelectorAll('.tree-link').forEach(b=>b.addEventListener('click',()=>openTreeGroup(b.closest('.tree-group'))));
 function updateTreeCounts(){document.querySelectorAll('.tree-group').forEach(group=>{const children=[...group.querySelectorAll('.tree-children .tree-link')];const complete=children.filter(b=>!b.hasAttribute('data-planned')).length;const title=group.querySelector('.group-toggle>span');let count=title.querySelector('.group-count');if(!count){count=document.createElement('em');count.className='group-count';title.appendChild(count)}count.textContent=' ('+complete+'/'+children.length+')'})}updateTreeCounts();
 openTreeGroup(document.querySelector('.tree-link[data-go="closed"]').closest('.tree-group'));
@@ -1310,11 +1311,21 @@ function showDesign(key){
  $('#ds-workspace').scrollTop=0;
 }
 
-all('.ds-subgroup-toggle').forEach(btn=>btn.addEventListener('click',()=>{
- const open=btn.getAttribute('aria-expanded')!=='true';
- btn.setAttribute('aria-expanded',String(open));btn.nextElementSibling.hidden=!open;
- const ico=btn.querySelector('svg');if(ico)ico.style.transform=open?'rotate(90deg)':'rotate(0deg)';
-}));
+function setDsSubgroup(btn,open){
+ btn.setAttribute('aria-expanded',String(open));
+ btn.nextElementSibling.hidden=!open;
+ const ico=btn.querySelector('svg');
+ if(ico){ico.style.transform='none';ico.style.rotate='none';ico.setAttribute('data-lucide',open?'chevron-down':'chevron-right')}
+}
+all('.ds-subgroup-toggle').forEach(btn=>{
+ setDsSubgroup(btn,btn.getAttribute('aria-expanded')==='true');
+ btn.addEventListener('click',()=>{
+  const open=btn.getAttribute('aria-expanded')!=='true';
+  all('.ds-subgroup-toggle').forEach(other=>setDsSubgroup(other,false));
+  setDsSubgroup(btn,open);
+  if(window.lucide?.createIcons)window.lucide.createIcons();
+ });
+});
 
 all('.ds-link').forEach(b=>b.addEventListener('click',()=>showDesign(b.dataset.ds)));
 function closeDesign(){document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;$('#ds-inspector').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(page);requestAnimationFrame(resizePhonePreview)}
