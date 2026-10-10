@@ -654,11 +654,14 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
 }
 #active .discovery-list-toolbar button svg{width:15px;height:15px}
 /* Discovery Map/List segmented control */
-#active .seg{background:#fff}
+#active .seg{
+ background:#fff;
+ box-shadow:0 0 10px rgba(0,0,0,.10);
+}
 #active .seg button.chosen{
  background:#ff3300;
  color:#fff;
- box-shadow:0 10px 32px rgba(255,204,0,.15);
+ box-shadow:none;
 }
 #active .seg button.chosen svg{color:#fff}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
