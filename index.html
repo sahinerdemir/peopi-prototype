@@ -422,24 +422,24 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
  padding:16px 20px;background:var(--bg);
  border-bottom:1px solid var(--line);z-index:2;
 }
-/* Subpage-only frosted header: 90% at the top, 80% at the bottom. */
+/* Subpage-only frosted header: 100% at the top, 30% at the bottom. */
 .journey-screen:not(#network) .journey-head,
 #editprofile .editprofile-top,
 #privacy .privacy-header,
 #appsettings .settings-head,
 #verification .verify-top{
- background:linear-gradient(to bottom,rgba(255,255,255,.9) 0%,rgba(255,255,255,.8) 100%);
+ background:linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(255,255,255,.3) 100%);
  -webkit-backdrop-filter:blur(24px) saturate(170%);
  backdrop-filter:blur(24px) saturate(170%);
  border-bottom:0;
- box-shadow:0 16px 42px rgba(0,0,0,.06);
+ box-shadow:0 16px 42px rgba(0,0,0,.08);
 }
 .phone.dark .journey-screen:not(#network) .journey-head,
 .phone.dark #editprofile .editprofile-top,
 .phone.dark #privacy .privacy-header,
 .phone.dark #appsettings .settings-head,
 .phone.dark #verification .verify-top{
- background:linear-gradient(to bottom,rgba(34,42,55,.9) 0%,rgba(34,42,55,.8) 100%);
+ background:linear-gradient(to bottom,rgba(34,42,55,1) 0%,rgba(34,42,55,.3) 100%);
 }
 /* Match the status bar to the top of the same glass gradient. */
 .phone:has(.screen.active.journey-screen:not(#network)) .status,
