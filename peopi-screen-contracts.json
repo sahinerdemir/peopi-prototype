@@ -74,7 +74,12 @@
       "rules": [
         "Read one canonical profile model; calculate completion from real fields.",
         "Use approved identity/photo; editing opens a child route.",
-        "Preserve profile scroll when switching tabs."
+        "Preserve profile scroll when switching tabs.",
+        "Group avatar, name, headline, approximate city and profile completeness inside one high-contrast identity card.",
+        "Identity is the visual priority. Completion is a quieter footer separated by a divider, not a standalone competing card.",
+        "The identity card is not tappable as a whole. Provide explicit Edit profile and Complete profile controls with 44 pt touch targets.",
+        "About, intent, skills and privacy remain calm sections below the identity card. Do not turn every section into a competing card.",
+        "Profile strength means completeness, not trustworthiness or verification. Expose its value as accessible progress."
       ],
       "validation": [
         "Rapid repeated taps resolve to the final state without ghost screens.",
