@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "basis": "Apple iOS 27 / HIG Motion; Peopi custom values, not Apple system constants",
+  "durationMs": {
+    "press": 90,
+    "release": 220,
+    "selection": 260,
+    "tab": 220,
+    "push": 360,
+    "pop": 320,
+    "sheet": 380,
+    "dismiss": 240,
+    "content": 240,
+    "feedback": 180,
+    "reduced": 120
+  },
+  "curves": {
+    "standard": [
+      0.2,
+      0.8,
+      0.2,
+      1
+    ],
+    "exit": [
+      0.4,
+      0,
+      1,
+      1
+    ],
+    "settle": [
+      0.16,
+      1,
+      0.3,
+      1
+    ]
+  },
+  "spring": {
+    "mass": 1,
+    "stiffness": 320,
+    "damping": 34,
+    "use": "native selection and sheets; interruptible, minimal overshoot"
+  },
+  "distance": {
+    "pressScale": 0.97,
+    "contentY": 10,
+    "sheetY": 48,
+    "pushWidthFraction": 1,
+    "parallaxWidthFraction": 0.22
+  },
+  "reducedMotion": {
+    "translate": 0,
+    "scale": 1,
+    "ambient": false,
+    "durationMs": 120
+  },
+  "haptics": {
+    "tab": "selection on user-initiated change only",
+    "requestAccepted": "light success after confirmed result",
+    "web": "not simulated"
+  },
+  "principles": [
+    "State commits immediately; motion never delays or grants authorization.",
+    "Cancel/retarget on repeated actions; preserve tab state and scroll.",
+    "Animate groups, never individual letters or every list item.",
+    "Reduce Motion replaces travel/scale with short opacity feedback.",
+    "Glass belongs to navigation and controls; keep text readable."
+  ]
+}

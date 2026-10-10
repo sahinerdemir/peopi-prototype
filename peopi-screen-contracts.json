@@ -1,0 +1,447 @@
+{
+  "version": "1.0.0",
+  "target": "Flutter mobile, iOS primary",
+  "nativeGuidance": {
+    "childRoutes": "CupertinoPageRoute; keep native interactive back gesture",
+    "rootTabs": "persistent tab navigators/state; crossfade content, animated selection pill",
+    "motion": "peopi-motion.tokens.json; use a shared service/widgets, not screen-local timings",
+    "accessibility": "MediaQuery.disableAnimations and accessibleNavigation; Reduce Transparency where supported",
+    "prototypeBoundary": "Web motion is a behavioral reference; native physics, keyboard, focus, permissions, backend and security must be implemented and device-tested."
+  },
+  "screens": {
+    "closed": {
+      "parent": null,
+      "routeType": "root",
+      "motion": [
+        "tab",
+        "selection"
+      ],
+      "rules": [
+        "Start invisible; show no individual pins, identities or exact coordinates.",
+        "Use an honest neutral map when aggregation thresholds are not met.",
+        "Show up opens session setup; it does not start sharing yet."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "setup": {
+      "parent": "closed",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Allow one networking intent and one duration: 30/60/120 minutes.",
+        "Only explicit Go visible starts a session after permission checks.",
+        "Cancel returns to Closed without broadcasting."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "active": {
+      "parent": null,
+      "routeType": "root",
+      "motion": [
+        "tab",
+        "selection"
+      ],
+      "rules": [
+        "Render only profiles allowed by session, connection and privacy state.",
+        "Map and List share filters; retain view, selection and scroll across tab visits.",
+        "Connected List cards use the orange border and shared verified badge.",
+        "Going invisible and session expiry end discovery immediately; animate afterward."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "myprofile": {
+      "parent": null,
+      "routeType": "root",
+      "motion": [
+        "tab",
+        "selection"
+      ],
+      "rules": [
+        "Read one canonical profile model; calculate completion from real fields.",
+        "Use approved identity/photo; editing opens a child route.",
+        "Preserve profile scroll when switching tabs."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "editprofile": {
+      "parent": "myprofile",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Keep a draft separate from saved profile; validate before saving.",
+        "Handle keyboard and safe areas; never hide the save action behind the keyboard.",
+        "Save/cancel returns to Profile; production must protect unsaved changes."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "privacy": {
+      "parent": "myprofile",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Privacy changes require server enforcement, not just a local switch.",
+        "Hide My Presence targets an existing connection and preserves profile/chat/network.",
+        "Do not notify the hidden person or expose precise discovery location."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "verification": {
+      "parent": "myprofile",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Linked account, verified identity and pending are distinct states.",
+        "Use the shared filled blue SVG badge only when the trusted result warrants it.",
+        "Demo linked state is not a real verification result."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "appsettings": {
+      "parent": "myprofile",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Reuse existing settings rows and semantic switch controls.",
+        "Theme follows canonical appearance preference; respect system accessibility settings.",
+        "Sign out requires real authenticated-session teardown in production."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "welcome": {
+      "parent": null,
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Keep ambient breathing subtle and confined to decorative shapes.",
+        "Disable ambient motion with Reduce Motion; keep text and primary action steady.",
+        "Continue goes to authentication without creating an account."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "auth": {
+      "parent": "welcome",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Use native OAuth/email flow and secure token storage in production.",
+        "Show loading/error/retry without duplicate submissions.",
+        "Keyboard and focus must follow the selected authentication method."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "firstprofile": {
+      "parent": "auth",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Collect and validate required public profile fields; preserve draft across back navigation.",
+        "Do not expose exact address or unauthorized photos.",
+        "Completion comes from saved field validity, never a fixed percentage."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "firstintent": {
+      "parent": "firstprofile",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Use existing intent selection; one active choice with semantic selected state.",
+        "Store the choice without starting public presence.",
+        "Back navigation preserves the onboarding draft."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "permissions": {
+      "parent": "firstintent",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Request OS permissions in context after an explicit user action.",
+        "Support denied/restricted states; never fabricate permission success.",
+        "No location or notification prompt is sent by this web demo."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "recovery": {
+      "parent": "auth",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Use secure server recovery with neutral account-existence feedback.",
+        "Handle invalid/expired link and retry states.",
+        "Do not expose tokens in UI, logs or prototype notes."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "network": {
+      "parent": null,
+      "routeType": "root",
+      "motion": [
+        "tab",
+        "selection"
+      ],
+      "rules": [
+        "Show only established connections from the canonical connection model.",
+        "Reuse the person row; searching filters without altering connections.",
+        "Switching tabs preserves query and scroll."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "requests": {
+      "parent": "network",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Received/Sent preserve separate state; accepted/declined/cancelled outcomes update one model.",
+        "Accept/Decline sit below person details in equal-width 48px controls.",
+        "Sent cancel uses the trailing accessible \u00d7 icon; prevent duplicate submissions.",
+        "Chat access requires a confirmed accepted connection."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "messages": {
+      "parent": "network",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Show conversations only when messaging permissions allow access.",
+        "Use canonical conversation previews and unread state.",
+        "Preserve scroll and navigate to the selected conversation."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "conversation": {
+      "parent": "messages",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Restrict message access to the permitted connection; enforce on the server.",
+        "Multiline input, keyboard avoidance, timestamps, pending/failure/retry states are required.",
+        "Animate only the new bubble; retain history and scroll; do not replay every message."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "connectiondetail": {
+      "parent": "network",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Reveal identity according to established connection permissions.",
+        "Hide presence preserves messaging/profile access; blocking/removal is separate.",
+        "Message opens the selected connection conversation, not an arbitrary record."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "hiddenconnections": {
+      "parent": "privacy",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Hide My Presence is per existing connection; hide live presence, nearby/map visibility, active/last-seen and proximity notifications.",
+        "Keep network, profile and chat; no notification to the hidden person.",
+        "Production must enforce anti-inference safeguards server-side."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "blockedaccounts": {
+      "parent": "privacy",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Blocking is separate from hiding; enforce block restrictions server-side.",
+        "Unblock does not silently restore a removed connection or start sharing.",
+        "Use an honest empty state when no blocked accounts exist."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "reportuser": {
+      "parent": "privacy",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Collect reason and optional context for the correct person.",
+        "Confirm successful submission only after server acceptance.",
+        "Preserve draft/error state and avoid duplicate reports."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "notifications": {
+      "parent": "appsettings",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Each toggle controls the stated notification channel or event.",
+        "OS notification permission and app preferences are separate.",
+        "Persist settings securely; never send a notification from a preview action."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    },
+    "profile": {
+      "parent": null,
+      "routeType": "sheet",
+      "motion": [
+        "sheet",
+        "dismiss"
+      ],
+      "rules": [
+        "Use limited identity before connection and full authorized identity afterward.",
+        "Sheet uses the shared verified badge, protected portrait and profile rows.",
+        "Dismiss returns focus to the triggering marker/row; messaging requires permission."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+/* Peopi Motion 1.0: web behavioral reference; values mirror tokens JSON. */
+:root{--motion-press:90ms;--motion-release:220ms;--motion-selection:260ms;--motion-ease:cubic-bezier(.2,.8,.2,1)}
+#phone>.screen{isolation:isolate}
+#phone>.screen.motion-outgoing{display:block!important;position:absolute;top:49px;left:0;right:0;height:calc(100% - 49px);pointer-events:none;z-index:5}
+#phone>.screen.motion-incoming{z-index:6}
+#phone>.screen.motion-outgoing .nav{visibility:hidden}
+.phone .nav.motion-nav{isolation:isolate}
+.phone .nav.motion-nav>button{position:relative;z-index:1;transition:color var(--motion-selection) var(--motion-ease)}
+.phone .nav.motion-nav>button.current{background:transparent!important}
+.motion-nav-indicator{position:absolute;top:7px;bottom:7px;left:0;pointer-events:none;background:rgba(255,51,0,.085);border-radius:999px;z-index:0}
+.phone.dark .motion-nav-indicator{background:rgba(255,90,45,.15)}
+.phone .motion-pressable{transition:transform var(--motion-release) var(--motion-ease);transform-origin:center}
+.phone .motion-pressable:active:not(:disabled){transform:scale(.97)}
+.phone .motion-overlay-leaving.hide{display:flex!important;pointer-events:none}
+#phone .motion-feedback-leaving.hide{display:block!important;pointer-events:none}
+#active #listview .listitem-connected{border-color:rgba(255,51,0,.48)}
+.phone.dark #active #listview .listitem-connected{border-color:rgba(255,90,45,.65)}
+.motion-replay-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.motion-replay-row button,.motion-download{padding:12px 16px;min-height:44px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:700 12px Manrope;text-decoration:none}
+.motion-preview{position:relative;height:260px;width:min(393px,100%);overflow:hidden;border-radius:24px;background:var(--muted);padding:24px;color:var(--ink)}
+.motion-preview-card{position:absolute;inset:55px 24px 24px;border-radius:22px;padding:24px;background:var(--card);box-shadow:0 12px 32px #14192212;display:flex;flex-direction:column;justify-content:space-between}
+.motion-preview-card strong{font-size:22px;letter-spacing:-.6px}.motion-preview-card p{font-size:12px;line-height:1.6;color:var(--sub)}
+.motion-preview-card button{border:0;background:var(--accent);color:#fff;padding:14px;border-radius:999px;font-weight:800}
+.motion-contract{font:12px/1.8 Manrope;color:var(--sub)}
+#ds-workspace.ds-dark .motion-preview{--card:#222a37;--ink:#f5f7fa;--sub:#a5aebd;--muted:#141922;--line:#3d4658}
+@media(prefers-reduced-motion:reduce){.phone .motion-pressable:active:not(:disabled){transform:none}.phone .motion-pressable{transition:none}#phone *,#phone *:before,#phone *:after{animation:none!important;scroll-behavior:auto!important}}
+.phone.motion-reduced .motion-pressable:active{transform:none!important}.phone.motion-reduced .motion-pressable{transition:none}#spec-codex-contract ul{padding-left:18px;font-size:12px;line-height:1.8;color:var(--sub)}#spec-codex-contract p{font-size:12px;line-height:1.7;color:var(--sub)}#spec-codex-contract h3{margin-top:20px}
+
+.phone .motion-pressable:active:not(:disabled){transition-duration:var(--motion-press)}

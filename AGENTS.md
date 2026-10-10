@@ -11,3 +11,6 @@ Components is an inventory of reusable UI already used in the application, not a
 - Keep source screens, component examples and their behavior aligned whenever modifying a reusable component.
 
 The family inventory is `dsCatalog` in `index.html`; its `members` refer to screen specimens in `showDesign`. Existing specimens reuse actual screen markup and styles. Discovery filters share `discoveryFilterMarkup`; request row specimens share `journeyRow` and `cancelRequestButton`.
+
+## Mobile and motion contracts
+This prototype is the Codex mobile implementation specification. Read MOBILE-HANDOFF.md. Keep every implemented screen in peopi-screen-contracts.json. Use shared motion recipes, never screen-local durations. Honor system Reduce Motion and preserve tab state. Update JSON sources, then run scripts/sync-motion-spec.py to refresh runtime constants. New components must be used by a real screen and registered in an existing flat Components family. Native accessibility, interactive routes and backend security require separate device/integration validation.
