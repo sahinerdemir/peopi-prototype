@@ -996,6 +996,28 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 #phone button,#phone input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),#phone textarea,#phone select{border-radius:max(15px,1em)}
 #phone input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),#phone select{min-height:48px}
 .editfield input,.editfield select,.editfield textarea,.journey-field input,.journey-field select,.journey-field textarea{border-radius:16px;min-height:46px}
+
+/* Peopi Soft Bold selection controls: consistent brand-orange, never browser-blue. */
+#ds-workspace input[type="checkbox"],#ds-workspace input[type="radio"],#phone input[type="checkbox"],#phone input[type="radio"],.editfield input[type="checkbox"],.editfield input[type="radio"],.journey-field input[type="checkbox"],.journey-field input[type="radio"]{appearance:none;-webkit-appearance:none;display:inline-grid;place-content:center;vertical-align:middle;flex:none;width:23px;height:23px;margin:0 9px 0 0;border:2px solid #a9b4c3;background:#fff;cursor:pointer;transition:background .16s,border-color .16s,box-shadow .16s}
+#ds-workspace input[type="checkbox"],#phone input[type="checkbox"],.editfield input[type="checkbox"],.journey-field input[type="checkbox"]{border-radius:8px}
+#ds-workspace input[type="radio"],#phone input[type="radio"],.editfield input[type="radio"],.journey-field input[type="radio"]{border-radius:50%}
+#ds-workspace input[type="checkbox"]:checked,#phone input[type="checkbox"]:checked,.editfield input[type="checkbox"]:checked,.journey-field input[type="checkbox"]:checked{background:#ff3300;border-color:#ff3300}
+#ds-workspace input[type="checkbox"]:checked::after,#phone input[type="checkbox"]:checked::after,.editfield input[type="checkbox"]:checked::after,.journey-field input[type="checkbox"]:checked::after{content:"";width:10px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:translateY(-2px) rotate(-45deg)}
+#ds-workspace input[type="radio"]:checked,#phone input[type="radio"]:checked,.editfield input[type="radio"]:checked,.journey-field input[type="radio"]:checked{border:7px solid #ff3300;background:#fff}
+#ds-workspace input[type="checkbox"]:focus-visible,#ds-workspace input[type="radio"]:focus-visible,#phone input[type="checkbox"]:focus-visible,#phone input[type="radio"]:focus-visible{outline:3px solid #ff987e;outline-offset:3px}
+#ds-workspace input[type="checkbox"]:disabled,#ds-workspace input[type="radio"]:disabled,#phone input[type="checkbox"]:disabled,#phone input[type="radio"]:disabled{opacity:.42;cursor:not-allowed}
+#ds-workspace.ds-dark input[type="checkbox"],#ds-workspace.ds-dark input[type="radio"],#phone.dark input[type="checkbox"],#phone.dark input[type="radio"]{background:#252e3a;border-color:#8d9aad}
+#ds-workspace.ds-dark input[type="checkbox"]:checked,#phone.dark input[type="checkbox"]:checked{background:#ff3300;border-color:#ff3300}
+#ds-workspace.ds-dark input[type="radio"]:checked,#phone.dark input[type="radio"]:checked{background:#252e3a;border-color:#ff3300}
+#ds-workspace .ds-select-stack label,#ds-workspace .ds-choice-field label{display:flex;align-items:center;gap:5px;min-height:49px;border-radius:16px;padding:9px 13px;cursor:pointer}
+#ds-workspace .ds-select-stack label:has(input:checked),#ds-workspace .ds-choice-field label:has(input:checked){background:#fff1eb}
+#ds-workspace.ds-dark .ds-select-stack label:has(input:checked),#ds-workspace.ds-dark .ds-choice-field label:has(input:checked){background:#493029;color:#fff}
+#ds-workspace .ds-select-stack label:has(input:disabled),#ds-workspace .ds-choice-field label:has(input:disabled){opacity:.5;cursor:not-allowed}
+#ds-workspace .ds-switch-label input[type="checkbox"]{width:44px;height:28px;border:0;border-radius:999px;background:#b7c0cd;position:relative;display:inline-block;transition:background .18s}
+#ds-workspace .ds-switch-label input[type="checkbox"]::after{content:"";position:absolute;left:4px;top:4px;width:20px;height:20px;border:0;border-radius:50%;background:#fff;transform:none;box-shadow:0 1px 4px #0002;transition:left .18s}
+#ds-workspace .ds-switch-label input[type="checkbox"]:checked{background:#ff3300}
+#ds-workspace .ds-switch-label input[type="checkbox"]:checked::after{left:20px;transform:none}
+#ds-workspace.ds-dark .ds-switch-label input[type="checkbox"]:not(:checked){background:#637083}
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
