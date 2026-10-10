@@ -827,6 +827,15 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 @media(max-width:680px){.ds-head{flex-wrap:wrap}.ds-mode-switch{margin-left:auto}}
 @media(prefers-reduced-motion:reduce){.ds-mode-track,.ds-mode-track>span{transition:none}}
 .ds-icons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:10px}.ds-icon-tile{border:1px solid #e1e5eb;border-radius:14px;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#fff;color:#273241;padding:12px 6px}.ds-icon-tile svg{width:24px;height:24px;stroke-width:1.8}.ds-icon-tile span{font-size:10px;color:#697585;text-align:center;overflow-wrap:anywhere}.ds-dark .ds-icon-tile{background:#252e3a;color:#f2f4f7;border-color:#343e4d}.ds-dark .ds-icon-tile span{color:#a9b4c3}
+
+/* Category row hierarchy matches Icons (07.1), nested leaves remain indented */
+.ds-tree .ds-subgroup{margin:0}
+.ds-tree .ds-subgroup-toggle{padding:10px 10px;gap:5px;min-height:38px}
+.ds-tree .ds-subgroup-toggle>.ds-nav-code{font:800 10px Manrope,system-ui;color:#9ba4b2;min-width:0}
+.ds-tree .ds-subgroup-toggle>span{font-size:12px;font-weight:600;color:#596577}
+.ds-tree .ds-subgroup-toggle[aria-expanded="true"]>span{color:#ff3300}
+.ds-tree .ds-subgroup-items .tree-link{padding-left:24px}
+.ds-tree .tree-children>.ds-link{min-height:38px}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -1331,6 +1340,7 @@ function showDesign(key){
   if(kind.startsWith('social-')){const orange=kind==='social-orange',bg=orange?'#FF3300':'#141922',headline=orange?'Good things start with showing up.':'Meet what’s next.';return ['<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080"><rect width="1080" height="1080" fill="'+bg+'"/><text x="90" y="200" fill="'+(orange?'#FFFFFF':'#FF3300')+'" font-family="Manrope,Arial,sans-serif" font-size="130" font-weight="800">p.</text><text x="90" y="650" fill="#FFFFFF" font-family="Manrope,Arial,sans-serif" font-size="62" font-weight="800">'+headline.replace(/&/g,'&amp;')+'</text><text x="90" y="985" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="25" letter-spacing="8">PEOPI</text></svg>','image/svg+xml']}
   return null;
  };
+ $('#ds-content').innerHTML=content[key];
  all('#ds-content [data-export]').forEach(button=>button.addEventListener('click',()=>{
   const result=asset(button.dataset.export);if(!result)return;
   const url=URL.createObjectURL(new Blob([result[0]],{type:result[1]+';charset=utf-8'}));
@@ -1349,8 +1359,9 @@ function showDesign(key){
   try{await navigator.clipboard.writeText(button.dataset.copy);button.classList.add('ds-copied');setTimeout(()=>button.classList.remove('ds-copied'),1200)}catch(e){console.warn('Clipboard unavailable',e)}
  }));
  if(window.lucide&&typeof window.lucide.createIcons==='function')window.lucide.createIcons();
- $('#ds-content').innerHTML=content[key];all('.ds-link').forEach(b=>b.classList.toggle('selected',b.dataset.ds===key));all('#tree .tree-link').forEach(b=>b.classList.remove('selected'));
+ all('.ds-link').forEach(b=>b.classList.toggle('selected',b.dataset.ds===key));all('#tree .tree-link').forEach(b=>b.classList.remove('selected'));
  all('[data-hex]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.hex);b.querySelector('small').textContent='Copied '+b.dataset.hex}catch{}});
+ refreshIcons();
  $('#ds-workspace').scrollTop=0;
 }
 
