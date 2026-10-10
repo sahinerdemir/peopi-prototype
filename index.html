@@ -518,6 +518,16 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
  top:0;
  padding-top:105px;
 }
+/* Scrollable content extends behind the floating bottom navigation.
+   Fade the final 300px of the viewport without fading the navigation itself. */
+.journey-screen:has(>.nav) .journey-body,
+#myprofile .myprofile-scroll,
+#active #listview{
+ bottom:0;
+ padding-bottom:115px;
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 300px),transparent 100%);
+ mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 300px),transparent 100%);
+}
 /* Primary screens keep their own no-back header tier (27px + orange dot). */
 /* Network is a primary destination: same no-back title hierarchy as My Profile. */
 #network .journey-head{border-bottom:0;padding:16px 22px}
