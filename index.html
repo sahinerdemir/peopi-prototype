@@ -422,13 +422,13 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
  padding:16px 20px;background:var(--bg);
  border-bottom:1px solid var(--line);z-index:2;
 }
-/* Glass treatment applies to subpage headers only, not primary destinations. */
+/* Subpage-only frosted header: opaque at the top, 80% at the bottom. */
 .journey-screen:not(#network) .journey-head,
 #editprofile .editprofile-top,
 #privacy .privacy-header,
 #appsettings .settings-head,
 #verification .verify-top{
- background:rgba(255,255,255,.62);
+ background:linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(255,255,255,.8) 100%);
  -webkit-backdrop-filter:blur(24px) saturate(170%);
  backdrop-filter:blur(24px) saturate(170%);
  border-bottom:0;
@@ -438,22 +438,24 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 .phone.dark #editprofile .editprofile-top,
 .phone.dark #privacy .privacy-header,
 .phone.dark #appsettings .settings-head,
-.phone.dark #verification .verify-top{background:rgba(34,42,55,.62)}
-/* Status bar matches the glass header only while a secondary screen is active. */
+.phone.dark #verification .verify-top{
+ background:linear-gradient(to bottom,rgba(34,42,55,1) 0%,rgba(34,42,55,.8) 100%);
+}
+/* Match the status bar to the top of the same glass gradient. */
 .phone:has(.screen.active.journey-screen:not(#network)) .status,
 .phone:has(#editprofile.active) .status,
 .phone:has(#privacy.active) .status,
 .phone:has(#appsettings.active) .status,
 .phone:has(#verification.active) .status{
- background:rgba(255,255,255,.78);
- -webkit-backdrop-filter:blur(18px) saturate(160%);
- backdrop-filter:blur(18px) saturate(160%);
+ background:rgba(255,255,255,1);
+ -webkit-backdrop-filter:blur(24px) saturate(170%);
+ backdrop-filter:blur(24px) saturate(170%);
 }
 .phone.dark:has(.screen.active.journey-screen:not(#network)) .status,
 .phone.dark:has(#editprofile.active) .status,
 .phone.dark:has(#privacy.active) .status,
 .phone.dark:has(#appsettings.active) .status,
-.phone.dark:has(#verification.active) .status{background:rgba(34,42,55,.78)}
+.phone.dark:has(#verification.active) .status{background:rgba(34,42,55,1)}
 .journey-screen .journey-head>button:first-child,
 #editprofile .editprofile-top>button:first-child,
 #privacy .privacy-header>button:first-child,
