@@ -499,6 +499,25 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #privacy .privacy-scroll,
 #appsettings .settings-scroll,
 #verification .verify-scroll{top:84px}
+/* Let secondary-page content scroll beneath the translucent header.
+   Compensate with top padding so the initial layout stays unchanged. */
+.journey-screen:not(#network) .journey-body{
+ top:0;
+ padding-top:107px;
+}
+#editprofile .editprofile-scroll{
+ top:0;
+ padding-top:102px;
+}
+#privacy .privacy-scroll{
+ top:0;
+ padding-top:104px;
+}
+#appsettings .settings-scroll,
+#verification .verify-scroll{
+ top:0;
+ padding-top:105px;
+}
 /* Primary screens keep their own no-back header tier (27px + orange dot). */
 /* Network is a primary destination: same no-back title hierarchy as My Profile. */
 #network .journey-head{border-bottom:0;padding:16px 22px}
