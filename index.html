@@ -188,8 +188,8 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 .verified-name-line{align-items:baseline;gap:0}
 .verified-name-line strong{display:inline-block}
 #personname,#detailname,#connection-name,.verified-name-line strong,.verified-chat-name{white-space:normal}
-#personname .li-verified-badge,#detailname .li-verified-badge,#connection-name .li-verified-badge,.verified-name-line strong .li-verified-badge,.verified-chat-name .li-verified-badge{display:inline-flex!important;position:relative!important;top:-.48em!important;vertical-align:baseline!important;margin-left:3px!important;margin-right:1px!important;width:13px!important;height:13px!important;flex:0 0 13px!important;line-height:0!important}
-#personname .li-verified-badge svg,#detailname .li-verified-badge svg,#connection-name .li-verified-badge svg,.verified-name-line strong .li-verified-badge svg,.verified-chat-name .li-verified-badge svg{width:13px;height:13px}
+#personname .li-verified-badge,#detailname .li-verified-badge,#connection-name .li-verified-badge,.verified-name-line strong .li-verified-badge,.verified-chat-name .li-verified-badge,#listview .discovery-list-info strong .li-verified-badge{display:inline-flex!important;position:relative!important;top:-.48em!important;vertical-align:baseline!important;margin-left:3px!important;margin-right:1px!important;width:13px!important;height:13px!important;flex:0 0 13px!important;line-height:0!important}
+#personname .li-verified-badge svg,#detailname .li-verified-badge svg,#connection-name .li-verified-badge svg,.verified-name-line strong .li-verified-badge svg,.verified-chat-name .li-verified-badge svg,#listview .discovery-list-info strong .li-verified-badge svg{width:13px;height:13px}
 /* Global avatar geometry: all people photos and initial-based profile icons are circular. */
 .avatar,.anonavatar,.myprofile-avatar,.edit-avatar-wrap .myprofile-avatar,.settings-avatar,.journey-person .initials,.connection-avatar,.demo-photo-avatar,#detailinitials,#connection-avatar,#avatar,#listview .avatar,.pin{border-radius:50%!important}
 .demo-photo-avatar>img,.avatar>img,.anonavatar>img,.myprofile-avatar>img,.settings-avatar>img,.journey-person .initials>img,.connection-avatar>img{border-radius:50%!important}
@@ -398,7 +398,7 @@ html,body{height:100%;overflow:hidden}.workspace{height:100vh;min-height:0;overf
 #active #listview .discovery-list-info small{margin:0;font-size:10px;line-height:1.4}
 #active #listview .discovery-list-connected{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--sub);line-height:1.4}
 #active #listview .discovery-list-connected svg{width:12px;height:12px;color:var(--accent)}
-#active #listview .discovery-list-verified{width:13px;height:13px;color:#2684d9}
+
 #active #listview .discovery-list-chevron{width:16px;height:16px;color:var(--sub);flex:none}
 /* More prominent, tightly stacked network portraits without divider lines. */
 #profsheet .profile-network-preview{border:0;padding:10px 0;margin:4px 0 10px;gap:11px}
@@ -1231,7 +1231,7 @@ function renderDiscoveryList(){
  $('#listview').innerHTML='<div class="discovery-list-toolbar"><span>'+filteredDiscoveryIds().length+' professionals nearby</span><button type="button" id="discovery-list-filters"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i><span>Filters</span></button></div>'+people.map((p,i)=>({p,i})).filter(({i})=>filteredDiscoveryIds().includes(i)).map(({p,i})=>{
   const connected=journey.connections.includes(i);
   const name=connected?p.name:p.initial.split('').join('.')+'.';
-  const verified=i===0?'<i class="ph ph-seal-check discovery-list-verified" aria-label="Verified"></i>':'';
+  const verified=demoPeople[i]?.verified?makeVerifiedBadge().outerHTML:'';
   return '<button type="button" class="listitem'+(connected?' listitem-connected':'')+'" data-listperson="'+i+'"><span class="avatar anonymous discovery-list-avatar" data-listavatar="'+i+'">'+p.initial+'</span><span class="discovery-list-info"><strong>'+name+verified+'</strong><small>'+p.role+'</small>'+(connected?'<span class="discovery-list-connected"><i class="ph ph-check-circle" aria-hidden="true"></i> Connected</span>':'<small>'+p.intent+'</small>')+'</span><i class="ph ph-caret-right discovery-list-chevron"></i></button>';
  }).join('')+(filteredDiscoveryIds().length?'':'<div class="journey-empty">No matching professionals. Try resetting your filters.</div>');
  $('#discovery-list-filters').onclick=()=>openDiscoveryFilters();
@@ -1457,7 +1457,7 @@ const dsData={
  social:['Social Media Guide','Templates and visual rules for social media.']
 };
 
-const dsCatalog=[{"key":"icons-library","title":"Icons & Iconography","members":["icons-library"],"group":"Components"},{"key":"component-actions","title":"Actions","members":["primary-action","quiet-action","icon-button","fab"],"group":"Components"},{"key":"component-forms","title":"Forms & Selection","members":["text-field","search-field","radio","session-duration","switch","discovery-filter"],"group":"Components"},{"key":"component-navigation","title":"Navigation","members":["bottom-nav","tabs","request-tabs","app-bar"],"group":"Components"},{"key":"component-profile","title":"Profile & Identity","members":["avatar","chip","profile-card","profile-progress","profile-badges"],"group":"Components"},{"key":"component-connections","title":"Connections & Chat","members":["network-row","connection-request","chat-bubble","chat-composer"],"group":"Components"},{"key":"component-privacy","title":"Privacy & Feedback","members":["privacy","privacy-row","verification-status","list","empty-state"],"group":"Components"},{"key":"component-overlays","title":"Sheets & Dialogs","members":["sheet","dialog"],"group":"Components"}];
+const dsCatalog=[{"key":"icons-library","title":"Icons & Iconography","members":["icons-library"],"group":"Components"},{"key":"component-actions","title":"Actions","members":["primary-action","quiet-action","icon-button","fab"],"group":"Components"},{"key":"component-forms","title":"Forms & Selection","members":["text-field","search-field","radio","session-duration","switch","discovery-filter"],"group":"Components"},{"key":"component-navigation","title":"Navigation","members":["bottom-nav","tabs","request-tabs","app-bar"],"group":"Components"},{"key":"component-profile","title":"Profile & Identity","members":["avatar","chip","profile-card","profile-progress","profile-badges","verified-badge"],"group":"Components"},{"key":"component-connections","title":"Connections & Chat","members":["network-row","connection-request","chat-bubble","chat-composer"],"group":"Components"},{"key":"component-privacy","title":"Privacy & Feedback","members":["privacy","privacy-row","verification-status","list","empty-state"],"group":"Components"},{"key":"component-overlays","title":"Sheets & Dialogs","members":["sheet","dialog"],"group":"Components"}];
 const dsCatalogTitles=Object.fromEntries(dsCatalog.map(x=>[x.key,[x.title,x.key==='icons-library'?'Shared Phosphor icon library.':'Existing Peopi components · screen sources and reusable variants.']]));
 Object.assign(dsData,dsCatalogTitles);
 for(const item of dsCatalog){dsNotes[item.key]={path:'COMPONENTS / '+item.title.toUpperCase(),category:'APPLICATION LIBRARY',intro:item.title+' · existing Peopi patterns.',purpose:'Choose a component already used in Peopi before designing a new screen.',rules:['Reuse the existing screen markup, styles and interactions.','Keep related variants together on this page.','Keep accessibility and light/dark behavior consistent.'],next:['Reuse an existing component when it fits a new screen.','Add a newly used component here with its source screen.','Extend an existing family before creating another menu item.']}}
@@ -1580,6 +1580,7 @@ function showDesign(key){
   return catalogSection('Connections · received request · SCREENS',sourceSpecimen(null,{node:row}))+catalogSection('Connections · sent request · SCREENS',sourceSpecimen(null,{node:sent}));
  };
  samples['chat-bubble']=()=>catalogSection('Connections · conversation bubbles · SCREENS','<div class="phone ds-live-specimen"><div class="chat-bubble">Hi! Great to connect.</div><div class="chat-bubble mine">Likewise — what are you working on?</div></div>');
+ samples['verified-badge']=()=>catalogSection('Discover / Profile · verified badge · SCREENS',sourceSpecimen(null,{node:makeVerifiedBadge()}));
  samples['network-row']=()=>catalogSection('Connections · network row · SCREENS',sourceSpecimen(null,{node:journeyRow(journeyPerson(journey.connections[0]||0),null,{label:'View',onClick:()=>{}})}));
  samples['empty-state']=()=>{const host=document.createElement('div');host.innerHTML=journeyEmpty('No incoming requests','New introductions will appear here.');return catalogSection('Connections · empty state · SCREENS',sourceSpecimen(null,{node:host.firstElementChild}));};
  for(const item of dsCatalog){
