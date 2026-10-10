@@ -846,6 +846,113 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 .nav .ph{font-size:22px}
 .ds-mode-switch .ph{font-size:17px}
 .ds-icon-intro{margin:0 0 16px;color:#687386;font-size:12px;line-height:1.7}.ds-icons-grid .ds-icon-tile .ph{font-size:27px;line-height:1;min-height:30px}.ds-icons-grid .ds-icon-tile span{overflow-wrap:anywhere}
+
+/* Migration audit: retain icon sizing and visibility from legacy SVG selectors. */
+.workspace .ph{font-size:18px;font-size:18px;vertical-align:middle;flex-shrink:0}
+.group-toggle b .ph{font-size:15px;font-size:15px;}
+.theme-row button .ph{font-size:15px;font-size:15px;}
+.phone .ph{font-size:19px;font-size:19px;vertical-align:middle}
+.phone .nav .ph{font-size:22px;font-size:22px;}
+.phone .primary .ph{font-size:18px;font-size:18px;}
+.phone .back .ph{font-size:17px;font-size:17px;}
+.phone .circleBtn .ph{font-size:20px;font-size:20px;}
+.phone .privacy .ph{font-size:17px;font-size:17px;}
+.phone .mapbadge .ph{font-size:15px;font-size:15px;}
+.phone .completefoot .ph{font-size:16px;font-size:16px;}
+.active-mark .ph{font-size:19px;font-size:19px;}
+.quiet-exit .ph{font-size:14px;font-size:14px;}
+.sessionfoot .ph{font-size:14px;font-size:14px;color:#6c9b8c}
+.alert-icon .ph{font-size:17px;font-size:17px;}
+.avatar-edit .ph{font-size:15px;font-size:15px;}
+.myprofile-location .ph{font-size:13px;font-size:13px;}
+.myprofile-badges .ph{font-size:12px;font-size:12px;}
+.myprofile-completion>small .ph{font-size:14px;font-size:14px;}
+.myprofile-edit .ph{font-size:13px;font-size:13px;}
+.myprofile-intent>.ph,.myprofile-privacy>.ph{color:var(--accent);font-size:18px;font-size:18px;}
+.edit-avatar-wrap button .ph{font-size:13px;font-size:13px;}
+.editprivacy>.ph{font-size:19px;font-size:19px;flex-shrink:0;color:var(--accent)}
+.edit-save-bottom .ph{font-size:15px;font-size:15px;}
+.privacy-shield .ph{font-size:25px;font-size:25px;}
+.privacy-status-icon .ph{font-size:18px;font-size:18px;}
+.privacy-status>button .ph{font-size:12px;font-size:12px;vertical-align:middle}
+.privacy-setting-icon .ph{font-size:16px;font-size:16px;}
+.privacy-fixed .ph{font-size:10px;font-size:10px;}
+.privacy-inline .ph{font-size:12px;font-size:12px;}
+.privacy-link>.ph{font-size:16px;font-size:16px;color:var(--sub)}
+.privacy-footnote .ph{font-size:15px;font-size:15px;flex-shrink:0;color:var(--accent)}
+.verify-emblem .ph{font-size:29px;font-size:29px;}
+.verify-icon .ph{font-size:19px;font-size:19px;}
+.verify-primary .ph{font-size:15px;font-size:15px;}
+.verify-textbutton .ph{font-size:13px;font-size:13px;}
+.verify-principles>div>.ph{font-size:19px;font-size:19px;color:var(--accent);flex-shrink:0}
+.verify-disclaimer .ph{font-size:15px;font-size:15px;flex-shrink:0;color:var(--accent)}
+.settings-account>button .ph{font-size:15px;font-size:15px;}
+.settings-ico .ph{font-size:17px;font-size:17px;}
+.settings-item>.ph{font-size:16px;font-size:16px;color:var(--sub)}
+.settings-signout>.ph{font-size:16px;font-size:16px;}
+.journey-back .ph{font-size:17px;}
+.journey-primary .ph{font-size:15px;}
+.journey-notice .ph{font-size:16px;font-size:16px;flex-shrink:0;color:var(--accent)}
+.journey-card>.ph{font-size:17px;color:var(--sub)}
+.journey-choice .ph{font-size:17px;font-size:17px;color:var(--sub)}
+.journey-choice.selected .ph{color:var(--accent)}
+.journey-empty .ph{font-size:29px;font-size:29px;display:block;margin:0 auto 13px}
+.chat-compose button .ph{font-size:17px;}
+.mapbadge .ph{font-size:14px;font-size:14px;}
+.connection-cover-label .ph{font-size:13px;font-size:13px;}
+.connection-meta .ph{font-size:15px;font-size:15px;color:var(--accent);flex-shrink:0}
+/* Intent setup: checkmark only for selected choices */
+#on-intent-options .journey-choice:not(.selected) .ph{visibility:hidden}
+#on-intent-options .journey-choice.selected .ph{visibility:visible}
+#on-intent-options .journey-choice .ph{font-size:18px;font-size:18px;flex:0 0 18px}
+#connectiondetail .connection-confirmed .ph{font-size:15px;font-size:15px;flex:none;color:var(--accent)}
+#active .sessionfoot .ph{font-size:15px;font-size:15px;color:var(--accent);flex:none}
+#connectiondetail .connection-manage-shortcut .ph{font-size:17px;font-size:17px;}
+#active #mapview .discovery-location-notice .ph{font-size:15px;font-size:15px;flex:0 0 15px;color:var(--accent)}
+#active .profilecard-close .ph{font-size:14px;font-size:14px;}
+#active .discovery-connected-hint .ph,#profsheet .connected-hint .ph{font-size:15px;font-size:15px;flex:none;color:var(--accent)}
+#profsheet #detail-privacy-hint .ph{font-size:15px;font-size:15px;flex:none}
+#active #profilecard .discovery-connected-hint .ph{font-size:14px;font-size:14px;color:var(--accent);flex:none}
+#active #profilecard .discovery-connected-hint .ph{margin-left:2px}
+#profsheet #detail-privacy-hint.connected-hint>.ph{font-size:13px;font-size:13px;flex:0 0 13px}
+#connectiondetail #connection-privacy-hint>.ph{font-size:13px;font-size:13px;flex:0 0 13px;color:var(--accent)}
+#connectiondetail .connection-message-fab .ph{font-size:23px;font-size:23px;}
+#profsheet .profile-connection-count .ph,#connectiondetail .profile-connection-count .ph{font-size:12px;font-size:12px;flex:none}
+#active #profilecard .discovery-connected-hint .ph{font-size:13px;font-size:13px;}
+#auth .auth-social-btn .ph{font-size:19px;font-size:19px;flex:none}
+#active #profilecard .discovery-connected-hint .ph{font-size:16px;font-size:16px;flex:none}
+#active #listview .discovery-list-connected .ph{font-size:12px;font-size:12px;color:var(--accent)}
+.journey-screen .journey-head>button:first-child .ph,
+#editprofile .editprofile-top>button:first-child .ph,
+#privacy .privacy-header>button:first-child .ph,
+#appsettings .settings-head>button:first-child .ph,
+#verification .verify-top>button:first-child .ph{font-size:17px;font-size:17px;}
+.preview-fullscreen-toggle .ph{font-size:19px;font-size:19px;}
+#active #mapview .discovery-map-filters .ph{font-size:15px;font-size:15px;}
+#active .seg button .ph{font-size:17px;font-size:17px;flex:none;}
+.phone .nav .ph{font-size:21px;font-size:21px;}
+#active .discovery-list-toolbar button .ph{font-size:15px;font-size:15px;}
+#active .seg button.chosen .ph{color:#fff}
+.ds-button-demo .ph{font-size:17px;font-size:17px;flex:none}
+.ds-button-demo:has(.ph):not(:has(span)){font-size:44px;padding:0}
+.ds-status .ph,.ds-empty .ph{font-size:22px;font-size:22px;}
+.ds-status.success .ph{color:#16805d}
+.ds-status.warning .ph{color:#a66300}
+.ds-status.danger .ph{color:#c83333}
+.ds-status.info .ph{color:#2563eb}
+.ds-subgroup-toggle .ph{font-size:13px;font-size:13px;flex:none}
+.ds-icon-action .ph,.ds-fab .ph{font-size:20px;font-size:20px;}
+.ds-bottom-nav .ph,.ds-rail .ph{font-size:22px;font-size:22px;}
+.ds-app-bar .ph{font-size:20px;font-size:20px;}
+.ds-details .ph{font-size:14px;}
+.ds-list-demo .ph{font-size:22px;font-size:22px;}
+.ds-toast-preview .ph{font-size:18px;color:#56d6a2}
+.ds-subgroup-toggle .ph{transform:none!important;rotate:none!important}
+.ds-subgroup-chevron .ph{font-size:15px;font-size:15px;}
+.ds-mode-switch>.ph{font-size:16px;font-size:16px;color:#697585}
+/* Phosphor is a font: never depend on SVG stroke geometry for icon buttons. */
+.ds-icon-action .ph,.ds-fab .ph,.ds-button-demo .ph{display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.ds-icons-grid .ds-icon-tile .ph{font-size:26px;min-width:28px;min-height:28px}
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -1271,7 +1378,7 @@ function showDesign(key){
  buttons:section('Button variants','Fill, soft, outline, ghost, text and destructive treatments. Each includes standard and pill shapes.', ['primary','secondary','outline','ghost','textual','danger'].map(variant=>'<h3 class="ds-subheading">'+variant+'</h3>'+buttonGrid(variant)).join(''))+section('Icon placement','Leading, trailing and icon-only actions; icon-only buttons need accessible labels.','<div class="ds-button-grid">'+['leading','trailing','only'].flatMap(mode=>['standard','pill'].map(shape=>'<div class="ds-demo-cell">'+buttonPreview('primary',shape,'md',mode,'Continue')+'<small>'+mode+' / '+shape+'</small></div>')).join('')+'</div>')+section('Interaction states','Focus, hover, disabled and loading are distinct states.','<div class="ds-button-grid"><div class="ds-demo-cell">'+buttonPreview('primary','standard','md','none','Default')+'<small>Default / hover</small></div><div class="ds-demo-cell">'+buttonPreview('disabled','standard','md','none','Unavailable')+'<small>Disabled</small></div><div class="ds-demo-cell"><button class="ds-button-demo primary md" disabled><i class="ph ph-spinner ds-spin"></i><span>Loading</span></button><small>Loading</small></div><div class="ds-demo-cell">'+buttonPreview('outline','standard','md','leading','Back')+'<small>Outline</small></div></div>')+section('Size reference','Working dimensions, subject to mobile usability review.','<table class="ds-spec-table"><tr><th>Size</th><th>Height</th><th>Padding X</th><th>Text</th></tr><tr><td>Small</td><td>36px</td><td>14px</td><td>12px</td></tr><tr><td>Medium</td><td>44px</td><td>18px</td><td>13px</td></tr><tr><td>Large</td><td>52px</td><td>22px</td><td>14px</td></tr></table>'),
  inputs:section('Text inputs','Every input needs a visible label, helper/error states and keyboard focus.','<div class="ds-form-grid">'+field('Full name','text','Your name')+field('Email address','email','name@example.com')+field('Password','password','At least 8 characters')+field('Search','search','Search people...')+'<label class="ds-field"><span>Message</span><textarea rows="3" placeholder="Write a message..."></textarea></label><label class="ds-field"><span>Role / profession</span><select><option>Choose a role</option><option>Designer</option><option>Founder</option><option>Engineer</option></select></label></div>')+section('Field states','Validation messages must be descriptive and adjacent to their control.','<div class="ds-form-grid">'+field('Focused example','text','Focused state')+'<label class="ds-field ds-invalid"><span>Email · error</span><input type="email" value="not-an-email" aria-invalid="true" aria-describedby="ds-error"><small id="ds-error">Enter a valid email address.</small></label><label class="ds-field"><span>Disabled</span><input type="text" value="Unavailable" disabled></label><label class="ds-field"><span>Read-only</span><input type="text" value="peopi.app" readonly></label></div>')+section('Selection controls','Native checkbox, radio and range samples; production styling should preserve semantics.','<div class="ds-select-stack"><label><input type="checkbox" checked> Receive relevant updates</label><label><input type="checkbox"> Remember this device</label><fieldset><legend>Discovery preference</legend><label><input type="radio" name="ds-preference" checked> Nearby</label><label><input type="radio" name="ds-preference"> My network</label></fieldset><label>Radius <input type="range" min="1" max="20" value="5"></label></div>'),
  icons:section('Icon library','Click any icon to copy its Lucide name. Workspace examples use Lucide; production app mapping is pending.',iconGrid)+section('Icon sizes','Use a coherent stroke width and align icons optically with surrounding text.','<div class="ds-icon-sizes">'+[16,20,24,32].map(size=>'<div><i class="ph ph-bell" style="font-size:'+size+'px"></i><strong>'+size+'px</strong><small>'+ (size===16?'Dense labels':size===20?'Controls':size===24?'Navigation':'Illustrative')+'</small></div>').join('')+'</div>')+section('Semantic usage','Icon alone should never be the only carrier of critical meaning.','<ul class="ds-checklist"><li>Use consistent icon family and stroke</li><li>Decorative icons are hidden from screen readers</li><li>Icon-only buttons need accessible names</li><li>Do not use ambiguous icons without labels</li></ul>'),
- states:section('Status and feedback','State must be truthful, visible and specific.','<div class="ds-state-grid"><div class="ds-status success"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>Success</strong><p>Your changes have been saved.</p></div><div class="ds-status warning"><i class="ph ph-warning-circle" aria-hidden="true"></i><strong>Attention</strong><p>Review your visibility settings.</p></div><div class="ds-status danger"><i class="ph ph-x" aria-hidden="true"></i><strong>Error</strong><p>Could not send. Please retry.</p></div><div class="ds-status info"><i class="ph ph-info" aria-hidden="true"></i><strong>Information</strong><p>Your presence is currently hidden.</p></div></div>')+section('Empty, loading and privacy','Never fabricate people, map activity or messages.','<div class="ds-state-grid"><div class="ds-empty"><i class="ph ph-users" aria-hidden="true"></i><strong>No results yet</strong><p>Try another search or broaden your filters.</p></div><div class="ds-empty"><i class="ds-spin" data-lucide="loader-circle"></i><strong>Loading</strong><p>Looking for available results…</p></div><div class="ds-empty"><i class="ph ph-eye-slash" aria-hidden="true"></i><strong>Invisible</strong><p>Your presence is not broadcast to discovery.</p></div></div>'),
+ states:section('Status and feedback','State must be truthful, visible and specific.','<div class="ds-state-grid"><div class="ds-status success"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>Success</strong><p>Your changes have been saved.</p></div><div class="ds-status warning"><i class="ph ph-warning-circle" aria-hidden="true"></i><strong>Attention</strong><p>Review your visibility settings.</p></div><div class="ds-status danger"><i class="ph ph-x" aria-hidden="true"></i><strong>Error</strong><p>Could not send. Please retry.</p></div><div class="ds-status info"><i class="ph ph-info" aria-hidden="true"></i><strong>Information</strong><p>Your presence is currently hidden.</p></div></div>')+section('Empty, loading and privacy','Never fabricate people, map activity or messages.','<div class="ds-state-grid"><div class="ds-empty"><i class="ph ph-users" aria-hidden="true"></i><strong>No results yet</strong><p>Try another search or broaden your filters.</p></div><div class="ds-empty"><i class="ds-spin ph ph-spinner"></i><strong>Loading</strong><p>Looking for available results…</p></div><div class="ds-empty"><i class="ph ph-eye-slash" aria-hidden="true"></i><strong>Invisible</strong><p>Your presence is not broadcast to discovery.</p></div></div>'),
  tokens:section('Token architecture','Primitive values feed semantic roles. Current values are working drafts; downloads are generated from this page.','<div class="ds-metrics"><div><strong>Primitive</strong><small>Colors, space, radius</small></div><div><strong>Semantic</strong><small>Brand, surface, text</small></div><div><strong>Platform</strong><small>CSS & JSON</small></div></div>')+section('Export design tokens','Download a JSON source of truth or CSS custom properties. Both exports use the same data.',download('Tokens JSON','peopi-design-tokens.json','tokens-json')+download('CSS variables','peopi-design-tokens.css','tokens-css')+'<pre class="ds-code-preview">'+tokenCss.slice(0,580).replace(/</g,'&lt;')+'</pre>')+section('Handoff & versioning','Token exports do not automatically synchronize with Flutter or Figma.','<p>Next steps: semantic alias map, dark-mode token validation, Flutter ThemeExtension generation and changelog.</p>')
  };
  Object.assign(content,dsExpanded);
