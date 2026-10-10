@@ -708,6 +708,9 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
 .ds-theme{right:70px}
 .ds-workspace[hidden]{display:none!important}
 body.ds-open .device-stage,body.ds-open .inspector{display:none!important}
+.ds-inspector[hidden]{display:none!important}
+body:not(.ds-open) .ds-inspector{display:none!important}
+body.ds-open .ds-inspector{display:flex;flex-direction:column}
 body.ds-open .preview-area{min-width:0}
 body.ds-open .ds-workspace{display:block;flex:1;min-height:100vh;background:#f8f9fb;color:#141922;padding:50px clamp(24px,5vw,80px);overflow:auto}
 body.ds-open .workspace{align-items:stretch}
@@ -732,7 +735,7 @@ body.ds-open .workspace{align-items:stretch}
 .ds-demo-btn.outline{background:white;color:#141922;border:1px solid #dce1e9}
 .ds-note{border-left:3px solid #ff3300;padding:14px 17px;background:#f8f9fb;border-radius:0 12px 12px 0}
 @media(max-width:850px){body.ds-open .ds-workspace{padding:28px 20px}.ds-head{flex-direction:column}}
-.workspace-brand .brand-mark{background:#ff3300;color:#fff;font-family:Manrope,system-ui,sans-serif;font-size:25px;font-weight:800;letter-spacing:-2.6px;padding-right:3px;line-height:1;border-radius:12px}.sidebar > #tree{flex:0 0 auto;min-height:0;padding-bottom:0}.sidebar > .ds-caption{margin-top:12px}</style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
+.workspace-brand .brand-mark{background:#ff3300;color:#fff;font-family:Manrope,system-ui,sans-serif;font-size:25px;font-weight:800;letter-spacing:-2.6px;padding-right:3px;line-height:1;border-radius:12px}.sidebar > #tree{flex:0 0 auto;min-height:0;padding-bottom:0}.sidebar > .ds-caption{margin-top:12px}.ds-inspector{min-width:0}.ds-inspector .plain-notes p{font-size:12px;line-height:1.7;color:#687386;margin:0 0 12px}.ds-inspector .spec-heading p{line-height:1.7}@media(max-width:1100px){body.ds-open .ds-inspector{display:none!important}}</style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
   <div class="nav-caption">SCREENS</div>
@@ -827,7 +830,13 @@ body.ds-open .workspace{align-items:stretch}
 <div class="detailblock" id="projectblock"><label>PROJECT / STARTUP</label><strong id="projectname"></strong><p id="projectdesc"></p><a id="onepager" href="#" class="onepager hide" target="_blank" rel="noopener noreferrer">View one-pager ↗</a></div>
 <button class="primary" id="requestFromProfile">Request to connect ↗</button>
 <p class="profiledisclaimer">Sample profile only. No real identities, locations, or external documents.</p>
-</div></div></div><div class="modal hide" id="modal"><div class="sheet"><h3 id="modaltitle">Go invisible?</h3><p id="modaltext">You'll become invisible immediately. Existing connections and messages remain available.</p><button class="primary" id="confirm">Go invisible</button><button class="cancel" id="dismiss">Cancel</button></div></div><div id="toast" class="toast hide"></div></main></div><section class="ds-workspace" id="ds-workspace" hidden><div class="ds-head"><div><small>PEOPI / DESIGN SYSTEM V1.0</small><h1 id="ds-title">Foundations</h1><p id="ds-description"></p></div><button id="ds-back" type="button">← Back to screens</button></div><div id="ds-content"></div></section></div>
+</div></div></div><div class="modal hide" id="modal"><div class="sheet"><h3 id="modaltitle">Go invisible?</h3><p id="modaltext">You'll become invisible immediately. Existing connections and messages remain available.</p><button class="primary" id="confirm">Go invisible</button><button class="cancel" id="dismiss">Cancel</button></div></div><div id="toast" class="toast hide"></div></main></div><section class="ds-workspace" id="ds-workspace" hidden><div class="ds-head"><div><small>PEOPI / DESIGN SYSTEM V1.0</small><h1 id="ds-title">Foundations</h1><p id="ds-description"></p></div></div><div id="ds-content"></div></section></div>
+<aside class="ds-inspector" id="ds-inspector" aria-label="Design system notes" hidden>
+<div class="inspector-header"><div class="inspector-context"><span class="context-label">DESIGN SYSTEM / NOTES</span><div class="context-path" id="ds-note-path">FOUNDATIONS / E01</div></div></div>
+<div class="inspector-scroll"><div class="spec-heading"><span id="ds-note-category">FOUNDATIONS</span><h2 id="ds-note-title">Colors & Typography</h2><p id="ds-note-intro"></p></div>
+<div class="spec-notebook"><section class="spec-block"><h3><span class="spec-index">01</span> Purpose</h3><p id="ds-note-purpose" class="spec-purpose"></p></section>
+<section class="spec-block"><h3><span class="spec-index">02</span> Usage guidelines</h3><div id="ds-note-rules" class="plain-notes"></div></section>
+<section class="spec-block"><h3><span class="spec-index">03</span> Next steps</h3><div id="ds-note-next" class="plain-notes"></div></section></div></div></aside>
 <aside class="inspector" aria-label="Screen documentation"><div class="inspector-header"><div class="inspector-context"><span class="context-label">PRODUCT / SCREEN DETAILS</span><div class="context-path" id="crumb">DISCOVER / B01</div></div></div><div class="inspector-scroll"><div class="spec-heading"><span id="spec-section">DISCOVER</span><h2 id="spec-title">Invisible state</h2><p id="spec-summary">Default discovery screen when the user is not broadcasting their presence.</p></div><div class="spec-notebook"><section class="spec-block"><h3><span class="spec-index">01</span> Screen objective</h3><p id="spec-purpose" class="spec-purpose"></p></section><section class="spec-block"><h3><span class="spec-index">02</span> Click / action reference</h3><div id="spec-actions" class="action-notes"></div></section><section class="spec-block"><h3><span class="spec-index">03</span> Behavior & privacy</h3><div id="spec-rules" class="plain-notes"></div></section><section class="spec-block"><h3><span class="spec-index">04</span> Prototype limitations</h3><div id="spec-notes" class="plain-notes"></div></section></div></div></aside>
 </div><script>
 const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];let page='closed',duration=60,intent='Meet new people',endTime=null,interval=null,person=0,view='map',fiveMinuteNotified=false;const people=[
@@ -1046,6 +1055,18 @@ document.addEventListener('keydown',event=>{
 });
 window.addEventListener('resize',resizePhonePreview);if('ResizeObserver' in window)new ResizeObserver(resizePhonePreview).observe(document.querySelector('.device-stage'));requestAnimationFrame(resizePhonePreview);
 
+
+const dsNotes={
+ color:{path:'FOUNDATIONS / E01',category:'FOUNDATIONS',intro:'The shared visual language of Peopi.',purpose:'Document exact colors and type scales used across the mobile experience so future screens stay consistent.',rules:['Orange #FF3300 is the primary action and brand color.','Use text and surface tokens for readable light and dark interfaces.','Manrope is the current prototype typeface; typography values are not yet fully normalized.'],next:['Audit color contrast and small labels.','Formalize semantic colors and a production type scale.']},
+ foundation:{path:'FOUNDATIONS / E02',category:'FOUNDATIONS',intro:'Consistent rhythm, geometry and depth.',purpose:'Establish repeatable spacing, corner radii and elevation across screens and components.',rules:['The 4px spacing scale is a proposal, not yet applied universally.','Prefer soft, intentional shadows over heavy decoration.','Preserve consistent spacing between related controls.'],next:['Extract actual spacing values from all screens.','Agree final tokens and apply them systematically.']},
+ motion:{path:'FOUNDATIONS / E03',category:'FOUNDATIONS',intro:'Motion should explain state, not distract.',purpose:'Define how Peopi moves and how interactions remain accessible.',rules:['Use subtle ambient motion on Welcome only where useful.','Respect prefers-reduced-motion.','Focus indicators, contrast and touch targets must be tested.'],next:['Document each screen transition.','Run accessibility and keyboard QA.']},
+ components:{path:'COMPONENTS / F01',category:'COMPONENTS',intro:'Reusable building blocks for Peopi.',purpose:'Build a single reference for buttons, inputs, cards, navigation, sheets and chat UI.',rules:['Each component needs default, active, disabled and error states where relevant.','Use shared tokens rather than screen-specific styling.','Prototype examples are visual samples, not a production component library yet.'],next:['Inventory components from every screen.','Document dimensions, variants, behavior and Flutter equivalents.']},
+ states:{path:'COMPONENTS / F02',category:'COMPONENTS',intro:'Clear feedback and truthful product states.',purpose:'Standardize loading, empty, error, success and privacy feedback.',rules:['Never fabricate activity or people on the map.','Hidden presence, removed connections and blocked accounts are different states.','Do not rely on color alone to communicate status.'],next:['Design empty and error patterns.','Add message failure and retry states.']},
+ logo:{path:'BRAND APPLICATIONS / G01',category:'BRAND APPLICATIONS',intro:'The p. mark is the chosen brand direction.',purpose:'Define logo treatments and usage rules for app and communication.',rules:['Keep the mark undistorted and high contrast.','Use approved orange, ink and reversed treatments.','The vector geometry is not finalized; current examples are exploratory.'],next:['Refine custom vector geometry and clear space.','Set minimum sizes and app-icon exports.']},
+ business:{path:'BRAND APPLICATIONS / G02',category:'BRAND APPLICATIONS',intro:'Peopi in professional, physical contexts.',purpose:'Explore how the brand translates to business cards and networking collateral.',rules:['Keep layouts minimal and legible.','Avoid placeholder contact details in production exports.','Current examples are concepts, not print-ready files.'],next:['Define print sizes, margins and bleed.','Create editable print-ready templates.']},
+ social:{path:'BRAND APPLICATIONS / G03',category:'BRAND APPLICATIONS',intro:'A recognizable voice across channels.',purpose:'Define social media templates that feel unmistakably Peopi.',rules:['Use consistent logo placement and typography.','Keep important text inside platform safe zones.','Separate campaign artwork from UI component rules.'],next:['Develop post, story and reel layouts.','Document dimensions, motion and editorial examples.']}
+};
+
 const dsData={
  color:['Colors & Typography','Current color tokens and typographic hierarchy.'],
  foundation:['Spacing, Radius & Shadows','Shared spacing and surface guidelines.'],
@@ -1059,8 +1080,16 @@ const dsData={
 const dsPanel=(title,body)=>'<article class="ds-panel"><h2>'+title+'</h2>'+body+'</article>';
 function showDesign(key){
  const item=dsData[key];if(!item)return;
- document.body.classList.add('ds-open');$('#ds-workspace').hidden=false;
+ document.body.classList.add('ds-open');$('#ds-workspace').hidden=false;$('#ds-inspector').hidden=false;
  $('#ds-title').textContent=item[0];$('#ds-description').textContent=item[1];
+ const note=dsNotes[key];
+ $('#ds-note-path').textContent=note.path;
+ $('#ds-note-category').textContent=note.category;
+ $('#ds-note-title').textContent=item[0];
+ $('#ds-note-intro').textContent=note.intro;
+ $('#ds-note-purpose').textContent=note.purpose;
+ const fill=(id,items)=>{$(id).replaceChildren(...items.map(value=>{const p=document.createElement('p');p.textContent=value;return p}))};
+ fill('#ds-note-rules',note.rules);fill('#ds-note-next',note.next);
  const palette=[['Primary','#FF3300'],['Canvas','#F8F9FB'],['Surface','#FFFFFF'],['Ink','#141922'],['Secondary','#687386'],['Border','#DCE1E9'],['Dark canvas','#141922'],['Dark surface','#222A37'],['Dark ink','#F5F7FA'],['Dark border','#3D4658']];
  const colors='<div class="ds-grid">'+palette.map(([name,hex])=>'<button type="button" class="ds-color" data-hex="'+hex+'"><i style="background:'+hex+'"></i><span><strong>'+name+'</strong><small>'+hex+' · Copy</small></span></button>').join('')+'</div>';
  const typography='<div style="font-size:44px;font-weight:800;letter-spacing:-2px;line-height:1.2">Connections start here.</div><p>Display / 44–76 · Manrope 800</p><div style="font-size:28px;font-weight:800">People worth meeting.</div><p>Title / 28 · Manrope 800</p><div style="font-size:20px;font-weight:800">Your network</div><p>Section / 20 · Manrope 800</p><div style="font-size:15px">Meet interesting professionals, on your terms.</div><p>Body / 14–16 · Manrope 400–700</p>';
@@ -1080,8 +1109,8 @@ function showDesign(key){
  $('#ds-workspace').scrollTop=0;
 }
 all('.ds-link').forEach(b=>b.addEventListener('click',()=>showDesign(b.dataset.ds)));
-$('#ds-back').onclick=()=>{document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(page);requestAnimationFrame(resizePhonePreview)};
-all('#tree .tree-link').forEach(b=>b.addEventListener('click',()=>{if(document.body.classList.contains('ds-open')){$('#ds-back').click()}}));
+function closeDesign(){document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;$('#ds-inspector').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(page);requestAnimationFrame(resizePhonePreview)}
+all('#tree .tree-link').forEach(b=>b.addEventListener('click',()=>{if(document.body.classList.contains('ds-open')){closeDesign()}}));
 
 renderDiscoveryList();
 renderSpec('closed');
