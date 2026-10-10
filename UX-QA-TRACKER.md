@@ -42,3 +42,9 @@ Demo functionality must remain explicitly identified as demo, not production-rea
 - Corrected source labels for adaptations that have no matching current screen component.
 - Validation: JavaScript syntax; 54 design sections rendered in DOM execution; duplicate IDs, labels, duration parity, exclusive choices, privacy isolation, original screen navigation and Closed map privacy checks passed.
 - Live cloud-browser QA: Discovery tabs render correctly and selection works in light/dark; source-specific dark selectors now follow the specimen theme. Full mobile QA remains pending.
+
+## Application component inventory — 2026-10-10
+- Replaced 46 nested component entries with eight flat families; related real screen specimens appear vertically on each family page.
+- Preserved the Phosphor icon library. Removed unused generic component demos and speculative patterns from the catalogue.
+- Documented reuse-first and add-after-screen-use rules in AGENTS.md and each family page.
+- Families: Icons, Actions, Forms & Selection, Navigation, Profile & Identity, Connections & Chat, Privacy & Feedback, Sheets & Dialogs.
