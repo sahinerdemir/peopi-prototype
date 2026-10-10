@@ -976,6 +976,26 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 #ds-workspace .ds-button-demo.primary,#ds-workspace .ds-pill-tag.orange{background:#ff3300;color:#fff}
 #ds-workspace.ds-dark .ds-button-demo.primary,#ds-workspace.ds-dark .ds-segment button.active,#ds-workspace.ds-dark .ds-peopi-duration button.active,#ds-workspace.ds-dark .ds-ref-primary,#ds-workspace.ds-dark .ds-peopi-cta{background:#ff3300;color:#fff}
 #ds-workspace.ds-dark .ds-icon-action.ds-filled,#ds-workspace.ds-dark .ds-fab:not(.ds-tonal){background:#d62b00;color:#fff;border-color:#d62b00}
+
+/* Peopi Soft Bold: subtly fuller interactive geometry, across app and DS. */
+#ds-workspace .ds-button-demo.sm{height:42px;border-radius:14px}
+#ds-workspace .ds-button-demo.md{height:52px;border-radius:17px}
+#ds-workspace .ds-button-demo.lg{height:58px;border-radius:20px}
+#ds-workspace .ds-button-demo.pill{border-radius:999px}
+#ds-workspace .ds-icon-action{width:48px;height:48px;border-radius:16px}
+#ds-workspace .ds-button-demo:has(.ph):not(:has(span)){width:48px;min-width:48px}
+#ds-workspace .ds-form-grid input,#ds-workspace .ds-form-grid select,#ds-workspace .ds-form-grid textarea,#ds-workspace .ds-field input,#ds-workspace .ds-field select,#ds-workspace .ds-field textarea{min-height:52px;border-radius:17px;padding:13px 17px}
+#ds-workspace select,.editfield select,.journey-field select,#phone select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23727c8a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 17px center;background-size:19px;padding-right:48px!important;cursor:pointer}
+#ds-workspace.ds-dark select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
+#ds-workspace select option,.editfield select option,.journey-field select option,#phone select option{background:#fff;color:#141922;padding:12px}
+#ds-workspace.ds-dark select option,#phone.dark select option{background:#252e3a;color:#f2f4f7}
+#ds-workspace .ds-range,#phone input[type="range"],.journey-field input[type="range"],.editfield input[type="range"]{appearance:none;-webkit-appearance:none;height:14px;border-radius:999px;border:0;background:linear-gradient(90deg,#ff3300 0%,#ff3300 50%,#e2e6ec 50%,#e2e6ec 100%);cursor:pointer;outline-offset:5px}
+#ds-workspace.ds-dark .ds-range,#phone.dark input[type="range"]{background:linear-gradient(90deg,#ff3300 0%,#ff3300 50%,#485566 50%,#485566 100%)}
+#ds-workspace .ds-range::-webkit-slider-thumb,#phone input[type="range"]::-webkit-slider-thumb,.journey-field input[type="range"]::-webkit-slider-thumb,.editfield input[type="range"]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:28px;height:28px;border-radius:11px;background:#fff;border:7px solid #ff3300;box-shadow:0 2px 8px #10151d26}
+#ds-workspace .ds-range::-moz-range-thumb,#phone input[type="range"]::-moz-range-thumb,.journey-field input[type="range"]::-moz-range-thumb,.editfield input[type="range"]::-moz-range-thumb{width:14px;height:14px;border-radius:10px;background:#fff;border:7px solid #ff3300;box-shadow:0 2px 8px #10151d26}
+#phone button,#phone input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),#phone textarea,#phone select{border-radius:max(15px,1em)}
+#phone input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),#phone select{min-height:48px}
+.editfield input,.editfield select,.editfield textarea,.journey-field input,.journey-field select,.journey-field textarea{border-radius:16px;min-height:46px}
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
