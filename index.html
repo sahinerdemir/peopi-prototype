@@ -953,6 +953,24 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 /* Phosphor is a font: never depend on SVG stroke geometry for icon buttons. */
 .ds-icon-action .ph,.ds-fab .ph,.ds-button-demo .ph{display:inline-flex;align-items:center;justify-content:center;line-height:1}
 .ds-icons-grid .ds-icon-tile .ph{font-size:26px;min-width:28px;min-height:28px}
+
+/* Design System WCAG AA contrast and focus corrections (dark mode). */
+#ds-workspace.ds-dark .ds-button-demo.ghost{background:transparent;color:#f2f4f7}
+#ds-workspace.ds-dark .ds-button-demo.ghost:hover{background:#343e4d;color:#fff}
+#ds-workspace.ds-dark .ds-button-demo.secondary{background:#343e4d;color:#f2f4f7}
+#ds-workspace.ds-dark .ds-button-demo.outline{background:transparent;color:#f2f4f7;border-color:#8493a8}
+#ds-workspace.ds-dark .ds-button-demo.textual{background:transparent;color:#ff987e}
+#ds-workspace.ds-dark .ds-button-demo.disabled,#ds-workspace.ds-dark .ds-button-demo:disabled{background:#343e4d;color:#a9b4c3;border-color:#343e4d;opacity:1;cursor:not-allowed}
+#ds-workspace.ds-dark .ds-button-demo.danger{background:#b82727;color:#fff}
+#ds-workspace.ds-dark .ds-icon-action.ds-tonal,#ds-workspace.ds-dark .ds-fab.ds-tonal{background:#4a2b2b;color:#ffb49f;border-color:#73433a}
+#ds-workspace.ds-dark .ds-icon-action.ds-outlined{background:transparent;color:#f2f4f7;border-color:#8493a8}
+#ds-workspace.ds-dark .ds-icon-tile{background:#252e3a;color:#f2f4f7;border-color:#485566}
+#ds-workspace.ds-dark .ds-icon-tile span{color:#c0cad7}
+#ds-workspace.ds-dark .ds-field>span,#ds-workspace.ds-dark .ds-subheading,#ds-workspace.ds-dark .ds-demo-cell>small{color:#d0d7e2}
+#ds-workspace.ds-dark .ds-button-demo:focus-visible,#ds-workspace.ds-dark button:focus-visible,#ds-workspace.ds-dark input:focus-visible,#ds-workspace.ds-dark select:focus-visible,#ds-workspace.ds-dark textarea:focus-visible{outline:3px solid #ffb49f;outline-offset:3px}
+#ds-workspace .ds-button-demo:has(.ph):not(:has(span)){width:44px;min-width:44px;padding:0;font-size:13px}
+#ds-workspace .ds-button-demo:has(.ph):not(:has(span)) .ph{font-size:20px}
+@media (prefers-reduced-motion:reduce){#ds-workspace *,#ds-workspace *::before,#ds-workspace *::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
