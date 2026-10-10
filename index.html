@@ -1686,6 +1686,7 @@ function showDesign(key){
  }));
 
 
+ all('#ds-content .ds-live-specimen').forEach(el=>el.classList.toggle('dark',$('#ds-workspace').classList.contains('ds-dark')));
  all('#ds-content .ds-live-specimen button').forEach(button=>button.addEventListener('click',()=>{
   const stage=button.closest('.ds-live-specimen');
   if(button.matches('.seg button,.durations button,.option,.nav button')){
@@ -1741,6 +1742,7 @@ all('.ds-subgroup > .ds-subgroup-toggle').forEach(btn=>{
 const dsModeButton=$('#ds-mode-switch');
 dsModeButton.addEventListener('click',()=>{
  const dark=$('#ds-workspace').classList.toggle('ds-dark');
+ all('#ds-content .ds-live-specimen').forEach(el=>el.classList.toggle('dark',dark));
  dsModeButton.setAttribute('aria-checked',String(dark));
  dsModeButton.setAttribute('aria-label',dark?'Show light mode components':'Show dark mode components');
  dsModeButton.querySelector('span:not(.ds-mode-track)').textContent=dark?'Dark':'Light';

@@ -41,4 +41,4 @@ Demo functionality must remain explicitly identified as demo, not production-rea
 - Component-only interactions do not change live screen navigation, requests or privacy preferences.
 - Corrected source labels for adaptations that have no matching current screen component.
 - Validation: JavaScript syntax; 54 design sections rendered in DOM execution; duplicate IDs, labels, duration parity, exclusive choices, privacy isolation, original screen navigation and Closed map privacy checks passed.
-- Visual browser/mobile QA remains pending: browser installation in this environment failed during download.
+- Live cloud-browser QA: Discovery tabs render correctly and selection works in light/dark; source-specific dark selectors now follow the specimen theme. Full mobile QA remains pending.
