@@ -1018,6 +1018,12 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 #ds-workspace .ds-switch-label input[type="checkbox"]:checked{background:#ff3300}
 #ds-workspace .ds-switch-label input[type="checkbox"]:checked::after{left:20px;transform:none}
 #ds-workspace.ds-dark .ds-switch-label input[type="checkbox"]:not(:checked){background:#637083}
+
+/* Soft Bold slider v2: slim track with value-driven progress. */
+#ds-workspace .ds-range,#phone input[type="range"],.journey-field input[type="range"],.editfield input[type="range"]{height:8px;background:linear-gradient(to right,#ff3300 0%,#ff3300 var(--range-progress,50%),#e2e6ec var(--range-progress,50%),#e2e6ec 100%)}
+#ds-workspace.ds-dark .ds-range,#phone.dark input[type="range"]{background:linear-gradient(to right,#ff3300 0%,#ff3300 var(--range-progress,50%),#485566 var(--range-progress,50%),#485566 100%)}
+#ds-workspace .ds-range::-webkit-slider-thumb,#phone input[type="range"]::-webkit-slider-thumb,.journey-field input[type="range"]::-webkit-slider-thumb,.editfield input[type="range"]::-webkit-slider-thumb{width:24px;height:24px;border-radius:9px;border-width:6px}
+#ds-workspace .ds-range::-moz-range-thumb,#phone input[type="range"]::-moz-range-thumb,.journey-field input[type="range"]::-moz-range-thumb,.editfield input[type="range"]::-moz-range-thumb{width:12px;height:12px;border-radius:8px;border-width:6px}
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -1590,4 +1596,14 @@ all('#tree .tree-link').forEach(b=>b.addEventListener('click',()=>{if(document.b
 renderDiscoveryList();
 renderSpec('closed');
 if(document.readyState==='complete')refreshIcons();else window.addEventListener('load',refreshIcons);
+
+/* Keep range progress aligned with its actual min/max/value, including dynamically rendered DS pages. */
+(function(){
+ const progress=input=>{const min=Number(input.min||0),max=Number(input.max||100),value=Number(input.value);const pct=max>min?Math.max(0,Math.min(100,(value-min)/(max-min)*100)):0;input.style.setProperty('--range-progress',pct+'%')};
+ const root=document.body;
+ root.addEventListener('input',e=>{if(e.target.matches('input[type="range"]'))progress(e.target)});
+ const observer=new MutationObserver(()=>document.querySelectorAll('input[type="range"]').forEach(progress));
+ observer.observe(document.getElementById('ds-content')||root,{childList:true,subtree:true});
+ document.querySelectorAll('input[type="range"]').forEach(progress);
+})();
 </script></body></html>
