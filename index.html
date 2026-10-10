@@ -626,19 +626,19 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
 #closed .map{border-radius:24px}
 #active #mapview.activemap{border-radius:24px 24px 0 0}
 
-/* Bottom navigation overlay: keep scrolling content full-height and fade it over
-   the last 300px of the phone viewport. Navigation stays above this mask. */
-.screen:has(> .nav) > .journey-body,
-#myprofile > .myprofile-scroll,
+/* Full-height scroll areas under floating bottom navigation.
+   Fade content across the bottom 240px; never mask the nav itself. */
+.screen:has(> .nav) > :is(.journey-body,.myprofile-scroll,.editprofile-scroll,.privacy-scroll,.verify-scroll,.settings-scroll),
 #active #listview{
- bottom:0;
- -webkit-mask-image:linear-gradient(to bottom,black 0%,black calc(100% - 300px),transparent 100%);
- mask-image:linear-gradient(to bottom,black 0%,black calc(100% - 300px),transparent 100%);
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 240px),transparent 100%);
+ mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 240px),transparent 100%);
  -webkit-mask-repeat:no-repeat;
  mask-repeat:no-repeat;
+ padding-bottom:115px;
 }
-.screen:has(> .nav) > .journey-body,
-#myprofile > .myprofile-scroll{padding-bottom:115px}
+.screen:has(> .nav) > :is(.journey-body,.myprofile-scroll,.editprofile-scroll,.privacy-scroll,.verify-scroll,.settings-scroll){
+ bottom:0;
+}
 #active #listview{padding-bottom:115px}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
