@@ -1367,16 +1367,22 @@ function showDesign(key){
 }
 
 function setDsSubgroup(btn,open){
+ // Only real accordion headings may control their own child list.
+ if(!btn.matches('.ds-subgroup > .ds-subgroup-toggle'))return;
+ const items=btn.nextElementSibling;
+ if(!items?.classList.contains('ds-subgroup-items'))return;
  btn.setAttribute('aria-expanded',String(open));
- btn.nextElementSibling.hidden=!open;
- const ico=btn.querySelector('.ds-subgroup-chevron svg');
- if(ico){ico.style.transform='none';ico.style.rotate='none';ico.setAttribute('data-lucide',open?'chevron-down':'chevron-right')}
+ items.hidden=!open;
+ const chevron=btn.querySelector('.ds-subgroup-chevron');
+ if(chevron){
+  chevron.innerHTML='<i data-lucide="'+(open?'chevron-down':'chevron-right')+'"></i>';
+ }
 }
-all('.ds-subgroup-toggle:not(.ds-icon-category)').forEach(btn=>{
+all('.ds-subgroup > .ds-subgroup-toggle').forEach(btn=>{
  setDsSubgroup(btn,false);
  btn.addEventListener('click',()=>{
   const open=btn.getAttribute('aria-expanded')!=='true';
-  all('.ds-subgroup-toggle').forEach(other=>setDsSubgroup(other,false));
+  all('.ds-subgroup > .ds-subgroup-toggle').forEach(other=>setDsSubgroup(other,false));
   setDsSubgroup(btn,open);
   if(window.lucide?.createIcons)window.lucide.createIcons();
  });
@@ -1391,7 +1397,7 @@ dsModeButton.addEventListener('click',()=>{
 });
 all('.ds-link').forEach(b=>b.addEventListener('click',()=>{
  if(b.classList.contains('ds-icon-category')){
-  all('.ds-subgroup-toggle:not(.ds-icon-category)').forEach(other=>setDsSubgroup(other,false));
+  all('.ds-subgroup > .ds-subgroup-toggle').forEach(other=>setDsSubgroup(other,false));
   refreshIcons();
  }
  showDesign(b.dataset.ds);
