@@ -75,11 +75,12 @@
         "Read one canonical profile model; calculate completion from real fields.",
         "Use approved identity/photo; editing opens a child route.",
         "Preserve profile scroll when switching tabs.",
-        "Group avatar, name, headline, approximate city and profile completeness inside one high-contrast identity card.",
-        "Identity is the visual priority. Completion is a quieter footer separated by a divider, not a standalone competing card.",
-        "The identity card is not tappable as a whole. Provide explicit Edit profile and Complete profile controls with 44 pt touch targets.",
-        "About, intent, skills and privacy remain calm sections below the identity card. Do not turn every section into a competing card.",
-        "Profile strength means completeness, not trustworthiness or verification. Expose its value as accessible progress."
+        "Profile strength means completeness, not trustworthiness or verification. Expose its value as accessible progress.",
+        "Use a light raised identity card (theme-aware), with avatar, name, 15 pt headline and 13 pt approximate city.",
+        "Use 15\u201317 pt main content and 13\u201314 pt supporting text; allow native text scaling and wrapping.",
+        "Show profile strength as one short row and a thin progress bar, with one 46 pt Edit profile action. No repeated edit links or privacy badges.",
+        "Group About, intent and skills in rounded 22 pt surfaces with subtle shadows; use a rounded privacy menu row with 62 pt minimum height.",
+        "Keep copy concise without truncating user-authored biography or changing visibility rules. Profile card itself is not tappable."
       ],
       "validation": [
         "Rapid repeated taps resolve to the final state without ghost screens.",
