@@ -18,12 +18,12 @@ const PEOPI_SCREEN_CONTRACTS={"version":"1.0.0","target":"Flutter mobile, iOS pr
   phone.querySelectorAll('.nav').forEach(nav=>{
    nav.classList.add('motion-nav');let pill=nav.querySelector('.motion-nav-indicator');if(!pill){pill=document.createElement('span');pill.className='motion-nav-indicator';pill.setAttribute('aria-hidden','true');nav.prepend(pill)}
    const selected=nav.querySelector('button.current');if(!selected)return;
-   const x=selected.offsetLeft,width=selected.offsetWidth,prior=oldNav?.querySelector('button.current');pill.style.width=width+'px';pill.style.transform=`translateX(${x}px)`;
-   if(nav.closest('.screen.active')&&prior&&prior.dataset.go!==selected.dataset.go){const from=prior.offsetLeft;animate(pill,[{transform:`translateX(${from}px)`},{transform:`translateX(${x}px)`}],'selection')}
+   const x=selected.offsetLeft,width=selected.offsetWidth,prior=oldNav?.selected;pill.style.width=width+'px';pill.style.transform=`translateX(${x}px)`;
+   if(nav.closest('.screen.active')&&prior&&prior.dataset.go!==selected.dataset.go){const from=oldNav.left;animate(pill,[{transform:`translateX(${from}px)`},{transform:`translateX(${x}px)`}],'selection')}
   });
  }
  const baseGo=go;
- go=function(to){const from=page;if(from===to){baseGo(to);return}cleanScreens();const old=document.getElementById(from),oldNav=old?.querySelector('.nav');baseGo(to);const next=document.getElementById(to);selectedNav(oldNav);if(!next||!old)return;
+ go=function(to){const from=page;if(from===to){baseGo(to);return}cleanScreens();const old=document.getElementById(from),nav=old?.querySelector('.nav'),selected=nav?.querySelector('button.current'),oldNav=selected?{selected,left:selected.offsetLeft}:null;baseGo(to);const next=document.getElementById(to);selectedNav(oldNav);if(!next||!old)return;
   const forward=C.screens[to]?.parent===from,back=C.screens[from]?.parent===to,recipe=forward?'push':back?'pop':'tab';
   // Session close/expiry and tab changes never retain an outgoing identity surface.
   const canRetain=recipe!=='tab'&&to!=='closed';
@@ -35,6 +35,7 @@ const PEOPI_SCREEN_CONTRACTS={"version":"1.0.0","target":"Flutter mobile, iOS pr
  const visibility=new WeakMap(),closing=new WeakMap();
  function watchOverlay(el){if(visibility.has(el))return;visibility.set(el,!el.classList.contains('hide'));new MutationObserver(()=>{
    const visible=!el.classList.contains('hide');if(visible===visibility.get(el))return;visibility.set(el,visible);const panel=el.querySelector('.sheet')||el;const token={};closing.set(el,token);
+   if(el.id==='profsheet')renderSpec(visible?'profile':page);
    if(visible){el.classList.remove('motion-overlay-leaving','motion-feedback-leaving');el.inert=false;el.removeAttribute('aria-hidden');animate(panel,[{opacity:0,transform:'translateY(48px)'},{opacity:1,transform:'translateY(0)'}],el.classList.contains('modal')?'sheet':'feedback')}
    else{el.classList.add(el.classList.contains('modal')?'motion-overlay-leaving':'motion-feedback-leaving');el.inert=true;el.setAttribute('aria-hidden','true');animate(panel,[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(48px)'}],'dismiss',()=>{if(closing.get(el)===token){el.classList.remove('motion-overlay-leaving','motion-feedback-leaving');el.inert=false;el.removeAttribute('aria-hidden')}})}
   }).observe(el,{attributes:true,attributeFilter:['class']});
@@ -42,7 +43,7 @@ const PEOPI_SCREEN_CONTRACTS={"version":"1.0.0","target":"Flutter mobile, iOS pr
  ['profsheet','modal','toast','profilecard'].forEach(id=>watchOverlay(document.getElementById(id)));
  function prepare(root){root.querySelectorAll('button').forEach(b=>b.classList.add('motion-pressable'))}
  prepare(phone);new MutationObserver(records=>{for(const r of records)for(const n of r.addedNodes)if(n.nodeType===1){prepare(n);if(n.matches('.discovery-filter-overlay'))animate(n.querySelector('.discovery-filter-dialog'),[{opacity:0,transform:'translateY(48px)'},{opacity:1,transform:'translateY(0)'}],'sheet');}}).observe(phone,{childList:true,subtree:true});
- const baseConversation=renderConversation;renderConversation=function(){const before=document.querySelectorAll('#chat-history .chat-bubble').length;baseConversation();const bubbles=document.querySelectorAll('#chat-history .chat-bubble');if(page==='conversation'&&bubbles.length>before&&before>0)animate(bubbles[bubbles.length-1],[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],'content')};
+ const baseConversation=renderConversation;renderConversation=function(){const before=document.querySelectorAll('#chat-history .chat-bubble').length;baseConversation();const bubbles=document.querySelectorAll('#chat-history .chat-bubble');if(page==='conversation'&&bubbles.length>before)animate(bubbles[bubbles.length-1],[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],'content')};
  const baseSpec=renderSpec;renderSpec=function(key){baseSpec(key);const contract=C.screens[key];let box=document.getElementById('spec-codex-contract');if(!box){box=document.createElement('section');box.id='spec-codex-contract';box.className='spec-block';document.getElementById('spec-notes').closest('section').after(box)}box.replaceChildren();if(!contract)return;
   const add=(tag,text)=>{const el=document.createElement(tag);el.textContent=text;box.append(el);return el};add('h3','05 · CODEX IMPLEMENTATION RULES');const ul=add('ul','');[...contract.rules,'Reuse Components first. Register each new screen component in its existing flat family.','Demo data is not production auth, permissions or backend security.'].forEach(rule=>{const li=document.createElement('li');li.textContent=rule;ul.append(li)});
   add('h3','06 · MOTION CONTRACT');add('p',contract.motion.map(m=>m+' · '+(T.durationMs[m]??T.durationMs.feedback)+' ms').join(' / '));add('p','Commit state immediately. Retarget repeated taps. Preserve tab state. Reduce Motion: 120 ms opacity only. Native iOS routes retain interactive back/dismiss.');const link=add('a','Codex mobile handoff ↗');link.href='MOBILE-HANDOFF.md';link.target='_blank';add('p','Sources: peopi-screen-contracts.json + peopi-motion.tokens.json · v1.0');
@@ -53,5 +54,5 @@ const PEOPI_SCREEN_CONTRACTS={"version":"1.0.0","target":"Flutter mobile, iOS pr
  const baseDesign=showDesign;showDesign=function(key){baseDesign(key);if(key==='motion')library();document.getElementById('spec-codex-contract')?.replaceChildren()};
  document.addEventListener('click',e=>{const replayButton=e.target.closest('[data-motion-replay]');if(replayButton)replay(replayButton.dataset.motionReplay);const reduceButton=e.target.closest('[data-motion-reduce]');if(reduceButton){previewReduce=!previewReduce;reduceButton.setAttribute('aria-pressed',String(reduced()));reduceButton.textContent='Reduce Motion: '+(reduced()?'on':'off');if(reduced()){for(const a of running.values())a.finish();cleanScreens()}}});
  const syncReduced=()=>{phone.classList.toggle('motion-reduced',reduced());if(reduced()){for(const a of running.values())a.finish();cleanScreens()}};media.addEventListener?.('change',syncReduced);document.addEventListener('click',e=>{if(e.target.closest('[data-motion-reduce]'))syncReduced()});
- window.PeopiMotion={tokens:T,contracts:C,animate,dismiss,replay,reduced,renderLibrary:library};selectedNav();syncReduced();document.querySelector('.context-label').textContent='CODEX / MOBILE SCREEN SPEC';renderSpec(page);
+ window.PeopiMotion={tokens:T,contracts:C,animate,dismiss,replay,reduced,renderLibrary:library};selectedNav();syncReduced();document.querySelector('.inspector .context-label').textContent='CODEX / MOBILE SCREEN SPEC';renderSpec(page);
 })();
