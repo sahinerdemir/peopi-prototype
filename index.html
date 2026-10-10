@@ -1101,7 +1101,8 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 .phone .journey-person.request-received>.person-actions button:first-child{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* My Profile: readable identity card and calm iOS-style grouped surfaces. */
-.myprofile-scroll{padding:23px 22px 34px}.myprofile-head h2{font-size:28px}.myprofile-iconbtn{width:44px;height:44px;border-radius:16px}
+/* Nav is 70px high and inset 16px; fade begins 30px above its top. */
+#myprofile .myprofile-scroll{padding:23px 22px 140px;bottom:0;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 116px),transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 116px),transparent 100%)}.myprofile-head h2{font-size:28px}.myprofile-iconbtn{width:44px;height:44px;border-radius:16px}
 .myprofile-identity-card{margin-top:22px;border-radius:26px;padding:22px;background:var(--card);border:1px solid color-mix(in srgb,var(--line) 55%,transparent);box-shadow:0 8px 28px #1b243209;color:var(--ink)}
 .myprofile-identity-card .myprofile-hero{display:flex;align-items:center;gap:16px;text-align:left;padding:0}.myprofile-identity-card .myprofile-avatar{width:68px;height:68px;min-width:68px;margin:0;border-radius:23px;font-size:23px;background:linear-gradient(140deg,#ffe8df,#ffc1a9)}
 .myprofile-summary{min-width:0}.myprofile-summary h3{font-size:22px;line-height:1.25;letter-spacing:-.6px;margin:0 0 5px;color:var(--ink);overflow-wrap:anywhere}.myprofile-summary>p{font-size:15px;line-height:1.45;margin:0 0 7px;color:var(--sub);overflow-wrap:anywhere}.myprofile-identity-card .myprofile-location{justify-content:flex-start;font-size:13px;line-height:1.5;gap:5px;color:var(--sub)}
