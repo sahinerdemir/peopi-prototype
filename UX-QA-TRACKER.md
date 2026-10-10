@@ -32,3 +32,13 @@ Backup before changes: `backup/pre-ux-qa-overhaul-2026-10-09`.
 - Automated browser E2E regression tests and accessibility audit.
 
 Demo functionality must remain explicitly identified as demo, not production-ready.
+
+## Design System screen-source pass — 2026-10-10
+- Screen specimens now clone actual SCREENS markup and reuse screen CSS; isolated IDs preserve source selectors and form labels.
+- Discovery tabs/navigation, profile header/cards/fields, settings lists, avatars/chips, privacy rows/switches, verification, requests, chat bubbles, profile sheets and Closed screen specimens use their existing screen patterns.
+- Discovery filters share the same markup factory with the live screen.
+- Session duration uses the real screen choices rather than the former 15/30/60 example.
+- Component-only interactions do not change live screen navigation, requests or privacy preferences.
+- Corrected source labels for adaptations that have no matching current screen component.
+- Validation: JavaScript syntax; 54 design sections rendered in DOM execution; duplicate IDs, labels, duration parity, exclusive choices, privacy isolation, original screen navigation and Closed map privacy checks passed.
+- Visual browser/mobile QA remains pending: browser installation in this environment failed during download.
