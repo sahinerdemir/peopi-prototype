@@ -25,7 +25,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Map-led landing; one concise status, one completion surface and one Show up action. Keep individual identities hidden."
     },
     "setup": {
       "parent": "closed",
@@ -43,7 +44,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "One scrolling setup flow. Rounded intent/duration choices, short privacy note, Go visible then Not now. No fixed overlapping footer."
     },
     "active": {
       "parent": null,
@@ -62,7 +64,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Readable map/list controls, theme-aware segment container and orange selected tab. Raised connected cards retain orange borders."
     },
     "myprofile": {
       "parent": null,
@@ -86,7 +89,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Light identity surface, one Edit profile action, thin completeness bar and quiet rounded content groups."
     },
     "editprofile": {
       "parent": "myprofile",
@@ -104,7 +108,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Rounded form groups with 16 pt inputs and 14 pt labels; one concise privacy note, explicit save/discard."
     },
     "privacy": {
       "parent": "myprofile",
@@ -122,7 +127,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Grouped rounded controls. Retain hide-presence versus block semantics; switches have 44 pt touch areas."
     },
     "verification": {
       "parent": "myprofile",
@@ -140,7 +146,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Separate rounded LinkedIn/identity panels. Keep the explicit distinction between linking an account and verifying identity."
     },
     "appsettings": {
       "parent": "myprofile",
@@ -158,7 +165,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Rounded account/preferences/help groups. Brief labels and captions only where they add information."
     },
     "welcome": {
       "parent": null,
@@ -176,7 +184,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Keep the atmosphere and wordmark; readable value statement and two clear account actions."
     },
     "auth": {
       "parent": "welcome",
@@ -194,7 +203,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "16 pt email/code inputs and 52 pt social/email actions. Keep demo code and no-email boundary visible."
     },
     "firstprofile": {
       "parent": "auth",
@@ -212,7 +222,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "One rounded form group. Required identity fields, optional biography and concise privacy context."
     },
     "firstintent": {
       "parent": "firstprofile",
@@ -230,7 +241,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Large rounded multi-select options; preserve checkmark/selection state and explicit Finish setup."
     },
     "permissions": {
       "parent": "firstintent",
@@ -248,7 +260,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "One readable permission card per capability. Keep demo boundary and just-in-time consent explicit."
     },
     "recovery": {
       "parent": "auth",
@@ -266,7 +279,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "One readable email field and recovery action. Clearly say this is a demo with no email sent."
     },
     "network": {
       "parent": null,
@@ -284,7 +298,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Raised person rows and rounded shortcuts; preserve search and connection navigation."
     },
     "requests": {
       "parent": "network",
@@ -303,7 +318,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Readable person cards; received Accept/Decline retain equal half-width 48 pt actions; sent cancellation stays a 44 pt icon."
     },
     "messages": {
       "parent": "network",
@@ -321,7 +337,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Readable conversation rows, short introduction, no full-list entrance animation."
     },
     "conversation": {
       "parent": "messages",
@@ -339,7 +356,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "16 pt message text and input, readable timestamps, explicit Send hit area; preserve composer resizing."
     },
     "connectiondetail": {
       "parent": "network",
@@ -357,7 +375,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Rounded identity/content/action sections shared with the profile sheet. Preserve hide, remove, report and chat behavior."
     },
     "hiddenconnections": {
       "parent": "privacy",
@@ -375,7 +394,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Short explanation: live presence hidden, connection/chat preserved, no notification. Raised person rows."
     },
     "blockedaccounts": {
       "parent": "privacy",
@@ -393,7 +413,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Rounded person rows with explicit Unblock; distinguish blocking from hiding."
     },
     "reportuser": {
       "parent": "privacy",
@@ -411,7 +432,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Rounded form group with 16 pt inputs. Keep report and block separate and demo submission explicit."
     },
     "notifications": {
       "parent": "appsettings",
@@ -429,7 +451,8 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Readable rounded preference rows; 44 pt switch touch targets and concise subtitles."
     },
     "profile": {
       "parent": null,
@@ -447,7 +470,18 @@
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
-      ]
+      ],
+      "uiRecipe": "Scrollable rounded identity/detail sections. Retain anonymous versus connected identity rules and request states."
     }
+  },
+  "presentation": {
+    "version": "1.0.0",
+    "tokens": "peopi-ui.tokens.json",
+    "scope": "23 screens plus professional profile sheet",
+    "typography": "Main content 15\u201317 pt; supporting copy 13\u201314 pt; text inputs 16 pt; preserve text scaling and full user content.",
+    "surfaces": "Theme-aware rounded groups, 22\u201326 pt radius, subtle shadows, spacing rather than repeated divider lines.",
+    "copy": "One useful explanation per decision; remove repetition, keep privacy/trust/demo boundaries.",
+    "navigation": "70 pt floating nav inset 16 pt; bottom fade begins 30 pt above nav top (116 pt from viewport bottom).",
+    "behavior": "Visual modernization must not change consent, session, connection, chat, privacy or verification state."
   }
 }

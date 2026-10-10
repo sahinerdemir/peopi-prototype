@@ -14,3 +14,6 @@ The family inventory is `dsCatalog` in `index.html`; its `members` refer to scre
 
 ## Mobile and motion contracts
 This prototype is the Codex mobile implementation specification. Read MOBILE-HANDOFF.md. Keep every implemented screen in peopi-screen-contracts.json. Use shared motion recipes, never screen-local durations. Honor system Reduce Motion and preserve tab state. Update JSON sources, then run scripts/sync-motion-spec.py to refresh runtime constants. New components must be used by a real screen and registered in an existing flat Components family. Native accessibility, interactive routes and backend security require separate device/integration validation.
+
+## Readability and grouped surfaces
+Read UI-MODERNIZATION.md and peopi-ui.tokens.json before modifying mobile UI. Main content is 15–17 pt, support 13–14 pt, inputs 16 pt, touch targets at least 44 pt. Group related content and controls in rounded theme-aware surfaces rather than divider-heavy rows. Reduce repeated copy without removing privacy/consent/trust meaning or user-authored content. All root-tab scrollers share 116 pt bottom fade extent (70 pt navigation + 16 pt inset + 30 pt clearance), plus sufficient end padding. Update uiRecipe and actual source specimens with each screen change.

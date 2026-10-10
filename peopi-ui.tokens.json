@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "typographyPt": {
+    "body": 15,
+    "primaryRow": 16,
+    "support": 13,
+    "fieldLabel": 14,
+    "input": 16,
+    "sectionTitle": 17,
+    "screenTitle": 23,
+    "primaryTitle": 28,
+    "hero": 30,
+    "navigationLabel": 12
+  },
+  "radiusPt": {
+    "group": 22,
+    "identity": 26,
+    "field": 15,
+    "action": 17,
+    "chip": 12
+  },
+  "touchTargetPt": {
+    "minimum": 44,
+    "primaryAction": 52,
+    "requestDecision": 48
+  },
+  "spacingPt": {
+    "page": 22,
+    "groupPadding": 20,
+    "groupGap": 14,
+    "rowGap": 12
+  },
+  "navigationPt": {
+    "height": 70,
+    "bottomInset": 16,
+    "fadeClearance": 30,
+    "fadeExtent": 116,
+    "scrollBottomPadding": 140
+  },
+  "surfaces": {
+    "light": "shared --card on --bg",
+    "dark": "shared --card on --bg; never hard-coded white for the container",
+    "shadowLight": "0 4px 18px rgba(27,36,50,.027)",
+    "shadowDark": "0 5px 20px rgba(0,0,0,.086)"
+  },
+  "rules": [
+    "Preserve system text scaling and full user-authored content.",
+    "Group by task and meaning; avoid repeated divider lines and captions.",
+    "One concise explanation per decision; retain consent, privacy and trust boundaries.",
+    "Reusable specimens must come from actual screens in both themes."
+  ]
+}

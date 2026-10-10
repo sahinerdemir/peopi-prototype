@@ -48,3 +48,10 @@ Demo functionality must remain explicitly identified as demo, not production-rea
 - Preserved the Phosphor icon library. Removed unused generic component demos and speculative patterns from the catalogue.
 - Documented reuse-first and add-after-screen-use rules in AGENTS.md and each family page.
 - Families: Icons, Actions, Forms & Selection, Navigation, Profile & Identity, Connections & Chat, Privacy & Feedback, Sheets & Dialogs.
+
+## Application-wide readable UI pass — 2026-10-10
+- Modernized all 23 screens plus the professional sheet with family-specific rules.
+- Readable typography, rounded forms/menus/person rows, explicit actions, concise product-authored copy, shared 30 pt navigation fade clearance.
+- Preserved existing request decisions, cancel icon, hidden-presence model, LinkedIn-versus-identity distinction and opt-in sessions.
+- Added UI tokens, per-screen uiRecipe/Notes, grouped form/content specimens and mobile handoff guidance.
+- Native Dynamic Type/keyboard/VoiceOver/device validation remains required.

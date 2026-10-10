@@ -5,6 +5,8 @@ This frontend is the visual and behavioral specification for a Flutter mobile ap
 ## Source of truth
 
 - `index.html`: actual SCREENS markup, application-only component families, live state examples.
+- `peopi-ui.tokens.json`: readable typography, rounded surface, touch target and navigation clearance values.
+- `UI-MODERNIZATION.md`: screen-family plan and implementation scope.
 - `peopi-motion.tokens.json`: versioned motion values. These are Peopi choices informed by Apple guidance, not published Apple animation constants.
 - `peopi-screen-contracts.json`: rules, route types, motion recipes and validation for all 23 screens plus the profile sheet.
 - `peopi-motion.js` / `peopi-motion.css`: working web reference and replayable motion examples. Embedded tokens/contracts are generated from the two JSON files; synchronize them when updating the specification.
@@ -44,3 +46,6 @@ Test all flows on real iOS devices, including rapid taps, interactive back/dismi
 - https://api.flutter.dev/flutter/cupertino/CupertinoPageRoute-class.html
 - https://api.flutter.dev/flutter/physics/SpringDescription-class.html
 - https://api.flutter.dev/flutter/widgets/MediaQueryData/disableAnimations.html
+
+## Mobile UI presentation
+Use main text at 15–17 pt, supporting text at 13–14 pt and form input text at 16 pt. Respect text scaling, wrap long text and retain user content. Group related controls in theme-aware rounded surfaces with subtle shadows. Reduce repeated captions and editor links; keep important privacy, consent and trust explanations. Shared bottom navigation uses a 70 pt shell, 16 pt bottom inset and a fade beginning 30 pt above the shell. Apply the per-screen uiRecipe in peopi-screen-contracts.json and keep Components specimens aligned.
