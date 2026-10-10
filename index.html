@@ -1049,6 +1049,33 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 #ds-workspace .ds-peopi-app-bar button{width:44px;height:44px;border-radius:15px}
 #ds-workspace .ds-pill-tag{border-radius:999px;min-height:34px;display:inline-flex;align-items:center;gap:6px}
 #ds-workspace .ds-choice-field,#ds-workspace .ds-sample-card,#ds-workspace .ds-dialog-demo{border-radius:22px}
+
+/* Peopi component language: app-derived pill tabs and soft, elevated accordion cards. */
+#ds-workspace .ds-tabs{display:flex;align-items:center;gap:5px;width:max-content;max-width:100%;padding:5px;border:1px solid #e6e9ef;border-radius:999px;background:#f0f2f5;box-shadow:inset 0 1px 3px #10151d0b}
+#ds-workspace .ds-tabs button{min-width:118px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border:0;border-radius:999px;background:transparent;color:#687386;font:800 12px Manrope,system-ui;transition:background .18s,color .18s,box-shadow .18s}
+#ds-workspace .ds-tabs button.active{background:#fff;color:#ff3300;border:0;box-shadow:0 3px 12px #10151d16}
+#ds-workspace .ds-tabs button .ph{font-size:19px}
+#ds-workspace .ds-tab-body{margin-top:16px;padding:18px;border-radius:19px;background:#f8f9fb;color:#485566}
+#ds-workspace.ds-dark .ds-tabs{background:#252e3a;border-color:#485566}
+#ds-workspace.ds-dark .ds-tabs button{color:#b8c4d3}
+#ds-workspace.ds-dark .ds-tabs button.active{background:#3a4656;color:#ff987e}
+#ds-workspace.ds-dark .ds-tab-body{background:#252e3a;color:#d4dce6}
+#ds-workspace .ds-accordion{display:grid;gap:12px;max-width:680px}
+#ds-workspace .ds-accordion details{overflow:hidden;padding:0;border:1px solid #e3e7ee;border-radius:20px;background:#fff;box-shadow:0 4px 16px #10151d09;transition:border-color .18s,box-shadow .18s}
+#ds-workspace .ds-accordion details[open]{border-color:#ffb9a5;box-shadow:0 7px 22px #ff330010}
+#ds-workspace .ds-accordion summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:62px;padding:16px 19px;list-style:none;color:#141922;font:800 13px Manrope,system-ui;cursor:pointer}
+#ds-workspace .ds-accordion summary::-webkit-details-marker{display:none}
+#ds-workspace .ds-accordion summary::after{content:"";width:10px;height:10px;flex:none;border-right:2px solid #697386;border-bottom:2px solid #697386;transform:rotate(45deg) translateY(-2px);transition:transform .18s}
+#ds-workspace .ds-accordion details[open] summary{color:#e6330a}
+#ds-workspace .ds-accordion details[open] summary::after{border-color:#ff3300;transform:rotate(225deg) translate(-2px,-2px)}
+#ds-workspace .ds-accordion details p{margin:0 19px 19px;padding:15px 16px;border-radius:14px;background:#f8f9fb;color:#556174;font:500 12px/1.75 Manrope,system-ui}
+#ds-workspace.ds-dark .ds-accordion details{background:#252e3a;border-color:#485566;box-shadow:none}
+#ds-workspace.ds-dark .ds-accordion details[open]{border-color:#9c513d}
+#ds-workspace.ds-dark .ds-accordion summary{color:#f2f4f7}
+#ds-workspace.ds-dark .ds-accordion details[open] summary{color:#ff987e}
+#ds-workspace.ds-dark .ds-accordion details p{background:#1b222d;color:#c5d0de}
+#ds-workspace .ds-accordion summary:focus-visible,#ds-workspace .ds-tabs button:focus-visible{outline:3px solid #ff987e;outline-offset:3px}
+@media(max-width:480px){#ds-workspace .ds-tabs{width:100%}#ds-workspace .ds-tabs button{min-width:0;flex:1}}
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -1499,7 +1526,7 @@ function showDesign(key){
  'slider':()=>catalogSection('Continuous selection','<label class="ds-field"><span>Discovery radius · <output class="ds-range-value">5</output> miles</span><input class="ds-range" type="range" min="1" max="20" value="5"></label>'),
  'select':()=>catalogSection('Select controls','<div class="ds-form-grid"><label class="ds-field"><span>Industry</span><select><option>Choose industry</option><option>Design</option><option>Technology</option><option>Finance</option></select></label><label class="ds-field"><span>Availability</span><select><option>All</option><option>Open to connect</option></select></label></div>'),
  'bottom-nav':()=>catalogSection('Peopi floating navigation · production pattern','<p class="ds-icon-intro">The same three destinations, floating glass surface, pill silhouette, icons and active treatment used in the actual Peopi mobile screens.</p><div class="ds-nav-stage"><nav class="ds-bottom-nav ds-peopi-bottom-nav" aria-label="Peopi mobile navigation">'+[['compass','Discover'],['users-three','Connections'],['user','Profile']].map(([ico,t],i)=>'<button type="button" class="'+(i===0?'active':'')+'" aria-current="'+(i===0?'page':'false')+'"><span class="ds-nav-icon">'+sampleIcon(ico)+'</span><span>'+t+'</span></button>').join('')+'</nav></div>'),
- 'tabs':()=>catalogSection('Discovery tabs · SCREENS / Discover','<div class="ds-tabs" role="tablist">'+['Map','List'].map((t,i)=>'<button role="tab" aria-selected="'+(i===0)+'" class="'+(i===0?'active':'')+'">'+t+'</button>').join('')+'</div><div class="ds-tab-body">Explore nearby professionals while I’m Open. Closed mode never reveals individual locations.</div>'),
+ 'tabs':()=>catalogSection('Discovery Map / List · SCREENS / Discover','<div class="ds-tabs" role="tablist" aria-label="Discovery view">'+[['map-trifold','Map'],['list','List']].map(([ico,t],i)=>'<button type="button" role="tab" aria-selected="'+(i===0)+'" class="'+(i===0?'active':'')+'">'+sampleIcon(ico)+'<span>'+t+'</span></button>').join('')+'</div><div class="ds-tab-body">Map view · Approximate locations only while I’m Open.</div>'),
  'app-bar':()=>catalogSection('Profile header · SCREENS / My Profile','<div class="ds-app-bar ds-peopi-app-bar"><strong>My profile<span class="ds-brand-dot">.</span></strong><button aria-label="Profile settings">'+sampleIcon('sliders-horizontal')+'</button></div>'),
  'nav-rail':()=>catalogSection('Navigation rail · Peopi adaptation (not currently in SCREENS)','<div class="ds-rail">'+[['compass','Discover'],['users-three','Connections'],['user','Profile']].map(([ico,t],i)=>'<button class="'+(i===0?'active':'')+'">'+sampleIcon(ico)+'<small>'+t+'</small></button>').join('')+'</div>'),
  'menu':()=>catalogSection('Professional profile actions · SCREENS / Profile','<details class="ds-details"><summary>Profile options '+sampleIcon('caret-down')+'</summary><div class="ds-menu-list"><button>View profile</button><button>Hide my presence</button><button>Report profile</button></div></details>'),
@@ -1568,7 +1595,7 @@ function showDesign(key){
  const activateExclusive=(container,button,selector,attribute)=>{container.querySelectorAll(selector).forEach(el=>{const selected=el===button;el.classList.toggle('active',selected);if(attribute)el.setAttribute(attribute,String(selected))})};
  all('#ds-content .ds-peopi-duration button').forEach(button=>button.addEventListener('click',()=>activateExclusive(button.parentElement,button,'button','aria-pressed')));
  all('#ds-content .ds-segment button').forEach(button=>button.addEventListener('click',()=>activateExclusive(button.parentElement,button,'button','aria-pressed')));
- all('#ds-content .ds-tabs button').forEach(button=>button.addEventListener('click',()=>{activateExclusive(button.parentElement,button,'button','aria-selected');const body=button.parentElement.nextElementSibling;if(body)body.textContent=button.textContent+' content'}));
+ all('#ds-content .ds-tabs button').forEach(button=>button.addEventListener('click',()=>{activateExclusive(button.parentElement,button,'button','aria-selected');const body=button.parentElement.nextElementSibling;if(body)body.textContent=button.textContent.trim()==='Map'?'Map view · Approximate locations only while I’m Open.':'List view · Professionals discoverable under your privacy settings.'}));
  all('#ds-content .ds-bottom-nav button, #ds-content .ds-rail button').forEach(button=>button.addEventListener('click',()=>{activateExclusive(button.parentElement,button,'button',null);if(button.closest('.ds-peopi-bottom-nav'))button.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',b===button?'page':'false'))}));
  all('#ds-content .ds-range').forEach(input=>input.addEventListener('input',()=>{const output=input.closest('label')?.querySelector('.ds-range-value');if(output)output.textContent=input.value}));
  all('#ds-content .ds-toast-preview button').forEach(button=>button.addEventListener('click',()=>{button.closest('.ds-toast-preview').style.display='none'}));
