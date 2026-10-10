@@ -1199,6 +1199,11 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 .phone #connectiondetail #connection-privacy-hint{padding:15px;min-height:52px;gap:8px;flex-wrap:wrap}.phone #connectiondetail #connection-privacy-hint>span,.phone #connectiondetail #connection-privacy-hint .connection-since{font-size:13px;line-height:1.5;white-space:normal}
 .phone .onepager{font-size:15px;min-height:44px;padding:10px 0}
 
+
+/* ID-bearing legacy page rules must not override shared scroll clearance. */
+.phone .screen:has(>.nav):is(#network,#requests,#messages,#editprofile,#privacy,#verification,#appsettings,#myprofile)>:is(.journey-body,.myprofile-scroll,.editprofile-scroll,.privacy-scroll,.verify-scroll,.settings-scroll){padding-bottom:140px;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 116px),transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 116px),transparent 100%)}
+.phone :is(.settings-account strong,.settings-account small,.settings-item strong,.privacy-setting-copy strong,.detailblock p,.profilehero h3,.profilehero p,.verified-chat-name){overflow-wrap:anywhere}
+
 /* PEOPI_MODERN_UI_END */
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"><link rel="stylesheet" href="peopi-motion.css">
 </head><body><div class="workspace">

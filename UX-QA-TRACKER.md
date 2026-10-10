@@ -55,3 +55,4 @@ Demo functionality must remain explicitly identified as demo, not production-rea
 - Preserved existing request decisions, cancel icon, hidden-presence model, LinkedIn-versus-identity distinction and opt-in sessions.
 - Added UI tokens, per-screen uiRecipe/Notes, grouped form/content specimens and mobile handoff guidance.
 - Native Dynamic Type/keyboard/VoiceOver/device validation remains required.
+- Validation: local regression passed for 23 screens + sheet contracts, auth/onboarding/session/filters/request decisions/hide-chat/block/preferences, unique IDs and 15 design sections. Live all-screen light/dark overflow/surface checks passed; corrected source-specific legacy font and scroll-padding overrides during QA. Native validation remains pending.
