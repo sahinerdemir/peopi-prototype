@@ -836,6 +836,7 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
 .ds-tree .ds-subgroup-toggle[aria-expanded="true"]>span{color:#ff3300}
 .ds-tree .ds-subgroup-items .tree-link{padding-left:24px}
 .ds-tree .tree-children>.ds-link{min-height:38px}
+.ds-tree .ds-icon-category{width:100%;display:flex;align-items:center;text-align:left;border:0;background:transparent;cursor:pointer}.ds-tree .ds-icon-category .ds-chevron-placeholder{visibility:hidden}.ds-tree .ds-icon-category.selected>span{color:#ff3300}.ds-tree .ds-icon-category:focus-visible{outline:2px solid #ff3300;outline-offset:-2px;border-radius:8px}
 </style><script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script></head><body><div class="workspace">
 <aside class="sidebar" aria-label="Prototype navigation">
   <div class="workspace-brand"><span class="brand-mark" role="img" aria-label="Peopi p dot logo">p.</span><div><strong>Peopi</strong><small>Product workspace</small></div></div>
@@ -889,7 +890,7 @@ body.ds-open .ds-inspector{grid-column:3;width:100%;background:#fff}
     </div></div>
     <div class="tree-group"><button class="group-toggle" aria-expanded="true">07 <span>Components</span><b><i data-lucide="chevron-down"></i></b></button><div class="tree-children">
 
-<button class="tree-link ds-link" data-ds="icons-library"><strong>07.1</strong> <span>Icons & Iconography</span></button>
+<button class="ds-subgroup-toggle ds-icon-category ds-link" type="button" data-ds="icons-library" aria-current="false"><strong class="ds-nav-code">07.1</strong><span>Icons & Iconography</span><b class="ds-subgroup-chevron ds-chevron-placeholder" aria-hidden="true"></b></button>
 <div class="ds-subgroup"><button type="button" class="ds-subgroup-toggle" aria-expanded="true"><strong class="ds-nav-code">07.2</strong><span>Actions</span><b class="ds-subgroup-chevron"><i data-lucide="chevron-down"></i></b></button><div class="ds-subgroup-items" ><button class="tree-link ds-link" data-ds="button-spec"><strong class="ds-leaf-code">07.2.1</strong> <span>Buttons</span></button><button class="tree-link ds-link" data-ds="icon-button"><strong class="ds-leaf-code">07.2.2</strong> <span>Icon buttons</span></button><button class="tree-link ds-link" data-ds="fab"><strong class="ds-leaf-code">07.2.3</strong> <span>Floating action buttons</span></button><button class="tree-link ds-link" data-ds="segmented"><strong class="ds-leaf-code">07.2.4</strong> <span>Segmented buttons</span></button></div></div>
 <div class="ds-subgroup"><button type="button" class="ds-subgroup-toggle" aria-expanded="false"><strong class="ds-nav-code">07.3</strong><span>Inputs & Selection</span><b class="ds-subgroup-chevron"><i data-lucide="chevron-right"></i></b></button><div class="ds-subgroup-items" hidden><button class="tree-link ds-link" data-ds="text-field"><strong class="ds-leaf-code">07.3.1</strong> <span>Text fields</span></button><button class="tree-link ds-link" data-ds="search-field"><strong class="ds-leaf-code">07.3.2</strong> <span>Search</span></button><button class="tree-link ds-link" data-ds="checkbox"><strong class="ds-leaf-code">07.3.3</strong> <span>Checkboxes</span></button><button class="tree-link ds-link" data-ds="radio"><strong class="ds-leaf-code">07.3.4</strong> <span>Radio buttons</span></button><button class="tree-link ds-link" data-ds="switch"><strong class="ds-leaf-code">07.3.5</strong> <span>Switches</span></button><button class="tree-link ds-link" data-ds="slider"><strong class="ds-leaf-code">07.3.6</strong> <span>Sliders</span></button><button class="tree-link ds-link" data-ds="select"><strong class="ds-leaf-code">07.3.7</strong> <span>Select & dropdown</span></button></div></div>
 <div class="ds-subgroup"><button type="button" class="ds-subgroup-toggle" aria-expanded="false"><strong class="ds-nav-code">07.4</strong><span>Navigation</span><b class="ds-subgroup-chevron"><i data-lucide="chevron-right"></i></b></button><div class="ds-subgroup-items" hidden><button class="tree-link ds-link" data-ds="bottom-nav"><strong class="ds-leaf-code">07.4.1</strong> <span>Bottom navigation</span></button><button class="tree-link ds-link" data-ds="tabs"><strong class="ds-leaf-code">07.4.2</strong> <span>Tabs</span></button><button class="tree-link ds-link" data-ds="app-bar"><strong class="ds-leaf-code">07.4.3</strong> <span>App bars</span></button><button class="tree-link ds-link" data-ds="nav-rail"><strong class="ds-leaf-code">07.4.4</strong> <span>Navigation rail</span></button><button class="tree-link ds-link" data-ds="menu"><strong class="ds-leaf-code">07.4.5</strong> <span>Menus</span></button></div></div>
@@ -1359,7 +1360,7 @@ function showDesign(key){
   try{await navigator.clipboard.writeText(button.dataset.copy);button.classList.add('ds-copied');setTimeout(()=>button.classList.remove('ds-copied'),1200)}catch(e){console.warn('Clipboard unavailable',e)}
  }));
  if(window.lucide&&typeof window.lucide.createIcons==='function')window.lucide.createIcons();
- all('.ds-link').forEach(b=>b.classList.toggle('selected',b.dataset.ds===key));all('#tree .tree-link').forEach(b=>b.classList.remove('selected'));
+ all('.ds-link').forEach(b=>{const selected=b.dataset.ds===key;b.classList.toggle('selected',selected);if(b.classList.contains('ds-icon-category'))b.setAttribute('aria-current',selected?'page':'false')});all('#tree .tree-link').forEach(b=>b.classList.remove('selected'));
  all('[data-hex]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.hex);b.querySelector('small').textContent='Copied '+b.dataset.hex}catch{}});
  refreshIcons();
  $('#ds-workspace').scrollTop=0;
@@ -1371,8 +1372,8 @@ function setDsSubgroup(btn,open){
  const ico=btn.querySelector('.ds-subgroup-chevron svg');
  if(ico){ico.style.transform='none';ico.style.rotate='none';ico.setAttribute('data-lucide',open?'chevron-down':'chevron-right')}
 }
-all('.ds-subgroup-toggle').forEach(btn=>{
- setDsSubgroup(btn,btn.getAttribute('aria-expanded')==='true');
+all('.ds-subgroup-toggle:not(.ds-icon-category)').forEach(btn=>{
+ setDsSubgroup(btn,false);
  btn.addEventListener('click',()=>{
   const open=btn.getAttribute('aria-expanded')!=='true';
   all('.ds-subgroup-toggle').forEach(other=>setDsSubgroup(other,false));
@@ -1388,7 +1389,13 @@ dsModeButton.addEventListener('click',()=>{
  dsModeButton.setAttribute('aria-label',dark?'Show light mode components':'Show dark mode components');
  dsModeButton.querySelector('span:not(.ds-mode-track)').textContent=dark?'Dark':'Light';
 });
-all('.ds-link').forEach(b=>b.addEventListener('click',()=>showDesign(b.dataset.ds)));
+all('.ds-link').forEach(b=>b.addEventListener('click',()=>{
+ if(b.classList.contains('ds-icon-category')){
+  all('.ds-subgroup-toggle:not(.ds-icon-category)').forEach(other=>setDsSubgroup(other,false));
+  refreshIcons();
+ }
+ showDesign(b.dataset.ds);
+}));
 function closeDesign(){document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;$('#ds-inspector').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(page);requestAnimationFrame(resizePhonePreview)}
 all('#tree .tree-link').forEach(b=>b.addEventListener('click',()=>{if(document.body.classList.contains('ds-open')){closeDesign()}}));
 
