@@ -18,7 +18,7 @@
       ],
       "rules": [
         "Start invisible; show no individual pins, identities or exact coordinates.",
-        "Use an honest neutral map when aggregation thresholds are not met.",
+        "Feature marketing-oriented blurred map backdrop with central beacon ripples and floating intent speech bubble.",
         "Show up opens session setup; it does not start sharing yet."
       ],
       "validation": [
@@ -26,7 +26,12 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Map-led landing; one concise status, one completion surface and one Show up action. Keep individual identities hidden."
+      "uiRecipe": "Marketing-forward blurred map landing with concentric pulsing wave ripples, prominent profile avatar preview with floating intent speech bubble, completion surface and primary Show up action. Keeps individual identities private until session is active.",
+      "motionNotes": [
+        "Discover tab crossfades in place; concentric beacon wave rings pulse gently without distracting from primary action.",
+        "Speech bubble floats subtly; reduced motion switches to static state.",
+        "Show up pushes Start session; nothing is shared until Go visible is confirmed."
+      ]
     },
     "setup": {
       "parent": "closed",
@@ -36,7 +41,7 @@
         "pop"
       ],
       "rules": [
-        "Allow one networking intent and one duration: 30/60/120 minutes.",
+        "Allow one networking intent and custom duration input with unit selector (minutes/hours) and parking-style quick presets (30 min, 1 hour, 2 hours).",
         "Only explicit Go visible starts a session after permission checks.",
         "Cancel returns to Closed without broadcasting."
       ],
@@ -45,7 +50,12 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "One scrolling setup flow. Rounded intent/duration choices, short privacy note, Go visible then Not now. No fixed overlapping footer."
+      "uiRecipe": "One scrolling setup flow. Rounded intent choices, custom duration numeric input with unit dropdown and preset suggestions, Go visible then Not now. No fixed overlapping footer.",
+      "motionNotes": [
+        "Pure horizontal push transition preserves full surface opacity without text collision.",
+        "Intent and duration chips use press feedback; the selection commits instantly.",
+        "Go visible returns to the active map; Not now pops back to the invisible state."
+      ]
     },
     "active": {
       "parent": null,
@@ -56,7 +66,9 @@
       ],
       "rules": [
         "Render only profiles allowed by session, connection and privacy state.",
-        "Map and List share filters; retain view, selection and scroll across tab visits.",
+        "Map and List share filters modal with styled dropdown carets; 24px clearance between list toolbar and discovery list cards; retain view, selection and scroll across tab visits.",
+        "Map features pannable canvas with rubber-band bounds, drag-click separation and approximate location privacy beacon with animated radar halo.",
+        "Floating Recenter FAB smoothly resets map translation when panned away from user area.",
         "Connected List cards use the orange border and shared verified badge.",
         "Going invisible and session expiry end discovery immediately; animate afterward."
       ],
@@ -65,7 +77,13 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Readable map/list controls, theme-aware segment container and orange selected tab. Raised connected cards retain orange borders."
+      "uiRecipe": "Readable map/list controls, theme-aware segment container and orange selected tab. Pannable discovery map with approximate presence radar, recenter FAB and interactive pins. Raised connected cards retain orange borders.",
+      "motionNotes": [
+        "Map/List switch crossfades the content; the selection capsule slides.",
+        "Nearby people appear as one group fade, never card by card.",
+        "Map drag uses direct pointer manipulation with 0.45s spring-damped return and clamped rubber-band bounds.",
+        "Privacy beacon radiates continuous 3.6s expanding radar waves, disabled under prefers-reduced-motion."
+      ]
     },
     "myprofile": {
       "parent": null,
@@ -83,14 +101,20 @@
         "Use 15\u201317 pt main content and 13\u201314 pt supporting text; allow native text scaling and wrapping.",
         "Show profile strength as one short row and a thin progress bar, with one 46 pt Edit profile action. No repeated edit links or privacy badges.",
         "Group About, intent and skills in rounded 22 pt surfaces with subtle shadows; use a rounded privacy menu row with 62 pt minimum height.",
-        "Keep copy concise without truncating user-authored biography or changing visibility rules. Profile card itself is not tappable."
+        "Keep copy concise without truncating user-authored biography or changing visibility rules. Profile card itself is not tappable.",
+        "Display user work experience (Title, Company, Country, Dates) in a dedicated section with direct edit link.",
+        "Display user documents and portfolio attachments (CV/Resume, Cover Letter, One Pager) in a connection-only section with a direct edit link."
       ],
       "validation": [
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Light identity surface, one Edit profile action, thin completeness bar and quiet rounded content groups."
+      "uiRecipe": "Light identity surface, one Edit profile action, thin completeness bar and quiet rounded content groups.",
+      "motionNotes": [
+        "Profile tab crossfades in place and keeps its scroll position.",
+        "Completeness bar animates only when its value changes, not on every visit."
+      ]
     },
     "editprofile": {
       "parent": "myprofile",
@@ -102,14 +126,20 @@
       "rules": [
         "Keep a draft separate from saved profile; validate before saving.",
         "Handle keyboard and safe areas; never hide the save action behind the keyboard.",
-        "Save/cancel returns to Profile; production must protect unsaved changes."
+        "Save/cancel returns to Profile; production must protect unsaved changes.",
+        "Allow adding and removing work experience entries (Title, Company, Country, Dates) reactive to profile state.",
+        "Allow uploading and removing professional documents (.docx, .pdf, .xlsx, .jpg, .png) with quick presets; documents are shared strictly with connections."
       ],
       "validation": [
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Rounded form groups with 16 pt inputs and 14 pt labels; one concise privacy note, explicit save/discard."
+      "uiRecipe": "Rounded form groups with 16 pt inputs and 14 pt labels; one concise privacy note, explicit save/discard.",
+      "motionNotes": [
+        "Save commits immediately, then pops to My profile.",
+        "Inline validation fades in under the field; the form does not jump."
+      ]
     },
     "privacy": {
       "parent": "myprofile",
@@ -128,7 +158,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Grouped rounded controls. Retain hide-presence versus block semantics; switches have 44 pt touch areas."
+      "uiRecipe": "Grouped rounded controls. Retain hide-presence versus block semantics; switches have 44 pt touch areas.",
+      "motionNotes": [
+        "Hidden connections, Blocked accounts, Report and Notifications push as child routes and pop back here.",
+        "The visibility card updates its text in place; it never re-enters."
+      ]
     },
     "verification": {
       "parent": "myprofile",
@@ -138,7 +172,7 @@
         "pop"
       ],
       "rules": [
-        "Linked account, verified identity and pending are distinct states.",
+        "Linked account and pending are distinct states.",
         "Use the shared filled blue SVG badge only when the trusted result warrants it.",
         "Demo linked state is not a real verification result."
       ],
@@ -147,7 +181,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Separate rounded LinkedIn/identity panels. Keep the explicit distinction between linking an account and verifying identity."
+      "uiRecipe": "Grouped rounded LinkedIn panel with dedicated brand action. Clear separation between local demo connection and account credentials.",
+      "motionNotes": [
+        "LinkedIn panel updates in place with short feedback.",
+        "Returning from external sign-in does not replay the push."
+      ]
     },
     "appsettings": {
       "parent": "myprofile",
@@ -166,7 +204,34 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Rounded account/preferences/help groups. Brief labels and captions only where they add information."
+      "uiRecipe": "Rounded account/preferences/help groups. Brief labels and captions only where they add information.",
+      "motionNotes": [
+        "Notifications pushes as a child route; Back restores this list at the same scroll.",
+        "Sign out removes identity surfaces immediately, then routes to Welcome."
+      ]
+    },
+    "onboarding": {
+      "parent": null,
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Introduce discovery, privacy, and intent in three scannable steps.",
+        "Provide explicit Skip action at every step to reach Welcome immediately.",
+        "Disable carousel motion with Reduce Motion; preserve readability and touch targets."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ],
+      "uiRecipe": "Three atmospheric thematic illustrations, 24 pt titles, 14 pt descriptions, 44 pt pagination dots, clear Skip and Continue/Get Started actions.",
+      "motionNotes": [
+        "Horizontal slide transitions between steps with smooth pagination pill expansion.",
+        "Skip or Get Started routes to Welcome without duplicate transitions."
+      ]
     },
     "welcome": {
       "parent": null,
@@ -185,7 +250,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Keep the atmosphere and wordmark; readable value statement and two clear account actions."
+      "uiRecipe": "Keep the atmosphere and wordmark; readable value statement and two clear account actions.",
+      "motionNotes": [
+        "The background atmosphere is static; only the action group lifts in once.",
+        "Create account and Sign in push Auth."
+      ]
     },
     "auth": {
       "parent": "welcome",
@@ -204,7 +273,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "16 pt email/code inputs and 52 pt social/email actions. Keep demo code and no-email boundary visible."
+      "uiRecipe": "16 pt email/code inputs and 52 pt social/email actions. Keep demo code and no-email boundary visible.",
+      "motionNotes": [
+        "Moving between email and code steps crossfades the form group; the keyboard stays up.",
+        "Recovery and First profile are pushed; Back keeps the entered email."
+      ]
     },
     "firstprofile": {
       "parent": "auth",
@@ -223,7 +296,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "One rounded form group. Required identity fields, optional biography and concise privacy context."
+      "uiRecipe": "One rounded form group. Required identity fields, optional biography and concise privacy context.",
+      "motionNotes": [
+        "Continue pushes Intent; Back keeps the typed values.",
+        "Field errors fade in place; no shake animations."
+      ]
     },
     "firstintent": {
       "parent": "firstprofile",
@@ -233,7 +310,7 @@
         "pop"
       ],
       "rules": [
-        "Use existing intent selection; one active choice with semantic selected state.",
+        "Use existing intent selection; multiple choices allowed with semantic selected state.",
         "Store the choice without starting public presence.",
         "Back navigation preserves the onboarding draft."
       ],
@@ -242,7 +319,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Large rounded multi-select options; preserve checkmark/selection state and explicit Finish setup."
+      "uiRecipe": "Large rounded multi-select options; preserve checkmark/selection state and explicit Finish setup.",
+      "motionNotes": [
+        "Selecting an option uses press scale plus a checkmark crossfade.",
+        "Finish setup pushes Permissions; Back preserves the selections."
+      ]
     },
     "permissions": {
       "parent": "firstintent",
@@ -261,7 +342,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "One readable permission card per capability. Keep demo boundary and just-in-time consent explicit."
+      "uiRecipe": "One readable permission card per capability. Keep demo boundary and just-in-time consent explicit.",
+      "motionNotes": [
+        "Each card updates in place after the system prompt returns.",
+        "Finishing onboarding switches to the Discover root; Back does not reopen onboarding."
+      ]
     },
     "recovery": {
       "parent": "auth",
@@ -280,7 +365,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "One readable email field and recovery action. Clearly say this is a demo with no email sent."
+      "uiRecipe": "One readable email field and recovery action. Clearly say this is a demo with no email sent.",
+      "motionNotes": [
+        "Sending shows short confirmation feedback; no email is sent in the demo.",
+        "Back pops to Auth with the entered email preserved."
+      ]
     },
     "network": {
       "parent": null,
@@ -299,7 +388,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Raised person rows and rounded shortcuts; preserve search and connection navigation."
+      "uiRecipe": "Vertical hub shortcut cards (icon above title and stat) with clean person rows displaying name and role; preserve search and connection navigation.",
+      "motionNotes": [
+        "Network tab crossfades in place; search text and scroll are preserved.",
+        "Requests, Messages and person rows push child routes."
+      ]
     },
     "requests": {
       "parent": "network",
@@ -319,7 +412,37 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Readable person cards; received Accept/Decline retain equal half-width 48 pt actions; sent cancellation stays a 44 pt icon."
+      "uiRecipe": "Readable person cards; received Accept/Decline retain equal half-width 48 pt actions; sent cancellation stays a 44 pt icon.",
+      "motionNotes": [
+        "Received/Sent switch crossfades the list; the capsule slides.",
+        "An accepted, declined or cancelled row leaves on its own; the rest of the list does not replay."
+      ]
+    },
+    "activity": {
+      "parent": "closed",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Unified notification feed grouping requests, messages and ambient session alerts.",
+        "Sort all notification items strictly by reverse-chronological arrival time (newest first).",
+        "Accept and Decline actions update connection model immediately.",
+        "Message notifications route directly into conversation thread.",
+        "Back restores previous navigation origin (Discover or Network)."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ],
+      "uiRecipe": "Unified card feed with segmented All/Requests/Messages filter; inline compact decision buttons and direct chat links.",
+      "motionNotes": [
+        "Segmented filter capsule slides smoothly across All, Requests and Messages with 260ms selection curve.",
+        "Crossfade between notification categories; inline action dismisses target card cleanly.",
+        "Push and pop transitions honor standard 360/320ms curves with 120ms reduced-motion ceiling."
+      ]
     },
     "messages": {
       "parent": "network",
@@ -338,7 +461,12 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Readable conversation rows, short introduction, no full-list entrance animation."
+      "uiRecipe": "Segmented Current and All conversation tabs with full-radius animated indicator, readable conversation rows, no full-list entrance animation.",
+      "motionNotes": [
+        "Segmented tab switch moves the indicator with selection timing; rows filter in place.",
+        "Rows render without an entrance animation; tapping a row pushes Conversation.",
+        "Returning restores scroll and updates only the changed preview."
+      ]
     },
     "conversation": {
       "parent": "messages",
@@ -349,7 +477,7 @@
       ],
       "rules": [
         "Restrict message access to the permitted connection; enforce on the server.",
-        "Multiline input, keyboard avoidance, timestamps, pending/failure/retry states are required.",
+        "Single-line horizontal-scrolling input with fixed height, keyboard avoidance, session time dividers, pending/failure/retry states are required.",
         "Animate only the new bubble; retain history and scroll; do not replay every message."
       ],
       "validation": [
@@ -357,7 +485,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "16 pt message text and input, readable timestamps, explicit Send hit area; preserve composer resizing."
+      "uiRecipe": "Frosted glass header with peer info and subtle more options trigger (three dots). Contextual action popover provides View profile, Export chat (.txt), Hide presence toggle, Clear chat history, and Block contact. Scroller extends to viewport bottom with soft gradient fade layer beneath floating quick meetup prompts and unified full-radius pill composer with nested send button. Crisp card bubbles with accent borders for sender, clean card for peer, and calm centered session time dividers.",
+      "motionNotes": [
+        "Only the newly sent bubble lifts in; history never replays.",
+        "Fixed-height pill composer with horizontal scrolling text; latest message stays visible above."
+      ]
     },
     "connectiondetail": {
       "parent": "network",
@@ -369,14 +501,20 @@
       "rules": [
         "Reveal identity according to established connection permissions.",
         "Hide presence preserves messaging/profile access; blocking/removal is separate.",
-        "Message opens the selected connection conversation, not an arbitrary record."
+        "Message opens the selected connection conversation, not an arbitrary record.",
+        "Render unlocked professional attachments (CV/Resume, One Pager, Cover Letter) for established connections; show blurred preview rows with lock tags when connection is not yet established.",
+        "Render career history under Experience with role title, company, country, and tenure dates separated by clean 1px divider lines (not boxes)."
       ],
       "validation": [
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Rounded identity/content/action sections shared with the profile sheet. Preserve hide, remove, report and chat behavior."
+      "uiRecipe": "Rounded identity/content/action sections shared with the profile sheet. Preserve hide, remove, report and chat behavior.",
+      "motionNotes": [
+        "Message pushes Conversation; Back returns to the same scroll position.",
+        "Hide, remove and report results update in place with short feedback."
+      ]
     },
     "hiddenconnections": {
       "parent": "privacy",
@@ -395,7 +533,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Short explanation: live presence hidden, connection/chat preserved, no notification. Raised person rows."
+      "uiRecipe": "Short explanation: live presence hidden, connection/chat preserved, no notification. Raised person rows.",
+      "motionNotes": [
+        "Unhiding removes the row with a single fade; the person is not notified.",
+        "Back pops to Privacy & safety with the count updated in place."
+      ]
     },
     "blockedaccounts": {
       "parent": "privacy",
@@ -414,7 +556,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Rounded person rows with explicit Unblock; distinguish blocking from hiding."
+      "uiRecipe": "Rounded person rows with explicit Unblock; distinguish blocking from hiding.",
+      "motionNotes": [
+        "Unblock removes the row with a single fade; other rows settle without jumping.",
+        "Back pops to Privacy & safety."
+      ]
     },
     "reportuser": {
       "parent": "privacy",
@@ -433,7 +579,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Rounded form group with 16 pt inputs. Keep report and block separate and demo submission explicit."
+      "uiRecipe": "Rounded form group with 16 pt inputs. Keep report and block separate and demo submission explicit.",
+      "motionNotes": [
+        "Submit shows short confirmation feedback, then pops to the previous screen.",
+        "Report and block stay separate; neither animates the other."
+      ]
     },
     "notifications": {
       "parent": "appsettings",
@@ -452,7 +602,11 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Readable rounded preference rows; 44 pt switch touch targets and concise subtitles."
+      "uiRecipe": "Readable rounded preference rows; 44 pt switch touch targets and concise subtitles.",
+      "motionNotes": [
+        "Switches animate only their thumb; the value commits on tap.",
+        "Back and Save return to the screen that opened it: Settings or Privacy & safety."
+      ]
     },
     "profile": {
       "parent": null,
@@ -464,20 +618,26 @@
       "rules": [
         "Use limited identity before connection and full authorized identity afterward.",
         "Sheet uses the shared verified badge, protected portrait and profile rows.",
-        "Dismiss returns focus to the triggering marker/row; messaging requires permission."
+        "Enforce connection-only document visibility: unaccepted contacts see a privacy-locked teaser card while established connections see unlocked attachments.",
+        "Render career history under Experience with role title, company, country, and tenure dates separated by clean 1px divider lines (not boxes).",
+        "Request to connect expands an upward intention composer with intention chips and personal note textarea, transforming CTA to Send Request before dispatching."
       ],
       "validation": [
         "Rapid repeated taps resolve to the final state without ghost screens.",
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Scrollable rounded identity/detail sections. Retain anonymous versus connected identity rules and request states."
+      "uiRecipe": "Scrollable rounded identity/detail sections. Retain anonymous versus connected identity rules and request states.",
+      "motionNotes": [
+        "Interactive swipe-down dismisses the sheet.",
+        "Request state changes in place inside the sheet; focus returns to the opening card on dismiss."
+      ]
     }
   },
   "presentation": {
     "version": "1.0.0",
     "tokens": "peopi-ui.tokens.json",
-    "scope": "23 screens plus professional profile sheet",
+    "scope": "24 screens plus professional profile sheet",
     "typography": "Main content 15\u201317 pt; supporting copy 13\u201314 pt; text inputs 16 pt; preserve text scaling and full user content.",
     "surfaces": "Theme-aware rounded groups, 22\u201326 pt radius, subtle shadows, spacing rather than repeated divider lines.",
     "copy": "One useful explanation per decision; remove repetition, keep privacy/trust/demo boundaries.",

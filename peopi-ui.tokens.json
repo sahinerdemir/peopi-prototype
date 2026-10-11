@@ -10,7 +10,8 @@
     "screenTitle": 23,
     "primaryTitle": 28,
     "hero": 30,
-    "navigationLabel": 12
+    "navigationLabel": 12,
+    "kicker": 11
   },
   "radiusPt": {
     "group": 22,
@@ -47,6 +48,7 @@
     "Preserve system text scaling and full user-authored content.",
     "Group by task and meaning; avoid repeated divider lines and captions.",
     "One concise explanation per decision; retain consent, privacy and trust boundaries.",
-    "Reusable specimens must come from actual screens in both themes."
+    "Reusable specimens must come from actual screens in both themes.",
+    "11 pt kicker is reserved for screen header category labels only; minimum content font is 13 pt support."
   ]
 }

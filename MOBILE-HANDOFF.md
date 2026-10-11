@@ -10,7 +10,7 @@ This frontend is the visual and behavioral specification for a Flutter mobile ap
 - `peopi-motion.tokens.json`: versioned motion values. These are Peopi choices informed by Apple guidance, not published Apple animation constants.
 - `peopi-screen-contracts.json`: rules, route types, motion recipes and validation for all 23 screens plus the profile sheet.
 - `peopi-motion.js` / `peopi-motion.css`: working web reference and replayable motion examples. Embedded tokens/contracts are generated from the two JSON files; synchronize them when updating the specification.
-- Right Notes panel: human-readable Codex rules and per-screen motion contract.
+- Right Notes panel: human-readable implementation rules and per-screen motion contract.
 
 ## Native implementation
 
