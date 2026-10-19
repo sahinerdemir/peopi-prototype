@@ -632,12 +632,58 @@
         "Interactive swipe-down dismisses the sheet.",
         "Request state changes in place inside the sheet; focus returns to the opening card on dismiss."
       ]
+    },
+    "helpsupport": {
+      "parent": "appsettings",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "Help content must accurately reflect Peopi's real privacy mechanisms (no continuous tracking, mutual connection reveals).",
+        "Support submission states clearly state expected response times (under 24h).",
+        "Searching filters questions dynamically without page reloading or layout shifts."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ],
+      "uiRecipe": "Categorized quick-access tiles, search input, and expandable accordion FAQ cards.",
+      "motionNotes": [
+        "Smooth accordion height expansion with ease-out curve.",
+        "Push/pop navigation with Settings; Back restores Settings at same scroll."
+      ]
+    },
+    "aboutpeopi": {
+      "parent": "appsettings",
+      "routeType": "push",
+      "motion": [
+        "push",
+        "pop"
+      ],
+      "rules": [
+        "All policy links open clear in-app disclosures rather than leaving the app.",
+        "Version numbers reflect actual client build metadata.",
+        "Copyright and brand marks strictly adhere to Peopi brand identity."
+      ],
+      "validation": [
+        "Rapid repeated taps resolve to the final state without ghost screens.",
+        "Back/dismiss restores context; tab switches preserve state.",
+        "Reduce Motion uses opacity only; focus and content remain usable."
+      ],
+      "uiRecipe": "Brand emblem hero with version tag, product philosophy card, and legal & compliance row list.",
+      "motionNotes": [
+        "Push/pop screen transitions.",
+        "Back restores Settings at same scroll."
+      ]
     }
   },
   "presentation": {
     "version": "1.0.0",
     "tokens": "peopi-ui.tokens.json",
-    "scope": "24 screens plus professional profile sheet",
+    "scope": "27 screens plus professional profile sheet",
     "typography": "Main content 15\u201317 pt; supporting copy 13\u201314 pt; text inputs 16 pt; preserve text scaling and full user content.",
     "surfaces": "Theme-aware rounded groups, 22\u201326 pt radius, subtle shadows, spacing rather than repeated divider lines.",
     "copy": "One useful explanation per decision; remove repetition, keep privacy/trust/demo boundaries.",
