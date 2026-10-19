@@ -16132,13 +16132,17 @@ body.notes-open #dash-notes-toggle i {
   flex-shrink: 0;
 }
 
-/* 1. Hero Card */
+/* 1. Hero Card - Enhanced Editorial Hierarchy */
 .prob-hero-card {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 22px;
-  padding: clamp(36px, 4.5vw, 52px);
+  padding: clamp(32px, 4vw, 44px);
   box-shadow: 0 2px 12px rgba(15, 23, 42, 0.03);
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 36px;
+  align-items: center;
 }
 
 .prob-hero-content {
@@ -16148,20 +16152,110 @@ body.notes-open #dash-notes-toggle i {
 }
 
 .prob-hero-headline {
-  font-size: clamp(28px, 3.4vw, 38px);
+  font-size: clamp(26px, 3.2vw, 36px);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.18;
   letter-spacing: -0.035em;
   color: #0F172A;
-  margin: 18px 0 16px;
+  margin: 16px 0 14px;
 }
 
 .prob-hero-desc {
-  font-size: 17px;
+  font-size: 15.5px;
   line-height: 1.65;
   color: #475569;
-  margin: 0;
-  max-width: 760px;
+  margin: 0 0 18px;
+}
+
+.prob-hero-quote {
+  border-left: 3px solid #FF3300;
+  padding: 8px 0 8px 16px;
+  font-size: 14.5px;
+  font-style: italic;
+  line-height: 1.55;
+  color: #334155;
+  background: rgba(255, 51, 0, 0.03);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Equation Card in Hero */
+.prob-equation-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prob-eq-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #64748B;
+  text-transform: uppercase;
+}
+
+.prob-eq-header i {
+  color: #FF3300;
+  font-size: 14px;
+}
+
+.prob-eq-block {
+  padding: 12px 14px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prob-eq-block.status-quo {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+}
+
+.prob-eq-block.peopi-thesis {
+  background: #FFF5F2;
+  border: 1px solid #FFE2D9;
+}
+
+.prob-eq-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.prob-eq-block.peopi-thesis .prob-eq-label {
+  color: #FF3300;
+}
+
+.prob-eq-formula {
+  font-size: 12.5px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.prob-eq-result {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.prob-eq-block.peopi-thesis .prob-eq-result {
+  color: #FF3300;
+}
+
+.prob-eq-divider {
+  display: flex;
+  justify-content: center;
+  color: #94A3B8;
+  font-size: 13px;
 }
 
 /* 2 & 4 & 5. Grids */
@@ -16183,7 +16277,7 @@ body.notes-open #dash-notes-toggle i {
   gap: 20px;
 }
 
-/* Static Informative Cards - No Hover Elevation / Button Jumping */
+/* Static Informative Cards - Base */
 .prob-card {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
@@ -16198,6 +16292,112 @@ body.notes-open #dash-notes-toggle i {
 .prob-card-featured {
   background: #FFFFFF;
   border: 1px solid #FFECE5;
+}
+
+/* Friction Cards - Distinct Top Accent & Numbering */
+.prob-friction-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-top: 3px solid #FF3300;
+  border-radius: 18px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+}
+
+.prob-friction-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.prob-friction-num {
+  font-size: 13px;
+  font-weight: 800;
+  color: #FF3300;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+
+.prob-friction-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* Risk Cards - Structured Domains & Mitigations */
+.prob-risk-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.02);
+}
+
+.prob-risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #475569;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+
+.prob-risk-test {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #E2E8F0;
+  font-size: 12px;
+  color: #64748B;
+  line-height: 1.45;
+}
+
+.prob-risk-test strong {
+  color: #334155;
+}
+
+.prob-status-pill {
+  font-size: 11px;
+  font-weight: 750;
+  color: #FF3300;
+  background: #FFF5F2;
+  border: 1px solid #FFE2D9;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.prob-threshold-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13.5px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.prob-threshold-list li {
+  margin-bottom: 8px;
+}
+
+.prob-threshold-list li:last-child {
+  margin-bottom: 0;
 }
 
 .prob-card-icon {
@@ -16437,10 +16637,94 @@ body.notes-open #dash-notes-toggle i {
   color: #FF3300;
 }
 
+#dashboard-workspace.ds-dark .prob-hero-quote,
+#dashboard-workspace.dash-dark .prob-hero-quote {
+  background: rgba(255, 51, 0, 0.08);
+  color: #CBD5E1;
+}
+
+#dashboard-workspace.ds-dark .prob-equation-card,
+#dashboard-workspace.dash-dark .prob-equation-card {
+  background: #141B26;
+  border-color: #2E384D;
+}
+
+#dashboard-workspace.ds-dark .prob-eq-block.status-quo,
+#dashboard-workspace.dash-dark .prob-eq-block.status-quo {
+  background: #1B222D;
+  border-color: #2E3847;
+}
+
+#dashboard-workspace.ds-dark .prob-eq-block.peopi-thesis,
+#dashboard-workspace.dash-dark .prob-eq-block.peopi-thesis {
+  background: #2D1F1D;
+  border-color: #4A2B27;
+}
+
+#dashboard-workspace.ds-dark .prob-eq-formula,
+#dashboard-workspace.dash-dark .prob-eq-formula {
+  color: #94A3B8;
+}
+
+#dashboard-workspace.ds-dark .prob-eq-result,
+#dashboard-workspace.dash-dark .prob-eq-result {
+  color: #F1F5F9;
+}
+
+#dashboard-workspace.ds-dark .prob-friction-card,
+#dashboard-workspace.dash-dark .prob-friction-card,
+#dashboard-workspace.ds-dark .prob-risk-card,
+#dashboard-workspace.dash-dark .prob-risk-card {
+  background: #171E28;
+  border-color: #283141;
+  box-shadow: none;
+}
+
+#dashboard-workspace.ds-dark .prob-friction-tag,
+#dashboard-workspace.dash-dark .prob-friction-tag,
+#dashboard-workspace.ds-dark .prob-risk-badge,
+#dashboard-workspace.dash-dark .prob-risk-badge {
+  background: #222A37;
+  border-color: #2E3847;
+  color: #94A3B8;
+}
+
+#dashboard-workspace.ds-dark .prob-risk-test,
+#dashboard-workspace.dash-dark .prob-risk-test {
+  border-top-color: #2E3847;
+  color: #94A3B8;
+}
+
+#dashboard-workspace.ds-dark .prob-risk-test strong,
+#dashboard-workspace.dash-dark .prob-risk-test strong {
+  color: #CBD5E1;
+}
+
+#dashboard-workspace.ds-dark .prob-status-pill,
+#dashboard-workspace.dash-dark .prob-status-pill {
+  background: #2D1F1D;
+  border-color: #4A2B27;
+  color: #FF3300;
+}
+
+#dashboard-workspace.ds-dark .prob-threshold-list,
+#dashboard-workspace.dash-dark .prob-threshold-list {
+  color: #94A3B8;
+}
+
+#dashboard-workspace.ds-dark .prob-threshold-list strong,
+#dashboard-workspace.dash-dark .prob-threshold-list strong {
+  color: #F1F5F9;
+}
+
 /* ==========================================================================
    Responsive Breakpoints for Problem & Opportunity
    ========================================================================== */
 @media (max-width: 1024px) {
+  .prob-hero-card {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
   .prob-scenario-card {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -21184,22 +21468,22 @@ body.notes-open #dash-notes-toggle i {
 
                 <div class="glance-readiness-card">
                   <div class="glance-readiness-head next-head">
-                    <i class="ph-bold ph-gear-six" aria-hidden="true"></i>
-                    <span>Native Production Engineering (Next Roadmap Stage)</span>
+                    <i class="ph-bold ph-compass" aria-hidden="true"></i>
+                    <span>Production Architecture — To Be Evaluated</span>
                   </div>
                   <ul class="glance-readiness-list next-list">
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Native Mobile Clients:</strong> Production Swift (iOS) and Flutter client build with hardware-level battery optimization.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>BLE &amp; Geofence Beaconing:</strong> Low-Energy Bluetooth peripheral mesh with rotating ephemeral UUIDs to prevent sniffing.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>End-to-End Encrypted Messaging:</strong> Signal Protocol-based 1-on-1 messaging ensuring zero-knowledge chat privacy.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Distributed Presence Infrastructure:</strong> Real-time Redis/WebSocket cluster with automated TTL session pruning and rate limiting.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Trust &amp; Safety Compliance:</strong> Automated device reputation scoring, verified LinkedIn credentials, and rapid abuse moderation pipelines.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Mobile Client Framework:</strong> Requirement for background proximity scanning within strict OS battery budgets. Potential paths to benchmark include native Swift / Kotlin vs. cross-platform engines with custom background services.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Proximity &amp; Discovery Engine:</strong> Requirement for low-latency peer detection without continuous GPS tracking. Approaches to evaluate include Bluetooth Low Energy (BLE) peripheral/central advertising with rotating ephemeral IDs vs. coarse venue coordinate clustering.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Ephemeral Presence &amp; Session State:</strong> Requirement for zero-leak, time-decayed availability indexes. Candidate options include distributed in-memory clusters with TTL expiration (e.g. Redis / Valkey / Elixir channels) vs. peer-to-peer localized handshake topologies.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Secure Asynchronous Messaging:</strong> Requirement for forward-secret, tamper-resistant 1-on-1 communication once mutual consent is granted. Evaluate end-to-end encryption protocols (such as Double Ratchet / Signal Protocol derivatives) against operational auditability.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Trust, Verification &amp; Moderation:</strong> Requirement for sybil resistance and user safety in physical venues. Candidate approaches include work-domain / OAuth verification, hardware device attestation, and rapid on-device reporting pipelines.</span></li>
                   </ul>
                 </div>
               </div>
 
               <div class="glance-disclaimer-box">
                 <i class="ph ph-info" aria-hidden="true" style="color:#FF3300;margin-right:6px;"></i>
-                <strong>Portfolio Scope Note:</strong> This artifact serves as the validated product and design specification for engineering implementation. It showcases full interaction design, UX architecture, and product judgment without claiming pre-existing market traction or commercial scale.
+                <strong>Architecture Evaluation Notice:</strong> The screens and state machines rendered in this prototype establish the complete UX and behavioral contract. Candidate infrastructure technologies and backend frameworks are subject to formal technical evaluation and device benchmarking prior to production deployment.
               </div>
             </section>
 
@@ -21287,12 +21571,10 @@ body.notes-open #dash-notes-toggle i {
               <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
               <h1 class="dash-page-title">Problem &amp; Opportunity<span class="brand-dot">.</span></h1>
             </div>
-            <div class="dash-head-actions ds-head-actions">
-              <button type="button" class="ds-notes-btn" onclick="openOverview('intro')" title="Back to Product Overview"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
-            </div>
+            <div class="dash-head-actions ds-head-actions"></div>
           </header>
 
-          <!-- 1. HERO -->
+          <!-- 1. HERO - Enhanced Editorial Hierarchy -->
           <section class="prob-sec">
             <div class="prob-hero-card">
               <div class="prob-hero-content">
@@ -21304,6 +21586,27 @@ body.notes-open #dash-notes-toggle i {
                 <p class="prob-hero-desc">
                   Every day, thousands of professionals work within meters of one another in coworking hubs, industry conferences, and innovation centers. Yet serendipitous, high-value collaborations rarely materialize. Physical co-presence alone cannot overcome the steep social friction, unshared professional context, and unknown real-time availability that keep people isolated.
                 </p>
+                <div class="prob-hero-quote">
+                  “Physical proximity creates the precondition for collaboration, but without real-time permission and mutual context, proximity dissolves into hesitation.”
+                </div>
+              </div>
+
+              <div class="prob-equation-card">
+                <div class="prob-eq-header">
+                  <i class="ph-bold ph-scales" aria-hidden="true"></i>
+                  <span>Behavioral Friction Equation</span>
+                </div>
+                <div class="prob-eq-block status-quo">
+                  <span class="prob-eq-label">Status Quo in Physical Spaces</span>
+                  <div class="prob-eq-formula">Physical Co-Presence + Zero Visibility + Social Risk</div>
+                  <div class="prob-eq-result">= Inertia &amp; Uncaptured Introductions</div>
+                </div>
+                <div class="prob-eq-divider"><i class="ph-bold ph-arrow-down" aria-hidden="true"></i></div>
+                <div class="prob-eq-block peopi-thesis">
+                  <span class="prob-eq-label">Peopi Validation Thesis</span>
+                  <div class="prob-eq-formula">Real-Time Proximity + Ephemeral Intent + Double Opt-In</div>
+                  <div class="prob-eq-result">= Permissioned Professional Relationships</div>
+                </div>
               </div>
             </div>
           </section>
@@ -21318,25 +21621,34 @@ body.notes-open #dash-notes-toggle i {
             </div>
 
             <div class="prob-grid-3">
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">1. Context Invisibility</h4>
+              <div class="prob-friction-card">
+                <div class="prob-friction-top">
+                  <span class="prob-friction-num">01</span>
+                  <span class="prob-friction-tag">Context Invisibility</span>
+                </div>
+                <h4 class="prob-card-title">Hidden Intent &amp; Skills</h4>
                 <p class="prob-card-text">
                   You share a room with engineers, potential co-founders, or pilot partners, but to the eye, everyone looks like a stranger behind a laptop. Without a shared signal, their domain, skills, and current projects remain completely hidden.
                 </p>
               </div>
 
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-clock" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">2. Availability Uncertainty</h4>
+              <div class="prob-friction-card">
+                <div class="prob-friction-top">
+                  <span class="prob-friction-num">02</span>
+                  <span class="prob-friction-tag">Temporal Uncertainty</span>
+                </div>
+                <h4 class="prob-card-title">Unknown Availability</h4>
                 <p class="prob-card-text">
                   A static LinkedIn profile or business card reveals historical experience, but zero information about current availability. Are they deep in focused work, rushing to a client call, or genuinely open to a coffee chat right now?
                 </p>
               </div>
 
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-shield-warning" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">3. High Social Risk</h4>
+              <div class="prob-friction-card">
+                <div class="prob-friction-top">
+                  <span class="prob-friction-num">03</span>
+                  <span class="prob-friction-tag">Psychological Risk</span>
+                </div>
+                <h4 class="prob-card-title">High Cold-Approach Barrier</h4>
                 <p class="prob-card-text">
                   Cold-approaching a stranger in an in-person professional environment carries intense social awkwardness, asymmetric vulnerability, fear of appearing intrusive, and hesitation around unwanted commercial solicitation.
                 </p>
@@ -21451,7 +21763,7 @@ body.notes-open #dash-notes-toggle i {
                 <div class="prob-card-icon"><i class="ph ph-handshake" aria-hidden="true"></i></div>
                 <h4 class="prob-card-title">Unassisted Organic Approaches</h4>
                 <p class="prob-card-text">
-                  Produce great serendipity when they happen, but depend entirely on aggressive extroversion, zero prior context, and awkward cold openers. Over 90% of opportunities are lost to hesitation.
+                  Produce great serendipity when they happen, but depend entirely on unassisted extroversion, zero advance context, and cold openers. In practice, the vast majority of potential interactions never occur due to approach hesitation, absent context, and social friction.
                 </p>
               </div>
             </div>
@@ -21489,7 +21801,7 @@ body.notes-open #dash-notes-toggle i {
 
             <div class="prob-callout" style="margin-top:20px;">
               <i class="ph ph-shield-check" aria-hidden="true"></i>
-              <span><strong>Methodological Discipline:</strong> This hypothesis represents an operational thesis to be validated in pilot environments. It is not an established market fact or claimed conversion metric.</span>
+              <span><strong>Methodological Discipline:</strong> All problem statements and opportunities are articulated as testable product hypotheses for pilot validation. They do not claim measured historical conversion rates or verified market facts.</span>
             </div>
           </section>
 
@@ -21503,28 +21815,32 @@ body.notes-open #dash-notes-toggle i {
             </div>
 
             <div class="prob-grid-4">
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-users-three" aria-hidden="true"></i></div>
+              <div class="prob-risk-card">
+                <span class="prob-risk-badge"><i class="ph-bold ph-users-three"></i> Critical Density</span>
                 <h4 class="prob-card-title">Density Threshold</h4>
                 <p class="prob-card-text">Requires a minimum number of active peers in the same 500m radius within the same time window to prevent empty radar states.</p>
+                <div class="prob-risk-test"><strong>Pilot Focus:</strong> Concentrated activation during scheduled morning tech windows.</div>
               </div>
 
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i></div>
+              <div class="prob-risk-card">
+                <span class="prob-risk-badge"><i class="ph-bold ph-chat-circle-dots"></i> Social Framing</span>
                 <h4 class="prob-card-title">Social Signaling</h4>
                 <p class="prob-card-text">Users must perceive declaring availability as proactive and high-agency, rather than needy or informal. Brand tone is critical.</p>
+                <div class="prob-risk-test"><strong>Pilot Focus:</strong> Editorial badge styling and curated intent taxonomy.</div>
               </div>
 
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-funnel" aria-hidden="true"></i></div>
+              <div class="prob-risk-card">
+                <span class="prob-risk-badge"><i class="ph-bold ph-funnel"></i> Market Liquidity</span>
                 <h4 class="prob-card-title">Intent Liquidity</h4>
                 <p class="prob-card-text">Intent categories must be specific enough to filter relevance, but broad enough to maintain liquidity in smaller venues.</p>
+                <div class="prob-risk-test"><strong>Pilot Focus:</strong> 4 core intents rather than open free-text taxonomy.</div>
               </div>
 
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i></div>
+              <div class="prob-risk-card">
+                <span class="prob-risk-badge"><i class="ph-bold ph-arrows-clockwise"></i> Lifecycle Value</span>
                 <h4 class="prob-card-title">Retention &amp; Churn</h4>
                 <p class="prob-card-text">Does a coffee introduction translate into long-term professional value, or do users disengage once initial contacts are established?</p>
+                <div class="prob-risk-test"><strong>Pilot Focus:</strong> 14-day persistent connection and reconnection tracking.</div>
               </div>
             </div>
           </section>
@@ -21555,25 +21871,28 @@ body.notes-open #dash-notes-toggle i {
               </div>
 
               <div class="prob-card" style="padding:28px;">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-                  <div class="prob-card-icon featured" style="margin-bottom:0;"><i class="ph ph-chart-line-up"></i></div>
-                  <h4 class="prob-card-title" style="margin-bottom:0;">Empirical Validation Gates</h4>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <div class="prob-card-icon featured" style="margin-bottom:0;"><i class="ph ph-target"></i></div>
+                    <h4 class="prob-card-title" style="margin-bottom:0;">Proposed Validation Thresholds</h4>
+                  </div>
+                  <span class="prob-status-pill">Proposed Targets · Not Actual Results</span>
                 </div>
                 <p class="prob-card-text" style="margin-bottom:14px;">
-                  Success and failure are defined quantitatively before field deployment:
+                  Quantitative criteria proposed to evaluate hypothesis validation during field trials:
                 </p>
-                <ul style="margin:0;padding-left:18px;font-size:13.5px;color:#475569;line-height:1.6;">
-                  <li><strong>Session Activation Rate:</strong> Target &gt;25% of present cohort members voluntarily activating an "I'm Open" session.</li>
-                  <li><strong>Request Acceptance Ratio:</strong> Target &gt;60% acceptance rate on sent connection requests, verifying relevance over spam.</li>
-                  <li><strong>Introduction Completion:</strong> Qualitative post-session feedback verifying that at least 50% of mutual matches led to a real conversation.</li>
-                  <li><strong>Boundary Kill Switch:</strong> If inbound spam reports exceed 5% or session abandonment exceeds 50%, pause rollout to revise intent gating.</li>
+                <ul class="prob-threshold-list">
+                  <li><strong>Session Activation Rate (Proposed Target):</strong> Proposed threshold of &gt;25% voluntary session activation among cohort members during scheduled pilot hours (testing whether temporary visibility overcomes adoption resistance).</li>
+                  <li><strong>Request Acceptance Ratio (Proposed Target):</strong> Proposed threshold of &gt;60% mutual acceptance on outbound connection requests (evaluating whether intent badges generate relevant rather than noisy signals).</li>
+                  <li><strong>In-Person Conversation Rate (Proposed Qualitative Target):</strong> Target qualitative threshold of &gt;50% of mutual acceptances progressing to a face-to-face dialogue or contact exchange during the session.</li>
+                  <li><strong>Kill / Pivot Thresholds (Proposed Guardrails):</strong> Explicit pause criteria: if unprompted spam or discomfort reports exceed 5% of active sessions, or session abandonment without interaction exceeds 50%, pilot expansion halts to re-engineer intent boundaries.</li>
                 </ul>
               </div>
             </div>
 
             <div class="prob-caption-box" style="margin-top:20px;">
               <i class="ph ph-info" aria-hidden="true"></i>
-              <span>These validation gates establish a structured learning agenda for the Miami cohort. No claims of production traction or commercial revenue are made at this prototype stage.</span>
+              <span><strong>Validation Framework Notice:</strong> These figures represent proposed validation thresholds and falsification criteria designed to govern the Miami pilot. They are forward-looking hypotheses, not observed user metrics, historical traction, or validated benchmarks.</span>
             </div>
           </section>
 
@@ -21597,9 +21916,10 @@ body.notes-open #dash-notes-toggle i {
           <!-- Top Header Bar -->
           <header class="dash-page-header">
             <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI?</span>
+              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
               <h1 class="dash-page-title">Product Vision &amp; Strategy<span class="brand-dot">.</span></h1>
             </div>
+            <div class="dash-head-actions ds-head-actions"></div>
           </header>
 
           <!-- 1. HERO -->
@@ -22711,9 +23031,10 @@ body.notes-open #dash-notes-toggle i {
           <!-- Top Header Bar -->
           <header class="dash-page-header">
             <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI?</span>
+              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
               <h1 class="dash-page-title">Target Audience &amp; Personas<span class="brand-dot">.</span></h1>
             </div>
+            <div class="dash-head-actions ds-head-actions"></div>
           </header>
 
           <!-- 1. HERO -->
@@ -22973,9 +23294,10 @@ body.notes-open #dash-notes-toggle i {
           <!-- Top Header Bar -->
           <header class="dash-page-header">
             <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI?</span>
+              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
               <h1 class="dash-page-title">MVP Scope &amp; Product Decisions<span class="brand-dot">.</span></h1>
             </div>
+            <div class="dash-head-actions ds-head-actions"></div>
           </header>
 
           <!-- 1. HERO -->
@@ -23586,7 +23908,7 @@ body.notes-open #dash-notes-toggle i {
           <!-- Top Header Bar -->
           <header class="dash-page-header">
             <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI?</span>
+              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
               <h1 class="dash-page-title">User Journeys &amp; Flows<span class="brand-dot">.</span></h1>
             </div>
             <div class="dash-head-actions ds-head-actions">
