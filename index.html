@@ -20742,20 +20742,14 @@ body.notes-open #dash-notes-toggle i {
 
 
 /* ==========================================================================
-   FINAL OVERVIEW REFINEMENTS: UNBOXED HEADERS & BUTTONS
+   UNIFIED EDITORIAL PAGE HEADER TEMPLATE (01 — WHAT IS PEOPI?)
    ========================================================================== */
-
-/* ALL HEADERS UNBOXED (Exactly like What is Peopi) */
 .dash-page-header,
-.dash-intro-header,
-.ds-head {
+.dash-intro-header {
   display: flex !important;
-  justify-content: space-between !important;
-  align-items: flex-start !important;
+  flex-direction: column !important;
   margin-top: 0 !important;
-  margin-bottom: 64px !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
+  margin-bottom: clamp(40px, 4.5vw, 48px) !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -20765,91 +20759,284 @@ body.notes-open #dash-notes-toggle i {
   box-sizing: border-box !important;
 }
 
-/* Ensure next sibling under top page header has 0 margin-top and padding-top so total distance is exactly 64px */
-.dash-page-header + *,
-.dash-intro-header + *,
-.ds-head + * {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+.dash-page-header.ds-head,
+.ds-head {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  margin-bottom: 64px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-/* UNIFIED HERO CARDS UNDERNEATH HEADER */
-.dash-hero-split-card,
-.aud-hero-card,
-.how-hero-card,
-.scope-hero-card {
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 24px !important;
-  padding: 44px 48px !important;
-  margin-bottom: clamp(48px, 6vw, 64px) !important;
-  box-shadow: 0 4px 16px rgba(20, 25, 34, 0.03) !important;
+.dash-page-header-top {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  margin-bottom: 24px !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
 }
 
-/* Uniform Kicker Styling */
+.dash-page-header-left,
+.dash-intro-header-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.dash-head-actions,
+.ds-head-actions {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* 1. Category Eyebrow: 11–12px, 8–12px margin to H1 */
+.dash-page-kicker,
 .dash-intro-kicker,
 .glance-kicker,
-.dash-page-kicker,
 .ds-head-kicker,
-.ds-head small,
-.aud-hero-kicker,
-.how-hero-kicker,
-.scope-hero-kicker,
-.dash-kicker {
-  font-size: 11px !important;
+.ds-head small {
+  font-size: 11.5px !important;
   font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  color: #FF3300 !important;
+  letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
-  margin-bottom: 6px !important;
+  color: #FF3300 !important;
+  margin: 0 0 10px 0 !important;
   display: block !important;
+  line-height: 1.3 !important;
 }
 
-/* Uniform Title Styling */
+/* 2. Primary H1 Title: 34–36px, weight 750–800, 24–32px margin to Lead */
 .dash-page-title,
 .dash-intro-title,
 .ds-head-title,
-.ds-head h1,
-.aud-hero-title,
-.how-hero-h1,
-.scope-hero-h1,
-.roadmap-hero-h1,
-.dash-hero-text h1 {
-  font-size: clamp(28px, 3.2vw, 36px) !important;
+.ds-head h1 {
+  font-size: clamp(32px, 3.5vw, 36px) !important;
   font-weight: 800 !important;
-  letter-spacing: -0.03em !important;
+  letter-spacing: -0.035em !important;
   color: var(--text-primary, #0F172A) !important;
-  margin: 0 0 6px !important;
+  margin: 0 !important;
   line-height: 1.15 !important;
 }
 
+.dash-page-title .brand-dot,
+.dash-intro-title .brand-dot,
+.ds-head-title .brand-dot,
+.ds-head h1 .brand-dot,
 .brand-dot {
   color: #FF3300 !important;
 }
 
-/* Uniform Lead and Description */
+/* 3. Editorial Lead Statement: 18–20px, weight 600, 12–16px margin to Body */
+.dash-page-lead,
+.glance-lead,
 .aud-hero-headline,
 .roadmap-hero-lead,
 .dash-lead {
-  font-size: 17px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.01em !important;
+  font-size: clamp(18px, 1.8vw, 19.5px) !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
   color: #1E293B !important;
-  margin: 0 0 6px !important;
-  line-height: 1.35 !important;
+  letter-spacing: -0.015em !important;
+  margin: 0 0 14px 0 !important;
+  max-width: 860px !important;
 }
-.overview-sub,
+
+/* 4. Supporting Intro Paragraph (Intro body): 15–16px */
 .dash-page-desc,
+.overview-sub,
 .ds-head-desc,
 .ds-head p,
-.aud-hero-desc,
-.how-hero-desc,
-.scope-hero-desc,
 .roadmap-hero-sub {
-  font-size: 13.5px !important;
-  color: var(--text-secondary, #64748B) !important;
+  font-size: 15.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+  color: var(--text-secondary, #475569) !important;
   margin: 0 !important;
-  line-height: 1.5 !important;
+  max-width: 860px !important;
+}
+
+#dashboard-workspace.ds-dark .dash-page-title,
+#dashboard-workspace.dash-dark .dash-page-title {
+  color: #F8FAFC !important;
+}
+
+#dashboard-workspace.ds-dark .dash-page-lead,
+#dashboard-workspace.dash-dark .dash-page-lead {
+  color: #F1F5F9 !important;
+}
+
+#dashboard-workspace.ds-dark .dash-page-desc,
+#dashboard-workspace.dash-dark .dash-page-desc {
+  color: #94A3B8 !important;
+}
+
+/* Full-width editorial intro container */
+.dash-page-intro {
+  max-width: 860px !important;
+  width: 100% !important;
+}
+
+/* Two-column editorial intro split (Overview, Problem, Journeys) */
+.dash-page-intro-split {
+  display: grid !important;
+  grid-template-columns: 1.25fr 1fr !important;
+  gap: 36px !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.dash-page-intro-split .dash-page-intro-text {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.dash-page-intro-split .dash-page-intro-visual {
+  display: flex !important;
+  justify-content: flex-end !important;
+  width: 100% !important;
+}
+
+.dash-intro-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+  flex-wrap: wrap !important;
+}
+
+/* Section Headings H2: 24–26px */
+.glance-title,
+.prob-sec-title,
+.cmp-sec-title,
+.aud-sec-title,
+.scope-sec-title,
+.how-section-title {
+  font-size: clamp(23px, 2.6vw, 26px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--text-primary, #0F172A) !important;
+  line-height: 1.25 !important;
+}
+
+#dashboard-workspace.ds-dark .glance-title,
+#dashboard-workspace.dash-dark .glance-title,
+#dashboard-workspace.ds-dark .prob-sec-title,
+#dashboard-workspace.dash-dark .prob-sec-title,
+#dashboard-workspace.ds-dark .cmp-sec-title,
+#dashboard-workspace.dash-dark .cmp-sec-title,
+#dashboard-workspace.ds-dark .aud-sec-title,
+#dashboard-workspace.dash-dark .aud-sec-title,
+#dashboard-workspace.ds-dark .scope-sec-title,
+#dashboard-workspace.dash-dark .scope-sec-title,
+#dashboard-workspace.ds-dark .how-section-title,
+#dashboard-workspace.dash-dark .how-section-title {
+  color: #F8FAFC !important;
+}
+
+/* Card Headings H3: 16–18px */
+.glance-card-title,
+.prob-card-title,
+.cmp-card-title,
+.aud-card-title,
+.scope-card-title,
+.how-chapter-title,
+.how-step-title,
+.glance-step-title {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.35 !important;
+  color: var(--text-primary, #0F172A) !important;
+}
+
+#dashboard-workspace.ds-dark .glance-card-title,
+#dashboard-workspace.dash-dark .glance-card-title,
+#dashboard-workspace.ds-dark .prob-card-title,
+#dashboard-workspace.dash-dark .prob-card-title,
+#dashboard-workspace.ds-dark .cmp-card-title,
+#dashboard-workspace.dash-dark .cmp-card-title,
+#dashboard-workspace.ds-dark .aud-card-title,
+#dashboard-workspace.dash-dark .aud-card-title,
+#dashboard-workspace.ds-dark .scope-card-title,
+#dashboard-workspace.dash-dark .scope-card-title,
+#dashboard-workspace.ds-dark .how-chapter-title,
+#dashboard-workspace.dash-dark .how-chapter-title,
+#dashboard-workspace.ds-dark .how-step-title,
+#dashboard-workspace.dash-dark .how-step-title,
+#dashboard-workspace.ds-dark .glance-step-title,
+#dashboard-workspace.dash-dark .glance-step-title {
+  color: #F8FAFC !important;
+}
+
+/* Card Body Text: 14–15px */
+.glance-card-text,
+.prob-card-text,
+.cmp-card-text,
+.aud-card-text,
+.scope-card-text,
+.how-step-desc,
+.glance-step-text {
+  font-size: 14.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  color: var(--text-secondary, #475569) !important;
+}
+
+#dashboard-workspace.ds-dark .glance-card-text,
+#dashboard-workspace.dash-dark .glance-card-text,
+#dashboard-workspace.ds-dark .prob-card-text,
+#dashboard-workspace.dash-dark .prob-card-text,
+#dashboard-workspace.ds-dark .cmp-card-text,
+#dashboard-workspace.dash-dark .cmp-card-text,
+#dashboard-workspace.ds-dark .aud-card-text,
+#dashboard-workspace.dash-dark .aud-card-text,
+#dashboard-workspace.ds-dark .scope-card-text,
+#dashboard-workspace.dash-dark .scope-card-text,
+#dashboard-workspace.ds-dark .how-step-desc,
+#dashboard-workspace.dash-dark .how-step-desc,
+#dashboard-workspace.ds-dark .glance-step-text,
+#dashboard-workspace.dash-dark .glance-step-text,
+#dashboard-workspace.ds-dark .cmp-section-intro,
+#dashboard-workspace.dash-dark .cmp-section-intro,
+#dashboard-workspace.ds-dark .aud-section-intro,
+#dashboard-workspace.dash-dark .aud-section-intro,
+#dashboard-workspace.ds-dark .scope-section-intro,
+#dashboard-workspace.dash-dark .scope-section-intro,
+#dashboard-workspace.ds-dark .how-section-lead,
+#dashboard-workspace.dash-dark .how-section-lead {
+  color: #94A3B8 !important;
+}
+
+/* Major Sections: 48–56px apart */
+.glance-sec,
+.prob-sec,
+.cmp-sec,
+.aud-sec,
+.scope-sec,
+.how-section {
+  margin-bottom: clamp(48px, 5vw, 56px) !important;
+}
+
+@media (max-width: 1024px) {
+  .dash-page-intro-split {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  .dash-page-intro-split .dash-page-intro-visual {
+    justify-content: flex-start !important;
+  }
 }
 
 /* Refined, non-grey button styles for Sitemap and Roadmap */
@@ -20908,105 +21095,7 @@ body.notes-open #dash-notes-toggle i {
 }
 
 
-/* ==========================================================================
-   UNIFIED PAGE HEADER & HERO CARD STYLES ACROSS ALL OVERVIEWS & DESIGN SYSTEM
-   ========================================================================== */
-.dash-page-header,
-.dash-intro-header,
-.ds-head {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: flex-start !important;
-  margin-top: 0 !important;
-  margin-bottom: 64px !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-.dash-page-header-left,
-.dash-intro-header-left {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 4px !important;
-  flex: 1 1 auto !important;
-  min-width: 260px !important;
-}
-.dash-head-actions,
-.ds-head-actions {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  flex-shrink: 0 !important;
-  margin-left: auto !important;
-}
-.dash-page-kicker,
-.dash-intro-kicker,
-.glance-kicker,
-.ds-head-kicker,
-.ds-head small {
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  color: #FF3300 !important;
-  text-transform: uppercase !important;
-  display: block !important;
-}
-.dash-page-title,
-.dash-intro-title,
-.ds-head-title,
-.ds-head h1 {
-  font-size: clamp(28px, 3.2vw, 36px) !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.03em !important;
-  color: #141922 !important;
-  margin: 0 !important;
-  line-height: 1.15 !important;
-}
-#dashboard-workspace.ds-dark .dash-page-title,
-#dashboard-workspace.dash-dark .dash-page-title,
-#dashboard-workspace.ds-dark .dash-intro-title,
-#dashboard-workspace.dash-dark .dash-intro-title,
-#dashboard-workspace.ds-dark .ds-head-title,
-#dashboard-workspace.dash-dark .ds-head-title,
-#dashboard-workspace.ds-dark .ds-head h1,
-#dashboard-workspace.dash-dark .ds-head h1 {
-  color: #F8FAFC !important;
-}
-.dash-page-title .brand-dot,
-.dash-intro-title .brand-dot,
-.ds-head-title .brand-dot,
-.ds-head h1 .brand-dot,
-.brand-dot {
-  color: #FF3300 !important;
-}
 
-/* Ensure all hero cards share identical styling and spacing */
-.dash-hero-split-card {
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 24px !important;
-  padding: 44px 48px !important;
-  margin-bottom: clamp(48px, 6vw, 64px) !important;
-  display: grid !important;
-  grid-template-columns: 1.25fr 1fr !important;
-  gap: 36px !important;
-  align-items: center !important;
-  box-shadow: 0 4px 16px rgba(20, 25, 34, 0.03) !important;
-}
-
-@media (max-width: 900px) {
-  .dash-hero-split-card {
-    grid-template-columns: 1fr !important;
-    padding: 32px 28px !important;
-    gap: 24px !important;
-  }
-}
 
 .scope-decision-tradeoff {
   padding: 10px 14px;
@@ -21324,30 +21413,27 @@ body.notes-open #dash-notes-toggle i {
                 <div id="view-overview-intro">
           <div class="glance-container">
 
-            <!-- Top Header Bar -->
-            <header class="dash-intro-header">
-              <div class="dash-intro-header-left">
-                <span class="glance-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
-                <h1 class="dash-intro-title">Product Overview<span class="brand-dot">.</span></h1>
+            <!-- Unified Editorial Header & Introduction -->
+            <header class="dash-page-header">
+              <div class="dash-page-header-top">
+                <div class="dash-page-header-left">
+                  <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
+                  <h1 class="dash-page-title">Product Overview<span class="brand-dot">.</span></h1>
+                </div>
+                <div class="dash-head-actions ds-head-actions">
+                  <button type="button" id="dash-notes-toggle" class="ds-notes-btn" aria-label="Toggle notes panel" aria-pressed="false" title="Notes &amp; documentation"><i class="ph ph-sidebar-simple" aria-hidden="true"></i></button>
+                </div>
               </div>
-              <div class="dash-head-actions ds-head-actions">
-                <button type="button" id="dash-notes-toggle" class="ds-notes-btn" aria-label="Toggle notes panel" aria-pressed="false" title="Notes &amp; documentation"><i class="ph ph-sidebar-simple" aria-hidden="true"></i></button>
-              </div>
-            </header>
 
-            <!-- 01. HERO -->
-            <section class="glance-sec">
-              <div class="glance-hero-card">
-                <div class="glance-hero-content">
-                  <span class="glance-status-tag">
-                    <span class="glance-status-dot"></span>
-                    Portfolio Case Study · Mobile Product Specification &amp; Interactive Prototype
-                  </span>
-                  <h2 class="glance-hero-headline">Proximity-based professional networking<span class="brand-dot">.</span></h2>
-                  <p class="glance-hero-desc">
+              <div class="dash-page-intro-split">
+                <div class="dash-page-intro-text">
+                  <p class="dash-page-lead">
+                    Proximity-based professional networking designed to turn physical co-presence into intentional, high-trust relationships.
+                  </p>
+                  <p class="dash-page-desc">
                     Peopi is a mobile product concept designed to turn physical proximity into intentional, high-trust professional relationships. In places where relevant peers share the same room—conferences, coworking hubs, and innovation districts—Peopi replaces awkward cold outreach with a permissioned, consent-first introduction loop.
                   </p>
-                  <div class="glance-hero-actions">
+                  <div class="dash-intro-actions">
                     <button type="button" class="dash-btn-primary" onclick="closeDashboard();go('closed')">
                       <span>Launch interactive prototype</span>
                       <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
@@ -21359,8 +21445,7 @@ body.notes-open #dash-notes-toggle i {
                   </div>
                 </div>
 
-                <!-- Hero Visual: Real Prototype Specimen -->
-                <div class="glance-hero-visual-col">
+                <div class="dash-page-intro-visual">
                   <div class="glance-mockup-frame" onclick="closeDashboard();go('closed')" role="button" tabindex="0" aria-label="Explore interactive prototype (Closed state)">
                     <div class="glance-mockup-topbar">
                       <span>9:41</span>
@@ -21387,7 +21472,7 @@ body.notes-open #dash-notes-toggle i {
                   </div>
                 </div>
               </div>
-            </section>
+            </header>
 
             <!-- 02. VALUE PROPOSITION -->
             <section class="glance-sec">
@@ -21632,45 +21717,47 @@ body.notes-open #dash-notes-toggle i {
     <div id="view-overview-problem" hidden>
         <div class="prob-container">
 
-          <!-- Top Header Bar -->
+          <!-- Unified Editorial Header & Introduction -->
           <header class="dash-page-header">
-            <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
-              <h1 class="dash-page-title">Problem &amp; Opportunity<span class="brand-dot">.</span></h1>
+            <div class="dash-page-header-top">
+              <div class="dash-page-header-left">
+                <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
+                <h1 class="dash-page-title">Problem &amp; Opportunity<span class="brand-dot">.</span></h1>
+              </div>
+              <div class="dash-head-actions ds-head-actions"></div>
             </div>
-            <div class="dash-head-actions ds-head-actions"></div>
-          </header>
 
-          <!-- 1. HERO - Enhanced Editorial Hierarchy -->
-          <section class="prob-sec">
-            <div class="prob-hero-card">
-              <div class="prob-hero-content">
-                <span class="prob-eyebrow">THE PROBLEM</span>
-                <h2 class="prob-hero-headline">Being nearby doesn't mean being connected<span class="brand-dot">.</span></h2>
-                <p class="prob-hero-desc">
+            <div class="dash-page-intro-split">
+              <div class="dash-page-intro-text">
+                <p class="dash-page-lead">
+                  Being nearby doesn't mean being connected.
+                </p>
+                <p class="dash-page-desc">
                   Every day, thousands of professionals work within meters of one another in coworking hubs, industry conferences, and innovation centers. Yet serendipitous, high-value collaborations rarely materialize. Physical co-presence alone cannot overcome the steep social friction, unshared professional context, and unknown real-time availability that keep people isolated.
                 </p>
               </div>
 
-              <div class="prob-equation-panel">
-                <div class="prob-eq-header">
-                  <span class="prob-eq-title">Behavioral Friction Equation</span>
-                  <i class="ph-bold ph-scales" aria-hidden="true" style="color:#FF3300;font-size:14px;"></i>
-                </div>
-                <div class="prob-eq-row status-quo">
-                  <span class="prob-eq-badge">STATUS QUO</span>
-                  <div class="prob-eq-steps">Physical Co-Presence + Hidden Intent</div>
-                  <div class="prob-eq-outcome">→ Hesitation &amp; Missed Opportunity</div>
-                </div>
-                <div class="prob-eq-arrow"><i class="ph-bold ph-arrow-down" aria-hidden="true"></i></div>
-                <div class="prob-eq-row peopi-thesis">
-                  <span class="prob-eq-badge">PEOPI THESIS</span>
-                  <div class="prob-eq-steps">Proximity + Ephemeral Intent + Mutual Opt-In</div>
-                  <div class="prob-eq-outcome">→ Permissioned Connection</div>
+              <div class="dash-page-intro-visual">
+                <div class="prob-equation-panel">
+                  <div class="prob-eq-header">
+                    <span class="prob-eq-title">Behavioral Friction Equation</span>
+                    <i class="ph-bold ph-scales" aria-hidden="true" style="color:#FF3300;font-size:14px;"></i>
+                  </div>
+                  <div class="prob-eq-row status-quo">
+                    <span class="prob-eq-badge">STATUS QUO</span>
+                    <div class="prob-eq-steps">Physical Co-Presence + Hidden Intent</div>
+                    <div class="prob-eq-outcome">→ Hesitation &amp; Missed Opportunity</div>
+                  </div>
+                  <div class="prob-eq-arrow"><i class="ph-bold ph-arrow-down" aria-hidden="true"></i></div>
+                  <div class="prob-eq-row peopi-thesis">
+                    <span class="prob-eq-badge">PEOPI THESIS</span>
+                    <div class="prob-eq-steps">Proximity + Ephemeral Intent + Mutual Opt-In</div>
+                    <div class="prob-eq-outcome">→ Permissioned Connection</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
+          </header>
 
           <!-- 2. THE THREE BEHAVIORAL BREAKPOINTS -->
           <section class="prob-sec">
@@ -21974,28 +22061,25 @@ body.notes-open #dash-notes-toggle i {
     <div id="view-overview-strategy" hidden>
         <div class="cmp-container roadmap-container">
 
-          <!-- Top Header Bar -->
+          <!-- Unified Editorial Header & Introduction -->
           <header class="dash-page-header">
-            <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
-              <h1 class="dash-page-title">Product Vision &amp; Strategy<span class="brand-dot">.</span></h1>
-            </div>
-            <div class="dash-head-actions ds-head-actions"></div>
-          </header>
-
-          <!-- 1. HERO -->
-          <section class="cmp-sec">
-            <div class="cmp-hero-card">
-              <div class="cmp-pill-tag">
-                <span class="cmp-pill-dot"></span>
-                <span>Public-source review · October 14, 2026</span>
+            <div class="dash-page-header-top">
+              <div class="dash-page-header-left">
+                <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
+                <h1 class="dash-page-title">Product Vision &amp; Strategy<span class="brand-dot">.</span></h1>
               </div>
-              <h2 class="cmp-hero-headline">The need has alternatives.<br>Our execution must earn a place<span class="brand-dot">.</span></h2>
-              <p class="cmp-hero-desc">
-                Peopi enters an existing landscape of professional networks, nearby discovery products and event networking platforms. The opportunity depends on delivering a useful experience, not claiming that these capabilities have never existed.
+              <div class="dash-head-actions ds-head-actions"></div>
+            </div>
+
+            <div class="dash-page-intro">
+              <p class="dash-page-lead">
+                The need has alternatives. Our execution must earn a place.
+              </p>
+              <p class="dash-page-desc">
+                Peopi enters an existing landscape of professional networks, nearby discovery products and event networking platforms. The opportunity depends on delivering a useful, consent-first experience—not claiming that proximity networking has never existed.
               </p>
             </div>
-          </section>
+          </header>
 
           <!-- 2. COMPETITIVE CONTEXT -->
           <section class="cmp-sec">
@@ -22447,8 +22531,8 @@ body.notes-open #dash-notes-toggle i {
               </div>
             </div>
 
-            <div class="cmp-hero-card" style="padding: 28px 32px;">
-              <p class="cmp-hero-desc" style="font-size:17px;color:#1E293B;max-width:100%;line-height:1.65;">
+            <div class="cmp-callout" style="padding: 28px 32px;border-radius:18px;">
+              <p class="cmp-hero-desc" style="font-size:17px;color:#1E293B;max-width:100%;line-height:1.65;margin:0;">
                 Existing products show that solutions are offered in this space. They do not establish demand for Peopi. The pilot must test whether its experience and distribution approach create sufficient value for adoption and retention.
               </p>
             </div>
@@ -23089,28 +23173,25 @@ body.notes-open #dash-notes-toggle i {
     <div id="view-overview-audience" hidden>
         <div class="aud-container">
 
-          <!-- Top Header Bar -->
+          <!-- Unified Editorial Header & Introduction -->
           <header class="dash-page-header">
-            <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
-              <h1 class="dash-page-title">Target Audience &amp; Personas<span class="brand-dot">.</span></h1>
-            </div>
-            <div class="dash-head-actions ds-head-actions"></div>
-          </header>
-
-          <!-- 1. HERO -->
-          <section class="aud-sec">
-            <div class="aud-hero-card">
-              <div class="aud-pill-tag">
-                <span class="aud-pill-dot"></span>
-                <span>Initial pilot geography: Miami</span>
+            <div class="dash-page-header-top">
+              <div class="dash-page-header-left">
+                <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
+                <h1 class="dash-page-title">Target Audience &amp; Personas<span class="brand-dot">.</span></h1>
               </div>
-              <h2 class="aud-hero-headline">Built for professional connection.<br>Starting with local density<span class="brand-dot">.</span></h2>
-              <p class="aud-hero-desc">
-                Peopi is designed for professionals who are open to relevant introductions nearby. The initial pilot will focus on Miami, with user acquisition concentrated in selected shared settings.
+              <div class="dash-head-actions ds-head-actions"></div>
+            </div>
+
+            <div class="dash-page-intro">
+              <p class="dash-page-lead">
+                Built for intentional professional connection, validated through local density.
+              </p>
+              <p class="dash-page-desc">
+                Peopi is designed for professionals who are open to relevant introductions nearby. The initial pilot focuses on Miami, concentrating user acquisition in selected shared working environments and community gatherings before wider release.
               </p>
             </div>
-          </section>
+          </header>
 
           <!-- 2. WHO PEOPI IS FOR -->
           <section class="aud-sec">
@@ -23352,28 +23433,25 @@ body.notes-open #dash-notes-toggle i {
     <div id="view-overview-scope-rules" hidden>
         <div class="scope-container">
 
-          <!-- Top Header Bar -->
+          <!-- Unified Editorial Header & Introduction -->
           <header class="dash-page-header">
-            <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
-              <h1 class="dash-page-title">MVP Scope &amp; Product Decisions<span class="brand-dot">.</span></h1>
-            </div>
-            <div class="dash-head-actions ds-head-actions"></div>
-          </header>
-
-          <!-- 1. HERO -->
-          <section class="scope-sec">
-            <div class="scope-hero-card">
-              <div class="scope-pill-tag">
-                <span class="scope-pill-dot"></span>
-                <span>Product scope · Prototype and implementation planning</span>
+            <div class="dash-page-header-top">
+              <div class="dash-page-header-left">
+                <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
+                <h1 class="dash-page-title">MVP Scope &amp; Product Decisions<span class="brand-dot">.</span></h1>
               </div>
-              <h2 class="scope-hero-headline">A focused first product.<br>Clear rules for every interaction<span class="brand-dot">.</span></h2>
-              <p class="scope-hero-desc">
-                Peopi’s initial scope centers on professional profiles, user-controlled visibility, nearby discovery, mutual connection requests and continuing conversations.
+              <div class="dash-head-actions ds-head-actions"></div>
+            </div>
+
+            <div class="dash-page-intro">
+              <p class="dash-page-lead">
+                A focused first product with clear rules for every interaction.
+              </p>
+              <p class="dash-page-desc">
+                Peopi’s initial scope centers on professional profiles, user-controlled visibility, nearby discovery, mutual connection requests, and continuing conversations.
               </p>
             </div>
-          </section>
+          </header>
 
           <!-- 2. CORE PRODUCT LOOP -->
           <section class="scope-sec">
@@ -23966,50 +24044,54 @@ body.notes-open #dash-notes-toggle i {
     <div id="view-overview-user-journeys" hidden>
         <div class="how-container sitemap-standard-container">
 
-          <!-- Top Header Bar -->
+          <!-- Unified Editorial Header & Introduction -->
           <header class="dash-page-header">
-            <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
-              <h1 class="dash-page-title">User Journeys &amp; Flows<span class="brand-dot">.</span></h1>
+            <div class="dash-page-header-top">
+              <div class="dash-page-header-left">
+                <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
+                <h1 class="dash-page-title">User Journeys &amp; Flows<span class="brand-dot">.</span></h1>
+              </div>
+              <div class="dash-head-actions ds-head-actions">
+                <button class="overview-primary-btn" onclick="exportScreenIndex()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span>Export screen index</span>
+                </button>
+              </div>
             </div>
-            <div class="dash-head-actions ds-head-actions">
-              <button class="overview-primary-btn" onclick="exportScreenIndex()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                <span>Export screen index</span>
-              </button>
-            </div>
-          </header>
 
-          <!-- Hero Section Card -->
-          <section class="dash-hero-split-card how-hero-card">
-            <div class="how-hero-split">
-              <div class="dash-hero-content-col">
-                <h2 class="dash-hero-headline">Choose your moment.<br>Make a connection<span class="brand-dot">.</span></h2>
-                <p class="dash-hero-description">
+            <div class="dash-page-intro-split">
+              <div class="dash-page-intro-text">
+                <p class="dash-page-lead">
+                  Choose your moment. Make a connection.
+                </p>
+                <p class="dash-page-desc">
                   Start discovery when you’re ready. Send an introduction request with an optional note. Connect and converse after mutual acceptance.
                 </p>
               </div>
-              <div class="how-summary-flow" aria-label="Core 3-step summary">
-                <div class="how-flow-step">
-                  <div class="how-flow-icon"><i class="ph ph-broadcast"></i></div>
-                  <div class="how-flow-title">Discover</div>
-                  <div class="how-flow-desc">Active proximity when you choose</div>
-                </div>
-                <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
-                <div class="how-flow-step">
-                  <div class="how-flow-icon"><i class="ph ph-paper-plane-tilt"></i></div>
-                  <div class="how-flow-title">Request</div>
-                  <div class="how-flow-desc">Intro note with context</div>
-                </div>
-                <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
-                <div class="how-flow-step">
-                  <div class="how-flow-icon"><i class="ph ph-chat-circle-dots"></i></div>
-                  <div class="how-flow-title">Connect</div>
-                  <div class="how-flow-desc">1-on-1 chat upon double opt-in</div>
+
+              <div class="dash-page-intro-visual">
+                <div class="how-summary-flow" aria-label="Core 3-step summary">
+                  <div class="how-flow-step">
+                    <div class="how-flow-icon"><i class="ph ph-broadcast"></i></div>
+                    <div class="how-flow-title">Discover</div>
+                    <div class="how-flow-desc">Active proximity when you choose</div>
+                  </div>
+                  <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
+                  <div class="how-flow-step">
+                    <div class="how-flow-icon"><i class="ph ph-paper-plane-tilt"></i></div>
+                    <div class="how-flow-title">Request</div>
+                    <div class="how-flow-desc">Intro note with context</div>
+                  </div>
+                  <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
+                  <div class="how-flow-step">
+                    <div class="how-flow-icon"><i class="ph ph-chat-circle-dots"></i></div>
+                    <div class="how-flow-title">Connect</div>
+                    <div class="how-flow-desc">1-on-1 chat upon double opt-in</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
+          </header>
 
           <!-- 03 Journey Chapters -->
           <section class="how-section">
