@@ -45,18 +45,42 @@ body{background:#f4f5f7;color:#1c2635}
 .category-group{margin:0;border-bottom:1px solid #e5e9ee;background-color:#ffffff;transition:background-color .18s ease,border-color .18s ease}
 .category-group:last-child{border-bottom:1px solid #e5e9ee}
 .category-group:not(.collapsed),.category-group.is-selected{background-color:#ffffff;border-bottom-color:#e5e9ee}
-.category-toggle{width:100%;display:flex;align-items:center;gap:8px;padding:12px 16px;background:transparent;border:0;color:#64748b;text-align:left;font-family:inherit;font-size:11.5px;font-weight:800;letter-spacing:.03em;cursor:pointer;transition:all .15s ease}
+.category-toggle{width:100%;display:flex;align-items:center;gap:10px;padding:12px 16px;background:transparent;border:0;color:#64748b;text-align:left;font-family:inherit;font-size:11.5px;font-weight:800;letter-spacing:.03em;cursor:pointer;transition:all .15s ease}
 .category-toggle:hover{background:rgba(0,0,0,.03);color:#0f172a}
-.category-toggle .cat-num{font-size:10px;font-weight:800;color:#94a3b8;font-variant-numeric:tabular-nums;min-width:16px;letter-spacing:0}
-.category-group:not(.collapsed) .category-toggle .cat-num,.category-group.is-selected .category-toggle .cat-num{color:#ff3300}
-.category-toggle .category-icon{font-size:16px;color:#ff3300}
+.category-toggle .cat-num{display:none!important}
+.category-toggle .category-icon{font-size:18px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary,#64748b);flex-shrink:0;transition:color .15s ease}
+.category-toggle:hover .category-icon{color:#0f172a}
+.category-group:not(.collapsed) .category-toggle .category-icon,.category-group.is-selected .category-toggle .category-icon{color:#ff3300!important}
 .category-toggle span:not(.cat-num){flex:1;text-transform:uppercase;color:#475569;font-weight:700;letter-spacing:.04em;transition:color .15s ease}
+.category-toggle:hover span:not(.cat-num){color:#0f172a}
 .category-group:not(.collapsed) .category-toggle span:not(.cat-num),.category-group.is-selected .category-toggle span:not(.cat-num){color:#0f172a;font-weight:800}
 .category-tag-planned{display:none!important}
-.category-toggle b{display:flex;align-items:center;justify-content:center;font-size:14px;color:#94a3b8;transition:transform .2s ease,color .15s ease}
-.category-group:not(.collapsed) .category-toggle b,.category-group.is-selected .category-toggle b{color:#ff3300}
+.category-toggle b{margin-left:auto;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:var(--text-secondary,#94a3b8);transition:color .15s ease;transform:none!important}
+.category-toggle:hover b{color:#0f172a}
+.category-group:not(.collapsed) .category-toggle b,.category-group.is-selected .category-toggle b{color:#ff3300!important}
 .category-group.collapsed .category-children{display:none}
-.category-group.collapsed .category-toggle b{transform:rotate(-90deg)}
+.category-group.collapsed .category-toggle b{transform:none!important}
+body.dark .sidebar,body.dark-theme .sidebar,[data-theme="dark"] .sidebar,.sidebar.dark{background:#171e28!important;border-right-color:#283141!important}
+body.dark .category-group,body.dark-theme .category-group,[data-theme="dark"] .category-group,.sidebar.dark .category-group{background:#171e28!important;border-bottom-color:#283141!important}
+body.dark .category-children,body.dark-theme .category-children,[data-theme="dark"] .category-children,.sidebar.dark .category-children{background:#171e28!important}
+body.dark .category-toggle,body.dark-theme .category-toggle,[data-theme="dark"] .category-toggle,.sidebar.dark .category-toggle{color:#94a3b8}
+body.dark .category-toggle:hover,body.dark-theme .category-toggle:hover,[data-theme="dark"] .category-toggle:hover,.sidebar.dark .category-toggle:hover{background:rgba(255,255,255,.05);color:#f8fafc}
+body.dark .category-toggle .category-icon,body.dark-theme .category-toggle .category-icon,[data-theme="dark"] .category-toggle .category-icon,.sidebar.dark .category-toggle .category-icon{color:#94a3b8}
+body.dark .category-toggle:hover .category-icon,body.dark-theme .category-toggle:hover .category-icon,[data-theme="dark"] .category-toggle:hover .category-icon,.sidebar.dark .category-toggle:hover .category-icon{color:#f8fafc}
+body.dark .category-group:not(.collapsed) .category-toggle .category-icon,body.dark .category-group.is-selected .category-toggle .category-icon,body.dark-theme .category-group:not(.collapsed) .category-toggle .category-icon,body.dark-theme .category-group.is-selected .category-toggle .category-icon,[data-theme="dark"] .category-group:not(.collapsed) .category-toggle .category-icon,[data-theme="dark"] .category-group.is-selected .category-toggle .category-icon,.sidebar.dark .category-group:not(.collapsed) .category-toggle .category-icon,.sidebar.dark .category-group.is-selected .category-toggle .category-icon{color:#ff3300!important}
+body.dark .category-toggle span:not(.cat-num),body.dark-theme .category-toggle span:not(.cat-num),[data-theme="dark"] .category-toggle span:not(.cat-num),.sidebar.dark .category-toggle span:not(.cat-num){color:#cbd5e1}
+body.dark .category-toggle:hover span:not(.cat-num),body.dark-theme .category-toggle:hover span:not(.cat-num),[data-theme="dark"] .category-toggle:hover span:not(.cat-num),.sidebar.dark .category-toggle:hover span:not(.cat-num){color:#f8fafc}
+body.dark .category-group:not(.collapsed) .category-toggle span:not(.cat-num),body.dark .category-group.is-selected .category-toggle span:not(.cat-num),body.dark-theme .category-group:not(.collapsed) .category-toggle span:not(.cat-num),body.dark-theme .category-group.is-selected .category-toggle span:not(.cat-num),[data-theme="dark"] .category-group:not(.collapsed) .category-toggle span:not(.cat-num),[data-theme="dark"] .category-group.is-selected .category-toggle span:not(.cat-num),.sidebar.dark .category-group:not(.collapsed) .category-toggle span:not(.cat-num),.sidebar.dark .category-group.is-selected .category-toggle span:not(.cat-num){color:#f8fafc}
+body.dark .category-toggle b,body.dark-theme .category-toggle b,[data-theme="dark"] .category-toggle b,.sidebar.dark .category-toggle b{color:#94a3b8}
+body.dark .category-toggle:hover b,body.dark-theme .category-toggle:hover b,[data-theme="dark"] .category-toggle:hover b,.sidebar.dark .category-toggle:hover b{color:#f8fafc}
+body.dark .category-group:not(.collapsed) .category-toggle b,body.dark .category-group.is-selected .category-toggle b,body.dark-theme .category-group:not(.collapsed) .category-toggle b,body.dark-theme .category-group.is-selected .category-toggle b,[data-theme="dark"] .category-group:not(.collapsed) .category-toggle b,[data-theme="dark"] .category-group.is-selected .category-toggle b,.sidebar.dark .category-group:not(.collapsed) .category-toggle b,.sidebar.dark .category-group.is-selected .category-toggle b{color:#ff3300!important}
+body.dark .tree-link,body.dark-theme .tree-link,[data-theme="dark"] .tree-link,.sidebar.dark .tree-link{color:#94a3b8}
+body.dark .tree-link span,body.dark-theme .tree-link span,[data-theme="dark"] .tree-link span,.sidebar.dark .tree-link span{color:#cbd5e1}
+body.dark .tree-link i.ph,body.dark-theme .tree-link i.ph,[data-theme="dark"] .tree-link i.ph,.sidebar.dark .tree-link i.ph{color:#94a3b8}
+body.dark .tree-link:hover,body.dark-theme .tree-link:hover,[data-theme="dark"] .tree-link:hover,.sidebar.dark .tree-link:hover{background:rgba(255,255,255,0.06);color:#f8fafc}
+body.dark .tree-link.selected,body.dark-theme .tree-link.selected,[data-theme="dark"] .tree-link.selected,.sidebar.dark .tree-link.selected{background:rgba(255,51,0,0.14);color:#ff3300}
+body.dark .tree-link.selected span,body.dark-theme .tree-link.selected span,[data-theme="dark"] .tree-link.selected span,.sidebar.dark .tree-link.selected span{color:#ff6633}
+body.dark .tree-link.selected i.ph,body.dark-theme .tree-link.selected i.ph,[data-theme="dark"] .tree-link.selected i.ph,.sidebar.dark .tree-link.selected i.ph{color:#ff3300}
 .category-children{padding:0 8px 14px 8px;background-color:#ffffff}
 .category-group:not(.collapsed) .tree,.category-group.is-selected .tree{padding:0 4px 6px}
 .category-group:not(.collapsed) .tree-link:hover,.category-group.is-selected .tree-link:hover{background:rgba(0,0,0,.035);color:#0f172a}
@@ -21584,9 +21608,9 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 01: What is Peopi? -->
     <div class="category-group is-selected" id="cat-what-is-peopi">
       <button type="button" class="category-toggle" aria-expanded="true">
-        <span class="cat-num">01</span>
+        <i class="category-icon ph ph-lightbulb" aria-hidden="true"></i>
         <span>What is Peopi?</span>
-        <b><i class="ph ph-caret-down"></i></b>
+        <b><i class="ph ph-caret-up" aria-hidden="true"></i></b>
       </button>
       <div class="category-children">
         <nav class="tree" aria-label="What is Peopi navigation">
@@ -21603,9 +21627,9 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 02: Branding -->
     <div class="category-group collapsed" id="cat-brand">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <span class="cat-num">02</span>
+        <i class="category-icon ph ph-palette" aria-hidden="true"></i>
         <span>Branding</span>
-        <b><i class="ph ph-caret-down"></i></b>
+        <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
       <div class="category-children">
         <nav class="tree ds-tree" aria-label="Branding navigation">
@@ -21632,9 +21656,9 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 03: Design System -->
     <div class="category-group collapsed" id="cat-design">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <span class="cat-num">03</span>
+        <i class="category-icon ph ph-ruler" aria-hidden="true"></i>
         <span>Design System</span>
-        <b><i class="ph ph-caret-down"></i></b>
+        <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
       <div class="category-children">
         <nav class="tree ds-tree" aria-label="Design system navigation">
@@ -21669,9 +21693,9 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 04: Components -->
     <div class="category-group collapsed" id="cat-components">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <span class="cat-num">04</span>
+        <i class="category-icon ph ph-squares-four" aria-hidden="true"></i>
         <span>Components</span>
-        <b><i class="ph ph-caret-down"></i></b>
+        <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
       <div class="category-children">
         <nav class="tree ds-tree" aria-label="Components navigation">
@@ -21690,9 +21714,9 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 05: Screens -->
     <div class="category-group collapsed" id="cat-screens">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <span class="cat-num">05</span>
+        <i class="category-icon ph ph-device-mobile" aria-hidden="true"></i>
         <span>Screens</span>
-        <b><i class="ph ph-caret-down"></i></b>
+        <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
       <div class="category-children">
         <nav class="tree" id="tree" aria-label="Mobile screens navigation">
@@ -28807,7 +28831,13 @@ function openCategory(catId){
     group.classList.toggle('collapsed', !isOpen);
     group.classList.toggle('is-selected', isOpen);
     const toggle = group.querySelector('.category-toggle');
-    if(toggle) toggle.setAttribute('aria-expanded', String(isOpen));
+    if(toggle){
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      const chevron = toggle.querySelector('b i');
+      if(chevron){
+        chevron.className = isOpen ? 'ph ph-caret-up' : 'ph ph-caret-down';
+      }
+    }
   });
 }
 
@@ -28821,6 +28851,10 @@ document.querySelectorAll('.category-toggle').forEach(btn=>{
       group.classList.add('collapsed');
       group.classList.remove('is-selected');
       btn.setAttribute('aria-expanded', 'false');
+      const chevron = btn.querySelector('b i');
+      if(chevron){
+        chevron.className = 'ph ph-caret-down';
+      }
     }
   });
 });
