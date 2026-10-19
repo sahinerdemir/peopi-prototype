@@ -15715,6 +15715,12 @@ body.notes-open #dash-notes-toggle i {
   gap: 16px;
   margin-top: 24px;
 }
+.glance-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
 .glance-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -16028,6 +16034,7 @@ body.notes-open #dash-notes-toggle i {
   }
   .glance-grid-3,
   .glance-grid-4,
+  .glance-grid-5,
   .glance-grid-2 {
     grid-template-columns: 1fr;
   }
@@ -16167,6 +16174,12 @@ body.notes-open #dash-notes-toggle i {
 .prob-grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.prob-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -16438,7 +16451,8 @@ body.notes-open #dash-notes-toggle i {
 }
 
 @media (max-width: 768px) {
-  .prob-grid-3 {
+  .prob-grid-3,
+  .prob-grid-2 {
     grid-template-columns: 1fr;
   }
   .prob-closing-card {
@@ -20962,7 +20976,7 @@ body.notes-open #dash-notes-toggle i {
             <!-- Top Header Bar -->
             <header class="dash-intro-header">
               <div class="dash-intro-header-left">
-                <span class="glance-kicker">01 — WHAT IS PEOPI?</span>
+                <span class="glance-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
                 <h1 class="dash-intro-title">Product Overview<span class="brand-dot">.</span></h1>
               </div>
               <div class="dash-head-actions ds-head-actions">
@@ -20976,20 +20990,20 @@ body.notes-open #dash-notes-toggle i {
                 <div class="glance-hero-content">
                   <span class="glance-status-tag">
                     <span class="glance-status-dot"></span>
-                    Interactive prototype · Pre-launch
+                    Portfolio Case Study · Mobile Product Specification &amp; Interactive Prototype
                   </span>
-                  <h2 class="glance-hero-headline">Real-world proximity.<br>Meaningful professional connections<span class="brand-dot">.</span></h2>
+                  <h2 class="glance-hero-headline">Proximity-based professional networking<span class="brand-dot">.</span></h2>
                   <p class="glance-hero-desc">
-                    Peopi is a mobile product concept designed to help nearby professionals discover opportunities to connect, express their availability, and start a conversation through mutual consent.
+                    Peopi is a mobile product concept designed to turn physical proximity into intentional, high-trust professional relationships. In places where relevant peers share the same room—conferences, coworking hubs, and innovation districts—Peopi replaces awkward cold outreach with a permissioned, consent-first introduction loop.
                   </p>
                   <div class="glance-hero-actions">
-                    <button type="button" class="dash-btn-primary" onclick="openOverview('user-journeys')">
-                      <span>See user journeys &amp; flows</span>
-                      <i class="ph ph-arrow-right" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="dash-btn-secondary" onclick="closeDashboard();go('closed')">
-                      <span>Explore the prototype</span>
+                    <button type="button" class="dash-btn-primary" onclick="closeDashboard();go('closed')">
+                      <span>Launch interactive prototype</span>
                       <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="dash-btn-secondary" onclick="openOverview('problem')">
+                      <span>Problem &amp; Opportunity</span>
+                      <i class="ph ph-arrow-right" aria-hidden="true"></i>
                     </button>
                   </div>
                 </div>
@@ -21004,19 +21018,19 @@ body.notes-open #dash-notes-toggle i {
                     </div>
                     <div class="glance-mockup-body">
                       <div class="glance-mockup-brand">peopi<span style="color:#FF3300">.</span></div>
-                      <div class="glance-mockup-tagline">Connections start<br>with showing up.</div>
+                      <div class="glance-mockup-tagline">Good things start<br>with showing up.</div>
                       <div class="glance-mockup-map-box">
-                        <span class="glance-mockup-map-street">COLLINS AVE</span>
+                        <span class="glance-mockup-map-street">BRICKELL AVE</span>
                         <div class="glance-mockup-approx-pill"><i class="ph ph-shield-check" aria-hidden="true"></i> Approximate area</div>
                         <div class="glance-mockup-avatar-center">ME</div>
                       </div>
                       <div class="glance-mockup-showup-btn">
-                        <span>Show up</span>
+                        <span>Show up · Set intent</span>
                         <i class="ph ph-arrow-right" aria-hidden="true"></i>
                       </div>
                     </div>
                     <div class="glance-mockup-footer">
-                      <span><i class="ph ph-cursor-click" aria-hidden="true"></i> Click to launch prototype view</span>
+                      <span><i class="ph ph-cursor-click" aria-hidden="true"></i> Click to launch live mobile prototype</span>
                       <span class="glance-tag-pill">Screen 02.1</span>
                     </div>
                   </div>
@@ -21024,151 +21038,176 @@ body.notes-open #dash-notes-toggle i {
               </div>
             </section>
 
-            <!-- 02. THE OPPORTUNITY -->
+            <!-- 02. VALUE PROPOSITION -->
             <section class="glance-sec">
               <div class="glance-sec-head">
-                <span class="glance-kicker">THE OPPORTUNITY</span>
-                <h2 class="glance-title">Make nearby opportunity easier to act on<span class="brand-dot">.</span></h2>
+                <span class="glance-kicker">VALUE PROPOSITION</span>
+                <h2 class="glance-title">Turning physical co-presence into permissioned relationships<span class="brand-dot">.</span></h2>
                 <p class="glance-lead">
-                  Being in the same place does not automatically lead to a useful professional introduction. Peopi explores a more intentional way to make availability visible and turn proximity into a permission-based connection.
+                  Traditional networking tools are asynchronous, static, and detached from immediate physical availability. Peopi introduces a temporary, location-aware layer that lowers the social barrier to in-person introductions while giving users absolute control over their privacy.
                 </p>
               </div>
 
               <div class="glance-grid-3">
                 <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-eye" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Intentional visibility</h3>
-                  <p class="glance-card-text">People choose when they are available to be discovered.</p>
+                  <div class="glance-card-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></div>
+                  <h3 class="glance-card-title">Real-Time Proximity</h3>
+                  <p class="glance-card-text">Discover relevant peers who are physically present in your immediate venue, not buried in an asynchronous inbox.</p>
                 </div>
                 <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-handshake" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Mutual consent</h3>
-                  <p class="glance-card-text">Connection requests create a clear step before a conversation.</p>
+                  <div class="glance-card-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></div>
+                  <h3 class="glance-card-title">Time-Limited Sessions</h3>
+                  <p class="glance-card-text">Presence is temporary (15m to 2h). Sessions expire automatically to prevent lingering background tracking or persistent exposure.</p>
                 </div>
                 <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">User control</h3>
-                  <p class="glance-card-text">Visibility, privacy and safety controls are part of the product.</p>
+                  <div class="glance-card-icon"><i class="ph ph-shield-check" aria-hidden="true"></i></div>
+                  <h3 class="glance-card-title">Double Opt-In Consent</h3>
+                  <p class="glance-card-text">No unsolicited broadcasting or spam. Communication requires an explicit mutual request and acceptance handshake.</p>
                 </div>
               </div>
             </section>
 
-            <!-- 03. THE CORE EXPERIENCE -->
+            <!-- 03. CORE INTERACTION LIFECYCLE (5 STEPS) -->
             <section class="glance-sec">
               <div class="glance-sec-head">
-                <span class="glance-kicker">THE CORE EXPERIENCE</span>
-                <h2 class="glance-title">A simple path from presence to connection<span class="brand-dot">.</span></h2>
+                <span class="glance-kicker">CORE INTERACTION LIFECYCLE</span>
+                <h2 class="glance-title">Invisible → I'm Open → Discover → Connect → Chat<span class="brand-dot">.</span></h2>
+                <p class="glance-lead">
+                  Every interaction in Peopi progresses through five distinct states designed around privacy, intentionality, and psychological safety. Tap any step below to jump directly into that screen in the prototype.
+                </p>
               </div>
 
-              <div class="glance-grid-4">
-                <div class="glance-step-card" onclick="closeDashboard();go('firstprofile')" style="cursor:pointer;" title="Explore profile setup screen">
-                  <span class="glance-step-num">STEP 01</span>
-                  <h3 class="glance-step-title">Create a professional profile</h3>
-                  <p class="glance-step-text">Introduce yourself and what you are looking for.</p>
+              <div class="glance-grid-5">
+                <div class="glance-step-card" onclick="closeDashboard();go('closed')" style="cursor:pointer;" title="Inspect Screen 02.1: Invisible State">
+                  <span class="glance-step-num">STAGE 01</span>
+                  <h3 class="glance-step-title">Invisible</h3>
+                  <p class="glance-step-text">Default app state. Zero beaconing. Safe radar preview with count badge; personal presence is completely dark.</p>
+                  <span style="margin-top:auto;padding-top:12px;font-size:11px;font-weight:700;color:#FF3300;"><i class="ph ph-arrow-up-right"></i> Screen 02.1</span>
                 </div>
 
-                <div class="glance-step-card" onclick="closeDashboard();go('closed')" style="cursor:pointer;" title="Explore invisible state screen">
-                  <span class="glance-step-num">STEP 02</span>
-                  <h3 class="glance-step-title">Choose when to be visible</h3>
-                  <p class="glance-step-text">Complete the required information and explicitly start a session.</p>
+                <div class="glance-step-card" onclick="closeDashboard();go('setup')" style="cursor:pointer;" title="Inspect Screen 02.2: Start Session">
+                  <span class="glance-step-num">STAGE 02</span>
+                  <h3 class="glance-step-title">I'm Open</h3>
+                  <p class="glance-step-text">Explicit intent setup. User selects active duration (15m–2h) and purpose before broadcasting availability.</p>
+                  <span style="margin-top:auto;padding-top:12px;font-size:11px;font-weight:700;color:#FF3300;"><i class="ph ph-arrow-up-right"></i> Screen 02.2</span>
                 </div>
 
-                <div class="glance-step-card" onclick="closeDashboard();go('active')" style="cursor:pointer;" title="Explore active discovery screen">
-                  <span class="glance-step-num">STEP 03</span>
-                  <h3 class="glance-step-title">Discover and request</h3>
-                  <p class="glance-step-text">Explore nearby profiles and send a connection request.</p>
+                <div class="glance-step-card" onclick="closeDashboard();go('active')" style="cursor:pointer;" title="Inspect Screen 02.3: Active Discovery">
+                  <span class="glance-step-num">STAGE 03</span>
+                  <h3 class="glance-step-title">Discover</h3>
+                  <p class="glance-step-text">Interactive proximity radar. Concentric distance rings display nearby peers with verified badges and shared goals.</p>
+                  <span style="margin-top:auto;padding-top:12px;font-size:11px;font-weight:700;color:#FF3300;"><i class="ph ph-arrow-up-right"></i> Screen 02.3</span>
                 </div>
 
-                <div class="glance-step-card" onclick="closeDashboard();go('conversation')" style="cursor:pointer;" title="Explore conversation screen">
-                  <span class="glance-step-num">STEP 04</span>
-                  <h3 class="glance-step-title">Connect and continue</h3>
-                  <p class="glance-step-text">After acceptance, continue through your network and conversation.</p>
+                <div class="glance-step-card" onclick="closeDashboard();go('requests')" style="cursor:pointer;" title="Inspect Screen 03.2: Requests">
+                  <span class="glance-step-num">STAGE 04</span>
+                  <h3 class="glance-step-title">Connect</h3>
+                  <p class="glance-step-text">Permissioned handshake. Send a tailored introduction note. Recipient holds total agency to accept or decline.</p>
+                  <span style="margin-top:auto;padding-top:12px;font-size:11px;font-weight:700;color:#FF3300;"><i class="ph ph-arrow-up-right"></i> Screen 03.2</span>
+                </div>
+
+                <div class="glance-step-card" onclick="closeDashboard();go('conversation')" style="cursor:pointer;" title="Inspect Screen 04.1: Conversation">
+                  <span class="glance-step-num">STAGE 05</span>
+                  <h3 class="glance-step-title">Chat &amp; Network</h3>
+                  <p class="glance-step-text">Mutual acceptance unlocks 1-on-1 chat. Connected relationships and conversation logs persist permanently after session ends.</p>
+                  <span style="margin-top:auto;padding-top:12px;font-size:11px;font-weight:700;color:#FF3300;"><i class="ph ph-arrow-up-right"></i> Screen 04.1</span>
                 </div>
               </div>
 
               <div class="glance-callout">
                 <i class="ph ph-shield-check" aria-hidden="true"></i>
-                <span><strong>Core rule:</strong> Entering the app does not automatically make a person visible.</span>
+                <span><strong>Fundamental Product Invariant:</strong> Launching or logging into Peopi never makes a person visible. Visibility is strictly an active, time-boxed decision with immediate opt-out ("Hide presence") at any time.</span>
               </div>
             </section>
 
-            <!-- 04. CURRENT READINESS -->
+            <!-- 04. THREE PRODUCT PRINCIPLES -->
             <section class="glance-sec">
               <div class="glance-sec-head">
-                <span class="glance-kicker">CURRENT READINESS</span>
-                <h2 class="glance-title">A tangible product foundation. A clear next stage<span class="brand-dot">.</span></h2>
+                <span class="glance-kicker">PRODUCT PRINCIPLES</span>
+                <h2 class="glance-title">Engineered for trust, discretion, and human agency<span class="brand-dot">.</span></h2>
+                <p class="glance-lead">
+                  Three foundational product principles govern every screen, interaction, and technical contract in Peopi:
+                </p>
+              </div>
+
+              <div class="glance-grid-3">
+                <div class="glance-card">
+                  <div class="glance-card-icon" style="background:#FFF5F2;color:#FF3300;border-color:#FFE2D9;"><i class="ph ph-eye-slash" aria-hidden="true"></i></div>
+                  <h3 class="glance-card-title">1. Intentional Visibility</h3>
+                  <p class="glance-card-text">
+                    Presence is never continuous or passive. Members declare availability only when they choose, for a fixed countdown, and under specific goals. When a session expires, presence drops immediately back to dark.
+                  </p>
+                </div>
+
+                <div class="glance-card">
+                  <div class="glance-card-icon" style="background:#FFF5F2;color:#FF3300;border-color:#FFE2D9;"><i class="ph ph-lock-key" aria-hidden="true"></i></div>
+                  <h3 class="glance-card-title">2. Privacy by Design</h3>
+                  <p class="glance-card-text">
+                    Zero continuous GPS tracking. Proximity is approximate and randomized to prevent physical triangulating. Direct contact details remain protected behind mutual permission boundaries.
+                  </p>
+                </div>
+
+                <div class="glance-card">
+                  <div class="glance-card-icon" style="background:#FFF5F2;color:#FF3300;border-color:#FFE2D9;"><i class="ph ph-handshake" aria-hidden="true"></i></div>
+                  <h3 class="glance-card-title">3. Mutual Connection</h3>
+                  <p class="glance-card-text">
+                    No unsolicited broadcasting, blast messages, or SDR cold-pitching. Conversation is strictly gated behind a double opt-in handshake. Block, mute, and report tools are one tap away.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- 05. TECHNICAL READINESS: PROTOTYPE VS PRODUCTION -->
+            <section class="glance-sec">
+              <div class="glance-sec-head">
+                <span class="glance-kicker">TECHNICAL READINESS &amp; SCOPE BOUNDARIES</span>
+                <h2 class="glance-title">Interactive prototype specification vs. native production implementation<span class="brand-dot">.</span></h2>
+                <p class="glance-lead">
+                  This case study presents an executable, high-fidelity UX specification and state harness. Below is a rigorous breakdown of what is validated in this prototype versus the production engineering required for commercial rollout.
+                </p>
               </div>
 
               <div class="glance-grid-2">
                 <div class="glance-readiness-card">
                   <div class="glance-readiness-head prep-head">
                     <i class="ph-bold ph-check-circle" aria-hidden="true"></i>
-                    <span>Prepared so far</span>
+                    <span>Interactive Prototype (This Specification)</span>
                   </div>
                   <ul class="glance-readiness-list prep-list">
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>Product concept and core experience.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>Interactive screen prototype.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>Brand identity and application examples.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>Design foundations and an initial component library.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>Product rules and implementation documentation.</span></li>
+                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>28 Functional Screen Destinations:</strong> Complete user flows across onboarding, discovery, connections, chat, and privacy.</span></li>
+                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Deterministic State Machines:</strong> Live session timers, intent filtering, mutual request-and-accept cycles, and persistent chat state.</span></li>
+                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Synchronized Motion &amp; Tokens:</strong> Shared motion contracts (`peopi-screen-contracts.json`) enforcing 60fps transitions and reduce-motion accessibility.</span></li>
+                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Design System Governance:</strong> 8 reusable component families scraped directly from live screen specimens.</span></li>
+                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Dual Theme Fidelity:</strong> Pixel-perfect light (#F6F5F2) and dark (#141922) theme implementations.</span></li>
                   </ul>
                 </div>
 
                 <div class="glance-readiness-card">
                   <div class="glance-readiness-head next-head">
-                    <i class="ph-bold ph-hourglass-simple" aria-hidden="true"></i>
-                    <span>Next to develop and validate</span>
+                    <i class="ph-bold ph-gear-six" aria-hidden="true"></i>
+                    <span>Native Production Engineering (Next Roadmap Stage)</span>
                   </div>
                   <ul class="glance-readiness-list next-list">
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span>Live proximity mesh &amp; low-energy BLE beaconing.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span>Real-time mutual consent handshake protocol.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span>Encrypted 1-on-1 messaging infrastructure.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span>Production engineering and operational safeguards.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span>Pilot cohort validation and density testing in Miami.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Native Mobile Clients:</strong> Production Swift (iOS) and Flutter client build with hardware-level battery optimization.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>BLE &amp; Geofence Beaconing:</strong> Low-Energy Bluetooth peripheral mesh with rotating ephemeral UUIDs to prevent sniffing.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>End-to-End Encrypted Messaging:</strong> Signal Protocol-based 1-on-1 messaging ensuring zero-knowledge chat privacy.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Distributed Presence Infrastructure:</strong> Real-time Redis/WebSocket cluster with automated TTL session pruning and rate limiting.</span></li>
+                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Trust &amp; Safety Compliance:</strong> Automated device reputation scoring, verified LinkedIn credentials, and rapid abuse moderation pipelines.</span></li>
                   </ul>
                 </div>
               </div>
 
               <div class="glance-disclaimer-box">
                 <i class="ph ph-info" aria-hidden="true" style="color:#FF3300;margin-right:6px;"></i>
-                The prototype demonstrates the intended experience. It does not represent a launched service, proven demand or validated revenue.
+                <strong>Portfolio Scope Note:</strong> This artifact serves as the validated product and design specification for engineering implementation. It showcases full interaction design, UX architecture, and product judgment without claiming pre-existing market traction or commercial scale.
               </div>
             </section>
 
-            <!-- 05. CASE STUDY METHODOLOGY -->
+            <!-- 06. CASE STUDY DOSSIER DIRECTORY -->
             <section class="glance-sec">
               <div class="glance-sec-head">
-                <span class="glance-kicker">CASE STUDY METHODOLOGY</span>
-                <h2 class="glance-title">From problem definition to working prototype<span class="brand-dot">.</span></h2>
-                <p class="glance-lead">
-                  Peopi demonstrates an end-to-end product process: validating problem hypotheses, defining invariant product contracts, building an authentic design system, and creating 22+ interactive mobile screens.
-                </p>
-              </div>
-
-              <div class="glance-grid-3">
-                <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-compass" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Product strategy</h3>
-                  <p class="glance-card-text">Clear boundaries: privacy-by-default, approximate location, and mutual consent before messaging.</p>
-                </div>
-                <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-palette" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Design system &amp; components</h3>
-                  <p class="glance-card-text">Tokenized foundations, 8 real component families, and unified motion contracts.</p>
-                </div>
-                <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-device-mobile" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Interactive prototype</h3>
-                  <p class="glance-card-text">22+ fully functional mobile screens implementing the complete introduction lifecycle.</p>
-                </div>
-              </div>
-            </section>
-
-            <!-- 06. EXPLORE THE CASE STUDY -->
-            <section class="glance-sec">
-              <div class="glance-sec-head">
-                <span class="glance-kicker">EXPLORE THE CASE STUDY</span>
-                <h2 class="glance-title">Explore the thinking. Inspect the product<span class="brand-dot">.</span></h2>
+                <span class="glance-kicker">CASE STUDY CHAPTERS</span>
+                <h2 class="glance-title">Explore the product strategy &amp; execution<span class="brand-dot">.</span></h2>
               </div>
 
               <div class="glance-grid-3">
@@ -21177,8 +21216,8 @@ body.notes-open #dash-notes-toggle i {
                     <div class="glance-dossier-icon"><i class="ph ph-lightbulb" aria-hidden="true"></i></div>
                     <i class="ph ph-arrow-right glance-dossier-arrow" aria-hidden="true"></i>
                   </div>
-                  <h3 class="glance-dossier-title">Problem &amp; Opportunity</h3>
-                  <p class="glance-dossier-desc">Problem framing, friction gaps, and core product hypotheses.</p>
+                  <h3 class="glance-dossier-title">01.2 Problem &amp; Opportunity</h3>
+                  <p class="glance-dossier-desc">Friction breakdown, competitive gap analysis, core hypotheses, and Miami pilot test framework.</p>
                 </button>
 
                 <button type="button" class="glance-dossier-card" onclick="openOverview('strategy')">
@@ -21186,8 +21225,8 @@ body.notes-open #dash-notes-toggle i {
                     <div class="glance-dossier-icon"><i class="ph ph-compass" aria-hidden="true"></i></div>
                     <i class="ph ph-arrow-right glance-dossier-arrow" aria-hidden="true"></i>
                   </div>
-                  <h3 class="glance-dossier-title">Product Vision &amp; Strategy</h3>
-                  <p class="glance-dossier-desc">Market segmentation, competitive positioning, and execution roadmap.</p>
+                  <h3 class="glance-dossier-title">01.3 Product Vision &amp; Strategy</h3>
+                  <p class="glance-dossier-desc">Product positioning, strategic differentiators, defensibility thesis, and multi-horizon roadmap.</p>
                 </button>
 
                 <button type="button" class="glance-dossier-card" onclick="openOverview('audience')">
@@ -21195,8 +21234,8 @@ body.notes-open #dash-notes-toggle i {
                     <div class="glance-dossier-icon"><i class="ph ph-users-three" aria-hidden="true"></i></div>
                     <i class="ph ph-arrow-right glance-dossier-arrow" aria-hidden="true"></i>
                   </div>
-                  <h3 class="glance-dossier-title">Target Audience &amp; Personas</h3>
-                  <p class="glance-dossier-desc">Behavioral personas, candidate pilot settings, and founder-led execution.</p>
+                  <h3 class="glance-dossier-title">01.4 Target Audience &amp; Personas</h3>
+                  <p class="glance-dossier-desc">Behavioral personas (Builders, Connectors, Explorers), context triggers, and pilot geography.</p>
                 </button>
 
                 <button type="button" class="glance-dossier-card" onclick="openOverview('scope-rules')">
@@ -21204,8 +21243,8 @@ body.notes-open #dash-notes-toggle i {
                     <div class="glance-dossier-icon"><i class="ph ph-shield-check" aria-hidden="true"></i></div>
                     <i class="ph ph-arrow-right glance-dossier-arrow" aria-hidden="true"></i>
                   </div>
-                  <h3 class="glance-dossier-title">MVP Scope &amp; Product Decisions</h3>
-                  <p class="glance-dossier-desc">Engineering boundaries, invariant rules, and trade-off registry.</p>
+                  <h3 class="glance-dossier-title">01.5 MVP Scope &amp; Product Decisions</h3>
+                  <p class="glance-dossier-desc">Strict engineering boundaries, invariant privacy rules, and documented trade-off registry.</p>
                 </button>
 
                 <button type="button" class="glance-dossier-card" onclick="openOverview('user-journeys')">
@@ -21213,17 +21252,17 @@ body.notes-open #dash-notes-toggle i {
                     <div class="glance-dossier-icon"><i class="ph ph-tree-structure" aria-hidden="true"></i></div>
                     <i class="ph ph-arrow-right glance-dossier-arrow" aria-hidden="true"></i>
                   </div>
-                  <h3 class="glance-dossier-title">User Journeys &amp; Flows</h3>
-                  <p class="glance-dossier-desc">End-to-end journey chapters, interactive screen map, and flow traces.</p>
+                  <h3 class="glance-dossier-title">01.6 User Journeys &amp; Flows</h3>
+                  <p class="glance-dossier-desc">Interactive journey map connecting all 28 screens across onboarding, active discovery, and connection.</p>
                 </button>
 
-                <button type="button" class="glance-dossier-card" onclick="closeDashboard();go('closed')">
+                <button type="button" class="glance-dossier-card" onclick="closeDashboard();go('closed')" style="border-color:#FF3300;background:linear-gradient(180deg, #FFFFFF 0%, #FFF5F2 100%);">
                   <div class="glance-dossier-top">
-                    <div class="glance-dossier-icon"><i class="ph ph-device-mobile" aria-hidden="true"></i></div>
-                    <i class="ph ph-arrow-up-right glance-dossier-arrow" aria-hidden="true"></i>
+                    <div class="glance-dossier-icon" style="background:#FF3300;color:#FFFFFF;border-color:#FF3300;"><i class="ph ph-device-mobile" aria-hidden="true"></i></div>
+                    <i class="ph ph-arrow-up-right glance-dossier-arrow" style="color:#FF3300;" aria-hidden="true"></i>
                   </div>
-                  <h3 class="glance-dossier-title">Interactive Prototype</h3>
-                  <p class="glance-dossier-desc">Test all 22+ working screens, session timers, and connection flows.</p>
+                  <h3 class="glance-dossier-title" style="color:#FF3300;">Interactive Mobile Prototype</h3>
+                  <p class="glance-dossier-desc">Launch and test all 28 working screens, session timers, discovery filters, and live chat states.</p>
                 </button>
               </div>
             </section>
@@ -21245,8 +21284,11 @@ body.notes-open #dash-notes-toggle i {
           <!-- Top Header Bar -->
           <header class="dash-page-header">
             <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 — WHAT IS PEOPI?</span>
+              <span class="dash-page-kicker">01 — WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
               <h1 class="dash-page-title">Problem &amp; Opportunity<span class="brand-dot">.</span></h1>
+            </div>
+            <div class="dash-head-actions ds-head-actions">
+              <button type="button" class="ds-notes-btn" onclick="openOverview('intro')" title="Back to Product Overview"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
             </div>
           </header>
 
@@ -21256,52 +21298,58 @@ body.notes-open #dash-notes-toggle i {
               <div class="prob-hero-content">
                 <span class="prob-pill-tag">
                   <span class="prob-pill-dot"></span>
-                  Problem framing · To be validated through pilot usage
+                  Product Hypothesis · Problem Framing for Miami Pilot
                 </span>
                 <h2 class="prob-hero-headline">Being nearby is not the same as being connected<span class="brand-dot">.</span></h2>
                 <p class="prob-hero-desc">
-                  Peopi starts with a product hypothesis: useful professional introductions can be missed when people share a place but lack a clear way to discover relevance, express availability and approach one another.
+                  Every day, thousands of professionals work within meters of one another in coworking hubs, industry conferences, and innovation centers. Yet serendipitous, high-value collaborations rarely materialize. Physical co-presence alone cannot overcome the steep social friction, unshared professional context, and unknown real-time availability that keep people isolated.
                 </p>
               </div>
             </div>
           </section>
 
-          <!-- 2. THE FRICTION -->
+          <!-- 2. THE THREE BEHAVIORAL BREAKPOINTS -->
           <section class="prob-sec">
             <div class="prob-sec-head">
               <div>
-                <span class="prob-sec-kicker">THE FRICTION</span>
-                <h3 class="prob-sec-title">Three gaps between proximity and a conversation<span class="brand-dot">.</span></h3>
+                <span class="prob-sec-kicker">BEHAVIORAL FRICTION</span>
+                <h3 class="prob-sec-title">Three structural friction points preventing in-person connection<span class="brand-dot">.</span></h3>
               </div>
             </div>
 
             <div class="prob-grid-3">
               <div class="prob-card">
                 <div class="prob-card-icon"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Discovery</h4>
-                <p class="prob-card-text">You may share a space with relevant people without knowing who they are or why a conversation could be useful.</p>
+                <h4 class="prob-card-title">1. Context Invisibility</h4>
+                <p class="prob-card-text">
+                  You share a room with engineers, potential co-founders, or pilot partners, but to the eye, everyone looks like a stranger behind a laptop. Without a shared signal, their domain, skills, and current projects remain completely hidden.
+                </p>
               </div>
 
               <div class="prob-card">
                 <div class="prob-card-icon"><i class="ph ph-clock" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Availability</h4>
-                <p class="prob-card-text">A professional profile does not tell you whether someone is open to an introduction right now.</p>
+                <h4 class="prob-card-title">2. Availability Uncertainty</h4>
+                <p class="prob-card-text">
+                  A static LinkedIn profile or business card reveals historical experience, but zero information about current availability. Are they deep in focused work, rushing to a client call, or genuinely open to a coffee chat right now?
+                </p>
               </div>
 
               <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-shield-check" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Permission</h4>
-                <p class="prob-card-text">Starting a conversation can feel uncertain when interest and boundaries have not been expressed.</p>
+                <div class="prob-card-icon"><i class="ph ph-shield-warning" aria-hidden="true"></i></div>
+                <h4 class="prob-card-title">3. High Social Risk</h4>
+                <p class="prob-card-text">
+                  Cold-approaching a stranger in an in-person professional environment carries intense social awkwardness, asymmetric vulnerability, fear of appearing intrusive, and hesitation around unwanted commercial solicitation.
+                </p>
               </div>
             </div>
           </section>
 
-          <!-- 3. AN ILLUSTRATIVE SCENARIO (Single clear disclaimer, no repetitions) -->
+          <!-- 3. AN ILLUSTRATIVE SCENARIO -->
           <section class="prob-sec">
             <div class="prob-sec-head">
               <div>
                 <span class="prob-sec-kicker">AN ILLUSTRATIVE SCENARIO</span>
-                <h3 class="prob-sec-title">A shared place. An unclear opportunity<span class="brand-dot">.</span></h3>
+                <h3 class="prob-sec-title">A shared place. An uncaptured introduction<span class="brand-dot">.</span></h3>
               </div>
             </div>
 
@@ -21309,10 +21357,10 @@ body.notes-open #dash-notes-toggle i {
               <div class="prob-scenario-story">
                 <div class="prob-pill-tag prob-scenario-tag">
                   <span class="prob-pill-dot"></span>
-                  Illustrative scenario — not a user research finding
+                  Illustrative scenario — behavioral friction archetype
                 </div>
                 <p class="prob-story-quote">
-                  “Two professionals attend the same gathering. Their interests could overlap, but neither knows the other’s context or availability. They leave without an introduction.”
+                  “Two senior operators attend the same tech summit in Brickell. One is searching for a founding engineer; the other is exploring early-stage AI ventures. They sit three tables apart for two hours. Lacking shared context or mutual permission, both leave without ever saying a word.”
                 </p>
               </div>
 
@@ -21334,8 +21382,8 @@ body.notes-open #dash-notes-toggle i {
                     <circle cx="28" cy="28" r="14" fill="#FFF5F2" stroke="#FFE2D9" stroke-width="1"/>
                     <circle cx="28" cy="24" r="5" fill="#FF3300"/>
                     <path d="M 20 37 C 20 31 23 29 28 29 C 33 29 36 31 36 37" fill="#FF3300"/>
-                    <text x="50" y="26" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Professional A</text>
-                    <text x="50" y="38" font-family="inherit" font-size="10" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Attendee</text>
+                    <text x="50" y="26" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Operator A</text>
+                    <text x="50" y="38" font-family="inherit" font-size="10" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Founder · AI</text>
                     <rect x="12" y="58" width="108" height="24" rx="6" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
                     <text x="18" y="74" font-family="inherit" font-size="9.5" font-weight="600" fill="var(--prob-svg-subtext, #475569)">? Context unshared</text>
                   </g>
@@ -21346,10 +21394,10 @@ body.notes-open #dash-notes-toggle i {
                     <circle cx="28" cy="28" r="14" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
                     <circle cx="28" cy="24" r="5" fill="#475569"/>
                     <path d="M 20 37 C 20 31 23 29 28 29 C 33 29 36 31 36 37" fill="#475569"/>
-                    <text x="50" y="26" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Professional B</text>
-                    <text x="50" y="38" font-family="inherit" font-size="10" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Attendee</text>
+                    <text x="50" y="26" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Operator B</text>
+                    <text x="50" y="38" font-family="inherit" font-size="10" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Lead Engineer</text>
                     <rect x="12" y="58" width="108" height="24" rx="6" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="18" y="74" font-family="inherit" font-size="9.5" font-weight="600" fill="var(--prob-svg-subtext, #475569)">? Availability unclear</text>
+                    <text x="18" y="74" font-family="inherit" font-size="9.5" font-weight="600" fill="var(--prob-svg-subtext, #475569)">? Availability unknown</text>
                   </g>
 
                   <!-- Center Missing Bridge / Gap -->
@@ -21366,116 +21414,166 @@ body.notes-open #dash-notes-toggle i {
                     <rect x="0" y="0" width="388" height="36" rx="8" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
                     <circle cx="20" cy="18" r="4" fill="#94A3B8"/>
                     <text x="32" y="22" font-family="inherit" font-size="11.5" font-weight="700" fill="var(--prob-svg-text, #0F172A)">Outcome:</text>
-                    <text x="92" y="22" font-family="inherit" font-size="11.5" font-weight="500" fill="var(--prob-svg-muted, #64748B)">Shared proximity ends without an introduction or conversation.</text>
+                    <text x="92" y="22" font-family="inherit" font-size="11.5" font-weight="500" fill="var(--prob-svg-muted, #64748B)">Physical proximity ends without conversation or follow-up.</text>
                   </g>
                 </svg>
               </div>
             </div>
           </section>
 
-          <!-- 4. EXISTING WAYS TO CONNECT -->
+          <!-- 4. EXISTING ALTERNATIVES & STRUCTURAL GAPS -->
           <section class="prob-sec">
             <div class="prob-sec-head">
               <div>
-                <span class="prob-sec-kicker">EXISTING WAYS TO CONNECT</span>
-                <h3 class="prob-sec-title">Different tools solve different parts of the journey<span class="brand-dot">.</span></h3>
+                <span class="prob-sec-kicker">LANDSCAPE GAP ANALYSIS</span>
+                <h3 class="prob-sec-title">Why existing solutions fail in physical environments<span class="brand-dot">.</span></h3>
               </div>
             </div>
 
             <div class="prob-grid-3">
               <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-share-network" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Professional networks</h4>
-                <p class="prob-card-text">Provide profile context and ongoing connections; immediate availability in a shared place is a separate question.</p>
+                <div class="prob-card-icon"><i class="ph ph-linkedin-logo" aria-hidden="true"></i></div>
+                <h4 class="prob-card-title">Asynchronous Networks (e.g. LinkedIn)</h4>
+                <p class="prob-card-text">
+                  Optimized for historical resumes, recruiters, and cold InMail. Completely detached from real-time physical space and immediate willingness to chat. Messages often sit unanswered for days or weeks.
+                </p>
               </div>
 
               <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Event and community channels</h4>
-                <p class="prob-card-text">Can support introductions within an organized audience; their usefulness depends on the setting and participation.</p>
+                <div class="prob-card-icon"><i class="ph ph-chats" aria-hidden="true"></i></div>
+                <h4 class="prob-card-title">Conference Apps (e.g. Whova, Slack)</h4>
+                <p class="prob-card-text">
+                  Confined strictly to ticketed events. Suffer from high broadcast noise, uncurated group chat spam, and low participation. Completely useless in regular coffee shops, airports, and coworking spaces.
+                </p>
               </div>
 
               <div class="prob-card">
                 <div class="prob-card-icon"><i class="ph ph-handshake" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">In-person introductions</h4>
-                <p class="prob-card-text">Offer direct human interaction; discovering relevance and choosing when to approach still depend on context.</p>
+                <h4 class="prob-card-title">Unassisted Organic Approaches</h4>
+                <p class="prob-card-text">
+                  Produce great serendipity when they happen, but depend entirely on aggressive extroversion, zero prior context, and awkward cold openers. Over 90% of opportunities are lost to hesitation.
+                </p>
               </div>
             </div>
           </section>
 
-          <!-- 5. PEOPI’S RESPONSE -->
+          <!-- 5. THE PRODUCT HYPOTHESIS -->
           <section class="prob-sec">
             <div class="prob-sec-head">
               <div>
-                <span class="prob-sec-kicker">PEOPI’S RESPONSE</span>
-                <h3 class="prob-sec-title">Make availability explicit. Keep connection mutual<span class="brand-dot">.</span></h3>
+                <span class="prob-sec-kicker">PRODUCT OPPORTUNITY</span>
+                <h3 class="prob-sec-title">The core hypothesis to be tested<span class="brand-dot">.</span></h3>
               </div>
             </div>
 
-            <div class="prob-grid-3">
-              <div class="prob-card prob-card-featured">
-                <div class="prob-card-icon featured"><i class="ph ph-eye" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">User-controlled visibility</h4>
-                <p class="prob-card-text">People explicitly choose when to become discoverable.</p>
-              </div>
-
-              <div class="prob-card prob-card-featured">
-                <div class="prob-card-icon featured"><i class="ph ph-identification-card" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Professional context</h4>
-                <p class="prob-card-text">Profiles and intent help people assess whether an introduction could be relevant.</p>
-              </div>
-
-              <div class="prob-card prob-card-featured">
-                <div class="prob-card-icon featured"><i class="ph ph-handshake" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Request and acceptance</h4>
-                <p class="prob-card-text">A clear invitation step lets the other person decide whether to connect before continuing the conversation.</p>
+            <div class="prob-card prob-card-featured" style="padding:32px 36px;border-left:4px solid #FF3300;">
+              <span style="font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#FF3300;margin-bottom:12px;display:block;">PRIMARY VALUE HYPOTHESIS</span>
+              <p style="font-size:18px;line-height:1.6;font-weight:600;color:#0F172A;margin:0 0 16px;">
+                “If professionals in a shared physical environment can declare time-limited, goal-oriented availability with approximate proximity and mutual consent, they will initiate significantly more relevant, welcomed, and productive in-person connections than traditional cold approaches or asynchronous outreach.”
+              </p>
+              <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid #FFE2D9;">
+                <div>
+                  <strong style="display:block;font-size:13px;color:#0F172A;margin-bottom:4px;">1. Friction Reduction</strong>
+                  <span style="font-size:12.5px;color:#64748B;line-height:1.5;">An explicit "I'm Open" signal removes the fear of intruding on focused work.</span>
+                </div>
+                <div>
+                  <strong style="display:block;font-size:13px;color:#0F172A;margin-bottom:4px;">2. Context Sufficiency</strong>
+                  <span style="font-size:12.5px;color:#64748B;line-height:1.5;">2–3 declared intents establish immediate relevance without extensive resume reading.</span>
+                </div>
+                <div>
+                  <strong style="display:block;font-size:13px;color:#0F172A;margin-bottom:4px;">3. Privacy Reassurance</strong>
+                  <span style="font-size:12.5px;color:#64748B;line-height:1.5;">Automatic session expiration and fuzzy distance eliminate stalking concerns.</span>
+                </div>
               </div>
             </div>
 
-            <div class="prob-callout">
+            <div class="prob-callout" style="margin-top:20px;">
               <i class="ph ph-shield-check" aria-hidden="true"></i>
-              <span><strong>Product principle:</strong> Peopi’s proposed role is to support the introduction. The value of the connection depends on the people involved. Entering or signing into the app does not automatically make a person visible.</span>
+              <span><strong>Methodological Discipline:</strong> This hypothesis represents an operational thesis to be validated in pilot environments. It is not an established market fact or claimed conversion metric.</span>
             </div>
           </section>
 
-          <!-- 6. WHAT MUST BE TRUE -->
+          <!-- 6. KEY ASSUMPTIONS & CRITICAL UNCERTAINTIES -->
           <section class="prob-sec">
             <div class="prob-sec-head">
               <div>
-                <span class="prob-sec-kicker">WHAT MUST BE TRUE</span>
-                <h3 class="prob-sec-title">The opportunity depends on more than an interface<span class="brand-dot">.</span></h3>
+                <span class="prob-sec-kicker">RISK FRAMEWORK</span>
+                <h3 class="prob-sec-title">Key assumptions and critical uncertainties<span class="brand-dot">.</span></h3>
               </div>
             </div>
 
             <div class="prob-grid-4">
               <div class="prob-card">
                 <div class="prob-card-icon"><i class="ph ph-users-three" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Local density</h4>
-                <p class="prob-card-text">Enough relevant people need to participate in the same place and time.</p>
+                <h4 class="prob-card-title">Density Threshold</h4>
+                <p class="prob-card-text">Requires a minimum number of active peers in the same 500m radius within the same time window to prevent empty radar states.</p>
               </div>
 
               <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-sparkle" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Useful relevance</h4>
-                <p class="prob-card-text">Profile context and intent need to help people find worthwhile introductions.</p>
+                <div class="prob-card-icon"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i></div>
+                <h4 class="prob-card-title">Social Signaling</h4>
+                <p class="prob-card-text">Users must perceive declaring availability as proactive and high-agency, rather than needy or informal. Brand tone is critical.</p>
               </div>
 
               <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-lock-key" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Trust and control</h4>
-                <p class="prob-card-text">People need to understand and feel comfortable with visibility, requests and privacy controls.</p>
+                <div class="prob-card-icon"><i class="ph ph-funnel" aria-hidden="true"></i></div>
+                <h4 class="prob-card-title">Intent Liquidity</h4>
+                <p class="prob-card-text">Intent categories must be specific enough to filter relevance, but broad enough to maintain liquidity in smaller venues.</p>
               </div>
 
               <div class="prob-card">
                 <div class="prob-card-icon"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Repeat value</h4>
-                <p class="prob-card-text">The experience needs to remain useful beyond a first trial.</p>
+                <h4 class="prob-card-title">Retention &amp; Churn</h4>
+                <p class="prob-card-text">Does a coffee introduction translate into long-term professional value, or do users disengage once initial contacts are established?</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 7. HOW THE MIAMI PILOT TESTS THE HYPOTHESIS -->
+          <section class="prob-sec">
+            <div class="prob-sec-head">
+              <div>
+                <span class="prob-sec-kicker">VALIDATION BLUEPRINT</span>
+                <h3 class="prob-sec-title">How the Miami pilot is structured to test the thesis<span class="brand-dot">.</span></h3>
               </div>
             </div>
 
-            <div class="prob-caption-box">
+            <div class="prob-grid-2">
+              <div class="prob-card" style="padding:28px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+                  <div class="prob-card-icon featured" style="margin-bottom:0;"><i class="ph ph-map-pin"></i></div>
+                  <h4 class="prob-card-title" style="margin-bottom:0;">Strategic Pilot Ecology (Miami)</h4>
+                </div>
+                <p class="prob-card-text" style="margin-bottom:14px;">
+                  Miami offers high geographic concentration in walkable innovation districts (Brickell, Wynwood) paired with an active influx of remote founders, venture investors, and technology operators seeking local ecosystem integration.
+                </p>
+                <ul style="margin:0;padding-left:18px;font-size:13.5px;color:#475569;line-height:1.6;">
+                  <li>Focused pilot partnerships with curated coworking spaces and tech meetup hosts.</li>
+                  <li>Scheduled activation windows (e.g. Tuesday morning tech breakfasts, demo nights).</li>
+                  <li>Controlled cohort testing to guarantee local density thresholds before citywide release.</li>
+                </ul>
+              </div>
+
+              <div class="prob-card" style="padding:28px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+                  <div class="prob-card-icon featured" style="margin-bottom:0;"><i class="ph ph-chart-line-up"></i></div>
+                  <h4 class="prob-card-title" style="margin-bottom:0;">Empirical Validation Gates</h4>
+                </div>
+                <p class="prob-card-text" style="margin-bottom:14px;">
+                  Success and failure are defined quantitatively before field deployment:
+                </p>
+                <ul style="margin:0;padding-left:18px;font-size:13.5px;color:#475569;line-height:1.6;">
+                  <li><strong>Session Activation Rate:</strong> Target &gt;25% of present cohort members voluntarily activating an "I'm Open" session.</li>
+                  <li><strong>Request Acceptance Ratio:</strong> Target &gt;60% acceptance rate on sent connection requests, verifying relevance over spam.</li>
+                  <li><strong>Introduction Completion:</strong> Qualitative post-session feedback verifying that at least 50% of mutual matches led to a real conversation.</li>
+                  <li><strong>Boundary Kill Switch:</strong> If inbound spam reports exceed 5% or session abandonment exceeds 50%, pause rollout to revise intent gating.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="prob-caption-box" style="margin-top:20px;">
               <i class="ph ph-info" aria-hidden="true"></i>
-              <span>These are product assumptions, not validated outcomes. Pilot usage will inform whether and how the product should grow.</span>
+              <span>These validation gates establish a structured learning agenda for the Miami cohort. No claims of production traction or commercial revenue are made at this prototype stage.</span>
             </div>
           </section>
 
