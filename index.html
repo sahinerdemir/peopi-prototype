@@ -21000,6 +21000,500 @@ body.notes-open #dash-notes-toggle i {
   }
 }
 
+/* Product at a Glance Spec Matrix */
+.glance-spec-card {
+  background: var(--surface, #FFFFFF) !important;
+  border: 1px solid var(--border, #E2E8F0) !important;
+  border-radius: var(--radius-xl, 18px) !important;
+  padding: 28px 32px !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02) !important;
+  box-sizing: border-box !important;
+}
+.glance-spec-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 22px 28px !important;
+}
+.glance-spec-item {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+.glance-spec-label {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #FF3300 !important;
+}
+.glance-spec-val {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: var(--text-primary, #0F172A) !important;
+  line-height: 1.35 !important;
+}
+.glance-spec-sub {
+  font-size: 12.5px !important;
+  color: var(--text-secondary, #64748B) !important;
+  line-height: 1.45 !important;
+}
+.glance-stage-boundary {
+  margin-top: 24px !important;
+  padding: 14px 18px !important;
+  background: #FFF5F2 !important;
+  border: 1px solid #FFE2D9 !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+.glance-stage-boundary-icon {
+  color: #FF3300 !important;
+  font-size: 18px !important;
+  margin-top: 1px !important;
+  flex-shrink: 0 !important;
+}
+.glance-stage-boundary-text {
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  color: #475569 !important;
+}
+.glance-stage-boundary-text strong {
+  color: #0F172A !important;
+}
+
+/* The Opportunity Card */
+.glance-opp-card {
+  background: var(--surface, #FFFFFF) !important;
+  border: 1px solid var(--border, #E2E8F0) !important;
+  border-radius: var(--radius-xl, 18px) !important;
+  padding: 28px 32px !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02) !important;
+  box-sizing: border-box !important;
+}
+.glance-opp-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  margin-bottom: 24px !important;
+}
+.glance-opp-item {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.glance-opp-icon {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 10px !important;
+  background: #FFF5F2 !important;
+  color: #FF3300 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  margin-bottom: 14px !important;
+  border: 1px solid #FFE2D9 !important;
+}
+.glance-opp-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 20px !important;
+  border-top: 1px solid var(--border, #E2E8F0) !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+}
+.glance-opp-footer-text {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 13px !important;
+  color: var(--text-secondary, #64748B) !important;
+  line-height: 1.5 !important;
+  flex: 1 1 400px !important;
+}
+.glance-opp-footer-text i {
+  color: #FF3300 !important;
+  font-size: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Product Strategy List */
+.glance-strategy-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  margin-top: 24px !important;
+}
+.glance-strategy-card {
+  background: var(--surface, #FFFFFF) !important;
+  border: 1px solid var(--border, #E2E8F0) !important;
+  border-radius: 16px !important;
+  padding: 22px 26px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02) !important;
+  transition: all 0.15s ease !important;
+  box-sizing: border-box !important;
+}
+.glance-strategy-card:hover {
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
+}
+.glance-strat-badge {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #FF3300 !important;
+  background: #FFF5F2 !important;
+  border: 1px solid #FFE2D9 !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+  flex-shrink: 0 !important;
+  font-variant-numeric: tabular-nums !important;
+  margin-top: 2px !important;
+}
+.glance-strat-content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+.glance-strat-content .glance-card-title {
+  font-size: 16.5px !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+  color: var(--text-primary, #0F172A) !important;
+}
+.glance-strat-columns {
+  display: grid !important;
+  grid-template-columns: 1fr 1.15fr !important;
+  gap: 20px !important;
+}
+.glance-strat-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+.glance-strat-label {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #64748B !important;
+}
+.glance-strat-label.why {
+  color: #FF3300 !important;
+}
+
+/* Key Product Decisions & Trade-Offs */
+.glance-decision-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
+  margin-top: 24px !important;
+}
+.glance-decision-card {
+  background: var(--surface, #FFFFFF) !important;
+  border: 1px solid var(--border, #E2E8F0) !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02) !important;
+  box-sizing: border-box !important;
+}
+.glance-dec-top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.glance-dec-badge {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #FF3300 !important;
+  letter-spacing: 0.08em !important;
+}
+.glance-dec-topic {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #64748B !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+}
+.glance-decision-card .glance-card-title {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+  line-height: 1.35 !important;
+}
+.glance-dec-block {
+  padding: 12px 14px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+.glance-dec-block.selected {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-left: 3px solid #16A34A !important;
+}
+.glance-dec-block.tradeoff {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-left: 3px solid #F59E0B !important;
+}
+.glance-dec-block-head {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+.glance-dec-block.selected .glance-dec-block-head {
+  color: #16A34A !important;
+}
+.glance-dec-block.tradeoff .glance-dec-block-head {
+  color: #D97706 !important;
+}
+.glance-dec-block .glance-card-text {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+/* Process Stepper & Roles */
+.glance-process-card {
+  background: var(--surface, #FFFFFF) !important;
+  border: 1px solid var(--border, #E2E8F0) !important;
+  border-radius: var(--radius-xl, 18px) !important;
+  padding: 28px 32px !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02) !important;
+  box-sizing: border-box !important;
+}
+.glance-process-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 14px !important;
+}
+.glance-process-step {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  padding: 16px 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+.glance-proc-num {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #FF3300 !important;
+  letter-spacing: 0.06em !important;
+}
+.glance-proc-title {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: var(--text-primary, #0F172A) !important;
+  margin: 0 !important;
+}
+.glance-proc-text {
+  font-size: 11.5px !important;
+  color: var(--text-secondary, #64748B) !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+}
+
+.glance-roles-card {
+  background: var(--surface, #FFFFFF) !important;
+  border: 1px solid var(--border, #E2E8F0) !important;
+  border-radius: var(--radius-xl, 18px) !important;
+  padding: 28px 32px !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02) !important;
+  box-sizing: border-box !important;
+}
+.glance-roles-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
+}
+.glance-role-box {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 14px !important;
+  padding: 20px 22px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+.glance-role-box.pm-box {
+  border-top: 3px solid #FF3300 !important;
+}
+.glance-role-box.ai-box {
+  border-top: 3px solid #3B82F6 !important;
+}
+.glance-role-box.qa-box {
+  border-top: 3px solid #10B981 !important;
+}
+.glance-role-head {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: var(--text-primary, #0F172A) !important;
+}
+.glance-role-box.pm-box .glance-role-head i {
+  color: #FF3300 !important;
+  font-size: 16px !important;
+}
+.glance-role-box.ai-box .glance-role-head i {
+  color: #3B82F6 !important;
+  font-size: 16px !important;
+}
+.glance-role-box.qa-box .glance-role-head i {
+  color: #10B981 !important;
+  font-size: 16px !important;
+}
+.glance-role-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+.glance-role-list li {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  color: var(--text-secondary, #475569) !important;
+  position: relative !important;
+  padding-left: 14px !important;
+}
+.glance-role-list li::before {
+  content: "•" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #FF3300 !important;
+  font-weight: bold !important;
+}
+.glance-role-box.ai-box .glance-role-list li::before {
+  color: #3B82F6 !important;
+}
+.glance-role-box.qa-box .glance-role-list li::before {
+  color: #10B981 !important;
+}
+
+/* Dark Mode Overrides for New Glance Components */
+#dashboard-workspace.ds-dark .glance-spec-card,
+#dashboard-workspace.dash-dark .glance-spec-card,
+#dashboard-workspace.ds-dark .glance-opp-card,
+#dashboard-workspace.dash-dark .glance-opp-card,
+#dashboard-workspace.ds-dark .glance-strategy-card,
+#dashboard-workspace.dash-dark .glance-strategy-card,
+#dashboard-workspace.ds-dark .glance-decision-card,
+#dashboard-workspace.dash-dark .glance-decision-card,
+#dashboard-workspace.ds-dark .glance-process-card,
+#dashboard-workspace.dash-dark .glance-process-card,
+#dashboard-workspace.ds-dark .glance-roles-card,
+#dashboard-workspace.dash-dark .glance-roles-card {
+  background: #18202C !important;
+  border-color: #2D3748 !important;
+}
+
+#dashboard-workspace.ds-dark .glance-spec-val,
+#dashboard-workspace.dash-dark .glance-spec-val,
+#dashboard-workspace.ds-dark .glance-proc-title,
+#dashboard-workspace.dash-dark .glance-proc-title,
+#dashboard-workspace.ds-dark .glance-role-head,
+#dashboard-workspace.dash-dark .glance-role-head,
+#dashboard-workspace.ds-dark .glance-stage-boundary-text strong,
+#dashboard-workspace.dash-dark .glance-stage-boundary-text strong {
+  color: #F8FAFC !important;
+}
+
+#dashboard-workspace.ds-dark .glance-spec-sub,
+#dashboard-workspace.dash-dark .glance-spec-sub,
+#dashboard-workspace.ds-dark .glance-proc-text,
+#dashboard-workspace.dash-dark .glance-proc-text,
+#dashboard-workspace.ds-dark .glance-role-list li,
+#dashboard-workspace.dash-dark .glance-role-list li,
+#dashboard-workspace.ds-dark .glance-stage-boundary-text,
+#dashboard-workspace.dash-dark .glance-stage-boundary-text,
+#dashboard-workspace.ds-dark .glance-opp-footer-text,
+#dashboard-workspace.dash-dark .glance-opp-footer-text,
+#dashboard-workspace.ds-dark .glance-strat-label,
+#dashboard-workspace.dash-dark .glance-strat-label {
+  color: #94A3B8 !important;
+}
+
+#dashboard-workspace.ds-dark .glance-stage-boundary,
+#dashboard-workspace.dash-dark .glance-stage-boundary {
+  background: #231C1F !important;
+  border-color: #4A261D !important;
+}
+
+#dashboard-workspace.ds-dark .glance-strat-badge,
+#dashboard-workspace.dash-dark .glance-strat-badge,
+#dashboard-workspace.ds-dark .glance-opp-icon,
+#dashboard-workspace.dash-dark .glance-opp-icon {
+  background: #2D1A16 !important;
+  border-color: #4D261C !important;
+}
+
+#dashboard-workspace.ds-dark .glance-dec-block,
+#dashboard-workspace.dash-dark .glance-dec-block,
+#dashboard-workspace.ds-dark .glance-process-step,
+#dashboard-workspace.dash-dark .glance-process-step,
+#dashboard-workspace.ds-dark .glance-role-box,
+#dashboard-workspace.dash-dark .glance-role-box {
+  background: #141B26 !important;
+  border-color: #283344 !important;
+}
+
+#dashboard-workspace.ds-dark .glance-opp-footer,
+#dashboard-workspace.dash-dark .glance-opp-footer {
+  border-top-color: #2D3748 !important;
+}
+
+/* Responsive queries */
+@media (max-width: 1024px) {
+  .glance-spec-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .glance-process-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .glance-opp-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .glance-strat-columns {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .glance-decision-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .glance-roles-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .glance-process-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .glance-spec-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .glance-strategy-card {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+}
+
 /* Refined, non-grey button styles for Sitemap and Roadmap */
 .overview-secondary-btn,
 .btn-secondary,
@@ -21406,39 +21900,438 @@ body.notes-open #dash-notes-toggle i {
               </div>
             </header>
 
-            <!-- 02. VALUE PROPOSITION -->
+            <!-- 01. PRODUCT AT A GLANCE -->
             <section class="glance-sec">
               <div class="glance-sec-head">
-                <span class="glance-kicker">VALUE PROPOSITION</span>
-                <h2 class="glance-title">Turning physical co-presence into permissioned relationships<span class="brand-dot">.</span></h2>
+                <span class="glance-kicker">EXECUTIVE SUMMARY</span>
+                <h2 class="glance-title">Product at a glance<span class="brand-dot">.</span></h2>
                 <p class="glance-lead">
-                  Traditional networking tools are asynchronous, static, and detached from immediate physical availability. Peopi introduces a temporary, location-aware layer that lowers the social barrier to in-person introductions while giving users absolute control over their privacy.
+                  A high-signal summary of the product thesis, target segment, and validation parameters.
                 </p>
               </div>
 
-              <div class="glance-grid-3">
-                <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Real-Time Proximity</h3>
-                  <p class="glance-card-text">Discover relevant peers who are physically present in your immediate venue, not buried in an asynchronous inbox.</p>
+              <div class="glance-spec-card">
+                <div class="glance-spec-grid">
+                  <div class="glance-spec-item">
+                    <span class="glance-spec-label">Product</span>
+                    <strong class="glance-spec-val">Peopi</strong>
+                    <span class="glance-spec-sub">Intentional nearby professional networking</span>
+                  </div>
+                  <div class="glance-spec-item">
+                    <span class="glance-spec-label">Category</span>
+                    <strong class="glance-spec-val">Proximity Networking</strong>
+                    <span class="glance-spec-sub">Ephemeral, location-aware peer discovery</span>
+                  </div>
+                  <div class="glance-spec-item">
+                    <span class="glance-spec-label">Target Audience</span>
+                    <strong class="glance-spec-val">Startup &amp; Tech Professionals</strong>
+                    <span class="glance-spec-sub">Founders, engineers, operators, and builders</span>
+                  </div>
+                  <div class="glance-spec-item">
+                    <span class="glance-spec-label">Pilot Hypothesis</span>
+                    <strong class="glance-spec-val">Miami Innovation Hub</strong>
+                    <span class="glance-spec-sub">Concentrated physical density in coworking hubs &amp; events</span>
+                  </div>
+                  <div class="glance-spec-item">
+                    <span class="glance-spec-label">Current Stage</span>
+                    <strong class="glance-spec-val">Interactive Prototype &amp; Spec</strong>
+                    <span class="glance-spec-sub">High-fidelity state harness &amp; UX specification</span>
+                  </div>
+                  <div class="glance-spec-item">
+                    <span class="glance-spec-label">Core Interaction Loop</span>
+                    <strong class="glance-spec-val">Invisible → Open → Discover → Connect → Chat</strong>
+                    <span class="glance-spec-sub">Five-stage privacy-first lifecycle</span>
+                  </div>
                 </div>
-                <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Time-Limited Sessions</h3>
-                  <p class="glance-card-text">Presence is temporary (15m to 2h). Sessions expire automatically to prevent lingering background tracking or persistent exposure.</p>
-                </div>
-                <div class="glance-card">
-                  <div class="glance-card-icon"><i class="ph ph-shield-check" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">Double Opt-In Consent</h3>
-                  <p class="glance-card-text">No unsolicited broadcasting or spam. Communication requires an explicit mutual request and acceptance handshake.</p>
+
+                <div class="glance-stage-boundary">
+                  <div class="glance-stage-boundary-icon"><i class="ph-bold ph-shield-check" aria-hidden="true"></i></div>
+                  <div class="glance-stage-boundary-text">
+                    <strong>Specification Stage Notice:</strong> Peopi is presented here as an executable, high-fidelity interaction prototype and deterministic UX specification. It models complete user journeys, timer lifecycles, and privacy rules to evaluate product viability prior to commercial native iOS/Android development or backend infrastructure deployment.
+                  </div>
                 </div>
               </div>
             </section>
 
-            <!-- 03. CORE INTERACTION LIFECYCLE (5 STEPS) -->
+            <!-- 02. THE OPPORTUNITY -->
             <section class="glance-sec">
               <div class="glance-sec-head">
-                <span class="glance-kicker">CORE INTERACTION LIFECYCLE</span>
+                <span class="glance-kicker">THE OPPORTUNITY</span>
+                <h2 class="glance-title">The proximity paradox in professional spaces<span class="brand-dot">.</span></h2>
+                <p class="glance-lead">
+                  Professionals frequently share physical spaces without knowing who nearby has relevant skills, active goals, or immediate availability for a meaningful introduction.
+                </p>
+              </div>
+
+              <div class="glance-opp-card">
+                <div class="glance-opp-grid">
+                  <div class="glance-opp-item">
+                    <div class="glance-opp-icon"><i class="ph ph-users-three" aria-hidden="true"></i></div>
+                    <h3 class="glance-card-title">Shared Physical Space</h3>
+                    <p class="glance-card-text">
+                      Tech conferences, coworking hubs, and innovation events bring hundreds of peers into the same room. Yet to the naked eye, everyone looks like a stranger behind a screen.
+                    </p>
+                  </div>
+                  <div class="glance-opp-item">
+                    <div class="glance-opp-icon"><i class="ph ph-eye-slash" aria-hidden="true"></i></div>
+                    <h3 class="glance-card-title">Hidden Intent &amp; Status</h3>
+                    <p class="glance-card-text">
+                      Without a real-time signal, professional domain, current hiring needs, and immediate availability remain completely invisible. Cold approaches feel awkward and invasive.
+                    </p>
+                  </div>
+                  <div class="glance-opp-item">
+                    <div class="glance-opp-icon"><i class="ph ph-handshake" aria-hidden="true"></i></div>
+                    <h3 class="glance-card-title">The Peopi Unlock</h3>
+                    <p class="glance-card-text">
+                      An ephemeral, consent-first discovery layer that allows co-located professionals to declare availability for a limited time and establish mutual interest before speaking.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="glance-opp-footer">
+                  <div class="glance-opp-footer-text">
+                    <i class="ph ph-lightbulb" aria-hidden="true"></i>
+                    <span>Dive into the detailed behavioral friction analysis, competitive landscape gaps, and Miami pilot test framework in the case study dossier.</span>
+                  </div>
+                  <button type="button" class="dash-btn-secondary" onclick="openOverview('problem')">
+                    <span>Explore Problem &amp; Opportunity</span>
+                    <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- 03. PRODUCT STRATEGY -->
+            <section class="glance-sec">
+              <div class="glance-sec-head">
+                <span class="glance-kicker">PRODUCT STRATEGY</span>
+                <h2 class="glance-title">Strategic choices grounded in human trust<span class="brand-dot">.</span></h2>
+                <p class="glance-lead">
+                  Strategic differentiators explained through deliberate product reasoning rather than arbitrary feature checklists.
+                </p>
+              </div>
+
+              <div class="glance-strategy-list">
+                <div class="glance-strategy-card">
+                  <div class="glance-strat-badge">01</div>
+                  <div class="glance-strat-content">
+                    <h3 class="glance-card-title">Default Invisible Presence</h3>
+                    <div class="glance-strat-columns">
+                      <div class="glance-strat-col">
+                        <span class="glance-strat-label">Strategic Choice</span>
+                        <p class="glance-card-text">Launching or opening the app never broadcasts availability. Presence remains completely dark until an active session is explicitly initiated.</p>
+                      </div>
+                      <div class="glance-strat-col rationale">
+                        <span class="glance-strat-label why">Product Rationale (Why)</span>
+                        <p class="glance-card-text">Passive beaconing creates pervasive surveillance anxiety. Making visibility an explicit, active choice lowers adoption friction and protects member trust.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="glance-strategy-card">
+                  <div class="glance-strat-badge">02</div>
+                  <div class="glance-strat-content">
+                    <h3 class="glance-card-title">Time-Limited Discovery Sessions (15m–2h)</h3>
+                    <div class="glance-strat-columns">
+                      <div class="glance-strat-col">
+                        <span class="glance-strat-label">Strategic Choice</span>
+                        <p class="glance-card-text">Every discovery session runs on an active countdown timer. When the session expires, visibility automatically reverts to dark.</p>
+                      </div>
+                      <div class="glance-strat-col rationale">
+                        <span class="glance-strat-label why">Product Rationale (Why)</span>
+                        <p class="glance-card-text">Professional availability is inherently temporary. Time-boxing prevents "zombie profiles" and ensures that anyone visible is genuinely present and open right now.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="glance-strategy-card">
+                  <div class="glance-strat-badge">03</div>
+                  <div class="glance-strat-content">
+                    <h3 class="glance-card-title">Approximate Proximity &amp; Privacy Safeguards</h3>
+                    <div class="glance-strat-columns">
+                      <div class="glance-strat-col">
+                        <span class="glance-strat-label">Strategic Choice</span>
+                        <p class="glance-card-text">Relative distance rings (Immediate, Nearby, Walking distance) without live GPS coordinates, continuous tracking, or pinpoint maps.</p>
+                      </div>
+                      <div class="glance-strat-col rationale">
+                        <span class="glance-strat-label why">Product Rationale (Why)</span>
+                        <p class="glance-card-text">Exact geolocation invites physical stalking, harassment, and triangulation. Coarse distance provides sufficient context to meet without compromising physical safety.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="glance-strategy-card">
+                  <div class="glance-strat-badge">04</div>
+                  <div class="glance-strat-content">
+                    <h3 class="glance-card-title">Mutual Acceptance Before Messaging</h3>
+                    <div class="glance-strat-columns">
+                      <div class="glance-strat-col">
+                        <span class="glance-strat-label">Strategic Choice</span>
+                        <p class="glance-card-text">Unsolicited messaging is impossible. Direct chat unlocks exclusively after an introductory request with a short note is accepted by the recipient.</p>
+                      </div>
+                      <div class="glance-strat-col rationale">
+                        <span class="glance-strat-label why">Product Rationale (Why)</span>
+                        <p class="glance-card-text">Open inboxes degrade rapidly into SDR sales pitches and recruiter spam. A double opt-in handshake protects attention and ensures both parties enter conversation with mutual intent.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="glance-strategy-card">
+                  <div class="glance-strat-badge">05</div>
+                  <div class="glance-strat-content">
+                    <h3 class="glance-card-title">Miami-First Pilot Density Hypothesis</h3>
+                    <div class="glance-strat-columns">
+                      <div class="glance-strat-col">
+                        <span class="glance-strat-label">Strategic Choice</span>
+                        <p class="glance-card-text">Focusing initial validation strictly within selected Miami coworking hubs (e.g. Brickell, Wynwood) and scheduled tech gatherings.</p>
+                      </div>
+                      <div class="glance-strat-col rationale">
+                        <span class="glance-strat-label why">Product Rationale (Why)</span>
+                        <p class="glance-card-text">Proximity network effects fail when liquidity is spread too thin. Concentrating testing in dense, tech-forward gathering spaces validates the core loop before geographic expansion.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 04. KEY PRODUCT DECISIONS & TRADE-OFFS -->
+            <section class="glance-sec">
+              <div class="glance-sec-head">
+                <span class="glance-kicker">MVP SCOPE &amp; TRADE-OFFS</span>
+                <h2 class="glance-title">Consequential MVP decisions and their trade-offs<span class="brand-dot">.</span></h2>
+                <p class="glance-lead">
+                  Every product decision requires deliberate trade-offs. Here is how four critical architectural compromises were evaluated for the initial scope.
+                </p>
+              </div>
+
+              <div class="glance-decision-grid">
+                <div class="glance-decision-card">
+                  <div class="glance-dec-top">
+                    <span class="glance-dec-badge">DECISION 01</span>
+                    <span class="glance-dec-topic">Visibility Model</span>
+                  </div>
+                  <h3 class="glance-card-title">Time-Limited Sessions vs. Always-On Tracking</h3>
+                  <div class="glance-dec-block selected">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-check-circle" aria-hidden="true"></i>
+                      <span>Selected MVP Path</span>
+                    </div>
+                    <p class="glance-card-text">Strict 15m to 2h session countdown with automatic expiry back to dark presence.</p>
+                  </div>
+                  <div class="glance-dec-block tradeoff">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-scales" aria-hidden="true"></i>
+                      <span>Accepted Trade-Off</span>
+                    </div>
+                    <p class="glance-card-text">Lower recorded background daily active time; in exchange for total user privacy trust, zero battery drain, and guaranteed live presence.</p>
+                  </div>
+                </div>
+
+                <div class="glance-decision-card">
+                  <div class="glance-dec-top">
+                    <span class="glance-dec-badge">DECISION 02</span>
+                    <span class="glance-dec-topic">Communication Architecture</span>
+                  </div>
+                  <h3 class="glance-card-title">Consent-Based Handshake vs. Open Direct Messaging</h3>
+                  <div class="glance-dec-block selected">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-check-circle" aria-hidden="true"></i>
+                      <span>Selected MVP Path</span>
+                    </div>
+                    <p class="glance-card-text">Mandatory introduction request with optional 200-character note; recipient holds total agency to accept or decline.</p>
+                  </div>
+                  <div class="glance-dec-block tradeoff">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-scales" aria-hidden="true"></i>
+                      <span>Accepted Trade-Off</span>
+                    </div>
+                    <p class="glance-card-text">Slower communication velocity and added friction; in exchange for eliminating spam, protecting recipient attention, and fostering genuine introductions.</p>
+                  </div>
+                </div>
+
+                <div class="glance-decision-card">
+                  <div class="glance-dec-top">
+                    <span class="glance-dec-badge">DECISION 03</span>
+                    <span class="glance-dec-topic">Proximity Display</span>
+                  </div>
+                  <h3 class="glance-card-title">Closed Proximity Rings vs. Exact Pinpoint Maps</h3>
+                  <div class="glance-dec-block selected">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-check-circle" aria-hidden="true"></i>
+                      <span>Selected MVP Path</span>
+                    </div>
+                    <p class="glance-card-text">Abstract radar preview with coarse distance zones; no coordinates, pin markers, or continuous background GPS.</p>
+                  </div>
+                  <div class="glance-dec-block tradeoff">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-scales" aria-hidden="true"></i>
+                      <span>Accepted Trade-Off</span>
+                    </div>
+                    <p class="glance-card-text">Users cannot pinpoint a person's exact physical desk or chair; in exchange for complete immunity to physical triangulation and stalking.</p>
+                  </div>
+                </div>
+
+                <div class="glance-decision-card">
+                  <div class="glance-dec-top">
+                    <span class="glance-dec-badge">DECISION 04</span>
+                    <span class="glance-dec-topic">Audience Positioning</span>
+                  </div>
+                  <h3 class="glance-card-title">Startup &amp; Tech Focus vs. Broad Professional Categories</h3>
+                  <div class="glance-dec-block selected">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-check-circle" aria-hidden="true"></i>
+                      <span>Selected MVP Path</span>
+                    </div>
+                    <p class="glance-card-text">Tailored profile tags, headlines, and intent options optimized specifically for founders, builders, and operators.</p>
+                  </div>
+                  <div class="glance-dec-block tradeoff">
+                    <div class="glance-dec-block-head">
+                      <i class="ph-bold ph-scales" aria-hidden="true"></i>
+                      <span>Accepted Trade-Off</span>
+                    </div>
+                    <p class="glance-card-text">Constrained initial addressable market (TAM); in exchange for high contextual alignment, shared vocabulary, and stronger initial network density.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glance-note-box" style="margin-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <i class="ph ph-shield-check" aria-hidden="true" style="color:#FF3300;font-size:16px;"></i>
+                  <span>The complete MVP boundary, non-negotiable invariant rules, and trade-off catalog are preserved in Chapter 01.5.</span>
+                </div>
+                <button type="button" class="dash-btn-secondary" onclick="openOverview('scope-rules')">
+                  <span>Inspect MVP Scope &amp; Product Decisions</span>
+                  <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </section>
+
+            <!-- 05. FROM CONCEPT TO INTERACTIVE PROTOTYPE -->
+            <section class="glance-sec">
+              <div class="glance-sec-head">
+                <span class="glance-kicker">PRODUCT METHODOLOGY &amp; EXECUTION</span>
+                <h2 class="glance-title">From concept to interactive prototype<span class="brand-dot">.</span></h2>
+                <p class="glance-lead">
+                  A structured product development lifecycle driven by product management leadership and accelerated by AI-assisted execution.
+                </p>
+              </div>
+
+              <!-- Development Lifecycle Stepper -->
+              <div class="glance-process-card">
+                <span class="glance-kicker">END-TO-END PRODUCT LIFECYCLE</span>
+                <h3 class="glance-card-title" style="margin-bottom:20px;">The six-stage product delivery pipeline</h3>
+                <div class="glance-process-grid">
+                  <div class="glance-process-step">
+                    <div class="glance-proc-num">01</div>
+                    <h4 class="glance-proc-title">Problem Framing</h4>
+                    <p class="glance-proc-text">Synthesizing behavioral friction, context invisibility, and cold-approach barriers in physical spaces.</p>
+                  </div>
+                  <div class="glance-process-step">
+                    <div class="glance-proc-num">02</div>
+                    <h4 class="glance-proc-title">Product Strategy</h4>
+                    <p class="glance-proc-text">Defining the trust invariant, five-stage interaction model, and Miami density pilot hypothesis.</p>
+                  </div>
+                  <div class="glance-process-step">
+                    <div class="glance-proc-num">03</div>
+                    <h4 class="glance-proc-title">UX Architecture</h4>
+                    <p class="glance-proc-text">Mapping 28 screen states, permission gates, modal hierarchies, and state-machine transitions.</p>
+                  </div>
+                  <div class="glance-process-step">
+                    <div class="glance-proc-num">04</div>
+                    <h4 class="glance-proc-title">Design System</h4>
+                    <p class="glance-proc-text">Authoring shared tokens (`peopi-ui.tokens.json`), 8 reusable component families, and dual-theme palette.</p>
+                  </div>
+                  <div class="glance-process-step">
+                    <div class="glance-proc-num">05</div>
+                    <h4 class="glance-proc-title">Interactive Prototype</h4>
+                    <p class="glance-proc-text">Implementing deterministic client state, live countdown timers, intent filters, and message persistence.</p>
+                  </div>
+                  <div class="glance-process-step">
+                    <div class="glance-proc-num">06</div>
+                    <h4 class="glance-proc-title">QA &amp; Iteration</h4>
+                    <p class="glance-proc-text">Automated headless Chrome testing via CDP, contract synchronization, and reduce-motion verification.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PM Leadership vs. AI-Assisted Implementation Breakdown -->
+              <div class="glance-roles-card" style="margin-top:24px;">
+                <span class="glance-kicker">PORTFOLIO PERSPECTIVE · LEADERSHIP VS. ACCELERATION</span>
+                <h3 class="glance-card-title" style="margin-bottom:12px;">Product management direction powered by AI execution acceleration</h3>
+                <p class="glance-card-text" style="max-width:760px;margin-bottom:24px;">
+                  AI tools served strictly as execution accelerators under direct human product management. Strategic formulation, user experience architecture, privacy invariants, and trade-off decisions reflect human product leadership.
+                </p>
+
+                <div class="glance-roles-grid">
+                  <div class="glance-role-box pm-box">
+                    <div class="glance-role-head">
+                      <i class="ph-bold ph-compass" aria-hidden="true"></i>
+                      <span>Product Direction &amp; Prioritization (PM Ownership)</span>
+                    </div>
+                    <ul class="glance-role-list">
+                      <li>Formulated core product thesis around ephemeral, consent-first physical networking.</li>
+                      <li>Defined strict MVP boundaries—saying "no" to social feeds, open broadcasting, and continuous GPS tracking.</li>
+                      <li>Selected Miami tech ecosystem as the initial dense pilot ground to prevent liquidity failure.</li>
+                      <li>Established foundational privacy invariants: default-invisible presence and mandatory double opt-in.</li>
+                    </ul>
+                  </div>
+
+                  <div class="glance-role-box pm-box">
+                    <div class="glance-role-head">
+                      <i class="ph-bold ph-device-mobile" aria-hidden="true"></i>
+                      <span>UX &amp; Design Architecture (PM Ownership)</span>
+                    </div>
+                    <ul class="glance-role-list">
+                      <li>Architected the five-stage interaction model (Invisible → Open → Discover → Connect → Chat).</li>
+                      <li>Defined 28 screen contracts with explicit entry criteria, transitions, and dismissal patterns.</li>
+                      <li>Governed design system with 8 component families, dual theme tokens, and 44pt touch targets.</li>
+                      <li>Enforced strict readability standards: 15–17pt body copy, grouped rounded surfaces, and reduced noise.</li>
+                    </ul>
+                  </div>
+
+                  <div class="glance-role-box ai-box">
+                    <div class="glance-role-head">
+                      <i class="ph-bold ph-lightning" aria-hidden="true"></i>
+                      <span>AI-Assisted Implementation (Execution Accelerator)</span>
+                    </div>
+                    <ul class="glance-role-list">
+                      <li>Rapid scaffolding of Semantic HTML/CSS structures conforming strictly to PM design tokens.</li>
+                      <li>Implementation of deterministic client state machines for timers, request queues, and simulated chat.</li>
+                      <li>Automated synchronization of shared motion recipes (`scripts/sync-motion-spec.py`).</li>
+                      <li>Efficient refactoring and standardization across 28 screens and case study dossiers.</li>
+                    </ul>
+                  </div>
+
+                  <div class="glance-role-box qa-box">
+                    <div class="glance-role-head">
+                      <i class="ph-bold ph-check-circle" aria-hidden="true"></i>
+                      <span>Review, Testing &amp; Refinement (Verification &amp; Governance)</span>
+                    </div>
+                    <ul class="glance-role-list">
+                      <li>Authored automated headless Chrome test harness via Chrome DevTools Protocol (CDP).</li>
+                      <li>Systematic verification of all 28 views in desktop light, desktop dark, and mobile viewports.</li>
+                      <li>Edge-case validation: timer expiration, connection blocking, empty states, and keyboard accessibility.</li>
+                      <li>Eliminated speculative UI components and catalogue padding to preserve editorial rigor.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="glance-callout" style="margin-top:24px;">
+                  <i class="ph ph-info" aria-hidden="true"></i>
+                  <span><strong>Governance Guardrail:</strong> AI acted as an implementation force multiplier for code, tokens, and test automation. Strategic intent, customer problem framing, product trade-offs, and behavioral constraints were authored and governed entirely by human product leadership.</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- 06. CORE INTERACTION LIFECYCLE & LIVE PROTOTYPE -->
+            <section class="glance-sec">
+              <div class="glance-sec-head">
+                <span class="glance-kicker">CORE INTERACTION &amp; PROTOTYPE</span>
                 <h2 class="glance-title">Invisible → I'm Open → Discover → Connect → Chat<span class="brand-dot">.</span></h2>
                 <p class="glance-lead">
                   Every interaction in Peopi progresses through five distinct states designed around privacy, intentionality, and psychological safety. Tap any step below to jump directly into that screen in the prototype.
@@ -21532,90 +22425,7 @@ body.notes-open #dash-notes-toggle i {
               </div>
             </section>
 
-            <!-- 04. THREE PRODUCT PRINCIPLES -->
-            <section class="glance-sec">
-              <div class="glance-sec-head">
-                <span class="glance-kicker">PRODUCT PRINCIPLES</span>
-                <h2 class="glance-title">Engineered for trust, discretion, and human agency<span class="brand-dot">.</span></h2>
-                <p class="glance-lead">
-                  Three foundational product principles govern every screen, interaction, and technical contract in Peopi:
-                </p>
-              </div>
-
-              <div class="glance-grid-3">
-                <div class="glance-card">
-                  <div class="glance-card-icon" style="background:#FFF5F2;color:#FF3300;border-color:#FFE2D9;"><i class="ph ph-eye-slash" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">1. Intentional Visibility</h3>
-                  <p class="glance-card-text">
-                    Presence is never continuous or passive. Members declare availability only when they choose, for a fixed countdown, and under specific goals. When a session expires, presence drops immediately back to dark.
-                  </p>
-                </div>
-
-                <div class="glance-card">
-                  <div class="glance-card-icon" style="background:#FFF5F2;color:#FF3300;border-color:#FFE2D9;"><i class="ph ph-lock-key" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">2. Privacy by Design</h3>
-                  <p class="glance-card-text">
-                    Zero continuous GPS tracking. Proximity is approximate and randomized to prevent physical triangulating. Direct contact details remain protected behind mutual permission boundaries.
-                  </p>
-                </div>
-
-                <div class="glance-card">
-                  <div class="glance-card-icon" style="background:#FFF5F2;color:#FF3300;border-color:#FFE2D9;"><i class="ph ph-handshake" aria-hidden="true"></i></div>
-                  <h3 class="glance-card-title">3. Mutual Connection</h3>
-                  <p class="glance-card-text">
-                    No unsolicited broadcasting, blast messages, or SDR cold-pitching. Conversation is strictly gated behind a double opt-in handshake. Block, mute, and report tools are one tap away.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <!-- 05. TECHNICAL READINESS: PROTOTYPE VS PRODUCTION -->
-            <section class="glance-sec">
-              <div class="glance-sec-head">
-                <span class="glance-kicker">TECHNICAL READINESS &amp; SCOPE BOUNDARIES</span>
-                <h2 class="glance-title">Interactive prototype specification vs. native production implementation<span class="brand-dot">.</span></h2>
-                <p class="glance-lead">
-                  This case study presents an executable, high-fidelity UX specification and state harness. Below is a rigorous breakdown of what is validated in this prototype versus the production engineering required for commercial rollout.
-                </p>
-              </div>
-
-              <div class="glance-grid-2">
-                <div class="glance-readiness-card">
-                  <div class="glance-readiness-head prep-head">
-                    <i class="ph-bold ph-check-circle" aria-hidden="true"></i>
-                    <span>Interactive Prototype (This Specification)</span>
-                  </div>
-                  <ul class="glance-readiness-list prep-list">
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>28 Functional Screen Destinations:</strong> Complete user flows across onboarding, discovery, connections, chat, and privacy.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Deterministic State Machines:</strong> Live session timers, intent filtering, mutual request-and-accept cycles, and persistent chat state.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Synchronized Motion &amp; Tokens:</strong> Shared motion contracts (`peopi-screen-contracts.json`) enforcing 60fps transitions and reduce-motion accessibility.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Design System Governance:</strong> 8 reusable component families scraped directly from live screen specimens.</span></li>
-                    <li><i class="ph-bold ph-check" aria-hidden="true"></i><span><strong>Dual Theme Fidelity:</strong> Pixel-perfect light (#F6F5F2) and dark (#141922) theme implementations.</span></li>
-                  </ul>
-                </div>
-
-                <div class="glance-readiness-card">
-                  <div class="glance-readiness-head next-head">
-                    <i class="ph-bold ph-compass" aria-hidden="true"></i>
-                    <span>Production Architecture — To Be Evaluated</span>
-                  </div>
-                  <ul class="glance-readiness-list next-list">
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Mobile Client Framework:</strong> Requirement for background proximity scanning within strict OS battery budgets. Potential paths to benchmark include native Swift / Kotlin vs. cross-platform engines with custom background services.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Proximity &amp; Discovery Engine:</strong> Requirement for low-latency peer detection without continuous GPS tracking. Approaches to evaluate include Bluetooth Low Energy (BLE) peripheral/central advertising with rotating ephemeral IDs vs. coarse venue coordinate clustering.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Ephemeral Presence &amp; Session State:</strong> Requirement for zero-leak, time-decayed availability indexes. Candidate options include distributed in-memory clusters with TTL expiration (e.g. Redis / Valkey / Elixir channels) vs. peer-to-peer localized handshake topologies.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Secure Asynchronous Messaging:</strong> Requirement for forward-secret, tamper-resistant 1-on-1 communication once mutual consent is granted. Evaluate end-to-end encryption protocols (such as Double Ratchet / Signal Protocol derivatives) against operational auditability.</span></li>
-                    <li><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span><strong>Trust, Verification &amp; Moderation:</strong> Requirement for sybil resistance and user safety in physical venues. Candidate approaches include work-domain / OAuth verification, hardware device attestation, and rapid on-device reporting pipelines.</span></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="glance-disclaimer-box">
-                <i class="ph ph-info" aria-hidden="true" style="color:#FF3300;margin-right:6px;"></i>
-                <strong>Architecture Evaluation Notice:</strong> The screens and state machines rendered in this prototype establish the complete UX and behavioral contract. Candidate infrastructure technologies and backend frameworks are subject to formal technical evaluation and device benchmarking prior to production deployment.
-              </div>
-            </section>
-
-            <!-- 06. CASE STUDY DOSSIER DIRECTORY -->
+            <!-- 07. CASE STUDY DOSSIER DIRECTORY -->
             <section class="glance-sec">
               <div class="glance-sec-head">
                 <span class="glance-kicker">CASE STUDY CHAPTERS</span>
