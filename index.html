@@ -16180,88 +16180,6 @@ body.notes-open #dash-notes-toggle i {
   margin: 0;
 }
 
-/* Simplified Behavioral Friction Equation Panel */
-.prob-equation-panel {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 16px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.prob-eq-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #E2E8F0;
-}
-
-.prob-eq-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #64748B;
-  text-transform: uppercase;
-}
-
-.prob-eq-row {
-  padding: 12px 14px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.prob-eq-row.status-quo {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-}
-
-.prob-eq-row.peopi-thesis {
-  background: #FFF5F2;
-  border: 1px solid #FFE2D9;
-}
-
-.prob-eq-badge {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #64748B;
-}
-
-.prob-eq-row.peopi-thesis .prob-eq-badge {
-  color: #FF3300;
-}
-
-.prob-eq-steps {
-  font-size: 13px;
-  color: #475569;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.prob-eq-outcome {
-  font-size: 13.5px;
-  font-weight: 750;
-  color: #0F172A;
-  margin-top: 2px;
-}
-
-.prob-eq-row.peopi-thesis .prob-eq-outcome {
-  color: #FF3300;
-}
-
-.prob-eq-arrow {
-  display: flex;
-  justify-content: center;
-  color: #94A3B8;
-  font-size: 13px;
-}
-
 /* 2 & 4 & 5. Grids */
 .prob-grid-3 {
   display: grid;
@@ -16678,44 +16596,6 @@ body.notes-open #dash-notes-toggle i {
   background: #2D1F1D;
   border-color: #4A2B27;
   color: #FF3300;
-}
-
-#dashboard-workspace.ds-dark .prob-equation-panel,
-#dashboard-workspace.dash-dark .prob-equation-panel {
-  background: #141B26;
-  border-color: #2E384D;
-}
-
-#dashboard-workspace.ds-dark .prob-eq-header,
-#dashboard-workspace.dash-dark .prob-eq-header {
-  border-bottom-color: #2E384D;
-}
-
-#dashboard-workspace.ds-dark .prob-eq-title,
-#dashboard-workspace.dash-dark .prob-eq-title {
-  color: #94A3B8;
-}
-
-#dashboard-workspace.ds-dark .prob-eq-row.status-quo,
-#dashboard-workspace.dash-dark .prob-eq-row.status-quo {
-  background: #1B222D;
-  border-color: #2E3847;
-}
-
-#dashboard-workspace.ds-dark .prob-eq-row.peopi-thesis,
-#dashboard-workspace.dash-dark .prob-eq-row.peopi-thesis {
-  background: #2D1F1D;
-  border-color: #4A2B27;
-}
-
-#dashboard-workspace.ds-dark .prob-eq-steps,
-#dashboard-workspace.dash-dark .prob-eq-steps {
-  color: #94A3B8;
-}
-
-#dashboard-workspace.ds-dark .prob-eq-outcome,
-#dashboard-workspace.dash-dark .prob-eq-outcome {
-  color: #F1F5F9;
 }
 
 #dashboard-workspace.ds-dark .prob-friction-card,
@@ -20849,7 +20729,7 @@ body.notes-open #dash-notes-toggle i {
   color: #1E293B !important;
   letter-spacing: -0.015em !important;
   margin: 0 0 14px 0 !important;
-  max-width: 860px !important;
+  max-width: 740px !important;
 }
 
 /* 4. Supporting Intro Paragraph (Intro body): 15–16px */
@@ -20863,7 +20743,7 @@ body.notes-open #dash-notes-toggle i {
   line-height: 1.65 !important;
   color: var(--text-secondary, #475569) !important;
   margin: 0 !important;
-  max-width: 860px !important;
+  max-width: 740px !important;
 }
 
 #dashboard-workspace.ds-dark .dash-page-title,
@@ -20881,30 +20761,9 @@ body.notes-open #dash-notes-toggle i {
   color: #94A3B8 !important;
 }
 
-/* Full-width editorial intro container */
+/* Full-width editorial intro container (680–760px reading measure) */
 .dash-page-intro {
-  max-width: 860px !important;
-  width: 100% !important;
-}
-
-/* Two-column editorial intro split (Overview, Problem, Journeys) */
-.dash-page-intro-split {
-  display: grid !important;
-  grid-template-columns: 1.25fr 1fr !important;
-  gap: 36px !important;
-  align-items: flex-start !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.dash-page-intro-split .dash-page-intro-text {
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.dash-page-intro-split .dash-page-intro-visual {
-  display: flex !important;
-  justify-content: flex-end !important;
+  max-width: 740px !important;
   width: 100% !important;
 }
 
@@ -21029,13 +20888,115 @@ body.notes-open #dash-notes-toggle i {
   margin-bottom: clamp(48px, 5vw, 56px) !important;
 }
 
-@media (max-width: 1024px) {
-  .dash-page-intro-split {
+/* Product Demonstration Panel (Page 1) */
+.glance-demo-panel {
+  display: grid !important;
+  grid-template-columns: 1fr 310px !important;
+  gap: 32px !important;
+  align-items: center !important;
+  background: var(--surface, #FFFFFF) !important;
+  border: 1px solid var(--border, #E2E8F0) !important;
+  border-radius: var(--radius-xl, 18px) !important;
+  padding: 28px 32px !important;
+  margin-top: 28px !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03) !important;
+  box-sizing: border-box !important;
+}
+
+.glance-demo-copy {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.glance-demo-copy .glance-kicker {
+  margin-bottom: 8px !important;
+}
+
+.glance-demo-copy .glance-card-title {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.3 !important;
+}
+
+.glance-demo-copy .glance-card-text {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  margin: 0 0 20px 0 !important;
+  max-width: 520px !important;
+}
+
+.glance-demo-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+.glance-demo-hint {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary, #64748B) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.glance-demo-frame-wrap {
+  width: 100% !important;
+  max-width: 310px !important;
+  justify-self: center !important;
+}
+
+#dashboard-workspace.ds-dark .glance-demo-panel,
+#dashboard-workspace.dash-dark .glance-demo-panel {
+  background: #18202C !important;
+  border-color: #2D3748 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+#dashboard-workspace.ds-dark .glance-demo-hint,
+#dashboard-workspace.dash-dark .glance-demo-hint {
+  color: #94A3B8 !important;
+}
+
+/* User Journeys Summary Flow (relocated to Journey Chapters) */
+#dashboard-workspace.ds-dark .how-summary-flow,
+#dashboard-workspace.dash-dark .how-summary-flow {
+  background: #18202C !important;
+  border-color: #2D3748 !important;
+}
+
+#dashboard-workspace.ds-dark .how-flow-icon,
+#dashboard-workspace.dash-dark .how-flow-icon {
+  background: #242F3E !important;
+  border-color: #334155 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+#dashboard-workspace.ds-dark .how-flow-title,
+#dashboard-workspace.dash-dark .how-flow-title {
+  color: #F8FAFC !important;
+}
+
+#dashboard-workspace.ds-dark .how-flow-desc,
+#dashboard-workspace.dash-dark .how-flow-desc {
+  color: #94A3B8 !important;
+}
+
+#dashboard-workspace.ds-dark .how-flow-arrow,
+#dashboard-workspace.dash-dark .how-flow-arrow {
+  color: #64748B !important;
+}
+
+@media (max-width: 900px) {
+  .glance-demo-panel {
     grid-template-columns: 1fr !important;
-    gap: 28px !important;
+    padding: 24px 20px !important;
+    gap: 24px !important;
   }
-  .dash-page-intro-split .dash-page-intro-visual {
-    justify-content: flex-start !important;
+  .glance-demo-frame-wrap {
+    max-width: 100% !important;
   }
 }
 
@@ -21425,51 +21386,22 @@ body.notes-open #dash-notes-toggle i {
                 </div>
               </div>
 
-              <div class="dash-page-intro-split">
-                <div class="dash-page-intro-text">
-                  <p class="dash-page-lead">
-                    Proximity-based professional networking designed to turn physical co-presence into intentional, high-trust relationships.
-                  </p>
-                  <p class="dash-page-desc">
-                    Peopi is a mobile product concept designed to turn physical proximity into intentional, high-trust professional relationships. In places where relevant peers share the same room—conferences, coworking hubs, and innovation districts—Peopi replaces awkward cold outreach with a permissioned, consent-first introduction loop.
-                  </p>
-                  <div class="dash-intro-actions">
-                    <button type="button" class="dash-btn-primary" onclick="closeDashboard();go('closed')">
-                      <span>Launch interactive prototype</span>
-                      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="dash-btn-secondary" onclick="openOverview('problem')">
-                      <span>Problem &amp; Opportunity</span>
-                      <i class="ph ph-arrow-right" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="dash-page-intro-visual">
-                  <div class="glance-mockup-frame" onclick="closeDashboard();go('closed')" role="button" tabindex="0" aria-label="Explore interactive prototype (Closed state)">
-                    <div class="glance-mockup-topbar">
-                      <span>9:41</span>
-                      <div class="glance-mockup-badge"><i class="ph ph-compass" aria-hidden="true"></i> <span>Prototype · Screen 02.1</span></div>
-                      <span>▰ ◉ ▰</span>
-                    </div>
-                    <div class="glance-mockup-body">
-                      <div class="glance-mockup-brand">peopi<span style="color:#FF3300">.</span></div>
-                      <div class="glance-mockup-tagline">Good things start<br>with showing up.</div>
-                      <div class="glance-mockup-map-box">
-                        <span class="glance-mockup-map-street">BRICKELL AVE</span>
-                        <div class="glance-mockup-approx-pill"><i class="ph ph-shield-check" aria-hidden="true"></i> Approximate area</div>
-                        <div class="glance-mockup-avatar-center">ME</div>
-                      </div>
-                      <div class="glance-mockup-showup-btn">
-                        <span>Show up · Set intent</span>
-                        <i class="ph ph-arrow-right" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                    <div class="glance-mockup-footer">
-                      <span><i class="ph ph-cursor-click" aria-hidden="true"></i> Click to launch live mobile prototype</span>
-                      <span class="glance-tag-pill">Screen 02.1</span>
-                    </div>
-                  </div>
+              <div class="dash-page-intro">
+                <p class="dash-page-lead">
+                  Proximity-based professional networking designed to turn physical co-presence into intentional, high-trust relationships.
+                </p>
+                <p class="dash-page-desc">
+                  Peopi is a mobile product concept designed to turn physical proximity into intentional, high-trust professional relationships. In places where relevant peers share the same room—conferences, coworking hubs, and innovation districts—Peopi replaces awkward cold outreach with a permissioned, consent-first introduction loop.
+                </p>
+                <div class="dash-intro-actions">
+                  <button type="button" class="dash-btn-primary" onclick="closeDashboard();go('closed')">
+                    <span>Launch interactive prototype</span>
+                    <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="dash-btn-secondary" onclick="openOverview('problem')">
+                    <span>Problem &amp; Opportunity</span>
+                    <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                  </button>
                 </div>
               </div>
             </header>
@@ -21547,6 +21479,50 @@ body.notes-open #dash-notes-toggle i {
                   <h3 class="glance-step-title">Chat &amp; Network</h3>
                   <p class="glance-step-text">Mutual acceptance unlocks 1-on-1 chat. Connected relationships and conversation logs persist permanently after session ends.</p>
                   <span style="margin-top:auto;padding-top:12px;font-size:11px;font-weight:700;color:#FF3300;"><i class="ph ph-arrow-up-right"></i> Screen 04.1</span>
+                </div>
+              </div>
+
+              <!-- Dedicated Product Demonstration Section -->
+              <div class="glance-demo-panel">
+                <div class="glance-demo-copy">
+                  <span class="glance-kicker">LIVE INTERACTIVE SPECIFICATION · STAGE 01</span>
+                  <h3 class="glance-card-title">Experience the interaction lifecycle directly in the prototype</h3>
+                  <p class="glance-card-text">
+                    Opening Peopi never makes a person visible. You start in an invisible radar preview with safe venue counts. Presence only activates when you explicitly choose a goal and duration.
+                  </p>
+                  <div class="glance-demo-actions">
+                    <button type="button" class="dash-btn-primary" onclick="closeDashboard();go('closed')">
+                      <span>Launch Screen 02.1</span>
+                      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                    </button>
+                    <span class="glance-demo-hint"><i class="ph ph-device-mobile"></i> Invisible / Closed radar preview</span>
+                  </div>
+                </div>
+                <div class="glance-demo-frame-wrap">
+                  <div class="glance-mockup-frame" onclick="closeDashboard();go('closed')" role="button" tabindex="0" aria-label="Explore interactive prototype (Closed state)">
+                    <div class="glance-mockup-topbar">
+                      <span>9:41</span>
+                      <div class="glance-mockup-badge"><i class="ph ph-compass" aria-hidden="true"></i> <span>Prototype · Screen 02.1</span></div>
+                      <span>▰ ◉ ▰</span>
+                    </div>
+                    <div class="glance-mockup-body">
+                      <div class="glance-mockup-brand">peopi<span style="color:#FF3300">.</span></div>
+                      <div class="glance-mockup-tagline">Good things start<br>with showing up.</div>
+                      <div class="glance-mockup-map-box">
+                        <span class="glance-mockup-map-street">BRICKELL AVE</span>
+                        <div class="glance-mockup-approx-pill"><i class="ph ph-shield-check" aria-hidden="true"></i> Approximate area</div>
+                        <div class="glance-mockup-avatar-center">ME</div>
+                      </div>
+                      <div class="glance-mockup-showup-btn">
+                        <span>Show up · Set intent</span>
+                        <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class="glance-mockup-footer">
+                      <span><i class="ph ph-cursor-click" aria-hidden="true"></i> Click to launch live mobile prototype</span>
+                      <span class="glance-tag-pill">Screen 02.1</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -21727,35 +21703,13 @@ body.notes-open #dash-notes-toggle i {
               <div class="dash-head-actions ds-head-actions"></div>
             </div>
 
-            <div class="dash-page-intro-split">
-              <div class="dash-page-intro-text">
-                <p class="dash-page-lead">
-                  Being nearby doesn't mean being connected.
-                </p>
-                <p class="dash-page-desc">
-                  Every day, thousands of professionals work within meters of one another in coworking hubs, industry conferences, and innovation centers. Yet serendipitous, high-value collaborations rarely materialize. Physical co-presence alone cannot overcome the steep social friction, unshared professional context, and unknown real-time availability that keep people isolated.
-                </p>
-              </div>
-
-              <div class="dash-page-intro-visual">
-                <div class="prob-equation-panel">
-                  <div class="prob-eq-header">
-                    <span class="prob-eq-title">Behavioral Friction Equation</span>
-                    <i class="ph-bold ph-scales" aria-hidden="true" style="color:#FF3300;font-size:14px;"></i>
-                  </div>
-                  <div class="prob-eq-row status-quo">
-                    <span class="prob-eq-badge">STATUS QUO</span>
-                    <div class="prob-eq-steps">Physical Co-Presence + Hidden Intent</div>
-                    <div class="prob-eq-outcome">→ Hesitation &amp; Missed Opportunity</div>
-                  </div>
-                  <div class="prob-eq-arrow"><i class="ph-bold ph-arrow-down" aria-hidden="true"></i></div>
-                  <div class="prob-eq-row peopi-thesis">
-                    <span class="prob-eq-badge">PEOPI THESIS</span>
-                    <div class="prob-eq-steps">Proximity + Ephemeral Intent + Mutual Opt-In</div>
-                    <div class="prob-eq-outcome">→ Permissioned Connection</div>
-                  </div>
-                </div>
-              </div>
+            <div class="dash-page-intro">
+              <p class="dash-page-lead">
+                Being nearby doesn't mean being connected.
+              </p>
+              <p class="dash-page-desc">
+                Every day, thousands of professionals work within meters of one another in coworking hubs, industry conferences, and innovation centers. Yet serendipitous, high-value collaborations rarely materialize. Physical co-presence alone cannot overcome the steep social friction, unshared professional context, and unknown real-time availability that keep people isolated.
+              </p>
             </div>
           </header>
 
@@ -24059,37 +24013,13 @@ body.notes-open #dash-notes-toggle i {
               </div>
             </div>
 
-            <div class="dash-page-intro-split">
-              <div class="dash-page-intro-text">
-                <p class="dash-page-lead">
-                  Choose your moment. Make a connection.
-                </p>
-                <p class="dash-page-desc">
-                  Start discovery when you’re ready. Send an introduction request with an optional note. Connect and converse after mutual acceptance.
-                </p>
-              </div>
-
-              <div class="dash-page-intro-visual">
-                <div class="how-summary-flow" aria-label="Core 3-step summary">
-                  <div class="how-flow-step">
-                    <div class="how-flow-icon"><i class="ph ph-broadcast"></i></div>
-                    <div class="how-flow-title">Discover</div>
-                    <div class="how-flow-desc">Active proximity when you choose</div>
-                  </div>
-                  <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
-                  <div class="how-flow-step">
-                    <div class="how-flow-icon"><i class="ph ph-paper-plane-tilt"></i></div>
-                    <div class="how-flow-title">Request</div>
-                    <div class="how-flow-desc">Intro note with context</div>
-                  </div>
-                  <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
-                  <div class="how-flow-step">
-                    <div class="how-flow-icon"><i class="ph ph-chat-circle-dots"></i></div>
-                    <div class="how-flow-title">Connect</div>
-                    <div class="how-flow-desc">1-on-1 chat upon double opt-in</div>
-                  </div>
-                </div>
-              </div>
+            <div class="dash-page-intro">
+              <p class="dash-page-lead">
+                Choose your moment. Make a connection.
+              </p>
+              <p class="dash-page-desc">
+                Start discovery when you’re ready. Send an introduction request with an optional note. Connect and converse after mutual acceptance.
+              </p>
             </div>
           </header>
 
@@ -24099,6 +24029,26 @@ body.notes-open #dash-notes-toggle i {
               <span class="how-section-kicker">JOURNEY CHAPTERS</span>
               <h2 class="how-section-title">From first visit to your next conversation<span style="color:#FF3300;">.</span></h2>
               <p class="how-section-lead">A privacy-first, step-by-step walkthrough across the four core chapters of Peopi.</p>
+            </div>
+
+            <div class="how-summary-flow" aria-label="Core 3-step summary" style="margin-bottom: 28px;">
+              <div class="how-flow-step">
+                <div class="how-flow-icon"><i class="ph ph-broadcast"></i></div>
+                <div class="how-flow-title">Discover</div>
+                <div class="how-flow-desc">Active proximity when you choose</div>
+              </div>
+              <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
+              <div class="how-flow-step">
+                <div class="how-flow-icon"><i class="ph ph-paper-plane-tilt"></i></div>
+                <div class="how-flow-title">Request</div>
+                <div class="how-flow-desc">Intro note with context</div>
+              </div>
+              <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
+              <div class="how-flow-step">
+                <div class="how-flow-icon"><i class="ph ph-chat-circle-dots"></i></div>
+                <div class="how-flow-title">Connect</div>
+                <div class="how-flow-desc">1-on-1 chat upon double opt-in</div>
+              </div>
             </div>
 
             <!-- Chapter 01: Get Ready -->
