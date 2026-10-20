@@ -1943,14 +1943,14 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #FF3300;
-  text-align: center;
+  text-align: left;
   line-height: 1.35;
   margin: 0;
 }
 
 .prob-gap-list {
   list-style: none;
-  padding: 0 2px;
+  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -1988,7 +1988,7 @@
 .prob-gap-footer {
   padding-top: 12px;
   border-top: 1px dashed #FDBA9C;
-  text-align: center;
+  text-align: left;
   font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.06em;
