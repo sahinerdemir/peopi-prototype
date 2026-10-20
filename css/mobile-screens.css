@@ -958,7 +958,7 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
   width: 100%;
   overflow: hidden;
   position: relative;
-  display: flex;
+  display: block;
 }
 .onboarding-slides {
   display: flex;
@@ -976,6 +976,7 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
 /* Individual Slide & Art */
 .onboarding-slide {
   width: 33.333333%;
+  flex: 0 0 33.333333%;
   height: 100%;
   position: relative;
   overflow: hidden;
