@@ -1,6 +1,6 @@
 const actionGuides={
 onboarding:[['Continue / Swipe','Navigates sequentially through Discovery, Privacy, and Intent steps'],['Skip','Instantly bypasses the tour directly to the Welcome screen'],['Get started (Slide 3)','Completes tour and routes to Welcome screen'],['I have an account','Bypasses walkthrough straight to Sign in']],
-welcome:[['Discover Peopi','Opens email sign-in flow'],['Have an account?','Opens email sign-in directly']],
+welcome:[['Discover Peopi','Starts onboarding walkthrough'],['Have an account?','Opens email sign-in directly']],
 auth:[['Email & Continue','Validates email address and reveals verification code step'],['Demo code (123456)','Enters test code to proceed to Profile setup'],['Need help?','Opens Account recovery']],
 firstprofile:[['Profile details','Requires name, headline and city before proceeding'],['Continue','Saves basic details and moves to Intent setup']],
 firstintent:[['Networking goals','Select one or more professional intents'],['Finish setup','Saves selected goals and enters Discover in invisible mode']],
