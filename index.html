@@ -1063,71 +1063,85 @@
                 </div>
               </div>
 
-              <div class="prob-scenario-visual" role="img" aria-label="Illustrative scenario diagram: a founder exploring a product idea and a product designer working nearby in the same space leave without discovering their complementary context or availability">
-                <svg class="prob-scenario-svg" viewBox="0 0 860 276" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Shared Physical Space Outer Container -->
-                  <rect x="4" y="4" width="852" height="268" rx="16" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <div class="prob-scenario-visual" role="region" aria-label="Illustrative scenario diagram: a founder exploring a product idea and a product designer working nearby in the same space leave without discovering their complementary context or availability">
+                <div class="prob-scenario-env">
+                  <div class="prob-scenario-env-badge">
+                    <span class="prob-env-dot" aria-hidden="true"></span>
+                    <span>SHARED PHYSICAL ENVIRONMENT · ~6 METERS APART</span>
+                  </div>
 
-                  <!-- Top Environment Header Badge -->
-                  <g transform="translate(24, 18)">
-                    <rect x="0" y="0" width="276" height="24" rx="6" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <circle cx="12" cy="12" r="4" fill="#FF3300"/>
-                    <text x="24" y="16" font-family="inherit" font-size="10" font-weight="800" fill="var(--prob-svg-muted, #64748B)" letter-spacing="0.05em">SHARED PHYSICAL ENVIRONMENT · ~6 METERS APART</text>
-                  </g>
+                  <div class="prob-scenario-grid">
+                    <!-- 1. Left Card: Startup Founder -->
+                    <article class="prob-scenario-actor">
+                      <div class="prob-actor-head">
+                        <span class="prob-actor-avatar is-founder" aria-hidden="true">A</span>
+                        <div class="prob-actor-meta">
+                          <h3 class="prob-actor-title">Startup Founder</h3>
+                          <p class="prob-actor-sub">Table 04 · Working on laptop</p>
+                        </div>
+                      </div>
 
-                  <!-- Left Card: Founder -->
-                  <g transform="translate(24, 54)">
-                    <rect x="0" y="0" width="268" height="148" rx="12" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.2"/>
-                    <circle cx="28" cy="28" r="14" fill="var(--prob-svg-accent-bg, #FFF5F2)" stroke="var(--prob-svg-accent-border, #FFD8CC)" stroke-width="1"/>
-                    <text x="28" y="32" font-family="inherit" font-size="11" font-weight="800" fill="#FF3300" text-anchor="middle">A</text>
-                    <text x="50" y="25" font-family="inherit" font-size="13" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Startup Founder</text>
-                    <text x="50" y="39" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Table 04 · Working on laptop</text>
+                      <div class="prob-actor-field">
+                        <span class="prob-actor-field-label is-accent">UNSHARED PROFESSIONAL CONTEXT</span>
+                        <p class="prob-actor-field-desc">Exploring a B2B product idea; needs UX input</p>
+                      </div>
 
-                    <rect x="14" y="54" width="240" height="40" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="24" y="70" font-family="inherit" font-size="9.5" font-weight="800" fill="#FF3300" letter-spacing="0.04em">UNSHARED PROFESSIONAL CONTEXT</text>
-                    <text x="24" y="84" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">Exploring a B2B product idea; needs UX input</text>
+                      <div class="prob-actor-field">
+                        <span class="prob-actor-field-label">UNEXPRESSED AVAILABILITY</span>
+                        <p class="prob-actor-field-desc">Open for a 20-min coffee chat before noon</p>
+                      </div>
+                    </article>
 
-                    <rect x="14" y="100" width="240" height="36" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="24" y="114" font-family="inherit" font-size="9.5" font-weight="800" fill="var(--prob-svg-muted, #64748B)" letter-spacing="0.04em">UNEXPRESSED AVAILABILITY</text>
-                    <text x="24" y="128" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">Open for a 20-min coffee chat before noon</text>
-                  </g>
+                    <!-- 2. Center Panel: Unbridged Signal Gap -->
+                    <div class="prob-scenario-gap">
+                      <h4 class="prob-gap-heading">UNBRIDGED SIGNAL GAP</h4>
+                      <ul class="prob-gap-list">
+                        <li class="prob-gap-item">
+                          <span class="prob-gap-bullet" aria-hidden="true"></span>
+                          <span>Complementary skills unseen</span>
+                        </li>
+                        <li class="prob-gap-item">
+                          <span class="prob-gap-bullet" aria-hidden="true"></span>
+                          <span>Openness to meet unknown</span>
+                        </li>
+                        <li class="prob-gap-item">
+                          <span class="prob-gap-bullet" aria-hidden="true"></span>
+                          <span>Cold interruption feels intrusive</span>
+                        </li>
+                      </ul>
+                      <div class="prob-gap-footer">NO MUTUAL CONSENT SIGNAL</div>
+                    </div>
 
-                  <!-- Center Friction Barrier -->
-                  <g transform="translate(308, 54)">
-                    <line x1="0" y1="74" x2="244" y2="74" stroke="var(--prob-svg-border, #CBD5E1)" stroke-width="2" stroke-dasharray="5 4"/>
-                    <rect x="26" y="12" width="192" height="124" rx="12" fill="var(--prob-svg-accent-bg, #FFF5F2)" stroke="var(--prob-svg-accent-border, #FFD8CC)" stroke-width="1.2"/>
-                    <text x="122" y="34" font-family="inherit" font-size="10" font-weight="800" fill="#FF3300" text-anchor="middle" letter-spacing="0.06em">UNBRIDGED SIGNAL GAP</text>
-                    <text x="122" y="58" font-family="inherit" font-size="11" font-weight="700" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">• Complementary skills unseen</text>
-                    <text x="122" y="80" font-family="inherit" font-size="11" font-weight="700" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">• Openness to meet unknown</text>
-                    <text x="122" y="102" font-family="inherit" font-size="11" font-weight="700" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">• Cold interruption feels intrusive</text>
-                    <text x="122" y="124" font-family="inherit" font-size="10" font-weight="800" fill="var(--prob-svg-muted, #64748B)" text-anchor="middle">NO MUTUAL CONSENT SIGNAL</text>
-                  </g>
+                    <!-- 3. Right Card: Product Designer -->
+                    <article class="prob-scenario-actor">
+                      <div class="prob-actor-head">
+                        <span class="prob-actor-avatar is-designer" aria-hidden="true">B</span>
+                        <div class="prob-actor-meta">
+                          <h3 class="prob-actor-title">Product Designer</h3>
+                          <p class="prob-actor-sub">Table 07 · Focused on screen</p>
+                        </div>
+                      </div>
 
-                  <!-- Right Card: Product Designer -->
-                  <g transform="translate(568, 54)">
-                    <rect x="0" y="0" width="268" height="148" rx="12" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.2"/>
-                    <circle cx="28" cy="28" r="14" fill="var(--prob-svg-bg, #F1F5F9)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="28" y="32" font-family="inherit" font-size="11" font-weight="800" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">B</text>
-                    <text x="50" y="25" font-family="inherit" font-size="13" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Product Designer</text>
-                    <text x="50" y="39" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Table 07 · Focused on screen</text>
+                      <div class="prob-actor-field">
+                        <span class="prob-actor-field-label is-accent">UNSHARED PROFESSIONAL CONTEXT</span>
+                        <p class="prob-actor-field-desc">0→1 UX specialist; interested in early ventures</p>
+                      </div>
 
-                    <rect x="14" y="54" width="240" height="40" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="24" y="70" font-family="inherit" font-size="9.5" font-weight="800" fill="#FF3300" letter-spacing="0.04em">UNSHARED PROFESSIONAL CONTEXT</text>
-                    <text x="24" y="84" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">0→1 UX specialist; interested in early ventures</text>
+                      <div class="prob-actor-field">
+                        <span class="prob-actor-field-label">UNEXPRESSED AVAILABILITY</span>
+                        <p class="prob-actor-field-desc">Has an open hour between design reviews</p>
+                      </div>
+                    </article>
+                  </div>
 
-                    <rect x="14" y="100" width="240" height="36" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="24" y="114" font-family="inherit" font-size="9.5" font-weight="800" fill="var(--prob-svg-muted, #64748B)" letter-spacing="0.04em">UNEXPRESSED AVAILABILITY</text>
-                    <text x="24" y="128" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">Has an open hour between design reviews</text>
-                  </g>
-
-                  <!-- Bottom Outcome Bar -->
-                  <g transform="translate(24, 216)">
-                    <rect x="0" y="0" width="812" height="38" rx="10" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <circle cx="20" cy="19" r="4.5" fill="#FF3300"/>
-                    <text x="34" y="23" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Scenario Outcome:</text>
-                    <text x="150" y="23" font-family="inherit" font-size="12" font-weight="500" fill="var(--prob-svg-muted, #64748B)">Neither person knows the other's domain or openness to talk. Both pack up and leave without discovering the connection.</text>
-                  </g>
-                </svg>
+                  <!-- 4. Bottom Scenario Outcome Bar -->
+                  <div class="prob-scenario-outcome">
+                    <span class="prob-outcome-dot" aria-hidden="true"></span>
+                    <p class="prob-outcome-text">
+                      <strong>Scenario Outcome:</strong> Neither person knows the other's domain or openness to talk. Both pack up and leave without discovering the connection.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div class="prob-scenario-steps">

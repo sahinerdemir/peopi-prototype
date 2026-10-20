@@ -1751,13 +1751,304 @@
 
 .prob-scenario-visual {
   width: 100%;
-  overflow: hidden;
+  min-width: 0;
+  container-type: inline-size;
+  container-name: scenario-diagram;
 }
 
-.prob-scenario-svg {
+.prob-scenario-env {
+  background: #F8FAFC;
+  border: 1.5px dashed #CBD5E1;
+  border-radius: 16px;
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.prob-scenario-env-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748B;
+  line-height: 1.35;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.prob-env-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF3300;
+  flex-shrink: 0;
+}
+
+.prob-scenario-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.88fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.prob-scenario-grid::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  right: 15%;
+  border-top: 2px dashed #CBD5E1;
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.prob-scenario-actor {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border: 1.2px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.prob-actor-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.prob-actor-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.prob-actor-avatar.is-founder {
+  background: #FFF5F2;
+  border: 1px solid #FFD8CC;
+  color: #FF3300;
+}
+
+.prob-actor-avatar.is-designer {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+}
+
+.prob-actor-meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.prob-actor-title {
+  font-size: 16.5px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.prob-actor-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  line-height: 1.4;
+  margin: 2px 0 0;
+  overflow-wrap: break-word;
+}
+
+.prob-actor-field {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 11px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.prob-actor-field-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748B;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+}
+
+.prob-actor-field-label.is-accent {
+  color: #FF3300;
+}
+
+.prob-actor-field-desc {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.45;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.prob-scenario-gap {
+  position: relative;
+  z-index: 1;
+  background: #FFF5F2;
+  border: 1.2px solid #FFD8CC;
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+  align-self: center;
   width: 100%;
-  height: auto;
-  display: block;
+  box-sizing: border-box;
+}
+
+.prob-gap-heading {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FF3300;
+  text-align: center;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.prob-gap-list {
+  list-style: none;
+  padding: 0 2px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.prob-gap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1.45;
+  text-align: left;
+  min-width: 0;
+}
+
+.prob-gap-item span:last-child {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.prob-gap-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FF3300;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.prob-gap-footer {
+  padding-top: 12px;
+  border-top: 1px dashed #FDBA9C;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748B;
+  line-height: 1.35;
+}
+
+.prob-scenario-outcome {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.prob-outcome-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF3300;
+  flex-shrink: 0;
+  transform: translateY(-1px);
+}
+
+.prob-outcome-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.prob-outcome-text strong {
+  color: #0F172A;
+  font-weight: 800;
+  margin-right: 4px;
+}
+
+@container scenario-diagram (max-width: 780px) {
+  .prob-scenario-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .prob-scenario-grid::before {
+    top: 24px;
+    bottom: 24px;
+    left: 50%;
+    right: auto;
+    width: 0;
+    border-top: 0;
+    border-left: 2px dashed #CBD5E1;
+    transform: translateX(-50%);
+  }
 }
 
 .prob-scenario-steps {
@@ -2389,6 +2680,90 @@
   color: #FBBF24;
 }
 
+#dashboard-workspace.ds-dark .prob-scenario-env,
+#dashboard-workspace.dash-dark .prob-scenario-env {
+  background: #141B26;
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .prob-scenario-env-badge,
+#dashboard-workspace.dash-dark .prob-scenario-env-badge {
+  background: #1E293B;
+  border-color: #334155;
+  color: #CBD5E1;
+}
+
+#dashboard-workspace.ds-dark .prob-scenario-grid::before,
+#dashboard-workspace.dash-dark .prob-scenario-grid::before {
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .prob-scenario-actor,
+#dashboard-workspace.dash-dark .prob-scenario-actor,
+#dashboard-workspace.ds-dark .prob-scenario-outcome,
+#dashboard-workspace.dash-dark .prob-scenario-outcome {
+  background: #18202C;
+  border-color: #2D3748;
+  box-shadow: none;
+}
+
+#dashboard-workspace.ds-dark .prob-actor-avatar.is-founder,
+#dashboard-workspace.dash-dark .prob-actor-avatar.is-founder {
+  background: #2D1A16;
+  border-color: #5C281B;
+  color: #FF5522;
+}
+
+#dashboard-workspace.ds-dark .prob-actor-avatar.is-designer,
+#dashboard-workspace.dash-dark .prob-actor-avatar.is-designer {
+  background: #1E293B;
+  border-color: #334155;
+  color: #F8FAFC;
+}
+
+#dashboard-workspace.ds-dark .prob-actor-title,
+#dashboard-workspace.dash-dark .prob-actor-title,
+#dashboard-workspace.ds-dark .prob-outcome-text strong,
+#dashboard-workspace.dash-dark .prob-outcome-text strong {
+  color: #F8FAFC;
+}
+
+#dashboard-workspace.ds-dark .prob-actor-sub,
+#dashboard-workspace.dash-dark .prob-actor-sub,
+#dashboard-workspace.ds-dark .prob-gap-footer,
+#dashboard-workspace.dash-dark .prob-gap-footer {
+  color: #94A3B8;
+}
+
+#dashboard-workspace.ds-dark .prob-actor-field,
+#dashboard-workspace.dash-dark .prob-actor-field {
+  background: #141B26;
+  border-color: #283344;
+}
+
+#dashboard-workspace.ds-dark .prob-actor-field-desc,
+#dashboard-workspace.dash-dark .prob-actor-field-desc,
+#dashboard-workspace.ds-dark .prob-outcome-text,
+#dashboard-workspace.dash-dark .prob-outcome-text {
+  color: #CBD5E1;
+}
+
+#dashboard-workspace.ds-dark .prob-scenario-gap,
+#dashboard-workspace.dash-dark .prob-scenario-gap {
+  background: #231819;
+  border-color: #5C281B;
+}
+
+#dashboard-workspace.ds-dark .prob-gap-item,
+#dashboard-workspace.dash-dark .prob-gap-item {
+  color: #F1F5F9;
+}
+
+#dashboard-workspace.ds-dark .prob-gap-footer,
+#dashboard-workspace.dash-dark .prob-gap-footer {
+  border-top-color: #5C281B;
+}
+
 /* ==========================================================================
    Responsive Breakpoints for 01.2 Problem & Opportunity
    ========================================================================== */
@@ -2417,6 +2792,23 @@
   }
 }
 
+@media (max-width: 900px) {
+  .prob-scenario-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .prob-scenario-grid::before {
+    top: 24px;
+    bottom: 24px;
+    left: 50%;
+    right: auto;
+    width: 0;
+    border-top: 0;
+    border-left: 2px dashed #CBD5E1;
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 768px) {
   .prob-unknowns-ledger,
   .prob-scenario-steps,
@@ -2428,10 +2820,36 @@
   .prob-scenario-showcase,
   .prob-opportunity-panel,
   .prob-synthesis-card {
-    padding: 22px 20px;
+    padding: 20px 16px;
+  }
+  .prob-scenario-env {
+    padding: 22px 14px 14px;
+  }
+  .prob-scenario-actor,
+  .prob-scenario-gap {
+    padding: 16px 14px;
   }
   .prob-next-banner {
     padding: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .prob-problem-surface,
+  .prob-scenario-showcase,
+  .prob-opportunity-panel,
+  .prob-synthesis-card {
+    padding: 16px 12px;
+  }
+  .prob-scenario-env {
+    padding: 22px 10px 12px;
+  }
+  .prob-scenario-actor,
+  .prob-scenario-gap {
+    padding: 14px 12px;
+  }
+  .prob-scenario-outcome {
+    padding: 12px;
   }
 }
 
