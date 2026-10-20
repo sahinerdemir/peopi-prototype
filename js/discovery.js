@@ -163,15 +163,18 @@ let modalConfirmHandler=null;function modal(title,body,confirm,onConfirm){$('#mo
 /* Prototype-only connection counts; not real user/network data. */
 const demoConnectionCounts=[128,96,74,183,112,65,209,142,88,175,230,310,95,120,84,165,192,115,275,62,180];
 function paintConnectionCount(selector,id,connected){
- const el=$(selector);el.classList.toggle('hide',!connected);
- if(connected)(el.querySelector('.profile-network-total')||el.querySelector('span')).textContent=demoConnectionCounts[id]+' connections';
+ const el=$(selector);if(!el)return;el.classList.toggle('hide',!connected);
+ const stack=el.querySelector('.profile-network-avatars');
+ if(!connected){if(stack)stack.replaceChildren();return;}
+ (el.querySelector('.profile-network-total')||el.querySelector('span')).textContent=demoConnectionCounts[id]+' connections';
+ if(stack&&!stack.children.length){[0,1,7,8,9].forEach(mId=>{const img=document.createElement('img');img.src=demoPortraits[mId]||'';img.alt='';stack.appendChild(img);});}
 }
 function openProfile(){
  if(person==='own'){go('myprofile');return;}
  const p=people[person];
  paintDemoPortrait($('#detailinitials'),person);
  $('#detailname').textContent=typeof journey!=='undefined'&&journey.connections.includes(person)?p.name:p.initial.split('').join('.')+'.';
- markVerifiedName($('#detailname'),person);const connected=journey.connections.includes(person);paintConnectionCount('#detail-connection-count',person,true);renderProfileSheetDocs(person,connected);$('#detail-privacy-hint').classList.toggle('connected-hint',connected);$('#detail-privacy-hint').innerHTML=connected?'<i class="ph ph-check-circle" aria-hidden="true"></i><span>You\'re connected.</span><button type="button" class="profile-message-link" id="profile-send-message">Send Message</button>':'<i class="ph ph-shield-check" aria-hidden="true"></i><span>Photo and name hidden until connected.</span>';refreshIcons();$('#detailrole').textContent=p.headline;
+ markVerifiedName($('#detailname'),person);const connected=journey.connections.includes(person);paintConnectionCount('#detail-connection-count',person,connected);renderProfileSheetDocs(person,connected);$('#detail-privacy-hint').classList.toggle('connected-hint',connected);$('#detail-privacy-hint').innerHTML=connected?'<i class="ph ph-check-circle" aria-hidden="true"></i><span>You\'re connected.</span><button type="button" class="profile-message-link" id="profile-send-message">Send Message</button>':'<i class="ph ph-shield-check" aria-hidden="true"></i><span>Photo and name hidden until connected.</span>';refreshIcons();$('#detailrole').textContent=p.headline;
  $('#detailsector').textContent=p.sector;
  $('#detailbio').textContent=p.bio;
  $('#detaillooking').textContent=p.looking;

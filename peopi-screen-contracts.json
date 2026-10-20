@@ -68,6 +68,8 @@
         "Render only profiles allowed by session, connection and privacy state.",
         "Map and List share filters modal with styled dropdown carets; 24px clearance between list toolbar and discovery list cards; retain view, selection and scroll across tab visits.",
         "Map features pannable canvas with rubber-band bounds, drag-click separation and approximate location privacy beacon with animated radar halo.",
+        "Discovery pins convey approximate proximity via diffusion halos; production discovery APIs must never transmit precise raw coordinates.",
+        "Unconnected profiles show initials-based avatars with photos withheld on the server; full portraits unlock only after mutual connection acceptance.",
         "Floating Recenter FAB smoothly resets map translation when panned away from user area.",
         "Connected List cards use the orange border and shared verified badge.",
         "Going invisible and session expiry end discovery immediately; animate afterward."
@@ -618,6 +620,8 @@
       ],
       "rules": [
         "Use limited identity before connection and full authorized identity afterward.",
+        "Pre-connection profiles use initials-only avatars with photos withheld on the server, avoiding reliance on client-side blur for privacy.",
+        "Conceal mutual connection previews and counts until mutual connection is accepted.",
         "Sheet uses the shared verified badge, protected portrait and profile rows.",
         "Enforce connection-only document visibility: unaccepted contacts see a privacy-locked teaser card while established connections see unlocked attachments.",
         "Render career history under Experience with role title, company, country, and tenure dates separated by clean 1px divider lines (not boxes).",

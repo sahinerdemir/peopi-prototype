@@ -131,8 +131,8 @@ const specs={
   ],
   "rules": [
    "Map and list share the identical filtered dataset and count (7 nearby demo professionals).",
-   "Exact coordinates are never exposed; all pins represent approximate geohash areas.",
-   "Unconnected profiles display initials and blurred avatars; names and photos unlock upon connection.",
+   "Discovery pins convey approximate proximity via diffusion halos; production APIs and client payloads must never transmit precise raw coordinates.",
+   "Unconnected profiles display initials-only avatars with photos withheld on the server; full portraits and names unlock only after mutual connection acceptance.",
    "Hidden connections from user's network are excluded from active presence visibility."
   ],
   "components": [
@@ -179,6 +179,8 @@ const specs={
   ],
   "rules": [
    "Initials only for unconnected members; full name revealed only after mutual connection.",
+   "Pre-connection profiles use initials-only avatars with photos withheld on the server, avoiding reliance on client-side blur for privacy.",
+   "Conceal mutual connection previews and counts until mutual connection is accepted.",
    "Documents and attachments remain blurred placeholders until connection is established.",
    "Professional background, bio, skills, and project descriptions are intentionally visible to facilitate connection.",
    "Sending a request does not expose user's live coordinates."
