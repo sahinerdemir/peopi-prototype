@@ -6811,7 +6811,7 @@
   width: 100% !important;
   margin-bottom: 24px !important;
   gap: 16px !important;
-  flex-wrap: wrap !important;
+  flex-wrap: nowrap !important;
 }
 
 .dash-page-header-left,
@@ -6819,7 +6819,8 @@
   display: flex !important;
   flex-direction: column !important;
   gap: 0 !important;
-  flex: 1 1 auto !important;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
 }
 
 .dash-head-actions,
@@ -6828,6 +6829,19 @@
   align-items: center !important;
   gap: 10px !important;
   flex-shrink: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .dash-head-actions .overview-primary-btn span {
+    display: none !important;
+  }
+  .dash-head-actions .overview-primary-btn {
+    padding: 0 !important;
+    width: 40px !important;
+    height: 40px !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+  }
 }
 
 /* 1. Category Eyebrow: 11–12px, 8–12px margin to H1 */

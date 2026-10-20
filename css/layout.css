@@ -419,82 +419,57 @@ body:not(.notes-open).dashboard-open .workspace {
     grid-template-columns: 280px minmax(0, 1fr) !important;
   }
 }
-@media(max-width: 960px) {
-  body:not(.notes-open) .workspace,
-  body:not(.notes-open).ds-open .workspace,
-  body:not(.notes-open).dashboard-open .workspace {
-    grid-template-columns: 285px minmax(0, 1fr) !important;
+@media(min-width: 961px) {
+  /* Open state on desktop: notes OPEN (Width = 400px) */
+  body.notes-open:not(.dashboard-open):not(.ds-open) .inspector {
+    display: flex !important;
+  }
+  body.notes-open.ds-open .ds-inspector {
+    display: flex !important;
+  }
+  body.notes-open.dashboard-open .dashboard-inspector {
+    display: flex !important;
+  }
+
+  body.notes-open .inspector,
+  body.notes-open.ds-open .ds-inspector,
+  body.notes-open.dashboard-open .dashboard-inspector {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    width: 400px !important;
+    min-width: 400px !important;
+    max-width: 400px !important;
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    background: #ffffff !important;
+    border-left: 1px solid #e4e7ec !important;
+    box-sizing: border-box !important;
+    z-index: 20 !important;
+    overflow: hidden !important;
+  }
+
+  body.notes-open .workspace,
+  body.notes-open.ds-open .workspace,
+  body.notes-open.dashboard-open .workspace {
+    grid-template-columns: 340px minmax(0, 1fr) 400px !important;
   }
 }
-@media(max-width: 700px) {
-  body:not(.notes-open) .workspace,
-  body:not(.notes-open).ds-open .workspace,
-  body:not(.notes-open).dashboard-open .workspace {
-    display: block !important;
-  }
-}
 
-/* Open state: notes OPEN (Width = 400px) */
-body.notes-open:not(.dashboard-open):not(.ds-open) .inspector {
-  display: flex !important;
-}
-body.notes-open.ds-open .ds-inspector {
-  display: flex !important;
-}
-body.notes-open.dashboard-open .dashboard-inspector {
-  display: flex !important;
-}
-
-body.notes-open .inspector,
-body.notes-open.ds-open .ds-inspector,
-body.notes-open.dashboard-open .dashboard-inspector {
-  display: flex !important;
-  flex-direction: column !important;
-  grid-column: 3 !important;
-  grid-row: 1 !important;
-  width: 400px !important;
-  min-width: 400px !important;
-  max-width: 400px !important;
-  position: sticky !important;
-  top: 0 !important;
-  height: 100vh !important;
-  background: #ffffff !important;
-  border-left: 1px solid #e4e7ec !important;
-  box-sizing: border-box !important;
-  z-index: 20 !important;
-  overflow: hidden !important;
-}
-
-body.notes-open .workspace,
-body.notes-open.ds-open .workspace,
-body.notes-open.dashboard-open .workspace {
-  grid-template-columns: 340px minmax(0, 1fr) 400px !important;
-}
-
-@media(max-width: 1300px) {
+@media(min-width: 961px) and (max-width: 1300px) {
   body.notes-open .workspace,
   body.notes-open.ds-open .workspace,
   body.notes-open.dashboard-open .workspace {
     grid-template-columns: 300px minmax(0, 1fr) 400px !important;
   }
 }
-@media(max-width: 1120px) {
+@media(min-width: 961px) and (max-width: 1120px) {
   body.notes-open .workspace,
   body.notes-open.ds-open .workspace,
   body.notes-open.dashboard-open .workspace {
     grid-template-columns: 280px minmax(0, 1fr) 400px !important;
-  }
-}
-@media(max-width: 960px) {
-  body.notes-open .workspace,
-  body.notes-open.ds-open .workspace,
-  body.notes-open.dashboard-open .workspace {
-    grid-template-columns: 285px minmax(0, 1fr) !important;
-  }
-  body.notes-open .inspector,
-  body.notes-open.ds-open .ds-inspector,
-  body.notes-open.dashboard-open .dashboard-inspector {
-    display: none !important;
   }
 }
 
@@ -695,4 +670,226 @@ body.notes-open #dash-notes-toggle i {
   border-color: rgba(255, 51, 0, 0.4) !important;
   color: #ff3300 !important;
 }
+
+/* ==========================================================================
+   Responsive Hamburger Menu & Mobile Notes Popup (<= 960px)
+   ========================================================================== */
+.mobile-menu-toggle,
+.workspace-overlay-backdrop {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  html,
+  body {
+    height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  .workspace,
+  body:not(.notes-open) .workspace,
+  body:not(.notes-open).ds-open .workspace,
+  body:not(.notes-open).dashboard-open .workspace,
+  body.notes-open .workspace,
+  body.notes-open.ds-open .workspace,
+  body.notes-open.dashboard-open .workspace {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  /* Compact 60px top header bar with Hamburger trigger */
+  .sidebar {
+    flex: 0 0 60px !important;
+    height: 60px !important;
+    min-height: 60px !important;
+    max-height: 60px !important;
+    width: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+    z-index: 1200 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid #e4e7ec !important;
+    overflow: visible !important;
+  }
+
+  .workspace-brand {
+    height: 60px !important;
+    padding: 0 18px !important;
+    border-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 11px !important;
+    box-sizing: border-box !important;
+  }
+
+  .workspace-brand .brand-mark {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 10px !important;
+    font-size: 21px !important;
+  }
+
+  .mobile-menu-toggle {
+    margin-left: auto !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+    border: 1px solid #d7dce4 !important;
+    background: #ffffff !important;
+    color: #263044 !important;
+    display: grid !important;
+    place-items: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+    transition: all 0.15s ease !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .mobile-menu-toggle i {
+    font-size: 20px !important;
+    color: inherit !important;
+  }
+
+  .mobile-menu-toggle:hover {
+    background: #f1f3f7 !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  .mobile-menu-toggle.active,
+  body.mobile-menu-open .mobile-menu-toggle {
+    background: #fff1ec !important;
+    border-color: #ffd2c6 !important;
+    color: #ff3300 !important;
+  }
+
+  /* Slide-over Hamburger Navigation Drawer */
+  .sidebar-nav-scroll {
+    position: fixed !important;
+    top: 60px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: min(340px, 86vw) !important;
+    height: calc(100dvh - 60px) !important;
+    max-height: calc(100dvh - 60px) !important;
+    background: #ffffff !important;
+    border-right: 1px solid #e4e7ec !important;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.22) !important;
+    z-index: 1201 !important;
+    overflow-y: auto !important;
+    padding: 6px 0 28px !important;
+    transform: translateX(-104%) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.24s !important;
+  }
+
+  body.mobile-menu-open .sidebar-nav-scroll {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .sidebar .tree {
+    display: block !important;
+    grid-template-columns: none !important;
+  }
+
+  /* Active Workspace Scroll Containers */
+  body.dashboard-open #dashboard-workspace,
+  body.ds-open #ds-workspace,
+  body:not(.dashboard-open):not(.ds-open) .preview-area {
+    flex: 1 1 auto !important;
+    height: calc(100dvh - 60px) !important;
+    min-height: 0 !important;
+    width: 100% !important;
+  }
+
+  body.ds-open .ds-head {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    margin-bottom: 36px !important;
+  }
+
+  body.ds-open .ds-head .dash-page-header-left {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+  }
+
+  /* Shared Backdrop for Hamburger Menu and Mobile Notes Popup */
+  body.mobile-menu-open .workspace-overlay-backdrop {
+    display: block !important;
+    position: fixed !important;
+    inset: 60px 0 0 0 !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(2px) !important;
+    z-index: 1190 !important;
+    cursor: pointer !important;
+  }
+
+  body.notes-open .workspace-overlay-backdrop {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(15, 23, 42, 0.52) !important;
+    backdrop-filter: blur(3px) !important;
+    z-index: 1290 !important;
+    cursor: pointer !important;
+  }
+
+  /* Mobile Notes Popup Dialog */
+  body.notes-open:not(.dashboard-open):not(.ds-open) .inspector,
+  body.notes-open.ds-open .ds-inspector,
+  body.notes-open.ds-open #ds-inspector,
+  body.notes-open.dashboard-open .dashboard-inspector,
+  body.notes-open.dashboard-open #dashboard-inspector {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(500px, calc(100vw - 32px)) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 32px) !important;
+    height: auto !important;
+    max-height: min(82dvh, 660px) !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.28), 0 4px 16px rgba(15, 23, 42, 0.12) !important;
+    z-index: 1300 !important;
+    overflow: hidden !important;
+    pointer-events: auto !important;
+  }
+
+  body.notes-open .inspector .inspector-scroll,
+  body.notes-open.ds-open .ds-inspector .inspector-scroll,
+  body.notes-open.dashboard-open .dashboard-inspector .inspector-scroll {
+    overflow-y: auto !important;
+    max-height: min(82dvh, 660px) !important;
+    padding: 26px 22px 24px !important;
+    overscroll-behavior: contain !important;
+  }
+
+  body.dark-theme.notes-open .inspector,
+  body.dark-theme.notes-open .ds-inspector,
+  body.dark-theme.notes-open .dashboard-inspector,
+  #dashboard-workspace.ds-dark ~ #dashboard-inspector,
+  #dashboard-workspace.dash-dark ~ #dashboard-inspector,
+  #ds-workspace.ds-dark ~ #ds-inspector {
+    background: #171E28 !important;
+    border-color: #283141 !important;
+    color: #F1F5F9 !important;
+  }
+}
+
 

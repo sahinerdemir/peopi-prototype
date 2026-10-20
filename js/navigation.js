@@ -9947,10 +9947,36 @@ if(document.readyState==='complete')refreshIcons();else window.addEventListener(
 })();
 
 /* ==========================================================================
-   Collapsible Notes Panel Controller (Default Closed)
+   Collapsible Notes Panel & Responsive Hamburger Menu Controller
    ========================================================================== */
+function setMobileMenuOpen(open){
+  const isOpen = Boolean(open);
+  if(isOpen && window.innerWidth <= 960 && document.body.classList.contains('notes-open')){
+    setNotesOpen(false);
+  }
+  document.body.classList.toggle('mobile-menu-open', isOpen);
+  const menuBtn = document.getElementById('mobile-menu-toggle');
+  if(menuBtn){
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    menuBtn.classList.toggle('active', isOpen);
+    menuBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    menuBtn.setAttribute('title', isOpen ? 'Close menu' : 'Menu');
+    const icon = menuBtn.querySelector('i');
+    if(icon){
+      icon.className = isOpen ? 'ph ph-x' : 'ph ph-list';
+    }
+  }
+}
+
+function toggleMobileMenu(){
+  setMobileMenuOpen(!document.body.classList.contains('mobile-menu-open'));
+}
+
 function setNotesOpen(open){
   const isOpen = Boolean(open);
+  if(isOpen && window.innerWidth <= 960 && document.body.classList.contains('mobile-menu-open')){
+    setMobileMenuOpen(false);
+  }
   document.body.classList.toggle('notes-open', isOpen);
   const stageBtn = document.getElementById('stage-notes-toggle');
   const dsBtn = document.getElementById('ds-notes-toggle');
@@ -9974,12 +10000,46 @@ document.querySelectorAll('#stage-notes-toggle, #ds-notes-toggle, #dash-notes-to
   btn.addEventListener('click', toggleNotes);
 });
 
+const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+if(mobileMenuBtn){
+  mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+}
 
+const workspaceBackdrop = document.getElementById('workspace-overlay-backdrop');
+if(workspaceBackdrop){
+  workspaceBackdrop.addEventListener('click', () => {
+    if(document.body.classList.contains('mobile-menu-open')) setMobileMenuOpen(false);
+    if(document.body.classList.contains('notes-open')) setNotesOpen(false);
+  });
+}
+
+const sidebarDrawer = document.getElementById('sidebar-nav-drawer');
+if(sidebarDrawer){
+  sidebarDrawer.addEventListener('click', event => {
+    const link = event.target.closest('.tree-link');
+    if(link && !link.classList.contains('category-toggle') && !link.classList.contains('group-toggle') && !link.classList.contains('ds-subgroup-toggle')){
+      if(window.innerWidth <= 960){
+        setMobileMenuOpen(false);
+      }
+    }
+  });
+}
+
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 960 && document.body.classList.contains('mobile-menu-open')){
+    setMobileMenuOpen(false);
+  }
+});
 
 document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && document.body.classList.contains('notes-open')) {
+  if (event.key === 'Escape') {
     const activeModal = document.querySelector('.modal:not(.hide)');
-    if (!activeModal) setNotesOpen(false);
+    if (activeModal) return;
+    if (document.body.classList.contains('mobile-menu-open')) {
+      setMobileMenuOpen(false);
+    } else if (document.body.classList.contains('notes-open')) {
+      setNotesOpen(false);
+    }
   }
 });
 
