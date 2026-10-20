@@ -115,7 +115,9 @@ function renderDiscoveryAppliedChips(){
     const el = document.createElement('button');
     el.type = 'button';
     el.className = 'discovery-chip-tag';
-    el.innerHTML = '<span>' + ch.label + '</span> <i class="ph ph-x" aria-hidden="true"></i>';
+    el.setAttribute('aria-label', 'Remove filter: ' + ch.label);
+    el.setAttribute('title', 'Remove filter');
+    el.innerHTML = '<span class="discovery-chip-text">' + ch.label + '</span><span class="discovery-chip-remove" aria-hidden="true"><i class="ph ph-x"></i></span>';
     el.onclick = ch.clear;
     return el;
   }));
@@ -150,9 +152,9 @@ function renderDiscoveryList(){
  const countEl=$('#discovery-list-count');
  if(countEl)countEl.textContent=ids.length+' professionals nearby';
  $('#listview').innerHTML=people.map((p,i)=>({p,i})).filter(({i})=>ids.includes(i)).map(({p,i})=>{
-  const connected=journey.connections.includes(i);
+  const connected=typeof journey!=='undefined'&&Array.isArray(journey.connections)&&journey.connections.includes(i);
   const name=connected?p.name:p.initial.split('').join('.')+'.';
-  const verified=demoPeople[i]?.verified?makeVerifiedBadge().outerHTML:'';
+  const verified=typeof demoPeople!=='undefined'&&demoPeople[i]?.verified&&typeof makeVerifiedBadge==='function'?makeVerifiedBadge().outerHTML:'';
   return '<button type="button" class="listitem'+(connected?' listitem-connected':'')+'" data-listperson="'+i+'"><span class="avatar anonymous discovery-list-avatar" data-listavatar="'+i+'">'+p.initial+'</span><span class="discovery-list-info"><strong>'+name+verified+'</strong><small>'+p.role+'</small>'+(connected?'<span class="discovery-list-connected"><i class="ph ph-check-circle" aria-hidden="true"></i> Connected</span>':'<small>'+p.intent+'</small>')+'</span><i class="ph ph-caret-right discovery-list-chevron"></i></button>';
  }).join('')+(ids.length?'':'<div class="journey-empty">No matching professionals. Try resetting your filters.</div>');
  all('[data-listavatar]').forEach(el=>paintDemoPortrait(el,+el.dataset.listavatar));
