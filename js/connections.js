@@ -172,6 +172,8 @@ function goToOnboardingSlide(idx){
   onboardingSlideIndex = idx;
   const slides = document.getElementById("onboarding-slides");
   if(slides) slides.style.transform = "translateX(-" + (onboardingSlideIndex * (100 / totalOnboardingSlides)) + "%)";
+  const copyTrack = document.getElementById("onboarding-copy-track");
+  if(copyTrack) copyTrack.style.transform = "translateX(-" + (onboardingSlideIndex * (100 / totalOnboardingSlides)) + "%)";
   const dots = document.querySelectorAll(".onboarding-dot");
   dots.forEach((d, i) => {
     d.classList.toggle("active", i === onboardingSlideIndex);
@@ -207,16 +209,16 @@ function initOnboarding(){
       if(!isNaN(targetIdx)) goToOnboardingSlide(targetIdx);
     };
   });
-  const slidesCont = document.querySelector(".onboarding-slides-container");
-  if(slidesCont){
+  const swipeTarget = document.getElementById("onboarding");
+  if(swipeTarget){
     let startX = 0, startY = 0;
-    slidesCont.addEventListener("touchstart", e => {
+    swipeTarget.addEventListener("touchstart", e => {
       if(e.touches && e.touches[0]){
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
       }
     }, { passive: true });
-    slidesCont.addEventListener("touchend", e => {
+    swipeTarget.addEventListener("touchend", e => {
       if(e.changedTouches && e.changedTouches[0]){
         const diffX = e.changedTouches[0].clientX - startX;
         const diffY = e.changedTouches[0].clientY - startY;
