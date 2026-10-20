@@ -3463,8 +3463,8 @@
                     <li><strong>Time-Limited Sessions:</strong> Strict 30, 60, or 120-minute presence countdown with automated backend expiry.</li>
                     <li><strong>Approximate Discovery:</strong> Map-first proximity stage with soft halos, privacy jitter, and initials-based pre-connection avatars.</li>
                     <li><strong>Aggregated Closed State:</strong> Abstract activity heat zones with honest zero-state when minimum privacy thresholds are not met.</li>
-                    <li><strong>Bilateral Connection Requests:</strong> Structured intent notes with 72-hour automated expiry and explicit accept/decline flows.</li>
-                    <li><strong>Persistent Contextual Chat:</strong> 1-on-1 direct messaging pre-populated with context, unlocked strictly upon mutual acceptance.</li>
+                    <li><strong>Bilateral Connection Requests:</strong> Structured intent notes with explicit accept/decline flows and pending request queues.</li>
+                    <li><strong>Contextual 1-on-1 Chat:</strong> Direct messaging pre-populated with context, unlocked strictly upon mutual acceptance.</li>
                     <li><strong>Core Safety Suite:</strong> "Hide My Presence" per connection, contact muting, user blocking, and reporting mechanisms.</li>
                   </ul>
                 </div>
@@ -3788,10 +3788,10 @@
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('closed', 'Closed Discovery (02.1)', 'The default state of Peopi. Members are completely invisible to others nearby until they explicitly decide to start an active discovery session.')">
+                    <div class="how-phone-preview" onclick="openHowModal('closed', 'Invisible State (02.1)', 'The default state of Peopi. Members are completely invisible to others nearby until they explicitly decide to start an active discovery session.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-shield-slash"></i> <span>Closed Discovery (02.1)</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-shield-slash"></i> <span>Invisible State (02.1)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body" style="text-align:center;">
@@ -3835,10 +3835,10 @@
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('setup', 'Visibility Setup (02.2)', 'Configure your session intent and choose your timer (30m, 60m, 120m). When time expires, discovery terminates automatically.')">
+                    <div class="how-phone-preview" onclick="openHowModal('setup', 'Start Session (02.2)', 'Configure your session intent and choose your timer (30m, 60m, 120m). When time expires, discovery terminates automatically.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-sliders"></i> <span>Session setup (02.2)</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-sliders"></i> <span>Start Session (02.2)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -3865,7 +3865,7 @@
                       </div>
                       <div class="journey-fork-branch negative">
                         <span class="journey-branch-label"><i class="ph ph-warning-circle"></i> Incomplete Profile</span>
-                        <p class="journey-branch-desc">Diverts user to Profile Setup (01.3 / 01.4) before visibility can unlock.</p>
+                        <p class="journey-branch-desc">Diverts user to Profile Setup (01.4) before visibility can unlock.</p>
                       </div>
                     </div>
                   </div>
@@ -3895,7 +3895,7 @@
                     <div class="how-phone-preview" onclick="openHowModal('active', 'Active Discovery (02.3)', 'Displays real-time nearby members who are actively in session with soft proximity halos and approximate distance bands.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-broadcast"></i> <span>Active radar (02.3)</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-broadcast"></i> <span>Active Discovery (02.3)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -3926,10 +3926,10 @@
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('profile', 'Profile Preview &amp; Request (02.4 / 02.5)', 'Send a contextual introduction note along with your request. Direct conversation is locked until the recipient accepts.')">
+                    <div class="how-phone-preview" onclick="openHowModal('profile', 'Professional Profile (02.4)', 'Send a contextual introduction note along with your request. Direct conversation is locked until the recipient accepts.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-paper-plane-tilt"></i> <span>Preview &amp; Note (02.4)</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-paper-plane-tilt"></i> <span>Professional Profile (02.4)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -3939,7 +3939,7 @@
                         </div>
                       </div>
                       <div class="how-phone-actions">
-                        <button type="button" class="how-btn-open" data-jump="profile"><i class="ph ph-user"></i> Open Preview</button>
+                        <button type="button" class="how-btn-open" data-jump="profile"><i class="ph ph-user"></i> Open Profile</button>
                         <button type="button" class="how-btn-zoom"><i class="ph ph-magnifying-glass-plus"></i> Enlarge</button>
                       </div>
                     </div>
@@ -3967,7 +3967,7 @@
               <div class="how-chapter-header">
                 <div>
                   <span class="how-chapter-badge">PHASE 03 / BILATERAL CONSENT &amp; PERSISTENCE</span>
-                  <h3 class="how-chapter-title">Bilateral acceptance, unlocked conversation, and persistent network</h3>
+                  <h3 class="how-chapter-title">Bilateral acceptance, unlocked conversation, and continuing network access</h3>
                 </div>
               </div>
               <div class="how-chapter-steps">
@@ -3977,14 +3977,14 @@
                     <span class="how-step-num">5</span>
                     <div>
                       <h4 class="how-step-title">Recipient Decision: Double Opt-In</h4>
-                      <p class="how-step-desc">Recipient views the invitation in Connection Requests (03.1). They evaluate the sender's headline, shared intent, and optional note. Direct chat remains completely locked until mutual acceptance.</p>
+                      <p class="how-step-desc">Recipient views the invitation in Requests (03.2). They evaluate the sender's headline, shared intent, and optional note. Direct chat remains completely locked until mutual acceptance.</p>
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('requests', 'Connection Requests (03.1)', 'Manage incoming and outgoing requests with clear accept and decline controls. Chat unlocks only after mutual acceptance.')">
+                    <div class="how-phone-preview" onclick="openHowModal('requests', 'Requests (03.2)', 'Manage incoming and outgoing requests with clear accept and decline controls. Chat unlocks only after mutual acceptance.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-tray"></i> <span>Requests (03.1)</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-tray"></i> <span>Requests (03.2)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -4010,11 +4010,11 @@
                     <div class="journey-fork-branches">
                       <div class="journey-fork-branch positive">
                         <span class="journey-branch-label"><i class="ph ph-check-circle"></i> Mutual Accept</span>
-                        <p class="journey-branch-desc">Added to Network Directory; 1-on-1 persistent chat unlocks immediately.</p>
+                        <p class="journey-branch-desc">Added to My Network (03.1); direct 1-on-1 chat unlocks immediately.</p>
                       </div>
                       <div class="journey-fork-branch negative">
-                        <span class="journey-branch-label"><i class="ph ph-x-circle"></i> Quiet Decline / Expire</span>
-                        <p class="journey-branch-desc">Dismissed silently without alerts; unaddressed requests expire after 72 hours.</p>
+                        <span class="journey-branch-label"><i class="ph ph-x-circle"></i> Quiet Decline</span>
+                        <p class="journey-branch-desc">Dismissed silently without alerts; unanswered requests remain in a pending state without chat access.</p>
                       </div>
                     </div>
                   </div>
@@ -4025,15 +4025,15 @@
                   <div class="how-step-head">
                     <span class="how-step-num">6</span>
                     <div>
-                      <h4 class="how-step-title">1-on-1 Conversation &amp; Permanent Network Continuity</h4>
-                      <p class="how-step-desc">Direct messaging initiates with pre-populated intent context. When discovery timers expire, live presence ceases, but the connection and full conversation history remain permanently accessible.</p>
+                      <h4 class="how-step-title">1-on-1 Conversation &amp; Continuing Network Access</h4>
+                      <p class="how-step-desc">Direct messaging initiates with pre-populated intent context. When an active discovery session expires, live presence ceases, but established connections and conversations remain accessible in My Network (03.1).</p>
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('conversation', 'Persistent Conversation (04.1)', 'Direct messaging unlocks after double opt-in acceptance. Coordinate meeting spots and continue conversing indefinitely.')">
+                    <div class="how-phone-preview" onclick="openHowModal('conversation', 'Conversation (04.1.1)', 'Direct messaging unlocks after double opt-in acceptance. Coordinate meeting spots and continue conversing after the session ends.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-chat-circle-dots"></i> <span>Conversation (04.1)</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-chat-circle-dots"></i> <span>Conversation (04.1.1)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -4056,7 +4056,7 @@
                   <div class="journey-decision-fork" style="background:#FFFBF9;border-color:#FFD8CC;">
                     <div class="journey-fork-head" style="color:#FF3300;"><i class="ph ph-shield-check"></i> Session Invariant Guarantee</div>
                     <p style="font-size:12px;line-height:1.45;color:#475569;margin:0;">
-                      Ending visibility or timing out (30/60/120m) only stops live discovery. It never removes connections or purges chat histories in <code>network (05.1)</code>.
+                      Ending an active discovery session (or timing out) turns off live radar visibility. It never removes connections or conversations from <code>My Network (03.1)</code>.
                     </p>
                   </div>
                 </div>
@@ -4102,7 +4102,7 @@
               <div class="journey-alt-card">
                 <div class="journey-alt-top">
                   <span class="journey-alt-badge">ALTERNATIVE PATH 02</span>
-                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> requests (03.1 / 03.2)</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> requests (03.2)</span>
                 </div>
                 <h3>Request Declined or Unanswered</h3>
                 <div class="journey-alt-meta">
@@ -4116,10 +4116,10 @@
                   </div>
                 </div>
                 <div class="journey-alt-behavior">
-                  <strong>Expected Behavior:</strong> When a recipient declines a request, it quietly disappears without sending rejection alerts or awkward notifications to the sender. Unanswered requests expire automatically after 72 hours, cleansing pending queues. Chat remains locked; no network record is created. Senders retain withdrawal rights anytime prior to response.
+                  <strong>Expected Behavior:</strong> When a recipient declines a request, it quietly disappears without sending rejection alerts or awkward notifications to the sender. Unanswered requests remain pending until acted upon or withdrawn by the sender. Chat remains locked; no network record is created. Senders retain withdrawal rights anytime prior to response.
                 </div>
                 <div class="journey-alt-risk">
-                  <strong>Risk Managed:</strong> Protects psychological comfort and removes social hesitation; prevents stale invitations from cluttering recipient queues indefinitely.
+                  <strong>Risk Managed:</strong> Protects psychological comfort and removes social hesitation; prevents awkward interactions or unsolicited outreach without bilateral consent.
                 </div>
               </div>
 
@@ -4141,7 +4141,7 @@
                   </div>
                 </div>
                 <div class="journey-alt-behavior">
-                  <strong>Expected Behavior:</strong> When the 30, 60, or 120-minute timer hits zero, the device automatically ceases discovery broadcasting and returns to the invisible baseline. Users may also end early with one tap. Crucially, past connections and active chat threads remain permanently accessible in My Network (05.1).
+                  <strong>Expected Behavior:</strong> When the 30, 60, or 120-minute timer hits zero, the device automatically ceases discovery broadcasting and returns to the invisible baseline. Users may also end early with one tap. Crucially, established connections and active chat threads remain accessible in My Network (03.1).
                 </div>
                 <div class="journey-alt-risk">
                   <strong>Risk Managed:</strong> Eliminates "ghost presence" of departed users in public venues; prevents background battery drain and accidental post-event location exposure.
@@ -4152,7 +4152,7 @@
               <div class="journey-alt-card">
                 <div class="journey-alt-top">
                   <span class="journey-alt-badge">ALTERNATIVE PATH 04</span>
-                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> privacy (01.2) / connectiondetail</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> privacy (05.3) / connectiondetail (03.1.1)</span>
                 </div>
                 <h3>Hide My Presence (Targeted Presence Masking)</h3>
                 <div class="journey-alt-meta">
@@ -4169,7 +4169,7 @@
                   <strong>Expected Behavior:</strong> Applied per-connection: masks live radar visibility and proximity signals strictly from that specific contact. The contact is not notified. Crucially, the underlying network connection, profile access, and past chat remain completely intact.
                   <div style="margin-top:6px;font-size:12px;color:#0F172A;font-weight:700;">
                     • Not Mute (which only silences message push alerts)<br>
-                    • Not Block (which dissolves connection and severs all messaging)
+                    • Not Block (which halts live discovery and messaging; post-block transcript retention is an open backend decision)
                   </div>
                 </div>
                 <div class="journey-alt-risk">
@@ -4181,7 +4181,7 @@
               <div class="journey-alt-card span-full">
                 <div class="journey-alt-top">
                   <span class="journey-alt-badge">ALTERNATIVE PATH 05</span>
-                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> closed (02.1) $\rightarrow$ firstprofile (01.3)</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> closed (02.1) $\rightarrow$ firstprofile (01.4)</span>
                 </div>
                 <h3>Profile Readiness Gate (Enforced Baseline Context)</h3>
                 <div class="journey-alt-meta">
@@ -4234,8 +4234,8 @@
                       <small style="color:#64748B;">Invisible by default</small>
                     </td>
                     <td>
-                      <strong>Founders &amp; Operators</strong><br>
-                      <small style="color:#64748B;">Need unmonitored baseline in public spaces</small>
+                      <strong>The Explorer</strong><br>
+                      <small style="color:#64748B;">Needs unmonitored baseline when exploring venues</small>
                     </td>
                     <td>Zero location or presence data broadcasted upon opening app. Mitigates surveillance anxiety and preserves personal boundaries.</td>
                   </tr>
@@ -4250,8 +4250,8 @@
                       <small style="color:#64748B;">30 / 60 / 120m auto-expiry</small>
                     </td>
                     <td>
-                      <strong>Event Attendees</strong><br>
-                      <small style="color:#64748B;">Bounded co-working / networking timeboxes</small>
+                      <strong>The Builder</strong><br>
+                      <small style="color:#64748B;">Timeboxed co-working sessions with clear stop boundaries</small>
                     </td>
                     <td>Eliminates decision fatigue with 3 fixed choices (60m default). Prevents ghost profiles from lingering after users depart venues.</td>
                   </tr>
@@ -4266,8 +4266,8 @@
                       <small style="color:#64748B;">Approximate halos &amp; bands</small>
                     </td>
                     <td>
-                      <strong>Solo Professionals</strong><br>
-                      <small style="color:#64748B;">Safety in public coffee shops &amp; hubs</small>
+                      <strong>The Explorer</strong><br>
+                      <small style="color:#64748B;">Discovery comfort in public coffee shops &amp; spaces</small>
                     </td>
                     <td>Displays soft halos and approximate distance bands (~300m). Client APIs never receive precise coordinates, mitigating physical tracking risks.</td>
                   </tr>
@@ -4282,8 +4282,8 @@
                       <small style="color:#64748B;">Initials-only pre-connection avatars</small>
                     </td>
                     <td>
-                      <strong>Engineers &amp; Builders</strong><br>
-                      <small style="color:#64748B;">Technical skill &amp; intent relevance</small>
+                      <strong>The Builder</strong><br>
+                      <small style="color:#64748B;">Evaluates technical skills, stack &amp; intent relevance</small>
                     </td>
                     <td>Shows headline, skills, and initialed avatar. Conceals full portraits before mutual consent, reducing superficial evaluation bias.</td>
                   </tr>
@@ -4291,33 +4291,33 @@
                     <td>
                       <span class="journey-matrix-step-badge">STAGE 05</span><br>
                       <strong>Mutual Connection</strong><br>
-                      <small style="color:#64748B;">requests (03.1)</small>
+                      <small style="color:#64748B;">requests (03.2)</small>
                     </td>
                     <td>
                       <span class="journey-decision-pill">Decision E · Double Opt-In</span><br>
                       <small style="color:#64748B;">Single bilateral acceptance</small>
                     </td>
                     <td>
-                      <strong>High-Profile Founders</strong><br>
-                      <small style="color:#64748B;">Protection from unsolicited cold pitch spam</small>
+                      <strong>The Collaborator</strong><br>
+                      <small style="color:#64748B;">Quality filter protecting against unsolicited cold outreach</small>
                     </td>
-                    <td>Direct messaging is locked until mutual acceptance. One bilateral consent action unlocks both chat and permanent network archive.</td>
+                    <td>Direct messaging is locked until mutual acceptance. One bilateral consent action unlocks both chat and ongoing network connection.</td>
                   </tr>
                   <tr>
                     <td>
                       <span class="journey-matrix-step-badge">STAGE 06</span><br>
                       <strong>Continuing Network</strong><br>
-                      <small style="color:#64748B;">network (05.1)</small>
+                      <small style="color:#64748B;">network (03.1)</small>
                     </td>
                     <td>
                       <span class="journey-decision-pill">Invariant 03 &amp; 04</span><br>
-                      <small style="color:#64748B;">Permanent relationship retention</small>
+                      <small style="color:#64748B;">Persistent relationship retention</small>
                     </td>
                     <td>
-                      <strong>Active Collaborators</strong><br>
-                      <small style="color:#64748B;">Long-term relationship compounding</small>
+                      <strong>The Collaborator</strong><br>
+                      <small style="color:#64748B;">Long-term relationship continuity beyond the venue</small>
                     </td>
-                    <td>Session expiry only drops live discovery. Connections, message histories, and Hide My Presence controls remain permanently active.</td>
+                    <td>Session expiry only drops live discovery. Connections, message histories, and Hide My Presence controls remain accessible.</td>
                   </tr>
                 </tbody>
               </table>
@@ -4375,7 +4375,7 @@
                 <span class="how-continuity-kicker">SESSION INVARIANT</span>
                 <h2 class="how-continuity-title">Discovery ends. Your network stays.</h2>
                 <p class="how-continuity-desc">
-                  Ending an active discovery session (or reaching 0:00 countdown) simply turns off live radar visibility. It never removes existing connections or purges conversations. Your professional network and message threads remain permanently accessible in your account.
+                  Ending an active discovery session (or reaching 0:00 countdown) simply turns off live radar visibility. It never removes existing connections or purges conversations. Your professional network and message threads remain accessible in your account.
                 </p>
               </div>
             </div>
@@ -4419,7 +4419,7 @@
                   <i class="ph ph-caret-down how-acc-chevron"></i>
                 </button>
                 <div id="how-acc-3" class="how-acc-panel" role="region" aria-labelledby="how-acc-btn-3" hidden>
-                  “Hide My Presence” specifically removes you from a specific connection’s live proximity radar so they do not observe you on their map or list during active sessions. Crucially, it preserves your existing direct chat and connection record without notifying the peer. This is distinct from “Mute” (which only silences push notifications for incoming messages) and distinct from “Block” (which permanently dissolves the network connection, terminates chat access, and prevents all future visibility).
+                  “Hide My Presence” specifically removes you from a specific connection’s live proximity radar so they do not observe you on their map or list during active sessions. Crucially, it preserves your existing direct chat and connection record without notifying the peer. This is distinct from “Mute” (which only silences push notifications for incoming messages) and distinct from “Block” (which dissolves live discovery and halts active direct messaging; whether historical transcripts are retained or purged post-block remains an open backend implementation decision documented in Chapter 01.5).
                 </div>
               </div>
             </div>
