@@ -17,8 +17,8 @@
         "selection"
       ],
       "rules": [
-        "Start invisible; show no individual pins, identities or exact coordinates.",
-        "Feature marketing-oriented blurred map backdrop with central beacon ripples and floating intent speech bubble.",
+        "Start invisible; show no individual pins, identities or exact coordinates. Display subtle aggregated activity zones only.",
+        "Feature marketing-oriented blurred map backdrop with central beacon ripples, floating intent speech bubble, and aggregated activity indicators.",
         "Show up opens session setup; it does not start sharing yet."
       ],
       "validation": [
@@ -26,7 +26,7 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Marketing-forward blurred map landing with concentric pulsing wave ripples, prominent profile avatar preview with floating intent speech bubble, completion surface and primary Show up action. Keeps individual identities private until session is active.",
+      "uiRecipe": "Marketing-forward blurred map landing with concentric pulsing wave ripples, profile preview with floating intent speech bubble, subtle aggregated activity zones, completion surface and primary Show up action. Keeps individual identities private until session is active.",
       "motionNotes": [
         "Discover tab crossfades in place; concentric beacon wave rings pulse gently without distracting from primary action.",
         "Speech bubble floats subtly; reduced motion switches to static state.",
@@ -41,7 +41,7 @@
         "pop"
       ],
       "rules": [
-        "Allow one networking intent and custom duration input with unit selector (minutes/hours) and parking-style quick presets (30 min, 1 hour, 2 hours).",
+        "Allow one networking intent and bounded session durations (30 min, 60 min default, or 120 min). No arbitrary custom durations.",
         "Only explicit Go visible starts a session after permission checks.",
         "Cancel returns to Closed without broadcasting."
       ],
@@ -50,7 +50,7 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "One scrolling setup flow. Rounded intent choices, custom duration numeric input with unit dropdown and preset suggestions, Go visible then Not now. No fixed overlapping footer.",
+      "uiRecipe": "One scrolling setup flow. Rounded intent choices, 30/60/120 min duration preset cards with check indicators, Go visible then Not now. No custom duration inputs. No fixed overlapping footer.",
       "motionNotes": [
         "Pure horizontal push transition preserves full surface opacity without text collision.",
         "Intent and duration chips use press feedback; the selection commits instantly.",
@@ -478,6 +478,7 @@
       "rules": [
         "Restrict message access to the permitted connection; enforce on the server.",
         "Single-line horizontal-scrolling input with fixed height, keyboard avoidance, session time dividers, pending/failure/retry states are required.",
+        "Mute notifications suppresses local notifications for this thread without affecting connection status or message history.",
         "Animate only the new bubble; retain history and scroll; do not replay every message."
       ],
       "validation": [
@@ -485,7 +486,7 @@
         "Back/dismiss restores context; tab switches preserve state.",
         "Reduce Motion uses opacity only; focus and content remain usable."
       ],
-      "uiRecipe": "Frosted glass header with peer info and subtle more options trigger (three dots). Contextual action popover provides View profile, Export chat (.txt), Hide presence toggle, Clear chat history, and Block contact. Scroller extends to viewport bottom with soft gradient fade layer beneath floating quick meetup prompts and unified full-radius pill composer with nested send button. Crisp card bubbles with accent borders for sender, clean card for peer, and calm centered session time dividers.",
+      "uiRecipe": "Frosted glass header with peer info and subtle more options trigger (three dots). Contextual action popover provides View profile, Export chat (.txt), Mute notifications toggle, Hide presence toggle, Clear chat history, Report user, and Block contact. Scroller extends to viewport bottom with soft gradient fade layer beneath floating quick meetup prompts and unified full-radius pill composer with nested send button. Crisp card bubbles with accent borders for sender, clean card for peer, and calm centered session time dividers.",
       "motionNotes": [
         "Only the newly sent bubble lifts in; history never replays.",
         "Fixed-height pill composer with horizontal scrolling text; latest message stays visible above."

@@ -51,6 +51,14 @@ function closeConversationMenu(){
 function updateConversationMenuState(){
   const p=journeyPerson(journey.currentPerson);
   if(!p)return;
+  journey.muted=journey.muted||[];
+  const isMuted=journey.muted.includes(p.id);
+  const muteText=$('#chat-menu-mute-text');
+  const muteIcon=$('#chat-menu-mute-icon');
+  if(muteText)muteText.textContent=isMuted?'Unmute notifications':'Mute notifications';
+  if(muteIcon){
+    muteIcon.className=isMuted?'ph ph-bell':'ph ph-bell-slash';
+  }
   const isHidden=journey.hidden.includes(p.id);
   const hiddenText=$('#chat-menu-hidden-text');
   const hiddenIcon=$('#chat-menu-hidden-icon');
@@ -133,6 +141,18 @@ all('#conversation-menu .chat-menu-item').forEach(item=>{
       a.remove();
       URL.revokeObjectURL(url);
       toast('Conversation exported as .txt');
+    }else if(action==='toggle-mute'){
+      journey.muted=journey.muted||[];
+      if(journey.muted.includes(p.id)){
+        journey.muted=journey.muted.filter(x=>x!==p.id);
+        toast('Notifications unmuted for '+p.name);
+      }else{
+        journey.muted.push(p.id);
+        toast('Notifications muted for '+p.name);
+      }
+      saveJourney();
+      updateConversationMenuState();
+      if(typeof updateNotifBadge==='function')updateNotifBadge();
     }else if(action==='toggle-hidden'){
       if(journey.hidden.includes(p.id)){
         journey.hidden=journey.hidden.filter(x=>x!==p.id);

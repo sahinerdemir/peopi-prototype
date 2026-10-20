@@ -1,3 +1,4 @@
 .vercel
 scratch/
 .DS_Store
+node_modules/

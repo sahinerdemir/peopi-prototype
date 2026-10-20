@@ -20,12 +20,12 @@ const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];le
 {"name":"Liam O'Sullivan","initial":"LO","role":"VP of product · Enterprise SaaS","intent":"Looking to exchange ideas","color":"#cad8cc","headline":"VP of Product","sector":"Enterprise Platforms · B2B","bio":"Simplifying complex enterprise workflows into delightful, consumer-grade software.","looking":"Product thinkers, enterprise sales leaders, and aspiring PMs.","skills":["Enterprise SaaS","Product Strategy","GTM Execution"],"project":null,"projectdesc":"","onepager":null},
 {"name":"Hanna Lindqvist","initial":"HL","role":"Spatial audio engineer · AR/VR","intent":"Exploring new projects","color":"#e8d5cb","headline":"Spatial Audio Engineer","sector":"Immersive Tech · Acoustics","bio":"Creating real-time binaural sound rendering and acoustic room simulation for spatial apps.","looking":"AR/VR developers, game engine architects, and sound designers.","skills":["Spatial Audio","DSP","Unity & Unreal","C++"],"project":"AmbisonicLab","projectdesc":"Real-time web-based spatial acoustic room reverberation previewer.","onepager":null},
 {"name":"Kenji Takahashi","initial":"KT","role":"Security lead · Zero-trust","intent":"Sharing ideas","color":"#cfdbe8","headline":"Security & Cryptography Lead","sector":"Cybersecurity · Privacy Infrastructure","bio":"Engineering end-to-end encrypted protocols and zero-knowledge privacy guarantees.","looking":"Privacy advocates, cryptographers, and distributed infrastructure engineers.","skills":["Applied Cryptography","Zero-Trust","Rust","Network Security"],"project":"CryptMesh","projectdesc":"Local-first peer-to-peer authenticated discovery protocol specification.","onepager":null}
-];function go(to,dir){page=to;all('.screen').forEach(x=>x.classList.toggle('active',x.id===to));all('[data-go]').forEach(x=>x.classList.toggle('selected',x.dataset.go===to&&x.closest('.controls')))}window.goBack=window.goBack||function(fallback){go(fallback||'closed');};all('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));['auth-google','auth-apple'].forEach(id=>$('#'+id).addEventListener('click',()=>toast('Social sign-in is a UI demo. OAuth is not connected yet.')));$('#theme').onclick=()=>{const dark=$('#phone').classList.toggle('dark');$('#theme').innerHTML=dark?'<i class="ph ph-sun" aria-hidden="true"></i>':'<i class="ph ph-moon" aria-hidden="true"></i>';$('#theme').setAttribute('aria-pressed',String(dark));$('#theme').setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');refreshIcons()};all('[data-intent]').forEach(b=>b.onclick=()=>{intent=b.dataset.intent;all('[data-intent]').forEach(x=>x.classList.toggle('chosen',x===b));updateClosedIntentBubble(intent)});function syncDurationFromInput(){const valEl=$('#setup-duration-val'),unitEl=$('#setup-duration-unit');if(!valEl||!unitEl)return;let v=parseInt(valEl.value,10);if(isNaN(v)||v<1)v=1;const u=unitEl.value;duration=u==='hours'?v*60:v;all('.durations button').forEach(b=>{const isChosen=Number(b.dataset.duration)===duration;b.classList.toggle('chosen',isChosen);b.setAttribute('aria-pressed',String(isChosen))})}all('[data-duration]').forEach(b=>b.onclick=()=>{const d=Number(b.dataset.duration);duration=d;const valEl=$('#setup-duration-val'),unitEl=$('#setup-duration-unit');if(valEl&&unitEl){if(b.dataset.val&&b.dataset.unit){valEl.value=b.dataset.val;unitEl.value=b.dataset.unit;}else if(d>=60&&d%60===0){valEl.value=d/60;unitEl.value='hours';}else{valEl.value=d;unitEl.value='minutes';}}$('#setup-custom-duration-wrap')?.classList.add('hide');all('[data-duration]').forEach(x=>{const isChosen=x===b;x.classList.toggle('chosen',isChosen);x.setAttribute('aria-pressed',String(isChosen))})});$('#setup-duration-val')?.addEventListener('input',syncDurationFromInput);$('#setup-duration-val')?.addEventListener('change',()=>{if(!$('#setup-duration-val').value||parseInt($('#setup-duration-val').value,10)<1){$('#setup-duration-val').value='1';syncDurationFromInput();}});$('#setup-duration-unit')?.addEventListener('change',syncDurationFromInput);$('#btn-toggle-custom-duration')?.addEventListener('click',()=>{const wrap=$('#setup-custom-duration-wrap');if(wrap){wrap.classList.toggle('hide');if(!wrap.classList.contains('hide'))$('#setup-duration-val')?.focus();}});function updateTimer(){if(!endTime)return;const remaining=Math.max(0,Math.ceil((endTime-Date.now())/1000));if(remaining<=300&&remaining>0&&!fiveMinuteNotified){fiveMinuteNotified=true;$('#session-alert').classList.remove('hide')}if(!remaining){clearInterval(interval);endTime=null;$('#session-alert').classList.add('hide');go('closed');toast('You are invisible again.')}}let introSkillsList = [];
+];function go(to,dir){page=to;all('.screen').forEach(x=>x.classList.toggle('active',x.id===to));all('[data-go]').forEach(x=>x.classList.toggle('selected',x.dataset.go===to&&x.closest('.controls')))}window.goBack=window.goBack||function(fallback){go(fallback||'closed');};all('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));['auth-google','auth-apple'].forEach(id=>$('#'+id).addEventListener('click',()=>toast('Social sign-in is a UI demo. OAuth is not connected yet.')));$('#theme').onclick=()=>{const dark=$('#phone').classList.toggle('dark');$('#theme').innerHTML=dark?'<i class="ph ph-sun" aria-hidden="true"></i>':'<i class="ph ph-moon" aria-hidden="true"></i>';$('#theme').setAttribute('aria-pressed',String(dark));$('#theme').setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');refreshIcons()};all('[data-intent]').forEach(b=>b.onclick=()=>{intent=b.dataset.intent;all('[data-intent]').forEach(x=>x.classList.toggle('chosen',x===b));updateClosedIntentBubble(intent)});all('[data-duration]').forEach(b=>b.onclick=()=>{const d=Number(b.dataset.duration);duration=d;all('[data-duration]').forEach(x=>{const isChosen=x===b;x.classList.toggle('chosen',isChosen);x.setAttribute('aria-pressed',String(isChosen))})});function updateTimer(){if(!endTime)return;const remaining=Math.max(0,Math.ceil((endTime-Date.now())/1000));if(remaining<=300&&remaining>0&&!fiveMinuteNotified){fiveMinuteNotified=true;$('#session-alert').classList.remove('hide')}if(!remaining){clearInterval(interval);endTime=null;$('#session-alert').classList.add('hide');go('closed');toast('You are invisible again.')}}let introSkillsList = [];
 const phIconName=name=>({"pencil":"pencil-simple","trash-2":"trash","external-link":"arrow-square-out","lock-keyhole":"lock-key","navigation":"navigation-arrow","menu":"list","settings-2":"sliders","users-round":"users-three","user-round":"user","user-round-pen":"user-circle-gear","user-round-x":"user-minus","shield-check":"shield-check","shield-alert":"shield-warning","eye-off":"eye-slash","sliders-horizontal":"sliders-horizontal","check-circle-2":"check-circle","clock-3":"clock","message-circle":"chat-circle","badge-check":"seal-check","link-2":"link","scan-face":"scan","bell-ring":"bell-ringing","refresh-cw":"arrows-clockwise","circle-help":"question","log-out":"sign-out","loader-circle":"spinner","circle-check":"check-circle","circle-alert":"warning-circle","arrow-up-right":"arrow-up-right","maximize":"arrows-out","minimize":"arrows-in","x":"x","map-pin":"map-pin","radar":"radar","compass":"compass","map":"map-trifold","list":"list","sun":"sun","moon":"moon","settings":"gear","flag":"flag","camera":"camera","sparkles":"sparkle","handshake":"handshake","mail":"envelope","lock":"lock","users":"users","info":"info","chevron-down":"caret-down","chevron-right":"caret-right","arrow-left":"arrow-left","arrow-right":"arrow-right","arrow-up":"arrow-up","check":"check","plus":"plus","minus":"minus","bell":"bell","search":"magnifying-glass","filter":"funnel","eye":"eye","heart":"heart","bookmark":"bookmark","share-2":"share-network"}[name]||name);
 function refreshIcons(){/* Phosphor icon font renders automatically; no DOM replacement required. */}
 const specs={
  "closed": {
-  "code": "B01",
+  "code": "02.1",
   "section": "Discover",
   "title": "Invisible state",
   "summary": "Primary discovery landing screen when live presence broadcasting is turned off.",
@@ -33,24 +33,25 @@ const specs={
   "actions": [
    "Inspect approximate nearby area and count badge (7 nearby).",
    "View profile completion card with live score and navigate to profile completion.",
-   "Tap 'Show up' or hero area to open Session Setup (B02).",
+   "Tap 'Show up' or hero area to open Session Setup (02.2).",
    "Access top messages and notifications counters.",
    "Switch between Discover, Connections, and Profile root navigation tabs."
   ],
   "states": [
    "Default root tab landing upon app launch or session expiration.",
-   "Egress to Session Setup (B02) via 'Show up' CTA.",
-   "Root navigation switches to Connections (C01) or Profile (D01).",
+   "Egress to Session Setup (02.2) via 'Show up' CTA.",
+   "Root navigation switches to Connections (03.1) or Profile (05.1).",
    "State preserves user's current chosen networking intent in the floating bubble."
   ],
   "rules": [
    "Strictly invisible by default; no background broadcasting or pinging.",
-   "No individual markers, photos, or identities revealed while in invisible state.",
+   "No individual markers, photos, verification badges, or identities revealed while in invisible state; subtle abstract aggregated activity zones indicate general nearby density without revealing individual locations or counts.",
    "Location is strictly approximate; Collins Ave/Biscayne Blvd map grid is illustrative.",
    "Creating an account, completing profile, or viewing the screen never turns visibility on."
   ],
   "components": [
    "Hero radar pulse stage with concentric wave rings (.closed-center-hero).",
+   "Subtle aggregated activity zones (.closed-activity-zone).",
    "Floating intent speech bubble (.closed-intent-bubble).",
    "Profile completeness progress card with 116pt bottom clearance (.completeness).",
    "Root navigation bar with 70pt height, 16pt inset, and icon badges (.nav)."
@@ -68,26 +69,24 @@ const specs={
   ]
  },
  "setup": {
-  "code": "B02",
+  "code": "02.2",
   "section": "Discover",
   "title": "Start session",
   "summary": "Configuration screen for time-limited, purpose-driven nearby discovery.",
   "purpose": "Let members choose their immediate networking intent and duration before broadcasting active presence.",
   "actions": [
    "Select a networking intent (Meet new people, Explore collaboration, Share ideas).",
-   "Pick primary visibility duration preset (30 min, 1 hour, 2 hours).",
-   "Toggle 'Custom duration' to enter arbitrary minutes or hours.",
+   "Pick bounded visibility duration preset: 30 minutes, 60 minutes (default), or 120 minutes.",
    "Tap 'Go visible' to trigger profile introduction check and initiate active session.",
    "Tap 'Not now' or Back button to return to Invisible state without sharing presence."
   ],
   "states": [
-   "Ingress from Invisible state (B01) 'Show up' button.",
-   "Custom duration collapsible: hidden by default, toggled via dedicated button.",
+   "Ingress from Invisible state (02.1) 'Show up' button.",
    "Incomplete profile trigger: opens 'Complete your introduction' sheet if bio or skill is missing.",
-   "Egress to Active Discovery (B03) upon explicit 'Go visible' confirmation."
+   "Egress to Active Discovery (02.3) upon explicit 'Go visible' confirmation."
   ],
   "rules": [
-   "Presence is strictly opt-in and bound to an automatic expiration timer.",
+   "Presence is strictly opt-in and bound to an automatic expiration timer (30, 60, or 120 minutes). Arbitrary custom duration inputs are disallowed to prevent indefinite or misconfigured broadcasting.",
    "Go visible requires at least a short bio and one skill; other fields remain optional.",
    "Canceling or navigating back guarantees the user remains completely invisible.",
    "Selected duration and intent are saved for the duration of the setup attempt."
@@ -95,12 +94,10 @@ const specs={
   "components": [
    "Radio-style single select options with animated indicator (.option).",
    "Preset duration pills container (.durations).",
-   "Custom duration expandable numeric and unit picker (.setup-duration-field).",
    "Primary action button and secondary dismiss button (.setupfoot)."
   ],
   "motion": [
    "Push transition from B01 with horizontal ease-out curve.",
-   "Custom duration container animates height and opacity on toggle.",
    "Press scale feedback (0.97) on duration presets and intent choices.",
    "Honor system Reduce Motion by disabling slide transitions in favor of crossfades."
   ],
@@ -111,7 +108,7 @@ const specs={
   ]
  },
  "active": {
-  "code": "B03",
+  "code": "02.3",
   "section": "Discover",
   "title": "Active discovery",
   "summary": "Live nearby map and list view during an active discovery session.",
@@ -126,11 +123,11 @@ const specs={
    "Tap 'Go invisible' to terminate the session early via confirmation modal."
   ],
   "states": [
-   "Ingress from Session Setup (B02) upon valid Go visible action.",
+   "Ingress from Session Setup (02.2) upon valid Go visible action.",
    "Map view active with interactive pins and beacon; List view active with scrollable items.",
    "Profile preview card: floats above bottom navigation when a pin is selected.",
    "5-minute expiration warning banner with '+30 min' extension option.",
-   "Egress back to Invisible state (B01) upon session timer end or manual Go invisible."
+   "Egress back to Invisible state (02.1) upon session timer end or manual Go invisible."
   ],
   "rules": [
    "Map and list share the identical filtered dataset and count (7 nearby demo professionals).",
@@ -159,7 +156,7 @@ const specs={
   ]
  },
  "profile": {
-  "code": "B04",
+  "code": "02.4",
   "section": "Discover",
   "title": "Professional profile",
   "summary": "Pre-connection profile bottom sheet showing professional background.",
@@ -206,23 +203,23 @@ const specs={
   ]
  },
  "onboarding": {
-  "code": "A00",
+  "code": "01.2",
   "section": "Onboarding & Auth",
   "title": "Onboarding Tour",
   "summary": "3-step interactive product walkthrough introducing core value props.",
   "purpose": "Educate new members on spontaneous proximity, privacy by default, and purposeful networking before account creation.",
   "actions": [
    "Swipe left or tap 'Continue' to advance through 3 illustrated slides.",
-   "Tap 'Skip' to proceed directly to Sign In (A02).",
-   "Slide 3 'Get started' button routes directly to Sign In (A02).",
-   "Tap 'I already have an account' to proceed to Sign In (A02)."
+   "Tap 'Skip' to proceed directly to Sign In (01.3).",
+   "Slide 3 'Get started' button routes directly to Sign In (01.3).",
+   "Tap 'I already have an account' to proceed to Sign In (01.3)."
   ],
   "states": [
    "Initial first-launch screen for unauthenticated users.",
    "Slide 01: Spontaneous Proximity (radar orbit illustration).",
    "Slide 02: Privacy by Default (invisible default shield illustration).",
    "Slide 03: Purposeful Networking (collaboration card illustration).",
-   "Egress directly to Sign in (A02) on completion or skip."
+   "Egress directly to Sign in (01.3) on completion or skip."
   ],
   "rules": [
    "Zero device permissions requested during onboarding walkthrough.",
@@ -248,20 +245,20 @@ const specs={
   ]
  },
  "welcome": {
-  "code": "A01",
+  "code": "01.1",
   "section": "Onboarding & Auth",
   "title": "Welcome",
   "summary": "Atmospheric branded landing screen presenting Peopi's mission.",
   "purpose": "Serve as an alternative visual brand portal communicating the core philosophy: Good things start with showing up.",
   "actions": [
-   "Tap 'Get started' to enter registration and sign in (A02).",
-   "Tap 'I already have an account' to sign in (A02).",
+   "Tap 'Get started' to enter registration and sign in (01.3).",
+   "Tap 'I already have an account' to sign in (01.3).",
    "Inspect orbiting avatars representing diverse creative specialties."
   ],
   "states": [
    "Alternative entry screen accessible from navigation tree.",
    "Interactive orbiting demo avatars (.orbit-avatar).",
-   "Egress to Sign In (A02)."
+   "Egress to Sign In (01.3)."
   ],
   "rules": [
    "No location, push, or device permissions requested on welcome.",
@@ -284,7 +281,7 @@ const specs={
   ]
  },
  "auth": {
-  "code": "A02",
+  "code": "01.3",
   "section": "Onboarding & Auth",
   "title": "Sign in",
   "summary": "Email and social authentication interface.",
@@ -294,14 +291,14 @@ const specs={
    "Enter email address and tap 'Continue with email'.",
    "Enter 6-digit verification code (demo code: 123456).",
    "Tap 'Resend demo code' if code was not received.",
-   "Tap 'Trouble signing in?' to navigate to Account Recovery (A02.1).",
+   "Tap 'Trouble signing in?' to navigate to Account Recovery (01.3.1).",
    "Tap Back button to return to previous screen."
   ],
   "states": [
    "Social sign-in buttons displayed at top, followed by divider.",
    "Email input stage active (.auth-email-stage).",
    "Verification code stage active upon email submission (.auth-code-stage).",
-   "Egress to Profile Setup (A03) upon successful verification code entry."
+   "Egress to Profile Setup (01.4) upon successful verification code entry."
   ],
   "rules": [
    "Order: Social sign-in options, divider, email input field, email submit button directly beneath.",
@@ -325,7 +322,7 @@ const specs={
   ]
  },
  "recovery": {
-  "code": "A02.1",
+  "code": "01.3.1",
   "section": "Onboarding & Auth",
   "title": "Account recovery",
   "summary": "Passwordless account access recovery interface.",
@@ -341,7 +338,7 @@ const specs={
   "states": [
    "Initial input stage with email input and submit button (#recovery-form-stage).",
    "Sent confirmation stage with email highlight and resend controls (#recovery-result-stage).",
-   "Egress back to Sign In (A02) via back navigation."
+   "Egress back to Sign In (01.3) via back navigation."
   ],
   "rules": [
    "Displays the entered email address clearly in confirmation state.",
@@ -364,7 +361,7 @@ const specs={
   ]
  },
  "firstprofile": {
-  "code": "A03",
+  "code": "01.4",
   "section": "Onboarding & Auth",
   "title": "Profile setup",
   "summary": "Essential registration step collecting identity basics.",
@@ -373,14 +370,14 @@ const specs={
    "Enter Full name (required).",
    "Enter Professional headline (required).",
    "Enter City or area (required).",
-   "Tap 'Continue' to proceed to Intent setup (A04).",
+   "Tap 'Continue' to proceed to Intent setup (01.5).",
    "Tap Back to return to Sign In."
   ],
   "states": [
    "Step 01 of 02 in onboarding registration.",
    "Form contains only 3 fields: Name, Headline, City.",
    "Bio and skills are deferred to later discovery readiness check.",
-   "Egress to Intent setup (A04) on validation success."
+   "Egress to Intent setup (01.5) on validation success."
   ],
   "rules": [
    "Strictly restricted to Full name, Professional headline, and City / area.",
@@ -404,7 +401,7 @@ const specs={
   ]
  },
  "firstintent": {
-  "code": "A04",
+  "code": "01.5",
   "section": "Onboarding & Auth",
   "title": "Intent setup",
   "summary": "Networking intent and goal multi-selection step.",
@@ -418,7 +415,7 @@ const specs={
   "states": [
    "Step 02 of 02 in onboarding registration.",
    "Multi-selection checkbox list with check-square / square iconography.",
-   "Egress to Invisible Discover landing (B01) with 'You are invisible by default' toast."
+   "Egress to Invisible Discover landing (02.1) with 'You are invisible by default' toast."
   ],
   "rules": [
    "Uses explicit checkbox / multi-select iconography (ph-check-square / ph-square), not radio buttons.",
@@ -441,7 +438,7 @@ const specs={
   ]
  },
  "permissions": {
-  "code": "A05",
+  "code": "01.6",
   "section": "Onboarding & Auth",
   "title": "App permissions",
   "summary": "Educational screen explaining just-in-time system permissions.",
@@ -453,7 +450,7 @@ const specs={
   ],
   "states": [
    "Informational permission education screen.",
-   "Egress to Invisible Discover (B01)."
+   "Egress to Invisible Discover (02.1)."
   ],
   "rules": [
    "Permissions are requested just-in-time during actual feature usage, not upfront.",
@@ -474,7 +471,7 @@ const specs={
   ]
  },
  "network": {
-  "code": "C01",
+  "code": "03.1",
   "section": "Connections",
   "title": "My network",
   "summary": "Central connections hub and relationship management screen.",
@@ -484,7 +481,7 @@ const specs={
    "Filter connections by Specialty pills (All, Design, Engineering, Founders, AI, Verified).",
    "Tap compact 'Requests' hub card to manage pending introductions.",
    "Tap compact 'Hidden list' hub card to manage presence visibility.",
-   "Tap any connection card to view Connection Detail (C01.1).",
+   "Tap any connection card to view Connection Detail (03.1.1).",
    "Tap message icon on a connection card to jump directly to chat thread."
   ],
   "states": [
@@ -516,7 +513,7 @@ const specs={
   ]
  },
  "connectiondetail": {
-  "code": "C01.1",
+  "code": "03.1.1",
   "section": "Connections",
   "title": "Connection detail",
   "summary": "Full profile view and relationship management for an accepted connection.",
@@ -560,7 +557,7 @@ const specs={
   ]
  },
  "requests": {
-  "code": "C02",
+  "code": "03.2",
   "section": "Connections",
   "title": "Connection requests",
   "summary": "Management screen for incoming and outgoing connection requests.",
@@ -575,7 +572,7 @@ const specs={
   "states": [
    "Received tab active: displays incoming requests with Accept/Decline action buttons.",
    "Sent tab active: displays pending outgoing invitations with cancel action.",
-   "Empty Sent state: displays friendly illustration and primary CTA routing to Discover (B01)."
+   "Empty Sent state: displays friendly illustration and primary CTA routing to Discover (02.1)."
   ],
   "rules": [
    "Accept/Decline buttons use compact, elegant styling positioned underneath the person row.",
@@ -600,7 +597,7 @@ const specs={
   ]
  },
  "messages": {
-  "code": "C03",
+  "code": "04.1",
   "section": "Connections",
   "title": "Messages",
   "summary": "Conversations inbox for all confirmed connection threads.",
@@ -615,7 +612,7 @@ const specs={
    "Conversations tab: lists threads with active message history.",
    "All tab: lists all confirmed connections available for chat.",
    "Empty state: guidance when no active conversations exist.",
-   "Egress to Conversation thread (C03.1) upon row tap."
+   "Egress to Conversation thread (04.1.1) upon row tap."
   ],
   "rules": [
    "Tab is labeled 'Conversations', replacing legacy 'Current' label.",
@@ -640,7 +637,7 @@ const specs={
   ]
  },
  "conversation": {
-  "code": "C03.1",
+  "code": "04.1.1",
   "section": "Connections",
   "title": "Conversation detail",
   "summary": "Direct message thread with meetup prompts and safety controls.",
@@ -682,7 +679,7 @@ const specs={
   ]
  },
  "activity": {
-  "code": "C04",
+  "code": "04.2",
   "section": "Connections",
   "title": "Notifications feed",
   "summary": "Unified activity feed for connection updates and session notices.",
@@ -719,7 +716,7 @@ const specs={
   ]
  },
  "myprofile": {
-  "code": "D01",
+  "code": "05.1",
   "section": "Profile & Privacy",
   "title": "My profile",
   "summary": "Overview of user's own professional identity, credentials, and settings.",
@@ -728,8 +725,8 @@ const specs={
    "Inspect personal identity card with calculated Profile Strength percentage.",
    "Tap 'Edit profile' to modify bio, headline, city, skills, experience, and attachments.",
    "Tap Edit shortcut on Experience or Documents sections to jump to respective editors.",
-   "Tap 'Privacy & safety' menu item to open Privacy controls (D03).",
-   "Tap top settings icon to open App Settings (D05)."
+   "Tap 'Privacy & safety' menu item to open Privacy controls (05.3).",
+   "Tap top settings icon to open App Settings (05.5)."
   ],
   "states": [
    "Root navigation tab 'Profile'.",
@@ -759,7 +756,7 @@ const specs={
   ]
  },
  "editprofile": {
-  "code": "D02",
+  "code": "05.2",
   "section": "Profile & Privacy",
   "title": "Edit profile",
   "summary": "Comprehensive editing form for professional identity, experience, and credentials.",
@@ -803,7 +800,7 @@ const specs={
   ]
  },
  "privacy": {
-  "code": "D03",
+  "code": "05.3",
   "section": "Profile & Privacy",
   "title": "Privacy & safety",
   "summary": "Privacy controls, immutable protections, and safety entry points.",
@@ -813,8 +810,8 @@ const specs={
    "Review immutable protections: Approximate area only (Always on), Timed visibility (Always on).",
    "Manage Hidden connections list.",
    "Toggle Connection requests and Session reminders preferences.",
-   "Access Blocked people management (D03.2).",
-   "Access Report a concern interface (D03.3).",
+   "Access Blocked people management (05.3.2).",
+   "Access Report a concern interface (05.3.3).",
    "Tap Back to return to My profile."
   ],
   "states": [
@@ -843,7 +840,7 @@ const specs={
   ]
  },
  "hiddenconnections": {
-  "code": "D03.1",
+  "code": "05.3.1",
   "section": "Profile & Privacy",
   "title": "Hidden connections",
   "summary": "Granular live presence exclusion management for confirmed connections.",
@@ -880,7 +877,7 @@ const specs={
   ]
  },
  "blockedaccounts": {
-  "code": "D03.2",
+  "code": "05.3.2",
   "section": "Profile & Privacy",
   "title": "Blocked accounts",
   "summary": "Blocklist management and account unblocking screen.",
@@ -914,7 +911,7 @@ const specs={
   ]
  },
  "reportuser": {
-  "code": "D03.3",
+  "code": "05.3.3",
   "section": "Profile & Privacy",
   "title": "Report a concern",
   "summary": "Safety reporting preview for flagging disrespectful or unsafe behavior.",
@@ -953,7 +950,7 @@ const specs={
   ]
  },
  "verification": {
-  "code": "D04",
+  "code": "05.4",
   "section": "Profile & Privacy",
   "title": "Verification",
   "summary": "Optional trust signals and professional account linking.",
@@ -990,7 +987,7 @@ const specs={
   ]
  },
  "appsettings": {
-  "code": "D05",
+  "code": "05.5",
   "section": "Profile & Privacy",
   "title": "Settings",
   "summary": "Application preferences, appearance mode, account navigation, and support.",
@@ -999,7 +996,7 @@ const specs={
    "Navigate to Edit profile, Verification, or Privacy & safety.",
    "Toggle Session reminders and Connection requests switches.",
    "Tap 'Appearance' to cycle between System, Light mode, and Dark mode.",
-   "Open Notification preferences (D05.1).",
+   "Open Notification preferences (05.5.1).",
    "Access Help & support and About dialogs.",
    "Tap Sign out to view prototype session notice.",
    "Tap Back to return to My profile."
@@ -1029,7 +1026,7 @@ const specs={
   ]
  },
  "notifications": {
-  "code": "D05.1",
+  "code": "05.5.1",
   "section": "Profile & Privacy",
   "title": "Notification preferences",
   "summary": "Granular notification category toggles and advisory notices.",
@@ -1066,7 +1063,7 @@ const specs={
   ]
  },
  "helpsupport": {
-  "code": "D05.2",
+  "code": "05.5.2",
   "section": "Profile & Privacy",
   "title": "Help & support",
   "summary": "Knowledge base, privacy FAQs, and direct member inquiry channel.",
@@ -1104,7 +1101,7 @@ const specs={
   ]
  },
  "aboutpeopi": {
-  "code": "D05.3",
+  "code": "05.5.3",
   "section": "Profile & Privacy",
   "title": "About Peopi",
   "summary": "Product philosophy, core design pillars, version info, and legal compliance.",

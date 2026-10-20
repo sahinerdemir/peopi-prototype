@@ -10133,40 +10133,40 @@ document.addEventListener('click', function(e) {
 
 const sitemapNodesData = [
   // GROUP 1: Onboarding & Auth
-  { id: 'onboarding', code: 'A00', title: 'Splash & Intro', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Initial app splash and landing screen introducing Peopi values.', variants: ['First run', 'Returning user'], linkedDs: ['typography', 'buttons'], rules: ['ONBOARD-01'] },
-  { id: 'welcome', code: 'A01', title: 'Welcome Screen', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Value proposition carousel and account creation starting point.', variants: ['Slide 1', 'Slide 2', 'Slide 3'], linkedDs: ['buttons'], rules: ['ONBOARD-01'] },
-  { id: 'auth', code: 'A02', title: 'Phone Authentication', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Phone number entry and OTP code verification step.', variants: ['Phone input', 'OTP sent', 'Error state'], linkedDs: ['inputs', 'buttons'], rules: ['AUTH-01'] },
-  { id: 'recovery', code: 'A02.1', title: 'Account Recovery', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Overlay', status: 'Implemented', summary: 'Support dialog and recovery fallback flow when verification fails.', variants: ['Default'], linkedDs: ['modals'], rules: ['AUTH-01'] },
-  { id: 'firstprofile', code: 'A03', title: 'First Profile Setup', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Stage 1 entry profile: Name, Headline, and City.', variants: ['Empty', 'Filled', 'Validation error'], linkedDs: ['inputs', 'avatars'], rules: ['PROFILE-01'] },
-  { id: 'firstintent', code: 'A04', title: 'Intent Selection', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Initial intent preferences chosen during onboarding.', variants: ['Networking', 'Collaboration', 'Coffee'], linkedDs: ['chips', 'buttons'], rules: ['PROFILE-01'] },
-  { id: 'permissions', code: 'A05', title: 'System Permissions', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Explaining and requesting Bluetooth and Location access.', variants: ['Prompt', 'Granted', 'Denied fallback'], linkedDs: ['buttons', 'modals'], rules: ['SYS-01'] },
+  { id: 'onboarding', code: '01.2', title: 'Onboarding', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Three-card carousel introducing spontaneous proximity, privacy by default, and purposeful networking.', variants: ['First run', 'Returning user'], linkedDs: ['typography', 'buttons'], rules: ['ONBOARD-01'] },
+  { id: 'welcome', code: '01.1', title: 'Welcome', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Value proposition landing with central mark, animated peer orbits, and account creation entry point.', variants: ['Slide 1', 'Slide 2', 'Slide 3'], linkedDs: ['buttons'], rules: ['ONBOARD-01'] },
+  { id: 'auth', code: '01.3', title: 'Work Email & Auth', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Work email address and OTP verification or SSO sign-in.', variants: ['Phone input', 'OTP sent', 'Error state'], linkedDs: ['inputs', 'buttons'], rules: ['AUTH-01'] },
+  { id: 'recovery', code: '01.3.1', title: 'Account Recovery', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Overlay', status: 'Implemented', summary: 'Support dialog and recovery fallback flow when verification fails.', variants: ['Default'], linkedDs: ['modals'], rules: ['AUTH-01'] },
+  { id: 'firstprofile', code: '01.4', title: 'Profile Setup', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Stage 1 entry profile: Name, Headline, and City.', variants: ['Empty', 'Filled', 'Validation error'], linkedDs: ['inputs', 'avatars'], rules: ['PROFILE-01'] },
+  { id: 'firstintent', code: '01.5', title: 'Intent Setup', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Initial intent preferences chosen during onboarding.', variants: ['Networking', 'Collaboration', 'Coffee'], linkedDs: ['chips', 'buttons'], rules: ['PROFILE-01'] },
+  { id: 'permissions', code: '01.6', title: 'Permissions', group: 'onboarding', groupLabel: 'Onboarding & Auth', type: 'Screen', status: 'Implemented', summary: 'Explaining and requesting Bluetooth and Location access.', variants: ['Prompt', 'Granted', 'Denied fallback'], linkedDs: ['buttons', 'modals'], rules: ['SYS-01'] },
 
   // GROUP 2: Discover
-  { id: 'closed', code: 'B01', title: 'Invisible / Closed State', group: 'discover', groupLabel: 'Discover', type: 'Screen', status: 'Implemented', summary: 'Discovery closed. User is invisible to others while browsing network.', variants: ['Closed radar', 'History visible'], linkedDs: ['cards', 'buttons'], rules: ['DISC-01', 'PRIV-01'] },
-  { id: 'setup', code: 'B02', title: 'Discovery Setup & Readiness', group: 'discover', groupLabel: 'Discover', type: 'Screen', status: 'Implemented', summary: 'Stage 2 check: brief bio & skill completion if missing before broadcast.', variants: ['Ready', 'Missing bio', 'Missing skills'], linkedDs: ['chips', 'inputs'], rules: ['PROFILE-02', 'DISC-02'] },
-  { id: 'active', code: 'B03', title: 'Active Discovery Radar', group: 'discover', groupLabel: 'Discover', type: 'Screen', status: 'Implemented', summary: 'Live presence broadcasting and nearby peer cards visualization.', variants: ['Standard radar', 'No peers near', 'Low signal'], linkedDs: ['radar', 'peer-card', 'chips'], rules: ['DISC-03', 'PRIV-01'] },
-  { id: 'profile', code: 'B04', title: 'Peer Profile Preview', group: 'discover', groupLabel: 'Discover', type: 'Overlay', status: 'Implemented', summary: 'Inspect nearby peer profile with shared intents before connecting.', variants: ['Standard view', 'Mutual connections', 'Distance badge'], linkedDs: ['avatars', 'chips', 'buttons'], rules: ['CONN-01', 'SAFE-01'] },
+  { id: 'closed', code: '02.1', title: 'Invisible State', group: 'discover', groupLabel: 'Discover', type: 'Screen', status: 'Implemented', summary: 'Discovery closed. User is invisible to others while browsing network; subtle aggregated activity zones indicate general presence.', variants: ['Closed radar', 'History visible'], linkedDs: ['cards', 'buttons'], rules: ['DISC-01', 'PRIV-01'] },
+  { id: 'setup', code: '02.2', title: 'Start Session', group: 'discover', groupLabel: 'Discover', type: 'Screen', status: 'Implemented', summary: 'Stage 2 check: networking intent and bounded duration selection (30, 60, 120 min) before broadcast.', variants: ['Ready', 'Missing bio', 'Missing skills'], linkedDs: ['chips', 'inputs'], rules: ['PROFILE-02', 'DISC-02'] },
+  { id: 'active', code: '02.3', title: 'Active Discovery', group: 'discover', groupLabel: 'Discover', type: 'Screen', status: 'Implemented', summary: 'Live presence broadcasting and nearby peer cards visualization.', variants: ['Standard radar', 'No peers near', 'Low signal'], linkedDs: ['radar', 'peer-card', 'chips'], rules: ['DISC-03', 'PRIV-01'] },
+  { id: 'profile', code: '02.4', title: 'Professional Profile', group: 'discover', groupLabel: 'Discover', type: 'Overlay', status: 'Implemented', summary: 'Inspect nearby peer profile with shared intents before connecting.', variants: ['Standard view', 'Mutual connections', 'Distance badge'], linkedDs: ['avatars', 'chips', 'buttons'], rules: ['CONN-01', 'SAFE-01'] },
 
   // GROUP 3: Connections
-  { id: 'network', code: 'C01', title: 'Network / People List', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Accepted connections directory and recent encounters list.', variants: ['Populated list', 'Empty state', 'Filter applied'], linkedDs: ['cards', 'avatars', 'inputs'], rules: ['CONN-02'] },
-  { id: 'connectiondetail', code: 'C01.1', title: 'Connection Details', group: 'connections', groupLabel: 'Connections', type: 'Overlay', status: 'Implemented', summary: 'Full profile view of an accepted contact with direct message button.', variants: ['Active connection', 'Recently connected'], linkedDs: ['avatars', 'buttons', 'modals'], rules: ['CONN-02', 'PRIV-02'] },
-  { id: 'requests', code: 'C02', title: 'Connection Requests', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Manage incoming invitations and pending outgoing requests.', variants: ['Pending incoming', 'Pending outgoing', 'Empty requests'], linkedDs: ['cards', 'chips', 'buttons'], rules: ['CONN-01'] },
-  { id: 'messages', code: 'C03', title: 'Messages List', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Chat threads with established, accepted connections.', variants: ['Active threads', 'Unread badges', 'Empty inbox'], linkedDs: ['list-item', 'badges'], rules: ['MSG-01'] },
-  { id: 'conversation', code: 'C03.1', title: '1-on-1 Conversation', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'End-to-end direct messaging interface with connection.', variants: ['Active chat', 'Typing indicator', 'Message sent'], linkedDs: ['chat-bubble', 'inputs', 'buttons'], rules: ['MSG-01', 'PRIV-02'] },
-  { id: 'activity', code: 'C04', title: 'Activity Feed', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Notifications of requests, accepted connections, and encounters.', variants: ['Unread items', 'All caught up'], linkedDs: ['list-item', 'badges'], rules: ['CONN-01'] },
+  { id: 'network', code: '03.1', title: 'My Network', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Accepted connections directory and recent encounters list.', variants: ['Populated list', 'Empty state', 'Filter applied'], linkedDs: ['cards', 'avatars', 'inputs'], rules: ['CONN-02'] },
+  { id: 'connectiondetail', code: '03.1.1', title: 'Connection Detail', group: 'connections', groupLabel: 'Connections', type: 'Overlay', status: 'Implemented', summary: 'Full profile view of an accepted contact with direct message button.', variants: ['Active connection', 'Recently connected'], linkedDs: ['avatars', 'buttons', 'modals'], rules: ['CONN-02', 'PRIV-02'] },
+  { id: 'requests', code: '03.2', title: 'Requests', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Manage incoming invitations and pending outgoing requests.', variants: ['Pending incoming', 'Pending outgoing', 'Empty requests'], linkedDs: ['cards', 'chips', 'buttons'], rules: ['CONN-01'] },
+  { id: 'messages', code: '04.1', title: 'Messages', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Chat threads with established, accepted connections.', variants: ['Active threads', 'Unread badges', 'Empty inbox'], linkedDs: ['list-item', 'badges'], rules: ['MSG-01'] },
+  { id: 'conversation', code: '04.1.1', title: 'Conversation', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'End-to-end direct messaging interface with connection.', variants: ['Active chat', 'Typing indicator', 'Message sent'], linkedDs: ['chat-bubble', 'inputs', 'buttons'], rules: ['MSG-01', 'PRIV-02'] },
+  { id: 'activity', code: '04.2', title: 'Notifications / Activity', group: 'connections', groupLabel: 'Connections', type: 'Screen', status: 'Implemented', summary: 'Notifications of requests, accepted connections, and encounters.', variants: ['Unread items', 'All caught up'], linkedDs: ['list-item', 'badges'], rules: ['CONN-01'] },
 
   // GROUP 4: Profile & Privacy
-  { id: 'myprofile', code: 'D01', title: 'My Profile', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'User personal profile overview, stats, and settings entry points.', variants: ['Complete', 'Incomplete warning'], linkedDs: ['avatars', 'chips', 'cards'], rules: ['PROFILE-01', 'PROFILE-02'] },
-  { id: 'editprofile', code: 'D01.1', title: 'Edit Profile', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Modify bio, headline, skills, and personal intent tags.', variants: ['Editing', 'Saving', 'Unsaved changes modal'], linkedDs: ['inputs', 'chips', 'buttons'], rules: ['PROFILE-02'] },
-  { id: 'privacy', code: 'D02', title: 'Privacy Settings', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Global privacy controls, session defaults, and visibility flags.', variants: ['Default privacy', 'Strict mode'], linkedDs: ['toggles', 'list-item'], rules: ['PRIV-01', 'PRIV-02'] },
-  { id: 'hiddenconnections', code: 'D02.1', title: 'Hide My Presence', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Manage peers hidden from live discovery while keeping connections intact.', variants: ['Hidden list', 'Empty hidden list'], linkedDs: ['cards', 'buttons'], rules: ['PRIV-01'] },
-  { id: 'blockedaccounts', code: 'D02.2', title: 'Blocked Accounts', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Blocked users list with unblock controls and zero-visibility enforcement.', variants: ['Blocked list', 'Empty blocked list'], linkedDs: ['cards', 'buttons'], rules: ['SAFE-01'] },
-  { id: 'reportuser', code: 'D02.3', title: 'Report User Modal', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Overlay', status: 'Implemented', summary: 'Categorized misconduct reporting form with optional evidence.', variants: ['Form entry', 'Submitted success'], linkedDs: ['modals', 'inputs', 'buttons'], rules: ['SAFE-01'] },
-  { id: 'verification', code: 'D03', title: 'Profile Verification', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Third-party trust signal integration (e.g. LinkedIn sync).', variants: ['Unverified', 'Pending sync', 'Verified badge'], linkedDs: ['badges', 'cards', 'buttons'], rules: ['AUTH-02'] },
-  { id: 'appsettings', code: 'D04', title: 'App Settings', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Application preferences, theme toggles, and data export.', variants: ['Default'], linkedDs: ['toggles', 'list-item'], rules: ['SYS-02'] },
-  { id: 'notifications', code: 'D04.1', title: 'Notification Preferences', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Push notification preferences for requests and messages.', variants: ['All enabled', 'Muted'], linkedDs: ['toggles'], rules: ['SYS-02'] },
-  { id: 'helpsupport', code: 'D05.1', title: 'Help & Support', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'FAQ, community guidelines, and support ticket submission.', variants: ['FAQ view', 'Contact form'], linkedDs: ['cards', 'inputs'], rules: ['SYS-03'] },
-  { id: 'aboutpeopi', code: 'D05.2', title: 'About Peopi', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Version details, terms of service, and privacy policy links.', variants: ['Default'], linkedDs: ['cards'], rules: ['SYS-03'] }
+  { id: 'myprofile', code: '05.1', title: 'My Profile', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'User personal profile overview, stats, and settings entry points.', variants: ['Complete', 'Incomplete warning'], linkedDs: ['avatars', 'chips', 'cards'], rules: ['PROFILE-01', 'PROFILE-02'] },
+  { id: 'editprofile', code: '05.2', title: 'Edit Profile', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Modify bio, headline, skills, and personal intent tags.', variants: ['Editing', 'Saving', 'Unsaved changes modal'], linkedDs: ['inputs', 'chips', 'buttons'], rules: ['PROFILE-02'] },
+  { id: 'privacy', code: '05.3', title: 'Privacy & Safety', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Global privacy controls, session defaults, and visibility flags.', variants: ['Default privacy', 'Strict mode'], linkedDs: ['toggles', 'list-item'], rules: ['PRIV-01', 'PRIV-02'] },
+  { id: 'hiddenconnections', code: '05.3.1', title: 'Hidden Connections', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Manage peers hidden from live discovery while keeping connections intact.', variants: ['Hidden list', 'Empty hidden list'], linkedDs: ['cards', 'buttons'], rules: ['PRIV-01'] },
+  { id: 'blockedaccounts', code: '05.3.2', title: 'Blocked Accounts', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Blocked users list with unblock controls and zero-visibility enforcement.', variants: ['Blocked list', 'Empty blocked list'], linkedDs: ['cards', 'buttons'], rules: ['SAFE-01'] },
+  { id: 'reportuser', code: '05.3.3', title: 'Report User', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Overlay', status: 'Implemented', summary: 'Categorized misconduct reporting form with optional evidence.', variants: ['Form entry', 'Submitted success'], linkedDs: ['modals', 'inputs', 'buttons'], rules: ['SAFE-01'] },
+  { id: 'verification', code: '05.4', title: 'Verification', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Third-party trust signal integration (e.g. LinkedIn sync).', variants: ['Unverified', 'Pending sync', 'Verified badge'], linkedDs: ['badges', 'cards', 'buttons'], rules: ['AUTH-02'] },
+  { id: 'appsettings', code: '05.5', title: 'Settings', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Application preferences, theme toggles, and data export.', variants: ['Default'], linkedDs: ['toggles', 'list-item'], rules: ['SYS-02'] },
+  { id: 'notifications', code: '05.5.1', title: 'Notification Preferences', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Push notification preferences for requests and messages.', variants: ['All enabled', 'Muted'], linkedDs: ['toggles'], rules: ['SYS-02'] },
+  { id: 'helpsupport', code: '05.5.2', title: 'Help & Support', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'FAQ, community guidelines, and support ticket submission.', variants: ['FAQ view', 'Contact form'], linkedDs: ['cards', 'inputs'], rules: ['SYS-03'] },
+  { id: 'aboutpeopi', code: '05.5.3', title: 'About Peopi', group: 'profile_privacy', groupLabel: 'Profile & Privacy', type: 'Screen', status: 'Implemented', summary: 'Version details, terms of service, and privacy policy links.', variants: ['Default'], linkedDs: ['cards'], rules: ['SYS-03'] }
 ];
 
 const sitemapJourneysData = [
@@ -10178,13 +10178,13 @@ const sitemapJourneysData = [
     rules: ['PROFILE-01', 'AUTH-01', 'SYS-01'],
     terminal: 'User lands in Invisible / Closed state. Active discovery is strictly NOT started.',
     steps: [
-      { step: 1, screenId: 'onboarding', code: 'A00', name: 'Splash & Intro', action: 'User opens app, views Peopi value statements and starts onboarding flow.' },
-      { step: 2, screenId: 'welcome', code: 'A01', name: 'Welcome Screen', action: 'User explores carousel overview and taps "Create Account" button.' },
-      { step: 3, screenId: 'auth', code: 'A02', name: 'Phone Authentication', action: 'User enters phone number and verifies via 6-digit SMS OTP.' },
-      { step: 4, screenId: 'firstprofile', code: 'A03', name: 'First Profile Setup', action: 'Stage 1 completion: User enters Name, Headline, and City.' },
-      { step: 5, screenId: 'firstintent', code: 'A04', name: 'Intent Selection', action: 'User selects initial connection intent tags (Networking, Coffee, etc.).' },
-      { step: 6, screenId: 'permissions', code: 'A05', name: 'System Permissions', action: 'User reviews and grants required Bluetooth and Location permissions.' },
-      { step: 7, screenId: 'closed', code: 'B01', name: 'Invisible / Closed State', action: 'Landing state reached in Closed mode. Device is completely invisible to nearby users.' }
+      { step: 1, screenId: 'onboarding', code: '01.2', name: 'Splash & Intro', action: 'User opens app, views Peopi value statements and starts onboarding flow.' },
+      { step: 2, screenId: 'welcome', code: '01.1', name: 'Welcome Screen', action: 'User explores carousel overview and taps "Create Account" button.' },
+      { step: 3, screenId: 'auth', code: '01.3', name: 'Phone Authentication', action: 'User enters phone number and verifies via 6-digit SMS OTP.' },
+      { step: 4, screenId: 'firstprofile', code: '01.4', name: 'First Profile Setup', action: 'Stage 1 completion: User enters Name, Headline, and City.' },
+      { step: 5, screenId: 'firstintent', code: '01.5', name: 'Intent Selection', action: 'User selects initial connection intent tags (Networking, Coffee, etc.).' },
+      { step: 6, screenId: 'permissions', code: '01.6', name: 'System Permissions', action: 'User reviews and grants required Bluetooth and Location permissions.' },
+      { step: 7, screenId: 'closed', code: '02.1', name: 'Invisible / Closed State', action: 'Landing state reached in Closed mode. Device is completely invisible to nearby users.' }
     ]
   },
   {
@@ -10195,9 +10195,9 @@ const sitemapJourneysData = [
     rules: ['PROFILE-02', 'DISC-01', 'DISC-02', 'DISC-03', 'PRIV-01'],
     terminal: 'Active BLE discovery broadcasting. Real-time peer cards visible on live radar.',
     steps: [
-      { step: 1, screenId: 'closed', code: 'B01', name: 'Invisible / Closed State', action: 'User taps "Start Discovery" switch on dashboard.' },
-      { step: 2, screenId: 'setup', code: 'B02', name: 'Discovery Setup Check', action: 'System checks Stage 2 profile readiness. If brief bio & >=1 skill exist, auto-proceeds; if missing, user adds them here.' },
-      { step: 3, screenId: 'active', code: 'B03', name: 'Active Discovery Radar', action: 'Active radar launches: BLE beacon broadcasts presence and discovers nearby active peers with matching intents.' }
+      { step: 1, screenId: 'closed', code: '02.1', name: 'Invisible / Closed State', action: 'User taps "Start Discovery" switch on dashboard.' },
+      { step: 2, screenId: 'setup', code: '02.2', name: 'Discovery Setup Check', action: 'System checks Stage 2 profile readiness. If brief bio & >=1 skill exist, auto-proceeds; if missing, user adds them here.' },
+      { step: 3, screenId: 'active', code: '02.3', name: 'Active Discovery Radar', action: 'Active radar launches: BLE beacon broadcasts presence and discovers nearby active peers with matching intents.' }
     ]
   },
   {
@@ -10208,11 +10208,11 @@ const sitemapJourneysData = [
     rules: ['CONN-01', 'CONN-02', 'PRIV-02', 'MSG-01'],
     terminal: 'Upon mutual acceptance, peer joins Network directory and direct 1-on-1 chat is unlocked in Conversation.',
     steps: [
-      { step: 1, screenId: 'active', code: 'B03', name: 'Active Discovery Radar', action: 'User spots an interesting peer card on the active radar canvas.' },
-      { step: 2, screenId: 'profile', code: 'B04', name: 'Peer Profile Preview', action: 'Taps peer card to inspect preview bio, mutual skills, and intent badges.' },
-      { step: 3, screenId: 'profile', code: 'B04', name: 'Transmit Connection Request', action: 'User taps "Connect". Invitation is sent; state updates to Pending Outgoing.' },
-      { step: 4, screenId: 'requests', code: 'C02', name: 'Connection Requests', action: 'Request is tracked under Outgoing Requests. User retains option to cancel anytime before peer responds.' },
-      { step: 5, screenId: 'conversation', code: 'C03.1', name: '1-on-1 Conversation', action: 'Double Opt-In Branch: Peer accepts -> Peer added to Network directory and direct messaging thread unlocks immediately.' }
+      { step: 1, screenId: 'active', code: '02.3', name: 'Active Discovery Radar', action: 'User spots an interesting peer card on the active radar canvas.' },
+      { step: 2, screenId: 'profile', code: '02.4', name: 'Peer Profile Preview', action: 'Taps peer card to inspect preview bio, mutual skills, and intent badges.' },
+      { step: 3, screenId: 'profile', code: '02.4', name: 'Transmit Connection Request', action: 'User taps "Connect". Invitation is sent; state updates to Pending Outgoing.' },
+      { step: 4, screenId: 'requests', code: '03.2', name: 'Connection Requests', action: 'Request is tracked under Outgoing Requests. User retains option to cancel anytime before peer responds.' },
+      { step: 5, screenId: 'conversation', code: '04.1.1', name: '1-on-1 Conversation', action: 'Double Opt-In Branch: Peer accepts -> Peer added to Network directory and direct messaging thread unlocks immediately.' }
     ]
   },
   {
@@ -10223,10 +10223,10 @@ const sitemapJourneysData = [
     rules: ['CONN-01', 'CONN-02', 'SAFE-01'],
     terminal: 'If accepted: chat opens; if declined: request removed silently without notifying sender.',
     steps: [
-      { step: 1, screenId: 'activity', code: 'C04', name: 'Activity Feed / Notification', action: 'User receives push notification or sees request badge in Activity feed.' },
-      { step: 2, screenId: 'requests', code: 'C02', name: 'Incoming Requests', action: 'User views incoming invitation card displaying peer headline and shared intent.' },
-      { step: 3, screenId: 'profile', code: 'B04', name: 'Inspect Peer Profile', action: 'User views full preview to evaluate relevance before deciding.' },
-      { step: 4, screenId: 'requests', code: 'C02', name: 'Decision Branching', action: 'Choice A: Tap "Accept" -> Added to Network & chat opens in Conversation. Choice B: Tap "Decline" -> Request dismissed silently.' }
+      { step: 1, screenId: 'activity', code: '04.2', name: 'Activity Feed / Notification', action: 'User receives push notification or sees request badge in Activity feed.' },
+      { step: 2, screenId: 'requests', code: '03.2', name: 'Incoming Requests', action: 'User views incoming invitation card displaying peer headline and shared intent.' },
+      { step: 3, screenId: 'profile', code: '02.4', name: 'Inspect Peer Profile', action: 'User views full preview to evaluate relevance before deciding.' },
+      { step: 4, screenId: 'requests', code: '03.2', name: 'Decision Branching', action: 'Choice A: Tap "Accept" -> Added to Network & chat opens in Conversation. Choice B: Tap "Decline" -> Request dismissed silently.' }
     ]
   },
   {
@@ -10237,9 +10237,9 @@ const sitemapJourneysData = [
     rules: ['DISC-01', 'PRIV-01', 'CONN-02'],
     terminal: 'User is invisible to all nearby peers. All network assets and chat threads remain intact.',
     steps: [
-      { step: 1, screenId: 'active', code: 'B03', name: 'Active Discovery Radar', action: 'User taps "Stop Discovery" or session timeout triggers automatically.' },
-      { step: 2, screenId: 'closed', code: 'B01', name: 'Invisible / Closed State', action: 'BLE broadcast ceases instantly; user card disappears from all nearby radars.' },
-      { step: 3, screenId: 'network', code: 'C01', name: 'Network Directory', action: 'Invariant Rule: Past connections, message histories, and pending requests remain 100% accessible.' }
+      { step: 1, screenId: 'active', code: '02.3', name: 'Active Discovery Radar', action: 'User taps "Stop Discovery" or session timeout triggers automatically.' },
+      { step: 2, screenId: 'closed', code: '02.1', name: 'Invisible / Closed State', action: 'BLE broadcast ceases instantly; user card disappears from all nearby radars.' },
+      { step: 3, screenId: 'network', code: '03.1', name: 'Network Directory', action: 'Invariant Rule: Past connections, message histories, and pending requests remain 100% accessible.' }
     ]
   },
   {
@@ -10250,9 +10250,9 @@ const sitemapJourneysData = [
     rules: ['PRIV-01', 'CONN-02'],
     terminal: 'Peer cannot see user on active radar. Chat history and connection record remain untouched.',
     steps: [
-      { step: 1, screenId: 'connectiondetail', code: 'C01.1', name: 'Connection Details', action: 'User opens details for an existing connection and taps "Hide My Presence".' },
-      { step: 2, screenId: 'hiddenconnections', code: 'D02.1', name: 'Hide My Presence List', action: 'Contact is added to hidden presence registry.' },
-      { step: 3, screenId: 'active', code: 'B03', name: 'Invariant Enforcement', action: 'During active discovery, mutual radar visibility is masked. Connection is NOT severed; chat remains in Messages.' }
+      { step: 1, screenId: 'connectiondetail', code: '03.1.1', name: 'Connection Details', action: 'User opens details for an existing connection and taps "Hide My Presence".' },
+      { step: 2, screenId: 'hiddenconnections', code: '05.3.1', name: 'Hide My Presence List', action: 'Contact is added to hidden presence registry.' },
+      { step: 3, screenId: 'active', code: '02.3', name: 'Invariant Enforcement', action: 'During active discovery, mutual radar visibility is masked. Connection is NOT severed; chat remains in Messages.' }
     ]
   },
   {
@@ -10263,9 +10263,9 @@ const sitemapJourneysData = [
     rules: ['SAFE-01', 'PRIV-02'],
     terminal: 'Total mutual visibility blackout. Connection dissolved, messaging blocked, cannot request again.',
     steps: [
-      { step: 1, screenId: 'profile', code: 'B04', name: 'Peer Profile / Overflow Menu', action: 'User taps the overflow "..." menu on peer profile or chat header.' },
-      { step: 2, screenId: 'reportuser', code: 'D02.3', name: 'Report User Modal', action: 'User selects category (Harassment, Spam, Impersonation) and submits report.' },
-      { step: 3, screenId: 'blockedaccounts', code: 'D02.2', name: 'Block Confirmation', action: 'User confirms block. User added to Blocked Accounts registry; all direct messaging and visibility permanently severed.' }
+      { step: 1, screenId: 'profile', code: '02.4', name: 'Peer Profile / Overflow Menu', action: 'User taps the overflow "..." menu on peer profile or chat header.' },
+      { step: 2, screenId: 'reportuser', code: '05.3.3', name: 'Report User Modal', action: 'User selects category (Harassment, Spam, Impersonation) and submits report.' },
+      { step: 3, screenId: 'blockedaccounts', code: '05.3.2', name: 'Block Confirmation', action: 'User confirms block. User added to Blocked Accounts registry; all direct messaging and visibility permanently severed.' }
     ]
   }
 ];
