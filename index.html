@@ -3137,403 +3137,528 @@
 
             <div class="dash-page-intro">
               <p class="dash-page-lead">
-                A focused first product with clear rules for every interaction.
+                The MVP is not a stripped-down platform; it is a precision instrument designed to test one fundamental behavioral loop.
               </p>
               <p class="dash-page-desc">
-                Peopi’s initial scope centers on professional profiles, user-controlled visibility, nearby discovery, mutual connection requests, and continuing conversations.
+                By establishing strict release boundaries and documenting architectural trade-offs, Peopi prioritizes trust, immediate relevance, and user control over feature breadth and premature scale.
               </p>
             </div>
           </header>
 
-          <!-- 2. CORE PRODUCT LOOP -->
+          <!-- 1. CORE BEHAVIORAL LOOP & DECISION FRAMEWORK -->
           <section class="scope-sec">
             <div class="scope-sec-head">
               <div>
-                <span class="scope-sec-kicker">INTERACTION MODEL</span>
-                <h2 class="scope-sec-title">From a profile to a mutually accepted connection<span class="brand-dot">.</span></h2>
+                <span class="scope-sec-kicker">DECISION FRAMEWORK</span>
+                <h2 class="scope-sec-title">Testing one core behavioral loop before platform expansion<span class="brand-dot">.</span></h2>
               </div>
             </div>
 
-            <!-- Loop Steps -->
-            <div class="scope-loop-wrap" role="region" aria-label="Core product loop sequence">
+            <!-- 6-Step Loop Sequence -->
+            <div class="scope-loop-wrap" role="region" aria-label="Core behavioral loop sequence">
               <div class="scope-loop-step">
                 <span class="scope-loop-step-num">STEP 01</span>
-                <h4 class="scope-loop-step-title">Create a profile</h4>
+                <h4 class="scope-loop-step-title">Temporary Discoverability</h4>
+                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Explicit opt-in session with 30, 60, or 120 min countdown timer.</p>
               </div>
               <div class="scope-loop-arrow"><i class="ph ph-arrow-right"></i></div>
 
               <div class="scope-loop-step">
                 <span class="scope-loop-step-num">STEP 02</span>
-                <h4 class="scope-loop-step-title">Complete visibility requirements</h4>
+                <h4 class="scope-loop-step-title">Nearby Discovery</h4>
+                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Browse active peers via approximate proximity and activity zones.</p>
               </div>
               <div class="scope-loop-arrow"><i class="ph ph-arrow-right"></i></div>
 
               <div class="scope-loop-step">
                 <span class="scope-loop-step-num">STEP 03</span>
-                <h4 class="scope-loop-step-title">Explicitly start a visible session</h4>
+                <h4 class="scope-loop-step-title">Professional Fit</h4>
+                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Review pre-connection profile preview with initialed privacy avatars.</p>
               </div>
               <div class="scope-loop-arrow"><i class="ph ph-arrow-right"></i></div>
 
               <div class="scope-loop-step">
                 <span class="scope-loop-step-num">STEP 04</span>
-                <h4 class="scope-loop-step-title">Discover and send a request</h4>
+                <h4 class="scope-loop-step-title">Connection Request</h4>
+                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Send intentional invitation with structured context and optional note.</p>
               </div>
               <div class="scope-loop-arrow"><i class="ph ph-arrow-right"></i></div>
 
               <div class="scope-loop-step">
                 <span class="scope-loop-step-num">STEP 05</span>
-                <h4 class="scope-loop-step-title">Accept and continue conversation</h4>
+                <h4 class="scope-loop-step-title">Mutual Acceptance</h4>
+                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Bilateral consent confirms connection and archives into permanent network.</p>
+              </div>
+              <div class="scope-loop-arrow"><i class="ph ph-arrow-right"></i></div>
+
+              <div class="scope-loop-step">
+                <span class="scope-loop-step-num">STEP 06</span>
+                <h4 class="scope-loop-step-title">Start Conversation</h4>
+                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Unlocked 1-on-1 persistent chat bridges digital match into physical meetup.</p>
               </div>
             </div>
 
             <div class="scope-callout">
-              <i class="ph ph-info" aria-hidden="true"></i>
+              <i class="ph ph-target" aria-hidden="true"></i>
               <div>
-                <strong>Loop rule:</strong> Entering the app does not automatically start a visible session. A connection requires acceptance; discovery itself does not require a prior mutual connection.
+                <strong>Product validation scope:</strong> The MVP is deliberately scoped to validate this single six-step journey. Every feature outside this progression—such as group lounges, algorithmic feeds, or public profiles—is deferred to protect validation integrity.
               </div>
             </div>
           </section>
 
-          <!-- 3. INITIAL PRODUCT SCOPE -->
+          <!-- 2. PRODUCT DECISION LOG -->
+          <section class="scope-sec" id="scope-decisions">
+            <div class="scope-sec-head">
+              <div>
+                <span class="scope-sec-kicker">PRODUCT DECISION LOG</span>
+                <h2 class="scope-sec-title">Architectural decisions, alternatives, and accepted trade-offs<span class="brand-dot">.</span></h2>
+              </div>
+            </div>
+            <p style="margin-bottom:24px;font-size:15px;line-height:1.6;color:#475569;">
+              Every core mechanic in Peopi was selected by resolving fundamental tensions between spontaneous real-world utility and personal privacy. Below is the decision registry governing the MVP:
+            </p>
+
+            <div style="display:flex;flex-direction:column;gap:20px;">
+
+              <!-- Decision A: Opt-in Visibility -->
+              <div class="scope-decision-card">
+                <div class="scope-decision-header">
+                  <span class="scope-decision-tag">DECISION A · PRESENCE ARCHITECTURE</span>
+                  <h3>Opt-In Visibility Sessions vs. Always-On Background Presence</h3>
+                </div>
+
+                <div class="scope-decision-problem">
+                  <strong>Product Problem:</strong> Continuous background location broadcasting causes battery depletion, persistent surveillance anxiety, and leaves ghost presence behind after a user departs a venue.
+                </div>
+
+                <div class="scope-decision-compare">
+                  <div class="scope-compare-col chosen">
+                    <span class="scope-compare-label"><i class="ph ph-check-circle"></i> Chosen Approach</span>
+                    <p><strong>Explicit, time-limited opt-in sessions:</strong> The app remains invisible by default. Users must consciously initiate a visibility window with countdown auto-expiry.</p>
+                  </div>
+                  <div class="scope-compare-col alternative">
+                    <span class="scope-compare-label"><i class="ph ph-x-circle"></i> Alternative Considered</span>
+                    <p><strong>Always-on ambient geofencing:</strong> Passive background tracking that automatically broadcasts the user whenever they cross into co-working zones.</p>
+                  </div>
+                </div>
+
+                <div class="scope-decision-why">
+                  <strong>Why Preferred:</strong> High-caliber professionals refuse to adopt proximity apps that continuously track them in the background. Intentional opt-in guarantees active attention and psychological safety.
+                </div>
+
+                <div class="scope-tradeoff-box">
+                  <strong>Trade-Off / Accepted Risk:</strong> Requires conscious user activation at every venue; eliminates passive ambient serendipity when users forget to open the app.
+                </div>
+              </div>
+
+              <!-- Decision B: Session Duration -->
+              <div class="scope-decision-card">
+                <div class="scope-decision-header">
+                  <span class="scope-decision-tag">DECISION B · TEMPORAL CONTROL</span>
+                  <h3>Fixed Preset Durations (30, 60, 120m) vs. Indefinite or Custom Timers</h3>
+                </div>
+
+                <div class="scope-decision-problem">
+                  <strong>Product Problem:</strong> Unbounded presence leads to stale, inactive profiles cluttering venues. Arbitrary minute inputs introduce decision paralysis during the critical onboarding-to-discovery transition.
+                </div>
+
+                <div class="scope-decision-compare">
+                  <div class="scope-compare-col chosen">
+                    <span class="scope-compare-label"><i class="ph ph-check-circle"></i> Chosen Approach</span>
+                    <p><strong>Three fixed duration options (30, 60, 120 min):</strong> Defaults to 60 min with clear timer badges, one-tap extensions (+15m), and instant manual session termination.</p>
+                  </div>
+                  <div class="scope-compare-col alternative">
+                    <span class="scope-compare-label"><i class="ph ph-x-circle"></i> Alternative Considered</span>
+                    <p><strong>Indefinite toggle or custom time picker:</strong> Open-ended switches or arbitrary slider/text inputs for hours and minutes.</p>
+                  </div>
+                </div>
+
+                <div class="scope-decision-why">
+                  <strong>Why Preferred:</strong> Constrained options eliminate activation friction while strictly guaranteeing that visible peers are genuinely present and attentive in real time.
+                </div>
+
+                <div class="scope-tradeoff-box">
+                  <strong>Trade-Off / Accepted Risk:</strong> Users engaged in longer discussions may experience session expiration mid-conversation and must perform a quick renewal.
+                </div>
+              </div>
+
+              <!-- Decision C: Location Privacy -->
+              <div class="scope-decision-card">
+                <div class="scope-decision-header">
+                  <span class="scope-decision-tag">DECISION C · SPATIAL PRIVACY</span>
+                  <h3>Approximate Proximity with Soft Halos vs. Exact Live GPS Pins</h3>
+                </div>
+
+                <div class="scope-decision-problem">
+                  <strong>Product Problem:</strong> Precise GPS coordinates create unacceptable physical stalking hazards, reveal home/office micro-locations, and violate personal physical boundaries.
+                </div>
+
+                <div class="scope-decision-compare">
+                  <div class="scope-compare-col chosen">
+                    <span class="scope-compare-label"><i class="ph ph-check-circle"></i> Chosen Approach</span>
+                    <p><strong>Approximate proximity zones:</strong> Displayed with subtle proximity halos and banded distances (~300m, Within 1 mi). Client APIs never receive raw GPS coordinates.</p>
+                  </div>
+                  <div class="scope-compare-col alternative">
+                    <span class="scope-compare-label"><i class="ph ph-x-circle"></i> Alternative Considered</span>
+                    <p><strong>Real-time waypoint map:</strong> Exact latitude/longitude street pins with distance meters and walking navigation arrows.</p>
+                  </div>
+                </div>
+
+                <div class="scope-decision-why">
+                  <strong>Why Preferred:</strong> Provides full situational context to verify co-location without exposing exact pinpoint coordinates, preserving physical safety across public spaces.
+                </div>
+
+                <div class="scope-tradeoff-box">
+                  <strong>Trade-Off / Accepted Risk:</strong> Cannot function as an indoor turn-by-turn navigator; users must coordinate exact meeting spots via in-app chat.
+                </div>
+              </div>
+
+              <!-- Decision D: Discovery While OFF -->
+              <div class="scope-decision-card">
+                <div class="scope-decision-header">
+                  <span class="scope-decision-tag">DECISION D · RECIPROCAL TRANSPARENCY</span>
+                  <h3>Aggregated Activity Zones &amp; Honest Empty States vs. One-Sided Lurking</h3>
+                </div>
+
+                <div class="scope-decision-problem">
+                  <strong>Product Problem:</strong> Allowing invisible users to browse individual profiles creates an asymmetrical surveillance dynamic (lurking) and destroys mutual community trust.
+                </div>
+
+                <div class="scope-decision-compare">
+                  <div class="scope-compare-col chosen">
+                    <span class="scope-compare-label"><i class="ph ph-check-circle"></i> Chosen Approach</span>
+                    <p><strong>Aggregated activity zones with honest empty states:</strong> Closed state shows only abstract heat zones if privacy thresholds are met, and neutral honest zero-states otherwise.</p>
+                  </div>
+                  <div class="scope-compare-col alternative">
+                    <span class="scope-compare-label"><i class="ph ph-x-circle"></i> Alternative Considered</span>
+                    <p><strong>Unrestricted browsing or fabricated counts:</strong> Letting invisible users view individual profiles, or displaying fake activity badges to manufacture artificial urgency.</p>
+                  </div>
+                </div>
+
+                <div class="scope-decision-why">
+                  <strong>Why Preferred:</strong> Preserves behavioral reciprocity. Honest empty states protect product integrity and prevent user disillusionment from fabricated bot activity.
+                </div>
+
+                <div class="scope-tradeoff-box">
+                  <strong>Trade-Off / Accepted Risk:</strong> Users cannot preview who is specifically present before committing to their own visibility session.
+                </div>
+              </div>
+
+              <!-- Decision E: Connection Model -->
+              <div class="scope-decision-card">
+                <div class="scope-decision-header">
+                  <span class="scope-decision-tag">DECISION E · COMMUNICATION ARCHITECTURE</span>
+                  <h3>Single Mutual Acceptance Model vs. Multi-Tiered Message Approvals</h3>
+                </div>
+
+                <div class="scope-decision-problem">
+                  <strong>Product Problem:</strong> Unsolicited DMs invite spam and harassment, while multi-stage workflows (connect first, then request messaging permission) create fatal drop-off in fast-moving live environments.
+                </div>
+
+                <div class="scope-decision-compare">
+                  <div class="scope-compare-col chosen">
+                    <span class="scope-compare-label"><i class="ph ph-check-circle"></i> Chosen Approach</span>
+                    <p><strong>Single mutual acceptance:</strong> One bilateral consent event archives the contact into the permanent professional network and immediately unlocks direct 1-on-1 messaging.</p>
+                  </div>
+                  <div class="scope-compare-col alternative">
+                    <span class="scope-compare-label"><i class="ph ph-x-circle"></i> Alternative Considered</span>
+                    <p><strong>Two-stage permission tier:</strong> Requiring one handshake to connect, followed by a secondary permission request to initiate conversation.</p>
+                  </div>
+                </div>
+
+                <div class="scope-decision-why">
+                  <strong>Why Preferred:</strong> Minimizes cognitive friction during live gatherings while strictly prohibiting unsolicited cold outreach prior to mutual consent.
+                </div>
+
+                <div class="scope-tradeoff-box">
+                  <strong>Trade-Off / Accepted Risk:</strong> Mutual acceptance grants direct messaging privileges; relies on robust post-connection safety controls (Hide My Presence, mute, block).
+                </div>
+              </div>
+
+              <!-- Decision F: Initial Audience Focus -->
+              <div class="scope-decision-card">
+                <div class="scope-decision-header">
+                  <span class="scope-decision-tag">DECISION F · COLD-START FOCUS</span>
+                  <h3>Tech &amp; Startup Ecosystem in Miami vs. Broad Horizontal Rollout</h3>
+                </div>
+
+                <div class="scope-decision-problem">
+                  <strong>Product Problem:</strong> Location-based networks die from liquidity fragmentation. Launching horizontally across all professional categories results in sparse density and zero match utility.
+                </div>
+
+                <div class="scope-decision-compare">
+                  <div class="scope-compare-col chosen">
+                    <span class="scope-compare-label"><i class="ph ph-check-circle"></i> Chosen Approach</span>
+                    <p><strong>Focused tech pilot in Miami:</strong> Target founders, engineers, operators, and investors across dense innovation clusters (Wynwood, Brickell, downtown tech cafes).</p>
+                  </div>
+                  <div class="scope-compare-col alternative">
+                    <span class="scope-compare-label"><i class="ph ph-x-circle"></i> Alternative Considered</span>
+                    <p><strong>Universal professional network:</strong> Nationwide release open to corporate, medical, real estate, and consumer networking simultaneously.</p>
+                  </div>
+                </div>
+
+                <div class="scope-decision-why">
+                  <strong>Why Preferred:</strong> Tech professionals share high mobility, frequent co-working density, and explicit collaboration incentives, creating rapid localized liquidity.
+                </div>
+
+                <div class="scope-tradeoff-box">
+                  <strong>Trade-Off / Accepted Risk:</strong> Deliberately caps top-of-funnel TAM during the pilot phase to achieve decisive validation in one concentrated vertical.
+                </div>
+              </div>
+
+              <!-- Decision G: Progressive Verification Signals -->
+              <div class="scope-decision-card">
+                <div class="scope-decision-header">
+                  <span class="scope-decision-tag">DECISION G · IDENTITY &amp; TRUST</span>
+                  <h3>Progressive Distinct Verification Signals vs. Mandatory Upfront ID Gate</h3>
+                </div>
+
+                <div class="scope-decision-problem">
+                  <strong>Product Problem:</strong> Mandatory government ID verification at signup creates massive onboarding drop-off; unverified anonymous profiles erode professional trust.
+                </div>
+
+                <div class="scope-decision-compare">
+                  <div class="scope-compare-col chosen">
+                    <span class="scope-compare-label"><i class="ph ph-check-circle"></i> Chosen Approach</span>
+                    <p><strong>Progressive, truthful signals:</strong> Separate distinct badges for Work Email, Company Domain, and LinkedIn OAuth. Each badge explicitly states what was checked.</p>
+                  </div>
+                  <div class="scope-compare-col alternative">
+                    <span class="scope-compare-label"><i class="ph ph-x-circle"></i> Alternative Considered</span>
+                    <p><strong>Mandatory upfront government KYC or generic badge:</strong> Forcing passport/ID upload before entry, or using an ambiguous checkmark that conflates identity with domain access.</p>
+                  </div>
+                </div>
+
+                <div class="scope-decision-why">
+                  <strong>Why Preferred:</strong> Removes signup friction while providing transparent trust cues. A LinkedIn OAuth signal or domain verification is never misrepresented as full government KYC.
+                </div>
+
+                <div class="scope-tradeoff-box">
+                  <strong>Trade-Off / Accepted Risk:</strong> Discovery may include self-attested profiles that require user professional discretion before arranging physical meetings.
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 3. MVP SCOPE BOUNDARIES -->
           <section class="scope-sec">
             <div class="scope-sec-head">
               <div>
-                <span class="scope-sec-kicker">RELEASE BOUNDARY</span>
-                <h2 class="scope-sec-title">What the first product is intended to include<span class="brand-dot">.</span></h2>
+                <span class="scope-sec-kicker">SCOPE BOUNDARIES</span>
+                <h2 class="scope-sec-title">Core MVP capabilities vs. intentionally deferred scope<span class="brand-dot">.</span></h2>
               </div>
             </div>
 
-            <div class="scope-grid-3">
-              <!-- 1. Onboarding -->
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-user-circle" aria-hidden="true"></i>
+            <div class="scope-boundaries-surface">
+              <div class="scope-boundaries-grid">
+                <!-- Core MVP Box -->
+                <div class="scope-boundary-box core">
+                  <div class="scope-boundary-head">
+                    <span class="scope-boundary-badge">INCLUDED IN MVP</span>
+                    <i class="ph ph-check-circle" style="font-size:20px;color:#FF3300;"></i>
+                  </div>
+                  <h3>Core MVP Scope</h3>
+                  <ul>
+                    <li><strong>Professional Profile Setup:</strong> Name, headline, short bio, and curated intent tags required prior to discovery activation.</li>
+                    <li><strong>Time-Limited Sessions:</strong> Strict 30, 60, or 120-minute presence countdown with automated backend expiry.</li>
+                    <li><strong>Approximate Discovery:</strong> Map-first proximity stage with soft halos, privacy jitter, and initials-based pre-connection avatars.</li>
+                    <li><strong>Aggregated Closed State:</strong> Abstract activity heat zones with honest zero-state when minimum privacy thresholds are not met.</li>
+                    <li><strong>Bilateral Connection Requests:</strong> Structured intent notes with 72-hour automated expiry and explicit accept/decline flows.</li>
+                    <li><strong>Persistent Contextual Chat:</strong> 1-on-1 direct messaging pre-populated with context, unlocked strictly upon mutual acceptance.</li>
+                    <li><strong>Core Safety Suite:</strong> "Hide My Presence" per connection, contact muting, user blocking, and reporting mechanisms.</li>
+                  </ul>
                 </div>
-                <h3 class="scope-card-title">Onboarding &amp; professional profile</h3>
-                <p class="scope-card-text">Account setup with name, headline, location, short bio and professional skills. Profile completion is enforced before visibility can begin.</p>
-                <button type="button" class="scope-screen-link" onclick="closeDashboard();go('firstprofile')">
-                  <i class="ph ph-arrow-square-out"></i>
-                  <span>View Profile Setup (01.3)</span>
-                </button>
+
+                <!-- Deferred Box -->
+                <div class="scope-boundary-box deferred">
+                  <div class="scope-boundary-head">
+                    <span class="scope-boundary-badge">DEFERRED POST-PILOT</span>
+                    <i class="ph ph-prohibit" style="font-size:20px;color:#64748B;"></i>
+                  </div>
+                  <h3>Intentionally Deferred Capabilities</h3>
+                  <ul>
+                    <li><strong>Background Tracking:</strong> Zero passive location harvesting or geofence auto-broadcasting when app is closed.</li>
+                    <li><strong>Turn-by-Turn Map Pins:</strong> No exact street/indoor coordinates, live compass bearings, or walking navigation vectors.</li>
+                    <li><strong>Public Social Feeds:</strong> No status updates, algorithmic content feeds, likes, comments, or broadcasting walls.</li>
+                    <li><strong>Recruiter Tiers &amp; Mass Outbound:</strong> No automated resume scraping, cold message credits, or bulk outreach tools.</li>
+                    <li><strong>Calendar &amp; CRM Sync:</strong> No Google/Outlook integrations, meeting scheduling bots, or sales pipeline tracking.</li>
+                    <li><strong>Group Networking Lounges:</strong> No open multi-user chat rooms, event stage forums, or public audio channels.</li>
+                    <li><strong>Paid Subscriptions &amp; Ads:</strong> Monetization features are strictly deferred until core organic retention is validated.</li>
+                  </ul>
+                </div>
               </div>
 
-              <!-- 2. Visibility -->
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-broadcast" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Explicit visibility sessions</h3>
-                <p class="scope-card-text">User-initiated presence with chosen intents and countdown timer. The app remains invisible by default with zero background broadcasting.</p>
-                <button type="button" class="scope-screen-link" onclick="closeDashboard();go('closed')">
-                  <i class="ph ph-arrow-square-out"></i>
-                  <span>View Radar State (02.0)</span>
-                </button>
+              <!-- Qualitative Prioritization Rationale Bar -->
+              <div class="scope-rationale-bar">
+                <strong>Qualitative Prioritization Rationale</strong>
+                <p>
+                  Peopi prioritizes <em>psychological safety, presence credibility, and immediate conversational relevance</em> over platform breadth. Without establishing rock-solid trust around location privacy and active co-presence, secondary features (like social feeds, calendar integrations, or monetization) suffer immediate abandonment. Every MVP capability directly strengthens the core loop: <strong>become visible → discover → verify fit → mutually connect → speak</strong>.
+                </p>
               </div>
-
-              <!-- 3. Discovery -->
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-compass" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Nearby discovery &amp; profile review</h3>
-                <p class="scope-card-text">Surfacing active, co-located professionals on a proximity stage and list view. Participants can review professional context before reaching out.</p>
-                <button type="button" class="scope-screen-link" onclick="closeDashboard();go('active')">
-                  <i class="ph ph-arrow-square-out"></i>
-                  <span>View Active Radar (02.1)</span>
-                </button>
-              </div>
-
-              <!-- 4. Requests -->
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Connection requests &amp; management</h3>
-                <p class="scope-card-text">Permission-based connection requests with an optional context note. Recipients can accept or decline without unsolicited message access.</p>
-                <button type="button" class="scope-screen-link" onclick="closeDashboard();go('requests')">
-                  <i class="ph ph-arrow-square-out"></i>
-                  <span>View Requests (03.0)</span>
-                </button>
-              </div>
-
-              <!-- 5. Conversations -->
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-chat-circle-dots" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Conversations &amp; notifications</h3>
-                <p class="scope-card-text">Direct 1-on-1 messaging unlocked strictly after mutual acceptance. Contextual in-session updates and session expiry notifications.</p>
-                <button type="button" class="scope-screen-link" onclick="closeDashboard();go('conversation')">
-                  <i class="ph ph-arrow-square-out"></i>
-                  <span>View Conversation (04.1)</span>
-                </button>
-              </div>
-
-              <!-- 6. Privacy & Safety -->
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-shield-check" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Privacy, reporting &amp; account controls</h3>
-                <p class="scope-card-text">Core safety suite including Hide My Presence, contact blocking, user reporting, and profile edit capabilities.</p>
-                <button type="button" class="scope-screen-link" onclick="closeDashboard();go('privacy')">
-                  <i class="ph ph-arrow-square-out"></i>
-                  <span>View Privacy Settings (01.2)</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="scope-caption-box">
-              <i class="ph ph-info" aria-hidden="true"></i>
-              <span>These six areas define the intended scope for the initial product release. They describe targeted functionality rather than production-deployed or backend-tested guarantees.</span>
             </div>
           </section>
 
-          <!-- 4. NON-NEGOTIABLE PRODUCT RULES -->
+          <!-- 4. NON-NEGOTIABLE PRODUCT INVARIANTS -->
           <section class="scope-sec">
             <div class="scope-sec-head">
               <div>
                 <span class="scope-sec-kicker">PRODUCT CONTRACT</span>
-                <h2 class="scope-sec-title">User control is part of the product contract<span class="brand-dot">.</span></h2>
+                <h2 class="scope-sec-title">Non-negotiable safety rules and behavioral invariants<span class="brand-dot">.</span></h2>
               </div>
             </div>
 
             <div class="scope-grid-2">
-              <!-- PROFILE AND ENTRY -->
-              <div class="scope-rule-group">
-                <div class="scope-rule-header">
-                  <span class="scope-rule-badge">RULES 01</span>
-                  <h3 class="scope-rule-name">Profile and Entry</h3>
-                </div>
-                <ul class="scope-rule-list">
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Initial profile setup collects name, headline and city. People can enter without becoming visible.</span>
-                  </li>
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Before starting visibility, missing required information, including a short bio and at least one skill, must be completed.</span>
-                  </li>
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Completing a profile does not automatically start visibility.</span>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- VISIBILITY -->
-              <div class="scope-rule-group">
-                <div class="scope-rule-header">
-                  <span class="scope-rule-badge">RULES 02</span>
-                  <h3 class="scope-rule-name">Visibility</h3>
-                </div>
-                <ul class="scope-rule-list">
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Visibility begins through an explicit user action. Ending a session stops live discovery participation.</span>
-                  </li>
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Ending visibility does not automatically remove existing connections or conversations.</span>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- CONNECTION AND CONVERSATION -->
-              <div class="scope-rule-group">
-                <div class="scope-rule-header">
-                  <span class="scope-rule-badge">RULES 03</span>
-                  <h3 class="scope-rule-name">Connection and Conversation</h3>
-                </div>
-                <ul class="scope-rule-list">
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>People can review professional context before deciding whether to send or accept a request.</span>
-                  </li>
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Requests can be accepted or declined. Conversation access follows the accepted connection.</span>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- PRIVACY AND SAFETY -->
-              <div class="scope-rule-group">
-                <div class="scope-rule-header">
-                  <span class="scope-rule-badge">RULES 04</span>
-                  <h3 class="scope-rule-name">Privacy and Safety</h3>
-                </div>
-                <ul class="scope-rule-list">
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Privacy controls, blocking and reporting belong to the core experience and are not premium-only protections.</span>
-                  </li>
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>Hide My Presence applies to an existing connection: it hides live visibility, nearby presence, active/last-seen signals and proximity notifications from that connection.</span>
-                  </li>
-                  <li class="scope-rule-item">
-                    <i class="ph ph-check-circle scope-rule-bullet"></i>
-                    <span>It preserves the connection, profile access and messaging, and does not notify the hidden person.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- VERIFICATION -->
-            <div class="scope-rule-group" style="margin-top:20px;">
-              <div class="scope-rule-header">
-                <span class="scope-rule-badge">RULES 05</span>
-                <h3 class="scope-rule-name">Verification Signals</h3>
-              </div>
-              <ul class="scope-rule-list">
-                <li class="scope-rule-item">
-                  <i class="ph ph-check-circle scope-rule-bullet"></i>
-                  <span>Verification signals must describe what was actually checked. A LinkedIn Connected signal is not proof of identity, employment or professional credentials.</span>
-                </li>
-                <li class="scope-rule-item">
-                  <i class="ph ph-check-circle scope-rule-bullet"></i>
-                  <span>Future verification approaches are not restricted to LinkedIn.</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <!-- 5. DECISION ARCHITECTURE: TRADE-OFFS & RATIONALE -->
-          <section class="scope-sec" id="scope-decisions">
-            <div class="scope-sec-head">
-              <div>
-                <span class="scope-sec-kicker">DECISION ARCHITECTURE</span>
-                <h2 class="scope-sec-title">Core product trade-offs &amp; architectural rationale<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-            <p class="scope-hero-desc" style="margin-bottom:24px;font-size:15px;color:#475569;">
-              Every architectural decision in Peopi resolves a fundamental tension between spontaneous connection and personal privacy. We document the problem, hypothesis, product decision, UX solution, and explicit trade-off for each core mechanic:
-            </p>
-
-            <div class="scope-grid-2">
-              <!-- Decision 01 -->
+              <!-- Invariant 01 -->
               <div class="scope-card">
                 <div class="scope-card-icon featured">
-                  <i class="ph ph-timer" aria-hidden="true"></i>
+                  <i class="ph ph-lock-key" aria-hidden="true"></i>
                 </div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">DECISION 01 · PRESENCE CONTROL</div>
-                <h3 class="scope-card-title">Time-Limited Visibility Sessions</h3>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
-                  <div><strong style="color:inherit;">Problem:</strong> Continuous background location tracking causes rapid battery depletion, passive surveillance anxiety, and ghost presence in public spaces.</div>
-                  <div><strong style="color:inherit;">Hypothesis:</strong> Professionals only desire and benefit from visibility during active, dedicated gathering or co-working windows.</div>
-                  <div><strong style="color:inherit;">Product Decision:</strong> Visibility is strictly bound to time-limited sessions (30, 60, or 120 minutes) that auto-expire upon countdown completion.</div>
-                  <div><strong style="color:inherit;">UX Solution:</strong> Explicit session launcher modal with remaining countdown badge on radar and instant "Hide My Presence" kill switch.</div>
-                  <div class="scope-decision-tradeoff"><strong style="color:inherit;">Trade-off:</strong> Requires conscious, intentional activation; eliminates passive ambient background discovery.</div>
-                </div>
+                <div style="font-size:10.5px;font-weight:800;letter-spacing:0.08em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">INVARIANT 01</div>
+                <h3 class="scope-card-title">Profile Readiness Barrier</h3>
+                <p class="scope-card-text">
+                  A user cannot initiate discovery visibility without completing essential professional context (name, headline, bio, and at least one skill). Incomplete or empty profiles cannot participate, preventing low-quality anonymous presence.
+                </p>
               </div>
 
-              <!-- Decision 02 -->
+              <!-- Invariant 02 -->
               <div class="scope-card">
                 <div class="scope-card-icon featured">
                   <i class="ph ph-eye-slash" aria-hidden="true"></i>
                 </div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">DECISION 02 · PRIVACY BASELINE</div>
-                <h3 class="scope-card-title">Invisible by Default</h3>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
-                  <div><strong style="color:inherit;">Problem:</strong> Consumer geolocation apps broadcast location immediately upon launch, causing hesitation, privacy violations, and rapid uninstalls.</div>
-                  <div><strong style="color:inherit;">Hypothesis:</strong> High-caliber professionals will only engage if their baseline state is completely unobservable to nearby strangers.</div>
-                  <div><strong style="color:inherit;">Product Decision:</strong> Zero presence is broadcasted upon opening the app; discovery is strictly opt-in requiring two explicit confirmations.</div>
-                  <div><strong style="color:inherit;">UX Solution:</strong> "Invisible Mode" baseline state on radar; unambiguous visual distinction between inactive status and active broadcast.</div>
-                  <div class="scope-decision-tradeoff"><strong style="color:inherit;">Trade-off:</strong> Introduces cold-start friction; users cannot passively observe peers without first establishing their own session.</div>
-                </div>
+                <div style="font-size:10.5px;font-weight:800;letter-spacing:0.08em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">INVARIANT 02</div>
+                <h3 class="scope-card-title">Default Invisibility Baseline</h3>
+                <p class="scope-card-text">
+                  Launching the app never exposes presence or location. The user is entirely invisible to nearby peers until an explicit session duration is confirmed. Closing or backgrounding the app respects active session timers without silently extending them.
+                </p>
               </div>
 
-              <!-- Decision 03 -->
+              <!-- Invariant 03 -->
               <div class="scope-card">
                 <div class="scope-card-icon featured">
-                  <i class="ph ph-map-pin" aria-hidden="true"></i>
+                  <i class="ph ph-hourglass-high" aria-hidden="true"></i>
                 </div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">DECISION 03 · SPATIAL DISCLOSURE</div>
-                <h3 class="scope-card-title">Approximate Proximity with Spatial Jitter</h3>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
-                  <div><strong style="color:inherit;">Problem:</strong> Exact GPS coordinates expose users to physical tracking, personal safety risks, and invasive surveillance.</div>
-                  <div><strong style="color:inherit;">Hypothesis:</strong> Knowing someone is within the same venue or general radius (0.5–1 mi) provides full networking context without coordinate exposure.</div>
-                  <div><strong style="color:inherit;">Product Decision:</strong> Proximity is displayed solely as approximate tiered bands ("Nearby · ~300m", "Within 1 mi") with intentional spatial jitter.</div>
-                  <div><strong style="color:inherit;">UX Solution:</strong> Distance bands on discovery cards and radar instead of exact map pins or real-time navigational vectors.</div>
-                  <div class="scope-decision-tradeoff"><strong style="color:inherit;">Trade-off:</strong> Cannot be used as turn-by-turn indoor navigation; users must coordinate directly to physically locate one another.</div>
-                </div>
+                <div style="font-size:10.5px;font-weight:800;letter-spacing:0.08em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">INVARIANT 03</div>
+                <h3 class="scope-card-title">Strict Ephemeral Expiry</h3>
+                <p class="scope-card-text">
+                  Visibility strictly terminates at the end of the countdown timer (30, 60, or 120 min) unless manually extended by the user. No zombie presence or abandoned discoverable cards are ever retained on the discovery stage after departure.
+                </p>
               </div>
 
-              <!-- Decision 04 -->
+              <!-- Invariant 04 -->
               <div class="scope-card">
                 <div class="scope-card-icon featured">
-                  <i class="ph ph-handshake" aria-hidden="true"></i>
+                  <i class="ph ph-shield-check" aria-hidden="true"></i>
                 </div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">DECISION 04 · COMMUNICATION BOUNDARY</div>
-                <h3 class="scope-card-title">Bilateral Mutual Consent (Double Opt-In)</h3>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
-                  <div><strong style="color:inherit;">Problem:</strong> Open messaging in location-aware apps leads to spam, cold outreach harassment, and swift user departure.</div>
-                  <div><strong style="color:inherit;">Hypothesis:</strong> Direct communication must be earned through verified mutual interest and bilateral relevance.</div>
-                  <div><strong style="color:inherit;">Product Decision:</strong> Zero unsolicited messaging; connection request with context note must be accepted before any chat channel unlocks.</div>
-                  <div><strong style="color:inherit;">UX Solution:</strong> Dedicated Request &amp; Review flow with explicit accept/decline controls and 72-hour automated request expiration.</div>
-                  <div class="scope-decision-tradeoff"><strong style="color:inherit;">Trade-off:</strong> Introduces asynchronous waiting friction; eliminates instantaneous cold outreach.</div>
+                <div style="font-size:10.5px;font-weight:800;letter-spacing:0.08em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">INVARIANT 04</div>
+                <h3 class="scope-card-title">Reciprocal Privacy &amp; Truthful Signals</h3>
+                <p class="scope-card-text">
+                  "Hide My Presence" conceals live presence and radar visibility from a specific connection without terminating the connection history or notifying the peer. Verification signals must truthfully indicate the verified asset (e.g., Work Email vs. ID KYC).
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. MVP RISKS & TELEMETRY SIGNALS -->
+          <section class="scope-sec">
+            <div class="scope-sec-head">
+              <div>
+                <span class="scope-sec-kicker">RISKS &amp; TELEMETRY</span>
+                <h2 class="scope-sec-title">Mapping critical behavioral risks to observable telemetry<span class="brand-dot">.</span></h2>
+              </div>
+            </div>
+            <p style="margin-bottom:24px;font-size:15px;line-height:1.6;color:#475569;">
+              Rather than relying on fabricated survey responses or vanity metrics, Peopi monitors explicit behavioral telemetry signals during the Miami pilot to evaluate risks and product viability:
+            </p>
+
+            <div class="scope-risks-grid">
+              <!-- Risk 1 -->
+              <div class="scope-risk-card">
+                <div class="scope-risk-top">
+                  <span class="scope-risk-tag">CRITICAL RISK 01</span>
+                  <span class="scope-risk-pill">DENSITY</span>
+                </div>
+                <h3>Cold-Start Venue Liquidity</h3>
+                <p class="scope-risk-desc">
+                  Users launch a visibility session in an innovation venue but find zero or insufficient nearby peers, resulting in immediate perceived failure and abandonment.
+                </p>
+                <div class="scope-risk-signal">
+                  <span class="scope-signal-label"><i class="ph ph-chart-line-up"></i> Observable Telemetry Signal</span>
+                  <p>Ratio of sessions with ≥2 nearby peers detected within 10 min of activation vs. zero-match sessions; cluster heat mapping by venue and hour.</p>
                 </div>
               </div>
 
-              <!-- Decision 05 -->
-              <div class="scope-card">
-                <div class="scope-card-icon featured">
-                  <i class="ph ph-address-book" aria-hidden="true"></i>
+              <!-- Risk 2 -->
+              <div class="scope-risk-card">
+                <div class="scope-risk-top">
+                  <span class="scope-risk-tag">CRITICAL RISK 02</span>
+                  <span class="scope-risk-pill">ACTIVATION</span>
                 </div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">DECISION 05 · RELATIONSHIP COMPOUNDING</div>
-                <h3 class="scope-card-title">Persistent Network &amp; Historical Context</h3>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
-                  <div><strong style="color:inherit;">Problem:</strong> Ephemeral networking tools (AirDrop, Bluetooth beacons) lose connection history once participants leave the venue.</div>
-                  <div><strong style="color:inherit;">Hypothesis:</strong> Professional networking value compounds over time, well beyond the duration of a single physical event.</div>
-                  <div><strong style="color:inherit;">Product Decision:</strong> Accepted connections and conversation threads persist permanently in the user's network directory.</div>
-                  <div><strong style="color:inherit;">UX Solution:</strong> "My Network" directory with searchable profiles, historical context tags, and direct continuing chat channels.</div>
-                  <div class="scope-decision-tradeoff"><strong style="color:inherit;">Trade-off:</strong> Requires persistent backend data retention, database storage, and offline state synchronization.</div>
-                </div>
-              </div>
-
-              <!-- Decision 06 -->
-              <div class="scope-card">
-                <div class="scope-card-icon featured">
-                  <i class="ph ph-chat-circle-dots" aria-hidden="true"></i>
-                </div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">DECISION 06 · REAL-WORLD BRIDGING</div>
-                <h3 class="scope-card-title">Immediate Contextual 1-on-1 Chat</h3>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
-                  <div><strong style="color:inherit;">Problem:</strong> When mutual interest is established in a live room, momentum dies if conversation cannot happen immediately inside the app.</div>
-                  <div><strong style="color:inherit;">Hypothesis:</strong> Prompt, context-rich in-app messaging bridges the gap between digital discovery and real-world conversation.</div>
-                  <div><strong style="color:inherit;">Product Decision:</strong> Automatic creation of an active 1-on-1 thread upon request acceptance, pre-populated with context and intent notes.</div>
-                  <div><strong style="color:inherit;">UX Solution:</strong> Dedicated conversation screen with rich keyboard, presence status, and meetup coordination quick-prompts.</div>
-                  <div class="scope-decision-tradeoff"><strong style="color:inherit;">Trade-off:</strong> Requires real-time WebSocket messaging infrastructure, push notification pipelines, and state management in MVP.</div>
+                <h3>Session Activation Hesitation</h3>
+                <p class="scope-risk-desc">
+                  Users open the app in a gathering but hesitate to initiate a visible session due to social reluctance or lingering privacy concerns.
+                </p>
+                <div class="scope-risk-signal">
+                  <span class="scope-signal-label"><i class="ph ph-chart-line-up"></i> Observable Telemetry Signal</span>
+                  <p>Funnel progression rate from Closed Discovery view → Session Duration selector tap → Confirmed session broadcast.</p>
                 </div>
               </div>
 
-              <!-- Decision 07 (Spanning 2 columns) -->
-              <div class="scope-card" style="grid-column: 1 / -1;">
-                <div class="scope-card-icon featured">
-                  <i class="ph ph-crosshair" aria-hidden="true"></i>
+              <!-- Risk 3 -->
+              <div class="scope-risk-card">
+                <div class="scope-risk-top">
+                  <span class="scope-risk-tag">CRITICAL RISK 03</span>
+                  <span class="scope-risk-pill">RELEVANCE</span>
                 </div>
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">DECISION 07 · COLD-START DISCIPLINE</div>
-                <h3 class="scope-card-title">Hyper-Focused Tech &amp; Innovation Ecosystem</h3>
-                <div style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:14px;font-size:14px;line-height:1.55;color:#475569;">
-                  <div><strong style="color:inherit;">Problem:</strong> Broad horizontal networking platforms suffer from extreme cold-start dilution and low density of relevant peers.</div>
-                  <div><strong style="color:inherit;">Hypothesis:</strong> Concentrating on tech founders, engineers, and product operators in dense innovation hubs creates high matching utility with minimal initial user base.</div>
-                  <div><strong style="color:inherit;">Product Decision:</strong> Scope initial launch, onboarding taxonomy, and vocabulary exclusively to tech, design, and venture professionals.</div>
-                  <div><strong style="color:inherit;">UX Solution:</strong> Role taxonomies, project showcase fields, and curated intent tags tailored to builders and operators.</div>
+                <h3>Intent &amp; Role Mismatch</h3>
+                <p class="scope-risk-desc">
+                  Discovered peers do not share complementary technical domains, project interests, or collaboration goals, leading to low request volumes.
+                </p>
+                <div class="scope-risk-signal">
+                  <span class="scope-signal-label"><i class="ph ph-chart-line-up"></i> Observable Telemetry Signal</span>
+                  <p>Profile preview card dwell time vs. connection request tap rate; intent tag overlap correlation on accepted requests.</p>
                 </div>
-                <div class="scope-decision-tradeoff" style="width:100%;margin-top:14px;">
-                  <strong style="color:inherit;">Trade-off:</strong> Deliberately excludes general-purpose social or non-tech consumer networking in the initial release.
+              </div>
+
+              <!-- Risk 4 -->
+              <div class="scope-risk-card">
+                <div class="scope-risk-top">
+                  <span class="scope-risk-tag">CRITICAL RISK 04</span>
+                  <span class="scope-risk-pill">CONVERSATION</span>
+                </div>
+                <h3>Post-Acceptance Inertia</h3>
+                <p class="scope-risk-desc">
+                  Connection requests are mutually accepted, but participants hesitate to initiate the first message while co-located in the same space.
+                </p>
+                <div class="scope-risk-signal">
+                  <span class="scope-signal-label"><i class="ph ph-chart-line-up"></i> Observable Telemetry Signal</span>
+                  <p>Median elapsed time from mutual acceptance to first message dispatch (target &lt; 3 min during active session); response latency distribution.</p>
+                </div>
+              </div>
+
+              <!-- Risk 5 (Spanning Full Width) -->
+              <div class="scope-risk-card span-full">
+                <div class="scope-risk-top">
+                  <span class="scope-risk-tag">CRITICAL RISK 05</span>
+                  <span class="scope-risk-pill">REALITY BRIDGE</span>
+                </div>
+                <h3>Digital-to-Physical Conversion Gap</h3>
+                <p class="scope-risk-desc">
+                  In-app chat successfully opens, but participants fail to translate the digital exchange into an actual face-to-face conversation in the venue.
+                </p>
+                <div class="scope-risk-signal">
+                  <span class="scope-signal-label"><i class="ph ph-chart-line-up"></i> Observable Telemetry Signal</span>
+                  <p>Exchange of location cues within in-app chat ("I'm at the courtyard table"); voluntary post-session "Met in person" feedback prompt; recurring message activity after session expiration.</p>
                 </div>
               </div>
             </div>
           </section>
 
-          <!-- 6. PROTOTYPE VS PRODUCTION -->
+          <!-- 6. ENGINEERING REALITY & PROTOTYPE ALIGNMENT -->
           <section class="scope-sec">
             <div class="scope-sec-head">
               <div>
                 <span class="scope-sec-kicker">ENGINEERING REALITY</span>
-                <h2 class="scope-sec-title">A demonstrated experience is not a deployed service<span class="brand-dot">.</span></h2>
+                <h2 class="scope-sec-title">Prototype specification vs. production backend requirements<span class="brand-dot">.</span></h2>
               </div>
             </div>
 
@@ -3542,11 +3667,11 @@
                 <div class="scope-card-icon">
                   <i class="ph ph-device-mobile" aria-hidden="true"></i>
                 </div>
-                <h3 class="scope-card-title">Prototype demonstrates</h3>
-                <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:#475569;">
-                  <li>Intended screen layouts and interaction paths across 28 mobile states.</li>
-                  <li>Demonstration states, local view transitions and component behaviors.</li>
-                  <li>Product rules, design tokens and UI/motion contracts.</li>
+                <h3 class="scope-card-title">What the Mobile Prototype Demonstrates</h3>
+                <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
+                  <li><strong>Complete Interaction Flows:</strong> 28 mobile states demonstrating discovery, radar states, previews, requests, and messaging.</li>
+                  <li><strong>Motion &amp; Visual Contracts:</strong> Standardized tokens, responsive surfaces, and shared motion recipes without screen-local overrides.</li>
+                  <li><strong>Privacy UX Models:</strong> Soft approximate proximity halos, initials-based pre-connection avatars, and abstract closed-state heat zones.</li>
                 </ul>
               </div>
 
@@ -3554,165 +3679,20 @@
                 <div class="scope-card-icon featured">
                   <i class="ph ph-cloud-check" aria-hidden="true"></i>
                 </div>
-                <h3 class="scope-card-title">Production must establish</h3>
-                <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:#475569;">
-                  <li>Authentication and server-side authorization.</li>
-                  <li>Correct request and connection state handling.</li>
-                  <li>Reliable discovery and session expiry.</li>
-                  <li>Privacy enforcement, blocking and reporting.</li>
-                  <li>Data retention and account deletion behavior.</li>
-                  <li>Delivery reliability, monitoring and operational support.</li>
+                <h3 class="scope-card-title">What Production Engineering Must Deliver</h3>
+                <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
+                  <li><strong>Ephemeral Geohashing:</strong> Spatial indexing (H3 or S2 cells) with jittering; zero persistent storage of exact latitude/longitude.</li>
+                  <li><strong>Authoritative Server Timers:</strong> Server-side TTL expiration enforcing visibility cutoffs independently of client clock tampering.</li>
+                  <li><strong>Reliable Real-Time Transport:</strong> Low-latency WebSocket connections with fallback for instant request delivery and chat synchronization.</li>
+                  <li><strong>Data Sovereignty &amp; Purging:</strong> Automated purging of expired proximity telemetry; GDPR/CCPA compliant data deletion pipelines.</li>
                 </ul>
               </div>
             </div>
 
-            <div class="scope-callout">
+            <div class="scope-callout" style="margin-top:20px;">
               <i class="ph ph-shield-warning" aria-hidden="true"></i>
               <div>
-                <strong>Implementation note:</strong> Production safeguards require implementation and verification. Their presence in documentation is not evidence of enforcement.
-              </div>
-            </div>
-          </section>
-
-          <!-- 7. OPEN DECISIONS -->
-          <section class="scope-sec">
-            <div class="scope-sec-head">
-              <div>
-                <span class="scope-sec-kicker">DECISION REGISTRY</span>
-                <h2 class="scope-sec-title">Resolve these before fixing the build and operating budget<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-
-            <div class="scope-table-wrap">
-              <table class="scope-table" aria-label="Open Product Decisions Table">
-                <thead>
-                  <tr>
-                    <th scope="col" style="width:220px;">Decision Area</th>
-                    <th scope="col" style="width:380px;">Why It Matters</th>
-                    <th scope="col">Current Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Discovery technology &amp; location precision</strong></td>
-                    <td>Determines battery consumption, background permissions, and whether Bluetooth Low Energy, Wi-Fi RTT, or geofencing powers presence.</td>
-                    <td><span class="scope-status-tag open">Open</span> Prototype simulates presence; hardware transport unfinalized.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Session duration, expiry &amp; background behavior</strong></td>
-                    <td>Affects operating infrastructure costs, active participant density perception, and background location termination rules.</td>
-                    <td><span class="scope-status-tag open">Open</span> Presets (30m, 60m, 120m) demonstrated locally; server TTL rules uncommitted.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Request limits, expiry &amp; duplicate handling</strong></td>
-                    <td>Prevents notification spam, protects recipient experience, and defines rate-limiting infrastructure requirements.</td>
-                    <td><span class="scope-status-tag open">Open</span> Double opt-in is locked; daily quotas and retry cooldowns undefined.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Messaging scope, attachments &amp; moderation</strong></td>
-                    <td>Drives object storage costs, regulatory compliance requirements, and automated content moderation thresholds.</td>
-                    <td><span class="scope-status-tag open">Open</span> Initial scope limited to text; file attachments and media support pending.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Account deletion &amp; data retention</strong></td>
-                    <td>Mandated for legal privacy compliance (GDPR/CCPA) and database storage lifecycle management.</td>
-                    <td><span class="scope-status-tag open">Open</span> Deletion principles established; retention periods and backup purging pending.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Membership packages &amp; premium value</strong></td>
-                    <td>Defines the sustainable commercial monetization model and commercial pricing assumptions.</td>
-                    <td><span class="scope-status-tag open">Open</span> Freemium introduction loop confirmed; paid tiers and pricing unfinalized.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Verification providers &amp; signal definitions</strong></td>
-                    <td>Establishes authentic user trust without providing misleading guarantees of identity or employment.</td>
-                    <td><span class="scope-status-tag locked">Confirmed</span> LinkedIn is an optional OAuth signal, not identity proof; others open.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Detailed blocking effects</strong></td>
-                    <td>Resolves whether blocking a peer purges past chat history locally and server-side or halts future inbound messages and severs connection state.</td>
-                    <td><span class="scope-status-tag conflict">Documented Conflict</span> Severance and unblock isolation confirmed; chat history retention behavior requires backend specification.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="scope-caption-box">
-              <i class="ph ph-scales" aria-hidden="true"></i>
-              <span>Where existing documents confirm a policy, it is marked locked; where documents exhibit ambiguity (such as chat persistence on block), the conflict is acknowledged rather than arbitrarily decided.</span>
-            </div>
-          </section>
-
-          <!-- 8. SCOPE DISCIPLINE -->
-          <section class="scope-sec">
-            <div class="scope-sec-head">
-              <div>
-                <span class="scope-sec-kicker">EXECUTION FOCUS</span>
-                <h2 class="scope-sec-title">Build the introduction experience before expanding the platform<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-
-            <div class="scope-surface-card">
-              <p class="scope-card-text" style="font-size:17px;line-height:1.65;color:#1E293B;">
-                The initial scope should remain centered on a reliable introduction-to-conversation experience. Additional capabilities must have a clear user need, cost and delivery rationale.
-              </p>
-              <div class="scope-callout" style="margin-top:20px;">
-                <i class="ph ph-prohibit" aria-hidden="true"></i>
-                <div>
-                  <strong>Scope discipline rule:</strong> Competitor features do not automatically become Peopi requirements. Complex AI matching, automated calendar scheduling, event management and broad social feeds are excluded from the initial release to protect focus and execution quality.
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 9. PILOT CONNECTION -->
-          <section class="scope-sec">
-            <div class="scope-sec-head">
-              <div>
-                <span class="scope-sec-kicker">PILOT VALIDATION</span>
-                <h2 class="scope-sec-title">Use the Miami pilot to evaluate the core loop<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-
-            <div class="scope-grid-3">
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-user-check" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Profile readiness &amp; activation</h3>
-                <p class="scope-card-text">Evaluating whether participants complete required profile details and voluntarily initiate visibility sessions.</p>
-              </div>
-
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-map-pin" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Relevant nearby participation</h3>
-                <p class="scope-card-text">Measuring co-located participation density and intent alignment in selected candidate environments.</p>
-              </div>
-
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-handshake" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Requests &amp; accepted connections</h3>
-                <p class="scope-card-text">Tracking conversion from proximity discovery to sent requests and subsequent mutual acceptance.</p>
-              </div>
-
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-chat-text" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Conversation starts</h3>
-                <p class="scope-card-text">Assessing whether accepted connections translate into timely, reciprocal 1-on-1 conversations.</p>
-              </div>
-
-              <div class="scope-card">
-                <div class="scope-card-icon">
-                  <i class="ph ph-arrow-clockwise" aria-hidden="true"></i>
-                </div>
-                <h3 class="scope-card-title">Repeat usage &amp; privacy controls</h3>
-                <p class="scope-card-text">Observing return participation across gatherings and voluntary use of session timers and Hide My Presence.</p>
+                <strong>Engineering integrity note:</strong> The prototype acts as the mobile interaction specification. All backend privacy safeguards, geographic indexing algorithms, and cryptographic connection guarantees require native platform implementation and independent audit.
               </div>
             </div>
           </section>
