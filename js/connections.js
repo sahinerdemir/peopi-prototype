@@ -172,8 +172,6 @@ function goToOnboardingSlide(idx){
   onboardingSlideIndex = idx;
   const slides = document.getElementById("onboarding-slides");
   if(slides) slides.style.transform = "translateX(-" + (onboardingSlideIndex * (100 / totalOnboardingSlides)) + "%)";
-  const numBadge = document.getElementById("onboarding-step-num");
-  if(numBadge) numBadge.textContent = String(onboardingSlideIndex + 1).padStart(2, "0");
   const dots = document.querySelectorAll(".onboarding-dot");
   dots.forEach((d, i) => {
     d.classList.toggle("active", i === onboardingSlideIndex);

@@ -879,7 +879,7 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
 #onboarding.screen{position:absolute;top:0;left:0;right:0;bottom:0;height:100%!important;z-index:2;background:var(--bg);display:none;flex-direction:column;padding-top:48px;box-sizing:border-box}
 #onboarding.screen.active{display:flex!important}
 .phone:has(#onboarding.active) .status{background:transparent!important;backdrop-filter:none!important}
-.onboarding-top{display:flex;justify-content:space-between;align-items:center;padding:10px 22px 4px;position:relative;z-index:10}
+.onboarding-top{display:flex;justify-content:flex-end;align-items:center;padding:10px 22px 4px;position:relative;z-index:10}
 .onboarding-step-badge{display:inline-flex;align-items:baseline;gap:3px;padding:5px 12px;border-radius:99px;background:rgba(255,51,0,.08);color:#ff3300;font-weight:800;font-size:12px}
 .onboarding-step-badge .step-num{font-size:13px;font-weight:900}
 .onboarding-step-badge .step-total{font-size:11px;color:rgba(255,51,0,.6)}
