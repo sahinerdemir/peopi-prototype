@@ -3228,7 +3228,7 @@
                 </div>
 
                 <div class="scope-decision-problem">
-                  <strong>Product Problem:</strong> Continuous background location broadcasting causes battery depletion, persistent surveillance anxiety, and leaves ghost presence behind after a user departs a venue.
+                  <strong>Product Problem:</strong> Continuous background location broadcasting can cause battery depletion, persistent surveillance anxiety, and leaves ghost presence behind after a user departs a venue.
                 </div>
 
                 <div class="scope-decision-compare">
@@ -3243,7 +3243,7 @@
                 </div>
 
                 <div class="scope-decision-why">
-                  <strong>Why Preferred:</strong> High-caliber professionals refuse to adopt proximity apps that continuously track them in the background. Intentional opt-in guarantees active attention and psychological safety.
+                  <strong>Why Preferred:</strong> High-caliber professionals refuse to adopt proximity apps that continuously track them in the background. Intentional opt-in fosters active attention and psychological safety.
                 </div>
 
                 <div class="scope-tradeoff-box">
@@ -3290,7 +3290,7 @@
                 </div>
 
                 <div class="scope-decision-problem">
-                  <strong>Product Problem:</strong> Precise GPS coordinates create unacceptable physical stalking hazards, reveal home/office micro-locations, and violate personal physical boundaries.
+                  <strong>Product Problem:</strong> Exposing exact GPS coordinates significantly increases physical tracking risks, exposes sensitive venue micro-locations, and strains personal privacy.
                 </div>
 
                 <div class="scope-decision-compare">
@@ -3305,7 +3305,7 @@
                 </div>
 
                 <div class="scope-decision-why">
-                  <strong>Why Preferred:</strong> Provides full situational context to verify co-location without exposing exact pinpoint coordinates, preserving physical safety across public spaces.
+                  <strong>Why Preferred:</strong> Designed to deliver sufficient spatial context to confirm co-location without exposing pinpoint coordinates, mitigating physical tracking risks in public spaces.
                 </div>
 
                 <div class="scope-tradeoff-box">
@@ -3352,7 +3352,7 @@
                 </div>
 
                 <div class="scope-decision-problem">
-                  <strong>Product Problem:</strong> Unsolicited DMs invite spam and harassment, while multi-stage workflows (connect first, then request messaging permission) create fatal drop-off in fast-moving live environments.
+                  <strong>Product Problem:</strong> Unsolicited DMs risk spam and unwanted outreach, while multi-stage workflows (connect first, then request messaging permission) create fatal drop-off in fast-moving live environments.
                 </div>
 
                 <div class="scope-decision-compare">
@@ -3367,7 +3367,7 @@
                 </div>
 
                 <div class="scope-decision-why">
-                  <strong>Why Preferred:</strong> Minimizes cognitive friction during live gatherings while strictly prohibiting unsolicited cold outreach prior to mutual consent.
+                  <strong>Why Preferred:</strong> Minimizes cognitive friction during live gatherings while mitigating unsolicited cold outreach prior to mutual consent.
                 </div>
 
                 <div class="scope-tradeoff-box">
@@ -3679,12 +3679,12 @@
                 <div class="scope-card-icon featured">
                   <i class="ph ph-cloud-check" aria-hidden="true"></i>
                 </div>
-                <h3 class="scope-card-title">What Production Engineering Must Deliver</h3>
+                <h3 class="scope-card-title">Production Architecture Considerations (Pending Implementation)</h3>
                 <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
-                  <li><strong>Ephemeral Geohashing:</strong> Spatial indexing (H3 or S2 cells) with jittering; zero persistent storage of exact latitude/longitude.</li>
-                  <li><strong>Authoritative Server Timers:</strong> Server-side TTL expiration enforcing visibility cutoffs independently of client clock tampering.</li>
-                  <li><strong>Reliable Real-Time Transport:</strong> Low-latency WebSocket connections with fallback for instant request delivery and chat synchronization.</li>
-                  <li><strong>Data Sovereignty &amp; Purging:</strong> Automated purging of expired proximity telemetry; GDPR/CCPA compliant data deletion pipelines.</li>
+                  <li><strong>Ephemeral Geohashing Considerations:</strong> Evaluating spatial indexing approaches (such as H3 or S2 hierarchical cells) with spatial jitter; architectural intent is zero persistent coordinate storage.</li>
+                  <li><strong>Server-Side Lifecycle Management:</strong> Production design calls for authoritative server-side TTL timers to enforce session termination independently of client state.</li>
+                  <li><strong>Real-Time Message Transport:</strong> Evaluating real-time push and WebSocket architectures to support message delivery and session state sync.</li>
+                  <li><strong>Data Retention &amp; Lifecycle:</strong> Establishing automated purging protocols for ephemeral telemetry in compliance with privacy regulations.</li>
                 </ul>
               </div>
             </div>
@@ -3733,95 +3733,65 @@
 
             <div class="dash-page-intro">
               <p class="dash-page-lead">
-                Choose your moment. Make a connection.
+                How product principles and MVP boundaries translate into intentional, real-world user behavior.
               </p>
               <p class="dash-page-desc">
-                Start discovery when you’re ready. Send an introduction request with an optional note. Connect and converse after mutual acceptance.
+                From the default invisible baseline to co-located discovery, mutual consent, and persistent conversation, every flow is architected to balance spontaneous in-person connection with strict personal privacy.
               </p>
             </div>
           </header>
 
-          <!-- 03 Journey Chapters -->
+          <!-- 1. PRIMARY USER JOURNEY (9 STEPS WITH DECISION FORKS) -->
           <section class="how-section">
             <div class="how-section-header">
-              <span class="how-section-kicker">JOURNEY CHAPTERS</span>
-              <h2 class="how-section-title">From first visit to your next conversation<span style="color:#FF3300;">.</span></h2>
-              <p class="how-section-lead">A privacy-first, step-by-step walkthrough across the four core chapters of Peopi.</p>
+              <span class="how-section-kicker">CORE BEHAVIORAL PATHWAY</span>
+              <h2 class="how-section-title">The primary journey: discovery to persistent conversation<span style="color:#FF3300;">.</span></h2>
+              <p class="how-section-lead">The end-to-end user path across Peopi's real prototype routes, demonstrating deliberate user agency and meaningful decision points at every step.</p>
             </div>
 
             <div class="how-summary-flow" aria-label="Core 3-step summary" style="margin-bottom: 28px;">
               <div class="how-flow-step">
                 <div class="how-flow-icon"><i class="ph ph-broadcast"></i></div>
-                <div class="how-flow-title">Discover</div>
-                <div class="how-flow-desc">Active proximity when you choose</div>
+                <div class="how-flow-title">1. Explicit Discovery</div>
+                <div class="how-flow-desc">Opt-in 30, 60, or 120m sessions</div>
               </div>
               <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="how-flow-step">
                 <div class="how-flow-icon"><i class="ph ph-paper-plane-tilt"></i></div>
-                <div class="how-flow-title">Request</div>
-                <div class="how-flow-desc">Intro note with context</div>
+                <div class="how-flow-title">2. Contextual Request</div>
+                <div class="how-flow-desc">Intent note with limited preview</div>
               </div>
               <div class="how-flow-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="how-flow-step">
                 <div class="how-flow-icon"><i class="ph ph-chat-circle-dots"></i></div>
-                <div class="how-flow-title">Connect</div>
-                <div class="how-flow-desc">1-on-1 chat upon double opt-in</div>
+                <div class="how-flow-title">3. Mutual Connection</div>
+                <div class="how-flow-desc">Unlocked persistent chat &amp; network</div>
               </div>
             </div>
 
-            <!-- Chapter 01: Get Ready -->
+            <!-- Chapter 01: Baseline & Launch -->
             <article class="how-chapter-card">
               <div class="how-chapter-header">
                 <div>
-                  <span class="how-chapter-badge">CHAPTER 01 / GET READY</span>
-                  <h3 class="how-chapter-title">Initial profile &amp; invisible state</h3>
+                  <span class="how-chapter-badge">PHASE 01 / ENTRY &amp; PRESENCE CONTROL</span>
+                  <h3 class="how-chapter-title">Invisible baseline &amp; privacy-safe session launch</h3>
                 </div>
               </div>
               <div class="how-chapter-steps">
-                <!-- Step 1 -->
+                <!-- Step 1 & 2 -->
                 <div class="how-step-box">
                   <div class="how-step-head">
                     <span class="how-step-num">1</span>
                     <div>
-                      <h4 class="how-step-title">Create your profile</h4>
-                      <p class="how-step-desc">Start with your name, professional headline, and city during onboarding.</p>
+                      <h4 class="how-step-title">Open Peopi in Invisible Baseline</h4>
+                      <p class="how-step-desc">The user opens the app in a shared venue. By default, discovery is completely closed; zero live coordinates or presence signals are broadcasted to nearby devices.</p>
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('firstprofile', 'Profile Setup', 'The onboarding screen allows new members to configure their name, professional headline, and home city before entering the application.')">
+                    <div class="how-phone-preview" onclick="openHowModal('closed', 'Closed Discovery (02.1)', 'The default state of Peopi. Members are completely invisible to others nearby until they explicitly decide to start an active discovery session.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-device-mobile"></i> <span>Profile setup</span></div>
-                        <span>100%</span>
-                      </div>
-                      <div class="how-phone-body">
-                        <div style="font-weight:700;font-size:13px;color:#0F172A;margin-bottom:8px;">Set up profile</div>
-                        <div style="background:#FFF;border:1px solid #E2E8F0;border-radius:6px;padding:6px 10px;margin-bottom:6px;color:#64748B;font-size:11px;">Name: Sahin Erdemir</div>
-                        <div style="background:#FFF;border:1px solid #E2E8F0;border-radius:6px;padding:6px 10px;margin-bottom:6px;color:#64748B;font-size:11px;">Headline: Product Designer</div>
-                        <div style="background:#FFF;border:1px solid #E2E8F0;border-radius:6px;padding:6px 10px;color:#64748B;font-size:11px;">City: San Francisco, CA</div>
-                      </div>
-                      <div class="how-phone-actions">
-                        <button type="button" class="how-btn-open" data-jump="firstprofile"><i class="ph ph-arrow-square-out"></i> Open screen</button>
-                        <button type="button" class="how-btn-zoom"><i class="ph ph-magnifying-glass-plus"></i> Enlarge</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="how-step-box">
-                  <div class="how-step-head">
-                    <span class="how-step-num">2</span>
-                    <div>
-                      <h4 class="how-step-title">Explore while invisible</h4>
-                      <p class="how-step-desc">You choose when to enter discovery. While invisible, the radar remains completely closed.</p>
-                    </div>
-                  </div>
-                  <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('closed', 'Invisible / Closed Radar', 'The default state of Peopi. Members are completely invisible to others nearby until they explicitly decide to start an active discovery session.')">
-                      <div class="how-phone-header">
-                        <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-shield-slash"></i> <span>Invisible / Closed</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-shield-slash"></i> <span>Closed Discovery (02.1)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body" style="text-align:center;">
@@ -3835,71 +3805,40 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Decision Fork 1 -->
+                  <div class="journey-decision-fork">
+                    <div class="journey-fork-head"><i class="ph ph-git-fork"></i> Decision Point 01: Baseline Action</div>
+                    <div class="journey-fork-branches">
+                      <div class="journey-fork-branch negative">
+                        <span class="journey-branch-label"><i class="ph ph-eye-slash"></i> Remain Inactive</span>
+                        <p class="journey-branch-desc">User browses past connections or settings without revealing presence.</p>
+                      </div>
+                      <div class="journey-fork-branch positive">
+                        <span class="journey-branch-label"><i class="ph ph-broadcast"></i> Enter Discovery</span>
+                        <p class="journey-branch-desc">User reviews aggregated zones and initiates the session launcher modal.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </article>
 
-            <!-- Chapter 02: Start Discovery -->
-            <article class="how-chapter-card">
-              <div class="how-chapter-header">
-                <div>
-                  <span class="how-chapter-badge">CHAPTER 02 / START DISCOVERY</span>
-                  <h3 class="how-chapter-title">Profile completion &amp; session parameters</h3>
-                </div>
-              </div>
-              <div class="how-chapter-steps">
                 <!-- Step 3 -->
                 <div class="how-step-box">
                   <div class="how-step-head">
-                    <span class="how-step-num">3</span>
+                    <span class="how-step-num">2</span>
                     <div>
-                      <h4 class="how-step-title">Complete your introduction</h4>
-                      <p class="how-step-desc">Before becoming visible, add a brief bio and at least one skill if these are missing.</p>
+                      <h4 class="how-step-title">Configure Intent &amp; Session Duration</h4>
+                      <p class="how-step-desc">User selects their immediate networking goal (Share ideas, Meet new people, Explore collaboration) and chooses a strict session timer: 30, 60 (default), or 120 minutes.</p>
                       <div class="how-step-note">
                         <i class="ph ph-info"></i>
-                        <span>Completing your introduction does not automatically turn discovery on.</span>
+                        <span>Profile readiness invariant: If bio or skills are missing, the launcher halts to prompt profile completion.</span>
                       </div>
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('editprofile', 'Edit Profile / Bio', 'Members complete their brief introduction bio and add relevant professional tags before making themselves visible to others.')">
+                    <div class="how-phone-preview" onclick="openHowModal('setup', 'Visibility Setup (02.2)', 'Configure your session intent and choose your timer (30m, 60m, 120m). When time expires, discovery terminates automatically.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-user-circle"></i> <span>Edit profile</span></div>
-                        <span>100%</span>
-                      </div>
-                      <div class="how-phone-body">
-                        <div style="font-weight:700;font-size:13px;color:#0F172A;margin-bottom:6px;">Introduction &amp; Bio</div>
-                        <div style="background:#FFF;border:1px solid #E2E8F0;border-radius:6px;padding:8px 10px;margin-bottom:6px;color:#475569;font-size:11px;line-height:1.4;">
-                          Designing privacy-first networking tools &amp; digital products.
-                        </div>
-                        <div style="display:flex;gap:4px;flex-wrap:wrap;">
-                          <span style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:10px;color:#475569;">#ProductDesign</span>
-                          <span style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:10px;color:#475569;">#DesignSystems</span>
-                        </div>
-                      </div>
-                      <div class="how-phone-actions">
-                        <button type="button" class="how-btn-open" data-jump="editprofile"><i class="ph ph-arrow-square-out"></i> Open screen</button>
-                        <button type="button" class="how-btn-zoom"><i class="ph ph-magnifying-glass-plus"></i> Enlarge</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="how-step-box">
-                  <div class="how-step-head">
-                    <span class="how-step-num">4</span>
-                    <div>
-                      <h4 class="how-step-title">Choose intent &amp; duration</h4>
-                      <p class="how-step-desc">Pick why you are open to connecting (Share ideas, Meet new people, Explore collaboration) and how long you wish to be visible.</p>
-                    </div>
-                  </div>
-                  <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('setup', 'Session Setup', 'Configure your session intent and choose your timer (30m, 1h, 2h). When time expires, your discovery turns off automatically.')">
-                      <div class="how-phone-header">
-                        <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-sliders"></i> <span>Session setup</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-sliders"></i> <span>Session setup (02.2)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -3908,7 +3847,7 @@
                           <span style="background:#FFF0EB;border:1px solid rgba(255,51,0,0.3);color:#FF3300;padding:3px 8px;border-radius:6px;font-size:10.5px;font-weight:700;">Share ideas</span>
                           <span style="background:#FFF;border:1px solid #E2E8F0;color:#64748B;padding:3px 8px;border-radius:6px;font-size:10.5px;">Meet people</span>
                         </div>
-                        <div style="font-size:11px;color:#64748B;">Duration: <strong style="color:#0F172A;">1 hour</strong></div>
+                        <div style="font-size:11px;color:#64748B;">Duration: <strong style="color:#0F172A;">60 min (Default)</strong></div>
                       </div>
                       <div class="how-phone-actions">
                         <button type="button" class="how-btn-open" data-jump="setup"><i class="ph ph-arrow-square-out"></i> Open screen</button>
@@ -3916,33 +3855,47 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Decision Fork 2 -->
+                  <div class="journey-decision-fork">
+                    <div class="journey-fork-head"><i class="ph ph-git-fork"></i> Decision Point 02: Readiness Check</div>
+                    <div class="journey-fork-branches">
+                      <div class="journey-fork-branch positive">
+                        <span class="journey-branch-label"><i class="ph ph-check-circle"></i> Profile Ready</span>
+                        <p class="journey-branch-desc">Name, headline, bio, and skills present $\rightarrow$ Broadcast begins immediately.</p>
+                      </div>
+                      <div class="journey-fork-branch negative">
+                        <span class="journey-branch-label"><i class="ph ph-warning-circle"></i> Incomplete Profile</span>
+                        <p class="journey-branch-desc">Diverts user to Profile Setup (01.3 / 01.4) before visibility can unlock.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
 
-            <!-- Chapter 03: Make an Introduction -->
+            <!-- Chapter 02: Discovery & Evaluation -->
             <article class="how-chapter-card">
               <div class="how-chapter-header">
                 <div>
-                  <span class="how-chapter-badge">CHAPTER 03 / MAKE AN INTRODUCTION</span>
-                  <h3 class="how-chapter-title">Live proximity discovery &amp; introduction notes</h3>
+                  <span class="how-chapter-badge">PHASE 02 / PROXIMITY &amp; RELEVANCE</span>
+                  <h3 class="how-chapter-title">Live proximity discovery &amp; contextual profile preview</h3>
                 </div>
               </div>
               <div class="how-chapter-steps">
-                <!-- Step 5 -->
+                <!-- Step 4 -->
                 <div class="how-step-box">
                   <div class="how-step-head">
-                    <span class="how-step-num">5</span>
+                    <span class="how-step-num">3</span>
                     <div>
-                      <h4 class="how-step-title">Discover nearby people</h4>
-                      <p class="how-step-desc">See professionals who are currently active and open to connecting nearby in live radar or list view.</p>
+                      <h4 class="how-step-title">Discover Nearby Peers on Radar</h4>
+                      <p class="how-step-desc">Active radar canvas displays co-located professionals using approximate proximity zones with soft halos and distance bands. Client APIs never receive precise coordinates.</p>
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('active', 'Active Discovery Radar', 'Displays real-time nearby members who are actively in session with matching or open networking intents.')">
+                    <div class="how-phone-preview" onclick="openHowModal('active', 'Active Discovery (02.3)', 'Displays real-time nearby members who are actively in session with soft proximity halos and approximate distance bands.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-broadcast"></i> <span>Active discovery</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-broadcast"></i> <span>Active radar (02.3)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -3963,20 +3916,20 @@
                   </div>
                 </div>
 
-                <!-- Step 6 -->
+                <!-- Step 5 & 6 -->
                 <div class="how-step-box">
                   <div class="how-step-head">
-                    <span class="how-step-num">6</span>
+                    <span class="how-step-num">4</span>
                     <div>
-                      <h4 class="how-step-title">Send an introduction note</h4>
-                      <p class="how-step-desc">Include a brief note explaining why you’d like to connect. Direct chat unlocks only after acceptance.</p>
+                      <h4 class="how-step-title">Review Profile &amp; Compose Introduction Request</h4>
+                      <p class="how-step-desc">Tapping a peer card surfaces limited pre-connection context (headline, bio, shared skills) with initials-based privacy avatars. The user crafts an intentional request with an optional note.</p>
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('profile', 'Profile &amp; Intro Note', 'Send a contextual introduction note along with your request. Direct conversation is locked until the recipient accepts.')">
+                    <div class="how-phone-preview" onclick="openHowModal('profile', 'Profile Preview &amp; Request (02.4 / 02.5)', 'Send a contextual introduction note along with your request. Direct conversation is locked until the recipient accepts.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-paper-plane-tilt"></i> <span>Profile &amp; Request</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-paper-plane-tilt"></i> <span>Preview &amp; Note (02.4)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -3986,11 +3939,22 @@
                         </div>
                       </div>
                       <div class="how-phone-actions">
-                        <div style="display:flex;gap:6px;">
-                          <button type="button" class="how-btn-open" data-jump="profile"><i class="ph ph-user"></i> Profile</button>
-                          <button type="button" class="how-btn-open" data-jump="requests"><i class="ph ph-tray"></i> Requests</button>
-                        </div>
+                        <button type="button" class="how-btn-open" data-jump="profile"><i class="ph ph-user"></i> Open Preview</button>
                         <button type="button" class="how-btn-zoom"><i class="ph ph-magnifying-glass-plus"></i> Enlarge</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Decision Fork 3 -->
+                  <div class="journey-decision-fork">
+                    <div class="journey-fork-head"><i class="ph ph-git-fork"></i> Decision Point 03: Outreach Decision</div>
+                    <div class="journey-fork-branches">
+                      <div class="journey-fork-branch positive">
+                        <span class="journey-branch-label"><i class="ph ph-paper-plane"></i> Transmit Request</span>
+                        <p class="journey-branch-desc">Select intent tag + note $\rightarrow$ Sent to recipient's pending queue.</p>
+                      </div>
+                      <div class="journey-fork-branch negative">
+                        <span class="journey-branch-label"><i class="ph ph-x"></i> Dismiss Preview</span>
+                        <p class="journey-branch-desc">User closes sheet; no notification or trace sent to peer.</p>
                       </div>
                     </div>
                   </div>
@@ -3998,29 +3962,78 @@
               </div>
             </article>
 
-            <!-- Chapter 04: Keep the Connection -->
+            <!-- Chapter 03: Decision & Unlocking -->
             <article class="how-chapter-card">
               <div class="how-chapter-header">
                 <div>
-                  <span class="how-chapter-badge">CHAPTER 04 / KEEP THE CONNECTION</span>
-                  <h3 class="how-chapter-title">Mutual conversation &amp; persistent network</h3>
+                  <span class="how-chapter-badge">PHASE 03 / BILATERAL CONSENT &amp; PERSISTENCE</span>
+                  <h3 class="how-chapter-title">Bilateral acceptance, unlocked conversation, and persistent network</h3>
                 </div>
               </div>
               <div class="how-chapter-steps">
                 <!-- Step 7 -->
                 <div class="how-step-box">
                   <div class="how-step-head">
-                    <span class="how-step-num">7</span>
+                    <span class="how-step-num">5</span>
                     <div>
-                      <h4 class="how-step-title">Connect after acceptance</h4>
-                      <p class="how-step-desc">Once accepted, start messaging directly to coordinate a meetup spot or exchange contacts.</p>
+                      <h4 class="how-step-title">Recipient Decision: Double Opt-In</h4>
+                      <p class="how-step-desc">Recipient views the invitation in Connection Requests (03.1). They evaluate the sender's headline, shared intent, and optional note. Direct chat remains completely locked until mutual acceptance.</p>
                     </div>
                   </div>
                   <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('conversation', '1-on-1 Conversation', 'Direct messaging unlocks after double opt-in acceptance. Coordinate a quick coffee or exchange notes securely.')">
+                    <div class="how-phone-preview" onclick="openHowModal('requests', 'Connection Requests (03.1)', 'Manage incoming and outgoing requests with clear accept and decline controls. Chat unlocks only after mutual acceptance.')">
                       <div class="how-phone-header">
                         <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-chat-circle-dots"></i> <span>Direct chat</span></div>
+                        <div class="how-phone-screen-label"><i class="ph ph-tray"></i> <span>Requests (03.1)</span></div>
+                        <span>100%</span>
+                      </div>
+                      <div class="how-phone-body">
+                        <div style="font-size:11px;font-weight:700;color:#0F172A;margin-bottom:4px;">Incoming (1)</div>
+                        <div style="background:#FFF;border:1px solid #E2E8F0;border-radius:6px;padding:8px;font-size:11px;">
+                          <div style="font-weight:700;color:#0F172A;">Alex Morgan</div>
+                          <div style="font-size:10px;color:#64748B;">“Great talking about founder challenges...”</div>
+                          <div style="display:flex;gap:4px;margin-top:6px;">
+                            <span style="background:#0F172A;color:#FFF;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">Accept</span>
+                            <span style="background:#F1F5F9;color:#64748B;padding:2px 8px;border-radius:4px;font-size:10px;">Decline</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="how-phone-actions">
+                        <button type="button" class="how-btn-open" data-jump="requests"><i class="ph ph-arrow-square-out"></i> Open screen</button>
+                        <button type="button" class="how-btn-zoom"><i class="ph ph-magnifying-glass-plus"></i> Enlarge</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Decision Fork 4 -->
+                  <div class="journey-decision-fork">
+                    <div class="journey-fork-head"><i class="ph ph-git-fork"></i> Decision Point 04: Bilateral Consent</div>
+                    <div class="journey-fork-branches">
+                      <div class="journey-fork-branch positive">
+                        <span class="journey-branch-label"><i class="ph ph-check-circle"></i> Mutual Accept</span>
+                        <p class="journey-branch-desc">Added to Network Directory; 1-on-1 persistent chat unlocks immediately.</p>
+                      </div>
+                      <div class="journey-fork-branch negative">
+                        <span class="journey-branch-label"><i class="ph ph-x-circle"></i> Quiet Decline / Expire</span>
+                        <p class="journey-branch-desc">Dismissed silently without alerts; unaddressed requests expire after 72 hours.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 8 & 9 -->
+                <div class="how-step-box">
+                  <div class="how-step-head">
+                    <span class="how-step-num">6</span>
+                    <div>
+                      <h4 class="how-step-title">1-on-1 Conversation &amp; Permanent Network Continuity</h4>
+                      <p class="how-step-desc">Direct messaging initiates with pre-populated intent context. When discovery timers expire, live presence ceases, but the connection and full conversation history remain permanently accessible.</p>
+                    </div>
+                  </div>
+                  <div class="how-preview-container">
+                    <div class="how-phone-preview" onclick="openHowModal('conversation', 'Persistent Conversation (04.1)', 'Direct messaging unlocks after double opt-in acceptance. Coordinate meeting spots and continue conversing indefinitely.')">
+                      <div class="how-phone-header">
+                        <span>9:41</span>
+                        <div class="how-phone-screen-label"><i class="ph ph-chat-circle-dots"></i> <span>Conversation (04.1)</span></div>
                         <span>100%</span>
                       </div>
                       <div class="how-phone-body">
@@ -4034,102 +4047,327 @@
                         </div>
                       </div>
                       <div class="how-phone-actions">
-                        <button type="button" class="how-btn-open" data-jump="conversation"><i class="ph ph-arrow-square-out"></i> Open screen</button>
-                        <button type="button" class="how-btn-zoom"><i class="ph ph-magnifying-glass-plus"></i> Enlarge</button>
+                        <button type="button" class="how-btn-open" data-jump="conversation"><i class="ph ph-arrow-square-out"></i> Open Chat</button>
+                        <button type="button" class="how-btn-open" data-jump="network"><i class="ph ph-address-book"></i> Network</button>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <!-- Step 8 -->
-                <div class="how-step-box">
-                  <div class="how-step-head">
-                    <span class="how-step-num">8</span>
-                    <div>
-                      <h4 class="how-step-title">Keep your network</h4>
-                      <p class="how-step-desc">Your connections and conversations remain permanently available even after your discovery session ends.</p>
-                    </div>
-                  </div>
-                  <div class="how-preview-container">
-                    <div class="how-phone-preview" onclick="openHowModal('network', 'My Network', 'All accepted connections are organized into your persistent network directory for ongoing follow-up.')">
-                      <div class="how-phone-header">
-                        <span>9:41</span>
-                        <div class="how-phone-screen-label"><i class="ph ph-address-book"></i> <span>My network</span></div>
-                        <span>100%</span>
-                      </div>
-                      <div class="how-phone-body">
-                        <div style="font-weight:700;font-size:12px;color:#0F172A;margin-bottom:6px;">Connections (2)</div>
-                        <div style="display:flex;align-items:center;justify-content:space-between;background:#FFF;border:1px solid #E2E8F0;border-radius:6px;padding:6px 8px;margin-bottom:4px;">
-                          <span style="font-size:11px;font-weight:700;color:#0F172A;">Alex Morgan</span>
-                          <span style="font-size:10px;color:#64748B;">Connected today</span>
-                        </div>
-                        <div style="display:flex;align-items:center;justify-content:space-between;background:#FFF;border:1px solid #E2E8F0;border-radius:6px;padding:6px 8px;">
-                          <span style="font-size:11px;font-weight:700;color:#0F172A;">Marcus Vance</span>
-                          <span style="font-size:10px;color:#64748B;">Connected 2d ago</span>
-                        </div>
-                      </div>
-                      <div class="how-phone-actions">
-                        <button type="button" class="how-btn-open" data-jump="network"><i class="ph ph-arrow-square-out"></i> Open screen</button>
-                        <button type="button" class="how-btn-zoom"><i class="ph ph-magnifying-glass-plus"></i> Enlarge</button>
-                      </div>
-                    </div>
+                  <!-- Invariant Summary -->
+                  <div class="journey-decision-fork" style="background:#FFFBF9;border-color:#FFD8CC;">
+                    <div class="journey-fork-head" style="color:#FF3300;"><i class="ph ph-shield-check"></i> Session Invariant Guarantee</div>
+                    <p style="font-size:12px;line-height:1.45;color:#475569;margin:0;">
+                      Ending visibility or timing out (30/60/120m) only stops live discovery. It never removes connections or purges chat histories in <code>network (05.1)</code>.
+                    </p>
                   </div>
                 </div>
               </div>
             </article>
           </section>
 
-          <!-- 05 Request States -->
+          <!-- 2. IMPORTANT ALTERNATIVE PATHS -->
           <section class="how-section">
             <div class="how-section-header">
-              <span class="how-section-kicker">DOUBLE OPT-IN LIFECYCLE</span>
-              <h2 class="how-section-title">Request states<span style="color:#FF3300;">.</span></h2>
-              <p class="how-section-lead">Clear handling of introduction requests with total recipient privacy and voluntary connection.</p>
+              <span class="how-section-kicker">EDGE CASES &amp; BOUNDARY HANDLING</span>
+              <h2 class="how-section-title">Important alternative paths &amp; exception handling<span style="color:#FF3300;">.</span></h2>
+              <p class="how-section-lead">A comprehensive product specification must manage low density, rejection, session expiration, and boundary controls without compromising trust.</p>
             </div>
-            <div class="how-states-grid">
-              <!-- Pending -->
-              <div class="how-state-card">
-                <div class="how-state-head">
-                  <div class="how-state-icon pending"><i class="ph ph-hourglass-high"></i></div>
-                  <span class="how-state-tag pending">Awaiting action</span>
+
+            <div class="journey-alt-grid">
+              <!-- Path 1: No Nearby Activity -->
+              <div class="journey-alt-card">
+                <div class="journey-alt-top">
+                  <span class="journey-alt-badge">ALTERNATIVE PATH 01</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> closed (02.1) &amp; active (02.3)</span>
                 </div>
-                <h3 class="how-state-title">Pending</h3>
-                <p class="how-state-desc">The recipient receives the introduction note with headline and shared context. Direct chat remains locked.</p>
-                <div class="how-state-details">
-                  <strong>Sender control:</strong> The sender can cancel or withdraw the request at any time prior to recipient response.
+                <h3>No Nearby Activity (Honest Zero-State)</h3>
+                <div class="journey-alt-meta">
+                  <div class="journey-alt-meta-item">
+                    <strong>User Goal</strong>
+                    <span>Assess nearby peer availability</span>
+                  </div>
+                  <div class="journey-alt-meta-item">
+                    <strong>Product Decision</strong>
+                    <span>Decision D (Honest Empty State)</span>
+                  </div>
+                </div>
+                <div class="journey-alt-behavior">
+                  <strong>Expected Behavior:</strong> If no active peers are within range, or if local activity does not meet minimum privacy thresholds, Peopi displays an honest neutral empty state. The system never generates phantom pins, bot profiles, or fabricated counts to manufacture artificial engagement.
+                </div>
+                <div class="journey-alt-risk">
+                  <strong>Risk Managed:</strong> Protects product credibility. Fabricated numbers create immediate cynicism when users attempt to meet non-existent peers in physical spaces.
                 </div>
               </div>
 
-              <!-- Accepted -->
-              <div class="how-state-card">
-                <div class="how-state-head">
-                  <div class="how-state-icon accepted"><i class="ph ph-check-circle"></i></div>
-                  <span class="how-state-tag accepted">Mutual consent</span>
+              <!-- Path 2: Request Declined or Unanswered -->
+              <div class="journey-alt-card">
+                <div class="journey-alt-top">
+                  <span class="journey-alt-badge">ALTERNATIVE PATH 02</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> requests (03.1 / 03.2)</span>
                 </div>
-                <h3 class="how-state-title">Accepted</h3>
-                <p class="how-state-desc">1-on-1 direct messaging unlocks immediately. Both members are added to each other’s network.</p>
-                <div class="how-state-details">
-                  <strong>Continuous access:</strong> Messaging remains permanently open even after the proximity session terminates.
+                <h3>Request Declined or Unanswered</h3>
+                <div class="journey-alt-meta">
+                  <div class="journey-alt-meta-item">
+                    <strong>User Goal</strong>
+                    <span>Resolve unwanted requests comfortably</span>
+                  </div>
+                  <div class="journey-alt-meta-item">
+                    <strong>Product Decision</strong>
+                    <span>Decision E (Bilateral Consent)</span>
+                  </div>
+                </div>
+                <div class="journey-alt-behavior">
+                  <strong>Expected Behavior:</strong> When a recipient declines a request, it quietly disappears without sending rejection alerts or awkward notifications to the sender. Unanswered requests expire automatically after 72 hours, cleansing pending queues. Chat remains locked; no network record is created. Senders retain withdrawal rights anytime prior to response.
+                </div>
+                <div class="journey-alt-risk">
+                  <strong>Risk Managed:</strong> Protects psychological comfort and removes social hesitation; prevents stale invitations from cluttering recipient queues indefinitely.
                 </div>
               </div>
 
-              <!-- Declined or Canceled -->
-              <div class="how-state-card">
-                <div class="how-state-head">
-                  <div class="how-state-icon declined"><i class="ph ph-x-circle"></i></div>
-                  <span class="how-state-tag declined">Quiet resolution</span>
+              <!-- Path 3: Session Expiration -->
+              <div class="journey-alt-card">
+                <div class="journey-alt-top">
+                  <span class="journey-alt-badge">ALTERNATIVE PATH 03</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> active (02.3) $\rightarrow$ closed (02.1)</span>
                 </div>
-                <h3 class="how-state-title">Declined or canceled</h3>
-                <p class="how-state-desc">Distinguishes recipient decisions from sender withdrawals to ensure psychological safety:</p>
-                <div class="how-state-details">
-                  <div>• <strong>Declined by recipient:</strong> Quietly closes without awkward notifications or rejection alerts.</div>
-                  <div style="margin-top:6px;">• <strong>Canceled by sender:</strong> Withdrawn before an answer, removing it from pending queues.</div>
+                <h3>Session Auto-Expiry &amp; Offline Continuity</h3>
+                <div class="journey-alt-meta">
+                  <div class="journey-alt-meta-item">
+                    <strong>User Goal</strong>
+                    <span>Leave a venue without lingering presence</span>
+                  </div>
+                  <div class="journey-alt-meta-item">
+                    <strong>Product Decision</strong>
+                    <span>Decision B (Preset Auto-Expiry)</span>
+                  </div>
+                </div>
+                <div class="journey-alt-behavior">
+                  <strong>Expected Behavior:</strong> When the 30, 60, or 120-minute timer hits zero, the device automatically ceases discovery broadcasting and returns to the invisible baseline. Users may also end early with one tap. Crucially, past connections and active chat threads remain permanently accessible in My Network (05.1).
+                </div>
+                <div class="journey-alt-risk">
+                  <strong>Risk Managed:</strong> Eliminates "ghost presence" of departed users in public venues; prevents background battery drain and accidental post-event location exposure.
+                </div>
+              </div>
+
+              <!-- Path 4: Hide My Presence -->
+              <div class="journey-alt-card">
+                <div class="journey-alt-top">
+                  <span class="journey-alt-badge">ALTERNATIVE PATH 04</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> privacy (01.2) / connectiondetail</span>
+                </div>
+                <h3>Hide My Presence (Targeted Presence Masking)</h3>
+                <div class="journey-alt-meta">
+                  <div class="journey-alt-meta-item">
+                    <strong>User Goal</strong>
+                    <span>Conceal live presence from a specific connection</span>
+                  </div>
+                  <div class="journey-alt-meta-item">
+                    <strong>Product Decision</strong>
+                    <span>Invariant 04 (Reciprocal Privacy)</span>
+                  </div>
+                </div>
+                <div class="journey-alt-behavior">
+                  <strong>Expected Behavior:</strong> Applied per-connection: masks live radar visibility and proximity signals strictly from that specific contact. The contact is not notified. Crucially, the underlying network connection, profile access, and past chat remain completely intact.
+                  <div style="margin-top:6px;font-size:12px;color:#0F172A;font-weight:700;">
+                    • Not Mute (which only silences message push alerts)<br>
+                    • Not Block (which dissolves connection and severs all messaging)
+                  </div>
+                </div>
+                <div class="journey-alt-risk">
+                  <strong>Risk Managed:</strong> Accommodates workplace sensitivities, ex-colleagues, or competitive co-working scenarios without burning established professional bridges.
+                </div>
+              </div>
+
+              <!-- Path 5: Profile Not Ready (Full Width) -->
+              <div class="journey-alt-card span-full">
+                <div class="journey-alt-top">
+                  <span class="journey-alt-badge">ALTERNATIVE PATH 05</span>
+                  <span class="journey-route-pill"><i class="ph ph-device-mobile"></i> closed (02.1) $\rightarrow$ firstprofile (01.3)</span>
+                </div>
+                <h3>Profile Readiness Gate (Enforced Baseline Context)</h3>
+                <div class="journey-alt-meta">
+                  <div class="journey-alt-meta-item">
+                    <strong>User Goal</strong>
+                    <span>Activate visibility from an incomplete account</span>
+                  </div>
+                  <div class="journey-alt-meta-item">
+                    <strong>Product Decision</strong>
+                    <span>Invariant 01 (Profile Readiness Barrier)</span>
+                  </div>
+                </div>
+                <div class="journey-alt-behavior">
+                  <strong>Expected Behavior:</strong> If a user attempts to launch a discovery session without completing mandatory baseline fields (full name, professional headline, short bio, and at least one skill tag), visibility activation is halted. The UI presents an actionable modal redirecting the user to complete their introduction before broadcasting can begin.
+                </div>
+                <div class="journey-alt-risk">
+                  <strong>Risk Managed:</strong> Prevents low-effort anonymous presence, throwaway profiles, and context-free discovery cards from degrading matching relevance for peers in the room.
                 </div>
               </div>
             </div>
           </section>
 
-          <!-- 06 Continuity Rule -->
+          <!-- 3. DECISION CONNECTION MATRIX -->
+          <section class="how-section">
+            <div class="how-section-header">
+              <span class="how-section-kicker">DECISION TRACEABILITY</span>
+              <h2 class="how-section-title">Connecting user flows to strategic product decisions<span style="color:#FF3300;">.</span></h2>
+              <p class="how-section-lead">Demonstrating how each phase of user interaction operationalizes the strategic product decisions from Chapter 01.5 and persona requirements from Chapter 01.4.</p>
+            </div>
+
+            <div class="journey-matrix-card">
+              <table class="journey-matrix-table" aria-label="Journey to Decision Matrix">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:200px;">Journey Phase</th>
+                    <th scope="col" style="width:230px;">Governing Decision</th>
+                    <th scope="col" style="width:220px;">Persona Need Served</th>
+                    <th scope="col">Behavioral Specification &amp; Risk Managed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span class="journey-matrix-step-badge">STAGE 01</span><br>
+                      <strong>Default Invisibility</strong><br>
+                      <small style="color:#64748B;">closed (02.1)</small>
+                    </td>
+                    <td>
+                      <span class="journey-decision-pill">Decision A · Opt-In Visibility</span><br>
+                      <small style="color:#64748B;">Invisible by default</small>
+                    </td>
+                    <td>
+                      <strong>Founders &amp; Operators</strong><br>
+                      <small style="color:#64748B;">Need unmonitored baseline in public spaces</small>
+                    </td>
+                    <td>Zero location or presence data broadcasted upon opening app. Mitigates surveillance anxiety and preserves personal boundaries.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="journey-matrix-step-badge">STAGE 02</span><br>
+                      <strong>Session Launch</strong><br>
+                      <small style="color:#64748B;">setup (02.2)</small>
+                    </td>
+                    <td>
+                      <span class="journey-decision-pill">Decision B · Fixed Durations</span><br>
+                      <small style="color:#64748B;">30 / 60 / 120m auto-expiry</small>
+                    </td>
+                    <td>
+                      <strong>Event Attendees</strong><br>
+                      <small style="color:#64748B;">Bounded co-working / networking timeboxes</small>
+                    </td>
+                    <td>Eliminates decision fatigue with 3 fixed choices (60m default). Prevents ghost profiles from lingering after users depart venues.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="journey-matrix-step-badge">STAGE 03</span><br>
+                      <strong>Proximity Stage</strong><br>
+                      <small style="color:#64748B;">active (02.3)</small>
+                    </td>
+                    <td>
+                      <span class="journey-decision-pill">Decision C · Spatial Privacy</span><br>
+                      <small style="color:#64748B;">Approximate halos &amp; bands</small>
+                    </td>
+                    <td>
+                      <strong>Solo Professionals</strong><br>
+                      <small style="color:#64748B;">Safety in public coffee shops &amp; hubs</small>
+                    </td>
+                    <td>Displays soft halos and approximate distance bands (~300m). Client APIs never receive precise coordinates, mitigating physical tracking risks.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="journey-matrix-step-badge">STAGE 04</span><br>
+                      <strong>Profile Preview</strong><br>
+                      <small style="color:#64748B;">profile (02.4)</small>
+                    </td>
+                    <td>
+                      <span class="journey-decision-pill">Decision G · Truthful Signals</span><br>
+                      <small style="color:#64748B;">Initials-only pre-connection avatars</small>
+                    </td>
+                    <td>
+                      <strong>Engineers &amp; Builders</strong><br>
+                      <small style="color:#64748B;">Technical skill &amp; intent relevance</small>
+                    </td>
+                    <td>Shows headline, skills, and initialed avatar. Conceals full portraits before mutual consent, reducing superficial evaluation bias.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="journey-matrix-step-badge">STAGE 05</span><br>
+                      <strong>Mutual Connection</strong><br>
+                      <small style="color:#64748B;">requests (03.1)</small>
+                    </td>
+                    <td>
+                      <span class="journey-decision-pill">Decision E · Double Opt-In</span><br>
+                      <small style="color:#64748B;">Single bilateral acceptance</small>
+                    </td>
+                    <td>
+                      <strong>High-Profile Founders</strong><br>
+                      <small style="color:#64748B;">Protection from unsolicited cold pitch spam</small>
+                    </td>
+                    <td>Direct messaging is locked until mutual acceptance. One bilateral consent action unlocks both chat and permanent network archive.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="journey-matrix-step-badge">STAGE 06</span><br>
+                      <strong>Continuing Network</strong><br>
+                      <small style="color:#64748B;">network (05.1)</small>
+                    </td>
+                    <td>
+                      <span class="journey-decision-pill">Invariant 03 &amp; 04</span><br>
+                      <small style="color:#64748B;">Permanent relationship retention</small>
+                    </td>
+                    <td>
+                      <strong>Active Collaborators</strong><br>
+                      <small style="color:#64748B;">Long-term relationship compounding</small>
+                    </td>
+                    <td>Session expiry only drops live discovery. Connections, message histories, and Hide My Presence controls remain permanently active.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 4. PROTOTYPE SPECIFICATION VS PRODUCTION REALITY -->
+          <section class="how-section">
+            <div class="how-section-header">
+              <span class="how-section-kicker">TECHNICAL REALITY</span>
+              <h2 class="how-section-title">Prototype specification vs. production backend requirements<span style="color:#FF3300;">.</span></h2>
+              <p class="how-section-lead">A demonstrated interaction flow is an engineering specification, not a deployed backend service.</p>
+            </div>
+
+            <div class="scope-grid-2">
+              <div class="scope-card">
+                <div class="scope-card-icon">
+                  <i class="ph ph-device-mobile" aria-hidden="true"></i>
+                </div>
+                <h3 class="scope-card-title">What the Prototype Demonstrates</h3>
+                <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
+                  <li><strong>Complete Interaction Pathways:</strong> 28 verified mobile states illustrating entry, setup, radar discovery, preview sheets, requests, and direct chat.</li>
+                  <li><strong>Visual &amp; Spatial Contracts:</strong> Approximate proximity halos, initials-based pre-connection avatars, and abstract closed heat zones.</li>
+                  <li><strong>Client-Side State Emulation:</strong> Local timer countdowns, simulated incoming request flows, and responsive layouts across viewports.</li>
+                </ul>
+              </div>
+
+              <div class="scope-card">
+                <div class="scope-card-icon featured">
+                  <i class="ph ph-cloud-check" aria-hidden="true"></i>
+                </div>
+                <h3 class="scope-card-title">Production Engineering Considerations (Pending)</h3>
+                <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.55;color:#475569;">
+                  <li><strong>Ephemeral Spatial Indexing:</strong> Evaluating spatial geohashing (such as H3 or S2 cells) with jittering; production intent is zero storage of raw coordinates.</li>
+                  <li><strong>Authoritative Server Timers:</strong> Server-side TTL enforcement to guarantee presence expiry independently of client clock manipulation.</li>
+                  <li><strong>Secure Real-Time Synchronization:</strong> Evaluating WebSocket and push architectures for reliable bilateral handshake delivery and chat sync.</li>
+                  <li><strong>Privacy &amp; Data Deletion Pipelines:</strong> Automated telemetry purging upon session expiry and GDPR/CCPA compliant account erasure.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="scope-callout" style="margin-top:20px;">
+              <i class="ph ph-shield-warning" aria-hidden="true"></i>
+              <div>
+                <strong>Specification honesty note:</strong> This case study describes intended product behaviors and user journeys grounded in the interactive prototype. It does not claim backend security certification, empirical user retention figures, or completed production infrastructure.
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. Continuity Rule Banner -->
           <section class="how-section">
             <div class="how-continuity-banner">
               <div class="how-continuity-icon"><i class="ph ph-shield-check"></i></div>
@@ -4137,18 +4375,18 @@
                 <span class="how-continuity-kicker">SESSION INVARIANT</span>
                 <h2 class="how-continuity-title">Discovery ends. Your network stays.</h2>
                 <p class="how-continuity-desc">
-                  Ending an active discovery session (or timing out) simply turns off live radar visibility. It never removes existing connections or messages. Your network and conversation histories remain permanently accessible in your account.
+                  Ending an active discovery session (or reaching 0:00 countdown) simply turns off live radar visibility. It never removes existing connections or purges conversations. Your professional network and message threads remain permanently accessible in your account.
                 </p>
               </div>
             </div>
           </section>
 
-          <!-- 07 Special Situations Accordion -->
+          <!-- 6. Special Situations Accordion -->
           <section class="how-section">
             <div class="how-section-header">
-              <span class="how-section-kicker">EDGE CASES &amp; POLICIES</span>
-              <h2 class="how-section-title">Special situations<span style="color:#FF3300;">.</span></h2>
-              <p class="how-section-lead">Product principles and edge-case handling for honest and reliable interaction.</p>
+              <span class="how-section-kicker">SPECIAL SITUATIONS &amp; POLICIES</span>
+              <h2 class="how-section-title">Special situations &amp; policy rules<span style="color:#FF3300;">.</span></h2>
+              <p class="how-section-lead">Product principles and edge-case handling for honest, predictable interaction.</p>
             </div>
 
             <div class="how-accordion" role="region" aria-label="Special situations FAQ">
@@ -4159,29 +4397,29 @@
                   <i class="ph ph-caret-down how-acc-chevron"></i>
                 </button>
                 <div id="how-acc-1" class="how-acc-panel" role="region" aria-labelledby="how-acc-btn-1" hidden>
-                  Peopi maintains an honest empty state. It never simulates phantom users, fake active avatars, or artificial proximity activity to create artificial engagement. If no active members are in range, Peopi transparently communicates this and suggests checking back during conference breaks or moving to higher-density community areas.
+                  Peopi maintains an honest empty state. It never simulates phantom users, fake active avatars, or artificial proximity activity to manufacture engagement. If no active members are in range or if privacy k-anonymity thresholds are unmet, Peopi transparently communicates this and suggests checking back during event breaks or moving to higher-density co-working spaces.
                 </div>
               </div>
 
               <!-- Item 2 -->
               <div class="how-acc-item">
                 <button type="button" class="how-acc-trigger" aria-expanded="false" aria-controls="how-acc-2" id="how-acc-btn-2">
-                  <span>What if location permission is unavailable?</span>
+                  <span>What if location permission is denied or unavailable?</span>
                   <i class="ph ph-caret-down how-acc-chevron"></i>
                 </button>
                 <div id="how-acc-2" class="how-acc-panel" role="region" aria-labelledby="how-acc-btn-2" hidden>
-                  Live proximity discovery requires device location permissions to calculate relative nearby presence. Without location permission, the radar cannot activate. The product team is currently assessing potential fallback alternatives (such as manual venue check-in codes or event hashtags), but no alternative fallback policy has been decided yet.
+                  Live proximity discovery requires operating system location permissions to calculate relative nearby presence. Without location permission, the radar cannot activate. The product team is currently assessing potential fallback alternatives (such as manual venue check-in codes or event hashtags), but no alternative fallback policy has been finalized.
                 </div>
               </div>
 
               <!-- Item 3 -->
               <div class="how-acc-item">
                 <button type="button" class="how-acc-trigger" aria-expanded="false" aria-controls="how-acc-3" id="how-acc-btn-3">
-                  <span>What does Hide My Presence change?</span>
+                  <span>What does Hide My Presence change versus Mute or Block?</span>
                   <i class="ph ph-caret-down how-acc-chevron"></i>
                 </button>
                 <div id="how-acc-3" class="how-acc-panel" role="region" aria-labelledby="how-acc-btn-3" hidden>
-                  “Hide My Presence” specifically removes you from a specific connection’s live proximity radar so they do not see you on their map or list during that session. However, it preserves your existing direct chat and connection. This is distinct from “Block”, which permanently severs connection, locks messaging, and prevents any mutual interaction.
+                  “Hide My Presence” specifically removes you from a specific connection’s live proximity radar so they do not observe you on their map or list during active sessions. Crucially, it preserves your existing direct chat and connection record without notifying the peer. This is distinct from “Mute” (which only silences push notifications for incoming messages) and distinct from “Block” (which permanently dissolves the network connection, terminates chat access, and prevents all future visibility).
                 </div>
               </div>
             </div>

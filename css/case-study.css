@@ -10922,5 +10922,324 @@
   }
 }
 
+/* --------------------------------------------------------------------------
+   01.6 User Journeys & Flows — Elevated PM Case Study Components
+   -------------------------------------------------------------------------- */
+.journey-decision-fork {
+  background: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.journey-fork-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0284C7;
+}
+
+.journey-fork-branches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.journey-fork-branch {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.journey-fork-branch.positive {
+  border-left: 3px solid #16A34A;
+}
+
+.journey-fork-branch.negative {
+  border-left: 3px solid #94A3B8;
+}
+
+.journey-branch-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.journey-fork-branch.positive .journey-branch-label {
+  color: #15803D;
+}
+
+.journey-fork-branch.negative .journey-branch-label {
+  color: #64748B;
+}
+
+.journey-branch-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #475569;
+  margin: 0;
+}
+
+/* Alternative Paths Grid & Cards */
+.journey-alt-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.journey-alt-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.journey-alt-card.span-full {
+  grid-column: 1 / -1;
+}
+
+.journey-alt-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.journey-alt-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.journey-route-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 3px 9px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.journey-alt-card h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.journey-alt-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+}
+
+.journey-alt-meta-item strong {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748B;
+  margin-bottom: 2px;
+}
+
+.journey-alt-meta-item span {
+  color: #0F172A;
+  font-weight: 600;
+}
+
+.journey-alt-behavior {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #334155;
+}
+
+.journey-alt-behavior strong {
+  color: #0F172A;
+}
+
+.journey-alt-risk {
+  background: #FFFBF9;
+  border: 1px solid #FFEDD5;
+  border-left: 3px solid #FF3300;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #7C2D12;
+  margin-top: auto;
+}
+
+.journey-alt-risk strong {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FF3300;
+  margin-bottom: 2px;
+}
+
+/* PM Decision Cross-Reference Matrix */
+.journey-matrix-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  margin-bottom: 28px;
+}
+
+.journey-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.journey-matrix-table th {
+  background: #F8FAFC;
+  padding: 12px 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #475569;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.journey-matrix-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #F1F5F9;
+  vertical-align: top;
+  line-height: 1.5;
+  color: #334155;
+}
+
+.journey-matrix-table tr:last-child td {
+  border-bottom: none;
+}
+
+.journey-matrix-step-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #0F172A;
+  color: #FFFFFF;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.journey-decision-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #FF3300;
+  background: #FFF0EB;
+  border: 1px solid rgba(255, 51, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Dark Mode Overrides for Chapter 01.6 Elevated Elements */
+#dashboard-workspace.ds-dark .journey-alt-card,
+#dashboard-workspace.dash-dark .journey-alt-card,
+#dashboard-workspace.ds-dark .journey-matrix-card,
+#dashboard-workspace.dash-dark .journey-matrix-card {
+  background: #1E293B;
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .journey-alt-card h3,
+#dashboard-workspace.dash-dark .journey-alt-card h3,
+#dashboard-workspace.ds-dark .journey-alt-meta-item span,
+#dashboard-workspace.dash-dark .journey-alt-meta-item span,
+#dashboard-workspace.ds-dark .journey-matrix-table td strong,
+#dashboard-workspace.dash-dark .journey-matrix-table td strong,
+#dashboard-workspace.ds-dark .journey-route-pill,
+#dashboard-workspace.dash-dark .journey-route-pill {
+  color: #F8FAFC;
+}
+
+#dashboard-workspace.ds-dark .journey-route-pill,
+#dashboard-workspace.dash-dark .journey-route-pill {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .journey-decision-fork,
+#dashboard-workspace.dash-dark .journey-decision-fork,
+#dashboard-workspace.ds-dark .journey-alt-meta,
+#dashboard-workspace.dash-dark .journey-alt-meta,
+#dashboard-workspace.ds-dark .journey-matrix-table th {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .journey-fork-branch,
+#dashboard-workspace.dash-dark .journey-fork-branch {
+  background: #1E293B;
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .journey-alt-behavior,
+#dashboard-workspace.dash-dark .journey-alt-behavior,
+#dashboard-workspace.ds-dark .journey-matrix-table td,
+#dashboard-workspace.dash-dark .journey-matrix-table td {
+  color: #94A3B8;
+}
+
+#dashboard-workspace.ds-dark .journey-alt-risk,
+#dashboard-workspace.dash-dark .journey-alt-risk {
+  background: #FF330015;
+  border-color: #FF330040;
+  color: #FED7AA;
+}
+
+@media (max-width: 900px) {
+  .journey-fork-branches,
+  .journey-alt-grid,
+  .journey-alt-meta {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 
