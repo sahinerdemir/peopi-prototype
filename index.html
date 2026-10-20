@@ -45,12 +45,12 @@ body{background:#f4f5f7;color:#1c2635}
 .category-group{margin:0;border-bottom:1px solid #e5e9ee;background-color:#ffffff;transition:background-color .18s ease,border-color .18s ease}
 .category-group:last-child{border-bottom:1px solid #e5e9ee}
 .category-group:not(.collapsed),.category-group.is-selected{background-color:#ffffff;border-bottom-color:#e5e9ee}
-.category-toggle{width:100%;display:flex;align-items:center;gap:10px;padding:12px 16px;background:transparent;border:0;color:#64748b;text-align:left;font-family:inherit;font-size:11.5px;font-weight:800;letter-spacing:.03em;cursor:pointer;transition:all .15s ease}
+.category-toggle{width:100%;display:flex;align-items:center;gap:8px;padding:12px 16px;background:transparent;border:0;color:#64748b;text-align:left;font-family:inherit;font-size:11.5px;font-weight:800;letter-spacing:.03em;cursor:pointer;transition:all .15s ease}
 .category-toggle:hover{background:rgba(0,0,0,.03);color:#0f172a}
-.category-toggle .cat-num{display:none!important}
-.category-toggle .category-icon{font-size:18px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary,#64748b);flex-shrink:0;transition:color .15s ease}
-.category-toggle:hover .category-icon{color:#0f172a}
-.category-group:not(.collapsed) .category-toggle .category-icon,.category-group.is-selected .category-toggle .category-icon{color:#ff3300!important}
+.category-toggle .cat-num{font-size:10px;font-weight:800;color:#94a3b8;font-variant-numeric:tabular-nums;min-width:16px;letter-spacing:0;transition:color .15s ease}
+.category-toggle:hover .cat-num{color:#0f172a}
+.category-group:not(.collapsed) .category-toggle .cat-num,.category-group.is-selected .category-toggle .cat-num{color:#ff3300!important}
+.category-toggle .category-icon{font-size:16px;color:#ff3300}
 .category-toggle span:not(.cat-num){flex:1;text-transform:uppercase;color:#475569;font-weight:700;letter-spacing:.04em;transition:color .15s ease}
 .category-toggle:hover span:not(.cat-num){color:#0f172a}
 .category-group:not(.collapsed) .category-toggle span:not(.cat-num),.category-group.is-selected .category-toggle span:not(.cat-num){color:#0f172a;font-weight:800}
@@ -65,9 +65,9 @@ body.dark .category-group,body.dark-theme .category-group,[data-theme="dark"] .c
 body.dark .category-children,body.dark-theme .category-children,[data-theme="dark"] .category-children,.sidebar.dark .category-children{background:#171e28!important}
 body.dark .category-toggle,body.dark-theme .category-toggle,[data-theme="dark"] .category-toggle,.sidebar.dark .category-toggle{color:#94a3b8}
 body.dark .category-toggle:hover,body.dark-theme .category-toggle:hover,[data-theme="dark"] .category-toggle:hover,.sidebar.dark .category-toggle:hover{background:rgba(255,255,255,.05);color:#f8fafc}
-body.dark .category-toggle .category-icon,body.dark-theme .category-toggle .category-icon,[data-theme="dark"] .category-toggle .category-icon,.sidebar.dark .category-toggle .category-icon{color:#94a3b8}
-body.dark .category-toggle:hover .category-icon,body.dark-theme .category-toggle:hover .category-icon,[data-theme="dark"] .category-toggle:hover .category-icon,.sidebar.dark .category-toggle:hover .category-icon{color:#f8fafc}
-body.dark .category-group:not(.collapsed) .category-toggle .category-icon,body.dark .category-group.is-selected .category-toggle .category-icon,body.dark-theme .category-group:not(.collapsed) .category-toggle .category-icon,body.dark-theme .category-group.is-selected .category-toggle .category-icon,[data-theme="dark"] .category-group:not(.collapsed) .category-toggle .category-icon,[data-theme="dark"] .category-group.is-selected .category-toggle .category-icon,.sidebar.dark .category-group:not(.collapsed) .category-toggle .category-icon,.sidebar.dark .category-group.is-selected .category-toggle .category-icon{color:#ff3300!important}
+body.dark .category-toggle .cat-num,body.dark-theme .category-toggle .cat-num,[data-theme="dark"] .category-toggle .cat-num,.sidebar.dark .category-toggle .cat-num{color:#94a3b8}
+body.dark .category-toggle:hover .cat-num,body.dark-theme .category-toggle:hover .cat-num,[data-theme="dark"] .category-toggle:hover .cat-num,.sidebar.dark .category-toggle:hover .cat-num{color:#f8fafc}
+body.dark .category-group:not(.collapsed) .category-toggle .cat-num,body.dark .category-group.is-selected .category-toggle .cat-num,body.dark-theme .category-group:not(.collapsed) .category-toggle .cat-num,body.dark-theme .category-group.is-selected .category-toggle .cat-num,[data-theme="dark"] .category-group:not(.collapsed) .category-toggle .cat-num,[data-theme="dark"] .category-group.is-selected .category-toggle .cat-num,.sidebar.dark .category-group:not(.collapsed) .category-toggle .cat-num,.sidebar.dark .category-group.is-selected .category-toggle .cat-num{color:#ff3300!important}
 body.dark .category-toggle span:not(.cat-num),body.dark-theme .category-toggle span:not(.cat-num),[data-theme="dark"] .category-toggle span:not(.cat-num),.sidebar.dark .category-toggle span:not(.cat-num){color:#cbd5e1}
 body.dark .category-toggle:hover span:not(.cat-num),body.dark-theme .category-toggle:hover span:not(.cat-num),[data-theme="dark"] .category-toggle:hover span:not(.cat-num),.sidebar.dark .category-toggle:hover span:not(.cat-num){color:#f8fafc}
 body.dark .category-group:not(.collapsed) .category-toggle span:not(.cat-num),body.dark .category-group.is-selected .category-toggle span:not(.cat-num),body.dark-theme .category-group:not(.collapsed) .category-toggle span:not(.cat-num),body.dark-theme .category-group.is-selected .category-toggle span:not(.cat-num),[data-theme="dark"] .category-group:not(.collapsed) .category-toggle span:not(.cat-num),[data-theme="dark"] .category-group.is-selected .category-toggle span:not(.cat-num),.sidebar.dark .category-group:not(.collapsed) .category-toggle span:not(.cat-num),.sidebar.dark .category-group.is-selected .category-toggle span:not(.cat-num){color:#f8fafc}
@@ -4034,7 +4034,7 @@ body.notes-open #dash-notes-toggle i {
 .phone .report-target-badge{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);margin-top:4px;letter-spacing:-.1px}
 .phone .welcome-content{padding:0 26px 26px}.phone .welcome-content p{font-size:16px;line-height:1.6;margin-bottom:22px}.phone .welcome-content>small{font-size:13px;line-height:1.5}.phone .welcome-content h1{font-size:34px}
 .phone .auth-social-btn{font-size:15px;background:var(--card);color:var(--ink)}.phone .auth-or-divider{font-size:13px}.phone .auth-or-divider span{font-size:13px}
-#setup{background:var(--bg)}.phone #setup .setup{position:absolute;inset:0;overflow-y:auto;padding:22px 24px 26px;scrollbar-width:none;background:var(--bg)}.phone #setup .setupfoot{position:static;margin-top:24px;padding:0;background:none}.phone #setup .title{font-size:30px;line-height:1.2;letter-spacing:-1px;margin:20px 0 10px}.phone #setup .desc{font-size:15px;line-height:1.5}.phone #setup .back{min-height:44px;font-size:15px}.phone #setup .sectionlabel{margin:23px 0 12px}.phone #setup .option{font-size:16px;line-height:1.4;min-height:56px;border-radius:18px;box-shadow:var(--ui-shadow)}.phone #setup .setup-duration-picker{display:flex;flex-direction:column;gap:14px;margin-bottom:12px}.phone #setup .setup-duration-input-wrap{display:flex;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:18px;box-shadow:var(--ui-shadow);padding:4px 8px 4px 18px;min-height:56px;gap:10px;transition:border-color .15s ease}.phone #setup .setup-duration-input-wrap:focus-within{border-color:var(--accent)}.phone #setup #setup-duration-val{flex:1;min-width:0;background:transparent;border:0;color:var(--ink);font-size:18px;font-weight:700;padding:8px 0;outline:none;-moz-appearance:textfield}.phone #setup #setup-duration-val::-webkit-outer-spin-button,.phone #setup #setup-duration-val::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.phone #setup .setup-duration-select-wrap{position:relative;display:flex;align-items:center}.phone #setup #setup-duration-unit{appearance:none;-webkit-appearance:none;background:var(--muted);border:1px solid var(--line);border-radius:12px;color:var(--ink);font-size:15px;font-weight:700;min-height:44px;padding:0 34px 0 14px;cursor:pointer;outline:none}.phone #setup .setup-unit-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--sub);font-size:14px}.phone #setup .setup-preset-container{display:flex;flex-direction:column;gap:8px;margin-top:2px}.phone #setup .setup-preset-hint{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:0.3px;text-transform:uppercase}.phone #setup .durations{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.phone #setup .durations button{font-size:15px;border-radius:16px;min-height:48px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:700;transition:all .15s ease;cursor:pointer;box-shadow:var(--ui-shadow)}.phone #setup .durations button.chosen{background:var(--ink);color:var(--bg);border-color:var(--ink)}.phone #setup .privacy{padding:16px;border-radius:18px;margin-top:18px}.phone #setup .privacy strong{font-size:14px;line-height:1.5}.phone #setup .privacy p{font-size:13px;line-height:1.5}
+#setup{background:var(--bg)}.phone #setup .setup{position:absolute;inset:0;overflow-y:auto;padding:22px 24px 26px;scrollbar-width:none;background:var(--bg)}.phone #setup .setupfoot{position:static;margin-top:24px;padding:0;background:none}.phone #setup .title{font-size:30px;line-height:1.2;letter-spacing:-1px;margin:20px 0 10px}.phone #setup .desc{font-size:15px;line-height:1.5}.phone #setup .back{min-height:44px;font-size:15px}.phone #setup .sectionlabel{margin:23px 0 12px}.phone #setup .option{font-size:16px;line-height:1.4;min-height:56px;border-radius:18px;box-shadow:var(--ui-shadow)}.phone #setup .setup-duration-picker{display:flex;flex-direction:column;gap:14px;margin-bottom:12px}.phone #setup .setup-duration-input-wrap{display:flex;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:18px;box-shadow:var(--ui-shadow);padding:4px 8px 4px 18px;min-height:56px;gap:10px;transition:border-color .15s ease}.phone #setup .setup-duration-input-wrap:focus-within{border-color:var(--accent)}.phone #setup #setup-duration-val{flex:1;min-width:0;background:transparent;border:0;color:var(--ink);font-size:18px;font-weight:700;padding:8px 0;outline:none;-moz-appearance:textfield}.phone #setup #setup-duration-val::-webkit-outer-spin-button,.phone #setup #setup-duration-val::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.phone #setup .setup-duration-select-wrap{position:relative;display:flex;align-items:center}.phone #setup #setup-duration-unit{appearance:none;-webkit-appearance:none;background:var(--muted);border:1px solid var(--line);border-radius:12px;color:var(--ink);font-size:15px;font-weight:700;min-height:44px;padding:0 34px 0 14px;cursor:pointer;outline:none}.phone #setup .setup-unit-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--sub);font-size:14px}.phone #setup .setup-preset-container{display:flex;flex-direction:column;gap:8px;margin-top:2px}.phone #setup .setup-preset-hint{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:0.3px;text-transform:uppercase}.durations,.phone #setup .durations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}.durations button,.phone #setup .durations button{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;height:78px;min-height:78px;padding:12px 14px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-weight:700;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease;cursor:pointer;box-shadow:var(--ui-shadow);text-align:left;box-sizing:border-box}.durations button.chosen,.phone #setup .durations button.chosen{background:var(--card);color:var(--ink);border:2px solid #ff3300;padding:11.5px 13.5px;box-shadow:0 4px 14px rgba(255,51,0,.08)}.durations button .dur-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:4px}.durations button .dur-num{font-size:22px;font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:var(--ink);font-variant-numeric:tabular-nums}.durations button .dur-check{font-size:20px;width:20px;height:20px;line-height:1;color:#ff3300;opacity:0;transform:scale(.85);transition:opacity .15s ease,transform .15s ease;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center}.durations button.chosen .dur-check{opacity:1;transform:scale(1)}.durations button .dur-unit{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);line-height:1.2}.durations button.chosen .dur-unit{color:var(--ink)}.phone #setup .privacy{padding:16px;border-radius:18px;margin-top:18px}.phone #setup .privacy strong{font-size:14px;line-height:1.5}.phone #setup .privacy p{font-size:13px;line-height:1.5}
 .phone #closed .title{font-size:28px;line-height:1.2;letter-spacing:-.8px;margin:10px 0 6px}.phone #closed .desc{font-size:15px;line-height:1.5;color:var(--sub)}
 .phone #closed .completeness{padding:16px 18px;border-radius:22px;background:var(--card);box-shadow:var(--ui-shadow);border:0;margin-bottom:14px}.phone #closed .completehead strong{font-size:15px}.phone #closed .completehead .complete-pct{color:var(--accent)}.phone #closed .completehead small{font-size:13px;line-height:1.4;color:var(--sub)}.phone #closed .completefoot{font-size:14px}
 .phone #closed .bottomarea{top:auto;bottom:94px;padding:16px 22px 0;background:linear-gradient(to top,var(--bg) 85%,transparent)}.phone #closed .map{bottom:270px;min-height:220px}.phone #closed .mapbadge{font-size:13px}
@@ -16075,7 +16075,7 @@ body.notes-open #dash-notes-toggle i {
 }
 
 /* ==========================================================================
-   Problem & Opportunity Page Styles (Investment & Product Dossier)
+   Problem & Opportunity Page Styles (01.2 PM Case Study Chapter)
    ========================================================================== */
 :root {
   --prob-svg-bg: #F8FAFC;
@@ -16084,16 +16084,20 @@ body.notes-open #dash-notes-toggle i {
   --prob-svg-text: #0F172A;
   --prob-svg-muted: #64748B;
   --prob-svg-subtext: #475569;
+  --prob-svg-accent-bg: #FFF5F2;
+  --prob-svg-accent-border: #FFD8CC;
 }
 
 #dashboard-workspace.ds-dark,
 #dashboard-workspace.dash-dark {
-  --prob-svg-bg: #111827;
-  --prob-svg-border: #283141;
-  --prob-svg-card-bg: #1B222D;
-  --prob-svg-text: #F1F5F9;
+  --prob-svg-bg: #141B26;
+  --prob-svg-border: #2D3748;
+  --prob-svg-card-bg: #18202C;
+  --prob-svg-text: #F8FAFC;
   --prob-svg-muted: #94A3B8;
   --prob-svg-subtext: #CBD5E1;
+  --prob-svg-accent-bg: #2D1A16;
+  --prob-svg-accent-border: #4D261C;
 }
 
 .prob-container {
@@ -16102,16 +16106,11 @@ body.notes-open #dash-notes-toggle i {
 }
 
 .prob-sec {
-  margin-bottom: clamp(48px, 5vw, 60px);
+  margin-bottom: clamp(44px, 4.5vw, 56px);
 }
 
 .prob-sec-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
   margin-bottom: 24px;
-  flex-wrap: wrap;
 }
 
 .prob-sec-kicker {
@@ -16125,29 +16124,35 @@ body.notes-open #dash-notes-toggle i {
 }
 
 .prob-sec-title {
-  font-size: clamp(22px, 2.6vw, 26px);
+  font-size: clamp(22px, 2.5vw, 26px);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #0F172A;
-  margin: 0;
+  margin: 0 0 8px 0;
   line-height: 1.25;
 }
 
-/* Status Pill - Wrapping Allowed, No Overflow */
+.prob-sec-lead {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+  max-width: 780px;
+}
+
+/* Status & Framing Pills */
 .prob-pill-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  gap: 7px;
+  font-size: 11.5px;
   font-weight: 700;
-  color: #FF3300;
-  background: #FFF5F2;
-  border: 1px solid #FFE2D9;
-  padding: 6px 14px;
+  color: #475569;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 5px 12px;
   border-radius: 999px;
-  line-height: 1.45;
-  max-width: 100%;
-  box-sizing: border-box;
+  line-height: 1.4;
 }
 
 .prob-pill-dot {
@@ -16158,575 +16163,890 @@ body.notes-open #dash-notes-toggle i {
   flex-shrink: 0;
 }
 
-/* 1. Hero Card - Enhanced Editorial Hierarchy & Natural Height */
-.prob-hero-card {
+/* --------------------------------------------------------------------------
+   01. The Problem: Editorial Split + Signal Layers + 4 Unknowns Ledger
+   -------------------------------------------------------------------------- */
+.prob-problem-surface {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 20px;
-  padding: clamp(32px, 3.5vw, 40px);
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 36px;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.prob-hero-content {
+  border-radius: 18px;
+  padding: 30px 32px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 28px;
 }
 
-.prob-eyebrow {
-  font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #FF3300;
-  margin: 0 0 14px 0;
-  display: block;
+.prob-problem-split {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+  align-items: stretch;
 }
 
-.prob-hero-headline {
-  font-size: clamp(32px, 3.6vw, 40px);
+.prob-statement-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.prob-statement-quote {
+  font-size: clamp(19px, 2vw, 22px);
   font-weight: 800;
-  line-height: 1.14;
-  letter-spacing: -0.035em;
+  line-height: 1.38;
+  letter-spacing: -0.025em;
   color: #0F172A;
-  margin: 0 0 18px 0;
+  margin: 0;
+  padding-left: 18px;
+  border-left: 3px solid #FF3300;
 }
 
-.prob-hero-desc {
-  font-size: 15.5px;
+.prob-statement-narrative {
+  font-size: 14.5px;
   line-height: 1.65;
   color: #475569;
   margin: 0;
 }
 
-/* 2 & 4 & 5. Grids */
-.prob-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.prob-layer-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
 }
 
-.prob-grid-4 {
+.prob-layer-row {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.prob-layer-row.missing-layer {
+  background: #FFF5F2;
+  border-color: #FFD8CC;
+}
+
+.prob-layer-info strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 2px;
+}
+
+.prob-layer-info span {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #64748B;
+}
+
+.prob-layer-status {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+}
+
+.prob-layer-row.missing-layer .prob-layer-status {
+  background: #FF3300;
+  border-color: #FF3300;
+  color: #FFFFFF;
+}
+
+.prob-unknowns-Wrap {
+  border-top: 1px solid #E2E8F0;
+  padding-top: 24px;
+}
+
+.prob-unknowns-heading {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+  margin: 0 0 16px 0;
+}
+
+.prob-unknowns-ledger {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 16px;
 }
 
-.prob-grid-2 {
+.prob-unknown-item {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prob-unknown-index {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FF3300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prob-unknown-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.prob-unknown-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #64748B;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   02. A Real-World Scenario: Architectural Visual + Narrative Strip
+   -------------------------------------------------------------------------- */
+.prob-scenario-showcase {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.prob-scenario-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.prob-scenario-context {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prob-scenario-context i {
+  color: #FF3300;
+  font-size: 16px;
+}
+
+.prob-scenario-visual {
+  width: 100%;
+  overflow: hidden;
+}
+
+.prob-scenario-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.prob-scenario-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.prob-scenario-step {
+  padding: 14px 16px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prob-scenario-step-num {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.prob-scenario-step strong {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.prob-scenario-step span {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #64748B;
+}
+
+/* --------------------------------------------------------------------------
+   03. Why Existing Solutions Fall Short: Comparative Ledger
+   -------------------------------------------------------------------------- */
+.prob-comparison-ledger {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+}
+
+.prob-ledger-head {
+  display: grid;
+  grid-template-columns: 1.05fr 1.25fr 1.35fr 1fr;
+  gap: 20px;
+  padding: 14px 26px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.prob-ledger-row {
+  display: grid;
+  grid-template-columns: 1.05fr 1.25fr 1.35fr 1fr;
+  gap: 20px;
+  padding: 24px 26px;
+  border-bottom: 1px solid #E2E8F0;
+  align-items: start;
+}
+
+.prob-ledger-row:last-child {
+  border-bottom: none;
+}
+
+.prob-ledger-approach {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.prob-ledger-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.prob-ledger-approach h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.prob-ledger-approach span {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.prob-ledger-col-label {
+  display: none;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 4px;
+}
+
+.prob-ledger-text {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}
+
+.prob-ledger-signals {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prob-signal-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+}
+
+.prob-signal-chip strong {
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.prob-signal-chip.supported strong {
+  color: #16A34A;
+}
+
+.prob-signal-chip.partial strong {
+  color: #D97706;
+}
+
+.prob-signal-chip.missing strong {
+  color: #64748B;
+}
+
+/* --------------------------------------------------------------------------
+   04. The Opportunity: 4-Pillar Convergence Panel
+   -------------------------------------------------------------------------- */
+.prob-opportunity-panel {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 30px 32px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.prob-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.prob-pillar-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prob-pillar-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prob-pillar-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #FFF5F2;
+  border: 1px solid #FFE2D9;
+  color: #FF3300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.prob-pillar-box h4 {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.prob-pillar-box p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #64748B;
+  margin: 0;
+}
+
+.prob-convergence-card {
+  background: linear-gradient(180deg, #FFF8F6 0%, #FFFFFF 100%);
+  border: 1px solid #FFD8CC;
+  border-radius: 16px;
+  padding: 26px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.prob-convergence-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.prob-convergence-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 6px 0 10px 0;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.prob-convergence-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #334155;
+  margin: 0;
+}
+
+.prob-convergence-outcome {
+  padding-top: 16px;
+  border-top: 1px solid #FFE2D9;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prob-convergence-outcome-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.prob-convergence-outcome-row i {
+  color: #FF3300;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   05. Design Constraints: 5-Row Constraint -> Implication Specification
+   -------------------------------------------------------------------------- */
+.prob-constraints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prob-constraint-row {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 210px 1fr 1.15fr;
+  gap: 24px;
+  align-items: start;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.015);
+}
+
+.prob-constraint-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.prob-constraint-num {
+  font-size: 12px;
+  font-weight: 800;
+  color: #FF3300;
+  background: #FFF5F2;
+  border: 1px solid #FFE2D9;
+  border-radius: 8px;
+  padding: 4px 9px;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.prob-constraint-head h4 {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.prob-constraint-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prob-constraint-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.prob-constraint-label.response {
+  color: #0F172A;
+}
+
+.prob-constraint-text {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   06. Problem Statement & Pilot Hypothesis Dossier
+   -------------------------------------------------------------------------- */
+.prob-synthesis-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-/* Static Informative Cards - Base */
-.prob-card {
+.prob-synthesis-card {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 20px;
-  padding: 28px 26px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
-}
-
-.prob-card-featured {
-  background: #FFFFFF;
-  border: 1px solid #FFECE5;
-}
-
-.prob-hypothesis-subgrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 22px;
-  padding-top: 20px;
-  border-top: 1px solid #FFE2D9;
-}
-
-.prob-hypothesis-col strong {
-  display: block;
-  font-size: 14px;
-  font-weight: 750;
-  color: #0F172A;
-  margin-bottom: 6px;
-}
-
-.prob-hypothesis-col span {
-  font-size: 14px;
-  color: #64748B;
-  line-height: 1.55;
-}
-
-.prob-pilot-list {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 14.5px;
-  color: #475569;
-  line-height: 1.6;
-}
-
-.prob-pilot-list li {
-  margin-bottom: 8px;
-}
-
-.prob-pilot-list li:last-child {
-  margin-bottom: 0;
-}
-
-/* Friction Cards - Distinct Top Accent & Numbering */
-.prob-friction-card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-top: 3px solid #FF3300;
   border-radius: 18px;
-  padding: 26px 24px;
+  padding: 28px 30px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
 }
 
-.prob-friction-top {
+.prob-synthesis-card.hypothesis-card {
+  border-top: 3px solid #FF3300;
+}
+
+.prob-synthesis-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  margin-bottom: 14px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.prob-friction-num {
-  font-size: 13px;
-  font-weight: 800;
-  color: #FF3300;
-  font-family: ui-monospace, SFMono-Regular, monospace;
-}
-
-.prob-friction-tag {
-  font-size: 10px;
+.prob-synthesis-kicker {
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #64748B;
-  background: #F1F5F9;
-  padding: 3px 8px;
-  border-radius: 6px;
+  color: #FF3300;
 }
 
-/* Risk Cards - Structured Domains & Mitigations */
-.prob-risk-card {
+.prob-unvalidated-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #B45309;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.prob-synthesis-quote {
+  font-size: clamp(17px, 1.8vw, 19.5px);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin: 0;
+}
+
+.prob-synthesis-foot {
+  padding-top: 14px;
+  border-top: 1px solid #E2E8F0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #64748B;
+  margin: 0;
+}
+
+.prob-synthesis-foot strong {
+  color: #334155;
+}
+
+.prob-next-banner {
+  margin-top: 22px;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 16px;
-  padding: 22px 20px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.02);
-}
-
-.prob-risk-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 10.5px;
-  font-weight: 750;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #475569;
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  padding: 2px 8px;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  align-self: flex-start;
-}
-
-.prob-risk-test {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px dashed #E2E8F0;
-  font-size: 13px;
-  color: #64748B;
-  line-height: 1.5;
-}
-
-.prob-risk-test strong {
-  color: #334155;
-}
-
-.prob-status-pill {
-  font-size: 11px;
-  font-weight: 750;
-  color: #FF3300;
-  background: #FFF5F2;
-  border: 1px solid #FFE2D9;
-  padding: 3px 10px;
-  border-radius: 999px;
-  letter-spacing: 0.02em;
-}
-
-.prob-threshold-list {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 14.5px;
-  color: #475569;
-  line-height: 1.6;
-}
-
-.prob-threshold-list li {
-  margin-bottom: 8px;
-}
-
-.prob-threshold-list li:last-child {
-  margin-bottom: 0;
-}
-
-.prob-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #F8FAFC;
-  color: #475569;
-  border: 1px solid #E2E8F0;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  margin-bottom: 18px;
-  flex-shrink: 0;
-}
-
-.prob-card-icon.featured {
-  background: #FFF5F2;
-  color: #FF3300;
-  border-color: #FFE2D9;
-}
-
-.prob-card-title {
-  font-size: 17px;
-  font-weight: 800;
-  color: #0F172A;
-  margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-}
-
-.prob-card-text {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #475569;
-  margin: 0;
-}
-
-/* 3. Scenario Card */
-.prob-scenario-card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 22px;
-  padding: 32px;
-  display: grid;
-  grid-template-columns: 1.15fr 1.35fr;
-  gap: 32px;
-  align-items: center;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
-}
-
-.prob-scenario-story {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
-}
-
-.prob-scenario-tag {
-  align-self: flex-start;
-}
-
-.prob-story-quote {
-  font-size: 17px;
-  line-height: 1.65;
-  font-weight: 500;
-  color: #1E293B;
-  margin: 0;
-  padding: 0;
-  border: none;
-  font-style: normal;
-}
-
-.prob-scenario-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.prob-scenario-svg {
-  width: 100%;
-  max-width: 480px;
-  height: auto;
-  display: block;
-}
-
-/* Supporting Callout Box (14px) */
-.prob-callout {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-left: 3px solid #FF3300;
-  border-radius: 12px;
-  padding: 16px 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #334155;
-  margin-top: 24px;
-}
-
-.prob-callout i {
-  color: #FF3300;
-  font-size: 18px;
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-/* Supporting Caption Box (14px) */
-.prob-caption-box {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #64748B;
-  margin-top: 24px;
-}
-
-.prob-caption-box i {
-  color: #94A3B8;
-  font-size: 17px;
-  flex-shrink: 0;
-}
-
-/* Closing Card */
-.prob-closing-card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 20px;
-  padding: 28px 32px;
+  padding: 22px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
-  margin-top: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
 }
 
-.prob-closing-content {
+.prob-next-copy {
   display: flex;
   flex-direction: column;
+  gap: 4px;
+  max-width: 640px;
 }
 
-.prob-closing-kicker {
+.prob-next-copy span {
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #FF3300;
-  margin-bottom: 6px;
 }
 
-.prob-closing-text {
+.prob-next-copy strong {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 800;
   color: #0F172A;
+}
+
+.prob-next-copy p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #64748B;
   margin: 0;
-  line-height: 1.55;
 }
 
 /* ==========================================================================
-   Dark Theme Overrides for Problem & Opportunity
+   Dark Theme Overrides for 01.2 Problem & Opportunity
    ========================================================================== */
-#dashboard-workspace.ds-dark .prob-hero-card,
-#dashboard-workspace.dash-dark .prob-hero-card,
-#dashboard-workspace.ds-dark .prob-card,
-#dashboard-workspace.dash-dark .prob-card,
-#dashboard-workspace.ds-dark .prob-scenario-card,
-#dashboard-workspace.dash-dark .prob-scenario-card,
-#dashboard-workspace.ds-dark .prob-closing-card,
-#dashboard-workspace.dash-dark .prob-closing-card {
-  background: #171E28;
-  border-color: #283141;
+#dashboard-workspace.ds-dark .prob-problem-surface,
+#dashboard-workspace.dash-dark .prob-problem-surface,
+#dashboard-workspace.ds-dark .prob-scenario-showcase,
+#dashboard-workspace.dash-dark .prob-scenario-showcase,
+#dashboard-workspace.ds-dark .prob-comparison-ledger,
+#dashboard-workspace.dash-dark .prob-comparison-ledger,
+#dashboard-workspace.ds-dark .prob-opportunity-panel,
+#dashboard-workspace.dash-dark .prob-opportunity-panel,
+#dashboard-workspace.ds-dark .prob-constraint-row,
+#dashboard-workspace.dash-dark .prob-constraint-row,
+#dashboard-workspace.ds-dark .prob-synthesis-card,
+#dashboard-workspace.dash-dark .prob-synthesis-card,
+#dashboard-workspace.ds-dark .prob-next-banner,
+#dashboard-workspace.dash-dark .prob-next-banner {
+  background: #18202C;
+  border-color: #2D3748;
   box-shadow: none;
-}
-
-#dashboard-workspace.ds-dark .prob-card-featured,
-#dashboard-workspace.dash-dark .prob-card-featured {
-  background: #1B222D;
-  border-color: #382928;
 }
 
 #dashboard-workspace.ds-dark .prob-sec-title,
 #dashboard-workspace.dash-dark .prob-sec-title,
-#dashboard-workspace.ds-dark .prob-hero-headline,
-#dashboard-workspace.dash-dark .prob-hero-headline,
-#dashboard-workspace.ds-dark .prob-card-title,
-#dashboard-workspace.dash-dark .prob-card-title,
-#dashboard-workspace.ds-dark .prob-story-quote,
-#dashboard-workspace.dash-dark .prob-story-quote,
-#dashboard-workspace.ds-dark .prob-closing-text,
-#dashboard-workspace.dash-dark .prob-closing-text {
-  color: #F1F5F9;
+#dashboard-workspace.ds-dark .prob-statement-quote,
+#dashboard-workspace.dash-dark .prob-statement-quote,
+#dashboard-workspace.ds-dark .prob-layer-info strong,
+#dashboard-workspace.dash-dark .prob-layer-info strong,
+#dashboard-workspace.ds-dark .prob-unknown-title,
+#dashboard-workspace.dash-dark .prob-unknown-title,
+#dashboard-workspace.ds-dark .prob-scenario-step strong,
+#dashboard-workspace.dash-dark .prob-scenario-step strong,
+#dashboard-workspace.ds-dark .prob-ledger-approach h4,
+#dashboard-workspace.dash-dark .prob-ledger-approach h4,
+#dashboard-workspace.ds-dark .prob-pillar-box h4,
+#dashboard-workspace.dash-dark .prob-pillar-box h4,
+#dashboard-workspace.ds-dark .prob-convergence-title,
+#dashboard-workspace.dash-dark .prob-convergence-title,
+#dashboard-workspace.ds-dark .prob-constraint-head h4,
+#dashboard-workspace.dash-dark .prob-constraint-head h4,
+#dashboard-workspace.ds-dark .prob-constraint-label.response,
+#dashboard-workspace.dash-dark .prob-constraint-label.response,
+#dashboard-workspace.ds-dark .prob-synthesis-quote,
+#dashboard-workspace.dash-dark .prob-synthesis-quote,
+#dashboard-workspace.ds-dark .prob-next-copy strong,
+#dashboard-workspace.dash-dark .prob-next-copy strong {
+  color: #F8FAFC;
 }
 
-#dashboard-workspace.ds-dark .prob-hero-desc,
-#dashboard-workspace.dash-dark .prob-hero-desc,
-#dashboard-workspace.ds-dark .prob-card-text,
-#dashboard-workspace.dash-dark .prob-card-text {
+#dashboard-workspace.ds-dark .prob-sec-lead,
+#dashboard-workspace.dash-dark .prob-sec-lead,
+#dashboard-workspace.ds-dark .prob-statement-narrative,
+#dashboard-workspace.dash-dark .prob-statement-narrative,
+#dashboard-workspace.ds-dark .prob-layer-info span,
+#dashboard-workspace.dash-dark .prob-layer-info span,
+#dashboard-workspace.ds-dark .prob-unknown-desc,
+#dashboard-workspace.dash-dark .prob-unknown-desc,
+#dashboard-workspace.ds-dark .prob-scenario-context,
+#dashboard-workspace.dash-dark .prob-scenario-context,
+#dashboard-workspace.ds-dark .prob-scenario-step span,
+#dashboard-workspace.dash-dark .prob-scenario-step span,
+#dashboard-workspace.ds-dark .prob-ledger-text,
+#dashboard-workspace.dash-dark .prob-ledger-text,
+#dashboard-workspace.ds-dark .prob-pillar-box p,
+#dashboard-workspace.dash-dark .prob-pillar-box p,
+#dashboard-workspace.ds-dark .prob-convergence-desc,
+#dashboard-workspace.dash-dark .prob-convergence-desc,
+#dashboard-workspace.ds-dark .prob-constraint-text,
+#dashboard-workspace.dash-dark .prob-constraint-text,
+#dashboard-workspace.ds-dark .prob-synthesis-foot,
+#dashboard-workspace.dash-dark .prob-synthesis-foot,
+#dashboard-workspace.ds-dark .prob-next-copy p,
+#dashboard-workspace.dash-dark .prob-next-copy p {
   color: #94A3B8;
 }
 
-#dashboard-workspace.ds-dark .prob-card-icon,
-#dashboard-workspace.dash-dark .prob-card-icon {
-  background: #222A37;
-  border-color: #2E3847;
-  color: #94A3B8;
-}
-
-#dashboard-workspace.ds-dark .prob-card-icon.featured,
-#dashboard-workspace.dash-dark .prob-card-icon.featured {
-  background: #2D1F1D;
-  border-color: #4A2B27;
-  color: #FF3300;
-}
-
-#dashboard-workspace.ds-dark .prob-callout,
-#dashboard-workspace.dash-dark .prob-callout,
-#dashboard-workspace.ds-dark .prob-caption-box,
-#dashboard-workspace.dash-dark .prob-caption-box {
-  background: #1B222D;
-  border-color: #283141;
-  color: #CBD5E1;
-}
-
+#dashboard-workspace.ds-dark .prob-layer-row,
+#dashboard-workspace.dash-dark .prob-layer-row,
+#dashboard-workspace.ds-dark .prob-unknown-item,
+#dashboard-workspace.dash-dark .prob-unknown-item,
+#dashboard-workspace.ds-dark .prob-scenario-step,
+#dashboard-workspace.dash-dark .prob-scenario-step,
+#dashboard-workspace.ds-dark .prob-ledger-head,
+#dashboard-workspace.dash-dark .prob-ledger-head,
+#dashboard-workspace.ds-dark .prob-ledger-icon,
+#dashboard-workspace.dash-dark .prob-ledger-icon,
+#dashboard-workspace.ds-dark .prob-signal-chip,
+#dashboard-workspace.dash-dark .prob-signal-chip,
+#dashboard-workspace.ds-dark .prob-pillar-box,
+#dashboard-workspace.dash-dark .prob-pillar-box,
 #dashboard-workspace.ds-dark .prob-pill-tag,
 #dashboard-workspace.dash-dark .prob-pill-tag {
-  background: #2D1F1D;
-  border-color: #4A2B27;
-  color: #FF3300;
-}
-
-#dashboard-workspace.ds-dark .prob-friction-card,
-#dashboard-workspace.dash-dark .prob-friction-card,
-#dashboard-workspace.ds-dark .prob-risk-card,
-#dashboard-workspace.dash-dark .prob-risk-card {
-  background: #171E28;
-  border-color: #283141;
-  box-shadow: none;
-}
-
-#dashboard-workspace.ds-dark .prob-friction-tag,
-#dashboard-workspace.dash-dark .prob-friction-tag,
-#dashboard-workspace.ds-dark .prob-risk-badge,
-#dashboard-workspace.dash-dark .prob-risk-badge {
-  background: #222A37;
-  border-color: #2E3847;
-  color: #94A3B8;
-}
-
-#dashboard-workspace.ds-dark .prob-risk-test,
-#dashboard-workspace.dash-dark .prob-risk-test {
-  border-top-color: #2E3847;
-  color: #94A3B8;
-}
-
-#dashboard-workspace.ds-dark .prob-risk-test strong,
-#dashboard-workspace.dash-dark .prob-risk-test strong {
+  background: #141B26;
+  border-color: #283344;
   color: #CBD5E1;
 }
 
-#dashboard-workspace.ds-dark .prob-status-pill,
-#dashboard-workspace.dash-dark .prob-status-pill {
-  background: #2D1F1D;
-  border-color: #4A2B27;
+#dashboard-workspace.ds-dark .prob-layer-row.missing-layer,
+#dashboard-workspace.dash-dark .prob-layer-row.missing-layer,
+#dashboard-workspace.ds-dark .prob-convergence-card,
+#dashboard-workspace.dash-dark .prob-convergence-card {
+  background: #231C1F;
+  border-color: #4A261D;
+}
+
+#dashboard-workspace.ds-dark .prob-layer-status,
+#dashboard-workspace.dash-dark .prob-layer-status {
+  background: #18202C;
+  border-color: #2D3748;
+  color: #CBD5E1;
+}
+
+#dashboard-workspace.ds-dark .prob-pillar-icon,
+#dashboard-workspace.dash-dark .prob-pillar-icon,
+#dashboard-workspace.ds-dark .prob-constraint-num,
+#dashboard-workspace.dash-dark .prob-constraint-num {
+  background: #2D1A16;
+  border-color: #4D261C;
   color: #FF3300;
 }
 
-#dashboard-workspace.ds-dark .prob-hypothesis-subgrid,
-#dashboard-workspace.dash-dark .prob-hypothesis-subgrid {
-  border-top-color: #382928;
+#dashboard-workspace.ds-dark .prob-unknowns-Wrap,
+#dashboard-workspace.dash-dark .prob-unknowns-Wrap,
+#dashboard-workspace.ds-dark .prob-scenario-topbar,
+#dashboard-workspace.dash-dark .prob-scenario-topbar,
+#dashboard-workspace.ds-dark .prob-ledger-row,
+#dashboard-workspace.dash-dark .prob-ledger-row,
+#dashboard-workspace.ds-dark .prob-synthesis-foot,
+#dashboard-workspace.dash-dark .prob-synthesis-foot {
+  border-color: #2D3748;
 }
 
-#dashboard-workspace.ds-dark .prob-hypothesis-col strong,
-#dashboard-workspace.dash-dark .prob-hypothesis-col strong {
-  color: #F1F5F9;
+#dashboard-workspace.ds-dark .prob-convergence-outcome,
+#dashboard-workspace.dash-dark .prob-convergence-outcome {
+  border-top-color: #4A261D;
 }
 
-#dashboard-workspace.ds-dark .prob-hypothesis-col span,
-#dashboard-workspace.dash-dark .prob-hypothesis-col span,
-#dashboard-workspace.ds-dark .prob-pilot-list,
-#dashboard-workspace.dash-dark .prob-pilot-list,
-#dashboard-workspace.ds-dark .prob-threshold-list,
-#dashboard-workspace.dash-dark .prob-threshold-list {
-  color: #94A3B8;
+#dashboard-workspace.ds-dark .prob-convergence-outcome-row,
+#dashboard-workspace.dash-dark .prob-convergence-outcome-row,
+#dashboard-workspace.ds-dark .prob-synthesis-foot strong,
+#dashboard-workspace.dash-dark .prob-synthesis-foot strong {
+  color: #E2E8F0;
 }
 
-#dashboard-workspace.ds-dark .prob-threshold-list strong,
-#dashboard-workspace.dash-dark .prob-threshold-list strong {
-  color: #F1F5F9;
+#dashboard-workspace.ds-dark .prob-unvalidated-badge,
+#dashboard-workspace.dash-dark .prob-unvalidated-badge {
+  background: #2E2314;
+  border-color: #5C4018;
+  color: #FBBF24;
 }
 
 /* ==========================================================================
-   Responsive Breakpoints for Problem & Opportunity
+   Responsive Breakpoints for 01.2 Problem & Opportunity
    ========================================================================== */
-@media (max-width: 1024px) {
-  .prob-hero-card {
+@media (max-width: 1100px) {
+  .prob-problem-split,
+  .prob-opportunity-panel {
     grid-template-columns: 1fr;
-    gap: 28px;
   }
-  .prob-scenario-card {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  .prob-grid-4 {
+  .prob-unknowns-ledger,
+  .prob-scenario-steps {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .prob-ledger-head {
+    display: none;
+  }
+  .prob-ledger-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .prob-ledger-col-label {
+    display: block;
+  }
+  .prob-constraint-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
 @media (max-width: 768px) {
-  .prob-grid-3,
-  .prob-grid-2,
-  .prob-hypothesis-subgrid {
+  .prob-unknowns-ledger,
+  .prob-scenario-steps,
+  .prob-pillars-grid,
+  .prob-synthesis-grid {
     grid-template-columns: 1fr;
   }
-  .prob-closing-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
+  .prob-problem-surface,
+  .prob-scenario-showcase,
+  .prob-opportunity-panel,
+  .prob-synthesis-card {
+    padding: 22px 20px;
   }
-  .prob-closing-card .dash-btn-primary {
-    width: 100%;
-    justify-content: center;
+  .prob-next-banner {
+    padding: 20px;
   }
 }
 
-@media (max-width: 640px) {
-  .prob-hero-card {
-    padding: 28px 22px;
-  }
-  .prob-scenario-card {
-    padding: 24px 20px;
-  }
-  .prob-grid-4 {
-    grid-template-columns: 1fr;
-  }
-}
 /* ==========================================================================
    Audience & First Launch Page Styles
    ========================================================================== */
@@ -21608,7 +21928,7 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 01: What is Peopi? -->
     <div class="category-group is-selected" id="cat-what-is-peopi">
       <button type="button" class="category-toggle" aria-expanded="true">
-        <i class="category-icon ph ph-lightbulb" aria-hidden="true"></i>
+        <span class="cat-num">01</span>
         <span>What is Peopi?</span>
         <b><i class="ph ph-caret-up" aria-hidden="true"></i></b>
       </button>
@@ -21627,7 +21947,7 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 02: Branding -->
     <div class="category-group collapsed" id="cat-brand">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <i class="category-icon ph ph-palette" aria-hidden="true"></i>
+        <span class="cat-num">02</span>
         <span>Branding</span>
         <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
@@ -21656,7 +21976,7 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 03: Design System -->
     <div class="category-group collapsed" id="cat-design">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <i class="category-icon ph ph-ruler" aria-hidden="true"></i>
+        <span class="cat-num">03</span>
         <span>Design System</span>
         <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
@@ -21693,7 +22013,7 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 04: Components -->
     <div class="category-group collapsed" id="cat-components">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <i class="category-icon ph ph-squares-four" aria-hidden="true"></i>
+        <span class="cat-num">04</span>
         <span>Components</span>
         <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
@@ -21714,7 +22034,7 @@ body.notes-open #dash-notes-toggle i {
     <!-- Category 05: Screens -->
     <div class="category-group collapsed" id="cat-screens">
       <button type="button" class="category-toggle" aria-expanded="false">
-        <i class="category-icon ph ph-device-mobile" aria-hidden="true"></i>
+        <span class="cat-num">05</span>
         <span>Screens</span>
         <b><i class="ph ph-caret-down" aria-hidden="true"></i></b>
       </button>
@@ -21801,7 +22121,7 @@ body.notes-open #dash-notes-toggle i {
 </aside>
 <div class="preview-area"><div class="device-stage"><button type="button" id="stage-notes-toggle" class="preview-fullscreen-toggle ds-stage-notes-btn" aria-label="Toggle notes panel" aria-pressed="false" title="Notes & documentation"><i class="ph ph-sidebar-simple" aria-hidden="true"></i></button><button type="button" id="theme" class="preview-fullscreen-toggle ds-theme" aria-label="Switch to dark mode" aria-pressed="false" title="Light / dark mode"><i class="ph ph-moon" aria-hidden="true"></i></button><button type="button" id="preview-fullscreen" class="preview-fullscreen-toggle" aria-label="Expand prototype preview" title="Fullscreen preview"><i class="ph ph-arrows-out" aria-hidden="true"></i></button><main class="phone" id="phone"><div class="status"><span>9:41</span><div class="island"></div><span class="icons">▰ ◉ ▰</span></div>
 <section id="closed" class="screen active"><div class="top"><div class="topline"><div class="brand">peopi<span style="color:#ff3300">.</span></div><div class="topline-actions"><button class="circleBtn" id="messages-btn" aria-label="Messages" title="Messages"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i><span class="notif-badge hide" id="messages-badge"></span></button><button class="circleBtn" id="notif-btn" aria-label="Notifications" title="Notifications"><i class="ph ph-bell" aria-hidden="true"></i><span class="notif-badge hide" id="notif-badge"></span></button></div></div><h2 class="title">Connections start<br>with showing up.</h2><p class="desc">Discover professionals nearby, on your terms.</p></div><div class="map closed-hero-stage" data-go="setup" role="button" aria-label="Start discovery session preview"><div class="closed-map-backdrop" aria-hidden="true"><div class="closed-map-grid"></div><span class="street closed-street-1" style="top:22%;left:10%;transform:rotate(-7deg)">COLLINS AVE</span><span class="street closed-street-2" style="top:58%;left:52%;transform:rotate(24deg)">BISCAYNE BLVD</span><span class="street closed-street-3" style="top:74%;left:12%">NE 163RD ST</span><div class="closed-map-overlay"></div></div><div class="closed-map-fade-top" aria-hidden="true"></div><div class="closed-map-fade-bottom" aria-hidden="true"></div><div class="closed-stage-header"><div class="mapbadge closed-hero-tag"><i class="ph ph-shield-check" aria-hidden="true"></i><span>Approximate area</span></div><div class="closed-hero-status"><span class="status-pulse-dot"></span><span>7 nearby</span></div></div><div class="closed-map-pin pin-top-left" aria-hidden="true"><div class="pin-inner"><img src="https://i.pravatar.cc/120?img=33" alt="" loading="lazy"></div><span class="pin-verified" aria-label="Verified identity"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0.8 14.5 2.6 17.6 2.4 19 5.2 21.8 6.6 21.6 9.7 23.2 12 21.6 14.3 21.8 17.4 19 18.8 17.6 21.6 14.5 21.4 12 23.2 9.5 21.4 6.4 21.6 5 18.8 2.2 17.4 2.4 14.3 0.8 12 2.4 9.7 2.2 6.6 5 5.2 6.4 2.4 9.5 2.6Z"/><path d="m7.3 12.1 3.1 3.1 6.5-6.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="closed-map-pin pin-top-right" aria-hidden="true"><div class="pin-inner"><img src="https://i.pravatar.cc/120?img=47" alt="" loading="lazy"></div></div><div class="closed-center-hero"><div class="closed-waves-wrap" aria-hidden="true"><span class="closed-wave wave-1"></span><span class="closed-wave wave-2"></span><span class="closed-wave wave-3"></span></div><div class="closed-intent-bubble" role="note" aria-label="Intent: Meet new people"><strong id="closed-bubble-text">Meet new people</strong><div class="closed-bubble-tail"></div></div><div class="closed-hero-avatar-wrap"><div class="closed-hero-avatar"><img src="https://i.pravatar.cc/240?img=12" alt="Your profile preview" loading="lazy" onerror="this.style.display='none'"><span class="closed-avatar-fallback" id="closed-avatar-fallback" style="display:none!important;"></span></div><span class="closed-avatar-verified" aria-label="Verified identity" title="Verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0.8 14.5 2.6 17.6 2.4 19 5.2 21.8 6.6 21.6 9.7 23.2 12 21.6 14.3 21.8 17.4 19 18.8 17.6 21.6 14.5 21.4 12 23.2 9.5 21.4 6.4 21.6 5 18.8 2.2 17.4 2.4 14.3 0.8 12 2.4 9.7 2.2 6.6 5 5.2 6.4 2.4 9.5 2.6Z"/><path d="m7.3 12.1 3.1 3.1 6.5-6.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div><div class="bottomarea"><button class="completeness" id="completeness" aria-label="View profile completion"><span class="completehead"><span><strong>Your profile is <span class="complete-pct">65% ready</span></strong><small>Complete it for better first impressions.</small></span></span><span class="track"><i></i></span><span class="completefoot">Complete your profile <span><i class="ph ph-arrow-up-right" aria-hidden="true"></i></span></span></button><button class="primary" data-go="setup">Show up <i class="ph ph-arrow-right" aria-hidden="true"></i></button><p class="closed-footnote"><i class="ph ph-shield-check" aria-hidden="true"></i> Your location stays approximate and private.</p></div><div class="nav"><button class="current" data-go="closed"><span><i class="ph ph-compass" aria-hidden="true"></i></span>Discover</button><button data-toast="Connections unlock after connecting"><span><i class="ph ph-users-three" aria-hidden="true"></i></span>Connections</button><button data-go="myprofile"><span><i class="ph ph-user" aria-hidden="true"></i></span>Profile</button></div></section>
-<section id="setup" class="screen"><div class="setup"><button class="back" id="setup-back"><i class="ph ph-arrow-left" aria-hidden="true"></i> &nbsp;Discover</button><h2 class="title">Be open to<br>what's next.</h2><p class="desc">Choose how you want to connect nearby.</p><div class="sectionlabel">I'M HERE TO</div><button class="option chosen" data-intent="Meet new people"><span class="radio"></span>Meet new people</button><button class="option" data-intent="Explore collaboration"><span class="radio"></span>Explore collaboration</button><button class="option" data-intent="Share ideas"><span class="radio"></span>Share ideas</button><div class="sectionlabel">STAY VISIBLE FOR</div><div class="setup-duration-picker"><div class="durations"><button type="button" data-duration="30" data-val="30" data-unit="minutes">30 min</button><button type="button" class="chosen" data-duration="60" data-val="1" data-unit="hours">1 hour</button><button type="button" data-duration="120" data-val="2" data-unit="hours">2 hours</button></div><button type="button" class="setup-custom-duration-toggle" id="btn-toggle-custom-duration"><i class="ph ph-sliders" aria-hidden="true"></i> <span>Custom duration</span></button><div class="setup-duration-field hide" id="setup-custom-duration-wrap"><div class="setup-duration-input-wrap"><input type="number" id="setup-duration-val" min="1" max="720" value="1" inputmode="numeric" placeholder="1" aria-label="Duration value"><div class="setup-duration-select-wrap"><select id="setup-duration-unit" aria-label="Duration unit"><option value="hours" selected>hours</option><option value="minutes">minutes</option></select><i class="ph ph-caret-down setup-unit-arrow" aria-hidden="true"></i></div></div></div></div><div class="setupfoot"><button class="primary" id="start">Go visible <i class="ph ph-arrow-right" aria-hidden="true"></i></button><button class="cancel" id="setup-cancel">Not now</button></div></div></section>
+<section id="setup" class="screen"><div class="setup"><button class="back" id="setup-back"><i class="ph ph-arrow-left" aria-hidden="true"></i> &nbsp;Discover</button><h2 class="title">Be open to<br>what's next.</h2><p class="desc">Choose how you want to connect nearby.</p><div class="sectionlabel">I'M HERE TO</div><button class="option chosen" data-intent="Meet new people"><span class="radio"></span>Meet new people</button><button class="option" data-intent="Explore collaboration"><span class="radio"></span>Explore collaboration</button><button class="option" data-intent="Share ideas"><span class="radio"></span>Share ideas</button><div class="sectionlabel">STAY VISIBLE FOR</div><div class="setup-duration-picker"><div class="durations" role="group" aria-label="Session duration"><button type="button" data-duration="30" data-val="30" data-unit="minutes" aria-pressed="false" aria-label="30 minutes"><span class="dur-top"><strong class="dur-num">30</strong><i class="ph-fill ph-check-circle dur-check" aria-hidden="true"></i></span><span class="dur-unit">MINUTES</span></button><button type="button" class="chosen" data-duration="60" data-val="60" data-unit="minutes" aria-pressed="true" aria-label="60 minutes"><span class="dur-top"><strong class="dur-num">60</strong><i class="ph-fill ph-check-circle dur-check" aria-hidden="true"></i></span><span class="dur-unit">MINUTES</span></button><button type="button" data-duration="120" data-val="120" data-unit="minutes" aria-pressed="false" aria-label="120 minutes"><span class="dur-top"><strong class="dur-num">120</strong><i class="ph-fill ph-check-circle dur-check" aria-hidden="true"></i></span><span class="dur-unit">MINUTES</span></button></div><button type="button" class="setup-custom-duration-toggle" id="btn-toggle-custom-duration"><i class="ph ph-sliders" aria-hidden="true"></i> <span>Custom duration</span></button><div class="setup-duration-field hide" id="setup-custom-duration-wrap"><div class="setup-duration-input-wrap"><input type="number" id="setup-duration-val" min="1" max="720" value="60" inputmode="numeric" placeholder="60" aria-label="Duration value"><div class="setup-duration-select-wrap"><select id="setup-duration-unit" aria-label="Duration unit"><option value="hours">hours</option><option value="minutes" selected>minutes</option></select><i class="ph ph-caret-down setup-unit-arrow" aria-hidden="true"></i></div></div></div></div><div class="setupfoot"><button class="primary" id="start">Go visible <i class="ph ph-arrow-right" aria-hidden="true"></i></button><button class="cancel" id="setup-cancel">Not now</button></div></div></section>
 <section id="active" class="screen"><div class="activehead"><div class="session"><div class="brand active-discovery-brand">Discovery<span>.</span></div><button class="quiet-exit" id="end"><i class="ph ph-eye-slash" aria-hidden="true"></i><span>Go invisible</span></button></div><div class="seg"><button class="chosen" data-view="map"><i class="ph ph-map-trifold" aria-hidden="true"></i><span>Map</span></button><button data-view="list"><i class="ph ph-list" aria-hidden="true"></i><span>List</span></button></div><div class="discovery-subbar" id="discovery-subbar"><div class="mapbadge discovery-location-notice" id="discovery-location-notice"><i class="ph ph-shield-check" aria-hidden="true"></i><span>Approximate locations</span></div><div class="discovery-list-count hide" id="discovery-list-count">7 professionals nearby</div><button type="button" id="filters" class="discovery-map-filters"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i><span>Filters</span></button></div><div class="discovery-applied-chips hide" id="discovery-applied-chips"></div></div><div id="mapview" class="map activemap"><div class="map-canvas" id="map-canvas"><span class="street" style="top:18%;left:12%;transform:rotate(-7deg)">COLLINS AVE</span><span class="street" style="top:67%;left:44%;transform:rotate(27deg)">BISCAYNE BLVD</span><div class="map-user-beacon" id="map-user-beacon" aria-label="Your approximate location"><span class="map-radar-pulse pulse-1"></span><span class="map-radar-pulse pulse-2"></span><span class="map-radar-pulse pulse-3"></span><div class="map-user-dot"><span class="user-dot-core"></span></div><span class="map-user-badge"><i class="ph ph-shield-check" aria-hidden="true"></i> You (approx.)</span></div><button class="pin p1 verified-pin" data-person="0">AM<span class="pin-verified" aria-label="LinkedIn connected — demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0.8 14.5 2.6 17.6 2.4 19 5.2 21.8 6.6 21.6 9.7 23.2 12 21.6 14.3 21.8 17.4 19 18.8 17.6 21.6 14.5 21.4 12 23.2 9.5 21.4 6.4 21.6 5 18.8 2.2 17.4 2.4 14.3 0.8 12 2.4 9.7 2.2 6.6 5 5.2 6.4 2.4 9.5 2.6Z"/><path d="m7.3 12.1 3.1 3.1 6.5-6.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><button class="pin p2" data-person="1">JL</button><button class="pin p3" data-person="2">SK</button><button class="pin p4" data-person="3">TB</button><button class="pin p5" data-person="4">CR</button><button class="pin p6" data-person="5">MP</button><button class="pin p7" data-person="6">RC</button></div><div class="discovery-map-count">7 professionals nearby</div><button type="button" class="map-recenter-btn hide" id="map-recenter-btn" aria-label="Recenter map" title="Recenter to your area"><i class="ph ph-crosshair" aria-hidden="true"></i></button></div><div id="listview" class="listview hide"></div><div id="profilecard" class="profilecard hide"><button type="button" id="close-profilecard" class="profilecard-close" aria-label="Close selected profile" title="Close"><i class="ph ph-x" aria-hidden="true"></i></button><div class="person"><div class="avatar anonymous" id="avatar">AM</div><div><strong id="personname">A.M.</strong><small id="personrole">Product designer · Startup</small></div></div><div class="profilecard-footer"><div class="profilecard-status"><div class="discovery-connected-hint hide" id="preview-connected-hint"><i class="ph ph-check-circle" aria-hidden="true"></i><span>You're connected.</span></div><span class="profilecard-intent-label">CURRENT INTENT</span><span id="personintent">Exploring new projects</span></div><button class="connect" id="viewprofile">View Profile ↗</button></div></div><div class="session-alert hide" id="session-alert" role="status"><span class="alert-icon"><i class="ph ph-clock" aria-hidden="true"></i></span><div><strong>Keep the door open?</strong><p>Your visibility ends in 5 minutes.</p><div class="alert-actions"><button id="extend-session">Stay open +30 min</button><button id="dismiss-alert">Not now</button></div></div></div><div class="nav"><button class="current"><span><i class="ph ph-compass" aria-hidden="true"></i></span>Discover</button><button data-toast="Your network stays available after sessions"><span><i class="ph ph-users-three" aria-hidden="true"></i></span>Connections</button><button data-go="myprofile"><span><i class="ph ph-user" aria-hidden="true"></i></span>Profile</button></div></section><section id="myprofile" class="screen"><div class="myprofile-scroll"><header class="myprofile-head"><div><h2>My profile<span>.</span></h2></div><button class="myprofile-iconbtn" id="myprofile-settings" aria-label="Profile settings"><i class="ph ph-sliders" aria-hidden="true"></i></button></header><div class="myprofile-identity-card" role="group" aria-label="Your profile and completion"><div class="myprofile-hero"><div class="myprofile-avatar">ME</div><div class="myprofile-summary"><h3 id="own-name">Your name</h3><p id="own-title">Product &amp; Experience Designer</p><span class="myprofile-location" title="Approximate area"><i class="ph ph-map-pin" aria-hidden="true"></i> Miami, FL</span></div></div><div class="myprofile-completion"><div class="completion-top"><span>Profile strength</span><b>0%</b></div><div class="completion-track" role="progressbar" aria-label="Profile completeness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div></div><button id="myprofile-completion" class="myprofile-card-edit" aria-label="Edit your profile">Edit profile <i class="ph ph-pencil-simple" aria-hidden="true"></i></button></div><div class="myprofile-section"><div class="myprofile-sectionhead"><h4>About me</h4><button type="button" class="myprofile-section-action" id="myprofile-manage-about" aria-label="Edit about me" title="Edit about me"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></div><p>Building thoughtful digital experiences.</p></div><div class="myprofile-section" id="myprofile-experience-section"><div class="myprofile-sectionhead"><h4>Experience</h4><button type="button" class="myprofile-section-action" id="myprofile-manage-exp" aria-label="Manage experience" title="Edit experience"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></div><div id="myprofile-exp-list" class="peopi-exp-list"></div></div><div class="myprofile-section"><div class="myprofile-sectionhead"><h4>I'm here for</h4><button type="button" class="myprofile-section-action" id="myprofile-manage-intent" aria-label="Edit networking intent" title="Edit networking intent"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></div><div class="myprofile-intent"><i class="ph ph-sparkle" aria-hidden="true"></i><div><strong>Meaningful connections</strong><small>Collaboration · Ideas</small></div></div></div><div class="myprofile-section"><div class="myprofile-sectionhead"><h4>Skills &amp; interests</h4><button type="button" class="myprofile-section-action" id="myprofile-manage-skills" aria-label="Edit skills &amp; interests" title="Edit skills &amp; interests"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></div><div class="myprofile-chips"><span>Product design</span><span>UX strategy</span><span>Startups</span><span>AI products</span></div></div><div class="myprofile-section" id="myprofile-docs-section"><div class="myprofile-sectionhead"><h4>Documents &amp; portfolio</h4><button type="button" class="myprofile-section-action" id="myprofile-manage-docs" aria-label="Manage documents" title="Edit documents"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></div><p class="myprofile-section-sub">Visible to your connections only.</p><div id="myprofile-docs-list" class="peopi-docs-grid"></div></div><div class="myprofile-menu"><button id="myprofile-privacy"><span class="myprofile-menu-icon"><i class="ph ph-shield-check" aria-hidden="true"></i></span><span>Privacy &amp; safety</span><i class="ph ph-caret-right" aria-hidden="true"></i></button></div></div><div class="nav"><button data-go="closed"><span><i class="ph ph-compass" aria-hidden="true"></i></span>Discover</button><button data-toast="Connections screen is coming next"><span><i class="ph ph-users-three" aria-hidden="true"></i></span>Connections</button><button class="current" data-go="myprofile"><span><i class="ph ph-user" aria-hidden="true"></i></span>Profile</button></div></section><section id="editprofile" class="screen"><div class="editprofile-top"><button id="edit-back" aria-label="Back to my profile"><i class="ph ph-arrow-left" aria-hidden="true"></i></button><div><span>YOUR IDENTITY</span><h2>Edit profile</h2></div><button id="edit-save-top">Save</button></div><div class="editprofile-scroll"><div class="edit-avatar-wrap"><div class="edit-avatar-preview-wrap" id="edit-avatar-container" role="button" tabindex="0" aria-label="Change profile photo"><div class="myprofile-avatar" id="edit-avatar-preview">SD</div><span class="edit-avatar-badge" aria-hidden="true"><i class="ph-bold ph-plus"></i></span></div><div class="edit-avatar-meta"><p class="edit-photo-privacy"><i class="ph ph-shield-check" aria-hidden="true"></i><span>Photo stays private until you connect</span></p></div></div><div class="editgroup"><div class="editgroup-head"><h3>The essentials</h3></div><label class="editfield">Full name<input id="edit-name" maxlength="80" autocomplete="name" placeholder="Your name"></label><label class="editfield">Professional headline<input id="edit-headline" maxlength="100" placeholder="What do you do?"></label><label class="editfield">City / area<input id="edit-city" maxlength="80" placeholder="City, region"></label><label class="editfield">About me<textarea id="edit-bio" rows="4" maxlength="500" placeholder="Tell people about your work"></textarea><small><span id="bio-count">0</span>/500</small></label></div><div class="editgroup"><div class="editgroup-head"><h3>What brings you here?</h3></div><label class="editfield">Networking intent<select id="edit-intent"><option>Meaningful connections</option><option>Open to collaboration</option><option>Exploring opportunities</option><option>Sharing ideas</option><option>Finding a co-founder</option></select></label><label class="editfield">A little more context<input id="edit-goals" maxlength="140" placeholder="Collaboration · New perspectives · Ideas"></label></div><div class="editgroup"><div class="editgroup-head"><h3>Skills & interests</h3><p>Add up to 8 skills to help professionals find you.</p></div><div class="editfield"><label for="edit-skill-input">Your skills</label><div class="skills-chip-input-wrap" id="edit-skills-wrap"><div class="skills-chip-list" id="edit-skills-chips"></div><div class="skills-chip-entry"><input type="text" id="edit-skill-input" placeholder="Type a skill and press Enter..." maxlength="30" autocomplete="off"><button type="button" id="edit-add-skill-btn" class="skills-chip-add-btn" aria-label="Add skill"><i class="ph ph-plus" aria-hidden="true"></i></button></div></div><input type="hidden" id="edit-skills"><small class="skills-hint">Up to 8 skills. Click × on a chip to remove.</small></div></div><div class="editgroup" id="edit-exp-group"><div class="editgroup-head"><h3>Experience</h3><p>Add your past or current roles (Title, Company, Country, Dates).</p></div><div id="edit-exp-list" class="edit-exp-list"></div><button type="button" class="edit-exp-open-sheet-btn" id="btn-open-add-exp"><i class="ph ph-plus" aria-hidden="true"></i><span>Add experience</span></button></div><div class="editgroup" id="edit-docs-group"><div class="editgroup-head"><h3>Documents &amp; credentials</h3><p>Upload or attach CV/Resume, One Pager, Portfolio (.docx, .pdf, .xlsx, .jpg, .png). Shared with connections only.</p></div><div id="edit-docs-list" class="edit-docs-list"></div><button type="button" class="edit-exp-open-sheet-btn" id="btn-open-add-doc"><i class="ph ph-plus" aria-hidden="true"></i><span>Add document</span></button></div><div class="editprivacy"><i class="ph ph-shield-check" aria-hidden="true"></i><div><strong>Private by default</strong><p>Name and photo stay private until connected. Visibility is always opt-in.</p></div></div><button class="edit-save-bottom" id="edit-save-bottom">Save changes <i class="ph-bold ph-check" aria-hidden="true"></i></button><button class="edit-cancel" id="edit-cancel">Discard changes</button></div><div class="nav"><button data-go="closed"><span><i class="ph ph-compass" aria-hidden="true"></i></span>Discover</button><button data-toast="Connections screen is coming next"><span><i class="ph ph-users-three" aria-hidden="true"></i></span>Connections</button><button class="current" data-go="myprofile"><span><i class="ph ph-user" aria-hidden="true"></i></span>Profile</button></div></section><section id="privacy" class="screen"><div class="privacy-header"><button id="privacy-back" aria-label="Back to profile"><i class="ph ph-arrow-left" aria-hidden="true"></i></button><div><span>PROFILE & PRIVACY</span><h2>Privacy & safety</h2></div></div><div class="privacy-scroll"><div class="privacy-intro"><div class="privacy-shield"><i class="ph ph-shield-check" aria-hidden="true"></i></div><h3>Your space. Your rules.</h3><p>Choose who can find and contact you.</p></div><div class="privacy-status"><div class="privacy-status-head"><div class="privacy-status-icon"><i class="ph ph-eye-slash" aria-hidden="true"></i></div><strong id="privacy-presence-title">Invisible by default</strong></div><small id="privacy-presence-description">Visible only when you choose.</small><button id="privacy-presence-action">Discover <i class="ph ph-arrow-up-right" aria-hidden="true"></i></button></div><div class="privacy-group"><div class="privacy-group-title">DISCOVERY CONTROLS</div><div class="privacy-setting"><div class="privacy-setting-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></div><div class="privacy-setting-copy"><strong>Approximate area only</strong><small>Your exact location stays private.</small><span class="privacy-fixed"><i class="ph ph-lock" aria-hidden="true"></i> Always on</span></div></div><div class="privacy-setting"><div class="privacy-setting-icon"><i class="ph ph-users" aria-hidden="true"></i></div><div class="privacy-setting-copy"><strong>Hidden connections</strong><small>Hide your presence; keep your connection and chat.</small><button class="privacy-inline" id="manage-hidden">Manage hidden list <i class="ph ph-arrow-right" aria-hidden="true"></i></button></div></div><div class="privacy-setting"><div class="privacy-setting-icon"><i class="ph ph-clock" aria-hidden="true"></i></div><div class="privacy-setting-copy"><strong>Timed visibility</strong><small>Ends automatically. Go invisible anytime.</small><span class="privacy-fixed"><i class="ph ph-lock" aria-hidden="true"></i> Always on</span></div></div></div><div class="privacy-group"><div class="privacy-group-title">INTERACTIONS & SAFETY</div><button class="privacy-setting privacy-link" id="privacy-requests-link"><div class="privacy-setting-icon"><i class="ph ph-chat-circle" aria-hidden="true"></i></div><div class="privacy-setting-copy"><strong>Connection requests</strong><small>Allow introductions while discoverable.</small></div><i class="ph ph-caret-right" aria-hidden="true"></i></button><button class="privacy-setting privacy-link" id="privacy-reminders-link"><div class="privacy-setting-icon"><i class="ph ph-bell" aria-hidden="true"></i></div><div class="privacy-setting-copy"><strong>Session reminders</strong><small>Remind me before visibility ends.</small></div><i class="ph ph-caret-right" aria-hidden="true"></i></button><button class="privacy-setting privacy-link" id="privacy-blocked"><div class="privacy-setting-icon"><i class="ph ph-shield-warning" aria-hidden="true"></i></div><div class="privacy-setting-copy"><strong>Blocked people</strong><small>Manage blocked accounts.</small></div><i class="ph ph-caret-right" aria-hidden="true"></i></button><button class="privacy-setting privacy-link" id="privacy-report"><div class="privacy-setting-icon"><i class="ph ph-flag" aria-hidden="true"></i></div><div class="privacy-setting-copy"><strong>Report a concern</strong><small>Report unsafe behavior.</small></div><i class="ph ph-caret-right" aria-hidden="true"></i></button></div><div class="privacy-footnote"><i class="ph ph-info" aria-hidden="true"></i><span>Demo controls. Backend enforcement is not connected.</span></div></div><div class="nav"><button data-go="closed"><span><i class="ph ph-compass" aria-hidden="true"></i></span>Discover</button><button data-toast="Connections screen is coming next"><span><i class="ph ph-users-three" aria-hidden="true"></i></span>Connections</button><button class="current" data-go="myprofile"><span><i class="ph ph-user" aria-hidden="true"></i></span>Profile</button></div></section><section id="verification" class="screen"><div class="verify-top"><button id="verify-back" aria-label="Back to profile"><i class="ph ph-arrow-left" aria-hidden="true"></i></button><div><span>PROFILE & PRIVACY</span><h2>Verification</h2></div></div><div class="verify-scroll"><div class="verify-hero"><div class="verify-emblem"><i class="ph-fill ph-seal-check" aria-hidden="true"></i></div><h3>Build trust, your way.</h3><p>Optional trust signals. Your visibility stays yours.</p></div><div class="verify-sectionlabel">YOUR TRUST SIGNALS</div><div class="verify-panel"><div class="verify-row"><div class="verify-icon verify-linkedin">in</div><div class="verify-copy"><strong>LinkedIn connection</strong><small id="verify-linkedin-sub">Not connected</small></div></div><p class="verify-explain">Shows a LinkedIn Connected signal—not identity, employment or credential verification.</p><button class="verify-primary" id="verify-connect"><i class="ph ph-link" aria-hidden="true"></i> Connect LinkedIn</button><button class="verify-secondary hide" id="verify-disconnect">Disconnect demo connection</button></div><div class="verify-sectionlabel verify-gap">HOW TRUST WORKS ON PEOPI</div><div class="verify-principles"><div><i class="ph ph-shield-check" aria-hidden="true"></i><span><strong>Clear, specific signals</strong><small>Badges describe what was checked, without implying more.</small></span></div><div><i class="ph ph-eye-slash" aria-hidden="true"></i><span><strong>Your visibility stays yours</strong><small>Verification never starts a discovery session.</small></span></div><div><i class="ph ph-handshake" aria-hidden="true"></i><span><strong>Trust grows through interaction</strong><small>Connections and conversations are your choice.</small></span></div></div><div class="verify-disclaimer"><i class="ph ph-info" aria-hidden="true"></i><span>Demo only. No external account access or identity checks.</span></div></div><div class="nav"><button data-go="closed"><span><i class="ph ph-compass" aria-hidden="true"></i></span>Discover</button><button data-toast="Connections screen is coming next"><span><i class="ph ph-users-three" aria-hidden="true"></i></span>Connections</button><button class="current" data-go="myprofile"><span><i class="ph ph-user" aria-hidden="true"></i></span>Profile</button></div></section><section id="appsettings" class="screen"><div class="settings-head"><button id="settings-back" aria-label="Back to profile"><i class="ph ph-arrow-left" aria-hidden="true"></i></button><div><span>YOUR PEOPI</span><h2>Settings</h2></div></div><div class="settings-scroll"><button type="button" class="settings-account" id="settings-account-card" aria-label="View profile"><div class="settings-avatar" id="settings-avatar">ME</div><div class="settings-account-info"><strong id="settings-name">Your name</strong><small id="settings-headline">Product & Experience Designer</small></div><i class="ph ph-caret-right settings-account-arrow" aria-hidden="true"></i></button><div class="settings-group"><div class="settings-label">ACCOUNT</div><button class="settings-item" id="settings-profile"><span class="settings-ico"><i class="ph ph-user-circle-gear" aria-hidden="true"></i></span><span><strong>Edit profile</strong><small>Your professional profile</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button><button class="settings-item" id="settings-verification"><span class="settings-ico"><i class="ph ph-seal-check" aria-hidden="true"></i></span><span><strong>Verification</strong><small>Optional trust signals</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button><button class="settings-item" id="settings-privacy"><span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span><span><strong>Privacy & safety</strong><small>Visibility and safety</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button></div><div class="settings-group"><div class="settings-label">PREFERENCES</div><button class="settings-item" data-go="notifications"><span class="settings-ico"><i class="ph ph-bell-ringing" aria-hidden="true"></i></span><span><strong>Notification preferences</strong><small>Choose your updates</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button><button class="settings-item" id="settings-appearance"><span class="settings-ico"><i class="ph ph-sun" aria-hidden="true"></i></span><span><strong>Appearance</strong><small id="settings-appearance-label">Light mode</small></span><i class="ph ph-arrows-clockwise" aria-hidden="true"></i></button></div><div class="settings-group"><div class="settings-label">HELP & INFORMATION</div><button class="settings-item" id="settings-help"><span class="settings-ico"><i class="ph ph-question" aria-hidden="true"></i></span><span><strong>Help & support</strong></span><i class="ph ph-caret-right" aria-hidden="true"></i></button><button class="settings-item" id="settings-about"><span class="settings-ico"><i class="ph ph-info" aria-hidden="true"></i></span><span><strong>About Peopi</strong></span><i class="ph ph-caret-right" aria-hidden="true"></i></button></div><button class="settings-signout" id="settings-signout"><i class="ph ph-sign-out" aria-hidden="true"></i> Sign out <span>Prototype</span></button><p class="settings-disclaimer">Demo settings. No live account or push service.</p></div><div class="nav"><button data-go="closed"><span><i class="ph ph-compass" aria-hidden="true"></i></span>Discover</button><button data-toast="Connections screen is coming next"><span><i class="ph ph-users-three" aria-hidden="true"></i></span>Connections</button><button class="current" data-go="myprofile"><span><i class="ph ph-user" aria-hidden="true"></i></span>Profile</button></div></section>
 <section id="onboarding" class="screen journey-screen"><div class="onboarding-top"><div class="onboarding-step-badge"><span class="step-num" id="onboarding-step-num">01</span><span class="step-total">/ 03</span></div><button class="onboarding-skip" id="onboarding-skip" type="button" aria-label="Skip onboarding">Skip</button></div><div class="onboarding-slides-container"><div class="onboarding-slides" id="onboarding-slides"><div class="onboarding-slide" data-slide="0"><div class="onboarding-illustration illus-discovery"><div class="illus-orbit-ring ring-1"></div><div class="illus-orbit-ring ring-2"></div><div class="illus-center-beacon"><span class="illus-beacon-pulse"></span><i class="ph ph-broadcast" aria-hidden="true"></i></div><div class="illus-pin-float pin-1"><span class="pin-avatar" style="--tint:#fbe8e4">AM</span><span>0.3 mi</span></div><div class="illus-pin-float pin-2"><span class="pin-avatar" style="--tint:#f0e3f5">JL</span><span>0.8 mi</span></div><div class="illus-pin-float pin-3"><span class="pin-avatar" style="--tint:#e3f2e4">SK</span><span>1.2 mi</span></div></div><div class="onboarding-slide-body"><span class="journey-kicker">SPONTANEOUS PROXIMITY</span><h2>Connect with people<br><em>around you.</em></h2><p>Discover founders, designers, and thinkers nearby whenever you're in the mood to connect.</p></div></div><div class="onboarding-slide" data-slide="1"><div class="onboarding-illustration illus-privacy"><div class="illus-shield-glow"></div><div class="illus-privacy-badge badge-area"><i class="ph ph-check-circle-fill" aria-hidden="true"></i><span>Approximate area</span></div><div class="illus-shield-card"><div class="illus-shield-icon"><i class="ph ph-shield-check" aria-hidden="true"></i></div><span class="illus-shield-status"><i class="ph ph-eye-slash" aria-hidden="true"></i> Private default</span></div><div class="illus-privacy-badge badge-timer"><i class="ph ph-clock" aria-hidden="true"></i><span>1h session auto-ends</span></div></div><div class="onboarding-slide-body"><span class="journey-kicker">PRIVACY BY DEFAULT</span><h2>You're always<br><em>invisible first.</em></h2><p>Your exact pin is never shared. Show up only when you choose, and go invisible whenever you're done.</p></div></div><div class="onboarding-slide" data-slide="2"><div class="onboarding-illustration illus-intent"><div class="illus-cards-wrapper"><div class="illus-card"><span class="illus-card-avatar" style="--tint:#fbe8e4">AM</span><strong>Alex M.</strong><small>Design Lead</small></div><div class="illus-card-spark"><i class="ph ph-sparkle" aria-hidden="true"></i></div><div class="illus-card"><span class="illus-card-avatar" style="--tint:#e8edf8">RC</span><strong>Riley C.</strong><small>Product Lead</small></div></div><div class="illus-intent-chips"><span>☕ Coffee chat</span><span>💡 Fresh ideas</span><span>🤝 Collaborate</span></div></div><div class="onboarding-slide-body"><span class="journey-kicker">PURPOSEFUL NETWORKING</span><h2>Every connection<br><em>has a purpose.</em></h2><p>Broadcast clear intentions like sharing ideas or finding collaborators so every conversation counts.</p></div></div></div></div><div class="onboarding-footer"><div class="onboarding-dots" id="onboarding-dots" role="tablist" aria-label="Onboarding slides"><button class="onboarding-dot active" data-slide-to="0" role="tab" aria-selected="true" aria-label="Slide 1"></button><button class="onboarding-dot" data-slide-to="1" role="tab" aria-selected="false" aria-label="Slide 2"></button><button class="onboarding-dot" data-slide-to="2" role="tab" aria-selected="false" aria-label="Slide 3"></button></div><div class="onboarding-actions"><button class="journey-primary" id="onboarding-next" type="button">Continue <i class="ph ph-arrow-right" aria-hidden="true"></i></button><button class="journey-quiet" id="onboarding-account" data-go="auth" type="button">I already have an account</button></div></div></section>
 <section id="welcome" class="screen journey-screen"><div class="welcome-atmos"><div class="welcome-orbit-track inner" aria-hidden="true"><span class="welcome-orbit-ring"></span><div class="orbit-sat sat-in-1"><div class="orbit-avatar size-sm" title="Alex M. · Product Designer" style="--tint:#fbe8e4"><img src="https://i.pravatar.cc/100?img=12" alt="Alex M." loading="lazy" onerror="this.style.display='none'"><span class="orbit-initials">AM</span><span class="orbit-status-dot"></span></div></div><div class="orbit-sat sat-in-2"><div class="orbit-avatar size-sm" title="Jordan L. · Founder" style="--tint:#f0e3f5"><img src="https://i.pravatar.cc/100?img=33" alt="Jordan L." loading="lazy" onerror="this.style.display='none'"><span class="orbit-initials">JL</span><span class="orbit-status-dot"></span></div></div><div class="orbit-sat sat-in-3"><div class="orbit-avatar size-lg" title="Riley C. · Product Manager" style="--tint:#e8edf8"><img src="https://i.pravatar.cc/100?img=36" alt="Riley C." loading="lazy" onerror="this.style.display='none'"><span class="orbit-initials">RC</span><span class="orbit-status-dot"></span></div></div></div><div class="welcome-orbit-track outer" aria-hidden="true"><span class="welcome-orbit-ring"></span><div class="orbit-sat sat-out-1"><div class="orbit-avatar size-md" title="Sam K. · Engineering" style="--tint:#e3f2e4"><img src="https://i.pravatar.cc/100?img=47" alt="Sam K." loading="lazy" onerror="this.style.display='none'"><span class="orbit-initials">SK</span><span class="orbit-status-dot"></span></div></div><div class="orbit-sat sat-out-2"><div class="orbit-avatar size-md" title="Taylor B. · Brand Strategist" style="--tint:#fcefd9"><img src="https://i.pravatar.cc/100?img=68" alt="Taylor B." loading="lazy" onerror="this.style.display='none'"><span class="orbit-initials">TB</span><span class="orbit-status-dot"></span></div></div><div class="orbit-sat sat-out-3"><div class="orbit-avatar size-md" title="Casey R. · Architect" style="--tint:#def0f2"><img src="https://i.pravatar.cc/100?img=8" alt="Casey R." loading="lazy" onerror="this.style.display='none'"><span class="orbit-initials">CR</span><span class="orbit-status-dot"></span></div></div><div class="orbit-sat sat-out-4"><div class="orbit-avatar size-xl" title="Maya P. · AI Research" style="--tint:#ffe4d6"><img src="https://i.pravatar.cc/100?img=44" alt="Maya P." loading="lazy" onerror="this.style.display='none'"><span class="orbit-initials">MP</span><span class="orbit-status-dot"></span></div></div></div><span class="welcome-center" role="img" aria-label="Peopi p dot mark">p<span>.</span></span></div><div class="welcome-content"><span class="journey-kicker">PEOPI · MEET WHAT'S NEXT</span><h1>Good things start<br>with <em>showing up.</em></h1><p>Meet interesting professionals nearby, on your terms. You're invisible until you choose otherwise.</p><button class="journey-primary" data-go="auth">Get started <i class="ph ph-arrow-right" aria-hidden="true"></i></button><button class="journey-quiet" data-go="auth">I already have an account</button><small>Private by default. Meaningful by design.</small></div></section>
@@ -22539,296 +22859,552 @@ body.notes-open #dash-notes-toggle i {
 
             <div class="dash-page-intro">
               <p class="dash-page-lead">
-                Being nearby doesn't mean being connected.
+                Physical proximity creates opportunities for connection, but it does not reveal professional relevance or willingness to engage.
               </p>
               <p class="dash-page-desc">
-                Every day, thousands of professionals work within meters of one another in coworking hubs, industry conferences, and innovation centers. Yet serendipitous, high-value collaborations rarely materialize. Physical co-presence alone cannot overcome the steep social friction, unshared professional context, and unknown real-time availability that keep people isolated.
+                In cafés, coworking hubs, and industry venues, professionals frequently share the same physical space without knowing who nearby shares relevant interests, who is open to meeting right now, or whether an approach would be welcome. This chapter frames that real-world visibility gap as a product opportunity and a testable pilot hypothesis rather than an empirically validated market finding.
               </p>
             </div>
           </header>
 
-          <!-- 2. THE THREE BEHAVIORAL BREAKPOINTS -->
+          <!-- 01. THE PROBLEM -->
           <section class="prob-sec">
             <div class="prob-sec-head">
-              <div>
-                <span class="prob-sec-kicker">BEHAVIORAL FRICTION</span>
-                <h3 class="prob-sec-title">Three structural friction points preventing in-person connection<span class="brand-dot">.</span></h3>
-              </div>
+              <span class="prob-sec-kicker">01 — THE PROBLEM</span>
+              <h2 class="prob-sec-title">Physical proximity, compatibility, and real-time intent are disconnected<span class="brand-dot">.</span></h2>
+              <p class="prob-sec-lead">
+                Sharing a physical room solves distance, but it leaves professional relevance and social permission completely invisible.
+              </p>
             </div>
 
-            <div class="prob-grid-3">
-              <div class="prob-friction-card">
-                <div class="prob-friction-top">
-                  <span class="prob-friction-num">01</span>
-                  <span class="prob-friction-tag">Context Invisibility</span>
+            <div class="prob-problem-surface">
+              <div class="prob-problem-split">
+                <div class="prob-statement-box">
+                  <blockquote class="prob-statement-quote">
+                    “Physical proximity creates opportunities for connection, but it does not reveal professional relevance or willingness to engage.”
+                  </blockquote>
+                  <p class="prob-statement-narrative">
+                    The underlying problem is not a shortage of capable professionals in physical venues. Rather, three distinct conditions must align for a worthwhile in-person introduction—<strong>physical proximity</strong>, <strong>professional compatibility</strong>, and <strong>real-time intent</strong>—yet only the first is visible to the naked eye. Without a way to bridge the other two, initiating a conversation requires interrupting a stranger with no context.
+                  </p>
                 </div>
-                <h4 class="prob-card-title">Hidden Intent &amp; Skills</h4>
-                <p class="prob-card-text">
-                  You share a room with engineers, potential co-founders, or pilot partners, but to the eye, everyone looks like a stranger behind a laptop. Without a shared signal, their domain, skills, and current projects remain completely hidden.
-                </p>
+
+                <div class="prob-layer-stack" aria-label="Comparison of proximity, compatibility, and real-time intent">
+                  <div class="prob-layer-row">
+                    <div class="prob-layer-info">
+                      <strong>1. Physical Proximity</strong>
+                      <span>Sharing the same café, coworking floor, or venue at the same time.</span>
+                    </div>
+                    <span class="prob-layer-status">Visible in Room</span>
+                  </div>
+                  <div class="prob-layer-row">
+                    <div class="prob-layer-info">
+                      <strong>2. Professional Compatibility</strong>
+                      <span>Complementary skills, domain focus, role, and shared professional interests.</span>
+                    </div>
+                    <span class="prob-layer-status">Locked in Profiles</span>
+                  </div>
+                  <div class="prob-layer-row missing-layer">
+                    <div class="prob-layer-info">
+                      <strong>3. Real-Time Intent &amp; Consent</strong>
+                      <span>Current openness to pause work and welcome an in-person introduction right now.</span>
+                    </div>
+                    <span class="prob-layer-status">Unexpressed Signal</span>
+                  </div>
+                </div>
               </div>
 
-              <div class="prob-friction-card">
-                <div class="prob-friction-top">
-                  <span class="prob-friction-num">02</span>
-                  <span class="prob-friction-tag">Temporal Uncertainty</span>
+              <div class="prob-unknowns-Wrap">
+                <h3 class="prob-unknowns-heading">Four Unanswered Questions When Sharing a Physical Environment</h3>
+                <div class="prob-unknowns-ledger">
+                  <div class="prob-unknown-item">
+                    <div class="prob-unknown-index"><span>01 · RELEVANCE</span><i class="ph-bold ph-compass" aria-hidden="true"></i></div>
+                    <h4 class="prob-unknown-title">Who nearby shares relevant skills or interests?</h4>
+                    <p class="prob-unknown-desc">
+                      Everyone working behind a laptop looks identical. Domain expertise, active projects, and complementary capabilities remain hidden in the physical room.
+                    </p>
+                  </div>
+                  <div class="prob-unknown-item">
+                    <div class="prob-unknown-index"><span>02 · AVAILABILITY</span><i class="ph-bold ph-clock" aria-hidden="true"></i></div>
+                    <h4 class="prob-unknown-title">Who is currently open to meeting someone?</h4>
+                    <p class="prob-unknown-desc">
+                      Physical presence does not equal availability. A person nearby could be on a tight deadline, preparing for a call, or taking an open break between tasks.
+                    </p>
+                  </div>
+                  <div class="prob-unknown-item">
+                    <div class="prob-unknown-index"><span>03 · MUTUAL WELCOME</span><i class="ph-bold ph-handshake" aria-hidden="true"></i></div>
+                    <h4 class="prob-unknown-title">Would an introduction be mutually welcome?</h4>
+                    <p class="prob-unknown-desc">
+                      Without a prior signal of openness, walking up to someone forces a unilateral interruption before knowing whether conversation is welcome.
+                    </p>
+                  </div>
+                  <div class="prob-unknown-item">
+                    <div class="prob-unknown-index"><span>04 · INITIATION</span><i class="ph-bold ph-chats-circle" aria-hidden="true"></i></div>
+                    <h4 class="prob-unknown-title">How to connect without an intrusive approach?</h4>
+                    <p class="prob-unknown-desc">
+                      Lacking a low-friction, permissioned way to test mutual interest first, thoughtful professionals usually default to staying quiet.
+                    </p>
+                  </div>
                 </div>
-                <h4 class="prob-card-title">Unknown Availability</h4>
-                <p class="prob-card-text">
-                  A static LinkedIn profile or business card reveals historical experience, but zero information about current availability. Are they deep in focused work, rushing to a client call, or genuinely open to a coffee chat right now?
-                </p>
-              </div>
-
-              <div class="prob-friction-card">
-                <div class="prob-friction-top">
-                  <span class="prob-friction-num">03</span>
-                  <span class="prob-friction-tag">Psychological Risk</span>
-                </div>
-                <h4 class="prob-card-title">High Cold-Approach Barrier</h4>
-                <p class="prob-card-text">
-                  Cold-approaching a stranger in an in-person professional environment carries intense social awkwardness, asymmetric vulnerability, fear of appearing intrusive, and hesitation around unwanted commercial solicitation.
-                </p>
               </div>
             </div>
           </section>
 
-          <!-- 3. AN ILLUSTRATIVE SCENARIO -->
+          <!-- 02. A REAL-WORLD SCENARIO -->
           <section class="prob-sec">
             <div class="prob-sec-head">
-              <div>
-                <span class="prob-sec-kicker">AN ILLUSTRATIVE SCENARIO</span>
-                <h3 class="prob-sec-title">A shared place. An uncaptured introduction<span class="brand-dot">.</span></h3>
-              </div>
+              <span class="prob-sec-kicker">02 — A REAL-WORLD SCENARIO</span>
+              <h2 class="prob-sec-title">Two complementary professionals, four tables apart<span class="brand-dot">.</span></h2>
+              <p class="prob-sec-lead">
+                How complementary skills and open availability go undiscovered in everyday shared workspaces.
+              </p>
             </div>
 
-            <div class="prob-scenario-card">
-              <div class="prob-scenario-story">
-                <div class="prob-pill-tag prob-scenario-tag">
+            <div class="prob-scenario-showcase">
+              <div class="prob-scenario-topbar">
+                <div class="prob-pill-tag">
                   <span class="prob-pill-dot"></span>
-                  Illustrative scenario — behavioral friction archetype
+                  <span>Illustrative Scenario · Product Problem Framing (Not Observed User Research)</span>
                 </div>
-                <p class="prob-story-quote">
-                  “Two senior operators attend the same tech summit in Brickell. One is searching for a founding engineer; the other is exploring early-stage AI ventures. They sit three tables apart for two hours. Lacking shared context or mutual permission, both leave without ever saying a word.”
-                </p>
+                <div class="prob-scenario-context">
+                  <i class="ph-bold ph-buildings" aria-hidden="true"></i>
+                  <span>Setting: Shared coworking lounge / neighborhood café · Overlapping 90-minute work window</span>
+                </div>
               </div>
 
-              <div class="prob-scenario-visual" role="img" aria-label="Schematic diagram: two professionals in a shared physical space with unexpressed context leaving without an introduction">
-                <svg class="prob-scenario-svg" viewBox="0 0 460 250" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Shared Environment Boundary -->
-                  <rect x="10" y="10" width="440" height="230" rx="16" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                  
-                  <!-- Environment Label Tag -->
-                  <g transform="translate(24, 24)">
-                    <rect x="0" y="0" width="162" height="22" rx="6" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <circle cx="10" cy="11" r="3.5" fill="#FF3300"/>
-                    <text x="20" y="15" font-family="inherit" font-size="10" font-weight="700" fill="var(--prob-svg-muted, #64748B)" letter-spacing="0.04em">SHARED VENUE / EVENT</text>
+              <div class="prob-scenario-visual" role="img" aria-label="Illustrative scenario diagram: a founder exploring a product idea and a product designer working nearby in the same space leave without discovering their complementary context or availability">
+                <svg class="prob-scenario-svg" viewBox="0 0 860 276" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Shared Physical Space Outer Container -->
+                  <rect x="4" y="4" width="852" height="268" rx="16" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+                  <!-- Top Environment Header Badge -->
+                  <g transform="translate(24, 18)">
+                    <rect x="0" y="0" width="276" height="24" rx="6" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
+                    <circle cx="12" cy="12" r="4" fill="#FF3300"/>
+                    <text x="24" y="16" font-family="inherit" font-size="10" font-weight="800" fill="var(--prob-svg-muted, #64748B)" letter-spacing="0.05em">SHARED PHYSICAL ENVIRONMENT · ~6 METERS APART</text>
                   </g>
 
-                  <!-- Node A (Left) -->
-                  <g transform="translate(36, 64)">
-                    <rect x="0" y="0" width="132" height="96" rx="12" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.2"/>
-                    <circle cx="28" cy="28" r="14" fill="#FFF5F2" stroke="#FFE2D9" stroke-width="1"/>
-                    <circle cx="28" cy="24" r="5" fill="#FF3300"/>
-                    <path d="M 20 37 C 20 31 23 29 28 29 C 33 29 36 31 36 37" fill="#FF3300"/>
-                    <text x="50" y="26" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Operator A</text>
-                    <text x="50" y="38" font-family="inherit" font-size="10" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Founder · AI</text>
-                    <rect x="12" y="58" width="108" height="24" rx="6" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="18" y="74" font-family="inherit" font-size="9.5" font-weight="600" fill="var(--prob-svg-subtext, #475569)">? Context unshared</text>
+                  <!-- Left Card: Founder -->
+                  <g transform="translate(24, 54)">
+                    <rect x="0" y="0" width="268" height="148" rx="12" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.2"/>
+                    <circle cx="28" cy="28" r="14" fill="var(--prob-svg-accent-bg, #FFF5F2)" stroke="var(--prob-svg-accent-border, #FFD8CC)" stroke-width="1"/>
+                    <text x="28" y="32" font-family="inherit" font-size="11" font-weight="800" fill="#FF3300" text-anchor="middle">A</text>
+                    <text x="50" y="25" font-family="inherit" font-size="13" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Startup Founder</text>
+                    <text x="50" y="39" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Table 04 · Working on laptop</text>
+
+                    <rect x="14" y="54" width="240" height="40" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
+                    <text x="24" y="70" font-family="inherit" font-size="9.5" font-weight="800" fill="#FF3300" letter-spacing="0.04em">UNSHARED PROFESSIONAL CONTEXT</text>
+                    <text x="24" y="84" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">Exploring a B2B product idea; needs UX input</text>
+
+                    <rect x="14" y="100" width="240" height="36" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
+                    <text x="24" y="114" font-family="inherit" font-size="9.5" font-weight="800" fill="var(--prob-svg-muted, #64748B)" letter-spacing="0.04em">UNEXPRESSED AVAILABILITY</text>
+                    <text x="24" y="128" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">Open for a 20-min coffee chat before noon</text>
                   </g>
 
-                  <!-- Node B (Right) -->
-                  <g transform="translate(292, 64)">
-                    <rect x="0" y="0" width="132" height="96" rx="12" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.2"/>
-                    <circle cx="28" cy="28" r="14" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
-                    <circle cx="28" cy="24" r="5" fill="#475569"/>
-                    <path d="M 20 37 C 20 31 23 29 28 29 C 33 29 36 31 36 37" fill="#475569"/>
-                    <text x="50" y="26" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Operator B</text>
-                    <text x="50" y="38" font-family="inherit" font-size="10" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Lead Engineer</text>
-                    <rect x="12" y="58" width="108" height="24" rx="6" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <text x="18" y="74" font-family="inherit" font-size="9.5" font-weight="600" fill="var(--prob-svg-subtext, #475569)">? Availability unknown</text>
+                  <!-- Center Friction Barrier -->
+                  <g transform="translate(308, 54)">
+                    <line x1="0" y1="74" x2="244" y2="74" stroke="var(--prob-svg-border, #CBD5E1)" stroke-width="2" stroke-dasharray="5 4"/>
+                    <rect x="26" y="12" width="192" height="124" rx="12" fill="var(--prob-svg-accent-bg, #FFF5F2)" stroke="var(--prob-svg-accent-border, #FFD8CC)" stroke-width="1.2"/>
+                    <text x="122" y="34" font-family="inherit" font-size="10" font-weight="800" fill="#FF3300" text-anchor="middle" letter-spacing="0.06em">UNBRIDGED SIGNAL GAP</text>
+                    <text x="122" y="58" font-family="inherit" font-size="11" font-weight="700" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">• Complementary skills unseen</text>
+                    <text x="122" y="80" font-family="inherit" font-size="11" font-weight="700" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">• Openness to meet unknown</text>
+                    <text x="122" y="102" font-family="inherit" font-size="11" font-weight="700" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">• Cold interruption feels intrusive</text>
+                    <text x="122" y="124" font-family="inherit" font-size="10" font-weight="800" fill="var(--prob-svg-muted, #64748B)" text-anchor="middle">NO MUTUAL CONSENT SIGNAL</text>
                   </g>
 
-                  <!-- Center Missing Bridge / Gap -->
-                  <g transform="translate(176, 92)">
-                    <line x1="0" y1="20" x2="34" y2="20" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 3"/>
-                    <line x1="74" y1="20" x2="108" y2="20" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 3"/>
-                    <circle cx="54" cy="20" r="16" fill="#FFF5F2" stroke="#FFD8CC" stroke-width="1.5"/>
-                    <text x="54" y="24" font-family="inherit" font-size="13" font-weight="800" fill="#FF3300" text-anchor="middle">✕</text>
-                    <text x="54" y="48" font-family="inherit" font-size="8.5" font-weight="700" fill="var(--prob-svg-muted, #64748B)" text-anchor="middle" letter-spacing="0.04em">NO CONTACT</text>
+                  <!-- Right Card: Product Designer -->
+                  <g transform="translate(568, 54)">
+                    <rect x="0" y="0" width="268" height="148" rx="12" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1.2"/>
+                    <circle cx="28" cy="28" r="14" fill="var(--prob-svg-bg, #F1F5F9)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
+                    <text x="28" y="32" font-family="inherit" font-size="11" font-weight="800" fill="var(--prob-svg-text, #0F172A)" text-anchor="middle">B</text>
+                    <text x="50" y="25" font-family="inherit" font-size="13" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Product Designer</text>
+                    <text x="50" y="39" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-muted, #64748B)">Table 07 · Focused on screen</text>
+
+                    <rect x="14" y="54" width="240" height="40" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
+                    <text x="24" y="70" font-family="inherit" font-size="9.5" font-weight="800" fill="#FF3300" letter-spacing="0.04em">UNSHARED PROFESSIONAL CONTEXT</text>
+                    <text x="24" y="84" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">0→1 UX specialist; interested in early ventures</text>
+
+                    <rect x="14" y="100" width="240" height="36" rx="8" fill="var(--prob-svg-bg, #F8FAFC)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
+                    <text x="24" y="114" font-family="inherit" font-size="9.5" font-weight="800" fill="var(--prob-svg-muted, #64748B)" letter-spacing="0.04em">UNEXPRESSED AVAILABILITY</text>
+                    <text x="24" y="128" font-family="inherit" font-size="11" font-weight="600" fill="var(--prob-svg-subtext, #475569)">Has an open hour between design reviews</text>
                   </g>
 
-                  <!-- Bottom Result Banner -->
-                  <g transform="translate(36, 182)">
-                    <rect x="0" y="0" width="388" height="36" rx="8" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
-                    <circle cx="20" cy="18" r="4" fill="#94A3B8"/>
-                    <text x="32" y="22" font-family="inherit" font-size="11.5" font-weight="700" fill="var(--prob-svg-text, #0F172A)">Outcome:</text>
-                    <text x="92" y="22" font-family="inherit" font-size="11.5" font-weight="500" fill="var(--prob-svg-muted, #64748B)">Physical proximity ends without conversation or follow-up.</text>
+                  <!-- Bottom Outcome Bar -->
+                  <g transform="translate(24, 216)">
+                    <rect x="0" y="0" width="812" height="38" rx="10" fill="var(--prob-svg-card-bg, #FFFFFF)" stroke="var(--prob-svg-border, #E2E8F0)" stroke-width="1"/>
+                    <circle cx="20" cy="19" r="4.5" fill="#FF3300"/>
+                    <text x="34" y="23" font-family="inherit" font-size="12" font-weight="800" fill="var(--prob-svg-text, #0F172A)">Scenario Outcome:</text>
+                    <text x="150" y="23" font-family="inherit" font-size="12" font-weight="500" fill="var(--prob-svg-muted, #64748B)">Neither person knows the other's domain or openness to talk. Both pack up and leave without discovering the connection.</text>
                   </g>
                 </svg>
               </div>
-            </div>
-          </section>
 
-          <!-- 4. EXISTING ALTERNATIVES & STRUCTURAL GAPS -->
-          <section class="prob-sec">
-            <div class="prob-sec-head">
-              <div>
-                <span class="prob-sec-kicker">LANDSCAPE GAP ANALYSIS</span>
-                <h3 class="prob-sec-title">Why existing solutions fail in physical environments<span class="brand-dot">.</span></h3>
-              </div>
-            </div>
-
-            <div class="prob-grid-3">
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-linkedin-logo" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Asynchronous Networks (e.g. LinkedIn)</h4>
-                <p class="prob-card-text">
-                  Optimized for historical resumes, recruiters, and cold InMail. Completely detached from real-time physical space and immediate willingness to chat. Messages often sit unanswered for days or weeks.
-                </p>
-              </div>
-
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-chats" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Conference Apps (e.g. Whova, Slack)</h4>
-                <p class="prob-card-text">
-                  Confined strictly to ticketed events. Suffer from high broadcast noise, uncurated group chat spam, and low participation. Completely useless in regular coffee shops, airports, and coworking spaces.
-                </p>
-              </div>
-
-              <div class="prob-card">
-                <div class="prob-card-icon"><i class="ph ph-handshake" aria-hidden="true"></i></div>
-                <h4 class="prob-card-title">Unassisted Organic Approaches</h4>
-                <p class="prob-card-text">
-                  Produce great serendipity when they happen, but depend entirely on unassisted extroversion, zero advance context, and cold openers. In practice, the vast majority of potential interactions never occur due to approach hesitation, absent context, and social friction.
-                </p>
+              <div class="prob-scenario-steps">
+                <div class="prob-scenario-step">
+                  <span class="prob-scenario-step-num">STEP 01 · CO-LOCATION</span>
+                  <strong>Complementary peers share a room</strong>
+                  <span>A founder exploring a new product idea and a senior designer work meters apart in the same café.</span>
+                </div>
+                <div class="prob-scenario-step">
+                  <span class="prob-scenario-step-num">STEP 02 · BLIND SPOT</span>
+                  <strong>Context &amp; availability stay hidden</strong>
+                  <span>Both look busy on their laptops; neither can see the other's skills, interests, or open break window.</span>
+                </div>
+                <div class="prob-scenario-step">
+                  <span class="prob-scenario-step-num">STEP 03 · HESITATION</span>
+                  <strong>Cold interruption feels intrusive</strong>
+                  <span>Without a signal that an approach is welcome, interrupting a stranger's focus carries social friction.</span>
+                </div>
+                <div class="prob-scenario-step">
+                  <span class="prob-scenario-step-num">STEP 04 · MISSED VALUE</span>
+                  <strong>Both leave without connecting</strong>
+                  <span>The physical overlap ends and a mutually valuable professional introduction never takes place.</span>
+                </div>
               </div>
             </div>
           </section>
 
-          <!-- 5. THE PRODUCT HYPOTHESIS -->
+          <!-- 03. WHY EXISTING SOLUTIONS FALL SHORT -->
           <section class="prob-sec">
             <div class="prob-sec-head">
-              <div>
-                <span class="prob-sec-kicker">PRODUCT OPPORTUNITY</span>
-                <h3 class="prob-sec-title">The core hypothesis to be tested<span class="brand-dot">.</span></h3>
-              </div>
-            </div>
-
-            <div class="prob-card prob-card-featured" style="padding:32px 36px;border-left:4px solid #FF3300;">
-              <span style="font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#FF3300;margin-bottom:12px;display:block;">PRIMARY VALUE HYPOTHESIS</span>
-              <p style="font-size:18px;line-height:1.6;font-weight:600;color:#0F172A;margin:0 0 16px;">
-                “If professionals in a shared physical environment can declare time-limited, goal-oriented availability with approximate proximity and mutual consent, they will initiate significantly more relevant, welcomed, and productive in-person connections than traditional cold approaches or asynchronous outreach.”
+              <span class="prob-sec-kicker">03 — WHY EXISTING SOLUTIONS FALL SHORT</span>
+              <h2 class="prob-sec-title">Established networking habits address different moments<span class="brand-dot">.</span></h2>
+              <p class="prob-sec-lead">
+                Existing professional tools and in-person habits are effective for their primary purposes, but none fully bridge real-time relevance, availability, and mutual consent in everyday shared spaces.
               </p>
-              <div class="prob-hypothesis-subgrid">
-                <div class="prob-hypothesis-col">
-                  <strong>1. Friction Reduction</strong>
-                  <span>An explicit "I'm Open" signal removes the fear of intruding on focused work.</span>
-                </div>
-                <div class="prob-hypothesis-col">
-                  <strong>2. Context Sufficiency</strong>
-                  <span>2–3 declared intents establish immediate relevance without extensive resume reading.</span>
-                </div>
-                <div class="prob-hypothesis-col">
-                  <strong>3. Privacy Reassurance</strong>
-                  <span>Automatic session expiration and fuzzy distance eliminate stalking concerns.</span>
-                </div>
-              </div>
             </div>
 
-            <div class="prob-callout" style="margin-top:20px;">
-              <i class="ph ph-shield-check" aria-hidden="true"></i>
-              <span><strong>Methodological Discipline:</strong> All problem statements and opportunities are articulated as testable product hypotheses for pilot validation. They do not claim measured historical conversion rates or verified market facts.</span>
-            </div>
-          </section>
-
-          <!-- 6. KEY ASSUMPTIONS & CRITICAL UNCERTAINTIES -->
-          <section class="prob-sec">
-            <div class="prob-sec-head">
-              <div>
-                <span class="prob-sec-kicker">RISK FRAMEWORK</span>
-                <h3 class="prob-sec-title">Key assumptions and critical uncertainties<span class="brand-dot">.</span></h3>
-              </div>
-            </div>
-
-            <div class="prob-grid-4">
-              <div class="prob-risk-card">
-                <span class="prob-risk-badge"><i class="ph-bold ph-users-three"></i> Critical Density</span>
-                <h4 class="prob-card-title">Density Threshold</h4>
-                <p class="prob-card-text">Requires a minimum number of active peers in the same 500m radius within the same time window to prevent empty radar states.</p>
-                <div class="prob-risk-test"><strong>Pilot Focus:</strong> Concentrated activation during scheduled morning tech windows.</div>
+            <div class="prob-comparison-ledger">
+              <div class="prob-ledger-head">
+                <div>Approach</div>
+                <div>Where It Works Well</div>
+                <div>Limitation in Shared Physical Spaces</div>
+                <div>Signal Alignment</div>
               </div>
 
-              <div class="prob-risk-card">
-                <span class="prob-risk-badge"><i class="ph-bold ph-chat-circle-dots"></i> Social Framing</span>
-                <h4 class="prob-card-title">Social Signaling</h4>
-                <p class="prob-card-text">Users must perceive declaring availability as proactive and high-agency, rather than needy or informal. Brand tone is critical.</p>
-                <div class="prob-risk-test"><strong>Pilot Focus:</strong> Editorial badge styling and curated intent taxonomy.</div>
-              </div>
-
-              <div class="prob-risk-card">
-                <span class="prob-risk-badge"><i class="ph-bold ph-funnel"></i> Market Liquidity</span>
-                <h4 class="prob-card-title">Intent Liquidity</h4>
-                <p class="prob-card-text">Intent categories must be specific enough to filter relevance, but broad enough to maintain liquidity in smaller venues.</p>
-                <div class="prob-risk-test"><strong>Pilot Focus:</strong> 4 core intents rather than open free-text taxonomy.</div>
-              </div>
-
-              <div class="prob-risk-card">
-                <span class="prob-risk-badge"><i class="ph-bold ph-arrows-clockwise"></i> Lifecycle Value</span>
-                <h4 class="prob-card-title">Retention &amp; Churn</h4>
-                <p class="prob-card-text">Does a coffee introduction translate into long-term professional value, or do users disengage once initial contacts are established?</p>
-                <div class="prob-risk-test"><strong>Pilot Focus:</strong> 14-day persistent connection and reconnection tracking.</div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 7. HOW THE MIAMI PILOT TESTS THE HYPOTHESIS -->
-          <section class="prob-sec">
-            <div class="prob-sec-head">
-              <div>
-                <span class="prob-sec-kicker">VALIDATION BLUEPRINT</span>
-                <h3 class="prob-sec-title">How the Miami pilot is structured to test the thesis<span class="brand-dot">.</span></h3>
-              </div>
-            </div>
-
-            <div class="prob-grid-2">
-              <div class="prob-card" style="padding:28px;">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-                  <div class="prob-card-icon featured" style="margin-bottom:0;"><i class="ph ph-map-pin"></i></div>
-                  <h4 class="prob-card-title" style="margin-bottom:0;">Strategic Pilot Ecology (Miami)</h4>
-                </div>
-                <p class="prob-card-text" style="margin-bottom:14px;">
-                  Miami offers high geographic concentration in walkable innovation districts (Brickell, Wynwood) paired with an active influx of remote founders, venture investors, and technology operators seeking local ecosystem integration.
-                </p>
-                <ul class="prob-pilot-list">
-                  <li>Focused pilot partnerships with curated coworking spaces and tech meetup hosts.</li>
-                  <li>Scheduled activation windows (e.g. Tuesday morning tech breakfasts, demo nights).</li>
-                  <li>Controlled cohort testing to guarantee local density thresholds before citywide release.</li>
-                </ul>
-              </div>
-
-              <div class="prob-card" style="padding:28px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-                  <div style="display:flex;align-items:center;gap:10px;">
-                    <div class="prob-card-icon featured" style="margin-bottom:0;"><i class="ph ph-target"></i></div>
-                    <h4 class="prob-card-title" style="margin-bottom:0;">Proposed Validation Thresholds</h4>
+              <!-- Row 1: Professional Networks -->
+              <div class="prob-ledger-row">
+                <div class="prob-ledger-approach">
+                  <div class="prob-ledger-icon"><i class="ph ph-identification-card" aria-hidden="true"></i></div>
+                  <div>
+                    <h4>Professional Networks</h4>
+                    <span>Identity &amp; Async Outreach</span>
                   </div>
-                  <span class="prob-status-pill">Proposed Targets · Not Actual Results</span>
                 </div>
-                <p class="prob-card-text" style="margin-bottom:14px;">
-                  Quantitative criteria proposed to evaluate hypothesis validation during field trials:
+                <div>
+                  <span class="prob-ledger-col-label">Where It Works Well</span>
+                  <p class="prob-ledger-text">
+                    Useful for maintaining professional identity, structured career profiles, credentials, and asynchronous outreach across distributed networks.
+                  </p>
+                </div>
+                <div>
+                  <span class="prob-ledger-col-label">Limitation in Shared Physical Spaces</span>
+                  <p class="prob-ledger-text">
+                    Generally do not communicate immediate, mutual willingness to meet in a shared physical space. Messages land in asynchronous inboxes often read hours or days later.
+                  </p>
+                </div>
+                <div class="prob-ledger-signals">
+                  <div class="prob-signal-chip supported"><span>Professional Identity</span><strong>Strong</strong></div>
+                  <div class="prob-signal-chip missing"><span>Live Room Availability</span><strong>Absent</strong></div>
+                  <div class="prob-signal-chip missing"><span>Immediate Co-Presence</span><strong>Absent</strong></div>
+                </div>
+              </div>
+
+              <!-- Row 2: Events & Organized Networking -->
+              <div class="prob-ledger-row">
+                <div class="prob-ledger-approach">
+                  <div class="prob-ledger-icon"><i class="ph ph-calendar-check" aria-hidden="true"></i></div>
+                  <div>
+                    <h4>Events &amp; Organized Networking</h4>
+                    <span>Conferences &amp; Scheduled Meetups</span>
+                  </div>
+                </div>
+                <div>
+                  <span class="prob-ledger-col-label">Where It Works Well</span>
+                  <p class="prob-ledger-text">
+                    Create intentional meeting environments where participants share a scheduled agenda and expect to meet new peers.
+                  </p>
+                </div>
+                <div>
+                  <span class="prob-ledger-col-label">Limitation in Shared Physical Spaces</span>
+                  <p class="prob-ledger-text">
+                    Require advance scheduling, registration, and a defined occasion. They do not extend to everyday coworking spaces, cafés, or unscheduled workdays.
+                  </p>
+                </div>
+                <div class="prob-ledger-signals">
+                  <div class="prob-signal-chip supported"><span>Shared Occasion</span><strong>Strong</strong></div>
+                  <div class="prob-signal-chip partial"><span>Everyday Workspaces</span><strong>Event-Bound</strong></div>
+                  <div class="prob-signal-chip partial"><span>Pre-Approach Filtering</span><strong>Variable</strong></div>
+                </div>
+              </div>
+
+              <!-- Row 3: Spontaneous Introductions -->
+              <div class="prob-ledger-row">
+                <div class="prob-ledger-approach">
+                  <div class="prob-ledger-icon"><i class="ph ph-hand-waving" aria-hidden="true"></i></div>
+                  <div>
+                    <h4>Spontaneous Introductions</h4>
+                    <span>Unassisted In-Person Approaches</span>
+                  </div>
+                </div>
+                <div>
+                  <span class="prob-ledger-col-label">Where It Works Well</span>
+                  <p class="prob-ledger-text">
+                    Can lead to natural, memorable conversations when two people happen to strike up a dialogue at the right moment.
+                  </p>
+                </div>
+                <div>
+                  <span class="prob-ledger-col-label">Limitation in Shared Physical Spaces</span>
+                  <p class="prob-ledger-text">
+                    Often lack advance signals of professional relevance, current availability, and mutual consent—requiring one person to guess and risk interrupting someone's work.
+                  </p>
+                </div>
+                <div class="prob-ledger-signals">
+                  <div class="prob-signal-chip supported"><span>Immediate Presence</span><strong>Direct</strong></div>
+                  <div class="prob-signal-chip missing"><span>Advance Relevance</span><strong>Unseen</strong></div>
+                  <div class="prob-signal-chip missing"><span>Prior Mutual Consent</span><strong>Unverified</strong></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04. THE OPPORTUNITY -->
+          <section class="prob-sec">
+            <div class="prob-sec-head">
+              <span class="prob-sec-kicker">04 — THE OPPORTUNITY</span>
+              <h2 class="prob-sec-title">Where physical co-presence meets permissioned intent<span class="brand-dot">.</span></h2>
+              <p class="prob-sec-lead">
+                Peopi explores the product opportunity at the intersection of four conditions that rarely align in a single lightweight experience.
+              </p>
+            </div>
+
+            <div class="prob-opportunity-panel">
+              <div class="prob-pillars-grid">
+                <div class="prob-pillar-box">
+                  <div class="prob-pillar-top">
+                    <div class="prob-pillar-icon"><i class="ph-bold ph-map-pin-line" aria-hidden="true"></i></div>
+                    <h4>Shared Physical Context</h4>
+                  </div>
+                  <p>
+                    Professionals are already in the same coworking hub, café, or neighborhood district, making a brief face-to-face conversation immediately practical.
+                  </p>
+                </div>
+
+                <div class="prob-pillar-box">
+                  <div class="prob-pillar-top">
+                    <div class="prob-pillar-icon"><i class="ph-bold ph-briefcase" aria-hidden="true"></i></div>
+                    <h4>Relevant Identity &amp; Intent</h4>
+                  </div>
+                  <p>
+                    Concise role, skills, and current conversation goals reveal why two people are relevant to each other before anyone initiates contact.
+                  </p>
+                </div>
+
+                <div class="prob-pillar-box">
+                  <div class="prob-pillar-top">
+                    <div class="prob-pillar-icon"><i class="ph-bold ph-timer" aria-hidden="true"></i></div>
+                    <h4>Time-Limited Availability</h4>
+                  </div>
+                  <p>
+                    Explicit 30, 60, or 120-minute sessions reflect real-world windows of openness and automatically revert to invisible status when time expires.
+                  </p>
+                </div>
+
+                <div class="prob-pillar-box">
+                  <div class="prob-pillar-top">
+                    <div class="prob-pillar-icon"><i class="ph-bold ph-check-circle" aria-hidden="true"></i></div>
+                    <h4>Mutual Consent</h4>
+                  </div>
+                  <p>
+                    A two-way introduction request with a short note ensures both parties welcome the connection before direct chat or an in-person greeting.
+                  </p>
+                </div>
+              </div>
+
+              <div class="prob-convergence-card">
+                <div>
+                  <span class="prob-convergence-kicker"><i class="ph-fill ph-sparkle" aria-hidden="true"></i> THE PRODUCT OPPORTUNITY</span>
+                  <h3 class="prob-convergence-title">Turning silent co-presence into welcomed introductions</h3>
+                  <p class="prob-convergence-desc">
+                    When shared physical context is paired with relevant professional identity, time-bounded availability, and mutual consent, initiating a connection no longer feels like a cold interruption. Both people know why the introduction is relevant and that the timing is welcome.
+                  </p>
+                </div>
+                <div class="prob-convergence-outcome">
+                  <div class="prob-convergence-outcome-row">
+                    <i class="ph-bold ph-check" aria-hidden="true"></i>
+                    <span>Replaces cold guesswork with opt-in availability</span>
+                  </div>
+                  <div class="prob-convergence-outcome-row">
+                    <i class="ph-bold ph-check" aria-hidden="true"></i>
+                    <span>Surfaces relevant skills and intent in real time</span>
+                  </div>
+                  <div class="prob-convergence-outcome-row">
+                    <i class="ph-bold ph-check" aria-hidden="true"></i>
+                    <span>Preserves full user control over visibility and privacy</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 05. DESIGN CONSTRAINTS -->
+          <section class="prob-sec">
+            <div class="prob-sec-head">
+              <span class="prob-sec-kicker">05 — DESIGN CONSTRAINTS</span>
+              <h2 class="prob-sec-title">Five constraints that shape a responsible solution<span class="brand-dot">.</span></h2>
+              <p class="prob-sec-lead">
+                Designing for real-world proximity introduces strict human and operational boundaries that directly govern Peopi's product architecture.
+              </p>
+            </div>
+
+            <div class="prob-constraints-list">
+              <div class="prob-constraint-row">
+                <div class="prob-constraint-head">
+                  <span class="prob-constraint-num">01</span>
+                  <h4>Privacy</h4>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label">Core Constraint</span>
+                  <p class="prob-constraint-text">
+                    Nearby discovery must not expose precise, continuous user location or create a sense of physical tracking.
+                  </p>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label response">How It Shapes the Solution</span>
+                  <p class="prob-constraint-text">
+                    Peopi uses approximate relative proximity rings rather than pinpoint street maps, exact coordinates, or background location history.
+                  </p>
+                </div>
+              </div>
+
+              <div class="prob-constraint-row">
+                <div class="prob-constraint-head">
+                  <span class="prob-constraint-num">02</span>
+                  <h4>Consent</h4>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label">Core Constraint</span>
+                  <p class="prob-constraint-text">
+                    Visibility and communication must be intentional, explicit, and reversible at every stage of the experience.
+                  </p>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label response">How It Shapes the Solution</span>
+                  <p class="prob-constraint-text">
+                    Users start invisible by default when opening the app, and direct messaging only unlocks after a recipient accepts an introduction request.
+                  </p>
+                </div>
+              </div>
+
+              <div class="prob-constraint-row">
+                <div class="prob-constraint-head">
+                  <span class="prob-constraint-num">03</span>
+                  <h4>Network Density</h4>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label">Core Constraint</span>
+                  <p class="prob-constraint-text">
+                    The experience requires sufficient relevant, simultaneously available professionals in a local area to avoid empty discovery states.
+                  </p>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label response">How It Shapes the Solution</span>
+                  <p class="prob-constraint-text">
+                    Initial validation focuses on concentrated professional environments and scheduled community windows rather than an unfocused citywide rollout.
+                  </p>
+                </div>
+              </div>
+
+              <div class="prob-constraint-row">
+                <div class="prob-constraint-head">
+                  <span class="prob-constraint-num">04</span>
+                  <h4>Trust</h4>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label">Core Constraint</span>
+                  <p class="prob-constraint-text">
+                    Professional profiles and verification signals must be understandable without implying guaranteed personal safety or endorsement.
+                  </p>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label response">How It Shapes the Solution</span>
+                  <p class="prob-constraint-text">
+                    Profiles present clear professional context and domain tags alongside straightforward reporting, blocking, and connection management tools.
+                  </p>
+                </div>
+              </div>
+
+              <div class="prob-constraint-row">
+                <div class="prob-constraint-head">
+                  <span class="prob-constraint-num">05</span>
+                  <h4>User Control</h4>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label">Core Constraint</span>
+                  <p class="prob-constraint-text">
+                    Participants must be able to end discovery sessions at any moment and manage their visibility without friction.
+                  </p>
+                </div>
+                <div class="prob-constraint-col">
+                  <span class="prob-constraint-label response">How It Shapes the Solution</span>
+                  <p class="prob-constraint-text">
+                    Active sessions run on bounded countdown timers (30, 60, or 120 minutes) with automatic expiration and a one-tap control to go invisible immediately.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 06. PROBLEM STATEMENT & PILOT HYPOTHESIS -->
+          <section class="prob-sec">
+            <div class="prob-sec-head">
+              <span class="prob-sec-kicker">06 — PROBLEM STATEMENT &amp; PILOT HYPOTHESIS</span>
+              <h2 class="prob-sec-title">Synthesizing the problem and the pilot hypothesis<span class="brand-dot">.</span></h2>
+              <p class="prob-sec-lead">
+                Distilling the chapter into a core design question and a single, testable hypothesis for future pilot evaluation.
+              </p>
+            </div>
+
+            <div class="prob-synthesis-grid">
+              <div class="prob-synthesis-card">
+                <div>
+                  <div class="prob-synthesis-top">
+                    <span class="prob-synthesis-kicker">CORE PROBLEM STATEMENT</span>
+                  </div>
+                  <p class="prob-synthesis-quote" style="margin-top:14px;">
+                    “How might we help professionals sharing a physical space discover relevant, mutually welcome introductions without compromising control over their presence and privacy?”
+                  </p>
+                </div>
+                <p class="prob-synthesis-foot">
+                  <strong>Product Framing:</strong> Captures the core tension between unlocking nearby professional serendipity and respecting personal boundaries in shared environments.
                 </p>
-                <ul class="prob-threshold-list">
-                  <li><strong>Session Activation Rate (Proposed Target):</strong> Proposed threshold of &gt;25% voluntary session activation among cohort members during scheduled pilot hours (testing whether temporary visibility overcomes adoption resistance).</li>
-                  <li><strong>Request Acceptance Ratio (Proposed Target):</strong> Proposed threshold of &gt;60% mutual acceptance on outbound connection requests (evaluating whether intent badges generate relevant rather than noisy signals).</li>
-                  <li><strong>In-Person Conversation Rate (Proposed Qualitative Target):</strong> Target qualitative threshold of &gt;50% of mutual acceptances progressing to a face-to-face dialogue or contact exchange during the session.</li>
-                  <li><strong>Kill / Pivot Thresholds (Proposed Guardrails):</strong> Explicit pause criteria: if unprompted spam or discomfort reports exceed 5% of active sessions, or session abandonment without interaction exceeds 50%, pilot expansion halts to re-engineer intent boundaries.</li>
-                </ul>
+              </div>
+
+              <div class="prob-synthesis-card hypothesis-card">
+                <div>
+                  <div class="prob-synthesis-top">
+                    <span class="prob-synthesis-kicker">PRIMARY PILOT HYPOTHESIS</span>
+                    <span class="prob-unvalidated-badge">Unvalidated · For Pilot Testing</span>
+                  </div>
+                  <p class="prob-synthesis-quote" style="margin-top:14px;">
+                    “In selected Miami professional environments, a time-limited, consent-based discovery experience may help professionals initiate relevant in-person connections that would otherwise be missed.”
+                  </p>
+                </div>
+                <p class="prob-synthesis-foot">
+                  <strong>Validation Status:</strong> This hypothesis is not yet empirically validated. It serves as the primary assumption to be tested in concentrated coworking and event environments.
+                </p>
               </div>
             </div>
 
-            <div class="prob-caption-box" style="margin-top:20px;">
-              <i class="ph ph-info" aria-hidden="true"></i>
-              <span><strong>Validation Framework Notice:</strong> These figures represent proposed validation thresholds and falsification criteria designed to govern the Miami pilot. They are forward-looking hypotheses, not observed user metrics, historical traction, or validated benchmarks.</span>
+            <div class="prob-next-banner">
+              <div class="prob-next-copy">
+                <span>NEXT CHAPTER · 01.3 PRODUCT VISION &amp; STRATEGY</span>
+                <strong>How Peopi translates this opportunity into a focused product strategy</strong>
+                <p>Explore the strategic positioning, competitive differentiation, and staged validation roadmap designed around these constraints.</p>
+              </div>
+              <button type="button" class="btn btn-primary overview-primary-btn" onclick="openOverview('strategy')">
+                <span>Explore Product Vision &amp; Strategy</span>
+                <i class="ph ph-arrow-right" aria-hidden="true"></i>
+              </button>
             </div>
           </section>
 
@@ -25618,7 +26194,7 @@ const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];le
 {"name":"Liam O'Sullivan","initial":"LO","role":"VP of product · Enterprise SaaS","intent":"Looking to exchange ideas","color":"#cad8cc","headline":"VP of Product","sector":"Enterprise Platforms · B2B","bio":"Simplifying complex enterprise workflows into delightful, consumer-grade software.","looking":"Product thinkers, enterprise sales leaders, and aspiring PMs.","skills":["Enterprise SaaS","Product Strategy","GTM Execution"],"project":null,"projectdesc":"","onepager":null},
 {"name":"Hanna Lindqvist","initial":"HL","role":"Spatial audio engineer · AR/VR","intent":"Exploring new projects","color":"#e8d5cb","headline":"Spatial Audio Engineer","sector":"Immersive Tech · Acoustics","bio":"Creating real-time binaural sound rendering and acoustic room simulation for spatial apps.","looking":"AR/VR developers, game engine architects, and sound designers.","skills":["Spatial Audio","DSP","Unity & Unreal","C++"],"project":"AmbisonicLab","projectdesc":"Real-time web-based spatial acoustic room reverberation previewer.","onepager":null},
 {"name":"Kenji Takahashi","initial":"KT","role":"Security lead · Zero-trust","intent":"Sharing ideas","color":"#cfdbe8","headline":"Security & Cryptography Lead","sector":"Cybersecurity · Privacy Infrastructure","bio":"Engineering end-to-end encrypted protocols and zero-knowledge privacy guarantees.","looking":"Privacy advocates, cryptographers, and distributed infrastructure engineers.","skills":["Applied Cryptography","Zero-Trust","Rust","Network Security"],"project":"CryptMesh","projectdesc":"Local-first peer-to-peer authenticated discovery protocol specification.","onepager":null}
-];function go(to,dir){page=to;all('.screen').forEach(x=>x.classList.toggle('active',x.id===to));all('[data-go]').forEach(x=>x.classList.toggle('selected',x.dataset.go===to&&x.closest('.controls')))}window.goBack=window.goBack||function(fallback){go(fallback||'closed');};all('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));['auth-google','auth-apple'].forEach(id=>$('#'+id).addEventListener('click',()=>toast('Social sign-in is a UI demo. OAuth is not connected yet.')));$('#theme').onclick=()=>{const dark=$('#phone').classList.toggle('dark');$('#theme').innerHTML=dark?'<i class="ph ph-sun" aria-hidden="true"></i>':'<i class="ph ph-moon" aria-hidden="true"></i>';$('#theme').setAttribute('aria-pressed',String(dark));$('#theme').setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');refreshIcons()};all('[data-intent]').forEach(b=>b.onclick=()=>{intent=b.dataset.intent;all('[data-intent]').forEach(x=>x.classList.toggle('chosen',x===b));updateClosedIntentBubble(intent)});function syncDurationFromInput(){const valEl=$('#setup-duration-val'),unitEl=$('#setup-duration-unit');if(!valEl||!unitEl)return;let v=parseInt(valEl.value,10);if(isNaN(v)||v<1)v=1;const u=unitEl.value;duration=u==='hours'?v*60:v;all('.durations button').forEach(b=>{b.classList.toggle('chosen',Number(b.dataset.duration)===duration)})}all('[data-duration]').forEach(b=>b.onclick=()=>{const d=Number(b.dataset.duration);duration=d;const valEl=$('#setup-duration-val'),unitEl=$('#setup-duration-unit');if(valEl&&unitEl){if(b.dataset.val&&b.dataset.unit){valEl.value=b.dataset.val;unitEl.value=b.dataset.unit;}else if(d>=60&&d%60===0){valEl.value=d/60;unitEl.value='hours';}else{valEl.value=d;unitEl.value='minutes';}}$('#setup-custom-duration-wrap')?.classList.add('hide');all('[data-duration]').forEach(x=>x.classList.toggle('chosen',x===b))});$('#setup-duration-val')?.addEventListener('input',syncDurationFromInput);$('#setup-duration-val')?.addEventListener('change',()=>{if(!$('#setup-duration-val').value||parseInt($('#setup-duration-val').value,10)<1){$('#setup-duration-val').value='1';syncDurationFromInput();}});$('#setup-duration-unit')?.addEventListener('change',syncDurationFromInput);$('#btn-toggle-custom-duration')?.addEventListener('click',()=>{const wrap=$('#setup-custom-duration-wrap');if(wrap){wrap.classList.toggle('hide');if(!wrap.classList.contains('hide'))$('#setup-duration-val')?.focus();}});function updateTimer(){if(!endTime)return;const remaining=Math.max(0,Math.ceil((endTime-Date.now())/1000));if(remaining<=300&&remaining>0&&!fiveMinuteNotified){fiveMinuteNotified=true;$('#session-alert').classList.remove('hide')}if(!remaining){clearInterval(interval);endTime=null;$('#session-alert').classList.add('hide');go('closed');toast('You are invisible again.')}}let introSkillsList = [];
+];function go(to,dir){page=to;all('.screen').forEach(x=>x.classList.toggle('active',x.id===to));all('[data-go]').forEach(x=>x.classList.toggle('selected',x.dataset.go===to&&x.closest('.controls')))}window.goBack=window.goBack||function(fallback){go(fallback||'closed');};all('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));['auth-google','auth-apple'].forEach(id=>$('#'+id).addEventListener('click',()=>toast('Social sign-in is a UI demo. OAuth is not connected yet.')));$('#theme').onclick=()=>{const dark=$('#phone').classList.toggle('dark');$('#theme').innerHTML=dark?'<i class="ph ph-sun" aria-hidden="true"></i>':'<i class="ph ph-moon" aria-hidden="true"></i>';$('#theme').setAttribute('aria-pressed',String(dark));$('#theme').setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');refreshIcons()};all('[data-intent]').forEach(b=>b.onclick=()=>{intent=b.dataset.intent;all('[data-intent]').forEach(x=>x.classList.toggle('chosen',x===b));updateClosedIntentBubble(intent)});function syncDurationFromInput(){const valEl=$('#setup-duration-val'),unitEl=$('#setup-duration-unit');if(!valEl||!unitEl)return;let v=parseInt(valEl.value,10);if(isNaN(v)||v<1)v=1;const u=unitEl.value;duration=u==='hours'?v*60:v;all('.durations button').forEach(b=>{const isChosen=Number(b.dataset.duration)===duration;b.classList.toggle('chosen',isChosen);b.setAttribute('aria-pressed',String(isChosen))})}all('[data-duration]').forEach(b=>b.onclick=()=>{const d=Number(b.dataset.duration);duration=d;const valEl=$('#setup-duration-val'),unitEl=$('#setup-duration-unit');if(valEl&&unitEl){if(b.dataset.val&&b.dataset.unit){valEl.value=b.dataset.val;unitEl.value=b.dataset.unit;}else if(d>=60&&d%60===0){valEl.value=d/60;unitEl.value='hours';}else{valEl.value=d;unitEl.value='minutes';}}$('#setup-custom-duration-wrap')?.classList.add('hide');all('[data-duration]').forEach(x=>{const isChosen=x===b;x.classList.toggle('chosen',isChosen);x.setAttribute('aria-pressed',String(isChosen))})});$('#setup-duration-val')?.addEventListener('input',syncDurationFromInput);$('#setup-duration-val')?.addEventListener('change',()=>{if(!$('#setup-duration-val').value||parseInt($('#setup-duration-val').value,10)<1){$('#setup-duration-val').value='1';syncDurationFromInput();}});$('#setup-duration-unit')?.addEventListener('change',syncDurationFromInput);$('#btn-toggle-custom-duration')?.addEventListener('click',()=>{const wrap=$('#setup-custom-duration-wrap');if(wrap){wrap.classList.toggle('hide');if(!wrap.classList.contains('hide'))$('#setup-duration-val')?.focus();}});function updateTimer(){if(!endTime)return;const remaining=Math.max(0,Math.ceil((endTime-Date.now())/1000));if(remaining<=300&&remaining>0&&!fiveMinuteNotified){fiveMinuteNotified=true;$('#session-alert').classList.remove('hide')}if(!remaining){clearInterval(interval);endTime=null;$('#session-alert').classList.add('hide');go('closed');toast('You are invisible again.')}}let introSkillsList = [];
 function renderIntroSkillsChips(){
   const container = $('#intro-skills-chips');
   if(!container) return;
@@ -38407,15 +38983,15 @@ function openOverview(viewId){
         <div class="spec-heading">
           <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">01 — WHAT IS PEOPI? / 02</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Problem &amp; Opportunity</h2>
-          <p style="font-size:12.5px;color:#64748B;margin:0;">Product hypotheses and proximity encounter opportunity framing.</p>
+          <p style="font-size:12.5px;color:#64748B;margin:0;">Problem framing, illustrative scenario, landscape gaps, design constraints, and unvalidated pilot hypothesis.</p>
         </div>
         <div class="spec-block" style="margin-top:20px;">
-          <h3 style="font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#FF3300;margin-bottom:12px;">Content Context</h3>
+          <h3 style="font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#FF3300;margin-bottom:12px;">Chapter Context</h3>
           <ul style="padding-left:18px;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.45;color:#334155;">
-            <li><strong>Page Purpose:</strong> Articulates the core encounter friction Peopi addresses: why physical co-location rarely results in mutual professional connection.</li>
-            <li><strong>Hypothesis Status:</strong> Problem definitions (Discovery, Availability, Permission) are validated product hypotheses for pilot evaluation.</li>
-            <li><strong>Balanced Evaluation:</strong> Acknowledges strengths and limits of existing tools (LinkedIn, event apps, cold in-person approaches) objectively.</li>
-            <li><strong>Core Invariants:</strong> Launching the app does not broadcast location; discovery requires explicit session start and bilateral consent.</li>
+            <li><strong>Page Purpose:</strong> Explains why physical proximity alone does not reveal professional relevance, availability, or mutual willingness to engage.</li>
+            <li><strong>Research Integrity:</strong> Framed as a product opportunity and an unvalidated pilot hypothesis—not an empirically validated market finding.</li>
+            <li><strong>Balanced Evaluation:</strong> Acknowledges the strengths of professional networks, organized events, and spontaneous introductions while specifying the shared-space gap.</li>
+            <li><strong>Design Constraints:</strong> Privacy, consent, network density, trust, and user control directly govern the solution architecture.</li>
           </ul>
         </div>
       </div>
