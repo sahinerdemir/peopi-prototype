@@ -253,7 +253,7 @@ const specs={
   "summary": "Atmospheric branded landing screen presenting Peopi's mission.",
   "purpose": "Serve as an alternative visual brand portal communicating the core philosophy: Good things start with showing up.",
   "actions": [
-   "Tap 'Get started' to enter registration and sign in (01.3).",
+   "Tap 'Discover Peopi' to enter registration and sign in (01.3).",
    "Tap 'I already have an account' to sign in (01.3).",
    "Inspect orbiting avatars representing diverse creative specialties."
   ],
