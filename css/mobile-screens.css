@@ -3365,6 +3365,10 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
   top: 34%;
   right: 14%;
 }
+.closed-activity-zone.zone-area-3 {
+  bottom: 338px;
+  left: 14%;
+}
 .closed-activity-zone .zone-pulse {
   position: absolute;
   inset: 0;
