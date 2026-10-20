@@ -9713,15 +9713,15 @@ function openOverview(viewId){
         <div class="spec-heading">
           <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 04</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Target Audience &amp; Personas</h2>
-          <p style="font-size:12.5px;color:#64748B;margin:0;">Target personas, user archetypes, pilot geography, and acquisition focus.</p>
+          <p style="font-size:12.5px;color:#64748B;margin:0;">Initial startup/tech segment, hypothesis-based proto-personas, Jobs to Be Done, trust barriers, and MVP implications.</p>
         </div>
         <div class="spec-block" style="margin-top:20px;">
           <h3 style="font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#FF3300;margin-bottom:12px;">Audience Framework</h3>
           <ul style="padding-left:18px;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.45;color:#334155;">
-            <li><strong>Primary Archetypes:</strong> Tech founders, product operators, developers, and ecosystem builders with high encounter density needs.</li>
-            <li><strong>First Launch Geography:</strong> Miami tech ecosystem chosen for concentrated event density and walkable co-working districts.</li>
-            <li><strong>Acquisition Engine:</strong> Community-partnered gathering pilots rather than paid broadcast advertising.</li>
-            <li><strong>No Artificial Density:</strong> Displays authentic empty states in low-density locations; zero fake profiles or synthetic activity.</li>
+            <li><strong>Focused Segment:</strong> Startup and technology-oriented professionals (founders, PMs, designers, engineers, operators, consultants) in shared environments.</li>
+            <li><strong>Behavioral Proto-Personas:</strong> Builder, Collaborator, and Explorer represent situational motivations rather than static demographic groups.</li>
+            <li><strong>Trust &amp; Adoption Barriers:</strong> Maps relevance uncertainty, interruption risk, location privacy, unsolicited contact, and low density to design hypotheses.</li>
+            <li><strong>MVP Traceability:</strong> Connects persona needs directly to the 7 core MVP capabilities and bridges into 01.5 MVP Scope &amp; Product Decisions.</li>
           </ul>
         </div>
       </div>
