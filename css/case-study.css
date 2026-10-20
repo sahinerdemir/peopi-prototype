@@ -7733,3 +7733,1222 @@
   color: #CBD5E1;
 }
 
+/* ==========================================================================
+   01.3 PRODUCT VISION & STRATEGY — PM PORTFOLIO CASE STUDY CHAPTER
+   ========================================================================== */
+
+.strat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.strat-sec {
+  margin-bottom: clamp(44px, 4.5vw, 56px);
+}
+
+.strat-sec-head {
+  margin-bottom: 24px;
+}
+
+.strat-sec-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FF3300;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.strat-sec-title {
+  font-size: clamp(22px, 2.5vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0F172A;
+  margin: 0 0 8px 0;
+  line-height: 1.25;
+}
+
+.strat-sec-lead {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+  max-width: 780px;
+}
+
+/* --------------------------------------------------------------------------
+   Section 01: Product Vision & Practical Promise Surface
+   -------------------------------------------------------------------------- */
+.strat-vision-surface {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.strat-vision-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+
+.strat-vision-statement-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding-right: 12px;
+}
+
+.strat-vision-eyebrow,
+.strat-promise-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.strat-vision-eyebrow {
+  color: #FF3300;
+}
+
+.strat-vision-quote {
+  font-size: clamp(21px, 2.2vw, 25px);
+  font-weight: 800;
+  line-height: 1.32;
+  letter-spacing: -0.028em;
+  color: #0F172A;
+  margin: 0;
+  padding-left: 18px;
+  border-left: 3px solid #FF3300;
+}
+
+.strat-vision-narrative {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+.strat-promise-col {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.strat-promise-quote {
+  font-size: 16.5px;
+  font-weight: 800;
+  line-height: 1.42;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin: 0;
+}
+
+.strat-promise-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+.strat-vision-horizon-bar {
+  border-top: 1px solid #E2E8F0;
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.strat-horizon-divider {
+  width: 1px;
+  height: 100%;
+  background: #E2E8F0;
+}
+
+.strat-horizon-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.strat-horizon-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.strat-horizon-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: #F1F5F9;
+  color: #475569;
+}
+
+.strat-horizon-tag.active {
+  background: #FFF5F2;
+  color: #FF3300;
+  border: 1px solid #FFD8CC;
+}
+
+.strat-horizon-head strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.strat-horizon-item p {
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: #475569;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 02: Strategic Positioning Ledger
+   -------------------------------------------------------------------------- */
+.strat-pos-ledger {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  overflow: clip;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+}
+
+.strat-pos-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.15fr) minmax(0, 1.25fr) minmax(0, 0.95fr);
+  gap: 20px;
+  padding: 14px 24px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.strat-pos-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.15fr) minmax(0, 1.25fr) minmax(0, 0.95fr);
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #E2E8F0;
+  align-items: start;
+}
+
+.strat-pos-row:last-child {
+  border-bottom: none;
+}
+
+.strat-pos-row.peopi-row {
+  background: #FFFBF9;
+  border-top: 1.5px solid #FFD8CC;
+}
+
+.strat-pos-category {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.strat-pos-type {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.strat-pos-type.peopi-tag {
+  color: #FF3300;
+}
+
+.strat-pos-category h3 {
+  font-size: 15.5px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.strat-pos-examples {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.strat-pos-cell {
+  min-width: 0;
+}
+
+.strat-pos-cell p {
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: #334155;
+  margin: 0;
+}
+
+.strat-pos-mobile-label {
+  display: none;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 4px;
+}
+
+.strat-pos-signals {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.strat-signal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  font-size: 12px;
+}
+
+.strat-pos-row.peopi-row .strat-signal-row {
+  background: #FFF5F2;
+  border-color: #FFD8CC;
+}
+
+.strat-sig-key {
+  color: #64748B;
+  font-weight: 600;
+}
+
+.strat-sig-val {
+  font-weight: 800;
+  color: #0F172A;
+  text-align: right;
+}
+
+.strat-sig-val.high {
+  color: #0F766E;
+}
+
+.strat-sig-val.mid {
+  color: #B45309;
+}
+
+.strat-sig-val.low {
+  color: #64748B;
+}
+
+.strat-sig-val.peopi {
+  color: #FF3300;
+}
+
+.strat-governance-note {
+  margin-top: 16px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.strat-governance-note i {
+  font-size: 17px;
+  color: #FF3300;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.strat-governance-note p {
+  font-size: 13px;
+  line-height: 1.58;
+  color: #475569;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 03: Four Strategic Pillars (2x2 Grid)
+   -------------------------------------------------------------------------- */
+.strat-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.strat-pillar-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 26px 26px 24px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.strat-pillar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.strat-pillar-num {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.strat-pillar-header i {
+  font-size: 18px;
+  color: #64748B;
+}
+
+.strat-pillar-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.strat-pillar-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.strat-pillar-row {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 11px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.strat-pillar-row.highlight {
+  background: #FFFBF9;
+  border-color: #FFE2D9;
+}
+
+.strat-pillar-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.strat-pillar-row.highlight .strat-pillar-label {
+  color: #FF3300;
+}
+
+.strat-pillar-row p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #334155;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 04: Strategic Decisions & Trade-offs Stack
+   -------------------------------------------------------------------------- */
+.strat-decisions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.strat-decision-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.45fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.strat-decision-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.strat-decision-domain {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.strat-decision-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.strat-decision-rationale {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 4px 0 0;
+}
+
+.strat-decision-right {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+.strat-choice-box {
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.strat-choice-box.selected {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+}
+
+.strat-choice-box.rejected {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}
+
+.strat-choice-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.strat-choice-box.selected .strat-choice-label {
+  color: #15803D;
+}
+
+.strat-choice-box.rejected .strat-choice-label {
+  color: #64748B;
+}
+
+.strat-choice-box strong {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.35;
+}
+
+.strat-choice-box p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0;
+}
+
+.strat-cost-bar {
+  grid-column: 1 / -1;
+  background: #FFFBF9;
+  border: 1px solid #FFE2D9;
+  border-left: 3px solid #FF3300;
+  border-radius: 10px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.strat-cost-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FF3300;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.strat-cost-bar p {
+  font-size: 13px;
+  line-height: 1.52;
+  color: #334155;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 05: Miami-First Pilot Strategy & Progression Sequence
+   -------------------------------------------------------------------------- */
+.strat-pilot-surface {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.strat-pilot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.strat-pilot-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.strat-pilot-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.strat-pilot-index {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.strat-pilot-card-top i {
+  font-size: 17px;
+  color: #64748B;
+}
+
+.strat-pilot-card h3 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.32;
+}
+
+.strat-pilot-card p {
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: #475569;
+  margin: 0;
+}
+
+.strat-progression-box {
+  background: #FFFBF9;
+  border: 1px solid #FFD8CC;
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.strat-progression-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.strat-progression-kicker {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.strat-progression-title {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin: 0;
+}
+
+.strat-hypothesis-pill {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  border: 1px solid #FFD8CC;
+  color: #C2410C;
+  white-space: nowrap;
+}
+
+.strat-progression-track {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.strat-prog-step {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 14px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.strat-prog-step.gate-step {
+  border-color: #FF3300;
+  background: #FFF5F2;
+}
+
+.strat-prog-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.strat-prog-num {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.strat-prog-arrow {
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+.strat-prog-step.gate-step .strat-prog-arrow {
+  color: #FF3300;
+}
+
+.strat-prog-step strong {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.3;
+}
+
+.strat-prog-step p {
+  font-size: 12px;
+  line-height: 1.48;
+  color: #475569;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 06: Success & Validation Framework
+   -------------------------------------------------------------------------- */
+.strat-northstar-banner {
+  background: #FFFFFF;
+  border: 1.5px solid #FFD8CC;
+  border-radius: 18px;
+  padding: 26px 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.strat-northstar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.strat-northstar-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.strat-northstar-status {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #FFF5F2;
+  border: 1px solid #FFD8CC;
+  color: #C2410C;
+}
+
+.strat-northstar-statement {
+  font-size: clamp(19px, 2.1vw, 23px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #0F172A;
+  margin: 2px 0 0;
+  line-height: 1.32;
+}
+
+.strat-northstar-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+  max-width: 880px;
+}
+
+.strat-metrics-table-wrap {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  overflow: clip;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+}
+
+.strat-metrics-head {
+  display: grid;
+  grid-template-columns: 165px minmax(0, 1.05fr) minmax(0, 1.15fr) minmax(0, 1.15fr);
+  gap: 20px;
+  padding: 14px 24px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+.strat-metric-row {
+  display: grid;
+  grid-template-columns: 165px minmax(0, 1.05fr) minmax(0, 1.15fr) minmax(0, 1.15fr);
+  gap: 20px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #E2E8F0;
+  align-items: start;
+}
+
+.strat-metric-row:last-child {
+  border-bottom: none;
+}
+
+.strat-dim-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 7px;
+  letter-spacing: 0.02em;
+}
+
+.strat-dim-badge.dim-activation {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.strat-dim-badge.dim-liquidity {
+  background: #FFF5F2;
+  color: #EA580C;
+  border: 1px solid #FED7AA;
+}
+
+.strat-dim-badge.dim-quality {
+  background: #F0FDF4;
+  color: #15803D;
+  border: 1px solid #BBF7D0;
+}
+
+.strat-dim-badge.dim-retention {
+  background: #F5F3FF;
+  color: #6D28D9;
+  border: 1px solid #DDD6FE;
+}
+
+.strat-dim-badge.dim-safety {
+  background: #F8FAFC;
+  color: #334155;
+  border: 1px solid #CBD5E1;
+}
+
+.strat-metric-name {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.strat-metric-name strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.35;
+}
+
+.strat-metric-name span:last-child {
+  font-size: 12.5px;
+  color: #64748B;
+  line-height: 1.45;
+}
+
+.strat-metric-question p,
+.strat-metric-meaning p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #334155;
+  margin: 0;
+}
+
+.strat-footer-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #E2E8F0;
+}
+
+/* --------------------------------------------------------------------------
+   Dark Mode Overrides for 01.3 Product Vision & Strategy
+   -------------------------------------------------------------------------- */
+#dashboard-workspace.ds-dark .strat-sec-title,
+#dashboard-workspace.dash-dark .strat-sec-title,
+#dashboard-workspace.ds-dark .strat-vision-quote,
+#dashboard-workspace.dash-dark .strat-vision-quote,
+#dashboard-workspace.ds-dark .strat-promise-quote,
+#dashboard-workspace.dash-dark .strat-promise-quote,
+#dashboard-workspace.ds-dark .strat-horizon-head strong,
+#dashboard-workspace.dash-dark .strat-horizon-head strong,
+#dashboard-workspace.ds-dark .strat-pos-category h3,
+#dashboard-workspace.dash-dark .strat-pos-category h3,
+#dashboard-workspace.ds-dark .strat-pillar-title,
+#dashboard-workspace.dash-dark .strat-pillar-title,
+#dashboard-workspace.ds-dark .strat-decision-title,
+#dashboard-workspace.dash-dark .strat-decision-title,
+#dashboard-workspace.ds-dark .strat-choice-box strong,
+#dashboard-workspace.dash-dark .strat-choice-box strong,
+#dashboard-workspace.ds-dark .strat-pilot-card h3,
+#dashboard-workspace.dash-dark .strat-pilot-card h3,
+#dashboard-workspace.ds-dark .strat-progression-title,
+#dashboard-workspace.dash-dark .strat-progression-title,
+#dashboard-workspace.ds-dark .strat-prog-step strong,
+#dashboard-workspace.dash-dark .strat-prog-step strong,
+#dashboard-workspace.ds-dark .strat-northstar-statement,
+#dashboard-workspace.dash-dark .strat-northstar-statement,
+#dashboard-workspace.ds-dark .strat-metric-name strong,
+#dashboard-workspace.dash-dark .strat-metric-name strong {
+  color: #F8FAFC;
+}
+
+#dashboard-workspace.ds-dark .strat-sec-lead,
+#dashboard-workspace.dash-dark .strat-sec-lead,
+#dashboard-workspace.ds-dark .strat-vision-narrative,
+#dashboard-workspace.dash-dark .strat-vision-narrative,
+#dashboard-workspace.ds-dark .strat-promise-desc,
+#dashboard-workspace.dash-dark .strat-promise-desc,
+#dashboard-workspace.ds-dark .strat-horizon-item p,
+#dashboard-workspace.dash-dark .strat-horizon-item p,
+#dashboard-workspace.ds-dark .strat-pos-cell p,
+#dashboard-workspace.dash-dark .strat-pos-cell p,
+#dashboard-workspace.ds-dark .strat-governance-note p,
+#dashboard-workspace.dash-dark .strat-governance-note p,
+#dashboard-workspace.ds-dark .strat-pillar-row p,
+#dashboard-workspace.dash-dark .strat-pillar-row p,
+#dashboard-workspace.ds-dark .strat-decision-rationale,
+#dashboard-workspace.dash-dark .strat-decision-rationale,
+#dashboard-workspace.ds-dark .strat-choice-box p,
+#dashboard-workspace.dash-dark .strat-choice-box p,
+#dashboard-workspace.ds-dark .strat-cost-bar p,
+#dashboard-workspace.dash-dark .strat-cost-bar p,
+#dashboard-workspace.ds-dark .strat-pilot-card p,
+#dashboard-workspace.dash-dark .strat-pilot-card p,
+#dashboard-workspace.ds-dark .strat-prog-step p,
+#dashboard-workspace.dash-dark .strat-prog-step p,
+#dashboard-workspace.ds-dark .strat-northstar-desc,
+#dashboard-workspace.dash-dark .strat-northstar-desc,
+#dashboard-workspace.ds-dark .strat-metric-question p,
+#dashboard-workspace.dash-dark .strat-metric-question p,
+#dashboard-workspace.ds-dark .strat-metric-meaning p,
+#dashboard-workspace.dash-dark .strat-metric-meaning p {
+  color: #CBD5E1;
+}
+
+#dashboard-workspace.ds-dark .strat-vision-surface,
+#dashboard-workspace.dash-dark .strat-vision-surface,
+#dashboard-workspace.ds-dark .strat-pos-ledger,
+#dashboard-workspace.dash-dark .strat-pos-ledger,
+#dashboard-workspace.ds-dark .strat-pillar-card,
+#dashboard-workspace.dash-dark .strat-pillar-card,
+#dashboard-workspace.ds-dark .strat-decision-card,
+#dashboard-workspace.dash-dark .strat-decision-card,
+#dashboard-workspace.ds-dark .strat-pilot-surface,
+#dashboard-workspace.dash-dark .strat-pilot-surface,
+#dashboard-workspace.ds-dark .strat-northstar-banner,
+#dashboard-workspace.dash-dark .strat-northstar-banner,
+#dashboard-workspace.ds-dark .strat-metrics-table-wrap,
+#dashboard-workspace.dash-dark .strat-metrics-table-wrap {
+  background: #18202C;
+  border-color: #2D3748;
+}
+
+#dashboard-workspace.ds-dark .strat-promise-col,
+#dashboard-workspace.dash-dark .strat-promise-col,
+#dashboard-workspace.ds-dark .strat-pos-head,
+#dashboard-workspace.dash-dark .strat-pos-head,
+#dashboard-workspace.ds-dark .strat-signal-row,
+#dashboard-workspace.dash-dark .strat-signal-row,
+#dashboard-workspace.ds-dark .strat-governance-note,
+#dashboard-workspace.dash-dark .strat-governance-note,
+#dashboard-workspace.ds-dark .strat-pillar-row,
+#dashboard-workspace.dash-dark .strat-pillar-row,
+#dashboard-workspace.ds-dark .strat-choice-box.rejected,
+#dashboard-workspace.dash-dark .strat-choice-box.rejected,
+#dashboard-workspace.ds-dark .strat-pilot-card,
+#dashboard-workspace.dash-dark .strat-pilot-card,
+#dashboard-workspace.ds-dark .strat-prog-step,
+#dashboard-workspace.dash-dark .strat-prog-step,
+#dashboard-workspace.ds-dark .strat-metrics-head,
+#dashboard-workspace.dash-dark .strat-metrics-head {
+  background: #131A24;
+  border-color: #283344;
+}
+
+#dashboard-workspace.ds-dark .strat-pos-row,
+#dashboard-workspace.dash-dark .strat-pos-row,
+#dashboard-workspace.ds-dark .strat-metric-row,
+#dashboard-workspace.dash-dark .strat-metric-row,
+#dashboard-workspace.ds-dark .strat-vision-horizon-bar,
+#dashboard-workspace.dash-dark .strat-vision-horizon-bar,
+#dashboard-workspace.ds-dark .strat-footer-nav,
+#dashboard-workspace.dash-dark .strat-footer-nav {
+  border-color: #2D3748;
+}
+
+#dashboard-workspace.ds-dark .strat-horizon-divider,
+#dashboard-workspace.dash-dark .strat-horizon-divider {
+  background: #2D3748;
+}
+
+#dashboard-workspace.ds-dark .strat-pos-row.peopi-row,
+#dashboard-workspace.dash-dark .strat-pos-row.peopi-row,
+#dashboard-workspace.ds-dark .strat-pillar-row.highlight,
+#dashboard-workspace.dash-dark .strat-pillar-row.highlight,
+#dashboard-workspace.ds-dark .strat-cost-bar,
+#dashboard-workspace.dash-dark .strat-cost-bar,
+#dashboard-workspace.ds-dark .strat-progression-box,
+#dashboard-workspace.dash-dark .strat-progression-box,
+#dashboard-workspace.ds-dark .strat-prog-step.gate-step,
+#dashboard-workspace.dash-dark .strat-prog-step.gate-step,
+#dashboard-workspace.ds-dark .strat-pos-row.peopi-row .strat-signal-row,
+#dashboard-workspace.dash-dark .strat-pos-row.peopi-row .strat-signal-row {
+  background: #231815;
+  border-color: #5C281B;
+}
+
+#dashboard-workspace.ds-dark .strat-choice-box.selected,
+#dashboard-workspace.dash-dark .strat-choice-box.selected {
+  background: #11261D;
+  border-color: #1E4D38;
+}
+
+#dashboard-workspace.ds-dark .strat-choice-box.selected .strat-choice-label,
+#dashboard-workspace.dash-dark .strat-choice-box.selected .strat-choice-label {
+  color: #4ADE80;
+}
+
+#dashboard-workspace.ds-dark .strat-horizon-tag,
+#dashboard-workspace.dash-dark .strat-horizon-tag {
+  background: #283344;
+  color: #CBD5E1;
+}
+
+#dashboard-workspace.ds-dark .strat-horizon-tag.active,
+#dashboard-workspace.dash-dark .strat-horizon-tag.active,
+#dashboard-workspace.ds-dark .strat-hypothesis-pill,
+#dashboard-workspace.dash-dark .strat-hypothesis-pill,
+#dashboard-workspace.ds-dark .strat-northstar-status,
+#dashboard-workspace.dash-dark .strat-northstar-status {
+  background: #2D1A16;
+  border-color: #5C281B;
+  color: #FF8A65;
+}
+
+#dashboard-workspace.ds-dark .strat-dim-badge.dim-activation,
+#dashboard-workspace.dash-dark .strat-dim-badge.dim-activation {
+  background: #172554;
+  border-color: #1E3A8A;
+  color: #93C5FD;
+}
+
+#dashboard-workspace.ds-dark .strat-dim-badge.dim-liquidity,
+#dashboard-workspace.dash-dark .strat-dim-badge.dim-liquidity {
+  background: #2D1A16;
+  border-color: #5C281B;
+  color: #FDBA74;
+}
+
+#dashboard-workspace.ds-dark .strat-dim-badge.dim-quality,
+#dashboard-workspace.dash-dark .strat-dim-badge.dim-quality {
+  background: #142E22;
+  border-color: #1E4D38;
+  color: #86EFAC;
+}
+
+#dashboard-workspace.ds-dark .strat-dim-badge.dim-retention,
+#dashboard-workspace.dash-dark .strat-dim-badge.dim-retention {
+  background: #2E1065;
+  border-color: #4C1D95;
+  color: #C4B5FD;
+}
+
+#dashboard-workspace.ds-dark .strat-dim-badge.dim-safety,
+#dashboard-workspace.dash-dark .strat-dim-badge.dim-safety {
+  background: #1E293B;
+  border-color: #334155;
+  color: #E2E8F0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints for 01.3 Product Vision & Strategy
+   -------------------------------------------------------------------------- */
+@media (max-width: 1120px) {
+  .strat-progression-track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .strat-decision-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 960px) {
+  .strat-vision-main {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .strat-vision-statement-col {
+    padding-right: 0;
+  }
+  .strat-vision-horizon-bar {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .strat-horizon-divider {
+    width: 100%;
+    height: 1px;
+  }
+  .strat-pos-head,
+  .strat-metrics-head {
+    display: none;
+  }
+  .strat-pos-row,
+  .strat-metric-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px;
+  }
+  .strat-pos-mobile-label {
+    display: block;
+  }
+  .strat-pillars-grid,
+  .strat-pilot-grid {
+    grid-template-columns: 1fr;
+  }
+  .strat-progression-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .strat-vision-surface,
+  .strat-pillar-card,
+  .strat-decision-card,
+  .strat-pilot-surface,
+  .strat-northstar-banner {
+    padding: 20px 18px;
+  }
+  .strat-decision-right,
+  .strat-progression-track {
+    grid-template-columns: 1fr;
+  }
+  .strat-cost-bar {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .strat-prog-arrow {
+    display: none;
+  }
+}
+
+

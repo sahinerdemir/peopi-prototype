@@ -9693,15 +9693,15 @@ function openOverview(viewId){
         <div class="spec-heading">
           <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 03</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Product Vision &amp; Strategy</h2>
-          <p style="font-size:12.5px;color:#64748B;margin:0;">Competitive landscape, positioning hypotheses, and 5-stage delivery roadmap.</p>
+          <p style="font-size:12.5px;color:#64748B;margin:0;">Long-term vision, strategic positioning, four experience pillars, trade-offs, Miami pilot thesis, and validation framework.</p>
         </div>
         <div class="spec-block" style="margin-top:20px;">
           <h3 style="font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#FF3300;margin-bottom:12px;">Strategic Context</h3>
           <ul style="padding-left:18px;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.45;color:#334155;">
-            <li><strong>Benchmark Basis:</strong> Public official documentation of 6 industry alternatives (Myngly, Mētan, Swapcard, Brella, LinkedIn, Meetup).</li>
-            <li><strong>Positioning Focus:</strong> Differentiates by intentional time-bound sessions, zero passive tracking, and bilateral double opt-in consent.</li>
-            <li><strong>Defensibility:</strong> High user trust, context-rich notes, and network permanence compound over time.</li>
-            <li><strong>Delivery Roadmap:</strong> 5 staged phases (Prototype &amp; rules, Dev prep, Mobile MVP, Pilot &amp; iteration, Release prep) with explicit completion criteria.</li>
+            <li><strong>Vision vs. MVP:</strong> Distinguishes long-term everyday serendipity from the current pre-pilot MVP specification and prototype.</li>
+            <li><strong>Positioning Synthesis:</strong> Combines professional context, approximate proximity, time-limited availability (30/60/120m), and mutual acceptance.</li>
+            <li><strong>Deliberate Trade-offs:</strong> Documents the accepted costs of default invisibility, approximate discovery, mutual acceptance gates, and a Miami-first rollout.</li>
+            <li><strong>Validation Framework:</strong> Defines a proposed North Star metric and 7 diagnostic measures across activation, liquidity, quality, retention, and safety.</li>
           </ul>
         </div>
       </div>

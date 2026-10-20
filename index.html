@@ -1521,7 +1521,7 @@
         </div>
     </div>
     <div id="view-overview-strategy" hidden>
-        <div class="cmp-container roadmap-container">
+        <div class="cmp-container strat-container">
 
           <!-- Unified Editorial Header & Introduction -->
           <header class="dash-page-header">
@@ -1535,1101 +1535,737 @@
 
             <div class="dash-page-intro">
               <p class="dash-page-lead">
-                The need has alternatives. Our execution must earn a place.
+                Make the people around you professionally discoverable, but only when they choose to be.
               </p>
               <p class="dash-page-desc">
-                Peopi enters an existing landscape of professional networks, nearby discovery products and event networking platforms. The opportunity depends on delivering a useful, consent-first experience—not claiming that proximity networking has never existed.
+                Peopi connects physical proximity, professional relevance, and explicit availability without turning professional networking into continuous location tracking. This chapter outlines the long-term product vision, where Peopi sits relative to existing networking behaviors, the architectural trade-offs that shape the experience, why initial testing is scoped to a concentrated Miami pilot, and how the strategy will be evaluated after launch.
               </p>
             </div>
           </header>
 
-          <!-- 2. COMPETITIVE CONTEXT -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">MARKET SEGMENTATION</span>
-                <h2 class="cmp-sec-title">Compare the job people need done<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-            <p class="cmp-section-intro">
-              Rather than viewing all networking tools as direct substitutes, we organize alternatives by the primary job they perform for participants:
-            </p>
-            <div class="cmp-grid-3">
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-map-pin" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Nearby professional discovery</h3>
-                <p class="cmp-card-text">Products designed to surface nearby individuals and coordinate local interactions based on proximity and stated goals.</p>
-                <div style="margin-top:14px;font-size:13px;font-weight:700;color:#64748B;">Examples: Myngly, Mētan</div>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-ticket" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Event networking</h3>
-                <p class="cmp-card-text">Organizer-managed platforms that support attendee directories, pre-scheduled meetings and event-specific match recommendations.</p>
-                <div style="margin-top:14px;font-size:13px;font-weight:700;color:#64748B;">Examples: Swapcard, Brella</div>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-globe" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Broader alternatives</h3>
-                <p class="cmp-card-text">Established platforms serving ongoing professional record-keeping, broader social networking, or interest-based group gatherings.</p>
-                <div style="margin-top:14px;font-size:13px;font-weight:700;color:#64748B;">Examples: LinkedIn, Meetup</div>
-              </div>
-            </div>
-            <div class="cmp-caption-box">
-              <i class="ph ph-info" aria-hidden="true"></i>
-              <span>This classification represents our analytical assessment. Category boundaries are not rigid; product use cases can overlap across settings, and this review does not claim to be an exhaustive catalog of every networking product.</span>
-            </div>
-          </section>
-
-          <!-- 3. PRODUCT PROFILES -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">PRODUCT OVERVIEWS</span>
-                <h2 class="cmp-sec-title">Documented product profiles<span class="brand-dot">.</span></h2>
-              </div>
+          <!-- SECTION 01: PRODUCT VISION -->
+          <section class="strat-sec">
+            <div class="strat-sec-head">
+              <span class="strat-sec-kicker">PRODUCT VISION</span>
+              <h2 class="strat-sec-title">Long-term direction and practical product promise<span class="brand-dot">.</span></h2>
+              <p class="strat-sec-lead">
+                Distinguishing the broader future Peopi is designed toward from the focused MVP specification being built and tested today.
+              </p>
             </div>
 
-            <div class="cmp-grid-2">
-              <!-- MYNGLY -->
-              <div class="cmp-profile-card">
-                <div class="cmp-profile-head">
-                  <h3 class="cmp-profile-name">Myngly</h3>
-                  <span class="cmp-profile-badge">Nearby Discovery</span>
+            <div class="strat-vision-surface">
+              <div class="strat-vision-main">
+                <div class="strat-vision-statement-col">
+                  <span class="strat-vision-eyebrow">LONG-TERM PRODUCT VISION</span>
+                  <blockquote class="strat-vision-quote">
+                    “Turn shared physical spaces into opportunities for meaningful professional connections.”
+                  </blockquote>
+                  <p class="strat-vision-narrative">
+                    Over the long term, Peopi envisions a world where sharing a coworking floor, conference venue, or neighborhood hub no longer means working in isolation behind closed laptops—because professionals have a trusted, low-friction way to signal openness and recognize relevant peers nearby.
+                  </p>
                 </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Primary Context</span>
-                  <p class="cmp-profile-text">Location-based professional and social networking.</p>
+
+                <div class="strat-promise-col">
+                  <span class="strat-promise-eyebrow">PRACTICAL PRODUCT PROMISE</span>
+                  <p class="strat-promise-quote">
+                    “Discover relevant professionals nearby, express your availability intentionally, and connect through mutual consent.”
+                  </p>
+                  <p class="strat-promise-desc">
+                    Rather than asking users to maintain another social feed or broadcast their location continuously, Peopi commits to a narrow, dependable interaction loop: opt in for a bounded window, evaluate relevant professional context, and initiate contact only when both people welcome the introduction.
+                  </p>
                 </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Documented Capabilities</span>
-                  <p class="cmp-profile-text">Its developer listing describes map-based discovery, professional profiles, mutual matching before messaging and event discovery/hosting.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Relevance to Peopi</span>
-                  <p class="cmp-profile-text">A close comparator for nearby discovery and introductions.</p>
-                </div>
-                <div class="cmp-profile-guardrail">
-                  <strong>Source Note:</strong> The listing mentions optional subscriptions and paid services. Price points, active user counts and Miami coverage are not publicly verified.
-                </div>
-                <a href="https://play.google.com/store/apps/details?id=com.myngly.myngly" target="_blank" rel="noopener noreferrer" class="cmp-profile-link">
-                  <span>Google Play Developer Listing</span>
-                  <i class="ph ph-arrow-square-out"></i>
-                </a>
               </div>
 
-              <!-- MĒTAN -->
-              <div class="cmp-profile-card">
-                <div class="cmp-profile-head">
-                  <h3 class="cmp-profile-name">Mētan</h3>
-                  <span class="cmp-profile-badge">Nearby Discovery</span>
+              <div class="strat-vision-horizon-bar" aria-label="Comparison between long-term vision and current MVP scope">
+                <div class="strat-horizon-item">
+                  <div class="strat-horizon-head">
+                    <span class="strat-horizon-tag">Long-Term Horizon</span>
+                    <strong>Everyday Professional Serendipity</strong>
+                  </div>
+                  <p>
+                    An established behavioral norm across coworking districts, industry gatherings, and third places where co-located professionals routinely check and activate time-boxed availability.
+                  </p>
                 </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Primary Context</span>
-                  <p class="cmp-profile-text">Networking, contact intelligence and nearby introductions.</p>
+                <div class="strat-horizon-divider" aria-hidden="true"></div>
+                <div class="strat-horizon-item current-mvp">
+                  <div class="strat-horizon-head">
+                    <span class="strat-horizon-tag active">Current MVP Scope · Pre-Pilot</span>
+                    <strong>Focused Validation Vehicle</strong>
+                  </div>
+                  <p>
+                    Peopi has not yet achieved its long-term vision. The current deliverable is a disciplined MVP specification and 28-screen interactive prototype built to test whether session-based, consent-first discovery generates meaningful introductions in concentrated initial settings.
+                  </p>
                 </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Documented Capabilities</span>
-                  <p class="cmp-profile-text">Its official site describes goal-aware nearby discovery, opt-in participation, contact compatibility and meeting coordination.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Relevance to Peopi</span>
-                  <p class="cmp-profile-text">A close comparator for intent and proximity-based networking.</p>
-                </div>
-                <div class="cmp-profile-guardrail">
-                  <strong>Source Note:</strong> Privacy statements reflect vendor marketing rather than independent verification. Marketing demo counts (such as "41 nearby") are not treated as active usage data.
-                </div>
-                <a href="https://metanapp.com/networking" target="_blank" rel="noopener noreferrer" class="cmp-profile-link">
-                  <span>Official Mētan Documentation</span>
-                  <i class="ph ph-arrow-square-out"></i>
-                </a>
-              </div>
-
-              <!-- SWAPCARD -->
-              <div class="cmp-profile-card">
-                <div class="cmp-profile-head">
-                  <h3 class="cmp-profile-name">Swapcard</h3>
-                  <span class="cmp-profile-badge">Event Networking</span>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Primary Context</span>
-                  <p class="cmp-profile-text">Organizer-configured event networking.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Documented Capabilities</span>
-                  <p class="cmp-profile-text">Attendee discovery, connection requests and chat after acceptance; access depends on organizer settings.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Relevance to Peopi</span>
-                  <p class="cmp-profile-text">Overlaps with permission-based introductions in event settings.</p>
-                </div>
-                <div class="cmp-profile-guardrail">
-                  <strong>Source Note:</strong> Access is gated by event organizers; individual attendees cannot self-initiate discovery outside designated event rosters.
-                </div>
-                <a href="https://help-attendees.swapcard.com/en/articles/9121196-how-to-connect-with-other-event-participants" target="_blank" rel="noopener noreferrer" class="cmp-profile-link">
-                  <span>Swapcard Attendee Help Center</span>
-                  <i class="ph ph-arrow-square-out"></i>
-                </a>
-              </div>
-
-              <!-- BRELLA -->
-              <div class="cmp-profile-card">
-                <div class="cmp-profile-head">
-                  <h3 class="cmp-profile-name">Brella</h3>
-                  <span class="cmp-profile-badge">Event Matchmaking</span>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Primary Context</span>
-                  <p class="cmp-profile-text">Event matchmaking and meeting coordination.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Documented Capabilities</span>
-                  <p class="cmp-profile-text">Interest and intent inputs, recommended matches and meeting suggestions at mutually convenient times.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Relevance to Peopi</span>
-                  <p class="cmp-profile-text">Overlaps with intent-based professional introductions.</p>
-                </div>
-                <div class="cmp-profile-guardrail">
-                  <strong>Source Note:</strong> Matchmaking claims reflect company product marketing; no assumption of guaranteed superior meeting outcomes is made.
-                </div>
-                <a href="https://www.brella.io/event-matchmaking" target="_blank" rel="noopener noreferrer" class="cmp-profile-link">
-                  <span>Brella Event Matchmaking Overview</span>
-                  <i class="ph ph-arrow-square-out"></i>
-                </a>
-              </div>
-
-              <!-- LINKEDIN -->
-              <div class="cmp-profile-card">
-                <div class="cmp-profile-head">
-                  <h3 class="cmp-profile-name">LinkedIn</h3>
-                  <span class="cmp-profile-badge">Professional Network</span>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Primary Context</span>
-                  <p class="cmp-profile-text">Professional connections and ongoing networking.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Documented Capabilities</span>
-                  <p class="cmp-profile-text">Connection invitations and messaging between first-degree connections.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Relevance to Peopi</span>
-                  <p class="cmp-profile-text">An alternative for professional context and continuing relationships.</p>
-                </div>
-                <div class="cmp-profile-guardrail">
-                  <strong>Source Note:</strong> Serves as an ongoing professional registry and communication tool rather than a real-time nearby co-presence tool.
-                </div>
-                <a href="https://www.linkedin.com/help/linkedin/answer/a541669/various-ways-to-connect-with-people-on-linkedin" target="_blank" rel="noopener noreferrer" class="cmp-profile-link">
-                  <span>LinkedIn Help: Connecting with People</span>
-                  <i class="ph ph-arrow-square-out"></i>
-                </a>
-              </div>
-
-              <!-- MEETUP -->
-              <div class="cmp-profile-card">
-                <div class="cmp-profile-head">
-                  <h3 class="cmp-profile-name">Meetup</h3>
-                  <span class="cmp-profile-badge">Community &amp; Events</span>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Primary Context</span>
-                  <p class="cmp-profile-text">Finding groups and scheduled events.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Documented Capabilities</span>
-                  <p class="cmp-profile-text">Discovery of groups and events through keywords and filters.</p>
-                </div>
-                <div class="cmp-profile-item">
-                  <span class="cmp-profile-label">Relevance to Peopi</span>
-                  <p class="cmp-profile-text">An alternative for finding shared-interest settings and communities.</p>
-                </div>
-                <div class="cmp-profile-guardrail">
-                  <strong>Source Note:</strong> Helps users discover gathering spaces, but does not provide individual, permission-based co-located introductions.
-                </div>
-                <a href="https://help.meetup.com/hc/en-us/articles/39235072484109-Finding-an-event" target="_blank" rel="noopener noreferrer" class="cmp-profile-link">
-                  <span>Meetup Help: Finding an Event</span>
-                  <i class="ph ph-arrow-square-out"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="cmp-caption-box">
-              <i class="ph ph-shield-check" aria-hidden="true"></i>
-              <span>Profiles describe documented functionality in public developer notes and user documentation. We do not claim competitors lack every possible unannounced feature; our analysis reflects verified scope.</span>
-            </div>
-          </section>
-
-          <!-- 4. COMPARISON MATRIX -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">FUNCTIONAL COMPARISON</span>
-                <h2 class="cmp-sec-title">Overlap is real. Product scope differs<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-
-            <div class="cmp-table-wrap">
-              <table class="cmp-table" aria-label="Competitive Landscape Comparison Matrix">
-                <thead>
-                  <tr>
-                    <th scope="col" style="width:140px;">Product</th>
-                    <th scope="col" style="width:200px;">Primary Context</th>
-                    <th scope="col" style="width:230px;">Discovery Approach</th>
-                    <th scope="col" style="width:230px;">Introduction / Connection Mechanism</th>
-                    <th scope="col">Evidence Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Myngly</strong></td>
-                    <td>Location-based networking</td>
-                    <td>Map-based proximity discovery</td>
-                    <td>Mutual matching before messaging</td>
-                    <td>Developer listing (Google Play)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Mētan</strong></td>
-                    <td>Networking &amp; contact intelligence</td>
-                    <td>Goal-aware nearby opt-in discovery</td>
-                    <td>Compatibility-based meeting coordination</td>
-                    <td>Official site documentation</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Swapcard</strong></td>
-                    <td>Event networking</td>
-                    <td>Attendee list with organizer-defined filters</td>
-                    <td>Connection request with note; chat unlocks upon acceptance</td>
-                    <td>Official help center documentation</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Brella</strong></td>
-                    <td>Event matchmaking</td>
-                    <td>Intent &amp; category interest matching</td>
-                    <td>Pre-scheduled meeting requests with mutual acceptance</td>
-                    <td>Official product documentation</td>
-                  </tr>
-                  <tr>
-                    <td><strong>LinkedIn</strong></td>
-                    <td>Professional network</td>
-                    <td>Global search, recommendations &amp; profile lookups</td>
-                    <td>Connection invitation; messaging between confirmed connections</td>
-                    <td>Official platform help documentation</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Meetup</strong></td>
-                    <td>Group &amp; event discovery</td>
-                    <td>Keyword, topic &amp; location-based event listings</td>
-                    <td>Event RSVP &amp; group-level discussion boards</td>
-                    <td>Official platform documentation</td>
-                  </tr>
-                  <tr class="highlight-peopi">
-                    <td><strong>Peopi</strong> <span class="cmp-badge-peopi">OUR CONCEPT</span></td>
-                    <td>User-controlled nearby professional introductions</td>
-                    <td>Visible-session discovery with profile and intent context</td>
-                    <td>Request → acceptance → conversation</td>
-                    <td>Designed/prototyped; production and pilot validation pending</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="cmp-caption-box">
-              <i class="ph ph-info" aria-hidden="true"></i>
-              <span><strong>Evaluation note:</strong> Short descriptions replace binary tick/cross checklists. Missing evidence indicates "Not established in reviewed sources" rather than a confirmed absence of capability. Peopi’s features reflect a prototype specification, not verified live metrics.</span>
-            </div>
-          </section>
-
-          <!-- 5. WHAT IS NOT UNIQUE -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">OBJECTIVE ASSESSMENT</span>
-                <h2 class="cmp-sec-title">Individual features are not a defensible claim<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-
-            <div class="cmp-grid-3">
-              <div class="cmp-card">
-                <div class="cmp-card-icon featured">
-                  <i class="ph ph-compass" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Nearby discovery exists</h3>
-                <p class="cmp-card-text">Products such as Myngly and Mētan demonstrate that co-located discovery and location-aware networking are already active product categories.</p>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon featured">
-                  <i class="ph ph-sliders" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Intent matching exists</h3>
-                <p class="cmp-card-text">Platforms like Brella and Mētan document the use of stated goals, category filters and mutual interests to guide introductions.</p>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon featured">
-                  <i class="ph ph-shield-check" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Mutual consent exists</h3>
-                <p class="cmp-card-text">Systems including Swapcard, Myngly and Brella enforce permission boundaries before two participants can start messaging.</p>
-              </div>
-            </div>
-
-            <div class="cmp-callout">
-              <i class="ph ph-warning-circle" aria-hidden="true"></i>
-              <div>
-                <strong>Honest baseline:</strong> Peopi does not claim to be "first," "only," or to have "no competitors." Defensibility must come from execution, usability and local density, not isolated feature claims.
               </div>
             </div>
           </section>
 
-          <!-- 6. PEOPI’S POSITIONING HYPOTHESIS -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">PRODUCT FOCUS</span>
-                <h2 class="cmp-sec-title">A focused experience we still need to prove<span class="brand-dot">.</span></h2>
+          <!-- SECTION 02: STRATEGIC POSITIONING -->
+          <section class="strat-sec">
+            <div class="strat-sec-head">
+              <span class="strat-sec-kicker">STRATEGIC POSITIONING</span>
+              <h2 class="strat-sec-title">Where Peopi fits in the professional networking landscape<span class="brand-dot">.</span></h2>
+              <p class="strat-sec-lead">
+                Peopi enters an established landscape of professional networks, event platforms, and location-aware discovery apps. Its positioning is defined by how four specific conditions combine in a single workflow.
+              </p>
+            </div>
+
+            <div class="strat-pos-ledger" role="region" aria-label="Strategic positioning comparison across networking approaches">
+              <div class="strat-pos-head" aria-hidden="true">
+                <div>Category &amp; Approach</div>
+                <div>Core Strength</div>
+                <div>Constraint in Everyday Shared Spaces</div>
+                <div>Primary Operating Model</div>
+              </div>
+
+              <!-- Row 1: Traditional Professional Networks -->
+              <div class="strat-pos-row">
+                <div class="strat-pos-category">
+                  <span class="strat-pos-type">Identity &amp; Async Graph</span>
+                  <h3>Traditional Professional Networks</h3>
+                  <span class="strat-pos-examples">e.g., LinkedIn</span>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Core Strength</span>
+                  <p>Strong professional identity, verified career history, and global asynchronous outreach across industries.</p>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Constraint in Shared Spaces</span>
+                  <p>Limited awareness of immediate physical availability or whether someone in the same room is open to talking right now.</p>
+                </div>
+                <div class="strat-pos-signals">
+                  <span class="strat-pos-mobile-label">Primary Operating Model</span>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Identity</span><strong class="strat-sig-val high">Comprehensive</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Proximity</span><strong class="strat-sig-val low">Non-Local</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Availability</span><strong class="strat-sig-val low">Asynchronous</strong></div>
+                </div>
+              </div>
+
+              <!-- Row 2: Networking Events -->
+              <div class="strat-pos-row">
+                <div class="strat-pos-category">
+                  <span class="strat-pos-type">Occasion-Based Directories</span>
+                  <h3>Networking Events &amp; Platforms</h3>
+                  <span class="strat-pos-examples">e.g., Conferences, Swapcard, Brella, Meetup</span>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Core Strength</span>
+                  <p>Shared attendance intent, structured participant directories, and scheduled 1-on-1 introductions within an organized event.</p>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Constraint in Shared Spaces</span>
+                  <p>Constrained by scheduled calendars, ticketed rosters, or organizer configuration; does not cover everyday coworking or unscheduled workdays.</p>
+                </div>
+                <div class="strat-pos-signals">
+                  <span class="strat-pos-mobile-label">Primary Operating Model</span>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Identity</span><strong class="strat-sig-val high">Event Roster</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Proximity</span><strong class="strat-sig-val mid">Venue-Bound</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Availability</span><strong class="strat-sig-val mid">Scheduled</strong></div>
+                </div>
+              </div>
+
+              <!-- Row 3: General Proximity / Social Discovery -->
+              <div class="strat-pos-row">
+                <div class="strat-pos-category">
+                  <span class="strat-pos-type">Location-Aware Discovery</span>
+                  <h3>General Proximity &amp; Social Discovery</h3>
+                  <span class="strat-pos-examples">e.g., Location-based social &amp; nearby apps</span>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Core Strength</span>
+                  <p>Real-time physical discovery mechanisms that surface nearby individuals using map views or proximity feeds.</p>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Constraint in Shared Spaces</span>
+                  <p>Often blends social and professional contexts, or relies on continuous location visibility rather than time-bounded professional intent and strict privacy defaults.</p>
+                </div>
+                <div class="strat-pos-signals">
+                  <span class="strat-pos-mobile-label">Primary Operating Model</span>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Identity</span><strong class="strat-sig-val mid">Mixed Context</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Proximity</span><strong class="strat-sig-val high">Real-Time Local</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Availability</span><strong class="strat-sig-val mid">Varies by App</strong></div>
+                </div>
+              </div>
+
+              <!-- Row 4: Peopi -->
+              <div class="strat-pos-row peopi-row">
+                <div class="strat-pos-category">
+                  <span class="strat-pos-type peopi-tag">Proposed Position · Prototype Stage</span>
+                  <h3>Peopi</h3>
+                  <span class="strat-pos-examples">Session-based nearby professional introductions</span>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Core Synthesis</span>
+                  <p>Combines <strong>professional context</strong>, <strong>approximate proximity</strong>, <strong>time-limited availability</strong> (30, 60, or 120m), and <strong>mutual acceptance</strong> in one lightweight flow.</p>
+                </div>
+                <div class="strat-pos-cell">
+                  <span class="strat-pos-mobile-label">Strategic Scope &amp; Boundary</span>
+                  <p>Built for self-initiated use in shared workspaces and gatherings without organizer setup. Requires local participant density to deliver value—a hypothesis pending pilot validation.</p>
+                </div>
+                <div class="strat-pos-signals">
+                  <span class="strat-pos-mobile-label">Primary Operating Model</span>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Identity</span><strong class="strat-sig-val peopi">Role, Skills &amp; Intent</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Proximity</span><strong class="strat-sig-val peopi">Approximate Only</strong></div>
+                  <div class="strat-signal-row"><span class="strat-sig-key">Availability</span><strong class="strat-sig-val peopi">Opt-In Session + Consent</strong></div>
+                </div>
               </div>
             </div>
 
-            <p class="cmp-section-intro">
-              Peopi’s proposed position is a clear, session-based experience for nearby professional introductions: understandable visibility, useful profile context and a deliberate request-to-conversation path.
-            </p>
-
-            <div class="cmp-grid-3">
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-toggle-left" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Understandable control</h3>
-                <p class="cmp-card-text">Clear visibility states where participants consciously choose when discovery starts and ends, with honest empty states.</p>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-path" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Coherent introduction path</h3>
-                <p class="cmp-card-text">A direct sequence from immediate contextual relevance to permission-based invitation and reciprocal messaging.</p>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-crosshair" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Focused pilot execution</h3>
-                <p class="cmp-card-text">Concentrated local distribution in selected Miami settings rather than relying on diffuse city-wide acquisition.</p>
-              </div>
-            </div>
-
-            <div class="cmp-caption-box">
-              <i class="ph ph-info" aria-hidden="true"></i>
-              <span><strong>Execution boundary:</strong> These are design and execution priorities, not proven advantages over competing products. We do not incorporate complex AI matchmaking, calendar integrations or event management into Peopi simply because competitors provide them.</span>
-            </div>
-          </section>
-
-          <!-- 7. WHAT WOULD MAKE THIS DEFENSIBLE? -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">PROOF REQUIREMENTS</span>
-                <h2 class="cmp-sec-title">Build evidence beyond the feature list<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-
-            <div class="cmp-grid-4">
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-users-three" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Participation density</h3>
-                <p class="cmp-card-text">Consistent, concurrent user participation in selected candidate communities and workspaces.</p>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-chat-circle-dots" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Useful introductions</h3>
-                <p class="cmp-card-text">Connections that lead to reciprocal conversations and repeat session starts across gatherings.</p>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-handshake" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Distribution relationships</h3>
-                <p class="cmp-card-text">Effective, durable distribution relationships with accessible host communities, if established.</p>
-              </div>
-
-              <div class="cmp-card">
-                <div class="cmp-card-icon">
-                  <i class="ph ph-shield-check" aria-hidden="true"></i>
-                </div>
-                <h3 class="cmp-card-title">Reliable execution</h3>
-                <p class="cmp-card-text">Dependable mobile performance and transparent controls that users trust with their presence.</p>
-              </div>
-            </div>
-
-            <div class="cmp-caption-box">
+            <div class="strat-governance-note">
               <i class="ph ph-scales" aria-hidden="true"></i>
-              <span>These proof points represent operational objectives to be validated in pilot usage, not an established competitive moat. No distribution exclusivity, commercial traction or network effects have been proven yet.</span>
-            </div>
-          </section>
-
-          <!-- 8. STRATEGIC SUMMARY -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">STRATEGIC SUMMARY</span>
-                <h2 class="cmp-sec-title">The question is why users would choose and keep using Peopi<span class="brand-dot">.</span></h2>
-              </div>
-            </div>
-
-            <div class="cmp-callout" style="padding: 28px 32px;border-radius:18px;">
-              <p class="cmp-hero-desc" style="font-size:17px;color:#1E293B;max-width:100%;line-height:1.65;margin:0;">
-                Existing products show that solutions are offered in this space. They do not establish demand for Peopi. The pilot must test whether its experience and distribution approach create sufficient value for adoption and retention.
+              <p>
+                <strong>Analytical boundary:</strong> Individual capabilities—such as nearby discovery, intent matching, and mutual consent—already exist across products in the market (including nearby networking tools like Myngly and Mētan, and event platforms like Swapcard and Brella). Peopi's thesis does not rest on claiming an uncontested feature, but on executing a disciplined, privacy-first combination of these elements in concentrated professional environments.
               </p>
             </div>
           </section>
 
-          <!-- 9. SOURCES AND REVIEW LIMITS -->
-          <section class="cmp-sec">
-            <div class="cmp-sec-head">
-              <div>
-                <span class="cmp-sec-kicker">DOCUMENTATION GOVERNANCE</span>
-                <h2 class="cmp-sec-title">Sources and review limits<span class="brand-dot">.</span></h2>
-              </div>
+          <!-- SECTION 03: FOUR STRATEGIC PILLARS -->
+          <section class="strat-sec">
+            <div class="strat-sec-head">
+              <span class="strat-sec-kicker">STRATEGIC PILLARS</span>
+              <h2 class="strat-sec-title">Four pillars that govern the product experience<span class="brand-dot">.</span></h2>
+              <p class="strat-sec-lead">
+                Every interaction in Peopi is anchored in four structural principles linking user psychology to concrete product behavior.
+              </p>
             </div>
 
-            <div class="cmp-grid-3">
-              <a href="https://play.google.com/store/apps/details?id=com.myngly.myngly" target="_blank" rel="noopener noreferrer" class="cmp-source-card">
-                <div class="cmp-source-head">
-                  <h3 class="cmp-source-title">Myngly</h3>
-                  <i class="ph ph-arrow-square-out cmp-source-link-icon"></i>
+            <div class="strat-pillars-grid">
+              <!-- Pillar 01 -->
+              <article class="strat-pillar-card">
+                <div class="strat-pillar-header">
+                  <span class="strat-pillar-num">01 — INTENTIONAL PRESENCE</span>
+                  <i class="ph-bold ph-timer" aria-hidden="true"></i>
                 </div>
-                <div class="cmp-source-meta">Google Play Developer Listing · October 14, 2026</div>
-                <p class="cmp-source-desc">Location-based professional/social networking, map discovery and in-app event hosting descriptions.</p>
-              </a>
+                <h3 class="strat-pillar-title">Visibility is an active, time-boxed choice</h3>
+                <div class="strat-pillar-rows">
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Principle</span>
+                    <p>Users remain invisible by default and explicitly activate a time-limited discovery session.</p>
+                  </div>
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Product Implication</span>
+                    <p>Opening Peopi never broadcasts presence. Users select a 30, 60, or 120-minute window that expires automatically or can be ended immediately with one tap.</p>
+                  </div>
+                  <div class="strat-pillar-row highlight">
+                    <span class="strat-pillar-label">Why It Matters</span>
+                    <p>Eliminates fear of passive background tracking and ensures that everyone visible in discovery is genuinely open to an introduction right now.</p>
+                  </div>
+                </div>
+              </article>
 
-              <a href="https://metanapp.com/networking" target="_blank" rel="noopener noreferrer" class="cmp-source-card">
-                <div class="cmp-source-head">
-                  <h3 class="cmp-source-title">Mētan</h3>
-                  <i class="ph ph-arrow-square-out cmp-source-link-icon"></i>
+              <!-- Pillar 02 -->
+              <article class="strat-pillar-card">
+                <div class="strat-pillar-header">
+                  <span class="strat-pillar-num">02 — CONTEXTUAL RELEVANCE</span>
+                  <i class="ph-bold ph-briefcase" aria-hidden="true"></i>
                 </div>
-                <div class="cmp-source-meta">Official Website Documentation · October 14, 2026</div>
-                <p class="cmp-source-desc">Goal-oriented nearby discovery, opt-in networking and contact intelligence feature overviews.</p>
-              </a>
+                <h3 class="strat-pillar-title">Professional signal before social approach</h3>
+                <div class="strat-pillar-rows">
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Principle</span>
+                    <p>Professional role, skills, interests, and current intentions help people decide whether an introduction is relevant.</p>
+                  </div>
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Product Implication</span>
+                    <p>Discovery cards surface concise domain expertise, active project focus, and session intent (such as collaboration, coffee chat, or idea exchange) up front.</p>
+                  </div>
+                  <div class="strat-pillar-row highlight">
+                    <span class="strat-pillar-label">Why It Matters</span>
+                    <p>Replaces cold guesswork with clear professional rationale, helping both parties recognize complementary skills before anyone initiates contact.</p>
+                  </div>
+                </div>
+              </article>
 
-              <a href="https://help-attendees.swapcard.com/en/articles/9121196-how-to-connect-with-other-event-participants" target="_blank" rel="noopener noreferrer" class="cmp-source-card">
-                <div class="cmp-source-head">
-                  <h3 class="cmp-source-title">Swapcard</h3>
-                  <i class="ph ph-arrow-square-out cmp-source-link-icon"></i>
+              <!-- Pillar 03 -->
+              <article class="strat-pillar-card">
+                <div class="strat-pillar-header">
+                  <span class="strat-pillar-num">03 — MUTUAL CONSENT</span>
+                  <i class="ph-bold ph-handshake" aria-hidden="true"></i>
                 </div>
-                <div class="cmp-source-meta">Attendee Help Center · October 14, 2026</div>
-                <p class="cmp-source-desc">Documented connection request, attendee directory and mutual acceptance chat protocols.</p>
-              </a>
+                <h3 class="strat-pillar-title">Two-way permission before direct conversation</h3>
+                <div class="strat-pillar-rows">
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Principle</span>
+                    <p>A request and acceptance are required before a new network connection and persistent chat become available.</p>
+                  </div>
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Product Implication</span>
+                    <p>There is no cold direct messaging to nearby strangers. A participant sends a structured request with an optional short note; 1-on-1 chat unlocks only upon acceptance.</p>
+                  </div>
+                  <div class="strat-pillar-row highlight">
+                    <span class="strat-pillar-label">Why It Matters</span>
+                    <p>Prevents unsolicited inbox spam and establishes mutual social permission before two people transition to a live conversation.</p>
+                  </div>
+                </div>
+              </article>
 
-              <a href="https://www.brella.io/event-matchmaking" target="_blank" rel="noopener noreferrer" class="cmp-source-card">
-                <div class="cmp-source-head">
-                  <h3 class="cmp-source-title">Brella</h3>
-                  <i class="ph ph-arrow-square-out cmp-source-link-icon"></i>
+              <!-- Pillar 04 -->
+              <article class="strat-pillar-card">
+                <div class="strat-pillar-header">
+                  <span class="strat-pillar-num">04 — REAL-WORLD CONNECTION</span>
+                  <i class="ph-bold ph-users-three" aria-hidden="true"></i>
                 </div>
-                <div class="cmp-source-meta">Product Documentation · October 14, 2026</div>
-                <p class="cmp-source-desc">Intent-based event matchmaking, meeting coordination and category interest matching specs.</p>
-              </a>
-
-              <a href="https://www.linkedin.com/help/linkedin/answer/a541669/various-ways-to-connect-with-people-on-linkedin" target="_blank" rel="noopener noreferrer" class="cmp-source-card">
-                <div class="cmp-source-head">
-                  <h3 class="cmp-source-title">LinkedIn</h3>
-                  <i class="ph ph-arrow-square-out cmp-source-link-icon"></i>
+                <h3 class="strat-pillar-title">Digital coordination for in-person introductions</h3>
+                <div class="strat-pillar-rows">
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Principle</span>
+                    <p>The product is designed to facilitate useful introductions between professionals who may already share physical environments.</p>
+                  </div>
+                  <div class="strat-pillar-row">
+                    <span class="strat-pillar-label">Product Implication</span>
+                    <p>The interface avoids content feeds, public follower counts, or engagement loops—focusing strictly on discovery, mutual acceptance, and quick coordination.</p>
+                  </div>
+                  <div class="strat-pillar-row highlight">
+                    <span class="strat-pillar-label">Why It Matters</span>
+                    <p>Measures product value by real professional introductions and sustained connections rather than time spent scrolling inside the app.</p>
+                  </div>
                 </div>
-                <div class="cmp-source-meta">Platform Help Center · October 14, 2026</div>
-                <p class="cmp-source-desc">Documented connection invitations, 1st-degree messaging protocols and networking workflows.</p>
-              </a>
-
-              <a href="https://help.meetup.com/hc/en-us/articles/39235072484109-Finding-an-event" target="_blank" rel="noopener noreferrer" class="cmp-source-card">
-                <div class="cmp-source-head">
-                  <h3 class="cmp-source-title">Meetup</h3>
-                  <i class="ph ph-arrow-square-out cmp-source-link-icon"></i>
-                </div>
-                <div class="cmp-source-meta">Platform Help Center · October 14, 2026</div>
-                <p class="cmp-source-desc">Keyword and location-based group discovery, calendar events and community attendance models.</p>
-              </a>
+              </article>
             </div>
-
-            <div class="cmp-callout">
-              <i class="ph ph-info" aria-hidden="true"></i>
-              <div>
-                <strong>Review scope boundary:</strong> This review covers public product documentation and developer descriptions. It is not a hands-on product, security or market-share audit. No competitor revenues, valuations, store ratings or download metrics are included.
-              </div>
-            </div>
-
           </section>
 
-
-        <!-- STAGED EXECUTION ROADMAP -->
-        <div style="margin-top:56px;padding-top:40px;border-top:1px solid #E2E8F0;">
-          <div class="cmp-sec-head" style="margin-bottom:24px;">
-            <div>
-              <span class="cmp-sec-kicker">DELIVERY EXECUTION</span>
-              <h2 class="cmp-sec-title">Staged Execution Roadmap<span class="brand-dot">.</span></h2>
+          <!-- SECTION 04: STRATEGIC DECISIONS & TRADE-OFFS -->
+          <section class="strat-sec">
+            <div class="strat-sec-head">
+              <span class="strat-sec-kicker">STRATEGIC DECISIONS &amp; TRADE-OFFS</span>
+              <h2 class="strat-sec-title">Deliberate architectural choices and accepted costs<span class="brand-dot">.</span></h2>
+              <p class="strat-sec-lead">
+                Every core product rule in Peopi involves rejecting a common growth or engagement shortcut. Below are the four primary strategic decisions and the trade-offs consciously accepted for each.
+              </p>
             </div>
-          </div>
+
+            <div class="strat-decisions-stack">
+              <!-- Decision 1: Presence -->
+              <article class="strat-decision-card">
+                <div class="strat-decision-left">
+                  <span class="strat-decision-domain">DECISION 01 · PRESENCE MODEL</span>
+                  <h3 class="strat-decision-title">Opt-in sessions vs. always-on visibility</h3>
+                  <p class="strat-decision-rationale">
+                    <strong>Rationale:</strong> Professionals working in cafés or coworking spaces need confidence that they are never passively broadcast when focused on deep work or private meetings.
+                  </p>
+                </div>
+                <div class="strat-decision-right">
+                  <div class="strat-choice-box selected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Selected Approach</span>
+                    <strong>Default invisible with 30, 60, or 120-minute sessions</strong>
+                    <p>Users explicitly start a bounded session when open to meeting and automatically revert to invisible when the timer ends.</p>
+                  </div>
+                  <div class="strat-choice-box rejected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-x-circle" aria-hidden="true"></i> Alternative Rejected</span>
+                    <strong>Always-on or background-triggered visibility</strong>
+                    <p>Automatically showing users as nearby whenever they carry their phone into a workspace or district.</p>
+                  </div>
+                  <div class="strat-cost-bar">
+                    <span class="strat-cost-tag">Accepted Cost</span>
+                    <p>Reduced continuous discoverability and fewer passive profile impressions in exchange for user control, privacy trust, and higher-intent availability signals.</p>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Decision 2: Discovery -->
+              <article class="strat-decision-card">
+                <div class="strat-decision-left">
+                  <span class="strat-decision-domain">DECISION 02 · DISCOVERY GRANULARITY</span>
+                  <h3 class="strat-decision-title">Approximate presence vs. precise public location</h3>
+                  <p class="strat-decision-rationale">
+                    <strong>Rationale:</strong> Knowing that a relevant peer is in the same approximate vicinity is sufficient to send a connection request; exposing exact coordinates introduces unnecessary safety and surveillance concerns.
+                  </p>
+                </div>
+                <div class="strat-decision-right">
+                  <div class="strat-choice-box selected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Selected Approach</span>
+                    <strong>Approximate discovery with privacy safeguards</strong>
+                    <p>Relative proximity rings and area-level presence indicators without pinpoint street maps or exact meter distances.</p>
+                  </div>
+                  <div class="strat-choice-box rejected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-x-circle" aria-hidden="true"></i> Alternative Rejected</span>
+                    <strong>Pinpoint live GPS map pins and exact coordinates</strong>
+                    <p>Rendering exact user locations on a live floor plan or street map visible to anyone nearby.</p>
+                  </div>
+                  <div class="strat-cost-bar">
+                    <span class="strat-cost-tag">Accepted Cost</span>
+                    <p>Less spatial precision prior to connecting—requiring two people to coordinate briefly via chat after mutual acceptance—in exchange for reduced personal exposure risk.</p>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Decision 3: Communication -->
+              <article class="strat-decision-card">
+                <div class="strat-decision-left">
+                  <span class="strat-decision-domain">DECISION 03 · COMMUNICATION GATE</span>
+                  <h3 class="strat-decision-title">Mutual acceptance vs. open messaging</h3>
+                  <p class="strat-decision-rationale">
+                    <strong>Rationale:</strong> Unfiltered direct messaging in proximity networks rapidly attracts unsolicited sales pitches, which drives away the thoughtful professionals most valuable to the network.
+                  </p>
+                </div>
+                <div class="strat-decision-right">
+                  <div class="strat-choice-box selected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Selected Approach</span>
+                    <strong>Mutual connection acceptance before chat</strong>
+                    <p>Persistent 1-on-1 messaging and full connection details unlock only after the recipient explicitly accepts a connection request.</p>
+                  </div>
+                  <div class="strat-choice-box rejected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-x-circle" aria-hidden="true"></i> Alternative Rejected</span>
+                    <strong>Open direct messaging to any visible user</strong>
+                    <p>Allowing any nearby participant to send immediate multi-message chat threads without prior approval.</p>
+                  </div>
+                  <div class="strat-cost-bar">
+                    <span class="strat-cost-tag">Accepted Cost</span>
+                    <p>Additional interaction friction (a two-step request-and-accept handshake before chatting) in exchange for mutual consent and protection against unwanted contact.</p>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Decision 4: Market Entry -->
+              <article class="strat-decision-card">
+                <div class="strat-decision-left">
+                  <span class="strat-decision-domain">DECISION 04 · MARKET ENTRY STRATEGY</span>
+                  <h3 class="strat-decision-title">Miami pilot vs. broad geographic launch</h3>
+                  <p class="strat-decision-rationale">
+                    <strong>Rationale:</strong> Real-time nearby discovery is highly sensitive to local participation density; a thousand dispersed users across fifty cities produce empty radar states for everyone.
+                  </p>
+                </div>
+                <div class="strat-decision-right">
+                  <div class="strat-choice-box selected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Selected Approach</span>
+                    <strong>Concentrated Miami-first pilot hypothesis</strong>
+                    <p>Focusing initial validation on selected coworking hubs, startup gatherings, and walkable tech districts in Miami.</p>
+                  </div>
+                  <div class="strat-choice-box rejected">
+                    <span class="strat-choice-label"><i class="ph-bold ph-x-circle" aria-hidden="true"></i> Alternative Rejected</span>
+                    <strong>Broad, unfocused multi-city launch</strong>
+                    <p>Promoting general app store sign-ups without geographic or community concentration.</p>
+                  </div>
+                  <div class="strat-cost-bar">
+                    <span class="strat-cost-tag">Accepted Cost</span>
+                    <p>Narrower initial addressable reach and slower top-line sign-up volume in exchange for a testable local density model where overlapping sessions can actually occur.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- SECTION 05: MIAMI-FIRST PILOT STRATEGY -->
+          <section class="strat-sec">
+            <div class="strat-sec-head">
+              <span class="strat-sec-kicker">MIAMI-FIRST PILOT STRATEGY</span>
+              <h2 class="strat-sec-title">Designing around the local interaction density hypothesis<span class="brand-dot">.</span></h2>
+              <p class="strat-sec-lead">
+                Proposing Miami as the initial pilot environment is a strategic choice to test local participation density—not a claim of established market traction.
+              </p>
+            </div>
+
+            <div class="strat-pilot-surface">
+              <div class="strat-pilot-grid">
+                <div class="strat-pilot-card">
+                  <div class="strat-pilot-card-top">
+                    <span class="strat-pilot-index">01 · TESTABILITY</span>
+                    <i class="ph-bold ph-crosshair" aria-hidden="true"></i>
+                  </div>
+                  <h3>Geographically concentrated evaluation</h3>
+                  <p>
+                    A bounded geographic footprint makes local discovery behavior observable. Instead of guessing whether empty sessions stem from product friction or physical distance, a concentrated pilot isolates whether co-located professionals choose to opt in.
+                  </p>
+                </div>
+
+                <div class="strat-pilot-card">
+                  <div class="strat-pilot-card-top">
+                    <span class="strat-pilot-index">02 · CANDIDATE CONTEXTS</span>
+                    <i class="ph-bold ph-buildings" aria-hidden="true"></i>
+                  </div>
+                  <h3>Startup, coworking, and tech environments</h3>
+                  <p>
+                    Proposed initial environments include shared coworking spaces, founder and operator meetups, and walkable commercial districts in Miami where founders, designers, and engineers already work in close physical proximity.
+                  </p>
+                </div>
+
+                <div class="strat-pilot-card">
+                  <div class="strat-pilot-card-top">
+                    <span class="strat-pilot-index">03 · TEMPORAL OVERLAP</span>
+                    <i class="ph-bold ph-clock-countdown" aria-hidden="true"></i>
+                  </div>
+                  <h3>Overlapping places and time windows</h3>
+                  <p>
+                    Because Peopi uses 30, 60, and 120-minute sessions rather than permanent pins, value depends on whether relevant peers activate sessions during overlapping hours in the same hubs or community windows.
+                  </p>
+                </div>
+
+                <div class="strat-pilot-card">
+                  <div class="strat-pilot-card-top">
+                    <span class="strat-pilot-index">04 · EXPANSION GATE</span>
+                    <i class="ph-bold ph-signpost" aria-hidden="true"></i>
+                  </div>
+                  <h3>Evidence before broader rollout</h3>
+                  <p>
+                    Expanding to additional neighborhoods or cities should depend on observing repeated discovery, mutual request acceptance, and healthy session retention within initial pilot cohorts—never on premature geographic scaling.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Hypothesis Progression Diagram -->
+              <div class="strat-progression-box" role="region" aria-label="Miami pilot validation progression">
+                <div class="strat-progression-head">
+                  <div>
+                    <span class="strat-progression-kicker">HYPOTHESIS-DRIVEN VALIDATION SEQUENCE</span>
+                    <h4 class="strat-progression-title">Staged progression from local concentration to expansion readiness</h4>
+                  </div>
+                  <span class="strat-hypothesis-pill">Unvalidated · Pilot Framework</span>
+                </div>
+
+                <ol class="strat-progression-track">
+                  <li class="strat-prog-step">
+                    <div class="strat-prog-step-top">
+                      <span class="strat-prog-num">STEP 01</span>
+                      <i class="ph-bold ph-arrow-right strat-prog-arrow" aria-hidden="true"></i>
+                    </div>
+                    <strong>Focused Pilot Area</strong>
+                    <p>Concentrate initial testing within selected Miami coworking spaces and tech gatherings.</p>
+                  </li>
+
+                  <li class="strat-prog-step">
+                    <div class="strat-prog-step-top">
+                      <span class="strat-prog-num">STEP 02</span>
+                      <i class="ph-bold ph-arrow-right strat-prog-arrow" aria-hidden="true"></i>
+                    </div>
+                    <strong>Overlapping Availability</strong>
+                    <p>Achieve concurrent 30–120m opt-in sessions within shared locations and time windows.</p>
+                  </li>
+
+                  <li class="strat-prog-step">
+                    <div class="strat-prog-step-top">
+                      <span class="strat-prog-num">STEP 03</span>
+                      <i class="ph-bold ph-arrow-right strat-prog-arrow" aria-hidden="true"></i>
+                    </div>
+                    <strong>Relevant Discovery</strong>
+                    <p>Surface nearby peers whose role, skills, and active intent match what users want to discuss.</p>
+                  </li>
+
+                  <li class="strat-prog-step">
+                    <div class="strat-prog-step-top">
+                      <span class="strat-prog-num">STEP 04</span>
+                      <i class="ph-bold ph-arrow-right strat-prog-arrow" aria-hidden="true"></i>
+                    </div>
+                    <strong>Mutual Connections</strong>
+                    <p>Convert relevant discoveries into sent requests, mutual acceptances, and first conversations.</p>
+                  </li>
+
+                  <li class="strat-prog-step">
+                    <div class="strat-prog-step-top">
+                      <span class="strat-prog-num">STEP 05</span>
+                      <i class="ph-bold ph-arrow-right strat-prog-arrow" aria-hidden="true"></i>
+                    </div>
+                    <strong>Repeat Usage</strong>
+                    <p>Observe participants voluntarily starting new sessions across subsequent workdays or events.</p>
+                  </li>
+
+                  <li class="strat-prog-step gate-step">
+                    <div class="strat-prog-step-top">
+                      <span class="strat-prog-num">STEP 06</span>
+                      <i class="ph-bold ph-flag-checkered strat-prog-arrow" aria-hidden="true"></i>
+                    </div>
+                    <strong>Expansion Decision</strong>
+                    <p>Evaluate pilot evidence to decide whether to iterate locally or expand to new environments.</p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECTION 06: SUCCESS & VALIDATION FRAMEWORK -->
+          <section class="strat-sec">
+            <div class="strat-sec-head">
+              <span class="strat-sec-kicker">SUCCESS &amp; VALIDATION FRAMEWORK</span>
+              <h2 class="strat-sec-title">How the product strategy will be evaluated after launch<span class="brand-dot">.</span></h2>
+              <p class="strat-sec-lead">
+                Rather than tracking vanity downloads or passive time-in-app, Peopi's evaluation framework measures whether time-bounded discovery sessions reliably produce welcomed professional connections.
+              </p>
+            </div>
+
+            <!-- Proposed North Star Candidate -->
+            <div class="strat-northstar-banner">
+              <div class="strat-northstar-top">
+                <span class="strat-northstar-kicker"><i class="ph-fill ph-compass" aria-hidden="true"></i> PROPOSED NORTH STAR METRIC CANDIDATE</span>
+                <span class="strat-northstar-status">Proposed Metric · Pre-Launch Definition</span>
+              </div>
+              <h3 class="strat-northstar-statement">
+                “Weekly meaningful mutual connections initiated through active discovery sessions.”
+              </h3>
+              <p class="strat-northstar-desc">
+                This proposed North Star captures the complete core value loop in a single behavioral indicator: a user must intentionally start a session, discover a relevant peer nearby, send an introduction request, receive mutual acceptance, and initiate a reciprocal conversation.
+              </p>
+            </div>
+
+            <!-- Supporting Measures across 5 Product Dimensions -->
+            <div class="strat-metrics-table-wrap" role="region" aria-label="Post-launch validation metrics and diagnostic product questions">
+              <div class="strat-metrics-head" aria-hidden="true">
+                <div>Validation Dimension</div>
+                <div>Supporting Measure</div>
+                <div>Product Question Answered</div>
+                <div>Strategic Interpretation</div>
+              </div>
+
+              <!-- 1. Activation -->
+              <div class="strat-metric-row">
+                <div class="strat-metric-dim">
+                  <span class="strat-dim-badge dim-activation">Activation</span>
+                </div>
+                <div class="strat-metric-name">
+                  <span class="strat-pos-mobile-label">Supporting Measure</span>
+                  <strong>Session activation rate</strong>
+                  <span>Share of onboarded users in pilot settings who start a 30, 60, or 120m session</span>
+                </div>
+                <div class="strat-metric-question">
+                  <span class="strat-pos-mobile-label">Product Question Answered</span>
+                  <p>Do users understand the default-invisible model and feel comfortable opting into temporary visibility?</p>
+                </div>
+                <div class="strat-metric-meaning">
+                  <span class="strat-pos-mobile-label">Strategic Interpretation</span>
+                  <p>Low activation indicates onboarding friction, unclear privacy assurances, or hesitation to broadcast availability.</p>
+                </div>
+              </div>
+
+              <!-- 2. Discovery Liquidity (A) -->
+              <div class="strat-metric-row">
+                <div class="strat-metric-dim">
+                  <span class="strat-dim-badge dim-liquidity">Discovery Liquidity</span>
+                </div>
+                <div class="strat-metric-name">
+                  <span class="strat-pos-mobile-label">Supporting Measure</span>
+                  <strong>Sessions with at least one relevant discovery</strong>
+                  <span>Percentage of active sessions that surface one or more nearby peers</span>
+                </div>
+                <div class="strat-metric-question">
+                  <span class="strat-pos-mobile-label">Product Question Answered</span>
+                  <p>Does the concentrated pilot environment generate sufficient overlapping availability during real workdays?</p>
+                </div>
+                <div class="strat-metric-meaning">
+                  <span class="strat-pos-mobile-label">Strategic Interpretation</span>
+                  <p>Directly tests the Miami local density hypothesis and reveals whether pilot venues or time windows are too dispersed.</p>
+                </div>
+              </div>
+
+              <!-- 3. Discovery Liquidity (B) -->
+              <div class="strat-metric-row">
+                <div class="strat-metric-dim">
+                  <span class="strat-dim-badge dim-liquidity">Discovery Liquidity</span>
+                </div>
+                <div class="strat-metric-name">
+                  <span class="strat-pos-mobile-label">Supporting Measure</span>
+                  <strong>Discovery-to-request conversion</strong>
+                  <span>Rate at which viewing a nearby profile leads to sending an introduction request</span>
+                </div>
+                <div class="strat-metric-question">
+                  <span class="strat-pos-mobile-label">Product Question Answered</span>
+                  <p>Do Peopi's profile cards communicate enough professional relevance and current intent to justify reaching out?</p>
+                </div>
+                <div class="strat-metric-meaning">
+                  <span class="strat-pos-mobile-label">Strategic Interpretation</span>
+                  <p>Evaluates whether role, skill tags, and session intent badges provide actionable context when peers are nearby.</p>
+                </div>
+              </div>
+
+              <!-- 4. Connection Quality (A) -->
+              <div class="strat-metric-row">
+                <div class="strat-metric-dim">
+                  <span class="strat-dim-badge dim-quality">Connection Quality</span>
+                </div>
+                <div class="strat-metric-name">
+                  <span class="strat-pos-mobile-label">Supporting Measure</span>
+                  <strong>Request acceptance rate</strong>
+                  <span>Share of sent introduction requests accepted by recipients before session expiry</span>
+                </div>
+                <div class="strat-metric-question">
+                  <span class="strat-pos-mobile-label">Product Question Answered</span>
+                  <p>Are incoming introduction requests welcomed by recipients as relevant and timely?</p>
+                </div>
+                <div class="strat-metric-meaning">
+                  <span class="strat-pos-mobile-label">Strategic Interpretation</span>
+                  <p>Validates two-way compatibility and shows whether request notes and notification timing work within bounded sessions.</p>
+                </div>
+              </div>
+
+              <!-- 5. Connection Quality (B) -->
+              <div class="strat-metric-row">
+                <div class="strat-metric-dim">
+                  <span class="strat-dim-badge dim-quality">Connection Quality</span>
+                </div>
+                <div class="strat-metric-name">
+                  <span class="strat-pos-mobile-label">Supporting Measure</span>
+                  <strong>Accepted connection-to-conversation rate</strong>
+                  <span>Share of accepted connections that exchange reciprocal messages</span>
+                </div>
+                <div class="strat-metric-question">
+                  <span class="strat-pos-mobile-label">Product Question Answered</span>
+                  <p>Do mutual connections translate into actual dialogue or an in-person greeting rather than passive contact collection?</p>
+                </div>
+                <div class="strat-metric-meaning">
+                  <span class="strat-pos-mobile-label">Strategic Interpretation</span>
+                  <p>Separates superficial badge-collecting from genuine professional introductions that fulfill the product promise.</p>
+                </div>
+              </div>
+
+              <!-- 6. Retention -->
+              <div class="strat-metric-row">
+                <div class="strat-metric-dim">
+                  <span class="strat-dim-badge dim-retention">Retention</span>
+                </div>
+                <div class="strat-metric-name">
+                  <span class="strat-pos-mobile-label">Supporting Measure</span>
+                  <strong>Repeat session usage</strong>
+                  <span>Frequency of users activating subsequent sessions across multiple days or gatherings</span>
+                </div>
+                <div class="strat-metric-question">
+                  <span class="strat-pos-mobile-label">Product Question Answered</span>
+                  <p>Does the initial discovery and connection experience create enough value for professionals to opt in again?</p>
+                </div>
+                <div class="strat-metric-meaning">
+                  <span class="strat-pos-mobile-label">Strategic Interpretation</span>
+                  <p>Serves as the primary behavioral indicator of sustained habit formation prior to any geographic expansion.</p>
+                </div>
+              </div>
+
+              <!-- 7. Trust & Safety -->
+              <div class="strat-metric-row">
+                <div class="strat-metric-dim">
+                  <span class="strat-dim-badge dim-safety">Trust &amp; Safety</span>
+                </div>
+                <div class="strat-metric-name">
+                  <span class="strat-pos-mobile-label">Supporting Measure</span>
+                  <strong>Privacy &amp; safety signals (blocks, reports, manual hide)</strong>
+                  <span>Usage of immediate "Hide presence" controls alongside block and report incidence</span>
+                </div>
+                <div class="strat-metric-question">
+                  <span class="strat-pos-mobile-label">Product Question Answered</span>
+                  <p>Do participants feel safe and in control of their visibility, and are unwanted interactions effectively contained?</p>
+                </div>
+                <div class="strat-metric-meaning">
+                  <span class="strat-pos-mobile-label">Strategic Interpretation</span>
+                  <p>Acts as a non-negotiable guardrail: growth or conversion gains are invalid if accompanied by elevated block/report signals.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="strat-governance-note">
+              <i class="ph ph-clipboard-text" aria-hidden="true"></i>
+              <p>
+                <strong>Measurement integrity:</strong> This framework defines the instrumentation plan and decision criteria for post-launch pilot evaluation. No live metric values, conversion rates, or pilot experiment outcomes have been recorded yet, and any future numeric targets will be treated as testable hypotheses during controlled rollouts.
+              </p>
+            </div>
+          </section>
+
+          <!-- Footer Navigation -->
+          <footer class="strat-footer-nav">
+            <button class="btn btn-secondary overview-secondary-btn" onclick="openOverview('problem')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              <span>Previous: Problem &amp; Opportunity</span>
+            </button>
+            <button class="btn btn-primary overview-primary-btn" onclick="openOverview('audience')">
+              <span>Next: Target Audience &amp; Personas</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </footer>
+
         </div>
-        <!-- Hero Card Section (White box underneath title) -->
-        <section class="dash-hero-split-card">
-          <div class="dash-hero-content-col">
-            <h2 class="dash-hero-headline">From a clear prototype<br>to a usable product<span class="brand-dot">.</span></h2>
-            <p class="dash-hero-description">
-              A staged plan built around deliverables, dependencies and evidence of readiness.
-            </p>
-          </div>
-          <div class="roadmap-hero-summary-track" aria-label="Five delivery stages progression">
-            <div class="roadmap-summary-node ready" title="Phase 01: Prototype & product rules (Ready for review)">
-              <div class="roadmap-summary-circle"><i class="ph ph-lightbulb"></i></div>
-              <span class="roadmap-summary-label">Prototype &amp; rules</span>
-            </div>
-            <div class="roadmap-summary-connector"></div>
-            <div class="roadmap-summary-node active" title="Phase 02: Development preparation (In progress)">
-              <div class="roadmap-summary-circle"><i class="ph ph-file-code"></i></div>
-              <span class="roadmap-summary-label">Dev prep</span>
-            </div>
-            <div class="roadmap-summary-connector"></div>
-            <div class="roadmap-summary-node" title="Phase 03: Mobile MVP (Planned)">
-              <div class="roadmap-summary-circle"><i class="ph ph-device-mobile"></i></div>
-              <span class="roadmap-summary-label">Mobile MVP</span>
-            </div>
-            <div class="roadmap-summary-connector"></div>
-            <div class="roadmap-summary-node" title="Phase 04: Pilot & iteration (Planned)">
-              <div class="roadmap-summary-circle"><i class="ph ph-users"></i></div>
-              <span class="roadmap-summary-label">Pilot &amp; test</span>
-            </div>
-            <div class="roadmap-summary-connector"></div>
-            <div class="roadmap-summary-node" title="Phase 05: Release preparation (Planned)">
-              <div class="roadmap-summary-circle"><i class="ph ph-rocket-launch"></i></div>
-              <span class="roadmap-summary-label">Release prep</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION 1: DELIVERY PHASES (Five stages. Clear completion criteria.) -->
-        <section class="roadmap-section">
-          <div class="roadmap-section-head">
-            <h2 class="roadmap-section-title">Five stages. Clear completion criteria.</h2>
-            <p class="roadmap-section-desc">Each stage specifies deliverables, verifiable readiness gates, real dependencies, and current evidence.</p>
-          </div>
-
-          <div class="roadmap-stages-list">
-            <!-- PHASE 01: Prototype & product rules -->
-            <div id="roadmap-stage-1" class="roadmap-stage-card ready-review expanded">
-              <div class="roadmap-stage-header" tabindex="0" role="button" aria-expanded="true" aria-controls="roadmap-drawer-1" onclick="toggleRoadmapStage(1)" onkeydown="handleRoadmapKey(event, 1)">
-                <div class="roadmap-stage-badge-num">01</div>
-                <div class="roadmap-stage-meta">
-                  <div class="roadmap-stage-title-col">
-                    <span>PHASE 01</span>
-                    <h4>Prototype &amp; product rules</h4>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Deliverable</span>
-                    <p class="roadmap-stage-col-text">Consistent screens, components and product contracts.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Ready when</span>
-                    <p class="roadmap-stage-col-text">Critical flow conflicts and rules are resolved.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-status-pill roadmap-status-review">
-                      <i class="ph ph-eye"></i> Ready for review
-                    </span>
-                  </div>
-                </div>
-                <div class="roadmap-stage-chevron"><i class="ph ph-caret-down"></i></div>
-              </div>
-              <div id="roadmap-drawer-1" class="roadmap-stage-drawer">
-                <div class="roadmap-stage-details-grid">
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-package"></i> Concrete Deliverables</h5>
-                    <ul>
-                      <li>Interactive 28-screen clickable prototype spanning all 4 domains.</li>
-                      <li>Authoritative Sitemap &amp; 7 verified user journey specifications.</li>
-                      <li>Product Scope &amp; Rules registry with invariant constraints.</li>
-                      <li>Phosphor Regular icon integration and unified Design System catalog.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-check-square"></i> Completion Criteria Passed</h5>
-                    <ul>
-                      <li>Critical journeys (first-time, discovery, request, safety) navigable.</li>
-                      <li>Product rules (PROFILE-01, DISC-01, CONN-01, PRIV-01, SAFE-01) documented.</li>
-                      <li>Shared component references established across mobile previews.</li>
-                      <li>Contradictions between notes and screens resolved or recorded.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-link"></i> Related Sources &amp; Verification</h5>
-                    <ul>
-                      <li><a href="javascript:void(0)" onclick="openOverview('user-journeys')">User Journeys &amp; Screen Flows</a></li>
-                      <li><a href="javascript:void(0)" onclick="openOverview('scope-rules')">Product Scope &amp; Rules Registry</a></li>
-                      <li><a href="javascript:void(0)" onclick="closeDashboard();showDesign('guidelines')">Mobile Handoff Guidelines</a></li>
-                      <li>Status: Deliverable complete, awaiting team review.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PHASE 02: Development preparation -->
-            <div id="roadmap-stage-2" class="roadmap-stage-card in-progress expanded">
-              <div class="roadmap-stage-header" tabindex="0" role="button" aria-expanded="true" aria-controls="roadmap-drawer-2" onclick="toggleRoadmapStage(2)" onkeydown="handleRoadmapKey(event, 2)">
-                <div class="roadmap-stage-badge-num">02</div>
-                <div class="roadmap-stage-meta">
-                  <div class="roadmap-stage-title-col">
-                    <span>PHASE 02</span>
-                    <h4>Development preparation</h4>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Deliverable</span>
-                    <p class="roadmap-stage-col-text">Data model, API needs and mobile guidance.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Ready when</span>
-                    <p class="roadmap-stage-col-text">Build requirements are explicit and reviewable.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-status-pill roadmap-status-progress">
-                      <i class="ph ph-arrows-clockwise"></i> In progress
-                    </span>
-                  </div>
-                </div>
-                <div class="roadmap-stage-chevron"><i class="ph ph-caret-down"></i></div>
-              </div>
-              <div id="roadmap-drawer-2" class="roadmap-stage-drawer">
-                <div class="roadmap-stage-details-grid">
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-package"></i> Concrete Deliverables</h5>
-                    <ul>
-                      <li>Core data entities and schema (User, Profile, Intent, Connection, Chat).</li>
-                      <li>Authorization, privacy boundaries, and data access policies.</li>
-                      <li>Client vs. backend boundary partitioning (BLE proximity vs. server API).</li>
-                      <li>Screen contracts specification (<code>peopi-screen-contracts.json</code>).</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-check-square"></i> Completion Criteria</h5>
-                    <ul>
-                      <li>Data relationships and consent lifecycle formally specified.</li>
-                      <li>Privacy &amp; safety invariant rules mapped to API endpoints.</li>
-                      <li>Client/backend responsibilities clearly partitioned without ambiguity.</li>
-                      <li>Mobile integration contracts reviewable by engineers.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-link"></i> Dependencies &amp; Open Decision</h5>
-                    <ul>
-                      <li>Dependency: Phase 01 screen contracts &amp; handoff references.</li>
-                      <li>Blocker / Open: Resolution of <strong>DEC-01</strong> (Discovery model: BLE vs Server).</li>
-                      <li>Latest update: Scroller clearance and motion contracts formalized.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PHASE 03: Mobile MVP -->
-            <div id="roadmap-stage-3" class="roadmap-stage-card">
-              <div class="roadmap-stage-header" tabindex="0" role="button" aria-expanded="false" aria-controls="roadmap-drawer-3" onclick="toggleRoadmapStage(3)" onkeydown="handleRoadmapKey(event, 3)">
-                <div class="roadmap-stage-badge-num">03</div>
-                <div class="roadmap-stage-meta">
-                  <div class="roadmap-stage-title-col">
-                    <span>PHASE 03</span>
-                    <h4>Mobile MVP</h4>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Deliverable</span>
-                    <p class="roadmap-stage-col-text">Real authentication, discovery, requests and messaging.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Ready when</span>
-                    <p class="roadmap-stage-col-text">Core journeys work reliably on target devices.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-status-pill roadmap-status-planned">
-                      <i class="ph ph-calendar-blank"></i> Planned
-                    </span>
-                  </div>
-                </div>
-                <div class="roadmap-stage-chevron"><i class="ph ph-caret-down"></i></div>
-              </div>
-              <div id="roadmap-drawer-3" class="roadmap-stage-drawer">
-                <div class="roadmap-stage-details-grid">
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-package"></i> Concrete Deliverables</h5>
-                    <ul>
-                      <li>Native client builds (iOS / Android) running authenticated sessions.</li>
-                      <li>Live proximity discovery broadcasting and peer card listing.</li>
-                      <li>Double opt-in connection flow with real-time push events.</li>
-                      <li>1-on-1 end-to-end conversation thread view.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-check-square"></i> Completion Criteria</h5>
-                    <ul>
-                      <li>Target journeys function smoothly on physical mobile hardware.</li>
-                      <li>Hardware permissions (BLE/Location) and denial fallbacks active.</li>
-                      <li>Consent rules (Double Opt-In, Hide My Presence) strictly enforced.</li>
-                      <li>Zero critical crash issues in primary discovery loop.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-link"></i> Dependencies &amp; Notes</h5>
-                    <ul>
-                      <li>Dependency: Phase 02 API endpoints and data model readiness.</li>
-                      <li>Status Note: Scope defined; execution awaiting Phase 02 completion.</li>
-                      <li>Mobile project assessment: Awaiting native repository linkage.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PHASE 04: Pilot & iteration -->
-            <div id="roadmap-stage-4" class="roadmap-stage-card">
-              <div class="roadmap-stage-header" tabindex="0" role="button" aria-expanded="false" aria-controls="roadmap-drawer-4" onclick="toggleRoadmapStage(4)" onkeydown="handleRoadmapKey(event, 4)">
-                <div class="roadmap-stage-badge-num">04</div>
-                <div class="roadmap-stage-meta">
-                  <div class="roadmap-stage-title-col">
-                    <span>PHASE 04</span>
-                    <h4>Pilot &amp; iteration</h4>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Deliverable</span>
-                    <p class="roadmap-stage-col-text">Controlled usage, observed behavior and issue resolution.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Ready when</span>
-                    <p class="roadmap-stage-col-text">Critical usability and safety issues are addressed.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-status-pill roadmap-status-planned">
-                      <i class="ph ph-calendar-blank"></i> Planned
-                    </span>
-                  </div>
-                </div>
-                <div class="roadmap-stage-chevron"><i class="ph ph-caret-down"></i></div>
-              </div>
-              <div id="roadmap-drawer-4" class="roadmap-stage-drawer">
-                <div class="roadmap-stage-details-grid">
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-package"></i> Concrete Deliverables</h5>
-                    <ul>
-                      <li>Controlled pilot deployment in designated real-world environments.</li>
-                      <li>Telemetry on discovery latency, battery drain, and request acceptance.</li>
-                      <li>Prioritized backlog of usability and connection friction points.</li>
-                      <li>Iterative patches addressing reported safety and edge case defects.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-check-square"></i> Completion Criteria</h5>
-                    <ul>
-                      <li>Real usage telemetry captured without privacy violations.</li>
-                      <li>Priority usability, latency, and battery drain issues resolved.</li>
-                      <li>Safety mechanisms (Report &amp; Block) verified under pilot conditions.</li>
-                      <li>No mandatory survey or marketing campaigns required.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-link"></i> Dependencies &amp; Notes</h5>
-                    <ul>
-                      <li>Dependency: Stable Phase 03 Mobile MVP build.</li>
-                      <li>Status: Planned after MVP target hardware verification.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PHASE 05: Release preparation -->
-            <div id="roadmap-stage-5" class="roadmap-stage-card">
-              <div class="roadmap-stage-header" tabindex="0" role="button" aria-expanded="false" aria-controls="roadmap-drawer-5" onclick="toggleRoadmapStage(5)" onkeydown="handleRoadmapKey(event, 5)">
-                <div class="roadmap-stage-badge-num">05</div>
-                <div class="roadmap-stage-meta">
-                  <div class="roadmap-stage-title-col">
-                    <span>PHASE 05</span>
-                    <h4>Release preparation</h4>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Deliverable</span>
-                    <p class="roadmap-stage-col-text">Store materials, support processes and release checks.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-stage-col-label">Ready when</span>
-                    <p class="roadmap-stage-col-text">Publication requirements and operational needs are verified.</p>
-                  </div>
-                  <div>
-                    <span class="roadmap-status-pill roadmap-status-planned">
-                      <i class="ph ph-calendar-blank"></i> Planned
-                    </span>
-                  </div>
-                </div>
-                <div class="roadmap-stage-chevron"><i class="ph ph-caret-down"></i></div>
-              </div>
-              <div id="roadmap-drawer-5" class="roadmap-stage-drawer">
-                <div class="roadmap-stage-details-grid">
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-package"></i> Concrete Deliverables</h5>
-                    <ul>
-                      <li>App Store &amp; Google Play submission listings and verified screenshots.</li>
-                      <li>App privacy declarations, permission justification, and TOS copy.</li>
-                      <li>Support desk triage workflows and user reporting response procedures.</li>
-                      <li>Production build verification and release candidate sign-off.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-check-square"></i> Completion Criteria</h5>
-                    <ul>
-                      <li>Store policy requirements verified against shipped capabilities.</li>
-                      <li>Store copy and screenshots truthfully represent actual product behavior.</li>
-                      <li>Support processes and abuse management procedures defined.</li>
-                      <li>Zero unresolved publication blockers.</li>
-                    </ul>
-                  </div>
-                  <div class="roadmap-detail-box">
-                    <h5><i class="ph ph-link"></i> Dependencies &amp; Notes</h5>
-                    <ul>
-                      <li>Dependency: Phase 04 pilot sign-off.</li>
-                      <li>Status: Planned. Release date will be established once pilot criteria pass.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION 2: NEXT DELIVERY (Choose the next concrete delivery.) -->
-        <section class="roadmap-section">
-          <div class="roadmap-section-head">
-            <h2 class="roadmap-section-title">Choose the next concrete delivery.</h2>
-            <p class="roadmap-section-desc">Priority execution focus grounded in current project records.</p>
-          </div>
-
-          <div class="roadmap-next-card">
-            <div class="roadmap-next-info">
-              <span class="roadmap-next-badge">Proposed next step</span>
-              <h3 class="roadmap-next-h3">Resolve the highest-priority gaps.</h3>
-              <div class="roadmap-checklist">
-                <div class="roadmap-check-item">
-                  <div class="roadmap-check-circle"><i class="ph ph-circle" style="font-size:10px;color:#EA580C;"></i></div>
-                  <span>Reconcile product rules with prototype behavior.</span>
-                </div>
-                <div class="roadmap-check-item">
-                  <div class="roadmap-check-circle"><i class="ph ph-circle" style="font-size:10px;color:#EA580C;"></i></div>
-                  <span>Confirm screen and component handoff references.</span>
-                </div>
-                <div class="roadmap-check-item">
-                  <div class="roadmap-check-circle"><i class="ph ph-circle" style="font-size:10px;color:#EA580C;"></i></div>
-                  <span>Document unresolved implementation decisions.</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <button class="btn btn-primary" onclick="openOverview('scope-rules')" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;font-weight:700;border-radius:10px;cursor:pointer;">
-                <span>Open product rules</span>
-                <i class="ph ph-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION 3: DEPENDENCIES (Dependencies before deadlines.) -->
-        <section class="roadmap-section">
-          <div class="roadmap-section-head">
-            <h2 class="roadmap-section-title">Dependencies before deadlines.</h2>
-            <p class="roadmap-section-desc">Progress is governed by logical handoffs and structural readiness across three core domains.</p>
-          </div>
-
-          <div class="roadmap-dep-grid">
-            <div class="roadmap-dep-card">
-              <div class="roadmap-dep-icon"><i class="ph ph-cube"></i></div>
-              <h4>Product decisions</h4>
-              <p>Visibility, requests and safety behavior.</p>
-              <span style="font-size:12px;color:#64748B;line-height:1.4;">Defines invariants for Hide My Presence, Double Opt-In consent, and profile completion boundaries.</span>
-            </div>
-            <div class="roadmap-dep-card">
-              <div class="roadmap-dep-icon"><i class="ph ph-gear"></i></div>
-              <h4>Technical contracts</h4>
-              <p>Data, permissions and service boundaries.</p>
-              <span style="font-size:12px;color:#64748B;line-height:1.4;">Defines entity schemas, WebSocket/BLE synchronization models, and client/backend contracts.</span>
-            </div>
-            <div class="roadmap-dep-card">
-              <div class="roadmap-dep-icon"><i class="ph ph-users-three"></i></div>
-              <h4>Operational readiness</h4>
-              <p>Support, release assets and monitoring needs.</p>
-              <span style="font-size:12px;color:#64748B;line-height:1.4;">Defines store policy disclosures, moderation workflows, and telemetry for pilot evaluation.</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION 4: OPEN DECISIONS & RISKS (Make uncertainty visible.) -->
-        <section class="roadmap-section">
-          <div class="roadmap-section-head">
-            <h2 class="roadmap-section-title">Make uncertainty visible.</h2>
-            <p class="roadmap-section-desc">Open architectural decisions synchronized with Product Scope &amp; Rules registry.</p>
-          </div>
-
-          <div class="roadmap-dec-grid">
-            <div class="roadmap-dec-card">
-              <div class="roadmap-dec-top">
-                <div class="roadmap-dec-icon-wrap">
-                  <div class="roadmap-dec-icon"><i class="ph ph-broadcast"></i></div>
-                  <span style="font-family:monospace;font-size:11px;font-weight:800;background:#F1F5F9;color:#0F172A;padding:2px 6px;border-radius:4px;">DEC-01</span>
-                </div>
-                <h4>Discovery implementation</h4>
-                <p>Confirm the technical model and constraints (BLE, server discovery, or hybrid).</p>
-                <div style="font-size:12px;color:#64748B;">Affects: Phase 02 &amp; Phase 03</div>
-              </div>
-              <div>
-                <a class="roadmap-dec-btn" href="javascript:void(0)" onclick="openOverview('scope-rules')">
-                  <span>Verify against current records</span>
-                  <i class="ph ph-arrow-up-right"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="roadmap-dec-card">
-              <div class="roadmap-dec-top">
-                <div class="roadmap-dec-icon-wrap">
-                  <div class="roadmap-dec-icon"><i class="ph ph-toggle-left"></i></div>
-                  <span style="font-family:monospace;font-size:11px;font-weight:800;background:#F1F5F9;color:#0F172A;padding:2px 6px;border-radius:4px;">DEC-02</span>
-                </div>
-                <h4>Verification approach</h4>
-                <p>Keep options provider-independent until decided; LinkedIn is an optional trust signal.</p>
-                <div style="font-size:12px;color:#64748B;">Affects: Phase 02 &amp; Phase 03</div>
-              </div>
-              <div>
-                <a class="roadmap-dec-btn" href="javascript:void(0)" onclick="openOverview('scope-rules')">
-                  <span>Verify against current records</span>
-                  <i class="ph ph-arrow-up-right"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="roadmap-dec-card alert">
-              <div class="roadmap-dec-top">
-                <div class="roadmap-dec-icon-wrap">
-                  <div class="roadmap-dec-icon"><i class="ph ph-warning"></i></div>
-                  <span style="font-family:monospace;font-size:11px;font-weight:800;background:#FFF7ED;color:#EA580C;padding:2px 6px;border-radius:4px;">DEC-03</span>
-                </div>
-                <h4>Edge cases &amp; unblocking</h4>
-                <p>Resolve conflicts before marking a phase complete (e.g. mutual block, expired requests).</p>
-                <div style="font-size:12px;color:#64748B;">Affects: Phase 01 &amp; Phase 02</div>
-              </div>
-              <div>
-                <a class="roadmap-dec-btn" href="javascript:void(0)" onclick="openOverview('scope-rules')">
-                  <span>Verify against current records</span>
-                  <i class="ph ph-arrow-up-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION 5: EVIDENCE & LOGS (Track progress with evidence.) -->
-        <section class="roadmap-section">
-          <div class="roadmap-section-head">
-            <h2 class="roadmap-section-title">Track progress with evidence.</h2>
-            <p class="roadmap-section-desc">Standardized status definitions ensure truthful progress tracking without fabricated metrics.</p>
-          </div>
-
-          <div style="overflow-x:auto;">
-            <table class="roadmap-evidence-table">
-              <thead>
-                <tr>
-                  <th style="width:160px;">Status</th>
-                  <th>Meaning</th>
-                  <th>Evidence</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <span class="roadmap-status-pill roadmap-status-planned">
-                      <i class="ph ph-calendar-blank"></i> Planned
-                    </span>
-                  </td>
-                  <td>Defined but not started. Scope and completion criteria documented.</td>
-                  <td>Scope specification and dependency definition.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="roadmap-status-pill roadmap-status-progress">
-                      <i class="ph ph-arrows-clockwise"></i> In progress
-                    </span>
-                  </td>
-                  <td>Active engineering or specification work underway.</td>
-                  <td>Current implementation records, active commits, and contracts.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="roadmap-status-pill roadmap-status-blocked">
-                      <i class="ph ph-prohibit"></i> Blocked
-                    </span>
-                  </td>
-                  <td>A named dependency or unresolved open decision prevents progression.</td>
-                  <td>Named blocker or open decision reference (e.g. DEC-01).</td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="roadmap-status-pill roadmap-status-review">
-                      <i class="ph ph-eye"></i> Ready for review
-                    </span>
-                  </td>
-                  <td>Deliverable produced and ready for formal review against criteria.</td>
-                  <td>Reviewable output, prototype parity, and interactive tests.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="roadmap-status-pill roadmap-status-completed">
-                      <i class="ph ph-check-circle"></i> Completed
-                    </span>
-                  </td>
-                  <td>All explicit completion criteria have passed verification.</td>
-                  <td>Recorded validation checks and approved sign-offs.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div style="margin-top:14px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-            <div style="font-size:12.5px;color:#64748B;">
-              <strong>Note:</strong> Roadmap represents working delivery intent, milestone completion criteria, and cross-phase dependencies.
-            </div>
-          </div>
-        </section>
-
-
-
-        <!-- Footer Navigation -->
-        <footer style="display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;border-top:1px solid #E2E8F0;">
-          <button class="btn btn-secondary overview-secondary-btn" onclick="openOverview('problem')" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            <span>Previous: Problem &amp; Opportunity</span>
-          </button>
-          <button class="btn btn-primary overview-primary-btn" onclick="openOverview('audience')" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;">
-            <span>Next: Target Audience &amp; Personas</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </footer>
-
-      </div>
     </div>
 
     <div id="view-overview-audience" hidden>
