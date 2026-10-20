@@ -9651,7 +9651,7 @@ function openOverview(viewId){
       <div class="inspector-scroll">
         <button type="button" class="inspector-close-btn" onclick="setNotesOpen(false)" aria-label="Close notes panel" title="Close notes"><i class="ph ph-x" aria-hidden="true"></i></button>
         <div class="spec-heading">
-          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">01 — WHAT IS PEOPI? / 01</span>
+          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 01</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Product Overview</h2>
           <p style="font-size:12.5px;color:#64748B;margin:0;">Executive overview, case study methodology, and workspace orientation.</p>
         </div>
@@ -9671,7 +9671,7 @@ function openOverview(viewId){
       <div class="inspector-scroll">
         <button type="button" class="inspector-close-btn" onclick="setNotesOpen(false)" aria-label="Close notes panel" title="Close notes"><i class="ph ph-x" aria-hidden="true"></i></button>
         <div class="spec-heading">
-          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">01 — WHAT IS PEOPI? / 02</span>
+          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 02</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Problem &amp; Opportunity</h2>
           <p style="font-size:12.5px;color:#64748B;margin:0;">Problem framing, illustrative scenario, landscape gaps, design constraints, and unvalidated pilot hypothesis.</p>
         </div>
@@ -9691,7 +9691,7 @@ function openOverview(viewId){
       <div class="inspector-scroll">
         <button type="button" class="inspector-close-btn" onclick="setNotesOpen(false)" aria-label="Close notes panel" title="Close notes"><i class="ph ph-x" aria-hidden="true"></i></button>
         <div class="spec-heading">
-          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">01 — WHAT IS PEOPI? / 03</span>
+          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 03</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Product Vision &amp; Strategy</h2>
           <p style="font-size:12.5px;color:#64748B;margin:0;">Competitive landscape, positioning hypotheses, and 5-stage delivery roadmap.</p>
         </div>
@@ -9711,7 +9711,7 @@ function openOverview(viewId){
       <div class="inspector-scroll">
         <button type="button" class="inspector-close-btn" onclick="setNotesOpen(false)" aria-label="Close notes panel" title="Close notes"><i class="ph ph-x" aria-hidden="true"></i></button>
         <div class="spec-heading">
-          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">01 — WHAT IS PEOPI? / 04</span>
+          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 04</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Target Audience &amp; Personas</h2>
           <p style="font-size:12.5px;color:#64748B;margin:0;">Target personas, user archetypes, pilot geography, and acquisition focus.</p>
         </div>
@@ -9731,7 +9731,7 @@ function openOverview(viewId){
       <div class="inspector-scroll">
         <button type="button" class="inspector-close-btn" onclick="setNotesOpen(false)" aria-label="Close notes panel" title="Close notes"><i class="ph ph-x" aria-hidden="true"></i></button>
         <div class="spec-heading">
-          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">01 — WHAT IS PEOPI? / 05</span>
+          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 05</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">MVP Scope &amp; Product Decisions</h2>
           <p style="font-size:12.5px;color:#64748B;margin:0;">Scope boundaries, 7-decision architecture, non-negotiable rules, and open trade-offs.</p>
         </div>
@@ -9751,7 +9751,7 @@ function openOverview(viewId){
       <div class="inspector-scroll">
         <button type="button" class="inspector-close-btn" onclick="setNotesOpen(false)" aria-label="Close notes panel" title="Close notes"><i class="ph ph-x" aria-hidden="true"></i></button>
         <div class="spec-heading">
-          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">01 — WHAT IS PEOPI? / 06</span>
+          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 06</span>
           <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">User Journeys &amp; Flows</h2>
           <p style="font-size:12.5px;color:#64748B;margin:0;">4-chapter journey walkthrough, screen map canvas, and interactive flow explorer.</p>
         </div>
