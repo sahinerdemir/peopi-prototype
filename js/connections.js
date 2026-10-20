@@ -180,7 +180,7 @@ function goToOnboardingSlide(idx){
   const nextBtn = document.getElementById("onboarding-next");
   if(nextBtn){
     if(onboardingSlideIndex === totalOnboardingSlides - 1){
-      nextBtn.innerHTML = "Get started <i class=\"ph ph-arrow-right\" aria-hidden=\"true\"></i>";
+      nextBtn.innerHTML = "Get Started <i class=\"ph ph-arrow-right\" aria-hidden=\"true\"></i>";
     } else {
       nextBtn.innerHTML = "Continue <i class=\"ph ph-arrow-right\" aria-hidden=\"true\"></i>";
     }
