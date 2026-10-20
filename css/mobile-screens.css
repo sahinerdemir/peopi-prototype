@@ -3642,3 +3642,101 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
     transform: none;
   }
 }
+
+/* First-time user journey targeted updates */
+.phone #active .session {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.phone #active .timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 750;
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.12);
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  padding: 5px 10px;
+  border-radius: 999px;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+.phone.dark #active .timer {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+  border-color: rgba(74, 222, 128, 0.25);
+}
+.phone .toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.toast-action-btn {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 9px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+.toast-action-btn:hover {
+  opacity: 0.9;
+}
+.discovery-list-pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent);
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-top: 3px;
+}
+.discovery-list-connected {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #16a34a;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-top: 3px;
+}
+.phone.dark .discovery-list-connected {
+  color: #4ade80;
+}
+#requestFromProfile.is-pending {
+  background: var(--muted) !important;
+  color: var(--sub) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+  cursor: default !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  font-weight: 700 !important;
+  opacity: 0.9;
+}
+.profile-cancel-request-btn {
+  color: #e34b46 !important;
+  font-weight: 700;
+  padding: 10px 5px;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+.profile-cancel-request-btn:hover {
+  text-decoration: underline;
+}

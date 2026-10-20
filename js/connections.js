@@ -18,8 +18,17 @@ function renderNetwork(){
   const box=$('#network-list');if(!box)return;box.replaceChildren();
   const totalCount=journey.connections.length;
   const pillCountAll=$('#pill-count-all');if(pillCountAll)pillCountAll.textContent=totalCount;
-  const reqReceived=Object.values(journey.requests).filter(v=>v==='received').length;
-  const reqStat=$('#network-requests-stat');if(reqStat)reqStat.textContent=reqReceived>0?(reqReceived+' pending'):'None pending';
+  const searchInput=$('#network-search');
+  if(searchInput)searchInput.placeholder='Search '+totalCount+' connections by name or skill...';
+  const reqRec = demoPeople.filter(p=>!journey.blocked.includes(p.id)&&journey.requests[p.id]==='received').length;
+  const reqSent = demoPeople.filter(p=>!journey.blocked.includes(p.id)&&journey.requests[p.id]==='sent').length;
+  const reqStat=$('#network-requests-stat');
+  if(reqStat){
+    if(reqRec>0&&reqSent>0)reqStat.textContent=reqRec+' received · '+reqSent+' sent';
+    else if(reqRec>0)reqStat.textContent=reqRec+' pending';
+    else if(reqSent>0)reqStat.textContent=reqSent+' sent pending';
+    else reqStat.textContent='None pending';
+  }
   const hiddenStat=$('#network-hidden-stat');if(hiddenStat)hiddenStat.textContent=(journey.hidden?.length||0)+' hidden';
   const searchInput=$('#network-search');
   const q=(searchInput?.value||'').trim().toLowerCase();
@@ -119,7 +128,65 @@ function renderRequests(){
       box.querySelector('[data-go="closed"]')?.addEventListener('click',()=>go('closed'));
     }
     return;
-  }ps.forEach(p=>{const note=journey.requestNotes?.[p.id];const sub=note?('“'+note+'”'):p.role;const row=journeyRow(p,sub);const acts=document.createElement('div');acts.className='person-actions';for(const [label,fn] of (received?[['Accept',()=>{journey.connections.push(p.id);journey.connectionDates={...(journey.connectionDates||{}),[p.id]:new Date().toISOString().slice(0,10)};delete journey.requests[p.id]}],['Decline',()=>{delete journey.requests[p.id]}]]:[['Cancel request',()=>{delete journey.requests[p.id]}]])){const b=received?document.createElement('button'):cancelRequestButton(p.name);if(received)b.textContent=label;b.onclick=()=>{fn();journey.connections=[...new Set(journey.connections)];saveJourney();renderRequests();renderNetwork();toast('Demo connection status updated')};if(received)acts.append(b);else row.append(b)}if(received){row.classList.add('request-received');row.append(acts)}box.append(row)})}
+  }
+  ps.forEach(p=>{
+    const note=journey.requestNotes?.[p.id];
+    const sub=note?('“'+note+'”'):p.role;
+    const row=journeyRow(p,sub);
+    const acts=document.createElement('div');
+    acts.className='person-actions';
+    if(received){
+      const acceptBtn=document.createElement('button');
+      acceptBtn.type='button';
+      acceptBtn.textContent='Accept';
+      acceptBtn.onclick=()=>{
+        journey.connections.push(p.id);
+        journey.connections=[...new Set(journey.connections)];
+        journey.connectionDates={...(journey.connectionDates||{}),[p.id]:new Date().toISOString().slice(0,10)};
+        delete journey.requests[p.id];
+        saveJourney();
+        updateNotifBadge();
+        renderRequests();
+        renderNetwork();
+        const fullP=people[p.id]||p;
+        toast('Connected with '+(fullP.name||p.name)+'!', 'Open chat ↗', ()=>{
+          setJourneyView(p.id);
+          go('conversation');
+        });
+      };
+      const declineBtn=document.createElement('button');
+      declineBtn.type='button';
+      declineBtn.textContent='Decline';
+      declineBtn.onclick=()=>{
+        delete journey.requests[p.id];
+        if(journey.requestNotes)delete journey.requestNotes[p.id];
+        saveJourney();
+        updateNotifBadge();
+        renderRequests();
+        renderNetwork();
+        toast('Request declined');
+      };
+      acts.append(acceptBtn,declineBtn);
+      row.classList.add('request-received');
+      row.append(acts);
+    } else {
+      const cancelBtn=cancelRequestButton(p.name);
+      cancelBtn.onclick=()=>{
+        modal('Cancel request?', 'Are you sure you want to cancel your connection request to '+p.name+'?', 'Cancel request', ()=>{
+          delete journey.requests[p.id];
+          if(journey.requestNotes)delete journey.requestNotes[p.id];
+          saveJourney();
+          updateNotifBadge();
+          renderRequests();
+          renderNetwork();
+          toast('Connection request cancelled');
+        });
+      };
+      row.append(cancelBtn);
+    }
+    box.append(row);
+  });
+}
 $('#connection-message-fab').addEventListener('click',()=>{if(journey.connections.includes(journey.currentPerson))go('conversation')});function renderConnectionDetail(){const id=journey.currentPerson,p=journeyPerson(id),full=people[id]||people[0];const since=journey.connectionDates?.[id]||({0:'2025-06-12',1:'2026-02-18'})[id]||null;const sinceEl=$('#connection-since');sinceEl.textContent=since?'Since '+new Date(since+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'';$('#connection-privacy-hint').classList.toggle('hide',!journey.connections.includes(id));$('#connection-message-fab').classList.toggle('hide',!journey.connections.includes(id));paintConnectionCount('#connection-connection-count',id,journey.connections.includes(id));paintDemoPortrait($('#connection-avatar'),id);$('#connection-name').textContent=journey.connections.includes(id)?full.name:journeyPerson(id).name;markVerifiedName($('#connection-name'),id);$('#connection-headline').textContent=full.headline;$('#connection-sector').textContent=full.sector;$('#connection-intent').textContent=full.intent;$('#connection-bio').textContent=full.bio;$('#connection-looking').textContent=full.looking;const skills=$('#connection-skills');skills.replaceChildren(...full.skills.map(skill=>{const tag=document.createElement('span');tag.textContent=skill;return tag}));$('#connection-project').classList.toggle('hide',!full.project);$('#connection-project-name').textContent=full.project||'';$('#connection-project-desc').textContent=full.projectdesc||'';$('#connectiondetail .journey-card[data-go="conversation"]').disabled=!journey.connections.includes(id);const hide=$('#connectiondetail .journey-card[data-go="hiddenconnections"]');hide.querySelector('strong').textContent=journey.hidden.includes(id)?'Manage hidden presence':'Hide my active presence';renderConnectionDocs(id);renderConnectionExperience(id);refreshIcons()}let currentHiddenTab = 'all';
 function renderHidden(){
   const box=$('#hidden-list');if(!box)return;
@@ -196,12 +263,12 @@ function initOnboarding(){
       if(onboardingSlideIndex < totalOnboardingSlides - 1){
         goToOnboardingSlide(onboardingSlideIndex + 1);
       } else {
-        go("auth");
+        openAuthFlow("signup");
       }
     };
   }
   const skipBtn = document.getElementById("onboarding-skip");
-  if(skipBtn) skipBtn.onclick = () => go("auth");
+  if(skipBtn) skipBtn.onclick = () => openAuthFlow("signup");
   const dots = document.querySelectorAll(".onboarding-dot");
   dots.forEach(d => {
     d.onclick = () => {
@@ -274,10 +341,68 @@ function renderReportUser(){
   if(detailsInput)detailsInput.value='';
 }
 function updateJourneyScreen(to){
-  if(to === 'reportuser') renderReportUser();if(to==='onboarding')goToOnboardingSlide(0);if(to==='active'){refreshMapPortraits();if(view==='list')renderDiscoveryList();}if(to==='network')renderNetwork();if(to==='requests')renderRequests();if(to==='messages')renderMessages();if(to==='activity')renderActivity();if(to==='conversation')renderConversation();if(to==='connectiondetail')renderConnectionDetail();if(to==='hiddenconnections')renderHidden();if(to==='blockedaccounts')renderBlocked();if(to==='notifications')renderNotifications();if(to==='firstprofile'){const map={name:'on-name',headline:'on-headline',city:'on-city',bio:'on-bio',skills:'on-skills'};Object.entries(map).forEach(([key,id])=>{const el=$('#'+id);if(el)el.value=ownProfile[key]||''})}if(to==='appsettings')paintSettings()}
+  if(to === 'reportuser') renderReportUser();
+  if(to==='onboarding')goToOnboardingSlide(0);
+  if(to==='active'){refreshMapPortraits();if(view==='list')renderDiscoveryList();if(typeof updateTimer==='function')updateTimer();}
+  if(to==='network')renderNetwork();
+  if(to==='requests')renderRequests();
+  if(to==='messages')renderMessages();
+  if(to==='activity')renderActivity();
+  if(to==='conversation')renderConversation();
+  if(to==='connectiondetail')renderConnectionDetail();
+  if(to==='hiddenconnections')renderHidden();
+  if(to==='blockedaccounts')renderBlocked();
+  if(to==='notifications')renderNotifications();
+  if(to==='firstprofile'){
+    const map={name:'on-name',headline:'on-headline',city:'on-city',bio:'on-bio',skills:'on-skills'};
+    Object.entries(map).forEach(([key,id])=>{
+      const el=$('#'+id);
+      if(el){
+        if(key==='name'&&(ownProfile[key]==='Your name'||!ownProfile[key])){
+          el.value='';
+        } else {
+          el.value=ownProfile[key]||'';
+        }
+      }
+    });
+  }
+  if(to==='appsettings')paintSettings();
+}
 const goBeforeJourneys=go;go=function(to,dir){goBeforeJourneys(to,dir);updateJourneyScreen(to);refreshIcons()};
+let authMode = 'signup';
+function openAuthFlow(mode){
+  authMode = mode || 'signup';
+  const isLogin = authMode === 'login';
+  const eyebrow = $('#auth-eyebrow');
+  const title = $('#auth-title');
+  const heading = $('#auth-heading');
+  const subheading = $('#auth-subheading');
+  if(eyebrow) eyebrow.textContent = isLogin ? 'WELCOME BACK' : 'WELCOME TO PEOPI';
+  if(title) title.textContent = isLogin ? 'Log In' : 'Join Peopi';
+  if(heading) heading.textContent = isLogin ? 'Welcome back to Peopi.' : 'Connections begin here.';
+  if(subheading) subheading.textContent = isLogin ? 'Sign in to access your connections and discovery.' : 'Choose your sign-in method to try the demo.';
+  const emailInput = $('#auth-email');
+  if(emailInput) emailInput.value = isLogin ? 'alex.morgan@example.com' : '';
+  const codeInput = $('#auth-code');
+  if(codeInput) codeInput.value = '';
+  $('#auth-email-stage')?.classList.remove('hide');
+  $('#auth-code-stage')?.classList.add('hide');
+  go('auth');
+}
+const welcomeLoginBtn = $('#welcome-login-btn');
+if(welcomeLoginBtn){
+  welcomeLoginBtn.onclick = () => openAuthFlow('login');
+}
 $('#auth-continue').onclick=()=>{const email=$('#auth-email').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Enter a valid email address');return}$('#auth-email-stage').classList.add('hide');$('#auth-code-stage').classList.remove('hide')};
-$('#auth-verify').onclick=()=>{if($('#auth-code').value.trim()!=='123456'){toast('Use demo code 123456');return}go('firstprofile')};
+$('#auth-verify').onclick=()=>{
+  if($('#auth-code').value.trim()!=='123456'){toast('Use demo code 123456');return}
+  if(authMode === 'login'){
+    go('closed');
+    toast('Signed in successfully');
+  } else {
+    go('firstprofile');
+  }
+};
 $('#auth-resend').onclick=()=>toast('Demo verification code: 123456');
 $('#on-profile-next').onclick=()=>{if(!$('#on-name').value.trim()||!$('#on-headline').value.trim()||!$('#on-city').value.trim()){toast('Name, headline and city are required');return}const keys={name:'on-name',headline:'on-headline',city:'on-city'};Object.entries(keys).forEach(([k,id])=>{const el=$('#'+id);if(el)ownProfile[k]=el.value.trim();});paintProfile();go('firstintent')};
 all('#on-intent-options [data-choice]').forEach(b=>b.onclick=()=>{b.classList.toggle('selected');refreshIcons()});
