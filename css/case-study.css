@@ -10045,5 +10045,484 @@
   }
 }
 
+/* --------------------------------------------------------------------------
+   Section 03: Persona to Product Decision Mapping
+   -------------------------------------------------------------------------- */
+.aud-mapping-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aud-mapping-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 26px 28px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-top: 3px solid #E2E8F0;
+}
+
+.aud-mapping-card.builder { border-top-color: #FF3300; }
+.aud-mapping-card.collaborator { border-top-color: #1E293B; }
+.aud-mapping-card.explorer { border-top-color: #64748B; }
+
+.aud-mapping-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.aud-mapping-persona-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.aud-mapping-code {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.aud-mapping-title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin: 0;
+}
+
+.aud-mapping-motivation-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  max-width: 440px;
+}
+
+.aud-mapping-motivation-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.aud-mapping-motivation-box p {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #334155;
+  margin: 0;
+}
+
+.aud-mapping-need-box {
+  background: #FFFBF9;
+  border: 1px solid #FFD8CC;
+  border-left: 3px solid #FF3300;
+  border-radius: 11px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.aud-mapping-need-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.aud-mapping-need-box p {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #0F172A;
+  margin: 0;
+}
+
+.aud-mapping-responses-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.aud-response-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aud-response-box.implemented {
+  background: #FAFCF9;
+  border-color: #D1E7DD;
+}
+
+.aud-response-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.aud-response-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+
+.aud-response-status-badge.implemented {
+  background: #E8F5E9;
+  color: #1B5E20;
+  border: 1px solid #C8E6C9;
+}
+
+.aud-response-status-badge.roadmap {
+  background: #F1F5F9;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+}
+
+.aud-response-box ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aud-response-box li {
+  font-size: 13px;
+  line-height: 1.48;
+  color: #334155;
+}
+
+.aud-response-box li strong {
+  color: #0F172A;
+}
+
+/* --------------------------------------------------------------------------
+   Section 04: Strategic Trade-Offs Surface
+   -------------------------------------------------------------------------- */
+.aud-tradeoffs-surface {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 28px 30px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.aud-tradeoffs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.aud-tradeoff-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 13px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aud-tradeoff-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.aud-tradeoff-card h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.aud-tradeoff-card p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}
+
+.aud-tradeoff-summary-banner {
+  background: #FFFBF9;
+  border: 1px solid #FFD8CC;
+  border-left: 3px solid #FF3300;
+  border-radius: 14px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aud-tradeoff-summary-banner strong {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.aud-tradeoff-summary-banner p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Section 06: Key Assumptions to Validate
+   -------------------------------------------------------------------------- */
+.aud-assumptions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.aud-assumption-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+}
+
+.aud-assumption-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.aud-assumption-num {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF3300;
+}
+
+.aud-assumption-pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #F1F5F9;
+  color: #475569;
+}
+
+.aud-assumption-card h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.aud-assumption-card p.aud-assumption-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #334155;
+  margin: 0;
+}
+
+.aud-assumption-telemetry {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 11px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.aud-telemetry-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0284C7;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.aud-assumption-telemetry p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #334155;
+  margin: 0;
+}
+
+.aud-telemetry-note-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 13px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aud-telemetry-note-box i {
+  font-size: 20px;
+  color: #64748B;
+  flex-shrink: 0;
+}
+
+.aud-telemetry-note-box p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Dark Mode Overrides for New 01.4 Components
+   -------------------------------------------------------------------------- */
+#dashboard-workspace.ds-dark .aud-mapping-card,
+#dashboard-workspace.dash-dark .aud-mapping-card,
+#dashboard-workspace.ds-dark .aud-tradeoffs-surface,
+#dashboard-workspace.dash-dark .aud-tradeoffs-surface,
+#dashboard-workspace.ds-dark .aud-assumption-card,
+#dashboard-workspace.dash-dark .aud-assumption-card {
+  background: #1E293B;
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .aud-mapping-card.builder,
+#dashboard-workspace.dash-dark .aud-mapping-card.builder { border-top-color: #FF4D1C; }
+#dashboard-workspace.ds-dark .aud-mapping-card.collaborator,
+#dashboard-workspace.dash-dark .aud-mapping-card.collaborator { border-top-color: #94A3B8; }
+#dashboard-workspace.ds-dark .aud-mapping-card.explorer,
+#dashboard-workspace.dash-dark .aud-mapping-card.explorer { border-top-color: #64748B; }
+
+#dashboard-workspace.ds-dark .aud-mapping-head,
+#dashboard-workspace.dash-dark .aud-mapping-head {
+  border-bottom-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .aud-mapping-title,
+#dashboard-workspace.dash-dark .aud-mapping-title,
+#dashboard-workspace.ds-dark .aud-mapping-need-box p,
+#dashboard-workspace.dash-dark .aud-mapping-need-box p,
+#dashboard-workspace.ds-dark .aud-response-box li strong,
+#dashboard-workspace.dash-dark .aud-response-box li strong,
+#dashboard-workspace.ds-dark .aud-tradeoff-card h4,
+#dashboard-workspace.dash-dark .aud-tradeoff-card h4,
+#dashboard-workspace.ds-dark .aud-tradeoff-summary-banner strong,
+#dashboard-workspace.dash-dark .aud-tradeoff-summary-banner strong,
+#dashboard-workspace.ds-dark .aud-assumption-card h3,
+#dashboard-workspace.dash-dark .aud-assumption-card h3 {
+  color: #F8FAFC;
+}
+
+#dashboard-workspace.ds-dark .aud-mapping-motivation-box,
+#dashboard-workspace.dash-dark .aud-mapping-motivation-box,
+#dashboard-workspace.ds-dark .aud-response-box,
+#dashboard-workspace.dash-dark .aud-response-box,
+#dashboard-workspace.ds-dark .aud-tradeoff-card,
+#dashboard-workspace.dash-dark .aud-tradeoff-card,
+#dashboard-workspace.ds-dark .aud-assumption-telemetry,
+#dashboard-workspace.dash-dark .aud-assumption-telemetry,
+#dashboard-workspace.ds-dark .aud-telemetry-note-box,
+#dashboard-workspace.dash-dark .aud-telemetry-note-box {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+#dashboard-workspace.ds-dark .aud-response-box.implemented,
+#dashboard-workspace.dash-dark .aud-response-box.implemented {
+  background: #064E3B20;
+  border-color: #065F46;
+}
+
+#dashboard-workspace.ds-dark .aud-mapping-need-box,
+#dashboard-workspace.dash-dark .aud-mapping-need-box,
+#dashboard-workspace.ds-dark .aud-tradeoff-summary-banner,
+#dashboard-workspace.dash-dark .aud-tradeoff-summary-banner {
+  background: #FF330015;
+  border-color: #FF330040;
+}
+
+#dashboard-workspace.ds-dark .aud-mapping-motivation-box p,
+#dashboard-workspace.dash-dark .aud-mapping-motivation-box p,
+#dashboard-workspace.ds-dark .aud-response-box li,
+#dashboard-workspace.dash-dark .aud-response-box li,
+#dashboard-workspace.ds-dark .aud-tradeoff-card p,
+#dashboard-workspace.dash-dark .aud-tradeoff-card p,
+#dashboard-workspace.ds-dark .aud-tradeoff-summary-banner p,
+#dashboard-workspace.dash-dark .aud-tradeoff-summary-banner p,
+#dashboard-workspace.ds-dark .aud-assumption-card p.aud-assumption-desc,
+#dashboard-workspace.dash-dark .aud-assumption-card p.aud-assumption-desc,
+#dashboard-workspace.ds-dark .aud-assumption-telemetry p,
+#dashboard-workspace.dash-dark .aud-assumption-telemetry p,
+#dashboard-workspace.ds-dark .aud-telemetry-note-box p,
+#dashboard-workspace.dash-dark .aud-telemetry-note-box p {
+  color: #94A3B8;
+}
+
+#dashboard-workspace.ds-dark .aud-response-status-badge.implemented,
+#dashboard-workspace.dash-dark .aud-response-status-badge.implemented {
+  background: #065F4640;
+  color: #34D399;
+  border-color: #059669;
+}
+
+#dashboard-workspace.ds-dark .aud-response-status-badge.roadmap,
+#dashboard-workspace.dash-dark .aud-response-status-badge.roadmap,
+#dashboard-workspace.ds-dark .aud-assumption-pill,
+#dashboard-workspace.dash-dark .aud-assumption-pill {
+  background: #334155;
+  color: #CBD5E1;
+  border-color: #475569;
+}
+
+/* Responsive adjustments for new 01.4 components */
+@media (max-width: 900px) {
+  .aud-mapping-responses-grid,
+  .aud-tradeoffs-grid,
+  .aud-assumptions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 
