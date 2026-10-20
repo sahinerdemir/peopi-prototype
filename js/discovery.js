@@ -93,35 +93,6 @@ function filteredDiscoveryIds(){
     return (discoveryRole==='all'||(p.role+' '+p.headline+' '+p.sector).toLowerCase().includes(discoveryRole))&&(discoveryGoal==='all'||(p.intent+' '+p.looking).toLowerCase().includes(discoveryGoal));
   });
 }
-function renderDiscoveryAppliedChips(){
-  const container = $('#discovery-applied-chips');
-  if(!container) return;
-  const chips = [];
-  if(discoveryRole !== 'all'){
-    const roleLabels = { design: 'Design', engineer: 'Engineering', founder: 'Founders', growth: 'Growth', invest: 'Investment' };
-    chips.push({ label: 'Specialty: ' + (roleLabels[discoveryRole] || discoveryRole), clear: () => { discoveryRole = 'all'; syncDiscoveryFilters(); } });
-  }
-  if(discoveryGoal !== 'all'){
-    const goalLabels = { collaborat: 'Collaboration', project: 'Projects', idea: 'Ideas' };
-    chips.push({ label: 'Intent: ' + (goalLabels[discoveryGoal] || discoveryGoal), clear: () => { discoveryGoal = 'all'; syncDiscoveryFilters(); } });
-  }
-  if(!chips.length){
-    container.classList.add('hide');
-    container.replaceChildren();
-    return;
-  }
-  container.classList.remove('hide');
-  container.replaceChildren(...chips.map(ch => {
-    const el = document.createElement('button');
-    el.type = 'button';
-    el.className = 'discovery-chip-tag';
-    el.setAttribute('aria-label', 'Remove filter: ' + ch.label);
-    el.setAttribute('title', 'Remove filter');
-    el.innerHTML = '<span class="discovery-chip-text">' + ch.label + '</span><span class="discovery-chip-remove" aria-hidden="true"><i class="ph ph-x"></i></span>';
-    el.onclick = ch.clear;
-    return el;
-  }));
-}
 function syncDiscoveryFilters(){
   const ids=filteredDiscoveryIds();
   all('#mapview [data-person]').forEach(b=>b.classList.toggle('hide',!ids.includes(Number(b.dataset.person))));
@@ -132,7 +103,6 @@ function syncDiscoveryFilters(){
   if(listCount) listCount.textContent = countText;
   const hasFilters=discoveryRole!=='all'||discoveryGoal!=='all';
   $('#filters')?.classList.toggle('has-active-filters',hasFilters);
-  renderDiscoveryAppliedChips();
   if(view==='list')renderDiscoveryList();
   if(person!==null&&!ids.includes(person))$('#profilecard').classList.add('hide');
   refreshIcons();

@@ -119,7 +119,7 @@ const specs={
    "Tap floating recenter button to smoothly return to user's location.",
    "Select nearby professional pins to view profile card preview.",
    "Open discovery filters dialog to filter by professional specialty or intent.",
-   "Dismiss active filter chips to reset filters inline.",
+   "Adjust or reset filters via the filters dialog.",
    "Tap 'Go invisible' to terminate the session early via confirmation modal."
   ],
   "states": [
@@ -140,7 +140,6 @@ const specs={
    "Interactive pan canvas with rubber-band bounds (.map-canvas).",
    "User approximate beacon with radar waves (.map-user-beacon).",
    "Floating profile preview card with quick metadata (.profilecard).",
-   "Active filter chips strip (.discovery-applied-chips).",
    "Floating map recenter button (.map-recenter-btn)."
   ],
   "motion": [
