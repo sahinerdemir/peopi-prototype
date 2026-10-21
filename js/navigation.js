@@ -9247,7 +9247,21 @@ function showDesign(key){
  };
  Object.assign(content,dsExpanded);
 
- const catalogSection=(heading,body)=>section(heading,'Interactive working example — click controls to inspect states where applicable.',body);
+ const catalogSection=(title,sourceScreen,body,description='')=>{
+  if(typeof body==='undefined'&&typeof sourceScreen==='string'&&sourceScreen.includes('<')){
+   body=sourceScreen;
+   sourceScreen='';
+  }
+  let cleanTitle=(title||'').replace(/\s*·\s*SCREENS$/i,'').trim();
+  if(!sourceScreen&&cleanTitle.includes(' · ')){
+   const parts=cleanTitle.split(' · ');
+   sourceScreen=parts[0].trim();
+   cleanTitle=parts.slice(1).join(' · ').trim();
+  }
+  const metaHtml=sourceScreen?`<p class="ds-specimen-meta">Used in: ${sourceScreen}</p>`:'';
+  const descHtml=description?`<p class="ds-specimen-desc">${description}</p>`:'';
+  return `<article class="ds-panel"><div class="ds-specimen-head"><h2 class="ds-specimen-title">${cleanTitle}</h2>${metaHtml}</div>${descHtml}${body}</article>`;
+ };
  const specTable=(rows)=>'<table class="ds-spec-table"><thead><tr><th>Property</th><th>Guideline</th></tr></thead><tbody>'+rows.map(([a,b])=>'<tr><td>'+a+'</td><td>'+b+'</td></tr>').join('')+'</tbody></table>';
  const sampleIcon=(name)=>'<i class="ph ph-'+phIconName(name)+'" aria-hidden="true"></i>';
  const samples={};
@@ -9276,76 +9290,76 @@ function showDesign(key){
   const root=screen&&original!==screen?'<div class="ds-source-root" data-ds-source-id="'+screen.id+'">'+clone.outerHTML+'</div>':clone.outerHTML;
   return '<div class="phone ds-live-specimen'+(full?' ds-full-screen':'')+'">'+root+'<p class="ds-specimen-feedback" role="status" aria-live="polite" hidden></p></div>';
  };
-  const screenSamples={"form-group":["Edit Profile · grouped form section","#editprofile .editgroup"],"content-section":["My Profile · readable content section","#myprofile .myprofile-section"],"identity-card":["My Profile · identity & completion card","#myprofile .myprofile-identity-card"],"primary-action":["Discover \u00b7 primary action","#closed .primary"],"quiet-action":["Start session \u00b7 secondary action","#setup .cancel"],"icon-button":["My Profile \u00b7 settings action","#myprofile-settings"],"fab":["Connection detail \u00b7 message action","#connection-message-fab"],"bottom-nav":["Discover \u00b7 floating navigation","#closed .nav"],"tabs":["Discover \u00b7 Map / List","#active .seg"],"request-tabs":["Connections \u00b7 Received / Sent","#requests .journey-tabs"],"app-bar":["My Profile \u00b7 header","#myprofile .myprofile-head"],"switch":["Notification preferences \u00b7 connection requests","#notification-list .journey-person:first-child"],"profile-card":["Discover \u00b7 selected professional","#active #profilecard"],"profile-progress":["My Profile \u00b7 completion","#myprofile .myprofile-completion"],"session-duration":["Start session \u00b7 duration","#setup .durations"],"avatar":["My Profile \u00b7 avatar","#myprofile .myprofile-avatar"],"chip":["My Profile \u00b7 skills & interests","#myprofile .myprofile-chips"],"profile-menu":["My Profile · rounded privacy menu","#myprofile .myprofile-menu"],"privacy":["Privacy \u00b7 presence status","#privacy .privacy-status"],"privacy-row":["Privacy \u00b7 hidden connections","#privacy .privacy-setting:has(#manage-hidden)"],"verification-status":["Verification \u00b7 LinkedIn","#verification .verify-panel"],"list":["Settings \u00b7 account rows","#appsettings .settings-group"],"sheet":["Discover \u00b7 professional profile sheet","#profsheet .profile-sheet",true],"dialog":["Discover \u00b7 visibility confirmation","#modal .sheet"],"chat-composer":["Conversation \u00b7 message composer","#conversation .chat-compose"]};
- for(const [name,[heading,selector,full]] of Object.entries(screenSamples)){
-  peopiScreenSources[name]=heading;
-  samples[name]=()=>catalogSection(heading+' · SCREENS',sourceSpecimen(selector,{full:!!full}));
- }
- const sourceGroup=(selector)=>{const group=document.createElement('div');for(const el of document.querySelectorAll(selector))group.append(el.cloneNode(true));return group};
- samples.radio=()=>catalogSection('Start session · networking intent · SCREENS',sourceSpecimen(null,{node:sourceGroup('#setup .option')}));
- samples['text-field']=()=>catalogSection('Edit Profile · fields · SCREENS',sourceSpecimen(null,{node:sourceGroup('#editprofile .editfield')}));
- samples['search-field']=()=>catalogSection('Connections · search · SCREENS',sourceSpecimen('#network-search'));
- peopiScreenSources['search-field']='Connections · search';
- samples['icon-button']=()=>catalogSection('My Profile · settings action · SCREENS',sourceSpecimen('#myprofile-settings'));
- samples.fab=()=>catalogSection('Connection detail · message action · SCREENS',sourceSpecimen('#connection-message-fab'));
- peopiScreenSources.fab='Connection detail · message';
- samples['discovery-filter']=()=>{const host=document.createElement('section');host.className='screen';host.id='active';host.innerHTML=discoveryFilterMarkup();return catalogSection('Discover · filters · SCREENS',sourceSpecimen(null,{node:host.firstElementChild}));};
-  samples['connection-request']=()=>{
-  const person=journeyPerson(demoPeople.find(p=>!journey.connections.includes(p.id))?.id||0);
-  const row=journeyRow(person,person.role);const actions=document.createElement('div');actions.className='person-actions';
-  for(const label of ['Accept','Decline']){const button=document.createElement('button');button.textContent=label;actions.append(button)}row.classList.add('request-received');row.append(actions);
-  const sent=journeyRow(person,person.role);sent.append(cancelRequestButton(person.name));
-  return catalogSection('Connections · received request · SCREENS',sourceSpecimen(null,{node:row}))+catalogSection('Connections · sent request · SCREENS',sourceSpecimen(null,{node:sent}));
- };
- samples['chat-bubble']=()=>catalogSection('Connections · conversation bubbles · SCREENS','<div class="phone ds-live-specimen" style="display:flex;flex-direction:column;gap:10px;padding:16px"><div class="chat-time-divider"><span>Today · 9:41 AM</span></div><div class="chat-row"><div class="chat-bubble">Hi! Great to connect.</div></div><div class="chat-row mine"><div class="chat-bubble mine">Coffee near the main hall in 15 minutes?</div></div></div>');
- samples['profile-progress']=()=>{const node=document.querySelector('#myprofile .myprofile-completion').cloneNode(true);const host=document.createElement('div');host.className='myprofile-identity-card';host.append(node);return catalogSection('My Profile · completion footer · SCREENS',sourceSpecimen(null,{node:host}));};
- samples['verified-badge']=()=>catalogSection('Discover / Profile · verified badge · SCREENS',sourceSpecimen(null,{node:makeVerifiedBadge()}));
- samples['profile-documents']=()=>catalogSection('Profile · documents & attachments · SCREENS',sourceSpecimen('#myprofile #myprofile-docs-section'));
- peopiScreenSources['profile-documents']='My Profile · documents';
- samples['network-row']=()=>catalogSection('Connections · network row · SCREENS',sourceSpecimen(null,{node:journeyRow(journeyPerson(journey.connections[0]||0),null,{label:'View',onClick:()=>{}})}));
- samples['empty-state']=()=>{const host=document.createElement('div');host.innerHTML=journeyEmpty('No incoming requests','New introductions will appear here.');return catalogSection('Connections · empty state · SCREENS',sourceSpecimen(null,{node:host.firstElementChild}));};
- samples['activity-item']=()=>{const host=document.createElement('div');host.innerHTML='<div class="activity-item"><div class="activity-avatar-wrap"><div class="activity-avatar" style="background:#e1c9c6">AM</div></div><div class="activity-content"><div class="activity-head"><strong>Alex Morgan</strong><span class="activity-time">10m ago</span></div><p class="activity-subtitle">Sent you a connection request · Product designer</p><div class="activity-actions"><button type="button" class="activity-btn-accept">Accept</button><button type="button" class="activity-btn-decline">Decline</button></div></div></div>';return catalogSection('Connections · notification item · SCREENS',sourceSpecimen(null,{node:host.firstElementChild}));};
- peopiScreenSources['activity-item']='Notifications · activity item';
- samples.sheet=()=>{
-  const wrapper=document.createElement('div');
-  wrapper.className='ds-sheet-specimen-root';
-  wrapper.dataset.dsSourceId='profsheet';
-  const sheetClone=document.querySelector('#profsheet .profile-sheet').cloneNode(true);
-  sheetClone.classList.remove('hide','screen');
-  const nameEl=sheetClone.querySelector('#detailname');
-  if(nameEl){nameEl.textContent='A.M.';nameEl.append(makeVerifiedBadge());}
-  const roleEl=sheetClone.querySelector('#detailrole');
-  if(roleEl)roleEl.textContent='Product Designer';
-  const sectorEl=sheetClone.querySelector('#detailsector');
-  if(sectorEl)sectorEl.textContent='Early-stage products · Startup';
-  const initialsEl=sheetClone.querySelector('#detailinitials');
-  if(initialsEl){initialsEl.textContent='AM';initialsEl.style.backgroundColor='#e1c9c6';initialsEl.style.color='#705457';}
-  const hintEl=sheetClone.querySelector('#detail-privacy-hint');
-  if(hintEl){hintEl.className='privacyhint';hintEl.innerHTML='<i class="ph ph-shield-check" aria-hidden="true"></i><span>Photo and name hidden until connected.</span>';}
-  const bioEl=sheetClone.querySelector('#detailbio');
-  if(bioEl)bioEl.textContent='I turn messy early-stage ideas into clear product experiences. I enjoy small teams, rapid prototyping, and thoughtful design systems.';
-  const lookingEl=sheetClone.querySelector('#detaillooking');
-  if(lookingEl)lookingEl.textContent='A technical co-founder or engineering collaborator to test a new B2B workflow product.';
-  const tagsEl=sheetClone.querySelector('#detailtags');
-  if(tagsEl)tagsEl.innerHTML='<span>Product strategy</span><span>UX/UI</span><span>Prototyping</span><span>B2B SaaS</span>';
-  const expList=sheetClone.querySelector('#detail-exp-list');
-  if(expList)expList.innerHTML='<div class="peopi-exp-card"><div class="peopi-exp-head"><strong class="peopi-exp-title">Senior Product Designer</strong><span class="peopi-exp-company">Studio Monolith</span><div class="peopi-exp-meta"><span>United States</span><span class="peopi-exp-dot">·</span><span>2023 — Present</span></div></div></div><div class="peopi-exp-card"><div class="peopi-exp-head"><strong class="peopi-exp-title">Product Designer</strong><span class="peopi-exp-company">Bento Labs</span><div class="peopi-exp-meta"><span>United States</span><span class="peopi-exp-dot">·</span><span>2020 — 2023</span></div></div></div>';
-  const projectBlock=sheetClone.querySelector('#projectblock');
-  if(projectBlock){
-   projectBlock.classList.remove('hide');
-   const projName=sheetClone.querySelector('#projectname');if(projName)projName.textContent='Sidepath';
-   const projDesc=sheetClone.querySelector('#projectdesc');if(projDesc)projDesc.textContent='A lightweight workflow tool for independent creative teams. Early concept, looking for a builder.';
-   const onepager=sheetClone.querySelector('#onepager');if(onepager)onepager.classList.remove('hide');
+  const screenSamples={"form-group":["Grouped Form Section","Edit Profile","#editprofile .editgroup"],"content-section":["Readable Content Section","My Profile","#myprofile .myprofile-section"],"identity-card":["Profile Identity Card","My Profile","#myprofile .myprofile-identity-card"],"primary-action":["Primary Action Button","Discover","#closed .primary"],"quiet-action":["Quiet Action Button","Start Session","#setup .cancel"],"icon-button":["Icon Button","My Profile","#myprofile-settings"],"fab":["Floating Action Button","Connection Detail","#connection-message-fab"],"bottom-nav":["Root Bottom Navigation","Discover","#closed .nav"],"tabs":["Segmented View Tabs","Discover","#active .seg"],"request-tabs":["Segmented Request Tabs","Requests","#requests .journey-tabs"],"app-bar":["Screen Header & App Bar","My Profile","#myprofile .myprofile-head"],"switch":["Settings Toggle Switch","Notification Preferences","#notification-list .journey-person:first-child"],"profile-card":["Discovery Profile Card","Discover","#active #profilecard"],"profile-progress":["Profile Completion Card","My Profile","#myprofile .myprofile-completion"],"session-duration":["Session Duration Selector","Start Session","#setup .durations"],"avatar":["Profile Avatar","My Profile","#myprofile .myprofile-avatar"],"chip":["Skill & Interest Chips","My Profile","#myprofile-chips"],"profile-menu":["Rounded Privacy Menu","My Profile","#myprofile-menu"],"privacy":["Presence Status Banner","Privacy & Safety","#privacy .privacy-status"],"privacy-row":["Privacy Control Row","Privacy & Safety","#privacy .privacy-setting:has(#manage-hidden)"],"verification-status":["Trust Signal Panel","Verification","#verification .verify-panel"],"list":["Settings Account Rows","Settings","#appsettings .settings-group"],"sheet":["Profile Detail Bottom Sheet","Discover","#profsheet .profile-sheet",true],"dialog":["Confirmation Dialog Sheet","Discover","#modal .sheet"],"chat-composer":["Chat Message Composer","Conversation","#conversation .chat-compose"]};
+  for(const [name,[title,sourceScreen,selector,full]] of Object.entries(screenSamples)){
+   peopiScreenSources[name]=sourceScreen+' · '+title;
+   samples[name]=()=>catalogSection(title,sourceScreen,sourceSpecimen(selector,{full:!!full}));
   }
-  const docsContent=sheetClone.querySelector('#detail-docs-content');
-  if(docsContent)docsContent.innerHTML='<div class="peopi-docs-grid"><div class="peopi-doc-card doc-locked"><div class="peopi-doc-icon format-pdf"><i class="ph ph-file-pdf" aria-hidden="true"></i></div><div class="peopi-doc-info peopi-doc-blurred"><strong class="peopi-doc-title">Portfolio_2026.pdf</strong><span class="peopi-doc-meta">PDF · 3.8 MB</span></div><span class="peopi-doc-lock-tag"><i class="ph ph-lock-key" aria-hidden="true"></i> Locked</span></div></div>';
-  const composer=sheetClone.querySelector('#profile-request-composer');
-  if(composer)composer.classList.remove('hide');
-  const reqBtn=sheetClone.querySelector('#requestFromProfile');
-  if(reqBtn)reqBtn.textContent='Send Request ↗';
-  wrapper.appendChild(sheetClone);
-  return catalogSection('Discover · professional profile sheet · SCREENS',sourceSpecimen(null,{node:wrapper,full:true}));
- };
+  const sourceGroup=(selector)=>{const group=document.createElement('div');for(const el of document.querySelectorAll(selector))group.append(el.cloneNode(true));return group};
+  samples.radio=()=>catalogSection('Intent Radio Option','Start Session',sourceSpecimen(null,{node:sourceGroup('#setup .option')}));
+  samples['text-field']=()=>catalogSection('Form Input Fields','Edit Profile',sourceSpecimen(null,{node:sourceGroup('#editprofile .editfield')}));
+  samples['search-field']=()=>catalogSection('Connection Search Field','Connections',sourceSpecimen('#network-search'));
+  peopiScreenSources['search-field']='Connections · Connection Search Field';
+  samples['icon-button']=()=>catalogSection('Icon Button','My Profile',sourceSpecimen('#myprofile-settings'));
+  samples.fab=()=>catalogSection('Floating Action Button','Connection Detail',sourceSpecimen('#connection-message-fab'));
+  peopiScreenSources.fab='Connection Detail · Floating Action Button';
+  samples['discovery-filter']=()=>{const host=document.createElement('section');host.className='screen';host.id='active';host.innerHTML=discoveryFilterMarkup();return catalogSection('Discovery Filter Panel','Discover',sourceSpecimen(null,{node:host.firstElementChild}));};
+  samples['connection-request']=()=>{
+   const person=journeyPerson(demoPeople.find(p=>!journey.connections.includes(p.id))?.id||0);
+   const row=journeyRow(person,person.role);const actions=document.createElement('div');actions.className='person-actions';
+   for(const label of ['Accept','Decline']){const button=document.createElement('button');button.textContent=label;actions.append(button)}row.classList.add('request-received');row.append(actions);
+   const sent=journeyRow(person,person.role);sent.append(cancelRequestButton(person.name));
+   return catalogSection('Received Connection Request','Requests',sourceSpecimen(null,{node:row}))+catalogSection('Sent Connection Request','Requests',sourceSpecimen(null,{node:sent}));
+  };
+  samples['chat-bubble']=()=>catalogSection('Chat Message Bubbles','Conversation','<div class="phone ds-live-specimen" style="display:flex;flex-direction:column;gap:10px;padding:16px"><div class="chat-time-divider"><span>Today · 9:41 AM</span></div><div class="chat-row"><div class="chat-bubble">Hi! Great to connect.</div></div><div class="chat-row mine"><div class="chat-bubble mine">Coffee near the main hall in 15 minutes?</div></div></div>');
+  samples['profile-progress']=()=>{const node=document.querySelector('#myprofile .myprofile-completion').cloneNode(true);const host=document.createElement('div');host.className='myprofile-identity-card';host.append(node);return catalogSection('Profile Completion Card','My Profile',sourceSpecimen(null,{node:host}));};
+  samples['verified-badge']=()=>catalogSection('Verified Trust Badge','Discover, My Profile',sourceSpecimen(null,{node:makeVerifiedBadge()}));
+  samples['profile-documents']=()=>catalogSection('Document Attachment Grid','My Profile',sourceSpecimen('#myprofile #myprofile-docs-section'));
+  peopiScreenSources['profile-documents']='My Profile · Document Attachment Grid';
+  samples['network-row']=()=>catalogSection('Connection List Row','My Network',sourceSpecimen(null,{node:journeyRow(journeyPerson(journey.connections[0]||0),null,{label:'View',onClick:()=>{}})}));
+  samples['empty-state']=()=>{const host=document.createElement('div');host.innerHTML=journeyEmpty('No incoming requests','New introductions will appear here.');return catalogSection('Empty State View','Requests',sourceSpecimen(null,{node:host.firstElementChild}));};
+  samples['activity-item']=()=>{const host=document.createElement('div');host.innerHTML='<div class="activity-item"><div class="activity-avatar-wrap"><div class="activity-avatar" style="background:#e1c9c6">AM</div></div><div class="activity-content"><div class="activity-head"><strong>Alex Morgan</strong><span class="activity-time">10m ago</span></div><p class="activity-subtitle">Sent you a connection request · Product designer</p><div class="activity-actions"><button type="button" class="activity-btn-accept">Accept</button><button type="button" class="activity-btn-decline">Decline</button></div></div></div>';return catalogSection('Notification Activity Item','Notifications',sourceSpecimen(null,{node:host.firstElementChild}));};
+  peopiScreenSources['activity-item']='Notifications · Notification Activity Item';
+  samples.sheet=()=>{
+   const wrapper=document.createElement('div');
+   wrapper.className='ds-sheet-specimen-root';
+   wrapper.dataset.dsSourceId='profsheet';
+   const sheetClone=document.querySelector('#profsheet .profile-sheet').cloneNode(true);
+   sheetClone.classList.remove('hide','screen');
+   const nameEl=sheetClone.querySelector('#detailname');
+   if(nameEl){nameEl.textContent='A.M.';nameEl.append(makeVerifiedBadge());}
+   const roleEl=sheetClone.querySelector('#detailrole');
+   if(roleEl)roleEl.textContent='Product Designer';
+   const sectorEl=sheetClone.querySelector('#detailsector');
+   if(sectorEl)sectorEl.textContent='Early-stage products · Startup';
+   const initialsEl=sheetClone.querySelector('#detailinitials');
+   if(initialsEl){initialsEl.textContent='AM';initialsEl.style.backgroundColor='#e1c9c6';initialsEl.style.color='#705457';}
+   const hintEl=sheetClone.querySelector('#detail-privacy-hint');
+   if(hintEl){hintEl.className='privacyhint';hintEl.innerHTML='<i class="ph ph-shield-check" aria-hidden="true"></i><span>Photo and name hidden until connected.</span>';}
+   const bioEl=sheetClone.querySelector('#detailbio');
+   if(bioEl)bioEl.textContent='I turn messy early-stage ideas into clear product experiences. I enjoy small teams, rapid prototyping, and thoughtful design systems.';
+   const lookingEl=sheetClone.querySelector('#detaillooking');
+   if(lookingEl)lookingEl.textContent='A technical co-founder or engineering collaborator to test a new B2B workflow product.';
+   const tagsEl=sheetClone.querySelector('#detailtags');
+   if(tagsEl)tagsEl.innerHTML='<span>Product strategy</span><span>UX/UI</span><span>Prototyping</span><span>B2B SaaS</span>';
+   const expList=sheetClone.querySelector('#detail-exp-list');
+   if(expList)expList.innerHTML='<div class="peopi-exp-card"><div class="peopi-exp-head"><strong class="peopi-exp-title">Senior Product Designer</strong><span class="peopi-exp-company">Studio Monolith</span><div class="peopi-exp-meta"><span>United States</span><span class="peopi-exp-dot">·</span><span>2023 — Present</span></div></div></div><div class="peopi-exp-card"><div class="peopi-exp-head"><strong class="peopi-exp-title">Product Designer</strong><span class="peopi-exp-company">Bento Labs</span><div class="peopi-exp-meta"><span>United States</span><span class="peopi-exp-dot">·</span><span>2020 — 2023</span></div></div></div>';
+   const projectBlock=sheetClone.querySelector('#projectblock');
+   if(projectBlock){
+    projectBlock.classList.remove('hide');
+    const projName=sheetClone.querySelector('#projectname');if(projName)projName.textContent='Sidepath';
+    const projDesc=sheetClone.querySelector('#projectdesc');if(projDesc)projDesc.textContent='A lightweight workflow tool for independent creative teams. Early concept, looking for a builder.';
+    const onepager=sheetClone.querySelector('#onepager');if(onepager)onepager.classList.remove('hide');
+   }
+   const docsContent=sheetClone.querySelector('#detail-docs-content');
+   if(docsContent)docsContent.innerHTML='<div class="peopi-docs-grid"><div class="peopi-doc-card doc-locked"><div class="peopi-doc-icon format-pdf"><i class="ph ph-file-pdf" aria-hidden="true"></i></div><div class="peopi-doc-info peopi-doc-blurred"><strong class="peopi-doc-title">Portfolio_2026.pdf</strong><span class="peopi-doc-meta">PDF · 3.8 MB</span></div><span class="peopi-doc-lock-tag"><i class="ph ph-lock-key" aria-hidden="true"></i> Locked</span></div></div>';
+   const composer=sheetClone.querySelector('#profile-request-composer');
+   if(composer)composer.classList.remove('hide');
+   const reqBtn=sheetClone.querySelector('#requestFromProfile');
+   if(reqBtn)reqBtn.textContent='Send Request ↗';
+   wrapper.appendChild(sheetClone);
+   return catalogSection('Profile Detail Bottom Sheet','Discover',sourceSpecimen(null,{node:wrapper,full:true}));
+  };
  for(const item of dsCatalog){
   const examples=item.members.map(name=>{if(!samples[name])throw new Error('Missing component specimen: '+name);return samples[name]()}).join('');
   const reuse=section('Reuse & extend','Keep this library aligned with the application.','<ol class="ds-checklist"><li>Choose an existing component and suitable variant before designing a new screen.</li><li>Reuse the same markup, styles, accessibility and behavior.</li><li>If a new component is needed, add it here after it is used in a screen; include its source and related variants.</li></ol>');
