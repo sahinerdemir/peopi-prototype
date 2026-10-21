@@ -30,7 +30,6 @@ function renderNetwork(){
     else reqStat.textContent='None pending';
   }
   const hiddenStat=$('#network-hidden-stat');if(hiddenStat)hiddenStat.textContent=(journey.hidden?.length||0)+' hidden';
-  const searchInput=$('#network-search');
   const q=(searchInput?.value||'').trim().toLowerCase();
   const clearBtn=$('#network-search-clear');if(clearBtn)clearBtn.classList.toggle('hide',!q);
   const ps=journey.connections.map(journeyPerson).filter(p=>{

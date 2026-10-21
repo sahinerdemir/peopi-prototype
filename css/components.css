@@ -41,8 +41,24 @@
 #ds-workspace.ds-dark .ds-mode-switch:hover{background:#343e4d}
 #ds-workspace.ds-dark .ds-mode-switch .ph{color:#f2f4f7}
 .ds-mode-switch:focus-visible{outline:3px solid #ff3300;outline-offset:2px}
-#ds-workspace.ds-dark{--ds-dark-bg:#10151d;--ds-dark-surface:#1b222d;--ds-dark-border:#343e4d;--ds-dark-text:#f2f4f7;--ds-dark-muted:#a9b4c3;background:var(--ds-dark-bg);color:var(--ds-dark-text)}
-#ds-workspace.ds-dark .ds-head p,#ds-workspace.ds-dark .ds-panel p{color:var(--ds-dark-muted)}
+#ds-workspace.ds-dark,
+#ds-workspace.dark{--ds-dark-bg:#10151d;--ds-dark-surface:#1b222d;--ds-dark-border:#343e4d;--ds-dark-text:#f2f4f7;--ds-dark-muted:#a9b4c3;--ink:#f2f4f7;--sub:#a9b4c3;--text-primary:#f2f4f7;--text-secondary:#a9b4c3;background:var(--ds-dark-bg);color:var(--ds-dark-text)}
+#ds-workspace.ds-dark .ds-head h1,
+#ds-workspace.ds-dark .ds-head-title,
+#ds-workspace.ds-dark .dash-page-title,
+#ds-workspace.dark .ds-head h1,
+#ds-workspace.dark .ds-head-title,
+#ds-workspace.dark .dash-page-title{color:#F8FAFC!important}
+#ds-workspace.ds-dark .ds-head p,
+#ds-workspace.ds-dark .ds-head-desc,
+#ds-workspace.ds-dark .overview-sub,
+#ds-workspace.ds-dark .ds-panel p,
+#ds-workspace.dark .ds-head p,
+#ds-workspace.dark .ds-head-desc,
+#ds-workspace.dark .overview-sub,
+#ds-workspace.dark .ds-panel p{color:var(--ds-dark-muted, #94A3B8)!important}
+#ds-workspace.ds-dark .ds-panel h2,
+#ds-workspace.dark .ds-panel h2{color:#F8FAFC!important}
 #ds-workspace.ds-dark .ds-panel,#ds-workspace.ds-dark .ds-ref-card,#ds-workspace.ds-dark .ds-screen-ref,#ds-workspace.ds-dark .ds-sample-card,#ds-workspace.ds-dark .ds-peopi-progress,#ds-workspace.ds-dark .ds-peopi-phone,#ds-workspace.ds-dark .ds-dialog-demo,#ds-workspace.ds-dark .ds-sheet,#ds-workspace.ds-dark .ds-choice-field,#ds-workspace.ds-dark .ds-peopi-settings,#ds-workspace.ds-dark .ds-peopi-notice{background:var(--ds-dark-surface);color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
 #ds-workspace.ds-dark .ds-mode-switch,#ds-workspace.ds-dark .ds-icon-action,#ds-workspace.ds-dark .ds-details summary,#ds-workspace.ds-dark .ds-menu-list,#ds-workspace.ds-dark .ds-color,#ds-workspace.ds-dark .ds-segment,#ds-workspace.ds-dark .ds-bottom-nav,#ds-workspace.ds-dark .ds-app-bar,#ds-workspace.ds-dark .ds-rail,#ds-workspace.ds-dark .ds-list-demo,#ds-workspace.ds-dark .ds-accordion,#ds-workspace.ds-dark .ds-carousel>div,#ds-workspace.ds-dark .ds-pill-tag:not(.orange):not(.dark),#ds-workspace.ds-dark .ds-peopi-duration button:not(.active),#ds-workspace.ds-dark .ds-chat-preview .incoming{background:#252e3a;color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
 #ds-workspace.ds-dark .ds-form-grid input,#ds-workspace.ds-dark .ds-form-grid select,#ds-workspace.ds-dark .ds-form-grid textarea,#ds-workspace.ds-dark .ds-field input,#ds-workspace.ds-dark .ds-field select,#ds-workspace.ds-dark .ds-field textarea{background:#252e3a;color:var(--ds-dark-text);border-color:var(--ds-dark-border)}

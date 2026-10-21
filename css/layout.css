@@ -321,6 +321,14 @@ body.ds-open .workspace{align-items:stretch}
 .ds-head-title{font-size:clamp(28px,3.2vw,36px)!important;font-weight:800!important;letter-spacing:-0.03em!important;color:var(--text-primary, #0F172A)!important;margin:0 0 6px!important;line-height:1.15!important}
 .ds-head p,
 .ds-head-desc{font-size:13.5px!important;color:var(--text-secondary, #64748B)!important;margin:0!important;line-height:1.5!important}
+#ds-workspace.ds-dark .ds-head h1,
+#ds-workspace.ds-dark .ds-head-title,
+#ds-workspace.dark .ds-head h1,
+#ds-workspace.dark .ds-head-title{color:#F8FAFC!important}
+#ds-workspace.ds-dark .ds-head p,
+#ds-workspace.ds-dark .ds-head-desc,
+#ds-workspace.dark .ds-head p,
+#ds-workspace.dark .ds-head-desc{color:#94A3B8!important}
 #ds-back{background:white;border:1px solid #dce1e9;padding:11px 14px;border-radius:12px;white-space:nowrap;font-size:12px;font-weight:800}
 #ds-content{max-width:100%;width:100%;margin:0 auto;display:grid;gap:18px;box-sizing:border-box}
 .ds-panel{background:white;border:1px solid #dce1e9;border-radius:22px;padding:26px}
