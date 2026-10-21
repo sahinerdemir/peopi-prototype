@@ -3371,6 +3371,7 @@ function showDesign(key){
  });
  document.body.classList.add('ds-open');$('#ds-workspace').hidden=false;$('#ds-inspector').hidden=false;
  $('#ds-workspace').classList.toggle('view-color', key === 'color');
+ $('#ds-workspace').classList.toggle('view-components', isComponent);
  if(key === 'icons') key = 'icons-library';
  $('#ds-title').textContent=item[0];$('#ds-description').textContent=item[1];
  const existingSmKitBtn = document.getElementById('ds-sm-mediakit-btn');
@@ -9371,7 +9372,7 @@ function showDesign(key){
   if(kind.startsWith('social-')){const orange=kind==='social-orange',bg=orange?'#FF3300':'#141922',headline=orange?'Good things start with showing up.':'Meet what’s next.';return ['<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080"><rect width="1080" height="1080" fill="'+bg+'"/><text x="90" y="200" fill="'+(orange?'#FFFFFF':'#FF3300')+'" font-family="Manrope,Arial,sans-serif" font-size="130" font-weight="800">p.</text><text x="90" y="650" fill="#FFFFFF" font-family="Manrope,Arial,sans-serif" font-size="62" font-weight="800">'+headline.replace(/&/g,'&amp;')+'</text><text x="90" y="985" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="25" letter-spacing="8">PEOPI</text></svg>','image/svg+xml']}
   return null;
  };
- $('#ds-content').innerHTML=(dsCatalog.some(item=>item.key===key)&&key!=='icons-library'?'<div class="ds-source-banner"><strong>APPLICATION COMPONENTS</strong><span>Existing screen patterns and their reusable variants.</span></div>':'')+content[key];
+ $('#ds-content').innerHTML=content[key];
  all('#ds-content [data-export]').forEach(button=>button.addEventListener('click',()=>{
   if(button.dataset.export==='logo-png-package'){
    const canvas=document.createElement('canvas');
