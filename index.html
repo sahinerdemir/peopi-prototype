@@ -35,6 +35,7 @@
           <button type="button" class="tree-link dash-doc-link" data-view="audience"><i class="ph ph-users-three"></i><span>Target Audience &amp; Personas</span></button>
           <button type="button" class="tree-link dash-doc-link" data-view="scope-rules"><i class="ph ph-shield-check"></i><span>MVP Scope &amp; Product Decisions</span></button>
           <button type="button" class="tree-link dash-doc-link" data-view="user-journeys"><i class="ph ph-tree-structure"></i><span>User Journeys &amp; Flows</span></button>
+          <button type="button" class="tree-link dash-doc-link" data-view="validation"><i class="ph ph-chart-line-up"></i><span>Validation Plan &amp; Next Steps</span></button>
         </nav>
       </div>
     </div>
@@ -4331,8 +4332,8 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
             <span>Previous: MVP Scope &amp; Product Decisions</span>
           </button>
-          <button class="btn btn-primary overview-primary-btn" onclick="openCategory('cat-screens');go('closed');" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;">
-            <span>Next: Explore Mobile Screens</span>
+          <button class="btn btn-primary overview-primary-btn" onclick="openOverview('validation')" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;">
+            <span>Next: Validation Plan &amp; Next Steps</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
         </footer>
@@ -4354,6 +4355,414 @@
               </div>
             </div>
           </div>
+
+      </div>
+    </div>
+
+    <!-- 01.7 VALIDATION PLAN & NEXT STEPS -->
+    <div id="view-overview-validation" hidden>
+      <div class="scope-container val-container">
+
+        <!-- Editorial Header & Introduction -->
+        <header class="dash-page-header">
+          <div class="dash-page-header-top">
+            <div class="dash-page-header-left">
+              <span class="dash-page-kicker">01 WHAT IS PEOPI? · VALIDATION &amp; NEXT STEPS</span>
+              <h1 class="dash-page-title">Validation Plan &amp; Next Steps<span class="brand-dot">.</span></h1>
+            </div>
+            <div class="dash-head-actions ds-head-actions"></div>
+          </div>
+
+          <div class="dash-page-intro">
+            <p class="dash-page-lead">
+              A disciplined validation framework to test core proximity discovery assumptions, measure introduction quality, mitigate behavioral risks, and gate expansion.
+            </p>
+            <p class="dash-page-desc">
+              Peopi turns ambient co-presence into safe, intentional introductions without continuous tracking. Before investing in cross-city expansion, the product must validate whether physical proximity and mutual consent create real-world conversational value in bounded settings.
+            </p>
+          </div>
+        </header>
+
+        <!-- A. VALIDATION OBJECTIVE -->
+        <section class="scope-sec">
+          <div class="scope-sec-head">
+            <div>
+              <span class="scope-sec-kicker">VALIDATION OBJECTIVE</span>
+              <h2 class="scope-sec-title">Core validation question<span class="brand-dot">.</span></h2>
+            </div>
+          </div>
+          <div class="scope-card" style="border-left: 3px solid #FF3300;">
+            <h3 class="scope-card-title" style="font-size: 16px; font-weight: 800; margin: 0 0 8px 0; line-height: 1.4;">
+              Can time-limited, opt-in proximity discovery produce meaningful professional introductions in a concentrated local community?
+            </h3>
+            <p class="scope-card-text">
+              Peopi requires that temporary discovery in shared professional spaces produces genuine, relevant introductions while respecting privacy boundaries. This validation framework defines observable signals, diagnostic metrics, and failure modes to evaluate viability before scaling.
+            </p>
+          </div>
+        </section>
+
+        <!-- B. FOUR CORE HYPOTHESES -->
+        <section class="scope-sec">
+          <div class="scope-sec-head">
+            <div>
+              <span class="scope-sec-kicker">CORE HYPOTHESES</span>
+              <h2 class="scope-sec-title">Four foundational product hypotheses<span class="brand-dot">.</span></h2>
+            </div>
+          </div>
+
+          <div class="strat-pillars-grid">
+            <!-- Hypothesis 1 -->
+            <article class="strat-pillar-card">
+              <div class="strat-pillar-header">
+                <span class="strat-pillar-num">HYPOTHESIS 01</span>
+                <i class="ph-bold ph-broadcast" aria-hidden="true"></i>
+              </div>
+              <h3 class="strat-pillar-title">Willingness to Activate Discovery</h3>
+              <div class="strat-pillar-rows">
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Hypothesis</span>
+                  <p>Professionals will activate discovery for 30, 60, or 120 minutes when given explicit time limits, approximate halos, and one-tap invisibility.</p>
+                </div>
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Observable Signal</span>
+                  <p>Frequent session activations, low immediate cancellations, and repeat sessions.</p>
+                </div>
+                <div class="strat-pillar-row highlight">
+                  <span class="strat-pillar-label">Challenging Evidence</span>
+                  <p>App opens without activating, passive browsing, or reluctance to appear discoverable.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Hypothesis 2 -->
+            <article class="strat-pillar-card">
+              <div class="strat-pillar-header">
+                <span class="strat-pillar-num">HYPOTHESIS 02</span>
+                <i class="ph-bold ph-users" aria-hidden="true"></i>
+              </div>
+              <h3 class="strat-pillar-title">Sufficient Simultaneous Local Activity</h3>
+              <div class="strat-pillar-rows">
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Hypothesis</span>
+                  <p>Concentrated environments like coworking spaces and meetups will provide enough simultaneous participants to create local liquidity.</p>
+                </div>
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Observable Signal</span>
+                  <p>Average visible peers per session meeting liquidity baselines with few empty states.</p>
+                </div>
+                <div class="strat-pillar-row highlight">
+                  <span class="strat-pillar-label">Challenging Evidence</span>
+                  <p>Frequent empty states, asynchronous session timing, or failure to cluster outside events.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Hypothesis 3 -->
+            <article class="strat-pillar-card">
+              <div class="strat-pillar-header">
+                <span class="strat-pillar-num">HYPOTHESIS 03</span>
+                <i class="ph-bold ph-identification-card" aria-hidden="true"></i>
+              </div>
+              <h3 class="strat-pillar-title">Relevance and Mutual Acceptance</h3>
+              <div class="strat-pillar-rows">
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Hypothesis</span>
+                  <p>Profile cards with structured intent notes provide sufficient context to evaluate relevance and accept connection requests.</p>
+                </div>
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Observable Signal</span>
+                  <p>High request acceptance ratio, short response latency, and low silent expirations.</p>
+                </div>
+                <div class="strat-pillar-row highlight">
+                  <span class="strat-pillar-label">Challenging Evidence</span>
+                  <p>High decline rates, requests left to expire unread, or perceived lack of context.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Hypothesis 4 -->
+            <article class="strat-pillar-card">
+              <div class="strat-pillar-header">
+                <span class="strat-pillar-num">HYPOTHESIS 04</span>
+                <i class="ph-bold ph-handshake" aria-hidden="true"></i>
+              </div>
+              <h3 class="strat-pillar-title">Digital-to-Physical Conversion</h3>
+              <div class="strat-pillar-rows">
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Hypothesis</span>
+                  <p>Mutual acceptance provides enough psychological safety and context to bridge into an immediate in-person conversation.</p>
+                </div>
+                <div class="strat-pillar-row">
+                  <span class="strat-pillar-label">Observable Signal</span>
+                  <p>Rapid coordinating messages exchanged after matching, followed by meeting confirmation.</p>
+                </div>
+                <div class="strat-pillar-row highlight">
+                  <span class="strat-pillar-label">Challenging Evidence</span>
+                  <p>Connections remaining purely digital, threads going quiet without meeting, or in-person avoidance.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- C. MEASUREMENT FRAMEWORK -->
+        <section class="scope-sec">
+          <div class="scope-sec-head">
+            <div>
+              <span class="scope-sec-kicker">MEASUREMENT FRAMEWORK</span>
+              <h2 class="scope-sec-title">Proposed North Star &amp; supporting telemetry<span class="brand-dot">.</span></h2>
+            </div>
+          </div>
+
+          <!-- North Star Banner -->
+          <div class="strat-northstar-banner">
+            <div class="strat-northstar-top">
+              <span class="strat-northstar-kicker"><i class="ph ph-star"></i> Proposed North Star Metric</span>
+              <span class="strat-northstar-status">Primary Indicator</span>
+            </div>
+            <h3 class="strat-northstar-statement">Mutually Accepted Introductions per Active Session Hour</h3>
+            <p class="strat-northstar-desc">
+              <strong>What it measures:</strong> Conversion rate of active discovery presence into accepted real-world introductions.<br>
+              <strong>Why it matters:</strong> Prioritizes authentic in-person meetings over passive app screen time.
+            </p>
+          </div>
+
+          <!-- Supporting Telemetry Grid (Leading vs Outcome) -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 8px;">LEADING INDICATORS · DISCOVERY LIQUIDITY &amp; INTENT</span>
+              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.45;" class="scope-card-text">
+                <li><strong>Session Activation Rate:</strong> Active members starting timed sessions weekly.</li>
+                <li><strong>Concurrent Venue Density:</strong> Visible profiles per venue cluster during peak hours.</li>
+                <li><strong>Outbound Request Velocity:</strong> Connection requests sent per session hour.</li>
+              </ul>
+            </div>
+
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 8px;">OUTCOME INDICATORS · CONNECTION QUALITY &amp; SAFETY</span>
+              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.45;" class="scope-card-text">
+                <li><strong>Mutual Acceptance Ratio:</strong> Proportion of outbound requests accepted.</li>
+                <li><strong>Coordination Messaging Rate:</strong> Matched pairs exchanging messages within 15 minutes.</li>
+                <li><strong>Voluntary Meeting Confirmation:</strong> Post-session confirmation of an in-person meeting.</li>
+                <li><strong>Safety Incident Rate:</strong> Sessions resulting in blocks, reports, or privacy mutes.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- D. FIVE MAJOR RISKS -->
+        <section class="scope-sec">
+          <div class="scope-sec-head">
+            <div>
+              <span class="scope-sec-kicker">RISK FRAMEWORK</span>
+              <h2 class="scope-sec-title">Five critical behavioral risks &amp; mitigations<span class="brand-dot">.</span></h2>
+            </div>
+          </div>
+
+          <div class="scope-risks-grid">
+            <div class="scope-risk-card">
+              <div class="scope-risk-top">
+                <span class="scope-risk-tag">RISK 01</span>
+                <span class="scope-risk-pill">DENSITY</span>
+              </div>
+              <h3>Cold-Start Density Deficit</h3>
+              <p class="scope-risk-desc">Members activate discovery in empty spaces, find no matches, and churn.</p>
+              <div class="scope-risk-signal">
+                <span class="scope-signal-label"><i class="ph ph-shield-check"></i> Mitigation &amp; Signal</span>
+                <p><strong>Mitigation:</strong> Launch in partner coworking spaces with synchronized discovery windows.<br>
+                <strong>Signal:</strong> Zero-profile sessions, and exits within 45 seconds.</p>
+              </div>
+            </div>
+
+            <div class="scope-risk-card">
+              <div class="scope-risk-top">
+                <span class="scope-risk-tag">RISK 02</span>
+                <span class="scope-risk-pill">ACTIVATION</span>
+              </div>
+              <h3>Privacy Concerns &amp; Inactive Participation</h3>
+              <p class="scope-risk-desc">Members hesitate to activate discovery due to location exposure anxiety or social vulnerability.</p>
+              <div class="scope-risk-signal">
+                <span class="scope-signal-label"><i class="ph ph-shield-check"></i> Mitigation &amp; Signal</span>
+                <p><strong>Mitigation:</strong> Enforce 30, 60, and 120-minute timeouts, approximate halos, and instant invisibility.<br>
+                <strong>Signal:</strong> High profile views to session starts ratio, and cancellations within 2 minutes.</p>
+              </div>
+            </div>
+
+            <div class="scope-risk-card">
+              <div class="scope-risk-top">
+                <span class="scope-risk-tag">RISK 03</span>
+                <span class="scope-risk-pill">COMMUNITY</span>
+              </div>
+              <h3>Commercial Spam &amp; Pitching</h3>
+              <p class="scope-risk-desc">Aggressive sellers or recruiters send generic pitches, eroding community trust.</p>
+              <div class="scope-risk-signal">
+                <span class="scope-signal-label"><i class="ph ph-shield-check"></i> Mitigation &amp; Signal</span>
+                <p><strong>Mitigation:</strong> Enforce structured intent chips, mutual opt-in before chat, and daily request caps.<br>
+                <strong>Signal:</strong> Elevated decline rates, immediate blocks, and spam reports.</p>
+              </div>
+            </div>
+
+            <div class="scope-risk-card">
+              <div class="scope-risk-top">
+                <span class="scope-risk-tag">RISK 04</span>
+                <span class="scope-risk-pill">SESSION</span>
+              </div>
+              <h3>Session Expiry During Active Coordination</h3>
+              <p class="scope-risk-desc">Session timer expires while matched members coordinate meeting logistics in chat.</p>
+              <div class="scope-risk-signal">
+                <span class="scope-signal-label"><i class="ph ph-shield-check"></i> Mitigation &amp; Signal</span>
+                <p><strong>Mitigation:</strong> Persistent accepted connections and chats, 5-minute warnings, and one-tap extensions.<br>
+                <strong>Signal:</strong> Messages attempted within 3 minutes of expiration, or abandoned drafts near timeout.</p>
+              </div>
+            </div>
+
+            <div class="scope-risk-card span-full">
+              <div class="scope-risk-top">
+                <span class="scope-risk-tag">RISK 05</span>
+                <span class="scope-risk-pill">HANDOFF</span>
+              </div>
+              <h3>Digital-to-Physical Conversion Gap</h3>
+              <p class="scope-risk-desc">Members accept connection requests out of politeness but fail to meet in person.</p>
+              <div class="scope-risk-signal">
+                <span class="scope-signal-label"><i class="ph ph-shield-check"></i> Mitigation &amp; Signal</span>
+                <p><strong>Mitigation:</strong> Context-aware meeting prompts in chat, highlighted shared intent, and landmark suggestions.<br>
+                <strong>Signal:</strong> Matched pairs with zero messages exchanged in 24 hours, or trailing conversations.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- E. PROPOSED MIAMI PILOT SEQUENCE -->
+        <section class="scope-sec">
+          <div class="scope-sec-head">
+            <div>
+              <span class="scope-sec-kicker">PILOT SEQUENCE</span>
+              <h2 class="scope-sec-title">Proposed staged pilot rollout in Miami<span class="brand-dot">.</span></h2>
+            </div>
+          </div>
+
+          <div class="scope-card" style="margin-bottom: 16px;">
+            <p class="scope-card-text" style="font-size: 14.5px; line-height: 1.6; margin: 0;">
+              A staged six-step sequence for evaluating Peopi in a controlled environment:
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+            <div class="scope-card" style="padding: 18px 20px;">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; display: block; margin-bottom: 4px;">PHASE 01</span>
+              <h4 class="scope-card-title" style="font-size: 14.5px; font-weight: 700; margin: 0 0 6px;">Cohort Recruitment</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.5; margin: 0;">Curate 100 to 150 tech founders and operators in Miami.</p>
+            </div>
+
+            <div class="scope-card" style="padding: 18px 20px;">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; display: block; margin-bottom: 4px;">PHASE 02</span>
+              <h4 class="scope-card-title" style="font-size: 14.5px; font-weight: 700; margin: 0 0 6px;">Context Selection</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.5; margin: 0;">Partner with 2 to 3 coworking spaces in Brickell and Wynwood.</p>
+            </div>
+
+            <div class="scope-card" style="padding: 18px 20px;">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; display: block; margin-bottom: 4px;">PHASE 03</span>
+              <h4 class="scope-card-title" style="font-size: 14.5px; font-weight: 700; margin: 0 0 6px;">Synchronized Windows</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.5; margin: 0;">Run scheduled discovery windows during peak community hours.</p>
+            </div>
+
+            <div class="scope-card" style="padding: 18px 20px;">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; display: block; margin-bottom: 4px;">PHASE 04</span>
+              <h4 class="scope-card-title" style="font-size: 14.5px; font-weight: 700; margin: 0 0 6px;">Telemetry Observation</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.5; margin: 0;">Track session activation, profile density, and request acceptance.</p>
+            </div>
+
+            <div class="scope-card" style="padding: 18px 20px;">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; display: block; margin-bottom: 4px;">PHASE 05</span>
+              <h4 class="scope-card-title" style="font-size: 14.5px; font-weight: 700; margin: 0 0 6px;">Feedback &amp; Safety</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.5; margin: 0;">Review post-session reflections, reports, and safety incidents.</p>
+            </div>
+
+            <div class="scope-card" style="padding: 18px 20px;">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; display: block; margin-bottom: 4px;">PHASE 06</span>
+              <h4 class="scope-card-title" style="font-size: 14.5px; font-weight: 700; margin: 0 0 6px;">Iteration Gate</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.5; margin: 0;">Refine UX and mechanics before considering broader rollout.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- F. PROTOTYPE VS PRODUCTION -->
+        <section class="scope-sec">
+          <div class="scope-sec-head">
+            <div>
+              <span class="scope-sec-kicker">TECHNICAL DELINEATION</span>
+              <h2 class="scope-sec-title">Prototype demonstration vs. production infrastructure<span class="brand-dot">.</span></h2>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #0EA5E9; display: block; margin-bottom: 6px; letter-spacing: 0.08em; text-transform: uppercase;">INTERACTIVE PROTOTYPE</span>
+              <h4 class="scope-card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 8px;">Demonstrated Capabilities</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.55; margin: 0;">Demonstrates 28 mobile screens, simulated discovery lists, countdown timers, local chats, and design tokens.</p>
+            </div>
+
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #10B981; display: block; margin-bottom: 6px; letter-spacing: 0.08em; text-transform: uppercase;">BACKEND ARCHITECTURE</span>
+              <h4 class="scope-card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 8px;">Production Requirements</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.55; margin: 0;">Ephemeral geospatial index, real-time WebSocket presence sync, encrypted chat, automated expiration, and audit logging.</p>
+            </div>
+
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #F59E0B; display: block; margin-bottom: 6px; letter-spacing: 0.08em; text-transform: uppercase;">FIELD RESEARCH</span>
+              <h4 class="scope-card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 8px;">Unverified Hypotheses</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.55; margin: 0;">Organic willingness to reveal presence, density thresholds in noisy venues, connection retention, and server costs.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- G. DECISION GATES & NEXT STEPS -->
+        <section class="scope-sec">
+          <div class="scope-sec-head">
+            <div>
+              <span class="scope-sec-kicker">GOVERNANCE &amp; GATES</span>
+              <h2 class="scope-sec-title">Decision gates for pilot progression<span class="brand-dot">.</span></h2>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #6366F1; display: block; margin-bottom: 6px; letter-spacing: 0.08em; text-transform: uppercase;">GATE 01</span>
+              <h4 class="scope-card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 8px;">Iterate Current Experience</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.55; margin: 0;">Refine experience if session starts are high but request conversion or acceptance is low.</p>
+            </div>
+
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #10B981; display: block; margin-bottom: 6px; letter-spacing: 0.08em; text-transform: uppercase;">GATE 02</span>
+              <h4 class="scope-card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 8px;">Continue Miami Pilot</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.55; margin: 0;">Extend testing across Brickell and Wynwood hubs if mutual acceptance and meetings remain positive.</p>
+            </div>
+
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #FF3300; display: block; margin-bottom: 6px; letter-spacing: 0.08em; text-transform: uppercase;">GATE 03</span>
+              <h4 class="scope-card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 8px;">Expand to Additional Hubs</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.55; margin: 0;">Expand to a second metro if organic activations, meetings, and safety remain consistently strong.</p>
+            </div>
+
+            <div class="scope-card">
+              <span style="font-size: 11px; font-weight: 800; color: #DC2626; display: block; margin-bottom: 6px; letter-spacing: 0.08em; text-transform: uppercase;">GATE 04</span>
+              <h4 class="scope-card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 8px;">Pause or Pivot</h4>
+              <p class="scope-card-text" style="font-size: 13px; line-height: 1.55; margin: 0;">Pause expansion to re-evaluate the core model if users resist discovery or spam cannot be contained.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer Navigation -->
+        <footer style="display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;border-top:1px solid #E2E8F0;">
+          <button class="btn btn-secondary overview-secondary-btn" onclick="openOverview('user-journeys')" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            <span>Previous: User Journeys &amp; Flows</span>
+          </button>
+          <button class="btn btn-primary overview-primary-btn" onclick="openCategory('cat-screens');go('closed');" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;">
+            <span>Next: Explore Mobile Screens</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </footer>
 
       </div>
     </div>

@@ -9634,10 +9634,11 @@ function openOverview(viewId){
     'market-research': 'strategy',
     'roadmap': 'strategy',
     'how-it-works': 'user-journeys',
-    'sitemap': 'user-journeys'
+    'sitemap': 'user-journeys',
+    'validation-plan': 'validation'
   };
   if(aliases[viewId]) viewId = aliases[viewId];
-  const views=['intro','problem','strategy','audience','scope-rules','user-journeys'];
+  const views=['intro','problem','strategy','audience','scope-rules','user-journeys','validation'];
   if(!views.includes(viewId)){
     console.warn('Overview view not found:', viewId);
     return;
@@ -9812,6 +9813,27 @@ function openOverview(viewId){
       </div>
     `;
     if (typeof initSitemap === 'function') initSitemap();
+  } else if(dbi && viewId === 'validation'){
+    dbi.innerHTML = `
+      <div class="inspector-scroll">
+        <button type="button" class="inspector-close-btn" onclick="setNotesOpen(false)" aria-label="Close notes panel" title="Close notes"><i class="ph ph-x" aria-hidden="true"></i></button>
+        <div class="spec-heading">
+          <span style="color:#FF3300;font-size:10.5px;font-weight:800;letter-spacing:0.12em;">WHAT IS PEOPI? / 07</span>
+          <h2 style="font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:8px 0 4px;">Validation Plan &amp; Next Steps</h2>
+          <p style="font-size:12.5px;color:#64748B;margin:0;">Pre-pilot hypotheses, North Star measurement, behavioral risks, and staged Miami rollout gates.</p>
+        </div>
+        <div class="spec-block" style="margin-top:20px;">
+          <h3 style="font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#FF3300;margin-bottom:12px;">Validation Architecture</h3>
+          <ul style="padding-left:18px;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.45;color:#334155;">
+            <li><strong>Forward-Looking Design:</strong> Structure for testing central proximity discovery mechanics in concentrated environments before scaling.</li>
+            <li><strong>Four Hypotheses:</strong> Evaluates activation willingness, local density, introduction relevance, and digital-to-physical conversion.</li>
+            <li><strong>Metric Framework:</strong> Proposed North Star metric and diagnostic leading and outcome telemetry indicators.</li>
+            <li><strong>Risk Mitigations:</strong> Actionable strategies for cold-start deficits, privacy anxiety, commercial spam, timer cutoffs, and conversion gaps.</li>
+            <li><strong>Prototype vs Production:</strong> Explicit delineation between client prototype demonstrations and backend infrastructure requirements.</li>
+          </ul>
+        </div>
+      </div>
+    `;
   }
 }
 
