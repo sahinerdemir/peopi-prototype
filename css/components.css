@@ -1443,7 +1443,7 @@
 /* Screen specimens reuse source markup and styles, with isolated demo state. */
 #ds-content .ds-live-specimen.phone{width:min(393px,100%);height:auto;min-height:0;border:0;border-radius:24px;box-shadow:none;padding:20px;overflow:hidden;background:var(--bg);color:var(--ink)}
 #ds-content .ds-live-specimen.ds-full-screen{height:760px;padding:0}
-#ds-content .ds-live-specimen .ds-source-root{position:relative;display:block;height:100%;min-width:0}
+#ds-content .ds-live-specimen .ds-source-root{position:relative;display:block;height:100%;min-width:0;overflow:visible!important}
 #ds-content .ds-live-specimen .ds-source-piece{position:relative!important;inset:auto!important;transform:none!important;margin:0!important;max-width:100%!important}
 #ds-content .ds-live-specimen .ds-source-piece.hide{display:block!important}
 #ds-content .ds-live-specimen .nav.ds-source-piece{height:70px}
