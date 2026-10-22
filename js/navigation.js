@@ -239,6 +239,8 @@ const dsNotes={
 };
 
 Object.assign(dsNotes,{
+ layout:{path:'FOUNDATIONS / E03',category:'FOUNDATIONS',intro:'Viewport metrics, safe area insets, navigation clearance, and responsive screen hierarchy.',purpose:'Establish standard viewport boundaries, notch/home indicator insets, and bottom-nav clearance across all devices.',rules:['Enforce 116pt bottom fade extent (70pt navigation + 16pt inset + 30pt clearance) on all root-tab scrollers.','Respect notch and dynamic island safe areas; do not place interactive controls within the hardware margin.','Maintain touch targets of at least 44×44pt with comfortable optical margins between interactive elements.'],next:['Validate layout in landscape and foldable viewport orientations.','Verify safe-area padding behavior across physical iOS and Android test devices.']},
+ accessibility:{path:'FOUNDATIONS / E06',category:'FOUNDATIONS',intro:'Inclusive design contracts for contrast, readability, focus states, and assistive technologies.',purpose:'Ensure Peopi is usable by everyone, upholding WCAG AA standards across light and dark themes.',rules:['Meet minimum 4.5:1 contrast for regular text (15–17pt) and 3:1 for large text and key UI borders.','Do not convey essential information or state through color alone; always pair with icons or explicit labels.','All interactive elements must provide visible focus rings, accessible roles, and aria-labels for icon-only actions.'],next:['Conduct automated Axe and Lighthouse accessibility passes.','Audit screen reader flows with VoiceOver (iOS) and TalkBack (Android).']},
  guidelines:{path:'IMPLEMENTATION / E05',category:'IMPLEMENTATION GUIDELINES & EXPORTS',intro:'Mobile contracts and Codex implementation guidelines.',purpose:'Guides native engineering implementation directly from this prototype.',rules:['This prototype is the Mobile implementation specification. Read MOBILE-HANDOFF.md.','Keep every implemented screen in peopi-screen-contracts.json.','Use shared motion recipes from peopi-motion.tokens.json, never screen-local durations.'],next:['Native device accessibility testing','Interactive routes validation']}, 
  tokens:{path:'EXPORTS / E04',category:'IMPLEMENTATION GUIDELINES & EXPORTS',intro:'Single source of truth for UI decisions.',purpose:'Name, version and export semantic and primitive design tokens.',rules:['Primitive values and semantic aliases serve different purposes.','Do not treat experimental values as production-approved.','Keep exported JSON and CSS aligned with the documented palette.'],next:['Connect token exports to Flutter ThemeExtensions.','Add version history and automated contrast checks.']},
  buttons:{path:'COMPONENTS / F02',category:'COMPONENTS',intro:'Action hierarchy and interaction anatomy.',purpose:'Specify button roles, sizes, variants, icons, shapes and all major interaction states.',rules:['One dominant primary action per immediate decision area.','Labels should describe actions; icon-only controls require accessible names.','Loading and disabled states must be distinct.'],next:['Wire interaction states to shared components.','Validate touch targets and contrast.']},
@@ -3290,9 +3292,18 @@ function initFoundationInteractions() {
   const btnToggle = document.getElementById('btn-toggle-measurements');
   const annotWrap = document.getElementById('annotated-component-wrap');
   if (btnToggle && annotWrap) {
+    const isInitiallyShown = annotWrap.classList.contains('show-measurements');
+    btnToggle.classList.toggle('active', isInitiallyShown);
+    btnToggle.setAttribute('aria-pressed', String(isInitiallyShown));
+    const span = btnToggle.querySelector('span');
+    if (span) span.textContent = isInitiallyShown ? 'Hide measurements' : 'Show measurements';
+
     btnToggle.addEventListener('click', () => {
       const isActive = annotWrap.classList.toggle('show-measurements');
       btnToggle.classList.toggle('active', isActive);
+      btnToggle.setAttribute('aria-pressed', String(isActive));
+      const textSpan = btnToggle.querySelector('span');
+      if (textSpan) textSpan.textContent = isActive ? 'Hide measurements' : 'Show measurements';
       toast(isActive ? 'Measurement lines visible' : 'Measurement lines hidden');
     });
   }
@@ -3567,14 +3578,36 @@ function showDesign(key){
   descEl.textContent = item[1] || '';
  }
  const note=dsNotes[key];
+ const dsNotesToggle=document.getElementById('ds-notes-toggle');
  if(note){
-  if($('#ds-note-path')) $('#ds-note-path').textContent=note.path;
-  if($('#ds-note-category')) $('#ds-note-category').textContent=note.category;
-  if($('#ds-note-title')) $('#ds-note-title').textContent=item[0];
-  if($('#ds-note-intro')) $('#ds-note-intro').textContent=note.intro;
-  if($('#ds-note-purpose')) $('#ds-note-purpose').textContent=note.purpose;
-  const fill=(id,items)=>{const el=$(id);if(el)el.replaceChildren(...items.map(value=>{const p=document.createElement('p');p.textContent=value;return p}))};
+  if(dsNotesToggle){
+   dsNotesToggle.style.display='';
+   dsNotesToggle.removeAttribute('disabled');
+   dsNotesToggle.removeAttribute('aria-disabled');
+  }
+  if($('#ds-note-path')) $('#ds-note-path').textContent=note.path || '';
+  if($('#ds-note-category')) $('#ds-note-category').textContent=note.category || '';
+  if($('#ds-note-title')) $('#ds-note-title').textContent=item ? item[0] : '';
+  if($('#ds-note-intro')) $('#ds-note-intro').textContent=note.intro || '';
+  if($('#ds-note-purpose')) $('#ds-note-purpose').textContent=note.purpose || '';
+  const fill=(id,items)=>{const el=$(id);if(el)el.replaceChildren(...(items||[]).map(value=>{const p=document.createElement('p');p.textContent=value;return p}))};
   fill('#ds-note-rules',note.rules);fill('#ds-note-next',note.next);
+ } else {
+  if($('#ds-note-path')) $('#ds-note-path').textContent='';
+  if($('#ds-note-category')) $('#ds-note-category').textContent='';
+  if($('#ds-note-title')) $('#ds-note-title').textContent=item ? item[0] : '';
+  if($('#ds-note-intro')) $('#ds-note-intro').textContent='';
+  if($('#ds-note-purpose')) $('#ds-note-purpose').textContent='No documentation notes available for this section.';
+  const clear=(id)=>{const el=$(id);if(el)el.replaceChildren()};
+  clear('#ds-note-rules');clear('#ds-note-next');
+  if(dsNotesToggle){
+   dsNotesToggle.style.display='none';
+   dsNotesToggle.setAttribute('disabled','true');
+   dsNotesToggle.setAttribute('aria-disabled','true');
+  }
+  if(document.body.classList.contains('notes-open')){
+   setNotesOpen(false);
+  }
  }
  const palette=[['Primary','#FF3300'],['Canvas','#F8F9FB'],['Surface','#FFFFFF'],['Ink','#141922'],['Secondary','#687386'],['Border','#DCE1E9'],['Dark canvas','#141922'],['Dark surface','#222A37'],['Dark ink','#F5F7FA'],['Dark border','#3D4658']];
  const colors='<div class="ds-grid">'+palette.map(([name,hex])=>'<button type="button" class="ds-color" data-hex="'+hex+'"><i style="background:'+hex+'"></i><span><strong>'+name+'</strong><small>'+hex+' · Copy</small></span></button>').join('')+'</div>';
@@ -4209,9 +4242,9 @@ function showDesign(key){
         <p class="foundation-sec-sub">How spacing tokens combine in a real Peopi profile card.</p>
       </div>
       <div class="foundation-sec-controls">
-        <button type="button" class="foundation-measure-toggle-btn active" id="btn-toggle-measurements">
+        <button type="button" class="foundation-measure-toggle-btn active" id="btn-toggle-measurements" aria-pressed="true">
           <i class="ph ph-ruler" aria-hidden="true"></i>
-          <span>Show measurements</span>
+          <span>Hide measurements</span>
         </button>
       </div>
     </div>
@@ -4501,36 +4534,40 @@ function showDesign(key){
         <!-- Visual Phone Outlines -->
         <div class="layout-phones-pair">
           <!-- Phone 1: Safe Areas -->
-          <div class="mini-phone-frame">
-            <div class="mini-phone-notch"></div>
-            <div class="mini-safe-zone top"></div>
-            <div class="mini-phone-content">
-              <div class="mini-brand-tag">PEOPI</div>
-              <div class="skel-card-mini"></div>
-              <div class="skel-card-mini"></div>
+          <div class="mini-phone-col">
+            <div class="mini-phone-frame">
+              <div class="mini-phone-notch"></div>
+              <div class="mini-safe-zone top"></div>
+              <div class="mini-phone-content">
+                <div class="mini-brand-tag">PEOPI</div>
+                <div class="skel-card-mini"></div>
+                <div class="skel-card-mini"></div>
+              </div>
+              <div class="mini-safe-zone bottom"></div>
+              <div class="mini-phone-home-bar"></div>
             </div>
-            <div class="mini-safe-zone bottom"></div>
-            <div class="mini-phone-home-bar"></div>
             <span class="mini-phone-caption">Safe areas</span>
           </div>
 
           <!-- Phone 2: Navigation Clearance & Fade -->
-          <div class="mini-phone-frame">
-            <div class="mini-phone-notch"></div>
-            <div class="mini-phone-content with-clearance">
-              <div class="skel-bar w40"></div>
-              <div class="skel-card-mini"></div>
-              <div class="skel-card-mini"></div>
-              <div class="skel-card-mini"></div>
-            </div>
-            <!-- Clearance zone & Floating Nav -->
-            <div class="mini-clearance-zone"></div>
-            <div class="mini-floating-nav">
-              <i class="ph ph-house"></i>
-              <i class="ph ph-magnifying-glass"></i>
-              <span class="mini-nav-add">+</span>
-              <i class="ph ph-chat-circle"></i>
-              <i class="ph ph-user"></i>
+          <div class="mini-phone-col">
+            <div class="mini-phone-frame">
+              <div class="mini-phone-notch"></div>
+              <div class="mini-phone-content with-clearance">
+                <div class="skel-bar w40"></div>
+                <div class="skel-card-mini"></div>
+                <div class="skel-card-mini"></div>
+                <div class="skel-card-mini"></div>
+              </div>
+              <!-- Clearance zone & Floating Nav -->
+              <div class="mini-clearance-zone"></div>
+              <div class="mini-floating-nav">
+                <i class="ph ph-house"></i>
+                <i class="ph ph-magnifying-glass"></i>
+                <span class="mini-nav-add">+</span>
+                <i class="ph ph-chat-circle"></i>
+                <i class="ph ph-user"></i>
+              </div>
             </div>
             <span class="mini-phone-caption">Navigation clearance</span>
           </div>
@@ -8586,9 +8623,9 @@ function showDesign(key){
         <p class="foundation-sec-sub">How spacing tokens combine in a real Peopi profile card.</p>
       </div>
       <div class="foundation-sec-controls">
-        <button type="button" class="foundation-measure-toggle-btn active" id="btn-toggle-measurements">
+        <button type="button" class="foundation-measure-toggle-btn active" id="btn-toggle-measurements" aria-pressed="true">
           <i class="ph ph-ruler" aria-hidden="true"></i>
-          <span>Show measurements</span>
+          <span>Hide measurements</span>
         </button>
       </div>
     </div>
@@ -8878,36 +8915,40 @@ function showDesign(key){
         <!-- Visual Phone Outlines -->
         <div class="layout-phones-pair">
           <!-- Phone 1: Safe Areas -->
-          <div class="mini-phone-frame">
-            <div class="mini-phone-notch"></div>
-            <div class="mini-safe-zone top"></div>
-            <div class="mini-phone-content">
-              <div class="mini-brand-tag">PEOPI</div>
-              <div class="skel-card-mini"></div>
-              <div class="skel-card-mini"></div>
+          <div class="mini-phone-col">
+            <div class="mini-phone-frame">
+              <div class="mini-phone-notch"></div>
+              <div class="mini-safe-zone top"></div>
+              <div class="mini-phone-content">
+                <div class="mini-brand-tag">PEOPI</div>
+                <div class="skel-card-mini"></div>
+                <div class="skel-card-mini"></div>
+              </div>
+              <div class="mini-safe-zone bottom"></div>
+              <div class="mini-phone-home-bar"></div>
             </div>
-            <div class="mini-safe-zone bottom"></div>
-            <div class="mini-phone-home-bar"></div>
             <span class="mini-phone-caption">Safe areas</span>
           </div>
 
           <!-- Phone 2: Navigation Clearance & Fade -->
-          <div class="mini-phone-frame">
-            <div class="mini-phone-notch"></div>
-            <div class="mini-phone-content with-clearance">
-              <div class="skel-bar w40"></div>
-              <div class="skel-card-mini"></div>
-              <div class="skel-card-mini"></div>
-              <div class="skel-card-mini"></div>
-            </div>
-            <!-- Clearance zone & Floating Nav -->
-            <div class="mini-clearance-zone"></div>
-            <div class="mini-floating-nav">
-              <i class="ph ph-house"></i>
-              <i class="ph ph-magnifying-glass"></i>
-              <span class="mini-nav-add">+</span>
-              <i class="ph ph-chat-circle"></i>
-              <i class="ph ph-user"></i>
+          <div class="mini-phone-col">
+            <div class="mini-phone-frame">
+              <div class="mini-phone-notch"></div>
+              <div class="mini-phone-content with-clearance">
+                <div class="skel-bar w40"></div>
+                <div class="skel-card-mini"></div>
+                <div class="skel-card-mini"></div>
+                <div class="skel-card-mini"></div>
+              </div>
+              <!-- Clearance zone & Floating Nav -->
+              <div class="mini-clearance-zone"></div>
+              <div class="mini-floating-nav">
+                <i class="ph ph-house"></i>
+                <i class="ph ph-magnifying-glass"></i>
+                <span class="mini-nav-add">+</span>
+                <i class="ph ph-chat-circle"></i>
+                <i class="ph ph-user"></i>
+              </div>
             </div>
             <span class="mini-phone-caption">Navigation clearance</span>
           </div>
@@ -9283,6 +9324,8 @@ function showDesign(key){
    if(el.id){el.dataset.dsSourceId=el.id;sourceIds.set(el.id,'ds-specimen-'+el.id);el.id='ds-specimen-'+el.id}
    if(el.getAttribute('role')==='dialog')el.setAttribute('role','group');el.removeAttribute('aria-modal');
    for(const name of ['data-go','data-edit','onclick','aria-controls','aria-labelledby'])el.removeAttribute(name);
+   if(el.tagName==='FORM'){el.setAttribute('onsubmit','return false;');}
+   if(el.tagName==='BUTTON'&&(el.getAttribute('type')==='submit'||!el.hasAttribute('type'))){el.setAttribute('type','button');el.type='button';}
   }
   for(const el of clone.querySelectorAll('[for]')){if(sourceIds.has(el.htmlFor))el.htmlFor=sourceIds.get(el.htmlFor);else el.removeAttribute('for')}
   clone.classList.remove('hide','screen');clone.classList.add(full?'ds-source-root':'ds-source-piece');
@@ -9365,6 +9408,9 @@ function showDesign(key){
   const reuse=section('Reuse & extend','Keep this library aligned with the application.','<ol class="ds-checklist"><li>Choose an existing component and suitable variant before designing a new screen.</li><li>Reuse the same markup, styles, accessibility and behavior.</li><li>If a new component is needed, add it here after it is used in a screen; include its source and related variants.</li></ol>');
   content[item.key]=examples+(item.key==='icons-library'?'':reuse);
  }
+ if(samples['icons-library']){
+  content['icons-library']=samples['icons-library']();
+ }
 
  
  
@@ -9386,7 +9432,33 @@ function showDesign(key){
   if(kind.startsWith('social-')){const orange=kind==='social-orange',bg=orange?'#FF3300':'#141922',headline=orange?'Good things start with showing up.':'Meet what’s next.';return ['<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080"><rect width="1080" height="1080" fill="'+bg+'"/><text x="90" y="200" fill="'+(orange?'#FFFFFF':'#FF3300')+'" font-family="Manrope,Arial,sans-serif" font-size="130" font-weight="800">p.</text><text x="90" y="650" fill="#FFFFFF" font-family="Manrope,Arial,sans-serif" font-size="62" font-weight="800">'+headline.replace(/&/g,'&amp;')+'</text><text x="90" y="985" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="25" letter-spacing="8">PEOPI</text></svg>','image/svg+xml']}
   return null;
  };
- $('#ds-content').innerHTML=content[key];
+ $('#ds-content').innerHTML=content[key] || '<div class="ds-empty-content" style="padding:48px 24px;text-align:center;color:#64748B;"><p style="font-size:15px;margin:0;">Content coming soon.</p></div>';
+ all('#ds-content form').forEach(f=>{
+  f.setAttribute('onsubmit','return false;');
+  f.addEventListener('submit',e=>{e.preventDefault();e.stopPropagation();return false;});
+ });
+ all('#ds-content form button:not([type])').forEach(b=>{b.type='button';});
+ all('#ds-content form button[type="submit"]').forEach(b=>{
+  b.type='button';
+  b.addEventListener('click',e=>{
+   e.preventDefault();
+   const fb=b.closest('.ds-live-specimen')?.querySelector('.ds-specimen-feedback');
+   if(fb){
+    fb.hidden=false;
+    fb.textContent='Message sent (specimen preview).';
+    setTimeout(()=>{fb.textContent='';fb.hidden=true;},2500);
+   }
+  });
+ });
+ all('#ds-content .ds-icon-tile').forEach(tile=>{
+  tile.style.cursor='pointer';
+  tile.addEventListener('click',()=>{
+   const iconName=tile.getAttribute('title')||tile.querySelector('span')?.textContent?.trim();
+   if(iconName){
+    copyTextWithFeedback(iconName,tile,'Copied icon: '+iconName);
+   }
+  });
+ });
  all('#ds-content [data-export]').forEach(button=>button.addEventListener('click',()=>{
   if(button.dataset.export==='logo-png-package'){
    const canvas=document.createElement('canvas');
