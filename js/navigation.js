@@ -9509,7 +9509,7 @@ function showDesign(key){
   const sourceGroup=(selector)=>{const group=document.createElement('div');for(const el of document.querySelectorAll(selector))group.append(el.cloneNode(true));return group};
   samples.radio=()=>catalogSection('Intent Radio Option','Start Session',sourceSpecimen(null,{node:sourceGroup('#setup .option')}));
   samples['text-field']=()=>catalogSection('Form Input Fields','Edit Profile',sourceSpecimen(null,{node:sourceGroup('#editprofile .editfield')}));
-  samples['search-field']=()=>catalogSection('Connection Search Field','Connections',sourceSpecimen('#network-search'));
+  samples['search-field']=()=>catalogSection('Connection Search Field','Connections',sourceSpecimen('#network .network-search-box'));
   peopiScreenSources['search-field']='Connections · Connection Search Field';
   samples['icon-button']=()=>catalogSection('Icon Button','My Profile',sourceSpecimen('#myprofile-settings'));
   samples.fab=()=>catalogSection('Floating Action Button','Connection Detail',sourceSpecimen('#connection-message-fab'));
@@ -9848,6 +9848,22 @@ function showDesign(key){
     chip.setAttribute('aria-pressed',String(chip.classList.contains('selected')||chip.classList.contains('active')));
    }
   });
+ });
+
+ all('#ds-content .network-search-box').forEach(box=>{
+  const input=box.querySelector('input');
+  const clearBtn=box.querySelector('.network-search-clear');
+  if(input&&clearBtn){
+   input.addEventListener('input',()=>{
+    clearBtn.classList.toggle('hide',!input.value.trim());
+   });
+   clearBtn.addEventListener('click',e=>{
+    e.preventDefault();
+    input.value='';
+    clearBtn.classList.add('hide');
+    input.focus();
+   });
+  }
  });
  
  all('.ds-link').forEach(b=>{
