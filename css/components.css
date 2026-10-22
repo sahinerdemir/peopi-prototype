@@ -10907,7 +10907,7 @@
   background: #141922;
   color: #FFFFFF;
 }
-.zone-fade .ds-zone-tag {
+.ds-clearance-zone.zone-fade .ds-zone-tag {
   background: #FF3300;
   color: #FFFFFF;
 }
