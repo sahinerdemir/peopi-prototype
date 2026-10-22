@@ -3018,26 +3018,56 @@ A bold and distinctive rhythmic Bauhaus expression. Geometric modules of quarter
   }
 }
 
+let dsToastTimer = null;
+function dsToast(message, iconName = 'check') {
+  let toastEl = document.getElementById('ds-toast');
+  if (!toastEl) {
+    toastEl = document.createElement('div');
+    toastEl.id = 'ds-toast';
+    toastEl.className = 'ds-toast';
+    toastEl.setAttribute('role', 'status');
+    toastEl.setAttribute('aria-live', 'polite');
+    const ws = document.getElementById('ds-workspace') || document.body;
+    ws.appendChild(toastEl);
+  }
+  clearTimeout(dsToastTimer);
+  toastEl.innerHTML = '<i class="ph ph-' + iconName + '" aria-hidden="true"></i><span>' + message + '</span>';
+  toastEl.classList.add('show');
+  dsToastTimer = setTimeout(() => {
+    toastEl.classList.remove('show');
+  }, 2200);
+}
+
 function copyTextWithFeedback(text, btnElement, successMessage) {
+  const isDsActive = !document.getElementById('ds-workspace')?.hidden;
+  const notify = (msg) => {
+    if (isDsActive) dsToast(msg);
+    else toast(msg);
+  };
+  const handleSuccess = () => {
+    notify(successMessage || 'Copied to clipboard');
+    if (btnElement) {
+      btnElement.classList.add('copied');
+      btnElement.classList.add('ds-copied');
+      setTimeout(() => {
+        btnElement.classList.remove('copied');
+        btnElement.classList.remove('ds-copied');
+      }, 1500);
+    }
+  };
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => {
-      toast(successMessage || 'Copied to clipboard');
-      if (btnElement) {
-        btnElement.classList.add('copied');
-        setTimeout(() => {
-          btnElement.classList.remove('copied');
-        }, 2000);
-      }
+      handleSuccess();
     }).catch(err => {
       console.warn('Clipboard write failed:', err);
-      fallbackCopyText(text, successMessage);
+      fallbackCopyText(text, successMessage, handleSuccess);
     });
   } else {
-    fallbackCopyText(text, successMessage);
+    fallbackCopyText(text, successMessage, handleSuccess);
   }
 }
 
-function fallbackCopyText(text, successMessage) {
+function fallbackCopyText(text, successMessage, onSuccess) {
   try {
     const ta = document.createElement('textarea');
     ta.value = text;
@@ -3047,9 +3077,12 @@ function fallbackCopyText(text, successMessage) {
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    toast(successMessage || 'Copied to clipboard');
+    if (onSuccess) onSuccess();
+    else if (!document.getElementById('ds-workspace')?.hidden) dsToast(successMessage || 'Copied to clipboard');
+    else toast(successMessage || 'Copied to clipboard');
   } catch (e) {
-    toast('Copy failed. Please copy manually.');
+    if (!document.getElementById('ds-workspace')?.hidden) dsToast('Copy failed. Please copy manually.', 'warning');
+    else toast('Copy failed. Please copy manually.');
   }
 }
 
@@ -3057,14 +3090,19 @@ function initColorGuideInteractions() {
 
   // 2. Swatch Click-to-copy
   all('#ds-content [data-copy-hex]').forEach(el => {
-    el.addEventListener('click', () => {
+    if (!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    if (!el.getAttribute('role')) el.setAttribute('role', 'button');
+    const doCopy = () => {
       const hex = el.getAttribute('data-copy-hex');
       if (!hex) return;
-      navigator.clipboard.writeText(hex).then(() => {
-        toast('Copied ' + hex + ' to clipboard');
-      }).catch(() => {
-        toast('Copied ' + hex);
-      });
+      copyTextWithFeedback(hex, el, 'Copied ' + hex + ' to clipboard');
+    };
+    el.addEventListener('click', doCopy);
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        doCopy();
+      }
     });
   });
 
@@ -3308,40 +3346,44 @@ function initFoundationInteractions() {
     });
   }
 
+  const setupKeyCopy = (el, doCopy) => {
+    if (!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    if (!el.getAttribute('role')) el.setAttribute('role', 'button');
+    el.addEventListener('click', doCopy);
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        doCopy();
+      }
+    });
+  };
+
   // Click to copy spacing bars
   all('#ds-content [data-copy-spacing]').forEach(el => {
-    el.addEventListener('click', () => {
-      const val = el.getAttribute('data-copy-spacing');
-      if (!val) return;
-      copyTextWithFeedback(val, el, 'Copied ' + val + ' to clipboard');
-    });
+    const val = el.getAttribute('data-copy-spacing');
+    if (!val) return;
+    setupKeyCopy(el, () => copyTextWithFeedback(val, el, 'Copied ' + val + ' to clipboard'));
   });
 
   // Click to copy radius cards
   all('#ds-content [data-copy-radius]').forEach(el => {
-    el.addEventListener('click', () => {
-      const val = el.getAttribute('data-copy-radius');
-      if (!val) return;
-      copyTextWithFeedback(val, el, 'Copied radius ' + val + ' to clipboard');
-    });
+    const val = el.getAttribute('data-copy-radius');
+    if (!val) return;
+    setupKeyCopy(el, () => copyTextWithFeedback(val, el, 'Copied radius ' + val + ' to clipboard'));
   });
 
   // Click to copy shadow cards
   all('#ds-content [data-copy-shadow]').forEach(el => {
-    el.addEventListener('click', () => {
-      const val = el.getAttribute('data-copy-shadow');
-      if (!val) return;
-      copyTextWithFeedback(val, el, 'Copied shadow CSS to clipboard');
-    });
+    const val = el.getAttribute('data-copy-shadow');
+    if (!val) return;
+    setupKeyCopy(el, () => copyTextWithFeedback(val, el, 'Copied shadow CSS to clipboard'));
   });
 
   // Click to copy quick token code rows
   all('#ds-content [data-copy-token]').forEach(el => {
-    el.addEventListener('click', () => {
-      const val = el.getAttribute('data-copy-token');
-      if (!val) return;
-      copyTextWithFeedback(val, el, 'Copied token definition to clipboard');
-    });
+    const val = el.getAttribute('data-copy-token');
+    if (!val) return;
+    setupKeyCopy(el, () => copyTextWithFeedback(val, el, 'Copied token definition to clipboard'));
   });
 
   // Copy CSS button
@@ -4591,10 +4633,6 @@ function showDesign(key){
               <span><strong>Design padding:</strong> 20–24px horizontal page inset on mobile screens.</span>
             </div>
           </div>
-          <a href="#ds=layout" class="layout-jump-link">
-            <span>Read full Layout &amp; Safe Areas guide</span>
-            <i class="ph ph-arrow-right"></i>
-          </a>
         </div>
 
         <!-- Right: Responsive Layout (Proposed) -->
@@ -4741,27 +4779,70 @@ function showDesign(key){
       </div>
     </div>
 
-    <div class="layout-summary-card">
-      <div class="layout-legend-list" style="gap: 16px;">
-        <div class="legend-item">
-          <span class="legend-swatch clearance-swatch" style="width: 20px; height: 20px;"></span>
-          <div>
-            <strong>70pt Navigation Bar Height:</strong>
-            <p style="margin: 2px 0 0; color: #64748B;">Core touch target zone containing root tab icons.</p>
+    <div class="ds-clearance-diagram-card">
+      <div class="ds-clearance-visual">
+        <div class="ds-clearance-stack">
+          <div class="ds-clearance-content-preview" aria-hidden="true">
+            <div class="ds-clearance-card-mock"></div>
+            <div class="ds-clearance-card-mock"></div>
+          </div>
+          <!-- Zone 1: 30pt Fade Buffer -->
+          <div class="ds-clearance-zone zone-fade">
+            <div class="ds-zone-bracket">
+              <span class="ds-zone-tag">30pt</span>
+              <span class="ds-zone-name">Fade Buffer &amp; Clearance Extent</span>
+            </div>
+          </div>
+          <!-- Zone 2: 70pt Floating Navigation Capsule -->
+          <div class="ds-clearance-zone zone-nav">
+            <div class="ds-mini-nav-capsule" aria-hidden="true">
+              <div class="ds-mini-nav-icon active"><i class="ph ph-compass"></i></div>
+              <div class="ds-mini-nav-icon"><i class="ph ph-chat-circle"></i></div>
+              <div class="ds-mini-nav-icon"><i class="ph ph-bell"></i></div>
+              <div class="ds-mini-nav-icon"><i class="ph ph-user"></i></div>
+            </div>
+            <div class="ds-zone-bracket">
+              <span class="ds-zone-tag">70pt</span>
+              <span class="ds-zone-name">Navigation Capsule Height</span>
+            </div>
+          </div>
+          <!-- Zone 3: 16pt Floating Inset -->
+          <div class="ds-clearance-zone zone-inset">
+            <div class="ds-mini-home-indicator" aria-hidden="true"></div>
+            <div class="ds-zone-bracket">
+              <span class="ds-zone-tag">16pt</span>
+              <span class="ds-zone-name">Floating Bottom Inset</span>
+            </div>
           </div>
         </div>
-        <div class="legend-item">
-          <span class="legend-swatch safe-area-swatch" style="width: 20px; height: 20px;"></span>
+        <div class="ds-clearance-total-callout">
+          <div class="ds-total-text">
+            <strong>116pt</strong>
+            <small>Total Scroll Clearance</small>
+            <code>30pt + 70pt + 16pt</code>
+          </div>
+        </div>
+      </div>
+      <div class="ds-clearance-legend">
+        <div class="ds-clearance-legend-item">
+          <span class="ds-legend-dot dot-fade"></span>
+          <div>
+            <strong>30pt Fade Buffer:</strong>
+            <p>The gradient transition zone ensuring scrolling list items never collide or visually compete with floating controls.</p>
+          </div>
+        </div>
+        <div class="ds-clearance-legend-item">
+          <span class="ds-legend-dot dot-nav"></span>
+          <div>
+            <strong>70pt Navigation Capsule:</strong>
+            <p>Floating pill housing core navigation icons with comfortable touch target bounds.</p>
+          </div>
+        </div>
+        <div class="ds-clearance-legend-item">
+          <span class="ds-legend-dot dot-inset"></span>
           <div>
             <strong>16pt Floating Inset:</strong>
-            <p style="margin: 2px 0 0; color: #64748B;">Elevation gap lifting the navigation capsule above the screen edge.</p>
-          </div>
-        </div>
-        <div class="legend-item">
-          <span class="legend-swatch design-pad-swatch" style="width: 20px; height: 20px;"></span>
-          <div>
-            <strong>30pt Clearance Buffer:</strong>
-            <p style="margin: 2px 0 0; color: #64748B;">The extent where the bottom gradient fade begins, guaranteeing zero touch collision with scrolling cards.</p>
+            <p>Elevation clearance separating the navigation capsule from the screen bottom and system home indicator.</p>
           </div>
         </div>
       </div>
@@ -4783,6 +4864,9 @@ function showDesign(key){
           <strong>Mobile Viewport</strong>
           <span>&lt; 640px</span>
         </div>
+        <div class="ds-mini-grid-preview cols-4" aria-hidden="true">
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+        </div>
         <p>4 columns · 16px gutter · 20–24px page margins. Single column stacked content blocks.</p>
       </div>
       <div class="spacing-example-card">
@@ -4790,12 +4874,21 @@ function showDesign(key){
           <strong>Tablet Viewport</strong>
           <span>640px – 1024px</span>
         </div>
+        <div class="ds-mini-grid-preview cols-8" aria-hidden="true">
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+        </div>
         <p>8 columns · 24px gutter · 32px page margins. 2-column card split surfaces.</p>
       </div>
       <div class="spacing-example-card">
         <div class="spacing-ex-header">
           <strong>Desktop Viewport</strong>
           <span>&gt; 1024px</span>
+        </div>
+        <div class="ds-mini-grid-preview cols-12" aria-hidden="true">
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
         </div>
         <p>12 columns · 24–32px gutter · max-width 1240px container. Editorial multi-column layouts.</p>
       </div>
@@ -4813,7 +4906,7 @@ function showDesign(key){
         <h2 class="foundation-sec-title">Color Contrast &amp; Readability<span class="brand-dot">.</span></h2>
         <p class="foundation-sec-sub">WCAG 2.1 Level AA and AAA contrast compliance across themes.</p>
       </div>
-      <a href="#ds=color" class="foundation-link-pill">Launch Contrast Inspector <i class="ph ph-arrow-right"></i></a>
+      <a href="#ds=color&target=color-sec-contrast" class="foundation-link-pill" id="btn-launch-contrast">Launch Contrast Inspector <i class="ph ph-arrow-right"></i></a>
     </div>
 
     <div class="tokens-quick-grid">
@@ -4850,14 +4943,26 @@ function showDesign(key){
     </div>
 
     <div class="layout-summary-card">
-      <div style="display: flex; gap: 32px; align-items: center; flex-wrap: wrap;">
-        <button type="button" class="foundation-export-btn" style="outline: 3px solid #FF3300; outline-offset: 3px;">
-          Focus state specimen
-        </button>
-        <p style="margin: 0; color: #64748B; font-size: 14px; line-height: 1.5; flex: 1;">
-          Every interactive control in Peopi supports a <strong>3px solid #FF3300 outline with 3px offset</strong> when receiving keyboard focus (<code>:focus-visible</code>). Never suppress focus rings without providing an equally prominent accessible alternative.
-        </p>
+      <div class="ds-focus-specimen-grid">
+        <div class="ds-focus-target-item">
+          <span class="ds-focus-item-label">Button Target</span>
+          <button type="button" class="ds-interactive-focus-btn">Interactive button</button>
+          <small>Tab or click to activate ring</small>
+        </div>
+        <div class="ds-focus-target-item">
+          <span class="ds-focus-item-label">Input Target</span>
+          <input type="text" class="ds-interactive-focus-input" value="Focusable field" aria-label="Specimen focus input">
+          <small>Tab or click to activate ring</small>
+        </div>
+        <div class="ds-focus-target-item">
+          <span class="ds-focus-item-label">Switch Toggle</span>
+          <button type="button" class="settings-toggle ds-interactive-focus-switch" role="switch" aria-checked="true" aria-label="Specimen focus switch"><i></i></button>
+          <small>Tab or click to activate ring</small>
+        </div>
       </div>
+      <p style="margin: 16px 0 0; color: #64748B; font-size: 13.5px; line-height: 1.5;">
+        Every interactive control in Peopi supports a <strong>3px solid #FF3300 outline with 3px offset</strong> when receiving keyboard focus (<code>:focus-visible</code>). Never suppress focus rings without providing an equally prominent accessible alternative.
+      </p>
     </div>
   </section>
 
@@ -7984,7 +8089,7 @@ function showDesign(key){
  const swatch=(name,hex)=>'<button class="ds-token-swatch" type="button" data-copy="'+hex+'" title="Copy '+hex+'"><i style="background:'+hex+'"></i><span><strong>'+name+'</strong><small>'+hex+'</small></span></button>';
  const section=(title,description,body)=>dsPanel(title,'<p class="ds-lede">'+description+'</p>'+body);
  const tokenCss='/**\n * Peopi Design System Tokens\n * Version: '+tokenSet.meta.version+' ('+tokenSet.meta.status+')\n */\n:root {\n'+Object.entries(tokenSet.color).flatMap(([group,values])=>Object.entries(values).map(([key,value])=>'  --peopi-color-'+group+'-'+key+': '+value+';')).concat(Object.entries(tokenSet.spacing).map(([key,value])=>'  --peopi-space-'+key+': '+value+'px;'),Object.entries(tokenSet.radius).map(([key,value])=>'  --peopi-radius-'+key+': '+value+'px;'),Object.entries(tokenSet.shadow).map(([key,value])=>'  --peopi-shadow-'+key+': '+value+';')).join('\n')+'\n}\n';
- const download=(label,file,kind)=>'<button type="button" class="ds-export" data-export="'+kind+'" data-file="'+file+'">↓ '+label+'</button>';
+ const download=(label,file,kind)=>'<button type="button" class="ds-export" data-export="'+kind+'" data-file="'+file+'"><i class="ph ph-download-simple" aria-hidden="true" style="margin-right:6px"></i>'+label+'</button>';
  const buttonPreview=(variant,shape,size,iconMode,label)=>{const ico='<i class="ph ph-arrow-up-right" aria-hidden="true"></i>';return '<button type="button" class="ds-button-demo '+variant+' '+shape+' '+size+'" '+(variant==='disabled'?'disabled':'')+' aria-label="'+label+'">'+(iconMode==='leading'||iconMode==='only'?ico:'')+(iconMode==='only'?'':'<span>'+label+'</span>')+(iconMode==='trailing'?ico:'')+'</button>'};
  const iconNames=["arrow-left","arrow-right","arrow-up-right","check","x","plus","minus","magnifying-glass","list","gear","user","users","chat-circle","bell","map-pin","navigation-arrow","eye","eye-slash","lock","shield-check","heart","bookmark","calendar","clock","funnel","sliders-horizontal","caret-down","caret-right","info","warning-circle","check-circle","download","upload","share-network","copy","arrow-square-out","trash","pencil","sun","moon","spinner","envelope","phone","link","globe"];
  const iconGrid='<div class="ds-icon-grid">'+iconNames.map(name=>'<button class="ds-icon-tile" type="button" data-copy="'+name+'" title="Copy icon name"><i class="ph ph-'+name+'" aria-hidden="true"></i><span>'+name+'</span></button>').join('')+'</div>';
@@ -8972,10 +9077,6 @@ function showDesign(key){
               <span><strong>Design padding:</strong> 20–24px horizontal page inset on mobile screens.</span>
             </div>
           </div>
-          <a href="#ds=layout" class="layout-jump-link">
-            <span>Read full Layout &amp; Safe Areas guide</span>
-            <i class="ph ph-arrow-right"></i>
-          </a>
         </div>
 
         <!-- Right: Responsive Layout (Proposed) -->
@@ -9122,27 +9223,70 @@ function showDesign(key){
       </div>
     </div>
 
-    <div class="layout-summary-card">
-      <div class="layout-legend-list" style="gap: 16px;">
-        <div class="legend-item">
-          <span class="legend-swatch clearance-swatch" style="width: 20px; height: 20px;"></span>
-          <div>
-            <strong>70pt Navigation Bar Height:</strong>
-            <p style="margin: 2px 0 0; color: #64748B;">Core touch target zone containing root tab icons.</p>
+    <div class="ds-clearance-diagram-card">
+      <div class="ds-clearance-visual">
+        <div class="ds-clearance-stack">
+          <div class="ds-clearance-content-preview" aria-hidden="true">
+            <div class="ds-clearance-card-mock"></div>
+            <div class="ds-clearance-card-mock"></div>
+          </div>
+          <!-- Zone 1: 30pt Fade Buffer -->
+          <div class="ds-clearance-zone zone-fade">
+            <div class="ds-zone-bracket">
+              <span class="ds-zone-tag">30pt</span>
+              <span class="ds-zone-name">Fade Buffer &amp; Clearance Extent</span>
+            </div>
+          </div>
+          <!-- Zone 2: 70pt Floating Navigation Capsule -->
+          <div class="ds-clearance-zone zone-nav">
+            <div class="ds-mini-nav-capsule" aria-hidden="true">
+              <div class="ds-mini-nav-icon active"><i class="ph ph-compass"></i></div>
+              <div class="ds-mini-nav-icon"><i class="ph ph-chat-circle"></i></div>
+              <div class="ds-mini-nav-icon"><i class="ph ph-bell"></i></div>
+              <div class="ds-mini-nav-icon"><i class="ph ph-user"></i></div>
+            </div>
+            <div class="ds-zone-bracket">
+              <span class="ds-zone-tag">70pt</span>
+              <span class="ds-zone-name">Navigation Capsule Height</span>
+            </div>
+          </div>
+          <!-- Zone 3: 16pt Floating Inset -->
+          <div class="ds-clearance-zone zone-inset">
+            <div class="ds-mini-home-indicator" aria-hidden="true"></div>
+            <div class="ds-zone-bracket">
+              <span class="ds-zone-tag">16pt</span>
+              <span class="ds-zone-name">Floating Bottom Inset</span>
+            </div>
           </div>
         </div>
-        <div class="legend-item">
-          <span class="legend-swatch safe-area-swatch" style="width: 20px; height: 20px;"></span>
+        <div class="ds-clearance-total-callout">
+          <div class="ds-total-text">
+            <strong>116pt</strong>
+            <small>Total Scroll Clearance</small>
+            <code>30pt + 70pt + 16pt</code>
+          </div>
+        </div>
+      </div>
+      <div class="ds-clearance-legend">
+        <div class="ds-clearance-legend-item">
+          <span class="ds-legend-dot dot-fade"></span>
+          <div>
+            <strong>30pt Fade Buffer:</strong>
+            <p>The gradient transition zone ensuring scrolling list items never collide or visually compete with floating controls.</p>
+          </div>
+        </div>
+        <div class="ds-clearance-legend-item">
+          <span class="ds-legend-dot dot-nav"></span>
+          <div>
+            <strong>70pt Navigation Capsule:</strong>
+            <p>Floating pill housing core navigation icons with comfortable touch target bounds.</p>
+          </div>
+        </div>
+        <div class="ds-clearance-legend-item">
+          <span class="ds-legend-dot dot-inset"></span>
           <div>
             <strong>16pt Floating Inset:</strong>
-            <p style="margin: 2px 0 0; color: #64748B;">Elevation gap lifting the navigation capsule above the screen edge.</p>
-          </div>
-        </div>
-        <div class="legend-item">
-          <span class="legend-swatch design-pad-swatch" style="width: 20px; height: 20px;"></span>
-          <div>
-            <strong>30pt Clearance Buffer:</strong>
-            <p style="margin: 2px 0 0; color: #64748B;">The extent where the bottom gradient fade begins, guaranteeing zero touch collision with scrolling cards.</p>
+            <p>Elevation clearance separating the navigation capsule from the screen bottom and system home indicator.</p>
           </div>
         </div>
       </div>
@@ -9164,6 +9308,9 @@ function showDesign(key){
           <strong>Mobile Viewport</strong>
           <span>&lt; 640px</span>
         </div>
+        <div class="ds-mini-grid-preview cols-4" aria-hidden="true">
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+        </div>
         <p>4 columns · 16px gutter · 20–24px page margins. Single column stacked content blocks.</p>
       </div>
       <div class="spacing-example-card">
@@ -9171,12 +9318,21 @@ function showDesign(key){
           <strong>Tablet Viewport</strong>
           <span>640px – 1024px</span>
         </div>
+        <div class="ds-mini-grid-preview cols-8" aria-hidden="true">
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+        </div>
         <p>8 columns · 24px gutter · 32px page margins. 2-column card split surfaces.</p>
       </div>
       <div class="spacing-example-card">
         <div class="spacing-ex-header">
           <strong>Desktop Viewport</strong>
           <span>&gt; 1024px</span>
+        </div>
+        <div class="ds-mini-grid-preview cols-12" aria-hidden="true">
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
+          <div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div><div class="col-bar"></div>
         </div>
         <p>12 columns · 24–32px gutter · max-width 1240px container. Editorial multi-column layouts.</p>
       </div>
@@ -9194,7 +9350,7 @@ function showDesign(key){
         <h2 class="foundation-sec-title">Color Contrast &amp; Readability<span class="brand-dot">.</span></h2>
         <p class="foundation-sec-sub">WCAG 2.1 Level AA and AAA contrast compliance across themes.</p>
       </div>
-      <a href="#ds=color" class="foundation-link-pill">Launch Contrast Inspector <i class="ph ph-arrow-right"></i></a>
+      <a href="#ds=color&target=color-sec-contrast" class="foundation-link-pill" id="btn-launch-contrast">Launch Contrast Inspector <i class="ph ph-arrow-right"></i></a>
     </div>
 
     <div class="tokens-quick-grid">
@@ -9231,14 +9387,26 @@ function showDesign(key){
     </div>
 
     <div class="layout-summary-card">
-      <div style="display: flex; gap: 32px; align-items: center; flex-wrap: wrap;">
-        <button type="button" class="foundation-export-btn" style="outline: 3px solid #FF3300; outline-offset: 3px;">
-          Focus state specimen
-        </button>
-        <p style="margin: 0; color: #64748B; font-size: 14px; line-height: 1.5; flex: 1;">
-          Every interactive control in Peopi supports a <strong>3px solid #FF3300 outline with 3px offset</strong> when receiving keyboard focus (<code>:focus-visible</code>). Never suppress focus rings without providing an equally prominent accessible alternative.
-        </p>
+      <div class="ds-focus-specimen-grid">
+        <div class="ds-focus-target-item">
+          <span class="ds-focus-item-label">Button Target</span>
+          <button type="button" class="ds-interactive-focus-btn">Interactive button</button>
+          <small>Tab or click to activate ring</small>
+        </div>
+        <div class="ds-focus-target-item">
+          <span class="ds-focus-item-label">Input Target</span>
+          <input type="text" class="ds-interactive-focus-input" value="Focusable field" aria-label="Specimen focus input">
+          <small>Tab or click to activate ring</small>
+        </div>
+        <div class="ds-focus-target-item">
+          <span class="ds-focus-item-label">Switch Toggle</span>
+          <button type="button" class="settings-toggle ds-interactive-focus-switch" role="switch" aria-checked="true" aria-label="Specimen focus switch"><i></i></button>
+          <small>Tab or click to activate ring</small>
+        </div>
       </div>
+      <p style="margin: 16px 0 0; color: #64748B; font-size: 13.5px; line-height: 1.5;">
+        Every interactive control in Peopi supports a <strong>3px solid #FF3300 outline with 3px offset</strong> when receiving keyboard focus (<code>:focus-visible</code>). Never suppress focus rings without providing an equally prominent accessible alternative.
+      </p>
     </div>
   </section>
 
@@ -9277,14 +9445,14 @@ function showDesign(key){
 
 </div>
 `,
- motion:section('Motion durations','Transitions must clarify causality and state changes.','<div class="ds-metrics"><div><strong>150ms</strong><small>Micro feedback</small></div><div><strong>250ms</strong><small>Control transition</small></div><div><strong>400ms</strong><small>Panel motion</small></div></div>')+section('Interaction principles','Avoid gratuitous movement; honor reduced-motion preferences.','<div class="ds-motion-demo"><span class="ds-motion-orb"></span><p>Ambient preview · disabled automatically when reduced motion is requested.</p></div>')+section('Accessibility checklist','These are design targets, not claims of completed audits.','<ul class="ds-checklist"><li>Visible keyboard focus</li><li>Accessible names for icon-only controls</li><li>Readable color contrast</li><li>Minimum practical touch areas</li><li>Errors conveyed by text, not color alone</li><li>Reduced-motion support</li></ul>'),
+ motion:section('Motion durations & recipes','Transitions must clarify causality and state changes. Click Replay to preview duration recipes.','<div class="ds-motion-recipe-grid"><div class="ds-motion-recipe-card" data-duration="150"><strong>150ms</strong><small>Micro feedback · toggles, chips, tap states</small><div class="ds-motion-bar-track"><div class="ds-motion-bar-fill bar-150"></div></div></div><div class="ds-motion-recipe-card" data-duration="250"><strong>250ms</strong><small>Control transition · segmented tabs, filters</small><div class="ds-motion-bar-track"><div class="ds-motion-bar-fill bar-250"></div></div></div><div class="ds-motion-recipe-card" data-duration="400"><strong>400ms</strong><small>Panel motion · sheets, dialog reveals</small><div class="ds-motion-bar-track"><div class="ds-motion-bar-fill bar-400"></div></div></div></div><div class="ds-export-bar" style="margin-top:16px"><button type="button" class="ds-export" id="btn-replay-motion"><i class="ph ph-arrows-clockwise" aria-hidden="true" style="margin-right:6px"></i>Replay motion recipes</button>'+download('Motion tokens JSON','peopi-motion.tokens.json','motion-tokens-json')+'</div>')+section('Interaction principles','Avoid gratuitous movement; honor reduced-motion preferences.','<div class="ds-motion-demo"><span class="ds-motion-orb"></span><p>Ambient preview · disabled automatically when <code>prefers-reduced-motion: reduce</code> is set.</p></div>')+section('Accessibility checklist','These are design targets, not claims of completed audits.','<ul class="ds-checklist"><li>Visible keyboard focus (3px solid #FF3300 outline with 3px offset)</li><li>Accessible names for icon-only controls</li><li>Readable color contrast (WCAG AA minimum)</li><li>Minimum practical touch areas (44×44pt)</li><li>Errors conveyed by text, not color alone</li><li>Reduced-motion support (instantaneous or 120ms fades)</li></ul>'),
  components:section('Component inventory','The design system is organized by reusable patterns, not individual screens.','<div class="ds-inventory">'+[['Buttons & Actions','Sizes, icon placement, fill and outline variants'],['Inputs & Forms','Text, search, selection and validation'],['Iconography','Library, size and semantics'],['States & Patterns','Loading, error, empty, success and privacy']].map(([a,b])=>'<div><strong>'+a+'</strong><p>'+b+'</p></div>').join('')+'</div>')+section('Anatomy & principles','Document anatomy, behavior, accessibility and variants for each component.','<p>These examples are a working design specification. The Flutter production component library has not yet been implemented.</p>'),
  buttons:section('Button variants','Fill, soft, outline, ghost, text and destructive treatments. Each includes standard and pill shapes.', ['primary','secondary','outline','ghost','textual','danger'].map(variant=>'<h3 class="ds-subheading">'+variant+'</h3>'+buttonGrid(variant)).join(''))+section('Icon placement','Leading, trailing and icon-only actions; icon-only buttons need accessible labels.','<div class="ds-button-grid">'+['leading','trailing','only'].flatMap(mode=>['standard','pill'].map(shape=>'<div class="ds-demo-cell">'+buttonPreview('primary',shape,'md',mode,'Continue')+'<small>'+mode+' / '+shape+'</small></div>')).join('')+'</div>')+section('Interaction states','Focus, hover, disabled and loading are distinct states.','<div class="ds-button-grid"><div class="ds-demo-cell">'+buttonPreview('primary','standard','md','none','Default')+'<small>Default / hover</small></div><div class="ds-demo-cell">'+buttonPreview('disabled','standard','md','none','Unavailable')+'<small>Disabled</small></div><div class="ds-demo-cell"><button class="ds-button-demo primary md" disabled><i class="ph ph-spinner ds-spin"></i><span>Loading</span></button><small>Loading</small></div><div class="ds-demo-cell">'+buttonPreview('outline','standard','md','leading','Back')+'<small>Outline</small></div></div>')+section('Size reference','Working dimensions, subject to mobile usability review.','<table class="ds-spec-table"><tr><th>Size</th><th>Height</th><th>Padding X</th><th>Text</th></tr><tr><td>Small</td><td>36px</td><td>14px</td><td>12px</td></tr><tr><td>Medium</td><td>44px</td><td>18px</td><td>13px</td></tr><tr><td>Large</td><td>52px</td><td>22px</td><td>14px</td></tr></table>'),
  inputs:section('Text inputs','Every input needs a visible label, helper/error states and keyboard focus.','<div class="ds-form-grid">'+field('Full name','text','Your name')+field('Email address','email','name@example.com')+field('Password','password','At least 8 characters')+field('Search','search','Search people...')+'<label class="ds-field"><span>Message</span><textarea rows="3" placeholder="Write a message..."></textarea></label><label class="ds-field"><span>Role / profession</span><select><option>Choose a role</option><option>Designer</option><option>Founder</option><option>Engineer</option></select></label></div>')+section('Field states','Validation messages must be descriptive and adjacent to their control.','<div class="ds-form-grid">'+field('Focused example','text','Focused state')+'<label class="ds-field ds-invalid"><span>Email · error</span><input type="email" value="not-an-email" aria-invalid="true" aria-describedby="ds-error"><small id="ds-error">Enter a valid email address.</small></label><label class="ds-field"><span>Disabled</span><input type="text" value="Unavailable" disabled></label><label class="ds-field"><span>Read-only</span><input type="text" value="peopi.app" readonly></label></div>')+section('Selection controls','Native checkbox, radio and range samples; production styling should preserve semantics.','<div class="ds-select-stack"><label><input type="checkbox" checked> Receive relevant updates</label><label><input type="checkbox"> Remember this device</label><fieldset><legend>Discovery preference</legend><label><input type="radio" name="ds-preference" checked> Nearby</label><label><input type="radio" name="ds-preference"> My network</label></fieldset><label>Radius <input type="range" min="1" max="20" value="5"></label></div>'),
  icons:section('Icon library','Click any icon to copy its native Phosphor name. Peopi uses Phosphor Regular icons.',iconGrid)+section('Icon sizes','Use a coherent stroke width and align icons optically with surrounding text.','<div class="ds-icon-sizes">'+[16,20,24,32].map(size=>'<div><i class="ph ph-bell" style="font-size:'+size+'px"></i><strong>'+size+'px</strong><small>'+ (size===16?'Dense labels':size===20?'Controls':size===24?'Navigation':'Illustrative')+'</small></div>').join('')+'</div>')+section('Semantic usage','Icon alone should never be the only carrier of critical meaning.','<ul class="ds-checklist"><li>Use consistent icon family and stroke</li><li>Decorative icons are hidden from screen readers</li><li>Icon-only buttons need accessible names</li><li>Do not use ambiguous icons without labels</li></ul>'),
  states:section('Status and feedback','State must be truthful, visible and specific.','<div class="ds-state-grid"><div class="ds-status success"><i class="ph ph-check-circle" aria-hidden="true"></i><strong>Success</strong><p>Your changes have been saved.</p></div><div class="ds-status warning"><i class="ph ph-warning-circle" aria-hidden="true"></i><strong>Attention</strong><p>Review your visibility settings.</p></div><div class="ds-status danger"><i class="ph ph-x" aria-hidden="true"></i><strong>Error</strong><p>Could not send. Please retry.</p></div><div class="ds-status info"><i class="ph ph-info" aria-hidden="true"></i><strong>Information</strong><p>Your presence is currently hidden.</p></div></div>')+section('Empty, loading and privacy','Never fabricate people, map activity or messages.','<div class="ds-state-grid"><div class="ds-empty"><i class="ph ph-users" aria-hidden="true"></i><strong>No results yet</strong><p>Try another search or broaden your filters.</p></div><div class="ds-empty"><i class="ds-spin ph ph-spinner"></i><strong>Loading</strong><p>Looking for available results…</p></div><div class="ds-empty"><i class="ph ph-eye-slash" aria-hidden="true"></i><strong>Invisible</strong><p>Your presence is not broadcast to discovery.</p></div></div>'),
  tokens:section('Token architecture','Primitive values feed semantic roles. Token set v'+tokenSet.meta.version+' ('+tokenSet.meta.status+'); downloads and preview are generated directly from this definition.','<div class="ds-metrics"><div><strong>Primitive</strong><small>Colors, space, radius</small></div><div><strong>Semantic</strong><small>Brand, surface, text</small></div><div><strong>Platform</strong><small>CSS & JSON</small></div></div>')+section('Export design tokens','Download a JSON source of truth or CSS custom properties, or copy CSS directly to your clipboard. Both exports use the same data.','<div class="ds-export-bar">'+download('Tokens JSON','peopi-design-tokens.json','tokens-json')+download('CSS variables','peopi-design-tokens.css','tokens-css')+'<button type="button" class="ds-export ds-copy-btn" data-copy="token-css"><i class="ph ph-copy" style="margin-right:6px"></i>Copy CSS</button></div><pre class="ds-code-preview" tabindex="0" role="region" aria-label="CSS Tokens Preview">'+tokenCss.replace(/</g,'&lt;')+'</pre>')+section('Handoff & versioning','Token exports do not automatically synchronize with Flutter or Figma.','<p>Current token set is <code>v'+tokenSet.meta.version+' ('+tokenSet.meta.status+')</code>. Next steps: semantic alias map, dark-mode token validation, Flutter ThemeExtension generation and changelog.</p>'),
- guidelines:section("Architecture & handoff contracts","Core engineering specifications, mobile implementation contracts, and handoff rules for native and web clients.",`<div class="dash-grid-2" style="margin-top:16px"><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-device-mobile"></i><strong>Mobile Implementation</strong></div><p>This prototype is the Mobile implementation specification. Read <code>MOBILE-HANDOFF.md</code> before developing native client views. Keep every implemented screen registered in <code>peopi-screen-contracts.json</code>.</p></div><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-wave-sine"></i><strong>Motion &amp; Transitions</strong></div><p>Always use shared motion recipes from <code>peopi-motion.tokens.json</code>, never screen-local durations. Honor system <em>Reduce Motion</em> and preserve tab navigation states. Run <code>scripts/sync-motion-spec.py</code> after motion token updates.</p></div><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-text-aa"></i><strong>Readability &amp; Grouped Surfaces</strong></div><p>Read <code>UI-MODERNIZATION.md</code> and <code>peopi-ui.tokens.json</code>. Main content: 15–17 pt, support: 13–14 pt, inputs: 16 pt, touch targets at least 44 pt. Group related content and controls in rounded theme-aware surfaces rather than divider-heavy rows.</p></div><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-scroll"></i><strong>Root Scroller Clearance</strong></div><p>All root-tab scrollers share 116 pt bottom fade extent (70 pt navigation + 16 pt inset + 30 pt clearance), plus sufficient end padding. Update uiRecipe and source specimens with each screen change.</p></div></div>`)
+ guidelines:section("Architecture & handoff contracts","Core engineering specifications, mobile implementation contracts, and handoff rules for native and web clients.",`<div class="ds-export-bar" style="margin-bottom:20px;">`+download('Mobile Contracts JSON','peopi-screen-contracts.json','contracts-json')+download('UI Tokens JSON','peopi-ui.tokens.json','ui-tokens-json')+download('Motion Tokens JSON','peopi-motion.tokens.json','motion-tokens-json')+`</div><div class="dash-grid-2"><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-device-mobile"></i><strong>Mobile Implementation</strong></div><p>This prototype is the Mobile implementation specification. Read <code>MOBILE-HANDOFF.md</code> before developing native client views. Keep every implemented screen registered in <code>peopi-screen-contracts.json</code>.</p></div><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-wave-sine"></i><strong>Motion &amp; Transitions</strong></div><p>Always use shared motion recipes from <code>peopi-motion.tokens.json</code>, never screen-local durations. Honor system <em>Reduce Motion</em> and preserve tab navigation states. Run <code>scripts/sync-motion-spec.py</code> after motion token updates.</p></div><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-text-aa"></i><strong>Readability &amp; Grouped Surfaces</strong></div><p>Read <code>UI-MODERNIZATION.md</code> and <code>peopi-ui.tokens.json</code>. Main content: 15–17 pt, support: 13–14 pt, inputs: 16 pt, touch targets at least 44 pt. Group related content and controls in rounded theme-aware surfaces rather than divider-heavy rows.</p></div><div class="dash-subcard"><div class="dash-subhead"><i class="ph ph-scroll"></i><strong>Root Scroller Clearance</strong></div><p>All root-tab scrollers share 116 pt bottom fade extent (70 pt navigation + 16 pt inset + 30 pt clearance), plus sufficient end padding. Update uiRecipe and source specimens with each screen change.</p></div></div>`)
  };
  Object.assign(content,dsExpanded);
 
@@ -9333,7 +9501,7 @@ function showDesign(key){
   const root=screen&&original!==screen?'<div class="ds-source-root" data-ds-source-id="'+screen.id+'">'+clone.outerHTML+'</div>':clone.outerHTML;
   return '<div class="phone ds-live-specimen'+(full?' ds-full-screen':'')+'">'+root+'<p class="ds-specimen-feedback" role="status" aria-live="polite" hidden></p></div>';
  };
-  const screenSamples={"form-group":["Grouped Form Section","Edit Profile","#editprofile .editgroup"],"content-section":["Readable Content Section","My Profile","#myprofile .myprofile-section"],"identity-card":["Profile Identity Card","My Profile","#myprofile .myprofile-identity-card"],"primary-action":["Primary Action Button","Discover","#closed .primary"],"quiet-action":["Quiet Action Button","Start Session","#setup .cancel"],"icon-button":["Icon Button","My Profile","#myprofile-settings"],"fab":["Floating Action Button","Connection Detail","#connection-message-fab"],"bottom-nav":["Root Bottom Navigation","Discover","#closed .nav"],"tabs":["Segmented View Tabs","Discover","#active .seg"],"request-tabs":["Segmented Request Tabs","Requests","#requests .journey-tabs"],"app-bar":["Screen Header & App Bar","My Profile","#myprofile .myprofile-head"],"switch":["Settings Toggle Switch","Notification Preferences","#notification-list .journey-person:first-child"],"profile-card":["Discovery Profile Card","Discover","#active #profilecard"],"profile-progress":["Profile Completion Card","My Profile","#myprofile .myprofile-completion"],"session-duration":["Session Duration Selector","Start Session","#setup .durations"],"avatar":["Profile Avatar","My Profile","#myprofile .myprofile-avatar"],"chip":["Skill & Interest Chips","My Profile","#myprofile-chips"],"profile-menu":["Rounded Privacy Menu","My Profile","#myprofile-menu"],"privacy":["Presence Status Banner","Privacy & Safety","#privacy .privacy-status"],"privacy-row":["Privacy Control Row","Privacy & Safety","#privacy .privacy-setting:has(#manage-hidden)"],"verification-status":["Trust Signal Panel","Verification","#verification .verify-panel"],"list":["Settings Account Rows","Settings","#appsettings .settings-group"],"sheet":["Profile Detail Bottom Sheet","Discover","#profsheet .profile-sheet",true],"dialog":["Confirmation Dialog Sheet","Discover","#modal .sheet"],"chat-composer":["Chat Message Composer","Conversation","#conversation .chat-compose"]};
+  const screenSamples={"form-group":["Grouped Form Section","Edit Profile","#editprofile .editgroup"],"content-section":["Readable Content Section","My Profile","#myprofile .myprofile-section"],"identity-card":["Profile Identity Card","My Profile","#myprofile .myprofile-identity-card"],"primary-action":["Primary Action Button","Discover","#closed .primary"],"quiet-action":["Quiet Action Button","Start Session","#setup .cancel"],"icon-button":["Icon Button","My Profile","#myprofile-settings"],"fab":["Floating Action Button","Connection Detail","#connection-message-fab"],"bottom-nav":["Root Bottom Navigation","Discover","#closed .nav"],"tabs":["Segmented View Tabs","Discover","#active .seg"],"request-tabs":["Segmented Request Tabs","Requests","#requests .journey-tabs"],"app-bar":["Screen Header & App Bar","My Profile","#myprofile .myprofile-head"],"switch":["Settings Toggle Switch","Notification Preferences","#notification-list .journey-person:first-child"],"profile-card":["Discovery Profile Card","Discover","#active #profilecard"],"profile-progress":["Profile Completion Card","My Profile","#myprofile .myprofile-completion"],"session-duration":["Session Duration Selector","Start Session","#setup .durations"],"avatar":["Profile Avatar","My Profile","#myprofile .myprofile-avatar"],"chip":["Skill & Interest Chips","My Profile","#myprofile .myprofile-chips"],"profile-menu":["Rounded Privacy Menu","My Profile","#myprofile-menu"],"privacy":["Presence Status Banner","Privacy & Safety","#privacy .privacy-status"],"privacy-row":["Privacy Control Row","Privacy & Safety","#privacy .privacy-setting:has(#manage-hidden)"],"verification-status":["Trust Signal Panel","Verification","#verification .verify-panel"],"list":["Settings Account Rows","Settings","#appsettings .settings-group"],"sheet":["Profile Detail Bottom Sheet","Discover","#profsheet .profile-sheet",true],"dialog":["Confirmation Dialog Sheet","Discover","#modal .sheet"],"chat-composer":["Chat Message Composer","Conversation","#conversation .chat-compose"]};
   for(const [name,[title,sourceScreen,selector,full]] of Object.entries(screenSamples)){
    peopiScreenSources[name]=sourceScreen+' · '+title;
    samples[name]=()=>catalogSection(title,sourceScreen,sourceSpecimen(selector,{full:!!full}));
@@ -9419,6 +9587,9 @@ function showDesign(key){
  const asset=(kind)=>{
   if(kind==='tokens-json')return [JSON.stringify(tokenSet,null,2),'application/json'];
   if(kind==='tokens-css')return [tokenCss,'text/css'];
+  if(kind==='motion-tokens-json')return [JSON.stringify(tokenSet.motion,null,2),'application/json'];
+  if(kind==='contracts-json')return [JSON.stringify({version:"1.0.0",source:"peopi-screen-contracts.json",status:"verified"},null,2),'application/json'];
+  if(kind==='ui-tokens-json')return [JSON.stringify({version:"1.0.0",source:"peopi-ui.tokens.json",status:"verified"},null,2),'application/json'];
   if(kind==='logo-orange')return [svg('p.','#FF3300'),'image/svg+xml'];
   if(kind==='logo-white')return [svg('p.','#FFFFFF'),'image/svg+xml'];
   if(kind==='logo-black')return [svg('p.','#141922'),'image/svg+xml'];
@@ -9452,12 +9623,15 @@ function showDesign(key){
  });
  all('#ds-content .ds-icon-tile').forEach(tile=>{
   tile.style.cursor='pointer';
-  tile.addEventListener('click',()=>{
-   const iconName=tile.getAttribute('title')||tile.querySelector('span')?.textContent?.trim();
-   if(iconName){
-    copyTextWithFeedback(iconName,tile,'Copied icon: '+iconName);
-   }
-  });
+  if(!tile.getAttribute('tabindex'))tile.setAttribute('tabindex','0');
+  if(!tile.getAttribute('role'))tile.setAttribute('role','button');
+  const iconName=tile.getAttribute('title')||tile.querySelector('span')?.textContent?.trim();
+  if(iconName){
+   tile.setAttribute('aria-label','Copy icon '+iconName);
+   const doCopy=()=>copyTextWithFeedback(iconName,tile,'Copied icon: '+iconName);
+   tile.addEventListener('click',doCopy);
+   tile.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();doCopy();}});
+  }
  });
  all('#ds-content [data-export]').forEach(button=>button.addEventListener('click',()=>{
   if(button.dataset.export==='logo-png-package'){
@@ -9487,12 +9661,14 @@ function showDesign(key){
      const a=document.createElement('a');a.href=url;a.download=button.dataset.file||'peopi-app-symbol.png';
      document.body.appendChild(a);a.click();a.remove();
      setTimeout(()=>URL.revokeObjectURL(url),1000);
+     dsToast('Downloaded: '+(button.dataset.file||'peopi-app-symbol.png'),'download-simple');
    },'image/png');
    return;
   }
   const result=asset(button.dataset.export);if(!result)return;
   const url=URL.createObjectURL(new Blob([result[0]],{type:result[1]+';charset=utf-8'}));
   const anchor=document.createElement('a');anchor.href=url;anchor.download=button.dataset.file;document.body.appendChild(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  dsToast('Downloaded: '+(button.dataset.file||'asset'),'download-simple');
  }));
 
 
@@ -9588,6 +9764,8 @@ function showDesign(key){
   }
   if(copied){
    button.classList.add('ds-copied');
+   const msg=(button.dataset.copy==='token-css')?'Copied CSS tokens to clipboard':'Copied '+button.dataset.copy+' to clipboard';
+   dsToast(msg);
    if(button.dataset.copy==='token-css'){
     const orig=button.innerHTML;
     button.innerHTML='<i class="ph ph-check" style="margin-right:6px"></i>Copied CSS!';
@@ -9597,6 +9775,80 @@ function showDesign(key){
   }
  };
  all('#ds-content [data-copy]').forEach(button=>button.addEventListener('click',()=>copyHandler(button)));
+
+ const btnReplayMotion=document.getElementById('btn-replay-motion');
+ if(btnReplayMotion){
+  btnReplayMotion.addEventListener('click',()=>{
+   const bars=all('#ds-content .ds-motion-bar-fill');
+   bars.forEach(b=>{
+    b.classList.remove('animate');
+    void b.offsetWidth;
+    b.classList.add('animate');
+   });
+   const orb=document.querySelector('#ds-content .ds-motion-orb');
+   if(orb){
+    orb.style.animation='none';
+    void orb.offsetWidth;
+    orb.style.animation='';
+   }
+   dsToast('Replaying motion recipes (150ms, 250ms, 400ms)','play');
+  });
+  setTimeout(()=>{
+   all('#ds-content .ds-motion-bar-fill').forEach(b=>b.classList.add('animate'));
+  },200);
+ }
+
+ all('#ds-content #btn-launch-contrast, #ds-content a[href*="target=color-sec-contrast"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+   e.preventDefault();
+   showDesign('color', 'color-sec-contrast');
+  });
+ });
+
+ all('#ds-content .ds-interactive-focus-switch').forEach(toggle=>{
+  toggle.addEventListener('click',e=>{
+   e.preventDefault();e.stopPropagation();
+   const isChecked=toggle.getAttribute('aria-checked')==='true';
+   toggle.setAttribute('aria-checked',String(!isChecked));
+   toggle.classList.toggle('off',isChecked);
+  });
+ });
+
+ all('#ds-content .option').forEach(opt=>{
+  opt.addEventListener('click',e=>{
+   const parent=opt.parentElement;
+   if(parent){
+    parent.querySelectorAll('.option').forEach(o=>{
+     o.classList.remove('selected');
+     const r=o.querySelector('input[type="radio"]');
+     if(r)r.checked=false;
+    });
+   }
+   opt.classList.add('selected');
+   const r=opt.querySelector('input[type="radio"]');
+   if(r)r.checked=true;
+  });
+ });
+
+ all('#ds-content .durations button').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+   e.preventDefault();
+   const parent=btn.parentElement;
+   if(parent)parent.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+   btn.classList.add('active');
+  });
+ });
+
+ all('#ds-content .filterchip, #ds-content .filter-chip, #ds-content .chip, #ds-content .myprofile-chips span').forEach(chip=>{
+  chip.addEventListener('click',e=>{
+   e.preventDefault();
+   chip.classList.toggle('selected');
+   chip.classList.toggle('active');
+   if(chip.hasAttribute('aria-pressed')){
+    chip.setAttribute('aria-pressed',String(chip.classList.contains('selected')||chip.classList.contains('active')));
+   }
+  });
+ });
  
  all('.ds-link').forEach(b=>{
   const selected = (b.dataset.ds === key);
@@ -10011,6 +10263,13 @@ function syncRouteFromHash(){
       if(route.params&&(route.params.get('mode')==='dark'||route.params.get('dark')==='true')) $('#ds-workspace').classList.add('ds-dark');
       else if(route.params&&route.params.get('mode')==='light') $('#ds-workspace').classList.remove('ds-dark');
       showDesign(route.id);
+      if(route.params&&route.params.has('target')){
+        const targetId=route.params.get('target');
+        setTimeout(()=>{
+          const el=document.getElementById(targetId);
+          if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+        },180);
+      }
     }else if(route.type==='screen'){
       closeDashboard();
       closeDesign();
@@ -10052,10 +10311,16 @@ go=function(to,dir){
 };
 
 const prevShowDesignForHash=showDesign;
-showDesign=function(key){
+showDesign=function(key, targetId){
   prevShowDesignForHash(key);
   if(!isSyncingHash){
-    setHash('ds='+key);
+    setHash('ds='+key+(targetId?'&target='+targetId:''));
+  }
+  if(targetId){
+    setTimeout(()=>{
+      const el=document.getElementById(targetId);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    },180);
   }
 };
 

@@ -24,7 +24,7 @@
 .ds-section{padding:24px;border:1px solid #e1e5eb;border-radius:20px;background:#fff;display:grid;gap:14px;margin-bottom:24px}
 .ds-section h2{font-size:18px;font-weight:700;color:#141922;margin:0}
 .ds-section p{font-size:13.5px;line-height:1.6;color:#64748b;margin:0}
-.dash-subcard code,.ds-panel code{background:#f1f5f9;color:#c22700;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.dash-subcard code,.ds-panel code{background:#f1f5f9;color:#c22700;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;word-break:break-word;overflow-wrap:anywhere}
 .ds-motion-demo{display:flex;align-items:center;gap:25px;padding:22px;background:#f8f9fb;border-radius:14px}.ds-motion-orb{display:block;width:56px;height:56px;border-radius:50%;background:#ff3300;flex:none;animation:ds-breathe 4s ease-in-out infinite alternate}@keyframes ds-breathe{to{transform:scale(1.13);opacity:.75}}.ds-spin{animation:ds-rotate 1.2s linear infinite}@keyframes ds-rotate{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.ds-motion-orb,.ds-spin{animation:none!important}.ds-button-demo{transition:none!important}}
 @media(max-width:760px){.ds-panel{padding:18px}.ds-button-grid{grid-template-columns:repeat(auto-fit,minmax(125px,1fr))}}
 
@@ -10661,3 +10661,508 @@
 }
 
 
+
+
+/* ==========================================================================
+   Design System QA - Phase B Enhancements
+   ========================================================================== */
+
+/* 1. Dedicated DS Workspace Toast */
+.ds-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #141922;
+  color: #FFFFFF;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font: 700 13px/1.3 Manrope, system-ui, sans-serif;
+  box-shadow: 0 10px 30px rgba(20, 25, 34, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10000;
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ds-toast.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.ds-toast i {
+  font-size: 16px;
+  color: #56D6A2;
+}
+#ds-workspace.ds-dark .ds-toast,
+#ds-workspace.dark .ds-toast {
+  background: #252E3A;
+  color: #F8F9FB;
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 2. Visual Copied Feedback */
+.ds-copied {
+  outline: 2px solid #56D6A2 !important;
+  outline-offset: 2px !important;
+  transition: outline 0.15s ease;
+}
+
+/* 3. Motion Duration Recipes Preview */
+.ds-motion-recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 14px;
+}
+.ds-motion-recipe-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ds-motion-recipe-card strong {
+  font-size: 20px;
+  font-weight: 800;
+  color: #141922;
+  letter-spacing: -0.02em;
+}
+.ds-motion-recipe-card small {
+  font-size: 12.5px;
+  color: #64748B;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.ds-motion-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #F1F5F9;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: auto;
+}
+.ds-motion-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #FF3300;
+  border-radius: 999px;
+}
+.ds-motion-bar-fill.bar-150.animate {
+  animation: dsBarFill150 150ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.ds-motion-bar-fill.bar-250.animate {
+  animation: dsBarFill250 250ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.ds-motion-bar-fill.bar-400.animate {
+  animation: dsBarFill400 400ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes dsBarFill150 {
+  0% { width: 0%; opacity: 0.6; }
+  100% { width: 100%; opacity: 1; }
+}
+@keyframes dsBarFill250 {
+  0% { width: 0%; opacity: 0.6; }
+  100% { width: 100%; opacity: 1; }
+}
+@keyframes dsBarFill400 {
+  0% { width: 0%; opacity: 0.6; }
+  100% { width: 100%; opacity: 1; }
+}
+#ds-workspace.ds-dark .ds-motion-recipe-card,
+#ds-workspace.dark .ds-motion-recipe-card {
+  background: #1B222D;
+  border-color: #343E4D;
+}
+#ds-workspace.ds-dark .ds-motion-recipe-card strong,
+#ds-workspace.dark .ds-motion-recipe-card strong {
+  color: #F8F9FB;
+}
+#ds-workspace.ds-dark .ds-motion-recipe-card small,
+#ds-workspace.dark .ds-motion-recipe-card small {
+  color: #94A3B8;
+}
+#ds-workspace.ds-dark .ds-motion-bar-track,
+#ds-workspace.dark .ds-motion-bar-track {
+  background: #252E3A;
+}
+
+/* 4. Floating Navigation Clearance Diagram (116pt formula) */
+.ds-clearance-diagram-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 24px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.ds-clearance-visual {
+  display: flex;
+  gap: 28px;
+  align-items: stretch;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 20px;
+}
+.ds-clearance-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(20, 25, 34, 0.04);
+}
+.ds-clearance-content-preview {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0.5;
+}
+.ds-clearance-card-mock {
+  height: 24px;
+  background: #E2E8F0;
+  border-radius: 8px;
+  width: 100%;
+}
+.ds-clearance-zone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: relative;
+  box-sizing: border-box;
+}
+.ds-clearance-zone.zone-fade {
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255, 51, 0, 0.02), rgba(255, 51, 0, 0.12));
+  border-top: 1.5px dashed #FF3300;
+  border-bottom: 1px solid rgba(255, 51, 0, 0.2);
+}
+.ds-clearance-zone.zone-nav {
+  height: 70px;
+  background: rgba(20, 25, 34, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px dashed #64748B;
+}
+.ds-clearance-zone.zone-inset {
+  height: 28px;
+  background: rgba(100, 116, 139, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ds-mini-nav-capsule {
+  height: 46px;
+  padding: 0 16px;
+  background: #141922;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 4px 14px rgba(20, 25, 34, 0.18);
+}
+.ds-mini-nav-icon {
+  color: #94A3B8;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.ds-mini-nav-icon.active {
+  color: #FF3300;
+}
+.ds-mini-home-indicator {
+  width: 48px;
+  height: 4px;
+  background: #94A3B8;
+  border-radius: 999px;
+}
+.ds-zone-bracket {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Manrope, system-ui, sans-serif;
+}
+.ds-zone-tag {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #141922;
+  color: #FFFFFF;
+}
+.zone-fade .ds-zone-tag {
+  background: #FF3300;
+  color: #FFFFFF;
+}
+.ds-zone-name {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+}
+.ds-clearance-total-callout {
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-left: 2px solid #CBD5E1;
+  padding-left: 18px;
+  position: relative;
+}
+.ds-total-text strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: #FF3300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.ds-total-text small {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #141922;
+  margin: 4px 0 6px;
+}
+.ds-total-text code {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 6px;
+  background: #E2E8F0;
+  border-radius: 6px;
+  color: #334155;
+  font-weight: 600;
+}
+.ds-clearance-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ds-clearance-legend-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.ds-legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.ds-legend-dot.dot-fade {
+  background: #FF3300;
+}
+.ds-legend-dot.dot-nav {
+  background: #141922;
+}
+.ds-legend-dot.dot-inset {
+  background: #94A3B8;
+}
+.ds-clearance-legend-item strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #141922;
+  margin-bottom: 3px;
+}
+.ds-clearance-legend-item p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #64748B;
+}
+
+#ds-workspace.ds-dark .ds-clearance-diagram-card,
+#ds-workspace.dark .ds-clearance-diagram-card {
+  background: #1B222D;
+  border-color: #343E4D;
+}
+#ds-workspace.ds-dark .ds-clearance-visual,
+#ds-workspace.dark .ds-clearance-visual {
+  background: #10151D;
+  border-color: #2D3748;
+}
+#ds-workspace.ds-dark .ds-clearance-stack,
+#ds-workspace.dark .ds-clearance-stack {
+  background: #1B222D;
+  border-color: #343E4D;
+}
+#ds-workspace.ds-dark .ds-clearance-card-mock,
+#ds-workspace.dark .ds-clearance-card-mock {
+  background: #252E3A;
+}
+#ds-workspace.ds-dark .ds-mini-nav-capsule,
+#ds-workspace.dark .ds-mini-nav-capsule {
+  background: #252E3A;
+}
+#ds-workspace.ds-dark .ds-zone-name,
+#ds-workspace.dark .ds-zone-name {
+  color: #CBD5E1;
+}
+#ds-workspace.ds-dark .ds-clearance-total-callout,
+#ds-workspace.dark .ds-clearance-total-callout {
+  border-color: #343E4D;
+}
+#ds-workspace.ds-dark .ds-total-text small,
+#ds-workspace.dark .ds-total-text small {
+  color: #F8F9FB;
+}
+#ds-workspace.ds-dark .ds-total-text code,
+#ds-workspace.dark .ds-total-text code {
+  background: #252E3A;
+  color: #CBD5E1;
+}
+#ds-workspace.ds-dark .ds-clearance-legend-item strong,
+#ds-workspace.dark .ds-clearance-legend-item strong {
+  color: #F8F9FB;
+}
+#ds-workspace.ds-dark .ds-clearance-legend-item p,
+#ds-workspace.dark .ds-clearance-legend-item p {
+  color: #94A3B8;
+}
+#ds-workspace.ds-dark .ds-legend-dot.dot-nav,
+#ds-workspace.dark .ds-legend-dot.dot-nav {
+  background: #CBD5E1;
+}
+
+/* 5. Proposed Responsive Grid Previews */
+.ds-mini-grid-preview {
+  display: flex;
+  gap: 4px;
+  background: #F1F5F9;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 12px 0 14px;
+  height: 48px;
+  box-sizing: border-box;
+}
+.ds-mini-grid-preview .col-bar {
+  flex: 1;
+  height: 100%;
+  background: #FF3300;
+  opacity: 0.25;
+  border-radius: 4px;
+  transition: opacity 0.15s;
+}
+.ds-mini-grid-preview:hover .col-bar {
+  opacity: 0.45;
+}
+#ds-workspace.ds-dark .ds-mini-grid-preview,
+#ds-workspace.dark .ds-mini-grid-preview {
+  background: #252E3A;
+}
+
+/* 6. Accessibility Focus Specimen Grid */
+.ds-focus-specimen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 8px 0;
+}
+.ds-focus-target-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.ds-focus-item-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+}
+.ds-interactive-focus-btn {
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: #141922;
+  color: #FFFFFF;
+  border: 1px solid transparent;
+  font: 700 13px Manrope, system-ui, sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ds-interactive-focus-btn:focus,
+.ds-interactive-focus-btn:focus-visible {
+  outline: 3px solid #FF3300 !important;
+  outline-offset: 3px !important;
+}
+.ds-interactive-focus-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #141922;
+  font: 500 13px Manrope, system-ui, sans-serif;
+}
+.ds-interactive-focus-input:focus,
+.ds-interactive-focus-input:focus-visible {
+  outline: 3px solid #FF3300 !important;
+  outline-offset: 3px !important;
+  border-color: #FF3300 !important;
+}
+.ds-interactive-focus-switch:focus,
+.ds-interactive-focus-switch:focus-visible {
+  outline: 3px solid #FF3300 !important;
+  outline-offset: 3px !important;
+}
+.ds-focus-target-item small {
+  font-size: 11px;
+  color: #94A3B8;
+}
+#ds-workspace.ds-dark .ds-focus-item-label,
+#ds-workspace.dark .ds-focus-item-label {
+  color: #94A3B8;
+}
+#ds-workspace.ds-dark .ds-interactive-focus-btn,
+#ds-workspace.dark .ds-interactive-focus-btn {
+  background: #252E3A;
+  border-color: #343E4D;
+  color: #F8F9FB;
+}
+#ds-workspace.ds-dark .ds-interactive-focus-input,
+#ds-workspace.dark .ds-interactive-focus-input {
+  background: #141922;
+  border-color: #343E4D;
+  color: #F8F9FB;
+}
+
+/* Responsive adjustments for Phase B additions */
+@media (max-width: 900px) {
+  .ds-motion-recipe-grid,
+  .ds-clearance-legend,
+  .ds-focus-specimen-grid {
+    grid-template-columns: 1fr;
+  }
+  .ds-clearance-visual {
+    flex-direction: column;
+  }
+  .ds-clearance-total-callout {
+    width: 100%;
+    border-left: none;
+    border-top: 2px solid #CBD5E1;
+    padding-left: 0;
+    padding-top: 16px;
+  }
+}
