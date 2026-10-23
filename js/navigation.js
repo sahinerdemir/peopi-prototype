@@ -9511,7 +9511,7 @@ function showDesign(key){
     'chat-composer':['Default (Empty)','Typing Draft'],
     'privacy':['Invisible (Default)','Visible (Open)'],
     'privacy-row':['Hidden On','Hidden Off'],
-    'verification-status':['Unconnected','Connected & Verified'],
+    'verification-status':['Unconnected','LinkedIn Connected'],
     'toast-notification':['Information','Success','Warning'],
     'session-alert':['Visible (5m Warning)','Dismissed'],
     'verification-step':['Standard Principles','Expanded View'],
@@ -9580,7 +9580,7 @@ function showDesign(key){
     controlsHtml=`<div class="ds-workbench-controls">
      <span class="ds-controls-label"><i class="ph ph-sliders"></i> Interactive Variants</span>
      <div class="ds-variant-pill-group">
-      ${activeVariants.map((v,i)=>`<button type="button" class="ds-variant-btn${i===0?' active':''}" data-variant="${v.toLowerCase().replace(/[^a-z0-9]+/g,'-')}">${v}</button>`).join('')}
+      ${activeVariants.map((v,i)=>`<button type="button" class="ds-variant-btn${i===0?' active is-active':''}" data-variant="${v.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}">${v}</button>`).join('')}
      </div>
     </div>`;
    }
@@ -9697,15 +9697,39 @@ function showDesign(key){
    samples[name]=()=>catalogSection(title,sourceScreen,sourceSpecimen(selector,{full:!!full}),'',name);
   }
   const sourceGroup=(selector)=>{const group=document.createElement('div');for(const el of document.querySelectorAll(selector))group.append(el.cloneNode(true));return group};
-  samples.radio=()=>catalogSection('Intent Radio Option','Start Session',sourceSpecimen(null,{node:sourceGroup('#setup .option')}),'','radio');
+  samples.radio=()=>{
+    const grp=sourceGroup('#setup .option');
+    grp.querySelectorAll('.option').forEach(opt => {
+      opt.setAttribute('role', 'radio');
+      opt.setAttribute('aria-checked', opt.classList.contains('chosen') ? 'true' : 'false');
+    });
+    return catalogSection('Intent Radio Option','Start Session',sourceSpecimen(null,{node:grp}),'','radio');
+  };
   samples['text-field']=()=>catalogSection('Form Input Fields','Edit Profile',sourceSpecimen(null,{node:sourceGroup('#editprofile .editfield')}),'','text-field');
   samples['search-field']=()=>catalogSection('Connection Search Field','Connections',sourceSpecimen('#network .network-search-box'),'','search-field');
   peopiScreenSources['search-field']='Connections · Connection Search Field';
   samples['social-auth']=()=>catalogSection('Social Authentication Buttons','Auth',sourceSpecimen('#auth .auth-social-options'),'Brand sign-in actions supporting Google and Apple federated identity with authentic SVG vector glyphs and 48pt touch targets.','social-auth');
   peopiScreenSources['social-auth']='Auth · Social Authentication Buttons';
-  samples['intent-choice']=()=>catalogSection('Intent Selection Cards','First Intent',sourceSpecimen(null,{node:sourceGroup('#on-intent-options .journey-choice')}),'Multi-select choice cards with animated custom checkmark badges and theme-aware rounded surfaces.','intent-choice');
+  samples['intent-choice']=()=>{
+    const grp=sourceGroup('#on-intent-options .journey-choice');
+    grp.querySelectorAll('.journey-choice').forEach(c => {
+      const isSel = c.classList.contains('selected');
+      c.setAttribute('role', 'button');
+      c.setAttribute('aria-pressed', isSel ? 'true' : 'false');
+    });
+    return catalogSection('Intent Selection Cards','First Intent',sourceSpecimen(null,{node:grp}),'Multi-select choice cards with animated custom checkmark badges and theme-aware rounded surfaces.','intent-choice');
+  };
   peopiScreenSources['intent-choice']='First Intent · Intent Selection Cards';
-  samples['skills-chip-input']=()=>catalogSection('Skills Chip Input','Skills',sourceSpecimen('#edit-skills-wrap'),'Interactive input wrapper combining dynamic removable skill chips with real-time text input and autocomplete.','skills-chip-input');
+  samples['skills-chip-input']=()=>{
+   const node=document.querySelector('#edit-skills-wrap').cloneNode(true);
+   const list=node.querySelector('.skills-chip-list');
+   if(list){
+    list.innerHTML=['Product Design','Figma','Design Systems','Prototyping'].map(s=>
+     '<span class="skills-chip-item"><span>'+s+'</span><button type="button" aria-label="Remove '+s+'">×</button></span>'
+    ).join('');
+   }
+   return catalogSection('Skills Chip Input','Skills',sourceSpecimen(null,{node}),'Interactive input wrapper combining dynamic removable skill chips with real-time text input and autocomplete.','skills-chip-input');
+  };
   peopiScreenSources['skills-chip-input']='Skills · Skills Chip Input';
   samples['toast-notification']=()=>{
    const node=document.querySelector('#toast').cloneNode(true);
@@ -10047,9 +10071,31 @@ function showDesign(key){
     pill.style.transform = `translateX(${x}px)`;
   };
 
-  // Run initial indicator sync across all live specimens in ds-content
+  // Helper to ensure EXACTLY one variant button is active across all classes
+  const setWorkbenchVariantActive = (card, target) => {
+    if (!card) return;
+    const vBtns = card.querySelectorAll('.ds-variant-btn');
+    vBtns.forEach((b, i) => {
+      const isTarget = (typeof target === 'number') ? (i === target) : (b === target);
+      b.classList.remove('active', 'is-active');
+      if (isTarget) {
+        b.classList.add('active', 'is-active');
+      }
+    });
+  };
+
+  // Initial indicator sync across all live specimens in ds-content
   all('#ds-content .nav').forEach(nav => updateSpecimenNavPill(nav));
   all('#ds-content .seg, #ds-content .journey-tabs').forEach(seg => updateSpecimenSegPill(seg));
+
+  // Handle window resizing to keep motion indicators perfectly positioned
+  if (!window._dsWorkbenchResizeListener) {
+    window._dsWorkbenchResizeListener = () => {
+      all('#ds-content .nav').forEach(nav => updateSpecimenNavPill(nav));
+      all('#ds-content .seg, #ds-content .journey-tabs').forEach(seg => updateSpecimenSegPill(seg));
+    };
+    window.addEventListener('resize', window._dsWorkbenchResizeListener);
+  }
 
   // Direct click listeners inside specimens to synchronize variant controls
   all('#ds-content .ds-workbench-card[data-component="bottom-nav"] .nav button').forEach(b => {
@@ -10064,10 +10110,7 @@ function showDesign(key){
       updateSpecimenNavPill(nav, b);
       const card = b.closest('.ds-workbench-card');
       const idx = [...nav.querySelectorAll('button')].indexOf(b);
-      const vBtns = card.querySelectorAll('.ds-variant-btn');
-      if (vBtns[idx]) {
-        vBtns.forEach((vb, i) => vb.classList.toggle('is-active', i === idx));
-      }
+      setWorkbenchVariantActive(card, idx);
     });
   });
 
@@ -10083,10 +10126,47 @@ function showDesign(key){
       updateSpecimenSegPill(seg, b);
       const card = b.closest('.ds-workbench-card');
       const idx = [...seg.querySelectorAll('button')].indexOf(b);
-      const vBtns = card.querySelectorAll('.ds-variant-btn');
-      if (vBtns[idx]) {
-        vBtns.forEach((vb, i) => vb.classList.toggle('is-active', i === idx));
-      }
+      setWorkbenchVariantActive(card, idx);
+    });
+  });
+
+  all('#ds-content .ds-workbench-card[data-component="request-tabs"] .journey-tabs button').forEach(b => {
+    b.addEventListener('click', () => {
+      const seg = b.closest('.journey-tabs');
+      if (!seg) return;
+      seg.querySelectorAll('button').forEach(btn => {
+        const isTarget = (btn === b);
+        btn.classList.toggle('chosen', isTarget);
+        btn.classList.toggle('selected', isTarget);
+        btn.setAttribute('aria-selected', String(isTarget));
+      });
+      updateSpecimenSegPill(seg, b);
+      const card = b.closest('.ds-workbench-card');
+      const idx = [...seg.querySelectorAll('button')].indexOf(b);
+      setWorkbenchVariantActive(card, idx);
+    });
+  });
+
+  all('#ds-content .ds-workbench-card[data-component="radio"] .option').forEach(b => {
+    b.addEventListener('click', () => {
+      const card = b.closest('.ds-workbench-card');
+      const options = card.querySelectorAll('.option');
+      options.forEach(opt => {
+        const isTarget = (opt === b);
+        opt.classList.toggle('chosen', isTarget);
+        opt.setAttribute('aria-checked', String(isTarget));
+      });
+      setWorkbenchVariantActive(card, 0); // Selected
+    });
+  });
+
+  all('#ds-content .ds-workbench-card[data-component="intent-choice"] .journey-choice').forEach(b => {
+    b.addEventListener('click', () => {
+      const card = b.closest('.ds-workbench-card');
+      b.classList.toggle('selected');
+      b.setAttribute('aria-pressed', String(b.classList.contains('selected')));
+      const hasAny = !!card.querySelector('.journey-choice.selected');
+      setWorkbenchVariantActive(card, hasAny ? 0 : 1);
     });
   });
 
@@ -10094,11 +10174,7 @@ function showDesign(key){
     btn.addEventListener('click', () => {
       const card = btn.closest('.ds-workbench-card');
       if (!card) return;
-      card.querySelectorAll('.ds-variant-btn').forEach(b => {
-        const isTarget = (b === btn);
-        b.classList.toggle('active', isTarget);
-        b.classList.toggle('is-active', isTarget);
-      });
+      setWorkbenchVariantActive(card, btn);
       const variant = btn.dataset.variant;
       const comp = card.dataset.component;
       const preview = card.querySelector('.ds-workbench-preview-viewport');
@@ -10210,7 +10286,9 @@ function showDesign(key){
         const options = preview.querySelectorAll('.option');
         const isSelected = (variant === 'selected');
         options.forEach((opt, idx) => {
-          opt.classList.toggle('chosen', isSelected && idx === 0);
+          const choose = isSelected && idx === 0;
+          opt.classList.toggle('chosen', choose);
+          opt.setAttribute('aria-checked', String(choose));
         });
       } else if (comp === 'session-duration') {
         const durBtns = preview.querySelectorAll('.durations button, button');
@@ -10234,19 +10312,49 @@ function showDesign(key){
         const choices = preview.querySelectorAll('.journey-choice');
         const isSelected = (variant === 'selected');
         choices.forEach((c, idx) => {
-          c.classList.toggle('selected', isSelected && idx === 0);
+          const choose = isSelected && (idx === 0 || idx === 3);
+          c.classList.toggle('selected', choose);
+          c.setAttribute('aria-pressed', String(choose));
         });
       } else if (comp === 'skills-chip-input') {
-        const chips = preview.querySelectorAll('.edit-skill-chip, .skills-chip-item');
-        const input = preview.querySelector('.edit-skills-input, input');
+        const chipList = preview.querySelector('.skills-chip-list, [class*="chip-list"]');
+        const input = preview.querySelector('input');
+        const defaultSkills = ['Product Design', 'Figma', 'Design Systems', 'Prototyping'];
         if (variant.includes('empty')) {
-          chips.forEach(c => c.style.display = 'none');
+          if (chipList) chipList.innerHTML = '';
+          if (input) {
+            input.value = '';
+            input.removeAttribute('value');
+            input.placeholder = 'Type a skill and press Enter...';
+            input.style.borderColor = '';
+            input.style.boxShadow = '';
+          }
+        } else if (variant.includes('focus')) {
+          if (chipList && !chipList.children.length) {
+            chipList.innerHTML = defaultSkills.map(s => 
+              '<span class="skills-chip-item"><span>' + s + '</span><button type="button" aria-label="Remove ' + s + '">×</button></span>'
+            ).join('');
+          }
+          if (input) {
+            input.focus();
+            input.placeholder = 'Type another skill and press Enter...';
+            input.style.borderColor = '#ff3300';
+            input.style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
+          }
         } else {
-          chips.forEach(c => c.style.display = 'inline-flex');
-        }
-        if (variant.includes('focus') && input) {
-          input.focus();
-          input.placeholder = 'Type another skill and press Enter...';
+          // Default (4 Chips)
+          if (chipList) {
+            chipList.innerHTML = defaultSkills.map(s => 
+              '<span class="skills-chip-item"><span>' + s + '</span><button type="button" aria-label="Remove ' + s + '">×</button></span>'
+            ).join('');
+          }
+          if (input) {
+            input.value = '';
+            input.removeAttribute('value');
+            input.placeholder = 'Type a skill and press Enter...';
+            input.style.borderColor = '';
+            input.style.boxShadow = '';
+          }
         }
       } else if (comp === 'discovery-filter') {
         const roleSel = preview.querySelector('select[id*="discovery-role"], select:first-of-type');
@@ -10261,15 +10369,6 @@ function showDesign(key){
             else opt.removeAttribute('selected');
           });
           roleSel.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-        const pills = preview.querySelectorAll('.discovery-filter-pill');
-        if (pills.length) {
-          pills.forEach((p, idx) => {
-            if (variant.includes('all')) p.classList.toggle('is-selected', idx === 0);
-            else if (variant.includes('engineering')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('engine'));
-            else if (variant.includes('design')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('design'));
-            else if (variant.includes('founders')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('found'));
-          });
         }
       } else if (comp === 'bottom-nav') {
         const nav = preview.querySelector('.nav');
@@ -10477,10 +10576,53 @@ function showDesign(key){
           badge.style.display = variant.includes('unverified') ? 'none' : 'inline-flex';
         }
       } else if (comp === 'profile-documents') {
-        const cards = preview.querySelectorAll('.peopi-doc-card, .doc-card');
-        cards.forEach(c => {
-          c.classList.toggle('doc-locked', variant.includes('locked'));
+        const isLocked = !variant.startsWith('unlocked') && variant.includes('locked');
+        const cards = preview.querySelectorAll('.peopi-doc-card');
+        const list = preview.querySelector('.peopi-docs-grid, #ds-specimen-myprofile-docs-list');
+        let lockHint = preview.querySelector('.connection-docs-locked-hint');
+        
+        const docSpecs = [
+          { title: 'CV / Resume', file: 'Sahin_Erdemir_Resume.pdf', ext: 'pdf', size: '2.4 MB' },
+          { title: 'One Pager', file: 'Product_Vision_OnePager.docx', ext: 'docx', size: '1.1 MB' },
+          { title: 'Portfolio Deck', file: 'Selected_Works_2026.png', ext: 'png', size: '4.8 MB' }
+        ];
+
+        cards.forEach((c, idx) => {
+          const info = c.querySelector('.peopi-doc-info');
+          const fileEl = c.querySelector('.peopi-doc-filename');
+          let lockTag = c.querySelector('.peopi-doc-lock-tag');
+          const spec = docSpecs[idx] || { title: 'Document', file: 'document.pdf', ext: 'pdf', size: '1.0 MB' };
+
+          c.classList.toggle('doc-locked', isLocked);
+          if (info) info.classList.toggle('peopi-doc-blurred', isLocked);
+
+          if (isLocked) {
+            c.setAttribute('aria-label', 'Attached document (Unlocks after connecting)');
+            if (fileEl) fileEl.textContent = '••••••••••••••••.' + spec.ext;
+            if (!lockTag) {
+              lockTag = document.createElement('div');
+              lockTag.className = 'peopi-doc-lock-tag';
+              lockTag.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i><span>Connect to view</span>';
+              c.appendChild(lockTag);
+            }
+          } else {
+            c.setAttribute('aria-label', spec.title + ' (' + spec.ext.toUpperCase() + ')');
+            if (fileEl) fileEl.textContent = spec.file;
+            if (lockTag) lockTag.remove();
+          }
         });
+
+        if (isLocked) {
+          if (!lockHint && list) {
+            lockHint = document.createElement('p');
+            lockHint.className = 'connection-docs-locked-hint';
+            lockHint.style.cssText = 'margin-top:14px;font-size:12px;color:var(--ink-secondary,#64748B);display:flex;align-items:center;gap:6px;';
+            lockHint.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i> Documents unlock after connecting.';
+            list.after(lockHint);
+          }
+        } else {
+          if (lockHint) lockHint.remove();
+        }
       } else if (comp === 'connection-request') {
         const row = preview.querySelector('.request-received, .journey-person:first-child');
         const sent = preview.querySelector('.request-sent, .journey-person:last-child');
@@ -10508,14 +10650,27 @@ function showDesign(key){
           if (sBtn) { sBtn.disabled = true; sBtn.style.opacity = '0.5'; }
         }
       } else if (comp === 'privacy') {
+        const isVisible = variant.startsWith('visible') || variant === 'visible-open';
         const dot = preview.querySelector('.dot');
-        const text = preview.querySelector('.privacy-text, p, strong');
-        if (variant.includes('visible')) {
-          if (dot) dot.classList.add('live');
-          if (text) text.textContent = 'Discovery is active · 45 min remaining';
+        const titleEl = preview.querySelector('#privacy-presence-title, [id$="privacy-presence-title"], strong');
+        const descEl = preview.querySelector('#privacy-presence-description, [id$="privacy-presence-description"], small');
+        const iconEl = preview.querySelector('.privacy-status-icon i, i');
+        const actionBtn = preview.querySelector('#privacy-presence-action, [id$="privacy-presence-action"], button');
+        const statusBox = preview.querySelector('.privacy-status');
+
+        if (statusBox) statusBox.classList.toggle('status-live', isVisible);
+        if (dot) dot.classList.toggle('live', isVisible);
+
+        if (isVisible) {
+          if (titleEl) titleEl.textContent = 'Discovery is active';
+          if (descEl) descEl.textContent = 'Broadcasting approximate presence nearby · 45 min remaining.';
+          if (iconEl) iconEl.className = 'ph ph-broadcast';
+          if (actionBtn) actionBtn.innerHTML = 'Go invisible <i class="ph ph-eye-slash" aria-hidden="true"></i>';
         } else {
-          if (dot) dot.classList.remove('live');
-          if (text) text.textContent = 'You are currently invisible.';
+          if (titleEl) titleEl.textContent = 'Invisible by default';
+          if (descEl) descEl.textContent = 'You are currently invisible. Visible only when you choose to start a session.';
+          if (iconEl) iconEl.className = 'ph ph-eye-slash';
+          if (actionBtn) actionBtn.innerHTML = 'Discover <i class="ph ph-arrow-up-right" aria-hidden="true"></i>';
         }
       } else if (comp === 'privacy-row') {
         const small = preview.querySelector('.privacy-setting-copy small, small');
@@ -10523,19 +10678,32 @@ function showDesign(key){
         const isOff = variant.includes('off') || variant.includes('empty');
         if (small) {
           small.textContent = isOff
-            ? '0 connections hidden · All connections see your active presence.'
-            : '3 connections hidden from discovery · presence stays private.';
+            ? 'Hidden list is empty · Standard presence rules apply during active sessions.'
+            : '3 connections hidden · Presence concealed even during active discovery sessions.';
         }
         if (btn) {
           btn.style.opacity = isOff ? '0.6' : '1';
         }
       } else if (comp === 'verification-status') {
-        const btn = preview.querySelector('button');
-        const isConn = variant.includes('connected');
-        if (btn) {
-          btn.textContent = isConn ? 'LinkedIn Connected ✓' : 'Connect LinkedIn';
-          btn.disabled = isConn;
-          btn.style.backgroundColor = isConn ? '#22b783' : '#0a66c2';
+        const isConnected = !variant.includes('unconnected') && variant.includes('connected');
+        const sub = preview.querySelector('#verify-linkedin-sub, [id$="verify-linkedin-sub"], small');
+        const connectBtn = preview.querySelector('#verify-connect, [id$="verify-connect"]');
+        const disconnectBtn = preview.querySelector('#verify-disconnect, [id$="verify-disconnect"]');
+        const row = preview.querySelector('.verify-row');
+
+        if (sub) {
+          sub.textContent = isConnected ? 'Connected · Public profile linked' : 'Not connected';
+        }
+        if (connectBtn) {
+          connectBtn.classList.toggle('hide', isConnected);
+          connectBtn.style.display = isConnected ? 'none' : 'flex';
+        }
+        if (disconnectBtn) {
+          disconnectBtn.classList.toggle('hide', !isConnected);
+          disconnectBtn.style.display = isConnected ? 'flex' : 'none';
+        }
+        if (row) {
+          row.classList.toggle('is-connected', isConnected);
         }
       } else if (comp === 'toast-notification') {
         const toast = preview.querySelector('#toast, .toast, [data-ds-source-id="toast"]');
@@ -10636,7 +10804,7 @@ function showDesign(key){
       }
     });
   });
- const copyHandler=async(button)=>{
+  const copyHandler=async(button)=>{
   const text=(button.dataset.copy==='token-css')?tokenCss:button.dataset.copy;
   let copied=false;
   try{
