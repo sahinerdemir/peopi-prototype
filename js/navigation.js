@@ -9729,10 +9729,10 @@ const peopiHandoffData = {
     "title": "Notification Activity Item",
     "category": "Cards & Lists",
     "sourceScreen": "Notifications (`#activity`)",
-    "purpose": "Notification feed card with portrait avatar, relative timestamp, and inline accept/decline action triggers.",
-    "tokens": "Surface radius: 20pt · Padding: 16pt · Decision buttons: 44pt height",
+    "purpose": "Notification feed card with 46pt portrait avatar, explicit name/time header with flexible title column and right-aligned timestamp, subtitle, and inline 44pt accept/decline action triggers.",
+    "tokens": "Surface radius: 20pt · Padding: 16pt · Avatar: 46×46pt circular · Header: display flex, justify-content space-between, gap 10pt · Title: 15pt bold (flex: 1, min-width: 0, wrap anywhere) · Timestamp: 11pt semi-bold (flex-shrink: 0, margin-left: auto, right-aligned) · Subtitle: 13pt support · Decision buttons: 44pt minimum height",
     "motion": "Dismissing row leaves on its own (220ms fade); rest of list does not replay entrance.",
-    "flutterSemantics": "`Dismissible` list item with `Semantics(label: \"Connection request from Alex Morgan\")`.",
+    "flutterSemantics": "`Dismissible` list item with `Semantics(label: \"Connection request from Alex Morgan\")`. Header uses `Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Expanded(child: Text(name)), Text(time)])`.",
     "privacy": "Includes personal message snippet if provided in invitation.",
     "serverAuth": "Accept / Decline actions update backend model immediately.",
     "isStatic": true
@@ -10271,7 +10271,7 @@ function normalizeHtmlForReference(rawHtml) {
     .replace(/<p class="ds-specimen-feedback"[^>]*>.*?<\/p>/gi, '')
     .replace(/id="ds-specimen-([^"]+)"/g, 'class="peopi-$1"')
     .replace(/\s*data-ds-source-id="[^"]*"/g, '')
-    .replace(/\s*data-original-aria-label="[^"]*"/g, '')
+    .replace(/\s*data-original-[a-z-]+="[^"]*"/g, '')
     .replace(/\b(ds-source-piece|ds-source-root|ds-live-specimen|ds-full-screen)\b/g, '')
     .trim();
 
@@ -10609,6 +10609,175 @@ function generateWebReference(compKey, activeVariantText, card) {
       '}'
     );
   }
+  if (compKey === 'activity-item') {
+    cssLines.push(
+      '',
+      '/* Scoped Notification Activity Item Base Layout & Surface */',
+      '.peopi-component-activity-item .activity-item {',
+      '  position: relative;',
+      '  display: flex;',
+      '  align-items: flex-start;',
+      '  gap: 13px;',
+      '  padding: 16px;',
+      '  background: var(--card);',
+      '  border: 1px solid var(--line);',
+      '  border-radius: var(--radius-lg, 20px);',
+      '  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);',
+      '  color: var(--ink);',
+      '  font-family: inherit;',
+      '  width: 100%;',
+      '  box-sizing: border-box;',
+      '  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;',
+      '}',
+      '.peopi-component-activity-item .activity-item:hover {',
+      '  border-color: color-mix(in srgb, var(--brand, #FF3300) 35%, transparent);',
+      '}',
+      '',
+      '/* Avatar Geometry: 46×46pt Circular Avatar & Image */',
+      '.peopi-component-activity-item .activity-avatar-wrap {',
+      '  position: relative;',
+      '  flex: 0 0 46px;',
+      '  width: 46px;',
+      '  height: 46px;',
+      '}',
+      '.peopi-component-activity-item .activity-avatar {',
+      '  position: relative;',
+      '  width: 46px;',
+      '  height: 46px;',
+      '  border-radius: 50% !important;',
+      '  font-size: 15px;',
+      '  font-weight: 750;',
+      '  display: grid;',
+      '  place-items: center;',
+      '  background: var(--muted);',
+      '  color: var(--ink);',
+      '  overflow: hidden;',
+      '  isolation: isolate;',
+      '}',
+      '.peopi-component-activity-item .activity-avatar > img {',
+      '  position: absolute;',
+      '  inset: 0;',
+      '  width: 100%;',
+      '  height: 100%;',
+      '  object-fit: cover;',
+      '  object-position: center;',
+      '  border-radius: 50% !important;',
+      '  display: block;',
+      '  z-index: 1;',
+      '}',
+      '.peopi-component-activity-item .activity-avatar.system-avatar {',
+      '  background: color-mix(in srgb, var(--brand, #FF3300) 12%, transparent);',
+      '  color: var(--brand, #FF3300);',
+      '}',
+      '.peopi-component-activity-item .activity-avatar.system-avatar i,',
+      '.peopi-component-activity-item .activity-avatar.system-avatar .ph {',
+      '  font-size: 22px;',
+      '  line-height: 1;',
+      '}',
+      '',
+      '/* Flexible Body Layout */',
+      '.peopi-component-activity-item .activity-body,',
+      '.peopi-component-activity-item .activity-content {',
+      '  flex: 1;',
+      '  min-width: 0;',
+      '  display: flex;',
+      '  flex-direction: column;',
+      '}',
+      '',
+      '/* Explicit Name/Time Header: Separated & Right-Aligned Timestamp */',
+      '.peopi-component-activity-item .activity-top-line,',
+      '.peopi-component-activity-item .activity-head {',
+      '  display: flex;',
+      '  align-items: baseline;',
+      '  justify-content: space-between;',
+      '  gap: 10px;',
+      '  width: 100%;',
+      '  margin-bottom: 2px;',
+      '}',
+      '.peopi-component-activity-item .activity-title,',
+      '.peopi-component-activity-item .activity-top-line strong,',
+      '.peopi-component-activity-item .activity-head strong {',
+      '  flex: 1;',
+      '  min-width: 0;',
+      '  font-size: 15px;',
+      '  font-weight: 750;',
+      '  color: var(--ink);',
+      '  line-height: 1.4;',
+      '  overflow-wrap: anywhere;',
+      '  word-break: break-word;',
+      '}',
+      '.peopi-component-activity-item .activity-time {',
+      '  font-size: 11px;',
+      '  font-weight: 600;',
+      '  color: var(--ink-secondary);',
+      '  white-space: nowrap;',
+      '  flex-shrink: 0;',
+      '  margin-left: auto;',
+      '  text-align: right;',
+      '  line-height: 1.4;',
+      '}',
+      '',
+      '/* Subtitle */',
+      '.peopi-component-activity-item .activity-subtitle {',
+      '  font-size: 13px;',
+      '  color: var(--ink-secondary);',
+      '  line-height: 1.45;',
+      '  margin: 0;',
+      '}',
+      '',
+      '/* Decision Action Triggers: 44pt Touch Targets */',
+      '.peopi-component-activity-item .activity-actions {',
+      '  display: grid;',
+      '  grid-template-columns: 1fr 1fr;',
+      '  gap: 8px;',
+      '  margin-top: 10px;',
+      '  width: 100%;',
+      '}',
+      '.peopi-component-activity-item .activity-btn-accept {',
+      '  min-height: 44px;',
+      '  height: 44px;',
+      '  padding: 8px 16px;',
+      '  font-size: 13px;',
+      '  font-weight: 750;',
+      '  font-family: inherit;',
+      '  border-radius: 12px;',
+      '  border: 1px solid var(--brand, #FF3300);',
+      '  background: transparent;',
+      '  color: var(--brand, #FF3300);',
+      '  cursor: pointer;',
+      '  display: flex;',
+      '  align-items: center;',
+      '  justify-content: center;',
+      '  box-sizing: border-box;',
+      '  transition: all 0.15s ease;',
+      '}',
+      '.peopi-component-activity-item .activity-btn-accept:hover {',
+      '  background: color-mix(in srgb, var(--brand, #FF3300) 12%, transparent);',
+      '}',
+      '.peopi-component-activity-item .activity-btn-decline {',
+      '  min-height: 44px;',
+      '  height: 44px;',
+      '  padding: 8px 16px;',
+      '  font-size: 13px;',
+      '  font-weight: 750;',
+      '  font-family: inherit;',
+      '  border-radius: 12px;',
+      '  border: 1px solid var(--line);',
+      '  background: var(--muted);',
+      '  color: var(--ink-secondary);',
+      '  cursor: pointer;',
+      '  display: flex;',
+      '  align-items: center;',
+      '  justify-content: center;',
+      '  box-sizing: border-box;',
+      '  transition: all 0.15s ease;',
+      '}',
+      '.peopi-component-activity-item .activity-btn-decline:hover {',
+      '  color: var(--ink);',
+      '  background: color-mix(in srgb, var(--ink) 8%, var(--muted));',
+      '}'
+    );
+  }
   const cssTokensCode = cssLines.join('\n');
 
   const jsCode = comp.isStatic ? null : (comp.jsCode || ('// Interactive controller for ' + compKey));
@@ -10634,6 +10803,50 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
     htmlCodeB = baseRow.replace('__BTN__', unreadBtn);
     labelA = 'Instance A — Connected';
     labelB = 'Instance B — Unread Notice';
+  }
+
+  if (compKey === 'activity-item') {
+    labelA = 'Instance A — Connection Request';
+    labelB = 'Instance B — System Notice';
+
+    htmlCodeA = [
+      '<div class="activity-item">',
+      '  <div class="activity-avatar-wrap">',
+      '    <div class="activity-avatar demo-photo-avatar">',
+      '      AM',
+      '      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Alex Morgan" loading="lazy">',
+      '    </div>',
+      '  </div>',
+      '  <div class="activity-body">',
+      '    <div class="activity-top-line">',
+      '      <strong class="activity-title">Alex Morgan</strong>',
+      '      <time class="activity-time">10m ago</time>',
+      '    </div>',
+      '    <p class="activity-subtitle">Sent you a connection request · Product Designer</p>',
+      '    <div class="activity-actions">',
+      '      <button type="button" class="activity-btn-accept">Accept</button>',
+      '      <button type="button" class="activity-btn-decline">Decline</button>',
+      '    </div>',
+      '  </div>',
+      '</div>'
+    ].join('\n');
+
+    htmlCodeB = [
+      '<div class="activity-item">',
+      '  <div class="activity-avatar-wrap">',
+      '    <div class="activity-avatar system-avatar">',
+      '      <i class="ph ph-bell" aria-hidden="true"></i>',
+      '    </div>',
+      '  </div>',
+      '  <div class="activity-body">',
+      '    <div class="activity-top-line">',
+      '      <strong class="activity-title">Nearby visibility session ended</strong>',
+      '      <time class="activity-time">1h ago</time>',
+      '    </div>',
+      '    <p class="activity-subtitle">Session ended automatically · 5m presence window expired</p>',
+      '  </div>',
+      '</div>'
+    ].join('\n');
   }
 
   const scriptTag = jsCode ? ('<script>\n' + jsCode + '\n' +
@@ -11841,14 +12054,50 @@ if (typeof window !== 'undefined') {
           }
         }
       } else if (comp === 'activity-item') {
+        const titleEl = preview.querySelector('.activity-title, .activity-top-line strong, .activity-head strong');
         const sub = preview.querySelector('.activity-subtitle, [class*="subtitle"], p');
+        const timeEl = preview.querySelector('.activity-time');
         const actions = preview.querySelector('.activity-actions, [class*="actions"]');
+        const av = preview.querySelector('.activity-avatar');
+
         if (variant.includes('system')) {
-          if (sub) sub.textContent = 'Session ended automatically · 5m presence window expired';
+          if (titleEl && !titleEl.dataset.originalTitle) {
+            titleEl.dataset.originalTitle = titleEl.textContent;
+            titleEl.textContent = 'Nearby visibility session ended';
+          }
+          if (sub && !sub.dataset.originalSub) {
+            sub.dataset.originalSub = sub.textContent;
+            sub.textContent = 'Session ended automatically · 5m presence window expired';
+          }
+          if (timeEl && !timeEl.dataset.originalTime) {
+            timeEl.dataset.originalTime = timeEl.textContent;
+            timeEl.textContent = '1h ago';
+          }
+          if (av && !av.dataset.originalHtml) {
+            av.dataset.originalHtml = av.innerHTML;
+            av.innerHTML = '<i class="ph ph-bell" aria-hidden="true"></i>';
+            av.classList.add('system-avatar');
+          }
           if (actions) actions.style.display = 'none';
         } else {
-          if (sub) sub.textContent = 'Sent you a connection request · Product Designer';
-          if (actions) actions.style.display = 'flex';
+          if (titleEl && titleEl.dataset.originalTitle) {
+            titleEl.textContent = titleEl.dataset.originalTitle;
+            delete titleEl.dataset.originalTitle;
+          }
+          if (sub && sub.dataset.originalSub) {
+            sub.textContent = sub.dataset.originalSub;
+            delete sub.dataset.originalSub;
+          }
+          if (timeEl && timeEl.dataset.originalTime) {
+            timeEl.textContent = timeEl.dataset.originalTime;
+            delete timeEl.dataset.originalTime;
+          }
+          if (av && av.dataset.originalHtml) {
+            av.innerHTML = av.dataset.originalHtml;
+            av.classList.remove('system-avatar');
+            delete av.dataset.originalHtml;
+          }
+          if (actions) actions.style.display = '';
         }
       } else if (comp === 'list') {
         const titleEl = preview.querySelector('.settings-group-title, h4, strong');
