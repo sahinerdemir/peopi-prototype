@@ -2234,7 +2234,798 @@ const compFamilyTitleMap = {
   "component-overlays":"Sheets & Dialogs"
 };
 
-const screenBundleSignature = "40efa5ae-9bf75e8a-37c2f315-a84fd24d";
+const peopiScreensMetadata = {
+  "generatedAt": "2026-10-23T21:41:31.633Z",
+  "viewport": {
+    "width": 393,
+    "height": 852,
+    "scale": 1,
+    "unit": "pt"
+  },
+  "screens": {
+    "closed": {
+      "demoData": {
+        "profileCompletion": 65,
+        "intent": "Meaningful connections",
+        "unreadMessages": 0,
+        "unreadNotifications": 1,
+        "sessionStatus": "idle",
+        "nearbyAggregated": "Activity nearby"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-closed-light.png",
+        "bytes": 148677,
+        "width": 393,
+        "height": 852,
+        "sha1": "798f7b806c43f167ce2e6b8be8ae22fa7d5cb2c3"
+      },
+      "dark": {
+        "filename": "screen-closed-dark.png",
+        "bytes": 132095,
+        "width": 393,
+        "height": 852,
+        "sha1": "891268f34a5716b8afef6e34a907c12d9b389acd"
+      }
+    },
+    "setup": {
+      "demoData": {
+        "selectedMode": "Open networking",
+        "selectedDuration": "1 hour",
+        "approximateRadius": "150m",
+        "privacyDefault": "Invisible until start"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-setup-light.png",
+        "bytes": 53576,
+        "width": 393,
+        "height": 852,
+        "sha1": "a6761542c5426da0c1dd43399023ead73873e29e"
+      },
+      "dark": {
+        "filename": "screen-setup-dark.png",
+        "bytes": 47005,
+        "width": 393,
+        "height": 852,
+        "sha1": "4de9f58beb32d724631e49015f77e17f1f6ccc52"
+      }
+    },
+    "active": {
+      "demoData": {
+        "sessionState": "active",
+        "timerRemaining": "58m",
+        "nearbyCount": 3,
+        "activeMode": "Open networking",
+        "selectedPersonId": 2
+      },
+      "scrollExtent": {
+        "scrollHeight": 0,
+        "clientHeight": 0,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-active-light.png",
+        "bytes": 108218,
+        "width": 393,
+        "height": 852,
+        "sha1": "65e96942b01d994fce7e523c2aa2984620a79215"
+      },
+      "dark": {
+        "filename": "screen-active-dark.png",
+        "bytes": 110845,
+        "width": 393,
+        "height": 852,
+        "sha1": "cc30729fd21825f37c399333d8408e872ee89554"
+      }
+    },
+    "myprofile": {
+      "demoData": {
+        "name": "Your name",
+        "headline": "Product & Experience Designer",
+        "city": "Miami, FL",
+        "profileCompletion": 65,
+        "verified": false,
+        "documentsCount": 3,
+        "experienceCount": 2
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-myprofile-light.png",
+        "bytes": 61817,
+        "width": 393,
+        "height": 852,
+        "sha1": "b2c5d243717d6abc5df54da86e1675484aa91b7b"
+      },
+      "dark": {
+        "filename": "screen-myprofile-dark.png",
+        "bytes": 63082,
+        "width": 393,
+        "height": 852,
+        "sha1": "19763491c7296cdcbbf6e93a47d2560febd95ed0"
+      }
+    },
+    "editprofile": {
+      "demoData": {
+        "editingSection": "all",
+        "bioLength": 38,
+        "maxBioLength": 160,
+        "skillsCount": 4
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-editprofile-light.png",
+        "bytes": 62982,
+        "width": 393,
+        "height": 852,
+        "sha1": "b63418ad96e6fea9718bb53ef5056c2d654cd81d"
+      },
+      "dark": {
+        "filename": "screen-editprofile-dark.png",
+        "bytes": 64928,
+        "width": 393,
+        "height": 852,
+        "sha1": "e03945d0a1e34af7c22a04ea221c05fced2ad7cd"
+      }
+    },
+    "privacy": {
+      "demoData": {
+        "visibilityDefault": "Invisible",
+        "acceptRequests": true,
+        "sessionReminders": true,
+        "hiddenCount": 0,
+        "blockedCount": 0
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-privacy-light.png",
+        "bytes": 77440,
+        "width": 393,
+        "height": 852,
+        "sha1": "7e3df90855b8ce8a5b63f9481539b75a1ba2dd15"
+      },
+      "dark": {
+        "filename": "screen-privacy-dark.png",
+        "bytes": 68199,
+        "width": 393,
+        "height": 852,
+        "sha1": "be559d988a2894543b71a5dcacd6c805a0925123"
+      }
+    },
+    "verification": {
+      "demoData": {
+        "provider": "LinkedIn",
+        "status": "unconnected",
+        "trustTier": "standard",
+        "badgeType": "seal-check"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-verification-light.png",
+        "bytes": 81122,
+        "width": 393,
+        "height": 852,
+        "sha1": "285a5e98925d1b4e27e35239739769ec21d9329c"
+      },
+      "dark": {
+        "filename": "screen-verification-dark.png",
+        "bytes": 71517,
+        "width": 393,
+        "height": 852,
+        "sha1": "f8d66b79cec153636aa44fcccb9c50048b0dec14"
+      }
+    },
+    "appsettings": {
+      "demoData": {
+        "theme": "system",
+        "notificationsEnabled": true,
+        "locationPermission": "approximate",
+        "appVersion": "v0.3.5"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-appsettings-light.png",
+        "bytes": 70209,
+        "width": 393,
+        "height": 852,
+        "sha1": "da52dbec7ae4644c6c4bb68e30c5d114716f011e"
+      },
+      "dark": {
+        "filename": "screen-appsettings-dark.png",
+        "bytes": 61945,
+        "width": 393,
+        "height": 852,
+        "sha1": "c4369de2e170382e7b30eeddaea91bac428dbf5a"
+      }
+    },
+    "onboarding": {
+      "demoData": {
+        "step": 1,
+        "totalSteps": 3,
+        "headline": "Nearby networking, on your terms"
+      },
+      "scrollExtent": {
+        "scrollHeight": 852,
+        "clientHeight": 852,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-onboarding-light.png",
+        "bytes": 319934,
+        "width": 393,
+        "height": 852,
+        "sha1": "3469a981127ab1b870890ff91edf81f37f124d04"
+      },
+      "dark": {
+        "filename": "screen-onboarding-dark.png",
+        "bytes": 333877,
+        "width": 393,
+        "height": 852,
+        "sha1": "5233406667349eeedc68b98fd45fa4588d92affb"
+      }
+    },
+    "welcome": {
+      "demoData": {
+        "authChoices": [
+          "Apple",
+          "Google",
+          "Email"
+        ],
+        "valueProp": "Privacy-first professional proximity"
+      },
+      "scrollExtent": {
+        "scrollHeight": 852,
+        "clientHeight": 852,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-welcome-light.png",
+        "bytes": 161878,
+        "width": 393,
+        "height": 852,
+        "sha1": "9f67965806e32502fd64320c2144cd70f4ba5008"
+      },
+      "dark": {
+        "filename": "screen-welcome-dark.png",
+        "bytes": 156674,
+        "width": 393,
+        "height": 852,
+        "sha1": "35678751715c2a77fa048ac8328eccb1e3e8b0f7"
+      }
+    },
+    "auth": {
+      "demoData": {
+        "mode": "social-or-email",
+        "termsAccepted": true
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-auth-light.png",
+        "bytes": 55523,
+        "width": 393,
+        "height": 852,
+        "sha1": "363d110e12e690ccbe2088577341da6cd15f6ed9"
+      },
+      "dark": {
+        "filename": "screen-auth-dark.png",
+        "bytes": 47010,
+        "width": 393,
+        "height": 852,
+        "sha1": "4f058217385f37a4f878e9842e467d53dee5a6ae"
+      }
+    },
+    "firstprofile": {
+      "demoData": {
+        "name": "",
+        "headline": "",
+        "city": "Miami, FL",
+        "step": "01 / 02"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-firstprofile-light.png",
+        "bytes": 53915,
+        "width": 393,
+        "height": 852,
+        "sha1": "510d3af6ffea175a8052c05f5fa8bf6ac47c5863"
+      },
+      "dark": {
+        "filename": "screen-firstprofile-dark.png",
+        "bytes": 46270,
+        "width": 393,
+        "height": 852,
+        "sha1": "2e18c5c72839ebf26a46eee7f34944a8022a3f81"
+      }
+    },
+    "firstintent": {
+      "demoData": {
+        "selectedIntents": [
+          "Meet new people",
+          "Share ideas & knowledge"
+        ],
+        "step": "02 / 02"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-firstintent-light.png",
+        "bytes": 66167,
+        "width": 393,
+        "height": 852,
+        "sha1": "6e072f4aeedb4c37142c471b69a18d85d101041d"
+      },
+      "dark": {
+        "filename": "screen-firstintent-dark.png",
+        "bytes": 55822,
+        "width": 393,
+        "height": 852,
+        "sha1": "19fc40d23dddc4cfe8cc5e12e21ac0cbc78924e5"
+      }
+    },
+    "permissions": {
+      "demoData": {
+        "locationRequested": "approximate",
+        "notificationsRequested": true
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-permissions-light.png",
+        "bytes": 52723,
+        "width": 393,
+        "height": 852,
+        "sha1": "41cbb42b78949a7119cb7db6c919bb319e59af19"
+      },
+      "dark": {
+        "filename": "screen-permissions-dark.png",
+        "bytes": 45383,
+        "width": 393,
+        "height": 852,
+        "sha1": "a41b8624ebb5344eed1c57a508beb8429f876fb2"
+      }
+    },
+    "recovery": {
+      "demoData": {
+        "method": "email",
+        "status": "idle"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-recovery-light.png",
+        "bytes": 42634,
+        "width": 393,
+        "height": 852,
+        "sha1": "2de13ee93e51a8b141ee079efabeb06e1e3e004a"
+      },
+      "dark": {
+        "filename": "screen-recovery-dark.png",
+        "bytes": 37188,
+        "width": 393,
+        "height": 852,
+        "sha1": "06b6fd3252c68c880c9e46b7b55c9a6aac2e3c95"
+      }
+    },
+    "network": {
+      "demoData": {
+        "activeTab": "connections",
+        "connectionCount": 2,
+        "requestCount": 1,
+        "filter": "all"
+      },
+      "scrollExtent": {
+        "scrollHeight": 1638,
+        "clientHeight": 715,
+        "maxScrollY": 923,
+        "hasOverflow": true
+      },
+      "light": {
+        "filename": "screen-network-light.png",
+        "bytes": 95412,
+        "width": 393,
+        "height": 852,
+        "sha1": "d55991f10d7444866453c5e20bcd5f084f797da9"
+      },
+      "dark": {
+        "filename": "screen-network-dark.png",
+        "bytes": 95743,
+        "width": 393,
+        "height": 852,
+        "sha1": "9a927b0ffd9068636395171d46ce823cf677a6d4"
+      }
+    },
+    "requests": {
+      "demoData": {
+        "receivedCount": 1,
+        "sentCount": 0,
+        "activeTab": "received"
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-requests-light.png",
+        "bytes": 45373,
+        "width": 393,
+        "height": 852,
+        "sha1": "28d3ce6657614db7d3d84a2489d9d3d8aa3d41a7"
+      },
+      "dark": {
+        "filename": "screen-requests-dark.png",
+        "bytes": 40247,
+        "width": 393,
+        "height": 852,
+        "sha1": "1dd9a811d82eb4802b041bb1a752d380357c2718"
+      }
+    },
+    "activity": {
+      "demoData": {
+        "activeTab": "all",
+        "eventCount": 4
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-activity-light.png",
+        "bytes": 72500,
+        "width": 393,
+        "height": 852,
+        "sha1": "f36102c9e54241860ee1cad0a2a996e13ce17b0a"
+      },
+      "dark": {
+        "filename": "screen-activity-dark.png",
+        "bytes": 64075,
+        "width": 393,
+        "height": 852,
+        "sha1": "2306ee2c14c39eb389a8e5e3975ff1f82874b9b5"
+      }
+    },
+    "messages": {
+      "demoData": {
+        "threadCount": 2,
+        "unreadThreads": 0
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-messages-light.png",
+        "bytes": 73527,
+        "width": 393,
+        "height": 852,
+        "sha1": "5bf23287f559552d635a4486a9661140f41083cc"
+      },
+      "dark": {
+        "filename": "screen-messages-dark.png",
+        "bytes": 68296,
+        "width": 393,
+        "height": 852,
+        "sha1": "8905b4dd9e7115ca20b1e02c02cbe27299372373"
+      }
+    },
+    "conversation": {
+      "demoData": {
+        "peerId": 0,
+        "peerName": "Alex Morgan",
+        "peerHeadline": "Senior Product Designer",
+        "messagesCount": 20,
+        "meetupProximity": "Nearby Coffee Meetup"
+      },
+      "scrollExtent": {
+        "scrollHeight": 881,
+        "clientHeight": 803,
+        "maxScrollY": 78,
+        "hasOverflow": true
+      },
+      "light": {
+        "filename": "screen-conversation-light.png",
+        "bytes": 91418,
+        "width": 393,
+        "height": 852,
+        "sha1": "5565e3084d5c4d14edc294d0723b97b13de41412"
+      },
+      "dark": {
+        "filename": "screen-conversation-dark.png",
+        "bytes": 84087,
+        "width": 393,
+        "height": 852,
+        "sha1": "3aa828a84d68d510ba8fdc4c510e976e7c204273"
+      }
+    },
+    "connectiondetail": {
+      "demoData": {
+        "personId": 0,
+        "name": "Alex Morgan",
+        "headline": "Senior Product Designer · Fintech",
+        "status": "Connected",
+        "connectedSince": "Jun 12, 2025"
+      },
+      "scrollExtent": {
+        "scrollHeight": 2077,
+        "clientHeight": 803,
+        "maxScrollY": 1274,
+        "hasOverflow": true
+      },
+      "light": {
+        "filename": "screen-connectiondetail-light.png",
+        "bytes": 92476,
+        "width": 393,
+        "height": 852,
+        "sha1": "9ac71f2d31980342b847d782e252a287398f8586"
+      },
+      "dark": {
+        "filename": "screen-connectiondetail-dark.png",
+        "bytes": 81149,
+        "width": 393,
+        "height": 852,
+        "sha1": "5c10866480de2bd381d7a8b1f16df6b47661df94"
+      }
+    },
+    "hiddenconnections": {
+      "demoData": {
+        "hiddenCount": 0,
+        "tab": "all"
+      },
+      "scrollExtent": {
+        "scrollHeight": 1753,
+        "clientHeight": 803,
+        "maxScrollY": 950,
+        "hasOverflow": true
+      },
+      "light": {
+        "filename": "screen-hiddenconnections-light.png",
+        "bytes": 99713,
+        "width": 393,
+        "height": 852,
+        "sha1": "1ba30ecf26b1f5961ceb6290e6ad22caff0f7ec6"
+      },
+      "dark": {
+        "filename": "screen-hiddenconnections-dark.png",
+        "bytes": 91292,
+        "width": 393,
+        "height": 852,
+        "sha1": "dcca71abde226fbfbed8b654b353b773af099eb1"
+      }
+    },
+    "blockedaccounts": {
+      "demoData": {
+        "blockedCount": 0
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-blockedaccounts-light.png",
+        "bytes": 53607,
+        "width": 393,
+        "height": 852,
+        "sha1": "c763c24594c3271c15bae63359ceeb333ac38b7a"
+      },
+      "dark": {
+        "filename": "screen-blockedaccounts-dark.png",
+        "bytes": 45680,
+        "width": 393,
+        "height": 852,
+        "sha1": "45532e890e3c825f9d93209e3ce29547966eb428"
+      }
+    },
+    "reportuser": {
+      "demoData": {
+        "targetPersonId": 0,
+        "targetName": "Alex Morgan",
+        "categoriesCount": 4
+      },
+      "scrollExtent": {
+        "scrollHeight": 878,
+        "clientHeight": 803,
+        "maxScrollY": 75,
+        "hasOverflow": true
+      },
+      "light": {
+        "filename": "screen-reportuser-light.png",
+        "bytes": 63295,
+        "width": 393,
+        "height": 852,
+        "sha1": "6ccb90fe0f591135ffd248fb6c73b9a61188ef48"
+      },
+      "dark": {
+        "filename": "screen-reportuser-dark.png",
+        "bytes": 55756,
+        "width": 393,
+        "height": 852,
+        "sha1": "d2846f424086b7d627f028b932cdce27802fb3a3"
+      }
+    },
+    "notifications": {
+      "demoData": {
+        "unreadCount": 1,
+        "totalNotifications": 3
+      },
+      "scrollExtent": {
+        "scrollHeight": 803,
+        "clientHeight": 803,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-notifications-light.png",
+        "bytes": 79370,
+        "width": 393,
+        "height": 852,
+        "sha1": "a0ba8abfc2e995f2422461776197f6a330017763"
+      },
+      "dark": {
+        "filename": "screen-notifications-dark.png",
+        "bytes": 67323,
+        "width": 393,
+        "height": 852,
+        "sha1": "81ef989fe51de8cd0caeb79799d3b22b0ed29ebf"
+      }
+    },
+    "profile": {
+      "demoData": {
+        "personId": 2,
+        "name": "Marcus Vance",
+        "headline": "Lead Architect · Systems",
+        "distance": "45m away",
+        "status": "Connected",
+        "unlockedDocuments": 2
+      },
+      "scrollExtent": {
+        "scrollHeight": 0,
+        "clientHeight": 0,
+        "maxScrollY": 0,
+        "hasOverflow": false
+      },
+      "light": {
+        "filename": "screen-profile-light.png",
+        "bytes": 102471,
+        "width": 393,
+        "height": 852,
+        "sha1": "c2c6cd4979f6d9e7b82fabb2c74ed6934429a458"
+      },
+      "dark": {
+        "filename": "screen-profile-dark.png",
+        "bytes": 74457,
+        "width": 393,
+        "height": 852,
+        "sha1": "e8ce9d95f641026d10cf72b1ffdedabb19d01258"
+      }
+    },
+    "helpsupport": {
+      "demoData": {
+        "faqCategories": [
+          "Getting Started",
+          "Privacy & Safety",
+          "Discovery & Maps",
+          "Connections & Chat"
+        ],
+        "activeFilter": "all"
+      },
+      "scrollExtent": {
+        "scrollHeight": 2292,
+        "clientHeight": 803,
+        "maxScrollY": 1489,
+        "hasOverflow": true
+      },
+      "light": {
+        "filename": "screen-helpsupport-light.png",
+        "bytes": 91122,
+        "width": 393,
+        "height": 852,
+        "sha1": "9c0187b4d100dfba078443d4086a5e1722a10ada"
+      },
+      "dark": {
+        "filename": "screen-helpsupport-dark.png",
+        "bytes": 78343,
+        "width": 393,
+        "height": 852,
+        "sha1": "67a013368dfaed681e34a8e0821ac56558224cd9"
+      }
+    },
+    "aboutpeopi": {
+      "demoData": {
+        "version": "v0.3.5",
+        "mission": "Thoughtful proximity networking without perpetual surveillance"
+      },
+      "scrollExtent": {
+        "scrollHeight": 1389,
+        "clientHeight": 803,
+        "maxScrollY": 586,
+        "hasOverflow": true
+      },
+      "light": {
+        "filename": "screen-aboutpeopi-light.png",
+        "bytes": 79044,
+        "width": 393,
+        "height": 852,
+        "sha1": "7264159c7df15d32285d92b6f487cbb8dcf91fcb"
+      },
+      "dark": {
+        "filename": "screen-aboutpeopi-dark.png",
+        "bytes": 66894,
+        "width": 393,
+        "height": 852,
+        "sha1": "8083dad1cc808a50c649aa13d5be305a3f370d81"
+      }
+    }
+  }
+};
+
+const screenBundleSignature = "219d453f-48e6f120-a8181e47-ad4316d7";
 
 function generateScreenAiBrief(screenId) {
   const screen = peopiScreenRegistry[screenId];
@@ -2287,8 +3078,16 @@ ${(contract.actions || [
 ---
 
 ## 2. Screen Layout & Viewport Geometry
-- **Standard Mobile Viewport:** 393 × 852 pt (iPhone 16 baseline / logical density 1pt = 1dp at 1x density).
+- **Standard Mobile Viewport:** 393 × 852 pt (Logical pt at 1x density, screen content cleanly separated from external device frame).
 - **Route Architecture:** \`${screen.routeType.toUpperCase()}\` navigation contract.
+${(() => {
+  const meta = (typeof peopiScreensMetadata !== 'undefined' && peopiScreensMetadata.screens && peopiScreensMetadata.screens[screenId]) || {};
+  const scroll = meta.scrollExtent || { scrollHeight: 852, clientHeight: 852, maxScrollY: 0, hasOverflow: false };
+  const demo = meta.demoData || {};
+  const demoList = Object.entries(demo).map(([k, v]) => '  - **' + k + '**: \`' + (typeof v === 'object' ? JSON.stringify(v) : v) + '\`').join('\n') || '  - None recorded';
+  return '- **Scroll Container Extent:** \`' + scroll.scrollHeight + 'pt\` content height vs \`' + scroll.clientHeight + 'pt\` visible client height (maxScrollY: \`' + scroll.maxScrollY + 'pt\`, hasOverflow: \`' + scroll.hasOverflow + '\`).\n' +
+         '- **Recorded Demo State & Data Bindings:**\n' + demoList;
+})()}
 ${screen.routeType === 'root'
   ? `- **Root Scroller Clearance Rule:** All root-tab scrollers strictly enforce a standard **116pt bottom fade extent** (70pt navigation bar + 16pt floating inset + 30pt content clearance) plus safe end scroll padding. Scrollable views must never clip under the navigation bar.`
   : screen.routeType === 'modal'
@@ -2374,6 +3173,13 @@ function generateScreenManifest(screenId, options = {}) {
       scale: 1,
       unit: "pt"
     },
+    scrollExtent: (typeof peopiScreensMetadata !== 'undefined' && peopiScreensMetadata.screens?.[screenId]?.scrollExtent) || {
+      scrollHeight: 852,
+      clientHeight: 852,
+      maxScrollY: 0,
+      hasOverflow: false
+    },
+    demoData: (typeof peopiScreensMetadata !== 'undefined' && peopiScreensMetadata.screens?.[screenId]?.demoData) || {},
     scrollerRules: {
       bottomClearance: screen.bottomClearance,
       bottomFadeExtentPt: screen.routeType === 'root' ? 116 : 34
@@ -2383,12 +3189,16 @@ function generateScreenManifest(screenId, options = {}) {
         path: `screenshots/screen-${screenId}-light.png`,
         width: 393,
         height: 852,
+        bytes: peopiScreensMetadata?.screens?.[screenId]?.light?.bytes,
+        sha1: peopiScreensMetadata?.screens?.[screenId]?.light?.sha1,
         theme: "light"
       },
       dark: {
         path: `screenshots/screen-${screenId}-dark.png`,
         width: 393,
         height: 852,
+        bytes: peopiScreensMetadata?.screens?.[screenId]?.dark?.bytes,
+        sha1: peopiScreensMetadata?.screens?.[screenId]?.dark?.sha1,
         theme: "dark"
       }
     },
@@ -2561,10 +3371,11 @@ async function downloadScreenImplementationZip(screenId) {
   ];
   await Promise.all(brandFiles.map(path => addBinaryFile(path, path)));
 
-  // 7. Screen screenshots (Light and Dark)
+  // 7. Screen screenshots (Light and Dark) & metadata
   await Promise.all([
     addBinaryFile(`screenshots/screen-${screenId}-light.png`, `assets/screens/screen-${screenId}-light.png`),
-    addBinaryFile(`screenshots/screen-${screenId}-dark.png`, `assets/screens/screen-${screenId}-dark.png`)
+    addBinaryFile(`screenshots/screen-${screenId}-dark.png`, `assets/screens/screen-${screenId}-dark.png`),
+    addTextFile(`screenshots/metadata.json`, `assets/screens/metadata.json`)
   ]);
 
   // 8. Deduplicated component briefs & variant-keyed screenshots
