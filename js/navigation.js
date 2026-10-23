@@ -9975,10 +9975,13 @@ function openOverview(viewId){
     'roadmap': 'strategy',
     'how-it-works': 'user-journeys',
     'sitemap': 'user-journeys',
-    'validation-plan': 'validation'
+    'validation-plan': 'validation',
+    'how-i-built-peopi-with-ai': 'built-with-ai',
+    'ai': 'built-with-ai',
+    'behind-the-build': 'built-with-ai'
   };
   if(aliases[viewId]) viewId = aliases[viewId];
-  const views=['intro','problem','strategy','audience','scope-rules','user-journeys','validation'];
+  const views=['intro','problem','strategy','audience','scope-rules','user-journeys','validation','built-with-ai'];
   if(!views.includes(viewId)){
     console.warn('Overview view not found:', viewId);
     return;
