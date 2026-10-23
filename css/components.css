@@ -11166,3 +11166,448 @@
     padding-top: 16px;
   }
 }
+
+/* ==========================================================================
+   Component Workbench (Phase 03) — Two-Column Desktop & Fluid Mobile Layout
+   ========================================================================== */
+
+.ds-workbench-card {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 28px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ds-workbench-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.ds-workbench-card--wide {
+  grid-template-columns: 48% 52%;
+}
+
+/* Left Column: Live Specimen Stage (Desktop) */
+.ds-workbench-preview-col {
+  grid-column: 1;
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 200px;
+  box-sizing: border-box;
+}
+
+.ds-workbench-stage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e2e8f0;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.02em;
+}
+
+.ds-workbench-stage-header span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ds-workbench-preview-viewport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 120px;
+}
+
+.ds-workbench-preview-viewport .ds-live-specimen {
+  margin: 0 auto;
+}
+
+/* Right Column: Information, Controls, Notes & Code */
+.ds-workbench-info-col {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.ds-workbench-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ds-workbench-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ds-workbench-title {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  color: #111827 !important;
+  margin: 0 !important;
+}
+
+.ds-classification-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 9999px;
+}
+
+.ds-classification-badge.product {
+  background: rgba(255, 51, 0, 0.08);
+  color: #ff3300;
+  border: 1px solid rgba(255, 51, 0, 0.22);
+}
+
+.ds-classification-badge.common {
+  background: rgba(71, 85, 105, 0.08);
+  color: #475569;
+  border: 1px solid rgba(71, 85, 105, 0.22);
+}
+
+.ds-workbench-source {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-workbench-source strong {
+  color: #334155;
+  font-weight: 600;
+}
+
+.ds-workbench-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 4px 0 0;
+}
+
+/* Interactive Controls (Order 2 on Mobile) */
+.ds-workbench-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.ds-controls-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ds-variant-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ds-variant-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.ds-variant-btn:hover {
+  border-color: #94a3b8;
+  background: #f1f5f9;
+}
+
+.ds-variant-btn.active {
+  background: #ff3300;
+  border-color: #ff3300;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(255, 51, 0, 0.28);
+}
+
+.ds-variant-btn:focus-visible {
+  ring: 2px solid #ff3300;
+  outline: 2px solid #ff3300;
+  outline-offset: 2px;
+}
+
+/* Notes & Specs (Order 4 on Mobile) */
+.ds-workbench-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+  border-left: 3px solid #ff3300;
+  border-radius: 0 10px 10px 0;
+  padding: 10px 14px;
+}
+
+.ds-notes-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-notes-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ds-notes-text {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Reserved Code Block (Order 5 on Mobile) */
+.ds-workbench-code-box {
+  display: flex;
+  flex-direction: column;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ds-workbench-code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #090d16;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ds-code-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.ds-code-tab {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ds-code-tab.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.ds-code-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ff7655;
+}
+
+.ds-workbench-code-body {
+  padding: 12px 14px;
+}
+
+.ds-workbench-code-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #64748b;
+}
+
+.ds-workbench-code-placeholder i {
+  color: #ff3300;
+  font-size: 15px;
+}
+
+/* Dark Mode Theme Support */
+#ds-workspace.ds-dark .ds-workbench-card {
+  background: #181c24;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+#ds-workspace.ds-dark .ds-workbench-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+#ds-workspace.ds-dark .ds-workbench-preview-col {
+  background: #11151c;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+#ds-workspace.ds-dark .ds-workbench-stage-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+#ds-workspace.ds-dark .ds-workbench-title {
+  color: #f8fafc !important;
+}
+
+#ds-workspace.ds-dark .ds-workbench-source {
+  color: #94a3b8;
+}
+
+#ds-workspace.ds-dark .ds-workbench-source strong {
+  color: #cbd5e1;
+}
+
+#ds-workspace.ds-dark .ds-workbench-desc {
+  color: #94a3b8;
+}
+
+#ds-workspace.ds-dark .ds-workbench-controls {
+  background: #11151c;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+#ds-workspace.ds-dark .ds-controls-label {
+  color: #94a3b8;
+}
+
+#ds-workspace.ds-dark .ds-variant-btn {
+  background: #222a37;
+  border-color: #374151;
+  color: #cbd5e1;
+}
+
+#ds-workspace.ds-dark .ds-variant-btn:hover {
+  background: #2d3748;
+  border-color: #4b5563;
+}
+
+#ds-workspace.ds-dark .ds-variant-btn.active {
+  background: #ff3300;
+  border-color: #ff3300;
+  color: #ffffff;
+}
+
+#ds-workspace.ds-dark .ds-workbench-notes {
+  background: #11151c;
+  border-left-color: #ff3300;
+}
+
+#ds-workspace.ds-dark .ds-notes-label {
+  color: #cbd5e1;
+}
+
+#ds-workspace.ds-dark .ds-notes-text {
+  color: #94a3b8;
+}
+
+#ds-workspace.ds-dark .ds-workbench-code-box {
+  background: #0b0f17;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+#ds-workspace.ds-dark .ds-workbench-code-head {
+  background: #070a0f;
+  border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   Mobile Workbench Layout (< 900px)
+   Order: 1. Title -> 2. Controls -> 3. Preview -> 4. Notes -> 5. Code
+   ========================================================================== */
+@media (max-width: 900px) {
+  .ds-workbench-card,
+  .ds-workbench-card--wide {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 14px;
+    border-radius: 16px;
+  }
+
+  .ds-workbench-info-col {
+    display: contents; /* Flattens children directly into flex parent */
+  }
+
+  .ds-workbench-header {
+    order: 1;
+  }
+
+  .ds-workbench-controls {
+    order: 2;
+  }
+
+  .ds-workbench-preview-col {
+    order: 3;
+    position: static;
+    width: 100%;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .ds-workbench-notes {
+    order: 4;
+  }
+
+  .ds-workbench-code-box {
+    order: 5;
+  }
+}

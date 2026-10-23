@@ -35,7 +35,21 @@ function renderMessages(){const box=$('#conversation-list');if(!box)return;box.r
     row.append(dot);
   }
   box.append(row);
-});}function renderConversation(){closeConversationMenu();const p=journeyPerson(journey.currentPerson);if(p){journey.readChats=journey.readChats||{};journey.readChats[p.id]=true;saveJourney();updateNotifBadge();}$('#chat-peer').replaceChildren();const chatAvatar=document.createElement('div');chatAvatar.className='initials chat-peer-avatar';paintDemoPortrait(chatAvatar,p.id);const chatCopy=document.createElement('div');chatCopy.className='chat-peer-copy';const chatName=document.createElement('strong');chatName.className='verified-chat-name';chatName.textContent=p.name;if(p.verified)chatName.append(makeVerifiedBadge());const chatRole=document.createElement('small');chatRole.textContent=p.role;chatCopy.append(chatName,chatRole);$('#chat-peer').append(chatAvatar,chatCopy);const box=$('#chat-history');box.replaceChildren();const banner=document.createElement('div');banner.className='chat-meetup-banner';banner.innerHTML='<div class="chat-meetup-badge"><i class="ph ph-map-pin" aria-hidden="true"></i> <span>Nearby Meetup</span></div><p>Coordinate a quick in-person coffee or intro spot nearby. Exact coordinates stay private.</p>';box.append(banner);let msgs=journey.chats[p.id]||[];if(p.id===0&&(!msgs.length||(msgs.length<=5&&msgs[0].text==='Hi! Thanks for connecting. Are you here for the product talks too?'&&!msgs[0].demo))){const t0=Date.now()-42*60000,at=m=>new Date(t0+m*60000).toISOString();msgs=[{text:"Hi! Thanks for connecting. Are you here for the product talks too?",mine:false,time:at(0),demo:true},{text:"Hey! Yes, just finished the design systems session. Really good one.",mine:true,time:at(2),demo:true},{text:"Same. The part about shared tokens across web and mobile was exactly what we're struggling with.",mine:false,time:at(3),demo:true},{text:"Ha, us too. We keep drifting between Figma and the iOS build.",mine:true,time:at(5),demo:true},{text:"How big is your design team?",mine:false,time:at(6),demo:true},{text:"Four designers, two of us on mobile. You?",mine:true,time:at(7),demo:true},{text:"Just me and a freelancer for now. Early-stage startup, we're building a B2B workflow tool.",mine:false,time:at(9),demo:true},{text:"Nice. What stage are you at?",mine:true,time:at(10),demo:true},{text:"Private beta with eight teams. Lots of feedback, not enough research time 😅",mine:false,time:at(12),demo:true},{text:"I know that feeling. We do 30-minute weekly calls with two customers, it keeps us honest.",mine:true,time:at(13),demo:true},{text:"That's a good rhythm. Do you record them?",mine:false,time:at(15),demo:true},{text:"Yes, with consent. We tag clips in a shared board so engineers can watch too.",mine:true,time:at(16),demo:true},{text:"I'd love to see how you structure that board.",mine:false,time:at(18),demo:true},{text:"Happy to show you. It's simple, nothing fancy.",mine:true,time:at(19),demo:true},{text:"Are you staying for the afternoon panel?",mine:false,time:at(21),demo:true},{text:"Planning to. The one on AI in research ops?",mine:true,time:at(22),demo:true},{text:"That's the one. Want to grab a coffee before it starts?",mine:false,time:at(23),demo:true},{text:"Sure. Coffee near the main hall in 15 minutes?",mine:true,time:at(25),demo:true},{text:"Perfect, see you there ☕",mine:false,time:at(26),demo:true},{text:"I'll be the one with the orange notebook 🙂",mine:true,time:at(27),demo:true}];journey.chats[p.id]=msgs;saveJourney()}if(!msgs.length){const n=document.createElement('div');n.className='journey-empty';n.textContent='Say hello. Coordinate a quick nearby meetup.';box.append(n)}let lastDividerTime=null;msgs.forEach((m,idx)=>{const mDate=m.time?new Date(m.time):null;const needDivider=idx===0||(mDate&&lastDividerTime&&(mDate-lastDividerTime>15*60000));if(needDivider&&mDate){const div=document.createElement('div');div.className='chat-time-divider';const span=document.createElement('span');span.textContent='Today · '+mDate.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});div.append(span);box.append(div);lastDividerTime=mDate}const row=document.createElement('div');row.className='chat-row'+(m.mine?' mine':'');const b=document.createElement('div');b.className='chat-bubble'+(m.mine?' mine':'');const textNode=document.createElement('div');textNode.className='chat-bubble-text';textNode.textContent=m.text;b.append(textNode);row.append(b);box.append(row)});box.scrollTop=box.scrollHeight;updateChatBarHeight()}$('#connection-manage-shortcut').addEventListener('click',()=>{const scroller=$('#connectiondetail .journey-body');const target=$('#connection-manage-target');if(!scroller||!target)return;const top=target.getBoundingClientRect().top-scroller.getBoundingClientRect().top+scroller.scrollTop-22;scroller.scrollTo({top:Math.max(0,top),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})});
+});}function buildChatRow(text, isMine) {
+  const row = document.createElement('div');
+  row.className = 'chat-row' + (isMine ? ' mine' : '');
+  const b = document.createElement('div');
+  b.className = 'chat-bubble' + (isMine ? ' mine' : '');
+  const textNode = document.createElement('div');
+  textNode.className = 'chat-bubble-text';
+  textNode.textContent = text;
+  b.append(textNode);
+  row.append(b);
+  return row;
+}
+window.buildChatRow = buildChatRow;
+
+function renderConversation(){closeConversationMenu();const p=journeyPerson(journey.currentPerson);if(p){journey.readChats=journey.readChats||{};journey.readChats[p.id]=true;saveJourney();updateNotifBadge();}$('#chat-peer').replaceChildren();const chatAvatar=document.createElement('div');chatAvatar.className='initials chat-peer-avatar';paintDemoPortrait(chatAvatar,p.id);const chatCopy=document.createElement('div');chatCopy.className='chat-peer-copy';const chatName=document.createElement('strong');chatName.className='verified-chat-name';chatName.textContent=p.name;if(p.verified)chatName.append(makeVerifiedBadge());const chatRole=document.createElement('small');chatRole.textContent=p.role;chatCopy.append(chatName,chatRole);$('#chat-peer').append(chatAvatar,chatCopy);const box=$('#chat-history');box.replaceChildren();const banner=document.createElement('div');banner.className='chat-meetup-banner';banner.innerHTML='<div class="chat-meetup-badge"><i class="ph ph-map-pin" aria-hidden="true"></i> <span>Nearby Meetup</span></div><p>Coordinate a quick in-person coffee or intro spot nearby. Exact coordinates stay private.</p>';box.append(banner);let msgs=journey.chats[p.id]||[];if(p.id===0&&(!msgs.length||(msgs.length<=5&&msgs[0].text==='Hi! Thanks for connecting. Are you here for the product talks too?'&&!msgs[0].demo))){const t0=Date.now()-42*60000,at=m=>new Date(t0+m*60000).toISOString();msgs=[{text:"Hi! Thanks for connecting. Are you here for the product talks too?",mine:false,time:at(0),demo:true},{text:"Hey! Yes, just finished the design systems session. Really good one.",mine:true,time:at(2),demo:true},{text:"Same. The part about shared tokens across web and mobile was exactly what we're struggling with.",mine:false,time:at(3),demo:true},{text:"Ha, us too. We keep drifting between Figma and the iOS build.",mine:true,time:at(5),demo:true},{text:"How big is your design team?",mine:false,time:at(6),demo:true},{text:"Four designers, two of us on mobile. You?",mine:true,time:at(7),demo:true},{text:"Just me and a freelancer for now. Early-stage startup, we're building a B2B workflow tool.",mine:false,time:at(9),demo:true},{text:"Nice. What stage are you at?",mine:true,time:at(10),demo:true},{text:"Private beta with eight teams. Lots of feedback, not enough research time 😅",mine:false,time:at(12),demo:true},{text:"I know that feeling. We do 30-minute weekly calls with two customers, it keeps us honest.",mine:true,time:at(13),demo:true},{text:"That's a good rhythm. Do you record them?",mine:false,time:at(15),demo:true},{text:"Yes, with consent. We tag clips in a shared board so engineers can watch too.",mine:true,time:at(16),demo:true},{text:"I'd love to see how you structure that board.",mine:false,time:at(18),demo:true},{text:"Happy to show you. It's simple, nothing fancy.",mine:true,time:at(19),demo:true},{text:"Are you staying for the afternoon panel?",mine:false,time:at(21),demo:true},{text:"Planning to. The one on AI in research ops?",mine:true,time:at(22),demo:true},{text:"That's the one. Want to grab a coffee before it starts?",mine:false,time:at(23),demo:true},{text:"Sure. Coffee near the main hall in 15 minutes?",mine:true,time:at(25),demo:true},{text:"Perfect, see you there ☕",mine:false,time:at(26),demo:true},{text:"I'll be the one with the orange notebook 🙂",mine:true,time:at(27),demo:true}];journey.chats[p.id]=msgs;saveJourney()}if(!msgs.length){const n=document.createElement('div');n.className='journey-empty';n.textContent='Say hello. Coordinate a quick nearby meetup.';box.append(n)}let lastDividerTime=null;msgs.forEach((m,idx)=>{const mDate=m.time?new Date(m.time):null;const needDivider=idx===0||(mDate&&lastDividerTime&&(mDate-lastDividerTime>15*60000));if(needDivider&&mDate){const div=document.createElement('div');div.className='chat-time-divider';const span=document.createElement('span');span.textContent='Today · '+mDate.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});div.append(span);box.append(div);lastDividerTime=mDate}const row=buildChatRow(m.text, m.mine);box.append(row);});box.scrollTop=box.scrollHeight;updateChatBarHeight()}$('#connection-manage-shortcut').addEventListener('click',()=>{const scroller=$('#connectiondetail .journey-body');const target=$('#connection-manage-target');if(!scroller||!target)return;const top=target.getBoundingClientRect().top-scroller.getBoundingClientRect().top+scroller.scrollTop-22;scroller.scrollTo({top:Math.max(0,top),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})});
 function updateChatBarHeight(){const f=$('#chat-composer-wrap')||$('#chat-form');if(!f)return;const h=f.getBoundingClientRect().height;$('#conversation').style.setProperty('--chat-bar-height',Math.round(h)+'px')}
 $('#chat-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#chat-form').requestSubmit()}});
 $('#chat-form').addEventListener('submit',e=>{e.preventDefault();const t=$('#chat-input').value.trim();if(!t)return;if(!journey.connections.includes(journey.currentPerson)){toast('Connect before sending a message');return}(journey.chats[journey.currentPerson]??=[]).push({text:t,mine:true,time:new Date().toISOString()});$('#chat-input').value='';saveJourney();renderConversation()});
@@ -553,6 +567,60 @@ function formatActivityTime(ts){
   return y+'y ago';
 }
 
+function buildActivityItem(it, onAccept, onDecline) {
+  const card = document.createElement('div');
+  card.className = 'activity-item';
+  const avWrap = document.createElement('div');
+  avWrap.className = 'activity-avatar-wrap';
+  const av = document.createElement('div');
+  av.className = 'activity-avatar';
+  if (it.type === 'request') {
+    paintDemoPortrait(av, it.person ? it.person.id : 0);
+    avWrap.append(av);
+  } else if (it.type === 'system') {
+    av.innerHTML = '<i class="ph ph-' + (it.icon || 'bell') + '" aria-hidden="true"></i>';
+    av.classList.add('system-avatar');
+    avWrap.append(av);
+  }
+  const body = document.createElement('div');
+  body.className = 'activity-body';
+  const rowTop = document.createElement('div');
+  rowTop.className = 'activity-top-line';
+  const title = document.createElement('strong');
+  title.className = 'activity-title';
+  title.textContent = it.title || '';
+  const time = document.createElement('time');
+  time.className = 'activity-time';
+  time.textContent = it.time || '';
+  rowTop.append(title, time);
+  body.append(rowTop);
+
+  const sub = document.createElement('p');
+  sub.className = 'activity-subtitle';
+  sub.textContent = it.subtitle || '';
+  body.append(sub);
+
+  if (it.type === 'request') {
+    const acts = document.createElement('div');
+    acts.className = 'activity-actions';
+    const acceptBtn = document.createElement('button');
+    acceptBtn.type = 'button';
+    acceptBtn.className = 'activity-btn-accept';
+    acceptBtn.textContent = 'Accept';
+    if (onAccept) acceptBtn.onclick = onAccept;
+    const declineBtn = document.createElement('button');
+    declineBtn.type = 'button';
+    declineBtn.className = 'activity-btn-decline';
+    declineBtn.textContent = 'Decline';
+    if (onDecline) declineBtn.onclick = onDecline;
+    acts.append(acceptBtn, declineBtn);
+    body.append(acts);
+  }
+  card.append(avWrap, body);
+  return card;
+}
+window.buildActivityItem = buildActivityItem;
+
 function renderActivity(){
   const box=$('#activity-list');if(!box)return;
   box.replaceChildren();
@@ -590,45 +658,9 @@ function renderActivity(){
   }
 
   filtered.forEach(it=>{
-    const card=document.createElement('div');
-    card.className='activity-item';
-    const avWrap=document.createElement('div');
-    avWrap.className='activity-avatar-wrap';
-    const av=document.createElement('div');
-    av.className='activity-avatar';
+    let onAccept=null, onDecline=null;
     if(it.type==='request'){
-      paintDemoPortrait(av,it.person.id);
-      avWrap.append(av);
-    }else if(it.type==='system'){
-      av.innerHTML='<i class="ph ph-'+it.icon+'" aria-hidden="true"></i>';
-      av.classList.add('system-avatar');
-      avWrap.append(av);
-    }
-    const body=document.createElement('div');
-    body.className='activity-body';
-    const rowTop=document.createElement('div');
-    rowTop.className='activity-top-line';
-    const title=document.createElement('strong');
-    title.className='activity-title';
-    title.textContent=it.title;
-    const time=document.createElement('time');
-    time.className='activity-time';
-    time.textContent=it.time;
-    rowTop.append(title,time);
-    body.append(rowTop);
-
-    if(it.type==='request'){
-      const sub=document.createElement('p');
-      sub.className='activity-subtitle';
-      sub.textContent=it.subtitle;
-      body.append(sub);
-      const acts=document.createElement('div');
-      acts.className='activity-actions';
-      const acceptBtn=document.createElement('button');
-      acceptBtn.type='button';
-      acceptBtn.className='activity-btn-accept';
-      acceptBtn.textContent='Accept';
-      acceptBtn.onclick=(e)=>{
+      onAccept=(e)=>{
         e.stopPropagation();
         journey.connections.push(it.person.id);
         journey.connectionDates={...(journey.connectionDates||{}),[it.person.id]:new Date().toISOString().slice(0,10)};
@@ -641,11 +673,7 @@ function renderActivity(){
         updateNotifBadge();
         toast('Connected with '+journeyPerson(it.person.id).name);
       };
-      const declineBtn=document.createElement('button');
-      declineBtn.type='button';
-      declineBtn.className='activity-btn-decline';
-      declineBtn.textContent='Decline';
-      declineBtn.onclick=(e)=>{
+      onDecline=(e)=>{
         e.stopPropagation();
         delete journey.requests[it.person.id];
         saveJourney();
@@ -654,17 +682,13 @@ function renderActivity(){
         updateNotifBadge();
         toast('Request declined');
       };
-      acts.append(acceptBtn,declineBtn);
-      body.append(acts);
+    }
+    const card=buildActivityItem(it, onAccept, onDecline);
+    if(it.type==='request'){
       card.onclick=()=>{journey.requestTab='received';go('requests')};
     }else if(it.type==='system'){
-      const sub=document.createElement('p');
-      sub.className='activity-subtitle';
-      sub.textContent=it.subtitle;
-      body.append(sub);
       card.onclick=()=>{if(it.target)go(it.target)};
     }
-    card.append(avWrap,body);
     box.append(card);
   });
 }

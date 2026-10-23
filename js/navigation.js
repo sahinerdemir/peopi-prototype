@@ -272,14 +272,14 @@ const dsData={
 };
 
 const dsCatalog=[
-  {"key":"component-actions","title":"Buttons & Actions","members":["primary-action","quiet-action","icon-button","fab"],"group":"Components"},
-  {"key":"component-forms","title":"Inputs & Selection","members":["form-group","text-field","search-field","radio","session-duration","switch","discovery-filter"],"group":"Components"},
+  {"key":"component-actions","title":"Buttons & Actions","members":["primary-action","quiet-action","icon-button","fab","social-auth","destructive-action"],"group":"Components"},
+  {"key":"component-forms","title":"Inputs & Selection","members":["form-group","text-field","search-field","radio","session-duration","switch","intent-choice","skills-chip-input","discovery-filter"],"group":"Components"},
   {"key":"component-navigation","title":"Navigation & Tabs","members":["bottom-nav","tabs","request-tabs","app-bar"],"group":"Components"},
   {"key":"component-cards","title":"Cards & Lists","members":["profile-card","network-row","activity-item","list"],"group":"Components"},
   {"key":"component-profile","title":"Profile & Identity","members":["identity-card","avatar","chip","profile-progress","profile-menu","content-section","verified-badge","profile-documents"],"group":"Components"},
   {"key":"component-connections","title":"Connections & Chat","members":["connection-request","chat-bubble","chat-composer"],"group":"Components"},
-  {"key":"component-privacy","title":"Privacy & Feedback","members":["privacy","privacy-row","verification-status","empty-state"],"group":"Components"},
-  {"key":"component-overlays","title":"Sheets & Dialogs","members":["sheet","dialog"],"group":"Components"}
+  {"key":"component-privacy","title":"Privacy & Feedback","members":["privacy","privacy-row","verification-status","toast-notification","session-alert","verification-step","empty-state"],"group":"Components"},
+  {"key":"component-overlays","title":"Sheets & Dialogs","members":["sheet","dialog","exp-sheet","doc-sheet"],"group":"Components"}
 ];
 const dsCatalogTitles=Object.fromEntries(dsCatalog.map(x=>[x.key,[x.title,'Existing Peopi components · screen sources and reusable variants.']]));
 dsData['icons-library']=['Icons & Iconography','Shared Phosphor icon library and usage rules.'];
@@ -9461,80 +9461,282 @@ function showDesign(key){
  };
  Object.assign(content,dsExpanded);
 
- const catalogSection=(title,sourceScreen,body,description='')=>{
-  if(typeof body==='undefined'&&typeof sourceScreen==='string'&&sourceScreen.includes('<')){
-   body=sourceScreen;
-   sourceScreen='';
-  }
-  let cleanTitle=(title||'').replace(/\s*·\s*SCREENS$/i,'').trim();
-  if(!sourceScreen&&cleanTitle.includes(' · ')){
-   const parts=cleanTitle.split(' · ');
-   sourceScreen=parts[0].trim();
-   cleanTitle=parts.slice(1).join(' · ').trim();
-  }
-  const metaHtml=sourceScreen?`<p class="ds-specimen-meta">Used in: ${sourceScreen}</p>`:'';
-  const descHtml=description?`<p class="ds-specimen-desc">${description}</p>`:'';
-  return `<article class="ds-panel"><div class="ds-specimen-head"><h2 class="ds-specimen-title">${cleanTitle}</h2>${metaHtml}</div>${descHtml}${body}</article>`;
- };
- const specTable=(rows)=>'<table class="ds-spec-table"><thead><tr><th>Property</th><th>Guideline</th></tr></thead><tbody>'+rows.map(([a,b])=>'<tr><td>'+a+'</td><td>'+b+'</td></tr>').join('')+'</tbody></table>';
- const sampleIcon=(name)=>'<i class="ph ph-'+phIconName(name)+'" aria-hidden="true"></i>';
- const samples={};
- samples['icons-library']=()=>catalogSection('Phosphor Icons — Regular · 96 icons','<p class="ds-icon-intro">Peopi uses the free, open-source Phosphor Icons family. The names below are native Phosphor identifiers, not Lucide aliases.</p><div class="ds-icons-grid"><div class="ds-icon-tile" title="compass"><i class="ph ph-compass" aria-hidden="true"></i><span>compass</span></div><div class="ds-icon-tile" title="map-pin"><i class="ph ph-map-pin" aria-hidden="true"></i><span>map-pin</span></div><div class="ds-icon-tile" title="radar"><i class="ph ph-broadcast" aria-hidden="true"></i><span>broadcast</span></div><div class="ds-icon-tile" title="users-three"><i class="ph ph-users-three" aria-hidden="true"></i><span>users-three</span></div><div class="ds-icon-tile" title="user"><i class="ph ph-user" aria-hidden="true"></i><span>user</span></div><div class="ds-icon-tile" title="user-circle-gear"><i class="ph ph-user-circle-gear" aria-hidden="true"></i><span>user-circle-gear</span></div><div class="ds-icon-tile" title="chat-circle"><i class="ph ph-chat-circle" aria-hidden="true"></i><span>chat-circle</span></div><div class="ds-icon-tile" title="bell"><i class="ph ph-bell" aria-hidden="true"></i><span>bell</span></div><div class="ds-icon-tile" title="bell-ringing"><i class="ph ph-bell-ringing" aria-hidden="true"></i><span>bell-ringing</span></div><div class="ds-icon-tile" title="shield-check"><i class="ph ph-shield-check" aria-hidden="true"></i><span>shield-check</span></div><div class="ds-icon-tile" title="shield-warning"><i class="ph ph-shield-warning" aria-hidden="true"></i><span>shield-warning</span></div><div class="ds-icon-tile" title="eye"><i class="ph ph-eye" aria-hidden="true"></i><span>eye</span></div><div class="ds-icon-tile" title="eye-slash"><i class="ph ph-eye-slash" aria-hidden="true"></i><span>eye-slash</span></div><div class="ds-icon-tile" title="lock"><i class="ph ph-lock" aria-hidden="true"></i><span>lock</span></div><div class="ds-icon-tile" title="seal-check"><i class="ph ph-seal-check" aria-hidden="true"></i><span>seal-check</span></div><div class="ds-icon-tile" title="handshake"><i class="ph ph-handshake" aria-hidden="true"></i><span>handshake</span></div><div class="ds-icon-tile" title="gear"><i class="ph ph-gear" aria-hidden="true"></i><span>gear</span></div><div class="ds-icon-tile" title="sliders-horizontal"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i><span>sliders-horizontal</span></div><div class="ds-icon-tile" title="magnifying-glass"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><span>magnifying-glass</span></div><div class="ds-icon-tile" title="funnel"><i class="ph ph-funnel" aria-hidden="true"></i><span>funnel</span></div><div class="ds-icon-tile" title="clock"><i class="ph ph-clock" aria-hidden="true"></i><span>clock</span></div><div class="ds-icon-tile" title="camera"><i class="ph ph-camera" aria-hidden="true"></i><span>camera</span></div><div class="ds-icon-tile" title="envelope"><i class="ph ph-envelope" aria-hidden="true"></i><span>envelope</span></div><div class="ds-icon-tile" title="link"><i class="ph ph-link" aria-hidden="true"></i><span>link</span></div><div class="ds-icon-tile" title="check"><i class="ph ph-check" aria-hidden="true"></i><span>check</span></div><div class="ds-icon-tile" title="check-circle"><i class="ph ph-check-circle" aria-hidden="true"></i><span>check-circle</span></div><div class="ds-icon-tile" title="warning-circle"><i class="ph ph-warning-circle" aria-hidden="true"></i><span>warning-circle</span></div><div class="ds-icon-tile" title="info"><i class="ph ph-info" aria-hidden="true"></i><span>info</span></div><div class="ds-icon-tile" title="arrow-left"><i class="ph ph-arrow-left" aria-hidden="true"></i><span>arrow-left</span></div><div class="ds-icon-tile" title="arrow-right"><i class="ph ph-arrow-right" aria-hidden="true"></i><span>arrow-right</span></div><div class="ds-icon-tile" title="arrow-up-right"><i class="ph ph-arrow-up-right" aria-hidden="true"></i><span>arrow-up-right</span></div><div class="ds-icon-tile" title="caret-down"><i class="ph ph-caret-down" aria-hidden="true"></i><span>caret-down</span></div><div class="ds-icon-tile" title="caret-right"><i class="ph ph-caret-right" aria-hidden="true"></i><span>caret-right</span></div><div class="ds-icon-tile" title="x"><i class="ph ph-x" aria-hidden="true"></i><span>x</span></div><div class="ds-icon-tile" title="plus"><i class="ph ph-plus" aria-hidden="true"></i><span>plus</span></div><div class="ds-icon-tile" title="minus"><i class="ph ph-minus" aria-hidden="true"></i><span>minus</span></div><div class="ds-icon-tile" title="sun"><i class="ph ph-sun" aria-hidden="true"></i><span>sun</span></div><div class="ds-icon-tile" title="moon"><i class="ph ph-moon" aria-hidden="true"></i><span>moon</span></div><div class="ds-icon-tile" title="map-trifold"><i class="ph ph-map-trifold" aria-hidden="true"></i><span>map-trifold</span></div><div class="ds-icon-tile" title="list"><i class="ph ph-list" aria-hidden="true"></i><span>list</span></div><div class="ds-icon-tile" title="sparkle"><i class="ph ph-sparkle" aria-hidden="true"></i><span>sparkle</span></div><div class="ds-icon-tile" title="flag"><i class="ph ph-flag" aria-hidden="true"></i><span>flag</span></div><div class="ds-icon-tile" title="arrows-clockwise"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span>arrows-clockwise</span></div><div class="ds-icon-tile" title="sign-out"><i class="ph ph-sign-out" aria-hidden="true"></i><span>sign-out</span></div><div class="ds-icon-tile" title="scan"><i class="ph ph-scan" aria-hidden="true"></i><span>scan</span></div><div class="ds-icon-tile" title="heart"><i class="ph ph-heart" aria-hidden="true"></i><span>heart</span></div><div class="ds-icon-tile" title="bookmark"><i class="ph ph-bookmark" aria-hidden="true"></i><span>bookmark</span></div><div class="ds-icon-tile" title="share-network"><i class="ph ph-share-network" aria-hidden="true"></i><span>share-network</span></div><div class="ds-icon-tile" title="chat"><i class="ph ph-chat" aria-hidden="true"></i><span>chat</span></div><div class="ds-icon-tile" title="user-plus"><i class="ph ph-user-plus" aria-hidden="true"></i><span>user-plus</span></div><div class="ds-icon-tile" title="globe"><i class="ph ph-globe" aria-hidden="true"></i><span>globe</span></div><div class="ds-icon-tile" title="navigation-arrow"><i class="ph ph-navigation-arrow" aria-hidden="true"></i><span>navigation-arrow</span></div><div class="ds-icon-tile" title="paper-plane-tilt"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i><span>paper-plane-tilt</span></div><div class="ds-icon-tile" title="dots-three"><i class="ph ph-dots-three" aria-hidden="true"></i><span>dots-three</span></div><div class="ds-icon-tile" title="dots-three-vertical"><i class="ph ph-dots-three-vertical" aria-hidden="true"></i><span>dots-three-vertical</span></div><div class="ds-icon-tile" title="house"><i class="ph ph-house" aria-hidden="true"></i><span>house</span></div><div class="ds-icon-tile" title="briefcase"><i class="ph ph-briefcase" aria-hidden="true"></i><span>briefcase</span></div><div class="ds-icon-tile" title="calendar"><i class="ph ph-calendar" aria-hidden="true"></i><span>calendar</span></div><div class="ds-icon-tile" title="calendar-check"><i class="ph ph-calendar-check" aria-hidden="true"></i><span>calendar-check</span></div><div class="ds-icon-tile" title="video-camera"><i class="ph ph-video-camera" aria-hidden="true"></i><span>video-camera</span></div><div class="ds-icon-tile" title="phone"><i class="ph ph-phone" aria-hidden="true"></i><span>phone</span></div><div class="ds-icon-tile" title="check-square"><i class="ph ph-check-square" aria-hidden="true"></i><span>check-square</span></div><div class="ds-icon-tile" title="toggle-left"><i class="ph ph-toggle-left" aria-hidden="true"></i><span>toggle-left</span></div><div class="ds-icon-tile" title="toggle-right"><i class="ph ph-toggle-right" aria-hidden="true"></i><span>toggle-right</span></div><div class="ds-icon-tile" title="shield"><i class="ph ph-shield" aria-hidden="true"></i><span>shield</span></div><div class="ds-icon-tile" title="key"><i class="ph ph-key" aria-hidden="true"></i><span>key</span></div><div class="ds-icon-tile" title="fingerprint"><i class="ph ph-fingerprint" aria-hidden="true"></i><span>fingerprint</span></div><div class="ds-icon-tile" title="warning"><i class="ph ph-warning" aria-hidden="true"></i><span>warning</span></div><div class="ds-icon-tile" title="question"><i class="ph ph-question" aria-hidden="true"></i><span>question</span></div><div class="ds-icon-tile" title="spinner"><i class="ph ph-spinner" aria-hidden="true"></i><span>spinner</span></div><div class="ds-icon-tile" title="arrows-out"><i class="ph ph-arrows-out" aria-hidden="true"></i><span>arrows-out</span></div><div class="ds-icon-tile" title="arrows-in"><i class="ph ph-arrows-in" aria-hidden="true"></i><span>arrows-in</span></div><div class="ds-icon-tile" title="target"><i class="ph ph-target" aria-hidden="true"></i><span>target</span></div><div class="ds-icon-tile" title="crosshair"><i class="ph ph-crosshair" aria-hidden="true"></i><span>crosshair</span></div><div class="ds-icon-tile" title="pulse"><i class="ph ph-pulse" aria-hidden="true"></i><span>pulse</span></div><div class="ds-icon-tile" title="wifi-high"><i class="ph ph-wifi-high" aria-hidden="true"></i><span>wifi-high</span></div><div class="ds-icon-tile" title="link-break"><i class="ph ph-link-break" aria-hidden="true"></i><span>link-break</span></div><div class="ds-icon-tile" title="prohibit"><i class="ph ph-prohibit" aria-hidden="true"></i><span>prohibit</span></div><div class="ds-icon-tile" title="user-minus"><i class="ph ph-user-minus" aria-hidden="true"></i><span>user-minus</span></div><div class="ds-icon-tile" title="users"><i class="ph ph-users" aria-hidden="true"></i><span>users</span></div><div class="ds-icon-tile" title="identification-card"><i class="ph ph-identification-card" aria-hidden="true"></i><span>identification-card</span></div><div class="ds-icon-tile" title="note-pencil"><i class="ph ph-note-pencil" aria-hidden="true"></i><span>note-pencil</span></div><div class="ds-icon-tile" title="trash"><i class="ph ph-trash" aria-hidden="true"></i><span>trash</span></div><div class="ds-icon-tile" title="copy"><i class="ph ph-copy" aria-hidden="true"></i><span>copy</span></div><div class="ds-icon-tile" title="download"><i class="ph ph-download" aria-hidden="true"></i><span>download</span></div><div class="ds-icon-tile" title="upload"><i class="ph ph-upload" aria-hidden="true"></i><span>upload</span></div><div class="ds-icon-tile" title="image"><i class="ph ph-image" aria-hidden="true"></i><span>image</span></div><div class="ds-icon-tile" title="file-text"><i class="ph ph-file-text" aria-hidden="true"></i><span>file-text</span></div><div class="ds-icon-tile" title="folder"><i class="ph ph-folder" aria-hidden="true"></i><span>folder</span></div><div class="ds-icon-tile" title="star"><i class="ph ph-star" aria-hidden="true"></i><span>star</span></div><div class="ds-icon-tile" title="thumbs-up"><i class="ph ph-thumbs-up" aria-hidden="true"></i><span>thumbs-up</span></div><div class="ds-icon-tile" title="smiley"><i class="ph ph-smiley" aria-hidden="true"></i><span>smiley</span></div><div class="ds-icon-tile" title="coffee"><i class="ph ph-coffee" aria-hidden="true"></i><span>coffee</span></div><div class="ds-icon-tile" title="airplane"><i class="ph ph-airplane" aria-hidden="true"></i><span>airplane</span></div><div class="ds-icon-tile" title="car"><i class="ph ph-car" aria-hidden="true"></i><span>car</span></div><div class="ds-icon-tile" title="map-pin-line"><i class="ph ph-map-pin-line" aria-hidden="true"></i><span>map-pin-line</span></div></div>')+section('Usage, sizing & accessibility','Shared icon rules','<p><strong>Source: Phosphor Icons (Regular).</strong> Use native Phosphor icon names, a consistent 20–24px optical size, semantic foreground colors, and optional Fill / Duotone variants for selected states. Icon-only controls need accessible labels and at least a 44×44px touch target. Icons are served by the Phosphor web font.</p>');
+  const catalogSection=(title,sourceScreen,body,description='',key='',a11y='',variants=[])=>{
+   if(typeof body==='undefined'&&typeof sourceScreen==='string'&&sourceScreen.includes('<')){
+    body=sourceScreen;
+    sourceScreen='';
+   }
+   let cleanTitle=(title||'').replace(/\s*·\s*SCREENS$/i,'').trim();
+   if(!sourceScreen&&cleanTitle.includes(' · ')){
+    const parts=cleanTitle.split(' · ');
+    sourceScreen=parts[0].trim();
+    cleanTitle=parts.slice(1).join(' · ').trim();
+   }
+   const compKey=key||cleanTitle.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+   
+   const variantMap={
+    'primary-action':['Default','Hover','Disabled','Loading'],
+    'quiet-action':['Default','Hover','Disabled'],
+    'icon-button':['Default','Active'],
+    'fab':['Default','Raised'],
+    'social-auth':['Both Providers','Google Only','Apple Only'],
+    'destructive-action':['Default','Hover / Warning','Disabled'],
+    'switch':['Enabled (On)','Disabled (Off)'],
+    'intent-choice':['Selected','Unselected'],
+    'skills-chip-input':['Default (4 Chips)','Active Focus','Empty State'],
+    'discovery-filter':['All Nearby','Engineering','Design','Founders'],
+    'bottom-nav':['Discover Active','Connections Active','Profile Active'],
+    'tabs':['Map View','List View'],
+    'request-tabs':['Received Requests','Sent Requests'],
+    'profile-card':['Anonymous Preview','Connected Peer'],
+    'network-row':['Connected','Unread Message'],
+    'activity-item':['Connection Request','System Notice'],
+    'chat-bubble':['Full Thread','Received Only','Sent Only'],
+    'session-alert':['Visible (5m Warning)','Dismissed'],
+    'toast-notification':['Information','Success','Warning'],
+    'privacy':['Invisible (Default)','Visible (Open)'],
+    'privacy-row':['Hidden On','Hidden Off'],
+    'verification-status':['Unconnected','Connected & Verified'],
+    'verification-step':['Standard Guidelines','Expanded View'],
+    'sheet':['Anonymous Preview','Connected Profile'],
+    'dialog':['Go Invisible?','Sign Out?'],
+    'exp-sheet':['Add Experience','Edit Experience'],
+    'doc-sheet':['Standard PDF','Locked Document']
+   };
+   
+   const activeVariants=variants.length?variants:(variantMap[compKey]||[]);
+   
+   const a11yMap={
+    'primary-action':'Touch target: 50pt height (exceeds 44pt minimum) · Focus ring: 3px solid #FF3300 · WCAG AA contrast',
+    'quiet-action':'Touch target: 44pt minimum · Accessible contrast against light and dark stage surfaces',
+    'icon-button':'Explicit aria-label provided on button · 44×44pt bounding hit box',
+    'fab':'Floating elevation with 56×56pt bounding hit box · High contrast iconography',
+    'social-auth':'WCAG AA contrast · Native brand vector SVGs with aria-hidden · 48pt touch height',
+    'destructive-action':'Semantic danger color tokens · Destructive action confirmation semantics · 44pt touch height',
+    'switch':'Native hidden checkbox retains semantic checked state · Custom accessible slider track',
+    'intent-choice':'Role checkbox with visual indicator · 48pt touch height · Clear selected contrast',
+    'skills-chip-input':'Dismissible chip tags with aria-label · 16pt input preventing iOS zoom · High contrast pills',
+    'toast-notification':'Role status · aria-live polite · High-contrast translucent surface with instantaneous fade',
+    'session-alert':'Role alertdialog · Distinct stay open and dismiss action triggers · High priority contrast',
+    'verification-step':'High-legibility informative copy · Clear verified trust signals · WCAG AA contrast',
+    'bottom-nav':'Standard root tab navigation · 44pt minimum targets with 116pt bottom clearance',
+    'sheet':'Role dialog with aria-modal · Accessible grab handle · Trap focus with smooth sheet pan gesture',
+    'exp-sheet':'Full bottom modal sheet · Form validation on role/company inputs · Focus trap',
+    'doc-sheet':'File attachment bottom sheet · Encrypted upload preview · Clear lock indicators'
+   };
+   
+   const defaultA11y=a11y||a11yMap[compKey]||'WCAG 2.1 Level AA compliant · 44pt minimum touch area · Theme-aware tokens';
+   const isWide=['sheet','dialog','exp-sheet','doc-sheet','bottom-nav','app-bar','discovery-filter'].includes(compKey);
+   
+   let controlsHtml='';
+   if(activeVariants.length){
+    controlsHtml=`<div class="ds-workbench-controls">
+     <span class="ds-controls-label"><i class="ph ph-sliders"></i> Interactive Variants</span>
+     <div class="ds-variant-pill-group">
+      ${activeVariants.map((v,i)=>`<button type="button" class="ds-variant-btn${i===0?' active':''}" data-variant="${v.toLowerCase().replace(/[^a-z0-9]+/g,'-')}">${v}</button>`).join('')}
+     </div>
+    </div>`;
+   }
+   
+   const metaHtml=sourceScreen?`<p class="ds-workbench-source"><i class="ph ph-arrow-elbow-down-right"></i> Sourced from: <strong>${sourceScreen}</strong></p>`:'';
+   const descHtml=description?`<p class="ds-workbench-desc">${description}</p>`:'';
+   
+   return `<article class="ds-workbench-card${isWide?' ds-workbench-card--wide':''}" data-component="${compKey}">
+    <div class="ds-workbench-preview-col">
+     <div class="ds-workbench-stage-header">
+      <span><i class="ph ph-device-mobile"></i> Mobile Specimen</span>
+      <span><i class="ph ph-circle-half"></i> Theme-Aware</span>
+     </div>
+     <div class="ds-workbench-preview-viewport">
+      ${body}
+     </div>
+    </div>
+    <div class="ds-workbench-info-col">
+     <div class="ds-workbench-header">
+      <div class="ds-workbench-title-row">
+       <h2 class="ds-workbench-title">${cleanTitle}</h2>
+       <span class="ds-classification-badge product">Product Component</span>
+      </div>
+      ${metaHtml}
+      ${descHtml}
+     </div>
+     ${controlsHtml}
+     <div class="ds-workbench-notes">
+      <div class="ds-notes-group">
+       <span class="ds-notes-label"><i class="ph ph-shield-check"></i> Accessibility &amp; Touch Standards</span>
+       <p class="ds-notes-text">${defaultA11y}</p>
+      </div>
+     </div>
+     <div class="ds-workbench-code-box">
+      <div class="ds-workbench-code-head">
+       <div class="ds-code-tabs">
+        <button type="button" class="ds-code-tab active">HTML</button>
+        <button type="button" class="ds-code-tab">CSS Tokens</button>
+       </div>
+       <span class="ds-code-badge">Phase 04 Export Ready</span>
+      </div>
+      <div class="ds-workbench-code-body">
+       <div class="ds-workbench-code-placeholder">
+        <i class="ph ph-code"></i>
+        <span>Code documentation coming in Phase 04</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </article>`;
+  };
+  const specTable=(rows)=>'<table class="ds-spec-table"><thead><tr><th>Property</th><th>Guideline</th></tr></thead><tbody>'+rows.map(([a,b])=>'<tr><td>'+a+'</td><td>'+b+'</td></tr>').join('')+'</tbody></table>';
+  const sampleIcon=(name)=>'<i class="ph ph-'+phIconName(name)+'" aria-hidden="true"></i>';
+  const samples={};
+  samples['icons-library']=()=>catalogSection('Phosphor Icons — Regular · 96 icons','<p class="ds-icon-intro">Peopi uses the free, open-source Phosphor Icons family. The names below are native Phosphor identifiers, not Lucide aliases.</p><div class="ds-icons-grid"><div class="ds-icon-tile" title="compass"><i class="ph ph-compass" aria-hidden="true"></i><span>compass</span></div><div class="ds-icon-tile" title="map-pin"><i class="ph ph-map-pin" aria-hidden="true"></i><span>map-pin</span></div><div class="ds-icon-tile" title="radar"><i class="ph ph-broadcast" aria-hidden="true"></i><span>broadcast</span></div><div class="ds-icon-tile" title="users-three"><i class="ph ph-users-three" aria-hidden="true"></i><span>users-three</span></div><div class="ds-icon-tile" title="user"><i class="ph ph-user" aria-hidden="true"></i><span>user</span></div><div class="ds-icon-tile" title="user-circle-gear"><i class="ph ph-user-circle-gear" aria-hidden="true"></i><span>user-circle-gear</span></div><div class="ds-icon-tile" title="chat-circle"><i class="ph ph-chat-circle" aria-hidden="true"></i><span>chat-circle</span></div><div class="ds-icon-tile" title="bell"><i class="ph ph-bell" aria-hidden="true"></i><span>bell</span></div><div class="ds-icon-tile" title="bell-ringing"><i class="ph ph-bell-ringing" aria-hidden="true"></i><span>bell-ringing</span></div><div class="ds-icon-tile" title="shield-check"><i class="ph ph-shield-check" aria-hidden="true"></i><span>shield-check</span></div><div class="ds-icon-tile" title="shield-warning"><i class="ph ph-shield-warning" aria-hidden="true"></i><span>shield-warning</span></div><div class="ds-icon-tile" title="eye"><i class="ph ph-eye" aria-hidden="true"></i><span>eye</span></div><div class="ds-icon-tile" title="eye-slash"><i class="ph ph-eye-slash" aria-hidden="true"></i><span>eye-slash</span></div><div class="ds-icon-tile" title="lock"><i class="ph ph-lock" aria-hidden="true"></i><span>lock</span></div><div class="ds-icon-tile" title="seal-check"><i class="ph ph-seal-check" aria-hidden="true"></i><span>seal-check</span></div><div class="ds-icon-tile" title="handshake"><i class="ph ph-handshake" aria-hidden="true"></i><span>handshake</span></div><div class="ds-icon-tile" title="gear"><i class="ph ph-gear" aria-hidden="true"></i><span>gear</span></div><div class="ds-icon-tile" title="sliders-horizontal"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i><span>sliders-horizontal</span></div><div class="ds-icon-tile" title="magnifying-glass"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><span>magnifying-glass</span></div><div class="ds-icon-tile" title="funnel"><i class="ph ph-funnel" aria-hidden="true"></i><span>funnel</span></div><div class="ds-icon-tile" title="clock"><i class="ph ph-clock" aria-hidden="true"></i><span>clock</span></div><div class="ds-icon-tile" title="camera"><i class="ph ph-camera" aria-hidden="true"></i><span>camera</span></div><div class="ds-icon-tile" title="envelope"><i class="ph ph-envelope" aria-hidden="true"></i><span>envelope</span></div><div class="ds-icon-tile" title="link"><i class="ph ph-link" aria-hidden="true"></i><span>link</span></div><div class="ds-icon-tile" title="check"><i class="ph ph-check" aria-hidden="true"></i><span>check</span></div><div class="ds-icon-tile" title="check-circle"><i class="ph ph-check-circle" aria-hidden="true"></i><span>check-circle</span></div><div class="ds-icon-tile" title="warning-circle"><i class="ph ph-warning-circle" aria-hidden="true"></i><span>warning-circle</span></div><div class="ds-icon-tile" title="info"><i class="ph ph-info" aria-hidden="true"></i><span>info</span></div><div class="ds-icon-tile" title="arrow-left"><i class="ph ph-arrow-left" aria-hidden="true"></i><span>arrow-left</span></div><div class="ds-icon-tile" title="arrow-right"><i class="ph ph-arrow-right" aria-hidden="true"></i><span>arrow-right</span></div><div class="ds-icon-tile" title="arrow-up-right"><i class="ph ph-arrow-up-right" aria-hidden="true"></i><span>arrow-up-right</span></div><div class="ds-icon-tile" title="caret-down"><i class="ph ph-caret-down" aria-hidden="true"></i><span>caret-down</span></div><div class="ds-icon-tile" title="caret-right"><i class="ph ph-caret-right" aria-hidden="true"></i><span>caret-right</span></div><div class="ds-icon-tile" title="x"><i class="ph ph-x" aria-hidden="true"></i><span>x</span></div><div class="ds-icon-tile" title="plus"><i class="ph ph-plus" aria-hidden="true"></i><span>plus</span></div><div class="ds-icon-tile" title="minus"><i class="ph ph-minus" aria-hidden="true"></i><span>minus</span></div><div class="ds-icon-tile" title="sun"><i class="ph ph-sun" aria-hidden="true"></i><span>sun</span></div><div class="ds-icon-tile" title="moon"><i class="ph ph-moon" aria-hidden="true"></i><span>moon</span></div><div class="ds-icon-tile" title="map-trifold"><i class="ph ph-map-trifold" aria-hidden="true"></i><span>map-trifold</span></div><div class="ds-icon-tile" title="list"><i class="ph ph-list" aria-hidden="true"></i><span>list</span></div><div class="ds-icon-tile" title="sparkle"><i class="ph ph-sparkle" aria-hidden="true"></i><span>sparkle</span></div><div class="ds-icon-tile" title="flag"><i class="ph ph-flag" aria-hidden="true"></i><span>flag</span></div><div class="ds-icon-tile" title="arrows-clockwise"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span>arrows-clockwise</span></div><div class="ds-icon-tile" title="sign-out"><i class="ph ph-sign-out" aria-hidden="true"></i><span>sign-out</span></div><div class="ds-icon-tile" title="scan"><i class="ph ph-scan" aria-hidden="true"></i><span>scan</span></div><div class="ds-icon-tile" title="heart"><i class="ph ph-heart" aria-hidden="true"></i><span>heart</span></div><div class="ds-icon-tile" title="bookmark"><i class="ph ph-bookmark" aria-hidden="true"></i><span>bookmark</span></div><div class="ds-icon-tile" title="share-network"><i class="ph ph-share-network" aria-hidden="true"></i><span>share-network</span></div><div class="ds-icon-tile" title="chat"><i class="ph ph-chat" aria-hidden="true"></i><span>chat</span></div><div class="ds-icon-tile" title="user-plus"><i class="ph ph-user-plus" aria-hidden="true"></i><span>user-plus</span></div><div class="ds-icon-tile" title="globe"><i class="ph ph-globe" aria-hidden="true"></i><span>globe</span></div><div class="ds-icon-tile" title="navigation-arrow"><i class="ph ph-navigation-arrow" aria-hidden="true"></i><span>navigation-arrow</span></div><div class="ds-icon-tile" title="paper-plane-tilt"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i><span>paper-plane-tilt</span></div><div class="ds-icon-tile" title="dots-three"><i class="ph ph-dots-three" aria-hidden="true"></i><span>dots-three</span></div><div class="ds-icon-tile" title="dots-three-vertical"><i class="ph ph-dots-three-vertical" aria-hidden="true"></i><span>dots-three-vertical</span></div><div class="ds-icon-tile" title="house"><i class="ph ph-house" aria-hidden="true"></i><span>house</span></div><div class="ds-icon-tile" title="briefcase"><i class="ph ph-briefcase" aria-hidden="true"></i><span>briefcase</span></div><div class="ds-icon-tile" title="calendar"><i class="ph ph-calendar" aria-hidden="true"></i><span>calendar</span></div><div class="ds-icon-tile" title="calendar-check"><i class="ph ph-calendar-check" aria-hidden="true"></i><span>calendar-check</span></div><div class="ds-icon-tile" title="video-camera"><i class="ph ph-video-camera" aria-hidden="true"></i><span>video-camera</span></div><div class="ds-icon-tile" title="phone"><i class="ph ph-phone" aria-hidden="true"></i><span>phone</span></div><div class="ds-icon-tile" title="check-square"><i class="ph ph-check-square" aria-hidden="true"></i><span>check-square</span></div><div class="ds-icon-tile" title="toggle-left"><i class="ph ph-toggle-left" aria-hidden="true"></i><span>toggle-left</span></div><div class="ds-icon-tile" title="toggle-right"><i class="ph ph-toggle-right" aria-hidden="true"></i><span>toggle-right</span></div><div class="ds-icon-tile" title="shield"><i class="ph ph-shield" aria-hidden="true"></i><span>shield</span></div><div class="ds-icon-tile" title="key"><i class="ph ph-key" aria-hidden="true"></i><span>key</span></div><div class="ds-icon-tile" title="fingerprint"><i class="ph ph-fingerprint" aria-hidden="true"></i><span>fingerprint</span></div><div class="ds-icon-tile" title="warning"><i class="ph ph-warning" aria-hidden="true"></i><span>warning</span></div><div class="ds-icon-tile" title="question"><i class="ph ph-question" aria-hidden="true"></i><span>question</span></div><div class="ds-icon-tile" title="spinner"><i class="ph ph-spinner" aria-hidden="true"></i><span>spinner</span></div><div class="ds-icon-tile" title="arrows-out"><i class="ph ph-arrows-out" aria-hidden="true"></i><span>arrows-out</span></div><div class="ds-icon-tile" title="arrows-in"><i class="ph ph-arrows-in" aria-hidden="true"></i><span>arrows-in</span></div><div class="ds-icon-tile" title="target"><i class="ph ph-target" aria-hidden="true"></i><span>target</span></div><div class="ds-icon-tile" title="crosshair"><i class="ph ph-crosshair" aria-hidden="true"></i><span>crosshair</span></div><div class="ds-icon-tile" title="pulse"><i class="ph ph-pulse" aria-hidden="true"></i><span>pulse</span></div><div class="ds-icon-tile" title="wifi-high"><i class="ph ph-wifi-high" aria-hidden="true"></i><span>wifi-high</span></div><div class="ds-icon-tile" title="link-break"><i class="ph ph-link-break" aria-hidden="true"></i><span>link-break</span></div><div class="ds-icon-tile" title="prohibit"><i class="ph ph-prohibit" aria-hidden="true"></i><span>prohibit</span></div><div class="ds-icon-tile" title="user-minus"><i class="ph ph-user-minus" aria-hidden="true"></i><span>user-minus</span></div><div class="ds-icon-tile" title="users"><i class="ph ph-users" aria-hidden="true"></i><span>users</span></div><div class="ds-icon-tile" title="identification-card"><i class="ph ph-identification-card" aria-hidden="true"></i><span>identification-card</span></div><div class="ds-icon-tile" title="note-pencil"><i class="ph ph-note-pencil" aria-hidden="true"></i><span>note-pencil</span></div><div class="ds-icon-tile" title="trash"><i class="ph ph-trash" aria-hidden="true"></i><span>trash</span></div><div class="ds-icon-tile" title="copy"><i class="ph ph-copy" aria-hidden="true"></i><span>copy</span></div><div class="ds-icon-tile" title="download"><i class="ph ph-download" aria-hidden="true"></i><span>download</span></div><div class="ds-icon-tile" title="upload"><i class="ph ph-upload" aria-hidden="true"></i><span>upload</span></div><div class="ds-icon-tile" title="image"><i class="ph ph-image" aria-hidden="true"></i><span>image</span></div><div class="ds-icon-tile" title="file-text"><i class="ph ph-file-text" aria-hidden="true"></i><span>file-text</span></div><div class="ds-icon-tile" title="folder"><i class="ph ph-folder" aria-hidden="true"></i><span>folder</span></div><div class="ds-icon-tile" title="star"><i class="ph ph-star" aria-hidden="true"></i><span>star</span></div><div class="ds-icon-tile" title="thumbs-up"><i class="ph ph-thumbs-up" aria-hidden="true"></i><span>thumbs-up</span></div><div class="ds-icon-tile" title="smiley"><i class="ph ph-smiley" aria-hidden="true"></i><span>smiley</span></div><div class="ds-icon-tile" title="coffee"><i class="ph ph-coffee" aria-hidden="true"></i><span>coffee</span></div><div class="ds-icon-tile" title="airplane"><i class="ph ph-airplane" aria-hidden="true"></i><span>airplane</span></div><div class="ds-icon-tile" title="car"><i class="ph ph-car" aria-hidden="true"></i><span>car</span></div><div class="ds-icon-tile" title="map-pin-line"><i class="ph ph-map-pin-line" aria-hidden="true"></i><span>map-pin-line</span></div></div>')+section('Usage, sizing & accessibility','Shared icon rules','<p><strong>Source: Phosphor Icons (Regular).</strong> Use native Phosphor icon names, a consistent 20–24px optical size, semantic foreground colors, and optional Fill / Duotone variants for selected states. Icon-only controls need accessible labels and at least a 44×44px touch target. Icons are served by the Phosphor web font.</p>');
 
- // Preserve the screen CSS selectors without duplicating live element IDs.
- if(!document.getElementById('ds-screen-source-styles')){
-  const ids=[...document.querySelectorAll('#phone [id]')].map(el=>el.id).concat('phone');
-  const mirrorRules=rules=>[...rules].map(rule=>{
-   if(rule.selectorText){let selector=rule.selectorText;for(const id of ids)selector=selector.replace(new RegExp('#'+id+'(?![\\w-])','g'),id==='phone'?'.ds-live-specimen':'[data-ds-source-id="'+id+'"]');return selector!==rule.selectorText?selector+'{'+rule.style.cssText+'}':''}
-   if(rule.cssRules&&rule.conditionText){const body=mirrorRules(rule.cssRules);return body?'@media '+rule.conditionText+'{'+body+'}':''}return '';
-  }).join('');
-  const sheet=document.createElement('style');sheet.id='ds-screen-source-styles';sheet.textContent=mirrorRules([...document.styleSheets].flatMap(s=>{try{return [...s.cssRules]}catch(e){return []}}));document.head.append(sheet);
- }
- const sourceSpecimen=(selector,{full=false,node=null}={})=>{
-  const original=node||document.querySelector(selector);if(!original)return '<p>Screen source unavailable.</p>';
-  const clone=original.cloneNode(true);const sourceIds=new Map();
-  for(const el of [clone,...clone.querySelectorAll('*')]){
-   if(el.id){el.dataset.dsSourceId=el.id;sourceIds.set(el.id,'ds-specimen-'+el.id);el.id='ds-specimen-'+el.id}
-   if(el.getAttribute('role')==='dialog')el.setAttribute('role','group');el.removeAttribute('aria-modal');
-   for(const name of ['data-go','data-edit','onclick','aria-controls','aria-labelledby'])el.removeAttribute(name);
-   if(el.tagName==='FORM'){el.setAttribute('onsubmit','return false;');}
-   if(el.tagName==='BUTTON'&&(el.getAttribute('type')==='submit'||!el.hasAttribute('type'))){el.setAttribute('type','button');el.type='button';}
+  // Preserve the screen CSS selectors without duplicating live element IDs.
+  if(!document.getElementById('ds-screen-source-styles')){
+   const ids=[...document.querySelectorAll('#phone [id]')].map(el=>el.id).concat('phone');
+   const mirrorRules=rules=>[...rules].map(rule=>{
+    if(rule.selectorText){let selector=rule.selectorText;for(const id of ids)selector=selector.replace(new RegExp('#'+id+'(?![\\w-])','g'),id==='phone'?'.ds-live-specimen':'[data-ds-source-id="'+id+'"]');return selector!==rule.selectorText?selector+'{'+rule.style.cssText+'}':''}
+    if(rule.cssRules&&rule.conditionText){const body=mirrorRules(rule.cssRules);return body?'@media '+rule.conditionText+'{'+body+'}':''}return '';
+   }).join('');
+   const sheet=document.createElement('style');sheet.id='ds-screen-source-styles';sheet.textContent=mirrorRules([...document.styleSheets].flatMap(s=>{try{return [...s.cssRules]}catch(e){return []}}));document.head.append(sheet);
   }
-  for(const el of clone.querySelectorAll('[for]')){if(sourceIds.has(el.htmlFor))el.htmlFor=sourceIds.get(el.htmlFor);else el.removeAttribute('for')}
-  clone.classList.remove('hide','screen');clone.classList.add(full?'ds-source-root':'ds-source-piece');
-  const screen=original.closest('.screen,.modal');
-  const root=screen&&original!==screen?'<div class="ds-source-root" data-ds-source-id="'+screen.id+'">'+clone.outerHTML+'</div>':clone.outerHTML;
-  return '<div class="phone ds-live-specimen'+(full?' ds-full-screen':'')+'">'+root+'<p class="ds-specimen-feedback" role="status" aria-live="polite" hidden></p></div>';
- };
-  const screenSamples={"form-group":["Grouped Form Section","Edit Profile","#editprofile .editgroup"],"content-section":["Readable Content Section","My Profile","#myprofile .myprofile-section"],"identity-card":["Profile Identity Card","My Profile","#myprofile .myprofile-identity-card"],"primary-action":["Primary Action Button","Discover","#closed .primary"],"quiet-action":["Quiet Action Button","Start Session","#setup .cancel"],"icon-button":["Icon Button","My Profile","#myprofile-settings"],"fab":["Floating Action Button","Connection Detail","#connection-message-fab"],"bottom-nav":["Root Bottom Navigation","Discover","#closed .nav"],"tabs":["Segmented View Tabs","Discover","#active .seg"],"request-tabs":["Segmented Request Tabs","Requests","#requests .journey-tabs"],"app-bar":["Screen Header & App Bar","My Profile","#myprofile .myprofile-head"],"switch":["Settings Toggle Switch","Notification Preferences","#notification-list .journey-person:first-child"],"profile-card":["Discovery Profile Card","Discover","#active #profilecard"],"profile-progress":["Profile Completion Card","My Profile","#myprofile .myprofile-completion"],"session-duration":["Session Duration Selector","Start Session","#setup .durations"],"avatar":["Profile Avatar","My Profile","#myprofile .myprofile-avatar"],"chip":["Skill & Interest Chips","My Profile","#myprofile .myprofile-chips"],"profile-menu":["Rounded Privacy Menu","My Profile","#myprofile .myprofile-menu"],"privacy":["Presence Status Banner","Privacy & Safety","#privacy .privacy-status"],"privacy-row":["Privacy Control Row","Privacy & Safety","#privacy .privacy-setting:has(#manage-hidden)"],"verification-status":["Trust Signal Panel","Verification","#verification .verify-panel"],"list":["Settings Account Rows","Settings","#appsettings .settings-group"],"sheet":["Profile Detail Bottom Sheet","Discover","#profsheet .profile-sheet",true],"dialog":["Confirmation Dialog Sheet","Discover","#modal .sheet"],"chat-composer":["Chat Message Composer","Conversation","#conversation .chat-compose"]};
+  const sourceSpecimen=(selector,{full=false,node=null}={})=>{
+   const original=node||document.querySelector(selector);if(!original)return '<p>Screen source unavailable.</p>';
+   const clone=original.cloneNode(true);const sourceIds=new Map();
+   for(const el of [clone,...clone.querySelectorAll('*')]){
+    if(el.id){el.dataset.dsSourceId=el.id;sourceIds.set(el.id,'ds-specimen-'+el.id);el.id='ds-specimen-'+el.id}
+    if(el.getAttribute('role')==='dialog')el.setAttribute('role','group');el.removeAttribute('aria-modal');
+    for(const name of ['data-go','data-edit','onclick','aria-controls','aria-labelledby'])el.removeAttribute(name);
+    if(el.tagName==='FORM'){el.setAttribute('onsubmit','return false;');}
+    if(el.tagName==='BUTTON'&&(el.getAttribute('type')==='submit'||!el.hasAttribute('type'))){el.setAttribute('type','button');el.type='button';}
+   }
+   for(const el of clone.querySelectorAll('[for]')){if(sourceIds.has(el.htmlFor))el.htmlFor=sourceIds.get(el.htmlFor);else el.removeAttribute('for')}
+   clone.classList.remove('hide','screen');clone.classList.add(full?'ds-source-root':'ds-source-piece');
+   const screen=original.closest('.screen,.modal');
+   const root=screen&&original!==screen?'<div class="ds-source-root" data-ds-source-id="'+screen.id+'">'+clone.outerHTML+'</div>':clone.outerHTML;
+   return '<div class="phone ds-live-specimen'+(full?' ds-full-screen':'')+'">'+root+'<p class="ds-specimen-feedback" role="status" aria-live="polite" hidden></p></div>';
+  };
+  const screenSamples={
+   "form-group":["Grouped Form Section","Edit Profile","#editprofile .editgroup"],
+   "content-section":["Readable Content Section","My Profile","#myprofile .myprofile-section"],
+   "identity-card":["Profile Identity Card","My Profile","#myprofile .myprofile-identity-card"],
+   "primary-action":["Primary Action Button","Discover","#closed .primary"],
+   "quiet-action":["Quiet Action Button","Start Session","#setup .cancel"],
+   "icon-button":["Icon Button","My Profile","#myprofile-settings"],
+   "fab":["Floating Action Button","Connection Detail","#connection-message-fab"],
+   "destructive-action":["Destructive Action Button","Settings","#settings-signout"],
+   "bottom-nav":["Root Bottom Navigation","Discover","#closed .nav"],
+   "tabs":["Segmented View Tabs","Discover","#active .seg"],
+   "request-tabs":["Segmented Request Tabs","Requests","#requests .journey-tabs"],
+   "app-bar":["Screen Header & App Bar","My Profile","#myprofile .myprofile-head"],
+   "switch":["Settings Toggle Switch","Notification Preferences","#notification-list .journey-person:first-child"],
+   "profile-card":["Discovery Profile Card","Discover","#active #profilecard"],
+   "profile-progress":["Profile Completion Card","My Profile","#myprofile .myprofile-completion"],
+   "session-duration":["Session Duration Selector","Start Session","#setup .durations"],
+   "avatar":["Profile Avatar","My Profile","#myprofile .myprofile-avatar"],
+   "chip":["Skill & Interest Chips","My Profile","#myprofile .myprofile-chips"],
+   "profile-menu":["Rounded Privacy Menu","My Profile","#myprofile .myprofile-menu"],
+   "privacy":["Presence Status Banner","Privacy & Safety","#privacy .privacy-status"],
+   "privacy-row":["Privacy Control Row","Privacy & Safety","#privacy .privacy-setting:has(#manage-hidden)"],
+   "verification-status":["Trust Signal Panel","Verification","#verification .verify-panel"],
+   "verification-step":["Verification Principles & Signals","Verification","#verification .verify-principles"],
+   "list":["Settings Account Rows","Settings","#appsettings .settings-group"],
+   "sheet":["Profile Detail Bottom Sheet","Discover","#profsheet .profile-sheet",true],
+   "dialog":["Confirmation Dialog Sheet","Discover","#modal .sheet"],
+   "chat-composer":["Chat Message Composer","Conversation","#conversation .chat-compose"]
+  };
   for(const [name,[title,sourceScreen,selector,full]] of Object.entries(screenSamples)){
    peopiScreenSources[name]=sourceScreen+' · '+title;
-   samples[name]=()=>catalogSection(title,sourceScreen,sourceSpecimen(selector,{full:!!full}));
+   samples[name]=()=>catalogSection(title,sourceScreen,sourceSpecimen(selector,{full:!!full}),'',name);
   }
   const sourceGroup=(selector)=>{const group=document.createElement('div');for(const el of document.querySelectorAll(selector))group.append(el.cloneNode(true));return group};
-  samples.radio=()=>catalogSection('Intent Radio Option','Start Session',sourceSpecimen(null,{node:sourceGroup('#setup .option')}));
-  samples['text-field']=()=>catalogSection('Form Input Fields','Edit Profile',sourceSpecimen(null,{node:sourceGroup('#editprofile .editfield')}));
-  samples['search-field']=()=>catalogSection('Connection Search Field','Connections',sourceSpecimen('#network .network-search-box'));
+  samples.radio=()=>catalogSection('Intent Radio Option','Start Session',sourceSpecimen(null,{node:sourceGroup('#setup .option')}),'','radio');
+  samples['text-field']=()=>catalogSection('Form Input Fields','Edit Profile',sourceSpecimen(null,{node:sourceGroup('#editprofile .editfield')}),'','text-field');
+  samples['search-field']=()=>catalogSection('Connection Search Field','Connections',sourceSpecimen('#network .network-search-box'),'','search-field');
   peopiScreenSources['search-field']='Connections · Connection Search Field';
-  samples['icon-button']=()=>catalogSection('Icon Button','My Profile',sourceSpecimen('#myprofile-settings'));
-  samples.fab=()=>catalogSection('Floating Action Button','Connection Detail',sourceSpecimen('#connection-message-fab'));
-  peopiScreenSources.fab='Connection Detail · Floating Action Button';
-  samples['discovery-filter']=()=>{const host=document.createElement('section');host.className='screen';host.id='active';host.innerHTML=discoveryFilterMarkup();return catalogSection('Discovery Filter Panel','Discover',sourceSpecimen(null,{node:host.firstElementChild}));};
+  samples['social-auth']=()=>catalogSection('Social Authentication Buttons','Auth',sourceSpecimen('#auth .auth-social-options'),'Brand sign-in actions supporting Google and Apple federated identity with authentic SVG vector glyphs and 48pt touch targets.','social-auth');
+  peopiScreenSources['social-auth']='Auth · Social Authentication Buttons';
+  samples['intent-choice']=()=>catalogSection('Intent Selection Cards','First Intent',sourceSpecimen(null,{node:sourceGroup('#on-intent-options .journey-choice')}),'Multi-select choice cards with animated custom checkmark badges and theme-aware rounded surfaces.','intent-choice');
+  peopiScreenSources['intent-choice']='First Intent · Intent Selection Cards';
+  samples['skills-chip-input']=()=>catalogSection('Skills Chip Input','Skills',sourceSpecimen('#edit-skills-wrap'),'Interactive input wrapper combining dynamic removable skill chips with real-time text input and autocomplete.','skills-chip-input');
+  peopiScreenSources['skills-chip-input']='Skills · Skills Chip Input';
+  samples['toast-notification']=()=>{
+   const node=document.querySelector('#toast').cloneNode(true);
+   node.textContent='Social sign-in is a UI demo. OAuth is not connected yet.';
+   node.classList.remove('hide');
+   node.style.position='relative';
+   node.style.inset='auto';
+   node.style.margin='12px auto';
+   return catalogSection('Toast Notification Pill','Global Shell',sourceSpecimen(null,{node}),'Floating status pill for transient feedback, action confirmation, and privacy mode notifications.','toast-notification');
+  };
+  peopiScreenSources['toast-notification']='Global Shell · Toast Notification Pill';
+  samples['session-alert']=()=>{
+   const node=document.querySelector('#session-alert').cloneNode(true);
+   node.classList.remove('hide');
+   node.style.position='relative';
+   node.style.inset='auto';
+   node.style.margin='8px auto';
+   return catalogSection('Proximity Alert Banner','Discover',sourceSpecimen(null,{node}),'Interactive session expiration warning prompting users to extend discovery presence or dismiss before invisibility kicks in.','session-alert');
+  };
+  peopiScreenSources['session-alert']='Discover · Proximity Alert Banner';
+  samples['exp-sheet']=()=>{
+   const wrapper=document.createElement('div');
+   wrapper.className='ds-sheet-specimen-root';
+   wrapper.dataset.dsSourceId='exp-sheet';
+   const sheetClone=document.querySelector('#exp-sheet .sheet').cloneNode(true);
+   sheetClone.classList.remove('hide','screen');
+   wrapper.append(sheetClone);
+   return catalogSection('Experience Editor Bottom Sheet','Overlays',sourceSpecimen(null,{node:wrapper,full:true}),'Full modal bottom sheet for adding or modifying professional roles, company names, and employment dates.','exp-sheet');
+  };
+  peopiScreenSources['exp-sheet']='Overlays · Experience Editor Bottom Sheet';
+  samples['doc-sheet']=()=>{
+   const wrapper=document.createElement('div');
+   wrapper.className='ds-sheet-specimen-root';
+   wrapper.dataset.dsSourceId='doc-sheet';
+   const sheetClone=document.querySelector('#doc-sheet .sheet').cloneNode(true);
+   sheetClone.classList.remove('hide','screen');
+   wrapper.append(sheetClone);
+   return catalogSection('Document Attachment Bottom Sheet','Overlays',sourceSpecimen(null,{node:wrapper,full:true}),'Modal bottom sheet for uploading, viewing, and locking sensitive portfolio documents and resumes.','doc-sheet');
+  };
+  peopiScreenSources['doc-sheet']='Overlays · Document Attachment Bottom Sheet';
+  samples['discovery-filter']=()=>{const host=document.createElement('section');host.className='screen';host.id='active';host.innerHTML=discoveryFilterMarkup();return catalogSection('Discovery Filter Panel','Discover',sourceSpecimen(null,{node:host.firstElementChild}),'','discovery-filter');};
   samples['connection-request']=()=>{
    const person=journeyPerson(demoPeople.find(p=>!journey.connections.includes(p.id))?.id||0);
    const row=journeyRow(person,person.role);const actions=document.createElement('div');actions.className='person-actions';
    for(const label of ['Accept','Decline']){const button=document.createElement('button');button.textContent=label;actions.append(button)}row.classList.add('request-received');row.append(actions);
    const sent=journeyRow(person,person.role);sent.append(cancelRequestButton(person.name));
-   return catalogSection('Received Connection Request','Requests',sourceSpecimen(null,{node:row}))+catalogSection('Sent Connection Request','Requests',sourceSpecimen(null,{node:sent}));
+   return catalogSection('Received Connection Request','Requests',sourceSpecimen(null,{node:row}),'','connection-request')+catalogSection('Sent Connection Request','Requests',sourceSpecimen(null,{node:sent}),'','connection-request');
   };
-  samples['chat-bubble']=()=>catalogSection('Chat Message Bubbles','Conversation','<div class="phone ds-live-specimen" style="display:flex;flex-direction:column;gap:10px;padding:16px"><div class="chat-time-divider"><span>Today · 9:41 AM</span></div><div class="chat-row"><div class="chat-bubble">Hi! Great to connect.</div></div><div class="chat-row mine"><div class="chat-bubble mine">Coffee near the main hall in 15 minutes?</div></div></div>');
-  samples['profile-progress']=()=>{const node=document.querySelector('#myprofile .myprofile-completion').cloneNode(true);const host=document.createElement('div');host.className='myprofile-identity-card';host.append(node);return catalogSection('Profile Completion Card','My Profile',sourceSpecimen(null,{node:host}));};
-  samples['verified-badge']=()=>catalogSection('Verified Trust Badge','Discover, My Profile',sourceSpecimen(null,{node:makeVerifiedBadge()}));
-  samples['profile-documents']=()=>catalogSection('Document Attachment Grid','My Profile',sourceSpecimen('#myprofile #myprofile-docs-section'));
+  samples['chat-bubble']=()=>{
+   const container=document.createElement('div');
+   container.className='phone ds-live-specimen';
+   container.style.cssText='display:flex;flex-direction:column;gap:10px;padding:16px;width:min(393px,100%);background:var(--bg);color:var(--ink);';
+   const divider=document.createElement('div');
+   divider.className='chat-time-divider';
+   const span=document.createElement('span');
+   span.textContent='Today · 9:41 AM';
+   divider.append(span);
+   const msg1=typeof buildChatRow==='function'?buildChatRow('Hi! Great to connect nearby.',false):document.createElement('div');
+   const msg2=typeof buildChatRow==='function'?buildChatRow('Coffee near the main hall in 15 minutes? ☕',true):document.createElement('div');
+   container.append(divider,msg1,msg2);
+   return catalogSection('Chat Message Bubbles','Conversation',container.outerHTML,'Conversation bubbles for asynchronous direct messaging between mutually connected users.','chat-bubble');
+  };
+  samples['profile-progress']=()=>{const node=document.querySelector('#myprofile .myprofile-completion').cloneNode(true);const host=document.createElement('div');host.className='myprofile-identity-card';host.append(node);return catalogSection('Profile Completion Card','My Profile',sourceSpecimen(null,{node:host}),'','profile-progress');};
+  samples['verified-badge']=()=>catalogSection('Verified Trust Badge','Discover, My Profile',sourceSpecimen(null,{node:makeVerifiedBadge()}),'','verified-badge');
+  samples['profile-documents']=()=>catalogSection('Document Attachment Grid','My Profile',sourceSpecimen('#myprofile #myprofile-docs-section'),'','profile-documents');
   peopiScreenSources['profile-documents']='My Profile · Document Attachment Grid';
-  samples['network-row']=()=>catalogSection('Connection List Row','My Network',sourceSpecimen(null,{node:journeyRow(journeyPerson(journey.connections[0]||0),null,{label:'View',onClick:()=>{}})}));
-  samples['empty-state']=()=>{const host=document.createElement('div');host.innerHTML=journeyEmpty('No incoming requests','New introductions will appear here.');return catalogSection('Empty State View','Requests',sourceSpecimen(null,{node:host.firstElementChild}));};
-  samples['activity-item']=()=>{const host=document.createElement('div');host.innerHTML='<div class="activity-item"><div class="activity-avatar-wrap"><div class="activity-avatar" style="background:#e1c9c6">AM</div></div><div class="activity-content"><div class="activity-head"><strong>Alex Morgan</strong><span class="activity-time">10m ago</span></div><p class="activity-subtitle">Sent you a connection request · Product designer</p><div class="activity-actions"><button type="button" class="activity-btn-accept">Accept</button><button type="button" class="activity-btn-decline">Decline</button></div></div></div>';return catalogSection('Notification Activity Item','Notifications',sourceSpecimen(null,{node:host.firstElementChild}));};
+  samples['network-row']=()=>catalogSection('Connection List Row','My Network',sourceSpecimen(null,{node:journeyRow(journeyPerson(journey.connections[0]||0),null,{label:'View',onClick:()=>{}})}),'','network-row');
+  samples['empty-state']=()=>{const host=document.createElement('div');host.innerHTML=journeyEmpty('No incoming requests','New introductions will appear here.');return catalogSection('Empty State View','Requests',sourceSpecimen(null,{node:host.firstElementChild}),'','empty-state');};
+  samples['activity-item']=()=>{
+   const reqItem={
+     type:'request',
+     person:demoPeople[0]||{id:0,name:'Alex Morgan',role:'Product Designer · Early-stage products'},
+     title:'Alex Morgan',
+     subtitle:'Sent you a connection request · Product Designer',
+     time:'10m ago'
+   };
+   const card=typeof buildActivityItem==='function'?buildActivityItem(reqItem):document.createElement('div');
+   return catalogSection('Notification Activity Item','Notifications',sourceSpecimen(null,{node:card}),'Activity feed card with portrait avatar, timestamp, role description, and inline accept/decline action triggers.','activity-item');
+  };
   peopiScreenSources['activity-item']='Notifications · Notification Activity Item';
   samples.sheet=()=>{
    const wrapper=document.createElement('div');
@@ -9574,7 +9776,7 @@ function showDesign(key){
    const reqBtn=sheetClone.querySelector('#requestFromProfile');
    if(reqBtn)reqBtn.textContent='Send Request ↗';
    wrapper.appendChild(sheetClone);
-   return catalogSection('Profile Detail Bottom Sheet','Discover',sourceSpecimen(null,{node:wrapper,full:true}));
+   return catalogSection('Profile Detail Bottom Sheet','Discover',sourceSpecimen(null,{node:wrapper,full:true}),'','sheet');
   };
  for(const item of dsCatalog){
   const examples=item.members.map(name=>{if(!samples[name])throw new Error('Missing component specimen: '+name);return samples[name]()}).join('');
@@ -9746,6 +9948,140 @@ function showDesign(key){
  all('#ds-content .ds-range').forEach(input=>input.addEventListener('input',()=>{const output=input.closest('label')?.querySelector('.ds-range-value');if(output)output.textContent=input.value}));
  all('#ds-content .ds-toast-preview button').forEach(button=>button.addEventListener('click',()=>{button.closest('.ds-toast-preview').style.display='none'}));
  all('#ds-content .ds-icon-action, #ds-content .ds-fab').forEach(button=>button.addEventListener('click',()=>{button.classList.toggle('ds-demo-active');button.setAttribute('aria-pressed',String(button.classList.contains('ds-demo-active')))}));
+ all('#ds-content .ds-variant-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+   const card=btn.closest('.ds-workbench-card');
+   if(!card)return;
+   card.querySelectorAll('.ds-variant-btn').forEach(b=>b.classList.toggle('active',b===btn));
+   const variant=btn.dataset.variant;
+   const comp=card.dataset.component;
+   const preview=card.querySelector('.ds-workbench-preview-viewport');
+   if(!preview)return;
+   if(comp==='primary-action'||comp==='quiet-action'||comp==='destructive-action'){
+     const actionBtn=preview.querySelector('button');
+     if(actionBtn){
+       actionBtn.disabled = variant.includes('disabled');
+       if(variant.includes('disabled')) actionBtn.style.opacity = '0.45';
+       else actionBtn.style.opacity = '';
+       if(variant==='loading'){
+         actionBtn.dataset.origText = actionBtn.dataset.origText || actionBtn.innerHTML;
+         actionBtn.innerHTML = '<i class="ph ph-spinner ds-spin" style="margin-right:6px"></i> Opening session...';
+       } else if(actionBtn.dataset.origText) {
+         actionBtn.innerHTML = actionBtn.dataset.origText;
+       }
+       if(variant.includes('hover')){
+         actionBtn.style.filter = 'brightness(1.15)';
+       } else {
+         actionBtn.style.filter = '';
+       }
+     }
+   } else if(comp==='icon-button'||comp==='fab'){
+     const iconBtn=preview.querySelector('button');
+     if(iconBtn){
+       if(variant.includes('active')||variant.includes('raised')){
+         iconBtn.classList.add('ds-demo-active');
+         iconBtn.style.transform = 'scale(1.08)';
+         iconBtn.style.boxShadow = '0 6px 16px rgba(0,0,0,0.2)';
+       } else {
+         iconBtn.classList.remove('ds-demo-active');
+         iconBtn.style.transform = '';
+         iconBtn.style.boxShadow = '';
+       }
+     }
+   } else if(comp==='social-auth'){
+     const googleBtn=preview.querySelector('[data-ds-source-id="auth-google"], #auth-google');
+     const appleBtn=preview.querySelector('[data-ds-source-id="auth-apple"], #auth-apple');
+     if(googleBtn) googleBtn.style.display = (variant==='apple-only')?'none':'flex';
+     if(appleBtn) appleBtn.style.display = (variant==='google-only')?'none':'flex';
+   } else if(comp==='switch'){
+     const sw=preview.querySelector('[role="switch"],.settings-toggle');
+     if(sw){
+       const isOff=variant.includes('off')||variant.includes('disabled');
+       sw.setAttribute('aria-checked', String(!isOff));
+       sw.classList.toggle('off', isOff);
+     }
+   } else if(comp==='intent-choice'){
+     const choices=preview.querySelectorAll('.journey-choice');
+     choices.forEach((c, idx)=>{
+       if(variant==='selected') c.classList.toggle('selected', idx===0);
+       else c.classList.remove('selected');
+     });
+   } else if(comp==='skills-chip-input'){
+     const chips=preview.querySelectorAll('.edit-skill-chip');
+     const input=preview.querySelector('.edit-skills-input');
+     if(variant.includes('empty')){
+       chips.forEach(c=>c.style.display='none');
+     } else {
+       chips.forEach(c=>c.style.display='inline-flex');
+     }
+     if(variant.includes('focus')&&input){
+       input.focus();
+       input.placeholder='Type another skill and press Enter...';
+     }
+   } else if(comp==='discovery-filter'){
+     const pills=preview.querySelectorAll('.discovery-filter-pill');
+     pills.forEach((p, idx)=>{
+       if(variant==='all-nearby') p.classList.toggle('is-selected', idx===0);
+       else if(variant==='engineering') p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('engine'));
+       else if(variant==='design') p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('design'));
+       else if(variant==='founders') p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('found'));
+     });
+   } else if(comp==='bottom-nav'){
+     const tabs=preview.querySelectorAll('.nav button, button');
+     tabs.forEach((t, idx)=>{
+       if(variant==='discover-active') t.classList.toggle('current', idx===0);
+       else if(variant==='connections-active') t.classList.toggle('current', idx===1);
+       else if(variant==='profile-active') t.classList.toggle('current', idx===2);
+     });
+   } else if(comp==='tabs'||comp==='request-tabs'){
+     const tabBtns=preview.querySelectorAll('.seg button, .journey-tabs button');
+     tabBtns.forEach((b, idx)=>{
+       if(variant.includes('map')||variant.includes('received')) b.classList.toggle('chosen', idx===0)||b.classList.toggle('selected', idx===0);
+       else b.classList.toggle('chosen', idx===1)||b.classList.toggle('selected', idx===1);
+     });
+   } else if(comp==='profile-card'){
+     const title=preview.querySelector('.name, .profilename, h3, strong');
+     const photo=preview.querySelector('.avatar, .journey-avatar, img');
+     if(variant==='connected-peer'){
+       if(title) title.textContent = 'Alex Morgan';
+       if(photo) photo.style.filter = 'none';
+     } else {
+       if(title) title.textContent = 'A.M.';
+       if(photo) photo.style.filter = 'blur(6px)';
+     }
+   } else if(comp==='session-alert'){
+     const alert=preview.querySelector('#session-alert, .session-alert, [data-ds-source-id="session-alert"]');
+     if(alert){
+       alert.style.display = variant==='dismissed' ? 'none' : 'flex';
+       alert.style.opacity = variant==='dismissed' ? '0' : '1';
+     }
+   } else if(comp==='toast-notification'){
+     const toast=preview.querySelector('#toast, .toast, [data-ds-source-id="toast"]');
+     if(toast){
+       if(variant==='information') toast.textContent='Social sign-in is a UI demo. OAuth is not connected yet.';
+       else if(variant==='success') toast.textContent='Connection request sent successfully!';
+       else if(variant==='warning') toast.textContent='Location accuracy is reduced in Private Mode.';
+     }
+   } else if(comp==='chat-bubble'){
+     const rows=preview.querySelectorAll('.chat-row');
+     rows.forEach((r, idx)=>{
+       if(variant==='full-thread') r.style.display='flex';
+       else if(variant==='received-only') r.style.display = idx===0?'flex':'none';
+       else if(variant==='sent-only') r.style.display = idx===1?'flex':'none';
+     });
+   } else if(comp==='sheet'){
+     const nameEl=preview.querySelector('#detailname, [id"detailname"]');
+     const hintEl=preview.querySelector('.privacyhint');
+     if(variant==='connected-profile'){
+       if(nameEl) nameEl.textContent='Alex Morgan ✓';
+       if(hintEl) hintEl.style.display='none';
+     } else {
+       if(nameEl) nameEl.textContent='A.M. ✓';
+       if(hintEl) hintEl.style.display='flex';
+     }
+   }
+  });
+ });
  const copyHandler=async(button)=>{
   const text=(button.dataset.copy==='token-css')?tokenCss:button.dataset.copy;
   let copied=false;

@@ -1,11 +1,22 @@
 # Peopi component library
 
-Components is an inventory of reusable UI already used in the application, not a general UI catalogue.
+Components is an inventory of reusable UI used across the application, supplemented by verified design system foundations. It supports two clearly distinguished component classifications:
 
+### 1. Product Components
+- Sourced directly from actual Peopi Screens or shared production helpers.
+- Must accurately represent the existing mobile implementation, markup, styles, and behavior.
 - Before designing a screen, inspect the relevant Components family and reuse a suitable existing pattern or variant.
-- If the new screen requires a new component, design it in Peopi's established screen language, use it in that screen, then add a specimen with its source screen to the appropriate family.
-- Extend a family's examples before adding another menu item. Keep Components navigation flat; related uses appear vertically on the same page.
+- If a new screen requires a new component, design it in Peopi's established screen language, use it in that screen, then register a specimen with its source screen in the appropriate family.
+
+### 2. Common Components
+- Cross-product foundational building blocks that may be created even when not currently used in a specific product screen.
+- Must strictly follow Peopi's design system tokens, typography, radii, and visual contracts.
+- Must be clearly labeled as common or future-ready components.
+- Must never be presented as implemented Peopi product features.
 - Do not add speculative components or generic demos merely to fill a catalogue.
+
+### General Component Rules
+- Extend a family's examples before adding another menu item. Keep Components navigation flat; related uses appear vertically on the same page.
 - Keep Icons & Iconography as the shared Phosphor resource, even for icons not yet used.
 - Preserve source markup/styles, light and dark variants, accessible labels and existing privacy rules. Specimen interactions must not change the actual screen state.
 - Keep source screens, component examples and their behavior aligned whenever modifying a reusable component.
