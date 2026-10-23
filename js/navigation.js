@@ -132,7 +132,7 @@ const sidebarEl = document.querySelector('.sidebar');
 if(sidebarEl){
   sidebarEl.addEventListener('keydown', (e) => {
     if(e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-    const focusableSelectors = '.category-toggle, .dash-doc-link, .ds-link, .group-toggle, #tree .tree-link';
+    const focusableSelectors = '.category-toggle, .dash-doc-link, .ds-link, .group-toggle, #tree .tree-link, .sidebar-featured-card';
     const allItems = Array.from(sidebarEl.querySelectorAll(focusableSelectors));
     const visibleItems = allItems.filter(el => {
       if(el.offsetParent === null) return false;
@@ -3422,6 +3422,11 @@ function showDesign(key){
   b.classList.remove('selected');
   b.setAttribute('aria-current', 'false');
  });
+ const featCard = document.getElementById('sidebar-featured-card');
+ if(featCard){
+  featCard.classList.remove('is-active');
+  featCard.setAttribute('aria-current', 'false');
+ }
  document.body.classList.add('ds-open');$('#ds-workspace').hidden=false;$('#ds-inspector').hidden=false;
  $('#ds-workspace').classList.toggle('view-color', key === 'color');
  $('#ds-workspace').classList.toggle('view-components', isComponent);
@@ -10010,6 +10015,15 @@ function openOverview(viewId){
     b.classList.toggle('selected', sel);
     b.setAttribute('aria-current', sel ? 'page' : 'false');
   });
+  const featCard = document.getElementById('sidebar-featured-card');
+  if(featCard){
+    const isFeat = (viewId === 'built-with-ai');
+    featCard.classList.toggle('is-active', isFeat);
+    featCard.setAttribute('aria-current', isFeat ? 'page' : 'false');
+  }
+  if(window.innerWidth <= 960 && typeof setMobileMenuOpen === 'function'){
+    setMobileMenuOpen(false);
+  }
   const ws=$('#dashboard-workspace');
   if(ws)ws.scrollTop=0;
   if(!isSyncingHash)setHash(viewId==='intro'?'dashboard':'overview='+viewId);
@@ -10187,6 +10201,11 @@ function closeDashboard(){
   document.body.classList.remove('dashboard-open');
   const dashBtn=$('#btn-dashboard');
   if(dashBtn)dashBtn.classList.remove('selected');
+  const featCard = document.getElementById('sidebar-featured-card');
+  if(featCard){
+    featCard.classList.remove('is-active');
+    featCard.setAttribute('aria-current', 'false');
+  }
   requestAnimationFrame(resizePhonePreview);
 }
 all('.dash-doc-link').forEach(b=>b.addEventListener('click',()=>openOverview(b.dataset.view)));
