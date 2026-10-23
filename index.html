@@ -2087,7 +2087,7 @@
               <div class="scope-loop-step">
                 <span class="scope-loop-step-num">STATE 05</span>
                 <h4 class="scope-loop-step-title">Chat</h4>
-                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Direct messaging unlocked upon mutual acceptance; thread persists permanently.</p>
+                <p style="font-size:12px;line-height:1.4;color:#64748B;margin:6px 0 0;">Direct messaging unlocked upon mutual acceptance; conversation thread persists unless removed or blocked.</p>
               </div>
             </div>
 
@@ -2244,7 +2244,7 @@
                 </div>
 
                 <div class="scope-decision-tradeoff">
-                  <strong>Trade-off:</strong> No pre-acceptance follow-up messages; conversations require mutual acceptance. Connections and chats persist permanently.
+                  <strong>Trade-off:</strong> No pre-acceptance follow-up messages; conversations require mutual acceptance. Connections and chats persist in My Network unless removed or blocked.
                 </div>
               </div>
 
@@ -2327,7 +2327,7 @@
                     <li><strong>Ephemeral Sessions:</strong> 30, 60, 120m presets with +30m extension and manual exit.</li>
                     <li><strong>Approximate Proximity:</strong> Spatial halos and relative distance buckets without raw GPS coordinates.</li>
                     <li><strong>Mutual Requests:</strong> Single-request model with optional note; silent dismissals.</li>
-                    <li><strong>Direct Chat:</strong> Bilateral unlock; conversation history persists permanently.</li>
+                    <li><strong>Direct Chat:</strong> Bilateral unlock; conversation history persists unless removed or blocked.</li>
                     <li><strong>Privacy Controls:</strong> Per-connection presence toggles, explicit Mute, Hide, Block.</li>
                     <li><strong>Verification UI:</strong> Badges for email and optional LinkedIn linking.</li>
                     <li><strong>Closed-State Heat:</strong> Anonymized density clusters and actionable empty states.</li>
@@ -2409,8 +2409,8 @@
               <div class="scope-card">
                 <div class="scope-card-icon featured"><i class="ph ph-shield-check" aria-hidden="true"></i></div>
                 <div style="font-size:10.5px;font-weight:800;letter-spacing:0.08em;color:#FF3300;text-transform:uppercase;margin-bottom:4px;">INVARIANT 04</div>
-                <h3 class="scope-card-title">Permanent Established Connections</h3>
-                <p class="scope-card-text">Accepted connection history and chat threads persist indefinitely, independent of active session state.</p>
+                <h3 class="scope-card-title">Persistent Established Connections</h3>
+                <p class="scope-card-text">Accepted connection history and chat threads persist in My Network independent of active session state, unless removed or blocked.</p>
               </div>
 
               <div class="scope-card">
@@ -2490,7 +2490,7 @@
                 <p class="scope-risk-desc">Active session ends while two users coordinate a meeting point, severing active coordination.</p>
                 <div class="scope-risk-signal">
                   <span class="scope-signal-label"><i class="ph ph-chart-line-up"></i> Observable Telemetry Signal</span>
-                  <p>Messaging in final 2 minutes. Mitigated by permanent chat, 5m warning, and one-tap +30m extensions.</p>
+                  <p>Messaging in final 2 minutes. Mitigated by persistent chat history, 5m warning, and optional +30m extensions.</p>
                 </div>
               </div>
 
@@ -3111,7 +3111,7 @@
         <header class="dash-page-header">
           <div class="dash-page-header-top">
             <div class="dash-page-header-left">
-              <span class="dash-page-kicker">01 WHAT IS PEOPI? · VALIDATION &amp; NEXT STEPS</span>
+              <span class="dash-page-kicker">WHAT IS PEOPI? · PRODUCT MANAGEMENT CASE STUDY</span>
               <h1 class="dash-page-title">Validation Plan &amp; Next Steps<span class="brand-dot">.</span></h1>
             </div>
             <div class="dash-head-actions ds-head-actions"></div>
@@ -3357,7 +3357,7 @@
               <p class="scope-risk-desc">Session timer expires while matched members coordinate in chat.</p>
               <div class="scope-risk-signal">
                 <span class="scope-signal-label"><i class="ph ph-shield-check"></i> Potential Mitigation &amp; Signal</span>
-                <p><strong>Potential Mitigation:</strong> Preserve accepted connections permanently; test 5-minute warnings and one-tap extensions.<br>
+                <p><strong>Potential Mitigation:</strong> Preserve accepted connections and chat history; test 5-minute warnings and optional extensions.<br>
                 <strong>Signal to Monitor:</strong> Messages attempted near session expiry (requires backend telemetry).</p>
               </div>
             </div>
