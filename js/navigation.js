@@ -9461,6 +9461,1034 @@ function showDesign(key){
  };
  Object.assign(content,dsExpanded);
 
+const peopiHandoffData = {
+  "primary-action": {
+    "title": "Primary Action Button",
+    "category": "Buttons & Actions",
+    "sourceScreen": "Discover / Closed (`#closed .primary`)",
+    "purpose": "Dominant call-to-action on the screen (e.g. \"Show up\" to initiate session setup). Drives primary product progression with high visual hierarchy.",
+    "tokens": "Height: 52pt (>44pt minimum) · Radius: 17pt · Background: #FF3300 · Font: 16pt Bold (Weight 700)",
+    "motion": "Press feedback: 90ms scale down (0.97), 220ms return. Settle curve: `cubic-bezier(0.2, 0.8, 0.2, 1)`. Immediate state commit.",
+    "flutterSemantics": "`CupertinoButton.filled` or `ElevatedButton` wrapped in `Semantics(button: true, label: \"Show up\")`. Minimum hit area 52×52pt.",
+    "privacy": "Triggers session setup view; does NOT broadcast coordinates or start networking until session is explicitly confirmed.",
+    "serverAuth": "Action requires active authenticated session token. Offline state disables button with visual opacity 0.45.",
+    "isStatic": true
+  },
+  "quiet-action": {
+    "title": "Quiet Action Button",
+    "category": "Buttons & Actions",
+    "sourceScreen": "Start Session (`#setup .cancel`)",
+    "purpose": "Subtle, low-visual-weight secondary action for cancel, dismiss, or secondary choices without competing with primary CTA.",
+    "tokens": "Height: 44pt · Radius: 14pt · Background: Transparent / Subdued surface · Font: 15pt Regular",
+    "motion": "Press feedback: 90ms scale down (0.97), 220ms release.",
+    "flutterSemantics": "`CupertinoButton` with zero minimum padding or text-only button. Bounding box >= 44×44pt.",
+    "privacy": "Canceling setup terminates flow and returns to invisible map state with zero state persistence.",
+    "serverAuth": "No network request sent.",
+    "isStatic": true
+  },
+  "icon-button": {
+    "title": "Icon Button",
+    "category": "Buttons & Actions",
+    "sourceScreen": "My Profile (`#myprofile-settings`)",
+    "purpose": "Compact 44×44pt icon trigger with explicit accessibility label for settings, actions, or modal navigation.",
+    "tokens": "Size: 44×44pt · Radius: 999pt (Circular) · Icon size: 22pt optical bounding box",
+    "motion": "Press: 90ms scale down (0.97). Release: 220ms.",
+    "flutterSemantics": "`CupertinoButton` or `IconButton` with mandatory `tooltip` and `Semantics(label: \"Profile settings\")`.",
+    "privacy": "Navigates to Settings without broadcasting presence.",
+    "serverAuth": "Access to account settings requires verified local authentication.",
+    "isStatic": false,
+    "jsCode": "// Scoped Icon Button Handler\nfunction initIconButton(btn, onToggle) {\n  if (!btn) return;\n  btn.addEventListener('click', () => {\n    const isPressed = btn.getAttribute('aria-pressed') === 'true';\n    btn.setAttribute('aria-pressed', String(!isPressed));\n    btn.classList.toggle('active', !isPressed);\n    if (typeof onToggle === 'function') onToggle(!isPressed, btn);\n  });\n}"
+  },
+  "fab": {
+    "title": "Floating Action Button",
+    "category": "Buttons & Actions",
+    "sourceScreen": "Connection Detail (`#connection-message-fab`)",
+    "purpose": "Floating elevation trigger positioned at bottom-right viewport for contextual high-priority actions like messaging.",
+    "tokens": "Size: 56×56pt · Elevation shadow: 0 8px 24px rgba(0,0,0,0.18) · Radius: 999pt · Background: #FF3300",
+    "motion": "Entrance: 240ms content lift. Tap: 90ms scale 0.95.",
+    "flutterSemantics": "`FloatingActionButton` or positioned `CupertinoButton` with `Semantics(button: true, label: \"Send Message\")`.",
+    "privacy": "Revealed only when viewing an accepted connection. Strangers cannot receive direct messaging.",
+    "serverAuth": "Enforces mutual connection acceptance server-side before initiating chat thread.",
+    "isStatic": true
+  },
+  "social-auth": {
+    "title": "Social Authentication Buttons",
+    "category": "Buttons & Actions",
+    "sourceScreen": "Auth (`#auth .auth-social-options`)",
+    "purpose": "Federated third-party sign-in triggers for Apple and Google identity with official vector brand marks and accessible labels.",
+    "tokens": "Height: 52pt · Radius: 17pt · Border: 1px solid var(--line) · Font: 16pt Medium",
+    "motion": "Press: 90ms / 220ms standard release.",
+    "flutterSemantics": "`SignInWithAppleButton` and `GoogleSignIn` native widgets with required accessibility labels.",
+    "privacy": "Minimal scope: requesting user email and public name only. No contact list or calendar access requested.",
+    "serverAuth": "OAuth token verification on backend via secure Apple/Google public keys. Issues short-lived JWT.",
+    "isStatic": true
+  },
+  "destructive-action": {
+    "title": "Destructive Action Button",
+    "category": "Buttons & Actions",
+    "sourceScreen": "Settings (`#settings-signout`)",
+    "purpose": "High-friction destructive trigger for signing out, removing connections, or deleting profile data with semantic danger styling.",
+    "tokens": "Height: 48pt · Radius: 16pt · Accent: #DC2626 (Danger red) · Font: 15pt Bold",
+    "motion": "Press feedback: 90ms scale 0.97. Action opens modal confirmation dialog.",
+    "flutterSemantics": "`CupertinoActionSheetAction(isDestructiveAction: true)` with explicit destructive role announcement.",
+    "privacy": "Immediately revokes local session tokens and tears down nearby beacon broadcast.",
+    "serverAuth": "Backend invalidates session token and purges ephemeral cache.",
+    "isStatic": true
+  },
+  "form-group": {
+    "title": "Grouped Form Section",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Edit Profile (`#editprofile .editgroup`)",
+    "purpose": "Rounded card surface grouping logically related inputs with 14pt labels, 16pt inputs, and inline validation error text.",
+    "tokens": "Surface radius: 22pt · Group padding: 20pt · Field gap: 14pt · Background: var(--card)",
+    "motion": "Inline error messages fade in place over 180ms without causing parent layout shifts.",
+    "flutterSemantics": "`Form` widget with `CupertinoFormSection` or custom rounded container.",
+    "privacy": "Fields represent user-edited public profile attributes.",
+    "serverAuth": "Input sanitization and length validation enforced on server.",
+    "isStatic": true
+  },
+  "text-field": {
+    "title": "Form Input Fields",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Edit Profile (`#editprofile .editfield`)",
+    "purpose": "Individual input field with associated label, placeholder, focus ring, and character limits.",
+    "tokens": "Height: 46pt · Radius: 15pt · Font: 16pt (avoids iOS viewport auto-zoom) · Border: 1px solid var(--line)",
+    "motion": "Focus transition: 180ms outline / border color fade.",
+    "flutterSemantics": "`CupertinoTextFormFieldRow` with explicit `TextInputType` and `textInputAction`.",
+    "privacy": "No sensitive credentials stored unmasked.",
+    "serverAuth": "Server sanitizes inputs against XSS and injection attacks.",
+    "isStatic": true
+  },
+  "search-field": {
+    "title": "Connection Search Field",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Connections (`#network .network-search-box`)",
+    "purpose": "Full-width search bar with leading magnifying glass icon, real-time query filtering, and trailing clear button.",
+    "tokens": "Height: 44pt · Radius: 999pt (Pill) · Background: var(--muted) · Font: 15pt",
+    "motion": "Clear button crossfades in 150ms upon text entry.",
+    "flutterSemantics": "`CupertinoSearchTextField` with accessible clear button.",
+    "privacy": "Filters local connections client-side; does not log search queries to analytics.",
+    "serverAuth": "No remote query execution.",
+    "isStatic": false,
+    "jsCode": "// Scoped Search Field Controller\nfunction initSearchField(container, onQueryChange) {\n  if (!container) return;\n  const input = container.querySelector('input');\n  const clearBtn = container.querySelector('.search-clear-btn');\n  if (!input) return;\n\n  input.addEventListener('input', () => {\n    const query = input.value.trim();\n    if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';\n    if (typeof onQueryChange === 'function') onQueryChange(query);\n  });\n\n  if (clearBtn) {\n    clearBtn.addEventListener('click', () => {\n      input.value = '';\n      input.focus();\n      clearBtn.style.display = 'none';\n      if (typeof onQueryChange === 'function') onQueryChange('');\n    });\n  }\n}"
+  },
+  "radio": {
+    "title": "Intent Radio Option",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Start Session (`#setup .option`)",
+    "purpose": "Single-select choice option for choosing session intent with custom animated check indicator and 44pt touch area.",
+    "tokens": "Height: 52pt · Radius: 16pt · Touch target: >= 44pt · Border: 1px solid var(--line)",
+    "motion": "Check indicator scales and fades in 180ms with settle curve.",
+    "flutterSemantics": "`Semantics(inMutuallyExclusiveGroup: true, checked: isSelected)` or `CupertinoRadio`.",
+    "privacy": "Intent is visible only to nearby peers during an active discovery session.",
+    "serverAuth": "Intent is bound to session ID on backend during Go Visible call.",
+    "isStatic": false,
+    "jsCode": "// Scoped Radio Group Controller\nfunction initRadioGroup(container, onSelect) {\n  if (!container) return;\n  const options = Array.from(container.querySelectorAll('.option'));\n  options.forEach((opt, idx) => {\n    opt.addEventListener('click', () => {\n      options.forEach(o => {\n        o.classList.remove('chosen');\n        o.setAttribute('aria-checked', 'false');\n      });\n      opt.classList.add('chosen');\n      opt.setAttribute('aria-checked', 'true');\n      if (typeof onSelect === 'function') onSelect(idx, opt);\n    });\n  });\n}"
+  },
+  "session-duration": {
+    "title": "Session Duration Selector",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Start Session (`#setup .durations`)",
+    "purpose": "Segmented duration picker cards (30m, 60m default, 120m) with checkmark feedback. Enforces bounded session length.",
+    "tokens": "Card height: 60pt · Radius: 16pt · Bounding touch area >= 48pt",
+    "motion": "Checkmark crossfades in 180ms. Immediate selection commit.",
+    "flutterSemantics": "`Semantics(inMutuallyExclusiveGroup: true, selected: isSelected)` with explicit duration announcement.",
+    "privacy": "Guarantees session has an automatic hard expiration time, preventing accidental continuous broadcasting.",
+    "serverAuth": "Server sets Redis TTL matching chosen duration.",
+    "isStatic": false,
+    "jsCode": "// Scoped Duration Picker Controller\nfunction initDurationSelector(container, onDurationChange) {\n  if (!container) return;\n  const cards = Array.from(container.querySelectorAll('.duration-card, .dur-btn'));\n  cards.forEach((card, idx) => {\n    card.addEventListener('click', () => {\n      cards.forEach(c => {\n        c.classList.remove('selected', 'chosen');\n        c.setAttribute('aria-pressed', 'false');\n      });\n      card.classList.add('selected', 'chosen');\n      card.setAttribute('aria-pressed', 'true');\n      const dur = card.dataset.duration || card.textContent.trim();\n      if (typeof onDurationChange === 'function') onDurationChange(dur, idx);\n    });\n  });\n}"
+  },
+  "switch": {
+    "title": "Settings Toggle Switch",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Notification Preferences (`#notification-list .journey-person:first-child`)",
+    "purpose": "Semantic toggle switch (50×30pt) for notification and presence preferences with animated thumb translation.",
+    "tokens": "Switch shell: 50×30pt · Thumb: 26×26pt · Radius: 999pt · Active: #FF3300 · Inactive: #94A3B8",
+    "motion": "Thumb translates 20pt horizontally over 180ms ease-out.",
+    "flutterSemantics": "`CupertinoSwitch` with `value`, `onChanged`, and associated `Text` label in `Semantics`.",
+    "privacy": "Toggling off presence hiding immediately restores standard discovery rules.",
+    "serverAuth": "Preference changes persist immediately to user settings API.",
+    "isStatic": false,
+    "jsCode": "// Scoped Switch Controller\nfunction initToggleSwitch(container, onToggle) {\n  if (!container) return;\n  const sw = container.querySelector('[role=\"switch\"], .settings-toggle') || container;\n  sw.addEventListener('click', () => {\n    const wasOff = sw.classList.contains('off');\n    const isNowOn = wasOff;\n    sw.classList.toggle('off', !isNowOn);\n    sw.setAttribute('aria-checked', String(isNowOn));\n    if (typeof onToggle === 'function') onToggle(isNowOn);\n  });\n}"
+  },
+  "intent-choice": {
+    "title": "Intent Selection Cards",
+    "category": "Inputs & Selection",
+    "sourceScreen": "First Intent (`#on-intent-options .journey-choice`)",
+    "purpose": "Multi-select choice cards for onboarding networking intentions with animated custom checkmark badges and theme-aware rounded surfaces.",
+    "tokens": "Card height: 58pt · Radius: 18pt · Padding: 16pt · Touch target: >= 48pt",
+    "motion": "Press feedback: 90ms scale 0.97. Checkmark scales 0 to 1 over 180ms.",
+    "flutterSemantics": "`Semantics(button: true, checked: isSelected)` for each choice card.",
+    "privacy": "Preferences are saved locally during onboarding and synchronized only after account creation.",
+    "serverAuth": "Synchronized to user profile upon onboarding completion.",
+    "isStatic": false,
+    "jsCode": "// Scoped Intent Multi-Select Controller\nfunction initIntentChoices(container, onToggle) {\n  if (!container) return;\n  const choices = Array.from(container.querySelectorAll('.journey-choice'));\n  choices.forEach((choice, idx) => {\n    choice.addEventListener('click', () => {\n      const isSel = choice.classList.toggle('selected');\n      choice.setAttribute('aria-pressed', String(isSel));\n      if (typeof onToggle === 'function') onToggle(idx, isSel, choice);\n    });\n  });\n}"
+  },
+  "skills-chip-input": {
+    "title": "Skills Chip Input",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Skills (`#edit-skills-wrap`)",
+    "purpose": "Interactive chip wrapper combining removable tags with real-time text input and autocomplete.",
+    "tokens": "Chip height: 32pt · Radius: 999pt · Input font: 16pt (avoids iOS auto-zoom) · Surface: var(--muted)",
+    "motion": "Chip insertion and removal: 180ms opacity and horizontal scale transition.",
+    "flutterSemantics": "`Wrap` containing `InputChip` with `onDeleted` callback and `TextField`.",
+    "privacy": "Skills appear on user public profile for peer discovery and matching.",
+    "serverAuth": "Server limits maximum skills to 12 items, 24 characters each.",
+    "isStatic": false,
+    "jsCode": "// Scoped Skills Chip Input Controller\nfunction initSkillsChipInput(container, onSkillsChange) {\n  if (!container) return;\n  const list = container.querySelector('.skills-chip-list');\n  const input = container.querySelector('input');\n  if (!list || !input) return;\n\n  function addSkill(val) {\n    const text = val.trim();\n    if (!text) return;\n    const chip = document.createElement('span');\n    chip.className = 'skills-chip-item';\n    chip.innerHTML = '<span>' + text + '</span><button type=\"button\" aria-label=\"Remove ' + text + '\">×</button>';\n    chip.querySelector('button').addEventListener('click', () => {\n      chip.remove();\n      notify();\n    });\n    list.appendChild(chip);\n    input.value = '';\n    notify();\n  }\n\n  function notify() {\n    if (typeof onSkillsChange === 'function') {\n      const items = Array.from(list.querySelectorAll('.skills-chip-item span')).map(s => s.textContent);\n      onSkillsChange(items);\n    }\n  }\n\n  list.querySelectorAll('.skills-chip-item button').forEach(btn => {\n    btn.addEventListener('click', () => {\n      btn.closest('.skills-chip-item')?.remove();\n      notify();\n    });\n  });\n\n  input.addEventListener('keydown', (e) => {\n    if (e.key === 'Enter') {\n      e.preventDefault();\n      addSkill(input.value);\n    }\n  });\n}"
+  },
+  "discovery-filter": {
+    "title": "Discovery Filter Pills",
+    "category": "Inputs & Selection",
+    "sourceScreen": "Discover (`#active #filters`)",
+    "purpose": "Horizontal scrollable filter bar with 44pt touch pills for filtering nearby professionals by engineering, design, or founders.",
+    "tokens": "Pill height: 36pt · Touch target >= 44pt · Radius: 999pt · Spacing: 8pt gap",
+    "motion": "Selected pill: 180ms background color and text contrast transition.",
+    "flutterSemantics": "Horizontal `ListView` containing `ChoiceChip` widgets.",
+    "privacy": "Filters local proximity list client-side; does not report filter criteria to remote peers.",
+    "serverAuth": "Proximity queries may pass filter category parameters to reduce bandwidth.",
+    "isStatic": false,
+    "jsCode": "// Scoped Discovery Filter Controller\nfunction initDiscoveryFilter(container, onFilterChange) {\n  if (!container) return;\n  const pills = Array.from(container.querySelectorAll('.filter-pill'));\n  pills.forEach((pill, idx) => {\n    pill.addEventListener('click', () => {\n      pills.forEach(p => p.classList.remove('active'));\n      pill.classList.add('active');\n      const cat = pill.dataset.filter || 'all';\n      if (typeof onFilterChange === 'function') onFilterChange(cat, idx);\n    });\n  });\n}"
+  },
+  "bottom-nav": {
+    "title": "Root Bottom Navigation",
+    "category": "Navigation & Tabs",
+    "sourceScreen": "Discover / Closed (`#closed .nav`)",
+    "purpose": "Persistent root tab navigation bar anchoring the primary Discover, Connections, and Profile routes with 116pt bottom clearance.",
+    "tokens": "Bar height: 70pt · Bottom inset: 16pt · Fade clearance: 30pt · Fade extent: 116pt · Indicator radius: 999pt",
+    "motion": "260ms continuous background indicator glide (`cubic-bezier(0.2, 0.8, 0.2, 1)`). Crossfades content in 220ms. 120ms opacity fade under Reduce Motion.",
+    "flutterSemantics": "`CupertinoTabBar` or `BottomNavigationBar` wrapped in `Semantics(selected: isCurrent, label: title)`.",
+    "privacy": "Navigation bar is persistent across roots and does not leak private session status.",
+    "serverAuth": "No remote calls on tab switch; tab states are preserved in memory.",
+    "isStatic": false,
+    "jsCode": "// Scoped Bottom Navigation Controller with Continuous Selection Capsule\nfunction initBottomNav(navElement, onSelect) {\n  if (!navElement) return;\n  let pill = navElement.querySelector('.motion-nav-indicator');\n  if (!pill) {\n    pill = document.createElement('span');\n    pill.className = 'motion-nav-indicator';\n    pill.setAttribute('aria-hidden', 'true');\n    navElement.prepend(pill);\n  }\n  const buttons = Array.from(navElement.querySelectorAll('button'));\n\n  function updateIndicator(btn, animate) {\n    const fromX = navElement._pillX;\n    const fromW = navElement._pillW;\n    const toX = btn.offsetLeft;\n    const toW = btn.offsetWidth;\n    navElement._pillX = toX;\n    navElement._pillW = toW;\n    pill.style.width = toW + 'px';\n    pill.style.transform = 'translateX(' + toX + 'px)';\n\n    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    if (animate && fromX !== undefined && fromX !== toX) {\n      if (reduced) {\n        pill.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 120 });\n      } else {\n        pill.animate(\n          [{ transform: 'translateX(' + fromX + 'px)', width: fromW + 'px' },\n           { transform: 'translateX(' + toX + 'px)', width: toW + 'px' }],\n          { duration: 260, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' }\n        );\n      }\n    }\n  }\n\n  const active = navElement.querySelector('button.current') || buttons[0];\n  if (active) updateIndicator(active, false);\n\n  buttons.forEach((btn, idx) => {\n    btn.addEventListener('click', () => {\n      buttons.forEach(b => {\n        b.classList.remove('current');\n        b.setAttribute('aria-current', 'false');\n      });\n      btn.classList.add('current');\n      btn.setAttribute('aria-current', 'page');\n      updateIndicator(btn, true);\n      if (typeof onSelect === 'function') onSelect(idx, btn);\n    });\n  });\n\n  window.addEventListener('resize', () => {\n    const curr = navElement.querySelector('button.current');\n    if (curr) updateIndicator(curr, false);\n  });\n}"
+  },
+  "tabs": {
+    "title": "Segmented View Tabs",
+    "category": "Navigation & Tabs",
+    "sourceScreen": "Discover (`#active .seg`)",
+    "purpose": "Segmented toggle switching between Discover Map view (approximate proximity beacon) and List view (sortable nearby cards).",
+    "tokens": "Container height: 44pt · Radius: 16pt · Indicator radius: 14pt · Background: var(--muted) · Active: #FF3300",
+    "motion": "260ms continuous background indicator glide (`cubic-bezier(0.2, 0.8, 0.2, 1)`). Immediate state commit.",
+    "flutterSemantics": "`CupertinoSlidingSegmentedControl` or custom sliding capsule with `Semantics(selected: isSelected)`.",
+    "privacy": "Map view displays approximate area beacon without exact coordinates. List view displays verified and nearby cards.",
+    "serverAuth": "Preserves view filter preference in local profile state.",
+    "isStatic": false,
+    "jsCode": "// Scoped Segmented Tabs Controller\nfunction initSegmentedTabs(container, onSelect) {\n  if (!container) return;\n  let pill = container.querySelector('.motion-seg-indicator');\n  if (!pill) {\n    pill = document.createElement('span');\n    pill.className = 'motion-seg-indicator';\n    pill.setAttribute('aria-hidden', 'true');\n    container.prepend(pill);\n  }\n  const buttons = Array.from(container.querySelectorAll('button'));\n\n  function updateIndicator(btn, animate) {\n    const fromX = container._pillX;\n    const fromW = container._pillW;\n    const toX = btn.offsetLeft;\n    const toW = btn.offsetWidth;\n    container._pillX = toX;\n    container._pillW = toW;\n    pill.style.width = toW + 'px';\n    pill.style.transform = 'translateX(' + toX + 'px)';\n\n    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    if (animate && fromX !== undefined && fromX !== toX) {\n      if (reduced) {\n        pill.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 120 });\n      } else {\n        pill.animate(\n          [{ transform: 'translateX(' + fromX + 'px)', width: fromW + 'px' },\n           { transform: 'translateX(' + toX + 'px)', width: toW + 'px' }],\n          { duration: 260, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' }\n        );\n      }\n    }\n  }\n\n  const active = container.querySelector('button.chosen, button.selected') || buttons[0];\n  if (active) updateIndicator(active, false);\n\n  buttons.forEach((btn, idx) => {\n    btn.addEventListener('click', () => {\n      buttons.forEach(b => {\n        b.classList.remove('chosen', 'selected');\n        b.setAttribute('aria-selected', 'false');\n      });\n      btn.classList.add('chosen');\n      if (container.classList.contains('journey-tabs')) btn.classList.add('selected');\n      btn.setAttribute('aria-selected', 'true');\n      updateIndicator(btn, true);\n      if (typeof onSelect === 'function') onSelect(idx, btn);\n    });\n  });\n\n  window.addEventListener('resize', () => {\n    const curr = container.querySelector('button.chosen, button.selected');\n    if (curr) updateIndicator(curr, false);\n  });\n}"
+  },
+  "request-tabs": {
+    "title": "Segmented Request Tabs",
+    "category": "Navigation & Tabs",
+    "sourceScreen": "Requests (`#requests .journey-tabs`)",
+    "purpose": "Segmented filter toggle between Received Requests and Sent Invitations with continuous 260ms sliding capsule.",
+    "tokens": "Container height: 44pt · Radius: 16pt · Indicator radius: 14pt · Background: var(--muted)",
+    "motion": "260ms continuous background indicator glide (`cubic-bezier(0.2, 0.8, 0.2, 1)`).",
+    "flutterSemantics": "`CupertinoSlidingSegmentedControl` with `Semantics(selected: isSelected)`.",
+    "privacy": "Received requests allow Accept/Decline. Sent requests allow cancellation.",
+    "serverAuth": "Synchronizes request list state on pull-to-refresh.",
+    "isStatic": false,
+    "jsCode": "// Scoped Request Tabs Controller (Reuses Segmented Controller)\nfunction initRequestTabs(container, onSelect) {\n  if (typeof initSegmentedTabs === 'function') {\n    initSegmentedTabs(container, onSelect);\n  }\n}"
+  },
+  "app-bar": {
+    "title": "Screen Header & App Bar",
+    "category": "Navigation & Tabs",
+    "sourceScreen": "My Profile (`#myprofile .myprofile-head`)",
+    "purpose": "Standard mobile header bar with title, back button, and contextual action shortcuts.",
+    "tokens": "Height: 48pt · Title font: 23pt Screen Title (or 17pt inline title) · Touch targets >= 44pt",
+    "motion": "Scrolled state activates 16pt backdrop blur and subtle shadow in 200ms.",
+    "flutterSemantics": "`CupertinoNavigationBar` with `previousPageTitle` and action widgets.",
+    "privacy": "Does not expose sensitive identifiers in plain text in the title.",
+    "serverAuth": "No remote dependency.",
+    "isStatic": true
+  },
+  "profile-card": {
+    "title": "Discovery Profile Card",
+    "category": "Cards & Lists",
+    "sourceScreen": "Discover (`#active #profilecard`)",
+    "purpose": "Nearby discovery profile preview card supporting anonymous initials view and full connected peer view.",
+    "tokens": "Width: min(393pt, 100%) · Radius: 24pt · Elevation: 0 12px 32px rgba(0,0,0,0.12) · Border: 1.5px solid var(--accent)",
+    "motion": "Lifts from below: 380ms lift on open, 240ms dismiss.",
+    "flutterSemantics": "`Card` or `CupertinoPopupSurface` with `Semantics(label: \"Profile preview for Alex M.\")`.",
+    "privacy": "Unconnected contacts show initials only. Photo portraits unlock only after mutual connection acceptance.",
+    "serverAuth": "Server withholds full portrait CDN URLs until connection state is verified.",
+    "isStatic": true
+  },
+  "network-row": {
+    "title": "Connection List Row",
+    "category": "Cards & Lists",
+    "sourceScreen": "My Network (`#network`)",
+    "purpose": "Compact connection list row with avatar, name, headline, and contextual action button.",
+    "tokens": "Height: 72pt · Avatar: 48×48pt · Radius: 18pt · Font: 16pt Primary Row · 13pt Support",
+    "motion": "Press: 90ms / 220ms. Tap pushes child connection detail route.",
+    "flutterSemantics": "`CupertinoListTile` with `leading`, `title`, `subtitle`, and `trailing`.",
+    "privacy": "Displays established connections only.",
+    "serverAuth": "Connection records fetched from authorized network cache.",
+    "isStatic": true
+  },
+  "activity-item": {
+    "title": "Notification Activity Item",
+    "category": "Cards & Lists",
+    "sourceScreen": "Notifications (`#activity`)",
+    "purpose": "Notification feed card with portrait avatar, relative timestamp, and inline accept/decline action triggers.",
+    "tokens": "Surface radius: 20pt · Padding: 16pt · Decision buttons: 44pt height",
+    "motion": "Dismissing row leaves on its own (220ms fade); rest of list does not replay entrance.",
+    "flutterSemantics": "`Dismissible` list item with `Semantics(label: \"Connection request from Alex Morgan\")`.",
+    "privacy": "Includes personal message snippet if provided in invitation.",
+    "serverAuth": "Accept / Decline actions update backend model immediately.",
+    "isStatic": true
+  },
+  "list": {
+    "title": "Settings Account Rows",
+    "category": "Cards & Lists",
+    "sourceScreen": "Settings (`#appsettings .settings-group`)",
+    "purpose": "Settings row group with theme-aware rounded surface, icon, title, subtitle, and trailing chevron.",
+    "tokens": "Row height: 48pt minimum · Radius: 22pt · Divider: 1px subtle line",
+    "motion": "Tap pushes child route (360ms push, 320ms pop with interactive swipe back).",
+    "flutterSemantics": "`CupertinoListSection` and `CupertinoListTile` with trailing `CupertinoListTileChevron`.",
+    "privacy": "Settings contain account preferences; sign-out clears credentials.",
+    "serverAuth": "Synchronized with user account service.",
+    "isStatic": true
+  },
+  "identity-card": {
+    "title": "Profile Identity Card",
+    "category": "Profile & Identity",
+    "sourceScreen": "My Profile (`#myprofile .myprofile-identity-card`)",
+    "purpose": "User identity overview card with avatar, name, professional headline, location, and completion meter.",
+    "tokens": "Radius: 26pt · Padding: 20pt · Headline: 15pt · Support: 13pt · Progress bar: 4pt track",
+    "motion": "Progress bar animates width only when value changes, not on every page visit.",
+    "flutterSemantics": "`Semantics(label: \"Profile card, Alex Morgan, 100% complete\")`.",
+    "privacy": "Displays user own profile. Unconnected visitors cannot view full details.",
+    "serverAuth": "Profile data retrieved from authenticated `/user/profile` endpoint.",
+    "isStatic": true
+  },
+  "avatar": {
+    "title": "Profile Avatar",
+    "category": "Profile & Identity",
+    "sourceScreen": "My Profile (`#myprofile .myprofile-avatar`)",
+    "purpose": "Profile photo avatar with initials fallback and verified trust badge overlay.",
+    "tokens": "Size: 64×64pt · Radius: 999pt (Circular) · Fallback text: 20pt Bold",
+    "motion": "Image fades in over 150ms upon successful cache load.",
+    "flutterSemantics": "`CircleAvatar` with `Semantics(label: \"Photo of Alex Morgan\")`.",
+    "privacy": "Photos are withheld on server for pre-connection discovery to prevent reverse image searching.",
+    "serverAuth": "CDN images signed with short expiration tokens.",
+    "isStatic": true
+  },
+  "chip": {
+    "title": "Skill & Interest Chips",
+    "category": "Profile & Identity",
+    "sourceScreen": "My Profile (`#myprofile .myprofile-chips`)",
+    "purpose": "Category tag pill for professional skills and interests.",
+    "tokens": "Height: 30pt · Radius: 12pt · Padding: 4pt 12pt · Font: 13pt Medium",
+    "motion": "Static pill tag.",
+    "flutterSemantics": "`Chip` widget with `label`.",
+    "privacy": "Public profile metadata.",
+    "serverAuth": "Read from user profile model.",
+    "isStatic": true
+  },
+  "profile-progress": {
+    "title": "Profile Completion Card",
+    "category": "Profile & Identity",
+    "sourceScreen": "My Profile (`#myprofile .myprofile-completion`)",
+    "purpose": "Profile completion card with percentage text and animated progress track fill.",
+    "tokens": "Track height: 4pt · Track background: rgba(0,0,0,0.06) · Fill: #FF3300 · Font: 13pt Bold",
+    "motion": "Track width fills over 300ms ease-out on score update.",
+    "flutterSemantics": "`Semantics(value: \"100%\", role: \"progressbar\")`.",
+    "privacy": "Private metric visible only to profile owner.",
+    "serverAuth": "Calculated dynamically on server based on completed fields.",
+    "isStatic": true
+  },
+  "profile-menu": {
+    "title": "Rounded Privacy Menu",
+    "category": "Profile & Identity",
+    "sourceScreen": "My Profile (`#myprofile .myprofile-menu`)",
+    "purpose": "Rounded 62pt navigation menu row for profile settings and privacy preferences.",
+    "tokens": "Height: 62pt · Radius: 20pt · Padding: 16pt · Font: 16pt Bold",
+    "motion": "Press feedback: 90ms scale 0.98. Tap pushes Privacy route.",
+    "flutterSemantics": "`CupertinoListTile` with trailing chevron.",
+    "privacy": "Leads to privacy controls and hidden connections.",
+    "serverAuth": "No remote dependency.",
+    "isStatic": true
+  },
+  "content-section": {
+    "title": "Readable Content Section",
+    "category": "Profile & Identity",
+    "sourceScreen": "My Profile (`#myprofile .myprofile-section`)",
+    "purpose": "Grouped content block with 17pt section title and 15–17pt body text (About, Experience).",
+    "tokens": "Title: 17pt Bold · Body: 15pt Regular (1.55 line height) · Radius: 22pt surface",
+    "motion": "Static content section.",
+    "flutterSemantics": "`Semantics(header: true)` for section heading.",
+    "privacy": "Displays user-authored biography and career summary.",
+    "serverAuth": "Sanitized on server.",
+    "isStatic": true
+  },
+  "verified-badge": {
+    "title": "Verified Trust Badge",
+    "category": "Profile & Identity",
+    "sourceScreen": "Discover / My Profile (`.li-verified-badge`)",
+    "purpose": "Official LinkedIn verified trust signal badge with filled blue/orange emblem.",
+    "tokens": "Size: 16×16pt · Color: #0A66C2 / #FF3300 · Optical alignment with text baseline",
+    "motion": "Static badge with smooth tooltip fade on tap.",
+    "flutterSemantics": "`Semantics(label: \"LinkedIn Connected Account\")`.",
+    "privacy": "Communicates connected LinkedIn account status. Never fabricates verified employment.",
+    "serverAuth": "Requires verified OAuth token status from backend.",
+    "isStatic": true
+  },
+  "profile-documents": {
+    "title": "Document Attachment Grid",
+    "category": "Profile & Identity",
+    "sourceScreen": "My Profile (`#myprofile #myprofile-docs-section`)",
+    "purpose": "Document and portfolio attachment grid. In pre-connection state, documents are locked, filenames masked (`••••••••••••••••.<ext>`), and preview blurred (`4.5px`). Decryption URLs must be withheld server-side.",
+    "tokens": "Card height: 56pt · Radius: 16pt · Blur: 4.5px · Opacity: 0.55 · Lock badge: 12pt",
+    "motion": "Unlocking transition: 240ms blur fade and lock tag dismissal upon connection acceptance.",
+    "flutterSemantics": "`Semantics(button: true, label: \"Document: Locked until connection\")`.",
+    "privacy": "CRITICAL: Client-side blur is an aesthetic indicator only. Production APIs MUST withhold decrypted file download URLs and metadata until mutual connection acceptance is confirmed.",
+    "serverAuth": "File downloads require signed S3/GCS temporary URLs with connection verification.",
+    "isStatic": false,
+    "jsCode": "// Scoped Document Attachment Controller\nfunction initDocumentGrid(container, onDocumentClick) {\n  if (!container) return;\n  const cards = Array.from(container.querySelectorAll('.peopi-doc-card'));\n  cards.forEach((card, idx) => {\n    card.addEventListener('click', () => {\n      const isLocked = card.classList.contains('doc-locked');\n      if (typeof onDocumentClick === 'function') {\n        onDocumentClick(idx, isLocked, card);\n      }\n    });\n  });\n}"
+  },
+  "connection-request": {
+    "title": "Connection Request Card",
+    "category": "Connections & Chat",
+    "sourceScreen": "Requests (`#requests .request-received`)",
+    "purpose": "Direct connection invitation card with equal half-width 48pt Accept/Decline action buttons.",
+    "tokens": "Radius: 22pt · Padding: 18pt · Actions: 48pt height, 16pt radius · Gap: 10pt",
+    "motion": "Row dismissal: accepted row leaves on its own (220ms fade); remaining rows settle smoothly.",
+    "flutterSemantics": "`Card` with distinct `Semantics(button: true, label: \"Accept request\")` and Decline.",
+    "privacy": "Displays requesting peer name, intent, and optional personal note.",
+    "serverAuth": "Accept / Decline calls `/connections/respond` and invalidates pending request cache.",
+    "isStatic": false,
+    "jsCode": "// Scoped Connection Request Actions Controller\nfunction initConnectionRequest(card, onDecision) {\n  if (!card) return;\n  const acceptBtn = card.querySelector('button.journey-primary');\n  const declineBtn = card.querySelector('button.journey-secondary');\n\n  if (acceptBtn) {\n    acceptBtn.addEventListener('click', () => {\n      if (typeof onDecision === 'function') onDecision('accept', card);\n    });\n  }\n  if (declineBtn) {\n    declineBtn.addEventListener('click', () => {\n      if (typeof onDecision === 'function') onDecision('decline', card);\n    });\n  }\n}"
+  },
+  "chat-bubble": {
+    "title": "Chat Message Bubbles",
+    "category": "Connections & Chat",
+    "sourceScreen": "Conversation (`#conversation .chat-history`)",
+    "purpose": "Conversational message bubbles with distinct sender (accent border) and peer surfaces, and session time dividers.",
+    "tokens": "Max width: 80% · Radius: 18pt · Sender border: 1.5px solid rgba(255,51,0,0.3) · Font: 15pt",
+    "motion": "New message lifts in: 240ms translateY(10pt) + opacity fade. Previous messages do NOT replay.",
+    "flutterSemantics": "`Semantics(label: \"Message from Alex: ...\")` in `ListView.builder`.",
+    "privacy": "Direct messaging restricted strictly to mutually accepted connections.",
+    "serverAuth": "WebSocket connection authenticated with JWT; messages encrypted in transit.",
+    "isStatic": true
+  },
+  "chat-composer": {
+    "title": "Chat Message Composer",
+    "category": "Connections & Chat",
+    "sourceScreen": "Conversation (`#conversation .chat-compose`)",
+    "purpose": "Single-line fixed-height message composer with quick meetup prompt chips and nested send action.",
+    "tokens": "Composer height: 50pt · Radius: 999pt (Pill) · Input: 16pt · Quick prompt chips: 32pt height",
+    "motion": "Keyboard avoidance padding adjusts smoothly matching native keyboard duration.",
+    "flutterSemantics": "`CupertinoTextField` with trailing send button in `Semantics`.",
+    "privacy": "Messages sent directly to peer connection thread.",
+    "serverAuth": "Input character limit (2000 chars) enforced on server.",
+    "isStatic": false,
+    "jsCode": "// Scoped Chat Composer Controller\nfunction initChatComposer(container, onSendMessage) {\n  if (!container) return;\n  const form = container.querySelector('form') || container;\n  const input = container.querySelector('input');\n  const sendBtn = container.querySelector('button[type=\"submit\"]');\n\n  if (form && input) {\n    form.addEventListener('submit', (e) => {\n      e.preventDefault();\n      const text = input.value.trim();\n      if (!text) return;\n      input.value = '';\n      if (typeof onSendMessage === 'function') onSendMessage(text);\n    });\n  }\n\n  container.querySelectorAll('.chat-prompt-pill').forEach(pill => {\n    pill.addEventListener('click', () => {\n      const prompt = pill.dataset.prompt || pill.textContent.trim();\n      if (input) {\n        input.value = prompt;\n        input.focus();\n      }\n    });\n  });\n}"
+  },
+  "privacy": {
+    "title": "Presence Status Banner",
+    "category": "Privacy & Feedback",
+    "sourceScreen": "Privacy & Safety (`#privacy .privacy-status`)",
+    "purpose": "Presence status banner communicating discovery visibility and session countdown. Invisible by default; visible only during active sessions.",
+    "tokens": "Surface radius: 20pt · Padding: 16pt · Live dot: 10×10pt pulsing indicator",
+    "motion": "Status change updates text in place with 180ms crossfade. Live dot pulses continuously.",
+    "flutterSemantics": "`Semantics(liveRegion: true, label: \"Discovery is invisible by default\")`.",
+    "privacy": "Invisible by default. Visible only when user explicitly confirms Go Visible. Never broadcasts exact coordinates.",
+    "serverAuth": "Session expiry immediately shuts down backend radar beacon broadcasting.",
+    "isStatic": false,
+    "jsCode": "// Scoped Presence Banner Controller\nfunction initPresenceBanner(container, onVisibilityToggle) {\n  if (!container) return;\n  const actionBtn = container.querySelector('#privacy-presence-action, button');\n  if (actionBtn) {\n    actionBtn.addEventListener('click', () => {\n      const isLive = container.querySelector('.privacy-status')?.classList.contains('status-live');\n      if (typeof onVisibilityToggle === 'function') onVisibilityToggle(!isLive);\n    });\n  }\n}"
+  },
+  "privacy-row": {
+    "title": "Privacy Control Row",
+    "category": "Privacy & Feedback",
+    "sourceScreen": "Privacy & Safety (`#privacy .privacy-setting`)",
+    "purpose": "Selective presence control row toggling whether active presence is concealed from specific connections.",
+    "tokens": "Row height: 60pt · Radius: 18pt · Padding: 16pt · Font: 16pt Bold + 13pt Subtitle",
+    "motion": "Toggle switch animates thumb over 180ms.",
+    "flutterSemantics": "`CupertinoListTile` with subtitle and trailing switch.",
+    "privacy": "Hidden connection remains connected and can message; live radar presence is concealed. Other person is NOT notified.",
+    "serverAuth": "Hidden list stored on server and filtered out during proximity radar queries.",
+    "isStatic": false,
+    "jsCode": "// Scoped Privacy Row Controller\nfunction initPrivacyRow(row, onToggle) {\n  if (!row) return;\n  const btn = row.querySelector('.privacy-inline, button');\n  if (btn) {\n    btn.addEventListener('click', () => {\n      if (typeof onToggle === 'function') onToggle(row);\n    });\n  }\n}"
+  },
+  "verification-status": {
+    "title": "Trust Signal Panel",
+    "category": "Privacy & Feedback",
+    "sourceScreen": "Verification (`#verification .verify-panel`)",
+    "purpose": "Trust signal panel showing connected third-party credentials (LinkedIn). Honest signal only; does not imply verified legal identity or employment.",
+    "tokens": "Surface radius: 22pt · Padding: 18pt · LinkedIn mark: 36×36pt (#0A66C2)",
+    "motion": "Connect / Disconnect updates state in place with 180ms feedback.",
+    "flutterSemantics": "`Card` with `Semantics(label: \"LinkedIn connection: Not connected\")`.",
+    "privacy": "Shows a LinkedIn Connected signal—not identity, employment, or credential verification.",
+    "serverAuth": "OAuth token handshake via secure server backend.",
+    "isStatic": false,
+    "jsCode": "// Scoped Trust Signal Controller\nfunction initVerificationStatus(container, onConnectChange) {\n  if (!container) return;\n  const connectBtn = container.querySelector('#verify-connect, .verify-primary');\n  const disconnectBtn = container.querySelector('#verify-disconnect, .verify-secondary');\n\n  if (connectBtn) {\n    connectBtn.addEventListener('click', () => {\n      if (typeof onConnectChange === 'function') onConnectChange(true);\n    });\n  }\n  if (disconnectBtn) {\n    disconnectBtn.addEventListener('click', () => {\n      if (typeof onConnectChange === 'function') onConnectChange(false);\n    });\n  }\n}"
+  },
+  "toast-notification": {
+    "title": "Toast Notification Alert",
+    "category": "Privacy & Feedback",
+    "sourceScreen": "Feedback (`#toast`)",
+    "purpose": "Transient status alert with high-contrast translucent surface and accessible role=\"status\".",
+    "tokens": "Height: 46pt · Radius: 999pt · Background: rgba(15,23,42,0.92) · Blur: 16px · Font: 14pt Medium",
+    "motion": "Lifts from top: 180ms feedback entrance. Auto-dismisses in 3000ms with fade.",
+    "flutterSemantics": "`Semantics(liveRegion: true)` or `SnackBar` / custom overlay.",
+    "privacy": "Displays feedback confirmations; no sensitive data persisted in logs.",
+    "serverAuth": "Client-side ephemeral presentation.",
+    "isStatic": false,
+    "jsCode": "// Scoped Toast Alert Controller\nfunction showToastAlert(message, duration = 3000) {\n  const toast = document.createElement('div');\n  toast.className = 'ds-toast-notification';\n  toast.textContent = message;\n  toast.setAttribute('role', 'status');\n  document.body.appendChild(toast);\n  setTimeout(() => {\n    toast.style.opacity = '0';\n    setTimeout(() => toast.remove(), 200);\n  }, duration);\n}"
+  },
+  "session-alert": {
+    "title": "Session Expiry Warning Alert",
+    "category": "Privacy & Feedback",
+    "sourceScreen": "Discover (`#session-alert`)",
+    "purpose": "5-minute remaining session expiry warning dialog prompting the user to extend discovery by +30 min or let it expire.",
+    "tokens": "Radius: 22pt · Padding: 18pt · Actions: 44pt height · Clock icon: 24pt",
+    "motion": "Lifts from below: 240ms sheet entrance with subtle backdrop dimming.",
+    "flutterSemantics": "`CupertinoAlertDialog` or inline card with `Semantics(role: \"alertdialog\")`.",
+    "privacy": "Warns before discovery powers down to respect user privacy and battery life.",
+    "serverAuth": "Extend session sends `/session/extend` request (+30m TTL).",
+    "isStatic": false,
+    "jsCode": "// Scoped Session Alert Controller\nfunction initSessionAlert(alertEl, onExtend, onDismiss) {\n  if (!alertEl) return;\n  const extendBtn = alertEl.querySelector('#extend-session, button:first-of-type');\n  const dismissBtn = alertEl.querySelector('#dismiss-alert, button:last-of-type');\n\n  if (extendBtn) {\n    extendBtn.addEventListener('click', () => {\n      alertEl.classList.add('hide');\n      if (typeof onExtend === 'function') onExtend();\n    });\n  }\n  if (dismissBtn) {\n    dismissBtn.addEventListener('click', () => {\n      alertEl.classList.add('hide');\n      if (typeof onDismiss === 'function') onDismiss();\n    });\n  }\n}"
+  },
+  "verification-step": {
+    "title": "Verification Principles & Signals",
+    "category": "Privacy & Feedback",
+    "sourceScreen": "Verification (`#verification .verify-principles`)",
+    "purpose": "Educational trust principles card clarifying how verification signals work on Peopi.",
+    "tokens": "Radius: 20pt · Line height: 1.6 · Icon: 22pt optical bounding box",
+    "motion": "Static educational card.",
+    "flutterSemantics": "`Semantics` grouping principles list.",
+    "privacy": "Explains transparently that trust signals do not imply government verification.",
+    "serverAuth": "Static informational content.",
+    "isStatic": true
+  },
+  "empty-state": {
+    "title": "Empty State View",
+    "category": "Privacy & Feedback",
+    "sourceScreen": "Requests / Network (`#requests .journey-empty`)",
+    "purpose": "Zero-data placeholder card with illustration icon, reassuring heading, and helpful guidance copy.",
+    "tokens": "Padding: 32pt · Icon: 48pt optical size · Heading: 17pt Bold · Subtitle: 14pt Regular",
+    "motion": "Fades in once over 200ms when data collection is confirmed empty.",
+    "flutterSemantics": "`Semantics(label: \"No incoming requests yet\")`.",
+    "privacy": "Never fabricates fake users or artificial notifications to fill an empty screen.",
+    "serverAuth": "Confirmed empty state from server response.",
+    "isStatic": true
+  },
+  "sheet": {
+    "title": "Profile Detail Bottom Sheet",
+    "category": "Sheets & Dialogs",
+    "sourceScreen": "Discover (`#profsheet .profile-sheet`)",
+    "purpose": "Profile detail bottom sheet with interactive swipe-to-dismiss gesture and scrollable identity sections.",
+    "tokens": "Radius: 28pt top corners · Drag handle: 36×5pt · Max height: 88% viewport · Scroller padding: 116pt bottom clearance",
+    "motion": "Sheet lift: 380ms from below. Dismiss: 240ms with interactive touch drag tracking.",
+    "flutterSemantics": "`showCupertinoModalPopup` with scrollable child and accessible dismiss button.",
+    "privacy": "Displays anonymous preview for pre-connection profiles. Conceals mutual connection previews until accepted.",
+    "serverAuth": "Protected profile details delivered via authenticated connection token.",
+    "isStatic": false,
+    "jsCode": "// Scoped Bottom Sheet Controller\nfunction initBottomSheet(sheetEl, onDismiss) {\n  if (!sheetEl) return;\n  const closeBtn = sheetEl.querySelector('.profile-sheet-close, [data-action=\"close\"]');\n  if (closeBtn) {\n    closeBtn.addEventListener('click', () => {\n      sheetEl.classList.add('hide');\n      if (typeof onDismiss === 'function') onDismiss();\n    });\n  }\n}"
+  },
+  "dialog": {
+    "title": "Confirmation Dialog Sheet",
+    "category": "Sheets & Dialogs",
+    "sourceScreen": "Discover (`#modal .sheet`)",
+    "purpose": "Modal confirmation dialog for destructive or high-impact decisions (sign out, go invisible).",
+    "tokens": "Radius: 24pt · Padding: 24pt · Primary action: 48pt · Cancel action: 44pt · Max width: 340pt",
+    "motion": "Scale & fade entrance: 240ms lift from 48pt below. Dismiss: 180ms fade.",
+    "flutterSemantics": "`CupertinoAlertDialog` with `title`, `content`, and `actions`.",
+    "privacy": "Confirms intent before tearing down active session or clearing presence.",
+    "serverAuth": "Confirmed actions execute backend state transitions.",
+    "isStatic": false,
+    "jsCode": "// Scoped Confirmation Dialog Controller\nfunction initConfirmDialog(dialogEl, onConfirm, onCancel) {\n  if (!dialogEl) return;\n  const confirmBtn = dialogEl.querySelector('.dialog-confirm, button:first-of-type');\n  const cancelBtn = dialogEl.querySelector('.dialog-cancel, button:last-of-type');\n\n  if (confirmBtn) {\n    confirmBtn.addEventListener('click', () => {\n      dialogEl.classList.add('hide');\n      if (typeof onConfirm === 'function') onConfirm();\n    });\n  }\n  if (cancelBtn) {\n    cancelBtn.addEventListener('click', () => {\n      dialogEl.classList.add('hide');\n      if (typeof onCancel === 'function') onCancel();\n    });\n  }\n}"
+  },
+  "exp-sheet": {
+    "title": "Experience Editor Bottom Sheet",
+    "category": "Sheets & Dialogs",
+    "sourceScreen": "Edit Profile (`#exp-sheet`)",
+    "purpose": "Work experience editor modal bottom sheet with role, company, country, and tenure dates.",
+    "tokens": "Radius: 28pt top corners · Input height: 46pt · Form gap: 14pt · Save CTA: 52pt",
+    "motion": "380ms lift from below. Keyboard pushes sheet content without clipping CTA.",
+    "flutterSemantics": "`CupertinoModalPopup` with focus trap on first input.",
+    "privacy": "Experience records appear on public profile.",
+    "serverAuth": "Server validates dates and company names.",
+    "isStatic": false,
+    "jsCode": "// Scoped Experience Sheet Controller\nfunction initExpSheet(sheetEl, onSave) {\n  if (!sheetEl) return;\n  const form = sheetEl.querySelector('form');\n  if (form) {\n    form.addEventListener('submit', (e) => {\n      e.preventDefault();\n      sheetEl.classList.add('hide');\n      if (typeof onSave === 'function') onSave(new FormData(form));\n    });\n  }\n}"
+  },
+  "doc-sheet": {
+    "title": "Document Upload Bottom Sheet",
+    "category": "Sheets & Dialogs",
+    "sourceScreen": "Edit Profile (`#doc-sheet`)",
+    "purpose": "Document upload modal bottom sheet with file dropzone, preset document types, and encryption status.",
+    "tokens": "Radius: 28pt top corners · Dropzone: 120pt height · Upload button: 48pt",
+    "motion": "380ms lift. Upload progress bar fills over actual network upload time.",
+    "flutterSemantics": "`CupertinoModalPopup` with file picker integration.",
+    "privacy": "Documents are shared strictly with established connections. Never public.",
+    "serverAuth": "Files uploaded directly to encrypted cloud storage with connection-scoped ACL.",
+    "isStatic": false,
+    "jsCode": "// Scoped Document Upload Sheet Controller\nfunction initDocSheet(sheetEl, onUpload) {\n  if (!sheetEl) return;\n  const fileInput = sheetEl.querySelector('input[type=\"file\"]');\n  const uploadBtn = sheetEl.querySelector('.edit-doc-upload-btn, button');\n\n  if (uploadBtn && fileInput) {\n    uploadBtn.addEventListener('click', () => fileInput.click());\n    fileInput.addEventListener('change', () => {\n      if (fileInput.files.length && typeof onUpload === 'function') {\n        onUpload(fileInput.files[0]);\n      }\n    });\n  }\n}"
+  }
+};
+
+// Phase 04: Mobile AI Handoff & Selection Motion Engine
+async function copyToClipboard(text) {
+  let copied = false;
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      copied = true;
+    }
+  } catch (e) {
+    copied = false;
+  }
+  if (!copied) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '0';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      copied = document.execCommand('copy');
+      ta.remove();
+    } catch (e) {
+      copied = false;
+    }
+  }
+  return copied;
+}
+
+const MOTION_EASING = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
+const MOTION_DURATION = 260;
+const REDUCED_MOTION_DURATION = 120;
+
+function animateSelectionCapsule(container, indicator, targetBtn, options = {}) {
+  if (!container || !indicator || !targetBtn) return;
+  const isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animate = options.animate !== false && !options.instant;
+
+  const targetX = targetBtn.offsetLeft;
+  const targetWidth = targetBtn.offsetWidth;
+
+  if (!animate) {
+    if (indicator._runningAnimation) {
+      indicator._runningAnimation.cancel();
+      indicator._runningAnimation = null;
+    }
+    indicator.style.width = targetWidth + 'px';
+    indicator.style.transform = 'translateX(' + targetX + 'px)';
+    indicator.style.opacity = '1';
+    return;
+  }
+
+  if (isReduced) {
+    if (indicator._runningAnimation) {
+      indicator._runningAnimation.cancel();
+      indicator._runningAnimation = null;
+    }
+    indicator.style.width = targetWidth + 'px';
+    indicator.style.transform = 'translateX(' + targetX + 'px)';
+    indicator._runningAnimation = indicator.animate([
+      { opacity: 0 },
+      { opacity: 1 }
+    ], {
+      duration: REDUCED_MOTION_DURATION,
+      easing: 'ease-out',
+      fill: 'forwards'
+    });
+    return;
+  }
+
+  // Continuous Retargeting from intermediate matrix position
+  let startX = targetX;
+  let startWidth = targetWidth;
+
+  const style = window.getComputedStyle(indicator);
+  const matrix = style.transform;
+  if (matrix && matrix !== 'none') {
+    const values = matrix.split('(')[1].split(')')[0].split(',');
+    if (values.length >= 6) {
+      startX = parseFloat(values[4]);
+    }
+  } else if (indicator.offsetLeft) {
+    startX = indicator.offsetLeft;
+  }
+  startWidth = parseFloat(style.width) || indicator.offsetWidth || targetWidth;
+
+  if (indicator._runningAnimation) {
+    indicator._runningAnimation.cancel();
+    indicator._runningAnimation = null;
+  }
+
+  indicator.style.width = targetWidth + 'px';
+  indicator.style.transform = 'translateX(' + targetX + 'px)';
+
+  indicator._runningAnimation = indicator.animate([
+    { transform: 'translateX(' + startX + 'px)', width: startWidth + 'px' },
+    { transform: 'translateX(' + targetX + 'px)', width: targetWidth + 'px' }
+  ], {
+    duration: MOTION_DURATION,
+    easing: MOTION_EASING,
+    fill: 'both'
+  });
+
+  indicator._runningAnimation.onfinish = () => {
+    indicator.style.width = targetWidth + 'px';
+    indicator.style.transform = 'translateX(' + targetX + 'px)';
+    indicator._runningAnimation = null;
+  };
+}
+
+function selectBottomNav(nav, targetIndexOrBtn, options = {}) {
+  if (!nav) return;
+  const buttons = Array.from(nav.querySelectorAll('button'));
+  if (!buttons.length) return;
+  let targetBtn = (typeof targetIndexOrBtn === 'number') ? buttons[targetIndexOrBtn] : targetIndexOrBtn;
+  if (!targetBtn || !buttons.includes(targetBtn)) targetBtn = buttons[0];
+  const targetIdx = buttons.indexOf(targetBtn);
+
+  buttons.forEach((b, i) => {
+    const isTarget = (i === targetIdx);
+    b.classList.toggle('current', isTarget);
+    if (isTarget) {
+      b.setAttribute('aria-current', 'page');
+    } else {
+      b.removeAttribute('aria-current');
+    }
+  });
+
+  let pill = nav.querySelector('.motion-nav-indicator');
+  if (!pill) {
+    pill = document.createElement('span');
+    pill.className = 'motion-nav-indicator';
+    pill.setAttribute('aria-hidden', 'true');
+    nav.prepend(pill);
+  }
+
+  animateSelectionCapsule(nav, pill, targetBtn, options);
+
+  const card = nav.closest('.ds-workbench-card');
+  if (card && options.syncVariant !== false) {
+    setWorkbenchVariantActive(card, targetIdx);
+    updateCardHandoff(card);
+  }
+}
+
+function selectSegmented(seg, targetIndexOrBtn, options = {}) {
+  if (!seg) return;
+  const buttons = Array.from(seg.querySelectorAll('button'));
+  if (!buttons.length) return;
+  let targetBtn = (typeof targetIndexOrBtn === 'number') ? buttons[targetIndexOrBtn] : targetIndexOrBtn;
+  if (!targetBtn || !buttons.includes(targetBtn)) targetBtn = buttons[0];
+  const targetIdx = buttons.indexOf(targetBtn);
+
+  buttons.forEach((b, i) => {
+    const isTarget = (i === targetIdx);
+    b.classList.toggle('chosen', isTarget);
+    b.classList.toggle('selected', isTarget);
+    b.setAttribute('aria-selected', String(isTarget));
+  });
+
+  let pill = seg.querySelector('.motion-seg-indicator');
+  if (!pill) {
+    pill = document.createElement('span');
+    pill.className = 'motion-seg-indicator';
+    pill.setAttribute('aria-hidden', 'true');
+    seg.prepend(pill);
+  }
+
+  animateSelectionCapsule(seg, pill, targetBtn, options);
+
+  const card = seg.closest('.ds-workbench-card');
+  if (card && options.syncVariant !== false) {
+    setWorkbenchVariantActive(card, targetIdx);
+    updateCardHandoff(card);
+  }
+}
+
+function generateAiBrief(compKey, activeVariantText, card) {
+  const comp = (typeof peopiHandoffData !== 'undefined' && peopiHandoffData[compKey]) || {
+    title: (card ? card.querySelector('.ds-workbench-title')?.textContent.trim() : compKey),
+    category: 'Components',
+    sourceScreen: 'Application View',
+    purpose: 'Mobile UI component specifying interaction and layout contracts.',
+    tokens: 'Standard tokens: 44pt touch target, 16pt border radius, var(--brand)',
+    motion: 'Settle curve 260ms cubic-bezier(0.2, 0.8, 0.2, 1)',
+    flutterSemantics: 'Standard Cupertino/Material widget with explicit accessibility labels.',
+    privacy: 'Standard privacy rules apply.',
+    serverAuth: 'Standard session validation.'
+  };
+
+  const a11yNote = card ? card.querySelector('.ds-notes-text')?.textContent.trim() : 'Touch target >= 44pt';
+
+  const lines = [
+    '# Peopi Mobile Component Specification: ' + comp.title,
+    '',
+    '**Category:** ' + comp.category,
+    '**Source Screen:** ' + comp.sourceScreen,
+    '**Active Variant:** ' + (activeVariantText || 'Default'),
+    '**Classification:** Product Component',
+    '',
+    '---',
+    '',
+    '## 1. Purpose & Product Context',
+    comp.purpose,
+    '',
+    '## 2. Layout & Design Tokens (Mobile pt vs Web px)',
+    '- **Unit Standard:** Logical points (pt) on iOS / dp on Flutter (1pt = 1dp at 1x density). Never hardcode web CSS px in mobile widgets.',
+    '- **Specifications:** ' + comp.tokens,
+    '- **Color Aliases:**',
+    '  * Brand Accent: `--brand` (#FF3300)',
+    '  * Surface Card: `--card` (#FFFFFF light / #172033 dark)',
+    '  * Primary Text: `--ink` (#0F172A light / #F8FAFC dark)',
+    '  * Secondary Text: `--ink-secondary` (#64748B light / #94A3B8 dark)',
+    '  * Divider Line: `--line` (#E2E8F0 light / #334155 dark)',
+    '',
+    '## 3. Motion & Transition Recipes',
+    '- **Interactive Recipe:** ' + comp.motion,
+    '- **Reduced Motion Fallback:** When system setting prefers reduced motion, cancel spatial translation and crossfade opacity over 120ms (`cubic-bezier(0.0, 0.0, 0.2, 1)`).',
+    '- **State Commitment:** Active indicator commitments must occur synchronously with touch events to prevent UI lag.',
+    '',
+    '## 4. Accessibility & Semantics',
+    '- **Touch Target:** Minimum 44×44pt bounding box required for all interactive hit targets.',
+    '- **Flutter / iOS Semantics:** ' + comp.flutterSemantics,
+    '- **Active Prototype Contract:** ' + a11yNote,
+    '',
+    '## 5. Privacy & Server Authorization Contract',
+    comp.privacy ? ('> **PRIVACY RULE:** ' + comp.privacy) : '',
+    comp.serverAuth ? ('> **SERVER CONTRACT:** ' + comp.serverAuth) : '',
+    '',
+    '---',
+    '*Generated by Peopi Mobile AI Handoff Engine — Phase 04 Verified*'
+  ];
+
+  return lines.filter(l => l !== null && l !== '').join('\n');
+}
+
+function normalizeHtmlForReference(rawHtml) {
+  if (!rawHtml) return '';
+  let clean = rawHtml
+    .replace(/id="ds-specimen-([^"]+)"/g, 'class="peopi-$1"')
+    .replace(/data-ds-source-id="[^"]*"/g, '')
+    .replace(/class="([^"]*)\bds-live-specimen\b([^"]*)"/g, 'class="$1$2"')
+    .replace(/\s+class="\s*"/g, '')
+    .trim();
+
+  const lines = clean.split('\n').map(l => l.trim()).filter(Boolean);
+  let indent = 0;
+  const formatted = [];
+  for (const line of lines) {
+    if (line.match(/^<\/|\/>$/)) indent = Math.max(0, indent - 1);
+    formatted.push('  '.repeat(indent) + line);
+    if (line.match(/^<[^\/!][^>]*[^/]>$/) && !line.match(/<(input|img|br|hr)/)) {
+      indent++;
+    }
+  }
+  return formatted.length ? formatted.join('\n') : clean;
+}
+
+function generateWebReference(compKey, activeVariantText, card) {
+  const comp = (typeof peopiHandoffData !== 'undefined' && peopiHandoffData[compKey]) || { isStatic: true };
+  const viewport = card ? card.querySelector('.ds-workbench-preview-viewport') : null;
+  const rawHtml = viewport ? viewport.innerHTML : '<!-- Specimen unavailable -->';
+  const htmlCode = normalizeHtmlForReference(rawHtml);
+
+  const cssLines = [
+    '/* Scoped Peopi Design Tokens & Component Surface */',
+    '.peopi-component-' + compKey + ' {',
+    '  --brand: #FF3300;',
+    '  --brand-light: rgba(255, 51, 0, 0.08);',
+    '  --brand-focus: rgba(255, 51, 0, 0.2);',
+    '  --bg: #F8FAFC;',
+    '  --card: #FFFFFF;',
+    '  --ink: #0F172A;',
+    '  --ink-secondary: #64748B;',
+    '  --line: #E2E8F0;',
+    '  --muted: #F1F5F9;',
+    '  --danger: #DC2626;',
+    '  --radius-sm: 8px;',
+    '  --radius-md: 14px;',
+    '  --radius-lg: 20px;',
+    '  --radius-pill: 999px;',
+    '  --motion-curve: cubic-bezier(0.2, 0.8, 0.2, 1);',
+    '  --motion-duration: 260ms;',
+    '}',
+    '',
+    '@media (prefers-color-scheme: dark) {',
+    '  .peopi-component-' + compKey + ' {',
+    '    --bg: #0B0F19;',
+    '    --card: #172033;',
+    '    --ink: #F8FAFC;',
+    '    --ink-secondary: #94A3B8;',
+    '    --line: #334155;',
+    '    --muted: #1E293B;',
+    '  }',
+    '}'
+  ];
+  const cssTokensCode = cssLines.join('\n');
+
+  const jsCode = comp.isStatic ? null : (comp.jsCode || ('// Interactive controller for ' + compKey));
+
+  return { htmlCode, cssTokensCode, jsCode, isStatic: comp.isStatic };
+}
+
+function generateStandaloneHtml(compKey, activeVariantText, card) {
+  const comp = (typeof peopiHandoffData !== 'undefined' && peopiHandoffData[compKey]) || { title: compKey, isStatic: true };
+  const { htmlCode, cssTokensCode, jsCode } = generateWebReference(compKey, activeVariantText, card);
+
+  const scriptTag = jsCode ? ('<script>\n' + jsCode + '\n' +
+    'document.querySelectorAll(".peopi-instance").forEach(inst => {\n' +
+    '  if (typeof initIconButton === "function") initIconButton(inst.querySelector("button"));\n' +
+    '  if (typeof initSearchField === "function") initSearchField(inst);\n' +
+    '  if (typeof initChipsInput === "function") initChipsInput(inst);\n' +
+    '  if (typeof initDiscoveryFilter === "function") initDiscoveryFilter(inst);\n' +
+    '  if (typeof initBottomNav === "function") initBottomNav(inst);\n' +
+    '  if (typeof initSegmentedControl === "function") initSegmentedControl(inst);\n' +
+    '  if (typeof initRequestTabs === "function") initRequestTabs(inst);\n' +
+    '  if (typeof initChatComposer === "function") initChatComposer(inst);\n' +
+    '  if (typeof initVerificationStatus === "function") initVerificationStatus(inst);\n' +
+    '  if (typeof initBottomSheet === "function") initBottomSheet(inst);\n' +
+    '  if (typeof initConfirmDialog === "function") initConfirmDialog(inst);\n' +
+    '  if (typeof initExpSheet === "function") initExpSheet(inst);\n' +
+    '  if (typeof initDocSheet === "function") initDocSheet(inst);\n' +
+    '});\n' +
+    '</script>') : '';
+
+  const parts = [
+    '<!DOCTYPE html>',
+    '<html lang="en">',
+    '<head>',
+    '  <meta charset="UTF-8">',
+    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
+    '  <title>Peopi Web Reference — ' + comp.title + '</title>',
+    '  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">',
+    '  <style>',
+    '    :root {',
+    '      --brand: #FF3300;',
+    '      --bg: #F8FAFC;',
+    '      --card: #FFFFFF;',
+    '      --ink: #0F172A;',
+    '      --ink-secondary: #64748B;',
+    '      --line: #E2E8F0;',
+    '      --muted: #F1F5F9;',
+    '      --radius-md: 14px;',
+    '      --radius-pill: 999px;',
+    '    }',
+    '    body {',
+    '      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;',
+    '      background: var(--bg);',
+    '      color: var(--ink);',
+    '      padding: 40px 20px;',
+    '      margin: 0;',
+    '    }',
+    '    .demo-container {',
+    '      max-width: 840px;',
+    '      margin: 0 auto;',
+    '      display: flex;',
+    '      flex-direction: column;',
+    '      gap: 32px;',
+    '    }',
+    '    .demo-header {',
+    '      border-bottom: 1px solid var(--line);',
+    '      padding-bottom: 16px;',
+    '    }',
+    '    .demo-grid {',
+    '      display: grid;',
+    '      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));',
+    '      gap: 24px;',
+    '    }',
+    '    .demo-card {',
+    '      background: var(--card);',
+    '      border: 1px solid var(--line);',
+    '      border-radius: 16px;',
+    '      padding: 24px;',
+    '      display: flex;',
+    '      flex-direction: column;',
+    '      gap: 16px;',
+    '      box-shadow: 0 4px 12px rgba(0,0,0,0.04);',
+    '    }',
+    '    .demo-instance-label {',
+    '      font-size: 13px;',
+    '      font-weight: 700;',
+    '      color: var(--ink-secondary);',
+    '      text-transform: uppercase;',
+    '      letter-spacing: 0.05em;',
+    '    }',
+    '    ' + cssTokensCode,
+    '  </style>',
+    '</head>',
+    '<body>',
+    '  <div class="demo-container">',
+    '    <div class="demo-header">',
+    '      <h2 style="margin:0 0 8px;">' + comp.title + '</h2>',
+    '      <p style="margin:0;color:var(--ink-secondary);">Peopi Web Reference — Standalone verification with two independent instances.</p>',
+    '    </div>',
+    '    <div class="demo-grid">',
+    '      <div class="demo-card">',
+    '        <div class="demo-instance-label">Instance A</div>',
+    '        <div class="peopi-instance instance-a peopi-component-' + compKey + '">',
+    htmlCode,
+    '        </div>',
+    '      </div>',
+    '      <div class="demo-card">',
+    '        <div class="demo-instance-label">Instance B</div>',
+    '        <div class="peopi-instance instance-b peopi-component-' + compKey + '">',
+    htmlCode,
+    '        </div>',
+    '      </div>',
+    '    </div>',
+    '  </div>',
+    scriptTag,
+    '</body>',
+    '</html>'
+  ];
+
+  return parts.join('\n');
+}
+
+function updateCardHandoff(card) {
+  if (!card) return;
+  const compKey = card.dataset.component;
+  const activeVariantBtn = card.querySelector('.ds-variant-btn.active, .ds-variant-btn.is-active') || card.querySelector('.ds-variant-btn');
+  const activeVariantText = activeVariantBtn ? activeVariantBtn.textContent.trim() : 'Default';
+
+  // AI Brief
+  const briefMd = generateAiBrief(compKey, activeVariantText, card);
+  const briefCode = card.querySelector('.ds-panel-brief code');
+  if (briefCode) {
+    briefCode.textContent = briefMd;
+  }
+
+  // Web Reference
+  const ref = generateWebReference(compKey, activeVariantText, card);
+  const htmlPre = card.querySelector('.ds-web-content-html code');
+  if (htmlPre) htmlPre.textContent = ref.htmlCode;
+
+  const cssPre = card.querySelector('.ds-web-content-css code');
+  if (cssPre) cssPre.textContent = ref.cssTokensCode;
+
+  const jsContainer = card.querySelector('.ds-js-view-container');
+  if (jsContainer) {
+    if (ref.isStatic) {
+      jsContainer.innerHTML = '<div class="ds-no-js-panel"><span class="ds-static-badge"><i class="ph ph-check-circle"></i> No JavaScript required</span><p style="margin:8px 0 0;font-size:12px;color:var(--ink-secondary,#64748B);">This component is purely structural or controlled via semantic HTML / CSS pseudo-states.</p></div>';
+    } else {
+      jsContainer.innerHTML = '<pre class="ds-code-scroll" tabindex="0" role="region" aria-label="JavaScript Controller Reference"><code>' + ref.jsCode.replace(/</g, '&lt;') + '</code></pre>';
+    }
+  }
+}
+
+// Global exports for tests and integrations
+if (typeof window !== 'undefined') {
+  window.generateAiBrief = generateAiBrief;
+  window.generateWebReference = generateWebReference;
+  window.generateStandaloneHtml = generateStandaloneHtml;
+  window.selectBottomNav = selectBottomNav;
+  window.selectSegmented = selectSegmented;
+  window.animateSelectionCapsule = animateSelectionCapsule;
+}
+
+
+
   const catalogSection=(title,sourceScreen,body,description='',key='',a11y='',variants=[])=>{
    if(typeof body==='undefined'&&typeof sourceScreen==='string'&&sourceScreen.includes('<')){
     body=sourceScreen;
@@ -9615,18 +10643,49 @@ function showDesign(key){
        <p class="ds-notes-text">${defaultA11y}</p>
       </div>
      </div>
-     <div class="ds-workbench-code-box">
+     <div class="ds-workbench-code-box" data-comp-key="${compKey}">
       <div class="ds-workbench-code-head">
        <div class="ds-code-tabs">
-        <button type="button" class="ds-code-tab active">HTML</button>
-        <button type="button" class="ds-code-tab">CSS Tokens</button>
+        <button type="button" class="ds-code-tab active" data-mode="brief"><i class="ph ph-sparkle"></i> AI Brief</button>
+        <button type="button" class="ds-code-tab" data-mode="web"><i class="ph ph-code"></i> Web Reference</button>
        </div>
-       <span class="ds-code-badge">Phase 04 Export Ready</span>
+       <div class="ds-code-actions">
+        <button type="button" class="ds-code-action-btn primary ds-btn-copy-brief" title="Copy AI Implementation Brief for Flutter/iOS">
+         <i class="ph ph-copy"></i> Copy AI Brief
+        </button>
+        <div class="ds-web-actions" style="display:none; gap:6px; align-items:center;">
+         <button type="button" class="ds-code-action-btn secondary ds-btn-copy-web" title="Copy active code tab">
+          <i class="ph ph-copy"></i> Copy Active Tab
+         </button>
+         <button type="button" class="ds-code-action-btn secondary ds-btn-copy-all" title="Copy standalone HTML page with two isolated instances">
+          <i class="ph ph-brackets-curly"></i> Copy All
+         </button>
+        </div>
+       </div>
+      </div>
+      <div class="ds-brief-meta-bar">
+       <span class="ds-meta-pill"><i class="ph ph-device-mobile"></i> Mobile Implementation Contract</span>
+       <span class="ds-meta-pill tokens-pill"><i class="ph ph-palette"></i> Tokens (pt/radius)</span>
+      </div>
+      <div class="ds-web-subtabs" style="display:none;">
+       <button type="button" class="ds-web-subtab active" data-subtab="html">HTML</button>
+       <button type="button" class="ds-web-subtab" data-subtab="css">CSS Tokens</button>
+       <button type="button" class="ds-web-subtab" data-subtab="js">JavaScript</button>
       </div>
       <div class="ds-workbench-code-body">
-       <div class="ds-workbench-code-placeholder">
-        <i class="ph ph-code"></i>
-        <span>Code documentation coming in Phase 04</span>
+       <div class="ds-panel-brief">
+        <pre class="ds-code-scroll" tabindex="0" role="region" aria-label="AI Implementation Brief"><code>Loading brief...</code></pre>
+       </div>
+       <div class="ds-panel-web" style="display:none;">
+        <div class="ds-web-content-html">
+         <pre class="ds-code-scroll" tabindex="0" role="region" aria-label="HTML Web Reference"><code>Loading HTML...</code></pre>
+        </div>
+        <div class="ds-web-content-css" style="display:none;">
+         <pre class="ds-code-scroll" tabindex="0" role="region" aria-label="CSS Tokens Web Reference"><code>Loading CSS...</code></pre>
+        </div>
+        <div class="ds-web-content-js" style="display:none;">
+         <div class="ds-js-view-container"></div>
+        </div>
        </div>
       </div>
      </div>
@@ -10039,36 +11098,12 @@ function showDesign(key){
  all('#ds-content .ds-icon-action, #ds-content .ds-fab').forEach(button=>button.addEventListener('click',()=>{button.classList.toggle('ds-demo-active');button.setAttribute('aria-pressed',String(button.classList.contains('ds-demo-active')))}));
   const updateSpecimenNavPill = (nav, activeBtn) => {
     if (!nav) return;
-    let pill = nav.querySelector('.motion-nav-indicator');
-    if (!pill) {
-      pill = document.createElement('span');
-      pill.className = 'motion-nav-indicator';
-      pill.setAttribute('aria-hidden', 'true');
-      nav.prepend(pill);
-    }
-    const target = activeBtn || nav.querySelector('button.current');
-    if (!target) return;
-    const w = target.offsetWidth || (nav.offsetWidth ? nav.offsetWidth / 3 : 100);
-    const x = target.offsetLeft || 0;
-    pill.style.width = w + 'px';
-    pill.style.transform = `translateX(${x}px)`;
+    selectBottomNav(nav, activeBtn, { animate: false });
   };
 
   const updateSpecimenSegPill = (seg, activeBtn) => {
     if (!seg) return;
-    let pill = seg.querySelector('.motion-seg-indicator');
-    if (!pill) {
-      pill = document.createElement('span');
-      pill.className = 'motion-seg-indicator';
-      pill.setAttribute('aria-hidden', 'true');
-      seg.prepend(pill);
-    }
-    const target = activeBtn || seg.querySelector('button.chosen, button.selected');
-    if (!target) return;
-    const w = target.offsetWidth || (seg.offsetWidth ? (seg.offsetWidth - 8) / 2 : 160);
-    const x = target.offsetLeft || 4;
-    pill.style.width = w + 'px';
-    pill.style.transform = `translateX(${x}px)`;
+    selectSegmented(seg, activeBtn, { animate: false });
   };
 
   // Helper to ensure EXACTLY one variant button is active across all classes
@@ -10084,66 +11119,55 @@ function showDesign(key){
     });
   };
 
-  // Initial indicator sync across all live specimens in ds-content
-  all('#ds-content .nav').forEach(nav => updateSpecimenNavPill(nav));
-  all('#ds-content .seg, #ds-content .journey-tabs').forEach(seg => updateSpecimenSegPill(seg));
+  // Initial indicator sync across all live specimens in ds-content (NO entrance slide)
+  all('#ds-content .ds-workbench-card[data-component="bottom-nav"] .nav').forEach(nav => {
+    selectBottomNav(nav, 0, { animate: false });
+  });
+  all('#ds-content .ds-workbench-card[data-component="tabs"] .seg').forEach(seg => {
+    selectSegmented(seg, 0, { animate: false });
+  });
+  all('#ds-content .ds-workbench-card[data-component="request-tabs"] .journey-tabs').forEach(seg => {
+    selectSegmented(seg, 0, { animate: false });
+  });
 
-  // Handle window resizing to keep motion indicators perfectly positioned
+  // Handle window resizing to recalibrate indicators instantly without animating
   if (!window._dsWorkbenchResizeListener) {
     window._dsWorkbenchResizeListener = () => {
-      all('#ds-content .nav').forEach(nav => updateSpecimenNavPill(nav));
-      all('#ds-content .seg, #ds-content .journey-tabs').forEach(seg => updateSpecimenSegPill(seg));
+      all('#ds-content .ds-workbench-card[data-component="bottom-nav"] .nav').forEach(nav => {
+        const cur = nav.querySelector('button.current');
+        selectBottomNav(nav, cur, { animate: false });
+      });
+      all('#ds-content .ds-workbench-card[data-component="tabs"] .seg').forEach(seg => {
+        const cur = seg.querySelector('button.chosen, button.selected');
+        selectSegmented(seg, cur, { animate: false });
+      });
+      all('#ds-content .ds-workbench-card[data-component="request-tabs"] .journey-tabs').forEach(seg => {
+        const cur = seg.querySelector('button.chosen, button.selected');
+        selectSegmented(seg, cur, { animate: false });
+      });
     };
     window.addEventListener('resize', window._dsWorkbenchResizeListener);
   }
 
-  // Direct click listeners inside specimens to synchronize variant controls
+  // Direct click listeners inside specimens routing through UNIFIED state/motion path
   all('#ds-content .ds-workbench-card[data-component="bottom-nav"] .nav button').forEach(b => {
     b.addEventListener('click', () => {
       const nav = b.closest('.nav');
-      if (!nav) return;
-      nav.querySelectorAll('button').forEach(btn => {
-        const isTarget = (btn === b);
-        btn.classList.toggle('current', isTarget);
-        btn.setAttribute('aria-current', isTarget ? 'page' : 'false');
-      });
-      updateSpecimenNavPill(nav, b);
-      const card = b.closest('.ds-workbench-card');
-      const idx = [...nav.querySelectorAll('button')].indexOf(b);
-      setWorkbenchVariantActive(card, idx);
+      if (nav) selectBottomNav(nav, b);
     });
   });
 
   all('#ds-content .ds-workbench-card[data-component="tabs"] .seg button').forEach(b => {
     b.addEventListener('click', () => {
       const seg = b.closest('.seg');
-      if (!seg) return;
-      seg.querySelectorAll('button').forEach(btn => {
-        const isTarget = (btn === b);
-        btn.classList.toggle('chosen', isTarget);
-        btn.setAttribute('aria-selected', String(isTarget));
-      });
-      updateSpecimenSegPill(seg, b);
-      const card = b.closest('.ds-workbench-card');
-      const idx = [...seg.querySelectorAll('button')].indexOf(b);
-      setWorkbenchVariantActive(card, idx);
+      if (seg) selectSegmented(seg, b);
     });
   });
 
   all('#ds-content .ds-workbench-card[data-component="request-tabs"] .journey-tabs button').forEach(b => {
     b.addEventListener('click', () => {
       const seg = b.closest('.journey-tabs');
-      if (!seg) return;
-      seg.querySelectorAll('button').forEach(btn => {
-        const isTarget = (btn === b);
-        btn.classList.toggle('chosen', isTarget);
-        btn.classList.toggle('selected', isTarget);
-        btn.setAttribute('aria-selected', String(isTarget));
-      });
-      updateSpecimenSegPill(seg, b);
-      const card = b.closest('.ds-workbench-card');
-      const idx = [...seg.querySelectorAll('button')].indexOf(b);
-      setWorkbenchVariantActive(card, idx);
+      if (seg) selectSegmented(seg, b);
     });
   });
 
@@ -10372,38 +11396,18 @@ function showDesign(key){
         }
       } else if (comp === 'bottom-nav') {
         const nav = preview.querySelector('.nav');
-        const tabs = nav ? nav.querySelectorAll('button') : preview.querySelectorAll('button');
         let activeIndex = 0;
         if (variant === 'connections-active') activeIndex = 1;
         else if (variant === 'profile-active') activeIndex = 2;
-        tabs.forEach((t, idx) => {
-          const isTarget = (idx === activeIndex);
-          t.classList.toggle('current', isTarget);
-          if (isTarget) t.setAttribute('aria-current', 'page');
-          else t.removeAttribute('aria-current');
-        });
-        if (nav) updateSpecimenNavPill(nav, tabs[activeIndex]);
+        if (nav) selectBottomNav(nav, activeIndex);
       } else if (comp === 'tabs') {
         const seg = preview.querySelector('.seg');
-        const tabBtns = seg ? seg.querySelectorAll('button') : preview.querySelectorAll('button');
         const isMap = variant.includes('map');
-        tabBtns.forEach((b, idx) => {
-          const isTarget = isMap ? (idx === 0) : (idx === 1);
-          b.classList.toggle('chosen', isTarget);
-          b.setAttribute('aria-selected', String(isTarget));
-        });
-        if (seg) updateSpecimenSegPill(seg, tabBtns[isMap ? 0 : 1]);
+        if (seg) selectSegmented(seg, isMap ? 0 : 1);
       } else if (comp === 'request-tabs') {
         const seg = preview.querySelector('.journey-tabs');
-        const tabBtns = seg ? seg.querySelectorAll('button') : preview.querySelectorAll('button');
         const isRecv = variant.includes('received');
-        tabBtns.forEach((b, idx) => {
-          const isTarget = isRecv ? (idx === 0) : (idx === 1);
-          b.classList.toggle('chosen', isTarget);
-          b.classList.toggle('selected', isTarget);
-          b.setAttribute('aria-selected', String(isTarget));
-        });
-        if (seg) updateSpecimenSegPill(seg, tabBtns[isRecv ? 0 : 1]);
+        if (seg) selectSegmented(seg, isRecv ? 0 : 1);
       } else if (comp === 'app-bar') {
         const head = preview.querySelector('.myprofile-head, header');
         if (head) {
@@ -10802,7 +11806,130 @@ function showDesign(key){
           if (uploadBtn) { uploadBtn.style.display = 'none'; }
         }
       }
+      updateCardHandoff(card);
     });
+  });
+
+  // Wire up workbench code box tabs and copy actions across all cards in ds-content
+  all('#ds-content .ds-workbench-card').forEach(card => {
+    const codeBox = card.querySelector('.ds-workbench-code-box');
+    if (!codeBox) return;
+
+    const btnBriefTab = codeBox.querySelector('.ds-code-tab[data-mode="brief"]');
+    const btnWebTab = codeBox.querySelector('.ds-code-tab[data-mode="web"]');
+    const panelBrief = codeBox.querySelector('.ds-panel-brief');
+    const panelWeb = codeBox.querySelector('.ds-panel-web');
+    const metaBar = codeBox.querySelector('.ds-brief-meta-bar');
+    const webSubtabs = codeBox.querySelector('.ds-web-subtabs');
+    const briefActions = codeBox.querySelector('.ds-btn-copy-brief');
+    const webActions = codeBox.querySelector('.ds-web-actions');
+
+    const subtabHtml = codeBox.querySelector('.ds-web-subtab[data-subtab="html"]');
+    const subtabCss = codeBox.querySelector('.ds-web-subtab[data-subtab="css"]');
+    const subtabJs = codeBox.querySelector('.ds-web-subtab[data-subtab="js"]');
+    const contentHtml = codeBox.querySelector('.ds-web-content-html');
+    const contentCss = codeBox.querySelector('.ds-web-content-css');
+    const contentJs = codeBox.querySelector('.ds-web-content-js');
+
+    if (btnBriefTab && btnWebTab) {
+      btnBriefTab.addEventListener('click', () => {
+        btnBriefTab.classList.add('active');
+        btnWebTab.classList.remove('active');
+        if (panelBrief) panelBrief.style.display = 'block';
+        if (panelWeb) panelWeb.style.display = 'none';
+        if (metaBar) metaBar.style.display = 'flex';
+        if (webSubtabs) webSubtabs.style.display = 'none';
+        if (briefActions) briefActions.style.display = 'inline-flex';
+        if (webActions) webActions.style.display = 'none';
+      });
+
+      btnWebTab.addEventListener('click', () => {
+        btnWebTab.classList.add('active');
+        btnBriefTab.classList.remove('active');
+        if (panelBrief) panelBrief.style.display = 'none';
+        if (panelWeb) panelWeb.style.display = 'block';
+        if (metaBar) metaBar.style.display = 'none';
+        if (webSubtabs) webSubtabs.style.display = 'flex';
+        if (briefActions) briefActions.style.display = 'none';
+        if (webActions) webActions.style.display = 'inline-flex';
+      });
+    }
+
+    const setWebSubtab = (target) => {
+      [subtabHtml, subtabCss, subtabJs].forEach(st => {
+        if (st) st.classList.toggle('active', st === target);
+      });
+      if (contentHtml) contentHtml.style.display = (target === subtabHtml) ? 'block' : 'none';
+      if (contentCss) contentCss.style.display = (target === subtabCss) ? 'block' : 'none';
+      if (contentJs) contentJs.style.display = (target === subtabJs) ? 'block' : 'none';
+    };
+
+    if (subtabHtml) subtabHtml.addEventListener('click', () => setWebSubtab(subtabHtml));
+    if (subtabCss) subtabCss.addEventListener('click', () => setWebSubtab(subtabCss));
+    if (subtabJs) subtabJs.addEventListener('click', () => setWebSubtab(subtabJs));
+
+    const handleCopy = async (btn, textFn) => {
+      const text = textFn();
+      const ok = await copyToClipboard(text);
+      if (ok) {
+        btn.classList.add('copied');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="ph ph-check"></i> Copied!';
+        dsToast('Copied to clipboard');
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.remove('copied');
+        }, 1800);
+      } else {
+        dsToast('Clipboard access denied or unavailable', 'warning');
+      }
+    };
+
+    if (briefActions) {
+      briefActions.addEventListener('click', () => {
+        handleCopy(briefActions, () => {
+          const compKey = card.dataset.component;
+          const activeVariantBtn = card.querySelector('.ds-variant-btn.active, .ds-variant-btn.is-active') || card.querySelector('.ds-variant-btn');
+          const activeVariantText = activeVariantBtn ? activeVariantBtn.textContent.trim() : 'Default';
+          return generateAiBrief(compKey, activeVariantText, card);
+        });
+      });
+    }
+
+    const btnCopyWeb = codeBox.querySelector('.ds-btn-copy-web');
+    if (btnCopyWeb) {
+      btnCopyWeb.addEventListener('click', () => {
+        handleCopy(btnCopyWeb, () => {
+          const compKey = card.dataset.component;
+          const activeVariantBtn = card.querySelector('.ds-variant-btn.active, .ds-variant-btn.is-active') || card.querySelector('.ds-variant-btn');
+          const activeVariantText = activeVariantBtn ? activeVariantBtn.textContent.trim() : 'Default';
+          const ref = generateWebReference(compKey, activeVariantText, card);
+          const activeSubtab = codeBox.querySelector('.ds-web-subtab.active');
+          const subtabName = activeSubtab ? activeSubtab.dataset.subtab : 'html';
+          if (subtabName === 'html') return ref.htmlCode;
+          if (subtabName === 'css') return ref.cssTokensCode;
+          if (subtabName === 'js') {
+            return ref.isStatic ? '/* No JavaScript required for this static component */\n// Semantic HTML & CSS pseudo-states only.' : ref.jsCode;
+          }
+          return ref.htmlCode;
+        });
+      });
+    }
+
+    const btnCopyAll = codeBox.querySelector('.ds-btn-copy-all');
+    if (btnCopyAll) {
+      btnCopyAll.addEventListener('click', () => {
+        handleCopy(btnCopyAll, () => {
+          const compKey = card.dataset.component;
+          const activeVariantBtn = card.querySelector('.ds-variant-btn.active, .ds-variant-btn.is-active') || card.querySelector('.ds-variant-btn');
+          const activeVariantText = activeVariantBtn ? activeVariantBtn.textContent.trim() : 'Default';
+          return generateStandaloneHtml(compKey, activeVariantText, card);
+        });
+      });
+    }
+
+    // Initialize handoff content immediately
+    updateCardHandoff(card);
   });
   const copyHandler=async(button)=>{
   const text=(button.dataset.copy==='token-css')?tokenCss:button.dataset.copy;

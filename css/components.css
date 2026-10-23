@@ -11422,21 +11422,24 @@
   margin: 0;
 }
 
-/* Reserved Code Block (Order 5 on Mobile) */
+/* Phase 04 Handoff System: AI Brief & Web Reference */
 .ds-workbench-code-box {
   display: flex;
   flex-direction: column;
-  background: #0f172a;
-  border: 1px solid #1e293b;
+  background: #0b0f17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   overflow: hidden;
+  margin-top: 4px;
 }
 
 .ds-workbench-code-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background: #090d16;
+  gap: 8px;
+  background: #070a0f;
   padding: 8px 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -11447,46 +11450,265 @@
 }
 
 .ds-code-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: transparent;
   border: none;
   color: #94a3b8;
   font-family: 'Manrope', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 600;
-  padding: 3px 8px;
+  padding: 5px 10px;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ds-code-tab:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .ds-code-tab.active {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
 }
 
-.ds-code-badge {
-  font-size: 10px;
+.ds-code-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-code-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  min-height: 28px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 11px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #ff7655;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  outline: none;
+}
+
+.ds-code-action-btn.primary {
+  background: #ff3300;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(255, 51, 0, 0.25);
+}
+
+.ds-code-action-btn.primary:hover {
+  background: #e02d00;
+}
+
+.ds-code-action-btn.primary.copied {
+  background: #16a34a !important;
+  color: #ffffff !important;
+}
+
+.ds-code-action-btn.secondary {
+  background: #1e2638;
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ds-code-action-btn.secondary:hover {
+  background: #2b364e;
+  color: #ffffff;
+}
+
+.ds-code-action-btn.secondary.copied {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  border-color: #16a34a !important;
 }
 
 .ds-workbench-code-body {
-  padding: 12px 14px;
+  padding: 10px 12px;
 }
 
-.ds-workbench-code-placeholder {
+.ds-code-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-code-panel.hide {
+  display: none !important;
+}
+
+.ds-brief-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.ds-brief-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ds-brief-meta-item strong {
+  color: #f1f5f9;
+}
+
+.ds-web-subhead {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
-  font-size: 12px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color: #64748b;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.ds-workbench-code-placeholder i {
-  color: #ff3300;
-  font-size: 15px;
+.ds-web-subtabs {
+  display: flex;
+  gap: 4px;
+}
+
+.ds-web-subtab {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.ds-web-subtab:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ds-web-subtab.active {
+  background: #ff3300;
+  border-color: #ff3300;
+  color: #ffffff;
+}
+
+.ds-static-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.ds-code-scroll {
+  max-height: 210px;
+  min-height: 90px;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: #05080f;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.ds-code-scroll pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.ds-code-scroll code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.ds-web-code-block.hide {
+  display: none !important;
+}
+
+/* Scrollbar refinement */
+.ds-code-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.ds-code-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+.ds-code-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Selection indicator continuous styling in specimens */
+#ds-content .ds-live-specimen .nav {
+  position: relative;
+  isolation: isolate;
+}
+#ds-content .ds-live-specimen .nav button {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  transition: color 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#ds-content .ds-live-specimen .motion-nav-indicator {
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  left: 0;
+  pointer-events: none;
+  background: rgba(255, 51, 0, 0.085);
+  border-radius: 999px;
+  z-index: 0;
+  will-change: transform, width, opacity;
+}
+#ds-workspace.ds-dark #ds-content .ds-live-specimen .motion-nav-indicator {
+  background: rgba(255, 90, 45, 0.18);
+}
+#ds-content .ds-live-specimen :is(.seg, .journey-tabs) {
+  position: relative;
+  isolation: isolate;
+}
+#ds-content .ds-live-specimen :is(.seg, .journey-tabs) button {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: color 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#ds-content .ds-live-specimen .motion-seg-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  pointer-events: none;
+  background: #ff3300;
+  border-radius: 14px;
+  z-index: 0;
+  box-shadow: 0 3px 12px rgba(255, 51, 0, 0.28);
+  will-change: transform, width, opacity;
+}
+#ds-workspace.ds-dark #ds-content .ds-live-specimen .motion-seg-indicator {
+  box-shadow: 0 4px 16px rgba(255, 90, 45, 0.35);
 }
 
 /* Dark Mode Theme Support */
