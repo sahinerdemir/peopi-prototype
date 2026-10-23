@@ -9693,11 +9693,11 @@ const peopiHandoffData = {
     "title": "Screen Header & App Bar",
     "category": "Navigation & Tabs",
     "sourceScreen": "My Profile (`#myprofile .myprofile-head`)",
-    "purpose": "Standard mobile header bar with title, back button, and contextual action shortcuts.",
-    "tokens": "Height: 48pt · Title font: 23pt Screen Title (or 17pt inline title) · Touch targets >= 44pt",
-    "motion": "Scrolled state activates 16pt backdrop blur and subtle shadow in 200ms.",
-    "flutterSemantics": "`CupertinoNavigationBar` with `previousPageTitle` and action widgets.",
-    "privacy": "Does not expose sensitive identifiers in plain text in the title.",
+    "purpose": "In-flow mobile screen header with primary page title (\"My profile.\") and contextual settings action trigger (#myprofile-settings). Scrolls naturally with content.",
+    "tokens": "Height: 44pt · Title font: 28pt bold (letter-spacing: -1.2px) · Accent dot: var(--brand) (#FF3300) · Action button: 44×44pt circle with 0 2px 10px rgba(0,0,0,.1) shadow",
+    "motion": "Static in-flow positioning within scroll container (.myprofile-scroll). No artificial sticky fixation or scroll-linked blur.",
+    "flutterSemantics": "`SliverToBoxAdapter` containing page title Row with trailing `CupertinoButton` (labeled \"Profile settings\"), or top-level screen header.",
+    "privacy": "Displays current user profile view; settings icon provides immediate access to privacy preferences and presence toggles.",
     "serverAuth": "No remote dependency.",
     "isStatic": true
   },
@@ -10521,7 +10521,7 @@ if (typeof window !== 'undefined') {
     'bottom-nav':['Discover Active','Connections Active','Profile Active'],
     'tabs':['Map View','List View'],
     'request-tabs':['Received Requests','Sent Requests'],
-    'app-bar':['Default Bar','Scrolled Surface'],
+    'app-bar':['Default Bar'],
     'profile-card':['Anonymous Preview','Connected Peer'],
     'network-row':['Connected','Unread Notice'],
     'activity-item':['Connection Request','System Notice'],
@@ -11411,15 +11411,9 @@ if (typeof window !== 'undefined') {
       } else if (comp === 'app-bar') {
         const head = preview.querySelector('.myprofile-head, header');
         if (head) {
-          if (variant.includes('scrolled')) {
-            head.style.background = 'rgba(255, 255, 255, 0.88)';
-            head.style.backdropFilter = 'blur(16px)';
-            head.style.boxShadow = '0 2px 10px rgba(0,0,0,0.06)';
-          } else {
-            head.style.background = 'transparent';
-            head.style.backdropFilter = 'none';
-            head.style.boxShadow = 'none';
-          }
+          head.style.background = '';
+          head.style.backdropFilter = '';
+          head.style.boxShadow = '';
         }
       } else if (comp === 'profile-card') {
         const isConn = variant.includes('connected');
