@@ -285,7 +285,20 @@
 /* Connected profiles don't need the discovery intent in the map preview. */
 #active #profilecard.is-connected .profilecard-intent-label,
 #active #profilecard.is-connected #personintent{display:none!important}
-#active #profilecard.is-connected .discovery-connected-hint{margin:0}
+#active #profilecard.is-connected .discovery-connected-hint{margin:0;white-space:nowrap}
+#active #profilecard{container-type:inline-size;container-name:profilecard}
+@container profilecard (max-width: 295px){
+  #active #profilecard .profilecard-footer{flex-direction:column!important;align-items:stretch!important;gap:12px!important}
+  #active #profilecard .profilecard-status{width:100%!important;min-width:100%!important}
+  #active #profilecard .discovery-connected-hint{width:100%!important;justify-content:flex-start!important}
+  #active #profilecard #viewprofile{width:100%!important;margin-left:0!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+}
+@media (max-width: 480px){
+  #active #profilecard .profilecard-footer{flex-direction:column!important;align-items:stretch!important;gap:12px!important}
+  #active #profilecard .profilecard-status{width:100%!important;min-width:100%!important}
+  #active #profilecard .discovery-connected-hint{width:100%!important;justify-content:flex-start!important}
+  #active #profilecard #viewprofile{width:100%!important;margin-left:0!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+}
 /* Shared Peopi screen-title typography and signature orange terminal dot. */
 #myprofile .myprofile-head h2,
 #active .active-discovery-brand,

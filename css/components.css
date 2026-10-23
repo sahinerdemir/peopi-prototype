@@ -11841,6 +11841,31 @@
   }
 }
 
+/* Ensure workbench specimens are not artificially scaled by mobile layout rules */
+#ds-content .ds-live-specimen.phone {
+  transform: none !important;
+  width: 100% !important;
+  max-width: 393px !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 600px) {
+  .ds-workbench-preview-col {
+    padding: 12px 10px !important;
+  }
+  #ds-content .ds-live-specimen.phone {
+    padding: 14px 12px !important;
+  }
+}
+
+/* Discovery Profile Card: Container Query & Responsive Footer */
+.profilecard,
+[data-ds-source-id="profilecard"],
+.peopi-profilecard {
+  container-type: inline-size;
+  container-name: profilecard;
+}
+
 /* Discovery Profile Card: Connected Peer state suppresses intent heading and text with zero reserved gaps */
 .profilecard.is-connected .profilecard-intent-label,
 .profilecard.is-connected #personintent,
@@ -11865,5 +11890,81 @@
 .peopi-profilecard.is-connected .discovery-connected-hint,
 .peopi-profilecard.is-connected .peopi-discovery-connected-hint {
   margin: 0 !important;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
 }
+
+@container profilecard (max-width: 295px) {
+  .profilecard .profilecard-footer,
+  [data-ds-source-id="profilecard"] .profilecard-footer,
+  .peopi-profilecard .profilecard-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+  .profilecard .profilecard-status,
+  [data-ds-source-id="profilecard"] .profilecard-status,
+  .peopi-profilecard .profilecard-status {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+  .profilecard.is-connected .discovery-connected-hint,
+  [data-ds-source-id="profilecard"].is-connected .discovery-connected-hint,
+  .peopi-profilecard.is-connected .discovery-connected-hint {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+  .profilecard .connect,
+  #active #profilecard #viewprofile,
+  [data-ds-source-id="profilecard"] .connect,
+  .peopi-profilecard .connect {
+    width: 100% !important;
+    margin-left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    min-height: 44px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .profilecard .profilecard-footer,
+  #active #profilecard .profilecard-footer,
+  [data-ds-source-id="profilecard"] .profilecard-footer,
+  .peopi-profilecard .profilecard-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+  .profilecard .profilecard-status,
+  #active #profilecard .profilecard-status,
+  [data-ds-source-id="profilecard"] .profilecard-status,
+  .peopi-profilecard .profilecard-status {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+  .profilecard.is-connected .discovery-connected-hint,
+  #active #profilecard.is-connected .discovery-connected-hint,
+  [data-ds-source-id="profilecard"].is-connected .discovery-connected-hint,
+  .peopi-profilecard.is-connected .discovery-connected-hint {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+  .profilecard .connect,
+  #active #profilecard #viewprofile,
+  [data-ds-source-id="profilecard"] .connect,
+  .peopi-profilecard .connect {
+    width: 100% !important;
+    margin-left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    min-height: 44px !important;
+  }
+}
+
 
