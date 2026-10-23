@@ -11373,7 +11373,8 @@
   background: #f1f5f9;
 }
 
-.ds-variant-btn.active {
+.ds-variant-btn.active,
+.ds-variant-btn.is-active {
   background: #ff3300;
   border-color: #ff3300;
   color: #ffffff;
@@ -11545,7 +11546,8 @@
   border-color: #4b5563;
 }
 
-#ds-workspace.ds-dark .ds-variant-btn.active {
+#ds-workspace.ds-dark .ds-variant-btn.active,
+#ds-workspace.ds-dark .ds-variant-btn.is-active {
   background: #ff3300;
   border-color: #ff3300;
   color: #ffffff;

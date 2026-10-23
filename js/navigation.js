@@ -9749,10 +9749,27 @@ function showDesign(key){
   samples['discovery-filter']=()=>{const host=document.createElement('section');host.className='screen';host.id='active';host.innerHTML=discoveryFilterMarkup();return catalogSection('Discovery Filter Panel','Discover',sourceSpecimen(null,{node:host.firstElementChild}),'','discovery-filter');};
   samples['connection-request']=()=>{
    const person=journeyPerson(demoPeople.find(p=>!journey.connections.includes(p.id))?.id||0);
-   const row=journeyRow(person,person.role);const actions=document.createElement('div');actions.className='person-actions';
-   for(const label of ['Accept','Decline']){const button=document.createElement('button');button.textContent=label;actions.append(button)}row.classList.add('request-received');row.append(actions);
-   const sent=journeyRow(person,person.role);sent.append(cancelRequestButton(person.name));
-   return catalogSection('Received Connection Request','Requests',sourceSpecimen(null,{node:row}),'','connection-request')+catalogSection('Sent Connection Request','Requests',sourceSpecimen(null,{node:sent}),'','connection-request');
+   const host=document.createElement('div');
+   host.className='ds-connection-request-specimen';
+   host.style.cssText='display:flex;flex-direction:column;gap:12px;width:100%;';
+   const row=journeyRow(person,person.role);
+   const actions=document.createElement('div');
+   actions.className='person-actions';
+   for(const label of ['Accept','Decline']){
+     const button=document.createElement('button');
+     button.textContent=label;
+     actions.append(button);
+   }
+   row.classList.add('request-received');
+   row.append(actions);
+
+   const sent=journeyRow(person,person.role);
+   sent.classList.add('request-sent');
+   sent.append(cancelRequestButton(person.name));
+   sent.style.display='none';
+
+   host.append(row, sent);
+   return catalogSection('Connection Request Row','Requests',sourceSpecimen(null,{node:host}),'Connection invitation cards with distinct decisions: received (Accept / Decline) and sent (Cancel request).','connection-request');
   };
   samples['chat-bubble']=()=>{
    const container=document.createElement('div');
@@ -10077,7 +10094,11 @@ function showDesign(key){
     btn.addEventListener('click', () => {
       const card = btn.closest('.ds-workbench-card');
       if (!card) return;
-      card.querySelectorAll('.ds-variant-btn').forEach(b => b.classList.toggle('active', b === btn));
+      card.querySelectorAll('.ds-variant-btn').forEach(b => {
+        const isTarget = (b === btn);
+        b.classList.toggle('active', isTarget);
+        b.classList.toggle('is-active', isTarget);
+      });
       const variant = btn.dataset.variant;
       const comp = card.dataset.component;
       const preview = card.querySelector('.ds-workbench-preview-viewport');
@@ -10131,12 +10152,17 @@ function showDesign(key){
       } else if (comp === 'form-group') {
         const inputs = preview.querySelectorAll('input');
         if (variant.includes('empty')) {
-          inputs.forEach(inp => { inp.value = ''; inp.style.borderColor = ''; inp.style.boxShadow = ''; });
+          inputs.forEach(inp => { inp.value = ''; inp.removeAttribute('value'); inp.style.borderColor = ''; inp.style.boxShadow = ''; });
         } else if (variant.includes('filled')) {
-          if (inputs[0]) inputs[0].value = 'Alex Morgan';
-          if (inputs[1]) inputs[1].value = 'Senior Product Designer';
-          if (inputs[2]) inputs[2].value = 'Miami, FL';
-          inputs.forEach(inp => { inp.style.borderColor = ''; inp.style.boxShadow = ''; });
+          const vals = ['Alex Morgan', 'Senior Product Designer', 'Miami, FL'];
+          inputs.forEach((inp, i) => {
+            if (vals[i]) {
+              inp.value = vals[i];
+              inp.setAttribute('value', vals[i]);
+            }
+            inp.style.borderColor = '';
+            inp.style.boxShadow = '';
+          });
         } else if (variant.includes('focus') && inputs[0]) {
           inputs[0].focus();
           inputs[0].style.borderColor = '#ff3300';
@@ -10147,6 +10173,7 @@ function showDesign(key){
         if (inp) {
           if (variant.includes('filled')) {
             inp.value = 'Alex Morgan';
+            inp.setAttribute('value', 'Alex Morgan');
             inp.style.borderColor = '';
             inp.style.boxShadow = '';
           } else if (variant.includes('focus')) {
@@ -10155,6 +10182,7 @@ function showDesign(key){
             inp.style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
           } else {
             inp.value = '';
+            inp.removeAttribute('value');
             inp.style.borderColor = '';
             inp.style.boxShadow = '';
           }
@@ -10165,6 +10193,7 @@ function showDesign(key){
         if (inp) {
           if (variant.includes('filled')) {
             inp.value = 'Product Designer';
+            inp.setAttribute('value', 'Product Designer');
             inp.style.borderColor = '';
             if (clearBtn) clearBtn.style.display = 'flex';
           } else if (variant.includes('focus')) {
@@ -10172,18 +10201,16 @@ function showDesign(key){
             inp.style.borderColor = '#ff3300';
           } else {
             inp.value = '';
+            inp.removeAttribute('value');
             inp.style.borderColor = '';
             if (clearBtn) clearBtn.style.display = 'none';
           }
         }
       } else if (comp === 'radio') {
         const options = preview.querySelectorAll('.option');
+        const isSelected = (variant === 'selected');
         options.forEach((opt, idx) => {
-          if (variant.includes('selected')) {
-            opt.classList.toggle('chosen', idx === 0);
-          } else {
-            opt.classList.remove('chosen');
-          }
+          opt.classList.toggle('chosen', isSelected && idx === 0);
         });
       } else if (comp === 'session-duration') {
         const durBtns = preview.querySelectorAll('.durations button, button');
@@ -10205,12 +10232,9 @@ function showDesign(key){
         }
       } else if (comp === 'intent-choice') {
         const choices = preview.querySelectorAll('.journey-choice');
+        const isSelected = (variant === 'selected');
         choices.forEach((c, idx) => {
-          if (variant.includes('selected')) {
-            c.classList.toggle('selected', idx === 0);
-          } else {
-            c.classList.remove('selected');
-          }
+          c.classList.toggle('selected', isSelected && idx === 0);
         });
       } else if (comp === 'skills-chip-input') {
         const chips = preview.querySelectorAll('.edit-skill-chip, .skills-chip-item');
@@ -10225,13 +10249,28 @@ function showDesign(key){
           input.placeholder = 'Type another skill and press Enter...';
         }
       } else if (comp === 'discovery-filter') {
+        const roleSel = preview.querySelector('select[id*="discovery-role"], select:first-of-type');
+        if (roleSel) {
+          let targetVal = 'all';
+          if (variant.includes('engineering')) targetVal = 'engineer';
+          else if (variant.includes('design')) targetVal = 'design';
+          else if (variant.includes('founders')) targetVal = 'founder';
+          roleSel.value = targetVal;
+          Array.from(roleSel.options).forEach(opt => {
+            if (opt.value === targetVal) opt.setAttribute('selected', '');
+            else opt.removeAttribute('selected');
+          });
+          roleSel.dispatchEvent(new Event('change', { bubbles: true }));
+        }
         const pills = preview.querySelectorAll('.discovery-filter-pill');
-        pills.forEach((p, idx) => {
-          if (variant.includes('all')) p.classList.toggle('is-selected', idx === 0);
-          else if (variant.includes('engineering')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('engine'));
-          else if (variant.includes('design')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('design'));
-          else if (variant.includes('founders')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('found'));
-        });
+        if (pills.length) {
+          pills.forEach((p, idx) => {
+            if (variant.includes('all')) p.classList.toggle('is-selected', idx === 0);
+            else if (variant.includes('engineering')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('engine'));
+            else if (variant.includes('design')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('design'));
+            else if (variant.includes('founders')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('found'));
+          });
+        }
       } else if (comp === 'bottom-nav') {
         const nav = preview.querySelector('.nav');
         const tabs = nav ? nav.querySelectorAll('button') : preview.querySelectorAll('button');
@@ -10360,14 +10399,23 @@ function showDesign(key){
           titleEl.textContent = variant.includes('privacy') ? 'PRIVACY & SAFETY' : 'ACCOUNT SETTINGS';
         }
       } else if (comp === 'identity-card') {
-        const hl = preview.querySelector('.myprofile-headline, [id$="myprofile-headline"], small');
-        const fill = preview.querySelector('.completion-fill, [class*="fill"]');
+        const nameEl = preview.querySelector('#own-name, [id$="own-name"], h3');
+        const titleEl = preview.querySelector('#own-title, [id$="own-title"], p');
+        const avatarEl = preview.querySelector('.myprofile-avatar');
+        const fill = preview.querySelector('.completion-track i, .track i');
+        const pct = preview.querySelector('.completion-top b, b');
         if (variant.includes('incomplete')) {
-          if (hl) hl.textContent = 'Add your professional headline...';
+          if (nameEl) nameEl.textContent = 'Your name';
+          if (titleEl) titleEl.textContent = 'Add your professional headline...';
+          if (avatarEl) avatarEl.textContent = 'YN';
           if (fill) fill.style.width = '60%';
+          if (pct) pct.textContent = '60%';
         } else {
-          if (hl) hl.textContent = 'Product & Experience Designer · Miami, FL';
+          if (nameEl) nameEl.textContent = 'Alex Morgan';
+          if (titleEl) titleEl.textContent = 'Product & Experience Designer';
+          if (avatarEl) avatarEl.textContent = 'AM';
           if (fill) fill.style.width = '100%';
+          if (pct) pct.textContent = '100%';
         }
       } else if (comp === 'avatar') {
         const av = preview.querySelector('.avatar, .myprofile-avatar');
@@ -10397,14 +10445,14 @@ function showDesign(key){
           chips[0].style.backgroundColor = '';
         }
       } else if (comp === 'profile-progress') {
-        const fill = preview.querySelector('.completion-fill, [class*="fill"]');
-        const txt = preview.querySelector('.completion-text, strong, span');
+        const fill = preview.querySelector('.completion-track i, .track i, .completion-fill, [class*="fill"]');
+        const txt = preview.querySelector('.completion-top b, .complete-pct, b');
         if (variant.includes('65')) {
           if (fill) fill.style.width = '65%';
-          if (txt) txt.textContent = '65% Complete · Add bio';
+          if (txt) txt.textContent = '65%';
         } else {
           if (fill) fill.style.width = '100%';
-          if (txt) txt.textContent = 'Profile Complete (100%)';
+          if (txt) txt.textContent = '100%';
         }
       } else if (comp === 'profile-menu') {
         const items = preview.querySelectorAll('.myprofile-menu-item, button, .menu-row');
@@ -10434,13 +10482,12 @@ function showDesign(key){
           c.classList.toggle('doc-locked', variant.includes('locked'));
         });
       } else if (comp === 'connection-request') {
-        const cards = preview.querySelectorAll('.journey-person');
-        if (variant.includes('sent')) {
-          if (cards[0]) cards[0].style.display = 'none';
-          if (cards[1]) cards[1].style.display = 'flex';
-        } else {
-          if (cards[0]) cards[0].style.display = 'flex';
-          if (cards[1]) cards[1].style.display = 'none';
+        const row = preview.querySelector('.request-received, .journey-person:first-child');
+        const sent = preview.querySelector('.request-sent, .journey-person:last-child');
+        const isSent = variant.includes('sent');
+        if (row && sent) {
+          row.style.display = isSent ? 'none' : 'flex';
+          sent.style.display = isSent ? 'flex' : 'none';
         }
       } else if (comp === 'chat-bubble') {
         const rows = preview.querySelectorAll('.chat-row');
@@ -10450,13 +10497,14 @@ function showDesign(key){
           else if (variant === 'sent-only') r.style.display = idx === 1 ? 'flex' : 'none';
         });
       } else if (comp === 'chat-composer') {
-        const ta = preview.querySelector('textarea, input');
-        const sBtn = preview.querySelector('button[type="submit"], button.chat-send-btn');
+        const ta = preview.querySelector('input, textarea');
+        const sBtn = preview.querySelector('button[type="submit"], button.chat-send-btn, button:last-child');
         if (variant.includes('typing')) {
-          if (ta) ta.value = 'Coffee near the main hall in 15 minutes? ☕';
+          const draft = 'Coffee near the main hall in 15 minutes? ☕';
+          if (ta) { ta.value = draft; ta.setAttribute('value', draft); }
           if (sBtn) { sBtn.disabled = false; sBtn.style.opacity = '1'; }
         } else {
-          if (ta) ta.value = '';
+          if (ta) { ta.value = ''; ta.removeAttribute('value'); }
           if (sBtn) { sBtn.disabled = true; sBtn.style.opacity = '0.5'; }
         }
       } else if (comp === 'privacy') {
@@ -10470,11 +10518,16 @@ function showDesign(key){
           if (text) text.textContent = 'You are currently invisible.';
         }
       } else if (comp === 'privacy-row') {
-        const sw = preview.querySelector('[role="switch"]');
-        const isOn = variant.includes('on');
-        if (sw) {
-          sw.setAttribute('aria-checked', String(isOn));
-          sw.classList.toggle('off', !isOn);
+        const small = preview.querySelector('.privacy-setting-copy small, small');
+        const btn = preview.querySelector('.privacy-inline, button');
+        const isOff = variant.includes('off') || variant.includes('empty');
+        if (small) {
+          small.textContent = isOff
+            ? '0 connections hidden · All connections see your active presence.'
+            : '3 connections hidden from discovery · presence stays private.';
+        }
+        if (btn) {
+          btn.style.opacity = isOff ? '0.6' : '1';
         }
       } else if (comp === 'verification-status') {
         const btn = preview.querySelector('button');
@@ -10500,9 +10553,19 @@ function showDesign(key){
         }
       } else if (comp === 'session-alert') {
         const alert = preview.querySelector('#session-alert, .session-alert, [data-ds-source-id="session-alert"]');
-        if (alert) {
-          alert.style.display = variant === 'dismissed' ? 'none' : 'flex';
-          alert.style.opacity = variant === 'dismissed' ? '0' : '1';
+        let dismissHint = preview.querySelector('.ds-alert-dismissed-hint');
+        if (variant === 'dismissed') {
+          if (alert) alert.style.display = 'none';
+          if (!dismissHint && preview) {
+            dismissHint = document.createElement('div');
+            dismissHint.className = 'ds-alert-dismissed-hint';
+            dismissHint.style.cssText = 'padding:24px 16px;text-align:center;color:#64748B;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;';
+            dismissHint.innerHTML = '<i class="ph ph-bell-slash" style="color:#ff3300;"></i><span>Alert dismissed · Location beacon remains active</span>';
+            preview.appendChild(dismissHint);
+          }
+        } else {
+          if (alert) alert.style.display = 'flex';
+          if (dismissHint) dismissHint.remove();
         }
       } else if (comp === 'verification-step') {
         const note = preview.querySelector('.verify-step-guidance, p');
@@ -10548,14 +10611,17 @@ function showDesign(key){
           if (btn) btn.textContent = 'Go invisible';
         }
       } else if (comp === 'exp-sheet') {
-        const titleInp = preview.querySelector('#exp-sheet-title-input, [id$="title-input"]');
-        const compInp = preview.querySelector('#exp-sheet-company-input, [id$="company-input"]');
+        const titleEl = preview.querySelector('#exp-sheet-title, [id$="exp-sheet-title"], h3');
+        const titleInp = preview.querySelector('#exp-sheet-title-input, [id$="title-input"], input:first-of-type');
+        const compInp = preview.querySelector('#exp-sheet-company-input, [id$="company-input"], input:nth-of-type(2)');
         if (variant.includes('edit')) {
-          if (titleInp) titleInp.value = 'Senior Product Designer';
-          if (compInp) compInp.value = 'Studio Monolith';
+          if (titleEl) titleEl.textContent = 'Edit experience';
+          if (titleInp) { titleInp.value = 'Senior Product Designer'; titleInp.setAttribute('value', 'Senior Product Designer'); }
+          if (compInp) { compInp.value = 'Studio Monolith'; compInp.setAttribute('value', 'Studio Monolith'); }
         } else {
-          if (titleInp) titleInp.value = '';
-          if (compInp) compInp.value = '';
+          if (titleEl) titleEl.textContent = 'Add experience';
+          if (titleInp) { titleInp.value = ''; titleInp.removeAttribute('value'); }
+          if (compInp) { compInp.value = ''; compInp.removeAttribute('value'); }
         }
       } else if (comp === 'doc-sheet') {
         const fileBox = preview.querySelector('.doc-sheet-selected-file, [id$="selected-box"]');
