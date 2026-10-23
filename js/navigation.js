@@ -10315,6 +10315,2482 @@ function normalizeHtmlForReference(rawHtml) {
   return formatted.length ? formatted.join('\n') : clean;
 }
 
+// Complete scoped CSS dictionary for all 45 components in Peopi Design System
+const scopedComponentStyles = {
+  // === FAMILY: component-actions (6) ===
+  'primary-action': `
+/* Primary Action Button (52pt touch height, brand fill, elevation) */
+.peopi-component-primary-action .primary,
+.peopi-component-primary-action button.primary {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  border-radius: 17px;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  padding: 13px 18px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: inherit;
+  line-height: 1.4;
+  box-shadow: 0 10px 25px rgba(255, 51, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1), background 140ms ease, opacity 140ms ease, filter 140ms ease;
+}
+.peopi-component-primary-action .primary:hover {
+  filter: brightness(1.08);
+}
+.peopi-component-primary-action .primary:active {
+  transform: scale(0.98);
+}
+.peopi-component-primary-action .primary:focus-visible {
+  outline: 3px solid var(--brand-focus, rgba(255, 51, 0, 0.35));
+  outline-offset: 2px;
+}
+.peopi-component-primary-action .primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+.peopi-component-primary-action .ds-spin {
+  animation: peopi-spin 1s linear infinite;
+}
+@keyframes peopi-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+`,
+
+  'quiet-action': `
+/* Quiet Action Button (50pt touch height, neutral surface) */
+.peopi-component-quiet-action .cancel,
+.peopi-component-quiet-action button.cancel,
+.peopi-component-quiet-action .peopi-setup-cancel {
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: 17px;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  padding: 13px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1), background 140ms ease, opacity 140ms ease;
+}
+.peopi-component-quiet-action .cancel:hover {
+  background: color-mix(in srgb, var(--ink) 8%, var(--muted));
+}
+.peopi-component-quiet-action .cancel:active {
+  transform: scale(0.98);
+}
+.peopi-component-quiet-action .cancel:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+`,
+
+  'icon-button': `
+/* Icon Button (44×44pt bounding hit area, rounded surface) */
+.peopi-component-icon-button .myprofile-iconbtn,
+.peopi-component-icon-button button.myprofile-iconbtn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  color: var(--ink, #0F172A);
+  display: inline-grid;
+  place-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 140ms ease, box-shadow 140ms ease;
+}
+.peopi-component-icon-button .myprofile-iconbtn:hover {
+  border-color: var(--brand, #FF3300);
+  color: var(--brand, #FF3300);
+}
+.peopi-component-icon-button .myprofile-iconbtn:active {
+  transform: scale(0.94);
+}
+.peopi-component-icon-button .myprofile-iconbtn.ds-demo-active {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(255, 51, 0, 0.3);
+}
+`,
+
+  'fab': `
+/* Floating Action Button (56×56pt circular elevated button) */
+.peopi-component-fab .connection-message-fab,
+.peopi-component-fab .peopi-connection-message-fab,
+.peopi-component-fab button[class*="message-fab"] {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  min-height: 56px;
+  border-radius: 50%;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  border: 0;
+  display: inline-grid;
+  place-items: center;
+  font-size: 24px;
+  box-shadow: 0 8px 24px rgba(255, 51, 0, 0.35);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 140ms ease, box-shadow 140ms ease;
+}
+.peopi-component-fab .connection-message-fab:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 28px rgba(255, 51, 0, 0.45);
+}
+.peopi-component-fab .connection-message-fab:active {
+  transform: scale(0.94);
+}
+.peopi-component-fab .connection-message-fab.ds-demo-active {
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(255, 51, 0, 0.45);
+}
+`,
+
+  'social-auth': `
+/* Social Authentication Options (48pt touch height, brand SVGs) */
+.peopi-component-social-auth .auth-social-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.peopi-component-social-auth .auth-social-btn {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 16px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  color: var(--ink, #0F172A);
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 12px 18px;
+  transition: background 140ms ease, border-color 140ms ease, transform 100ms ease;
+}
+.peopi-component-social-auth .auth-social-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.peopi-component-social-auth .auth-social-btn:hover {
+  background: var(--muted, #F1F5F9);
+}
+.peopi-component-social-auth .auth-social-btn:active {
+  transform: scale(0.98);
+}
+`,
+
+  'destructive-action': `
+/* Destructive Action Button (50pt touch height, danger semantics) */
+.peopi-component-destructive-action .settings-signout,
+.peopi-component-destructive-action button.settings-signout {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--danger, #DC2626) 8%, transparent);
+  color: var(--danger, #DC2626);
+  border: 1px solid color-mix(in srgb, var(--danger, #DC2626) 25%, transparent);
+  font-size: 15px;
+  font-weight: 750;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 12px 18px;
+  transition: background 140ms ease, color 140ms ease, border-color 140ms ease, transform 100ms ease;
+}
+.peopi-component-destructive-action .settings-signout span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--danger, #DC2626) 15%, transparent);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+.peopi-component-destructive-action .settings-signout:hover {
+  background: var(--danger, #DC2626);
+  color: #FFFFFF;
+  border-color: var(--danger, #DC2626);
+}
+.peopi-component-destructive-action .settings-signout:active {
+  transform: scale(0.98);
+}
+`,
+
+  // === FAMILY: component-forms (9) ===
+  'form-group': `
+/* Grouped Form Section (20pt radius container, 16pt input prevent zoom) */
+.peopi-component-form-group .editgroup {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  padding: 18px;
+  margin-bottom: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-form-group .editgroup-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.peopi-component-form-group .editgroup-head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-form-group .editfield {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-secondary, #64748B);
+  margin-bottom: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-form-group .editfield input,
+.peopi-component-form-group .editfield textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--bg, #F8FAFC);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.peopi-component-form-group .editfield input:focus,
+.peopi-component-form-group .editfield textarea:focus {
+  outline: none;
+  border-color: var(--brand, #FF3300);
+  box-shadow: 0 0 0 3px rgba(255, 51, 0, 0.15);
+}
+`,
+
+  'text-field': `
+/* Form Input Fields (Explicit label and 16pt input preventing zoom) */
+.peopi-component-text-field .editfield {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-secondary, #64748B);
+  width: 100%;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+.peopi-component-text-field .editfield input,
+.peopi-component-text-field .editfield select,
+.peopi-component-text-field .editfield textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.peopi-component-text-field .editfield input:focus,
+.peopi-component-text-field .editfield textarea:focus {
+  outline: none;
+  border-color: var(--brand, #FF3300);
+  box-shadow: 0 0 0 3px rgba(255, 51, 0, 0.15);
+}
+`,
+
+  'search-field': `
+/* Search Input Box (Pill radius, clear action button, magnifying glass) */
+.peopi-component-search-field .network-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: var(--radius-pill, 999px);
+  padding: 4px 16px;
+  min-height: 46px;
+  box-sizing: border-box;
+}
+.peopi-component-search-field .network-search-ico {
+  font-size: 18px;
+  color: var(--ink-secondary, #64748B);
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.peopi-component-search-field .network-search-box input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  min-width: 0;
+}
+.peopi-component-search-field .network-search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink-secondary, #64748B);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  margin-left: 6px;
+}
+`,
+
+  'radio': `
+/* Radio Selection Option (52pt touch height, custom radio indicator) */
+.peopi-component-radio .option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.peopi-component-radio .option .radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--line, #E2E8F0);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease;
+}
+.peopi-component-radio .option.chosen {
+  border-color: var(--brand, #FF3300);
+  background: color-mix(in srgb, var(--brand, #FF3300) 4%, var(--card, #FFFFFF));
+}
+.peopi-component-radio .option.chosen .radio {
+  border-color: var(--brand, #FF3300);
+}
+.peopi-component-radio .option.chosen .radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--brand, #FF3300);
+}
+`,
+
+  'session-duration': `
+/* Session Duration Selector (Segmented 3-option grid, 60pt touch height) */
+.peopi-component-session-duration .durations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-session-duration .durations button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 10px 8px;
+  border-radius: 16px;
+  border: 1.5px solid var(--line, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.peopi-component-session-duration .durations button .dur-top {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.peopi-component-session-duration .durations button .dur-unit {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-secondary, #64748B);
+  margin-top: 2px;
+}
+.peopi-component-session-duration .durations button.chosen {
+  border-color: var(--brand, #FF3300);
+  background: color-mix(in srgb, var(--brand, #FF3300) 6%, var(--card, #FFFFFF));
+  color: var(--brand, #FF3300);
+}
+.peopi-component-session-duration .durations button.chosen .dur-unit {
+  color: var(--brand, #FF3300);
+}
+`,
+
+  'switch': `
+/* Settings Toggle Switch (Semantic role switch, 60pt row height) */
+.peopi-component-switch .journey-person {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  min-height: 60px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-switch .journey-person strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.peopi-component-switch .journey-person small {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-switch .journey-person button[role="switch"],
+.peopi-component-switch .settings-toggle {
+  position: relative;
+  width: 50px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--brand, #FF3300);
+  border: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 2px;
+  box-sizing: border-box;
+  transition: background 0.2s ease;
+}
+.peopi-component-switch .journey-person button[role="switch"]::after,
+.peopi-component-switch .settings-toggle::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transform: translateX(20px);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.peopi-component-switch .journey-person button[role="switch"][aria-checked="false"],
+.peopi-component-switch .settings-toggle.off {
+  background: var(--line, #E2E8F0);
+}
+.peopi-component-switch .journey-person button[role="switch"][aria-checked="false"]::after,
+.peopi-component-switch .settings-toggle.off::after {
+  transform: translateX(0);
+}
+`,
+
+  'intent-choice': `
+/* Intent Selection Cards (Custom checkmark pill, theme-aware surface) */
+.peopi-component-intent-choice .journey-choice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  border: 1.5px solid var(--line, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  transition: all 0.15s ease;
+}
+.peopi-component-intent-choice .journey-choice .intent-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 2px solid var(--line, #E2E8F0);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+.peopi-component-intent-choice .journey-choice.selected {
+  border-color: var(--brand, #FF3300);
+  background: color-mix(in srgb, var(--brand, #FF3300) 5%, var(--card, #FFFFFF));
+}
+.peopi-component-intent-choice .journey-choice.selected .intent-checkbox {
+  border-color: var(--brand, #FF3300);
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+}
+`,
+
+  'skills-chip-input': `
+/* Skills Chip Input (Dismissible pills, text input with 16pt font) */
+.peopi-component-skills-chip-input .skills-chip-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: 18px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+.peopi-component-skills-chip-input .skills-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.peopi-component-skills-chip-input .skills-chip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand, #FF3300) 8%, var(--card, #FFFFFF));
+  border: 1px solid color-mix(in srgb, var(--brand, #FF3300) 25%, transparent);
+  color: var(--ink, #0F172A);
+  font-size: 13px;
+  font-weight: 650;
+}
+.peopi-component-skills-chip-input .skills-chip-item button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ink-secondary, #64748B);
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+}
+.peopi-component-skills-chip-input .skills-chip-item button:hover {
+  color: var(--brand, #FF3300);
+}
+.peopi-component-skills-chip-input .skills-chip-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.peopi-component-skills-chip-input .skills-chip-input-wrap input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  padding: 6px;
+}
+`,
+
+  'discovery-filter': `
+/* Discovery Filter Dialog (Rounded panel, custom selects, 44pt touch targets) */
+.peopi-component-discovery-filter .discovery-filter-dialog {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  padding: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+.peopi-component-discovery-filter .discovery-filter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: 16px;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-discovery-filter .discovery-filter-head button {
+  border: 0;
+  background: transparent;
+  color: var(--brand, #FF3300);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.peopi-component-discovery-filter .discovery-filter-select-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.peopi-component-discovery-filter .discovery-filter-select-wrap label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-secondary, #64748B);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.peopi-component-discovery-filter .discovery-filter-select-wrap select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--bg, #F8FAFC);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+`,
+
+  // === FAMILY: component-navigation (4) ===
+  'bottom-nav': `
+/* Root Tab Bar Navigation (Theme-aware card, sliding active indicator) */
+.peopi-component-bottom-nav .nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  min-height: 64px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: 28px;
+  padding: 6px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.peopi-component-bottom-nav .nav button {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 52px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-secondary, #64748B);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+.peopi-component-bottom-nav .nav button .ph {
+  font-size: 20px;
+  line-height: 1;
+}
+.peopi-component-bottom-nav .nav button.current,
+.peopi-component-bottom-nav .nav button.active,
+.peopi-component-bottom-nav .nav button[aria-current="page"] {
+  color: #FFFFFF;
+}
+.peopi-component-bottom-nav .motion-nav-indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  border-radius: 22px;
+  background: var(--brand, #FF3300);
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), width 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .peopi-component-bottom-nav .motion-nav-indicator {
+    transition: opacity 120ms ease;
+  }
+}
+`,
+
+  'tabs': `
+/* Segmented View Tabs (Muted capsule track, card sliding indicator) */
+.peopi-component-tabs .seg {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  background: var(--muted, #F1F5F9);
+  border-radius: 999px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.peopi-component-tabs .seg button {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-secondary, #64748B);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+.peopi-component-tabs .seg button.chosen,
+.peopi-component-tabs .seg button.selected,
+.peopi-component-tabs .seg button.active,
+.peopi-component-tabs .seg button[aria-selected="true"] {
+  color: var(--ink, #0F172A);
+}
+.peopi-component-tabs .motion-seg-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 999px;
+  background: var(--card, #FFFFFF);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), width 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .peopi-component-tabs .motion-seg-indicator {
+    transition: opacity 120ms ease;
+  }
+}
+`,
+
+  'request-tabs': `
+/* Segmented Request Filter Tabs (Count badges, sliding active capsule) */
+.peopi-component-request-tabs .journey-tabs {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  background: var(--muted, #F1F5F9);
+  border-radius: 999px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.peopi-component-request-tabs .journey-tabs button {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-secondary, #64748B);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+.peopi-component-request-tabs .journey-tabs button.chosen,
+.peopi-component-request-tabs .journey-tabs button.selected,
+.peopi-component-request-tabs .journey-tabs button.active,
+.peopi-component-request-tabs .journey-tabs button[aria-selected="true"] {
+  color: var(--ink, #0F172A);
+}
+.peopi-component-request-tabs .journey-tabs .motion-seg-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 999px;
+  background: var(--card, #FFFFFF);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), width 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .peopi-component-request-tabs .journey-tabs .motion-seg-indicator {
+    transition: opacity 120ms ease;
+  }
+}
+`,
+
+  'app-bar': `
+/* Screen App Bar (Sticky header landmark, 56pt height, 40pt icon action) */
+.peopi-component-app-bar .myprofile-head,
+.peopi-component-app-bar header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 16px;
+  background: var(--card, #FFFFFF);
+  border-bottom: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-app-bar .myprofile-head h2,
+.peopi-component-app-bar .myprofile-head strong {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-app-bar .myprofile-iconbtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  color: var(--ink, #0F172A);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+`,
+
+  // === FAMILY: component-cards (4) ===
+  'profile-card': `
+/* Discovery Profile Card Surface & Layout */
+.peopi-component-profile-card .profilecard,
+.peopi-component-profile-card .peopi-profilecard {
+  position: relative;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  color: var(--ink, #0F172A);
+}
+.peopi-component-profile-card .profilecard-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink-secondary, #64748B);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.peopi-component-profile-card .person {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.peopi-component-profile-card .avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.peopi-component-profile-card .avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.peopi-component-profile-card .person strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-profile-card .person small {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+  margin-top: 2px;
+}
+.peopi-component-profile-card .profilecard-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line, #E2E8F0);
+}
+.peopi-component-profile-card .connect {
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 0;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  font-weight: 750;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* Connected Peer State: Suppress intent heading & text without reserved gaps */
+.peopi-component-profile-card .profilecard.is-connected .profilecard-intent-label,
+.peopi-component-profile-card .profilecard.is-connected #personintent,
+.peopi-component-profile-card .profilecard.is-connected .peopi-personintent,
+.peopi-component-profile-card .peopi-profilecard.is-connected .profilecard-intent-label,
+.peopi-component-profile-card .peopi-profilecard.is-connected .peopi-personintent {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,
+.peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {
+  margin: 0 !important;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+@media (max-width: 480px) {
+  .peopi-component-profile-card .profilecard .profilecard-footer,
+  .peopi-component-profile-card .peopi-profilecard .profilecard-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+  .peopi-component-profile-card .profilecard .profilecard-status,
+  .peopi-component-profile-card .peopi-profilecard .profilecard-status {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+  .peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,
+  .peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+  .peopi-component-profile-card .profilecard .connect,
+  .peopi-component-profile-card .peopi-profilecard .connect {
+    width: 100% !important;
+    margin-left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    min-height: 44px !important;
+  }
+}
+`,
+
+  'network-row': `
+/* Scoped Connection List Row Base Layout & Surface */
+.peopi-component-network-row .journey-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 80px;
+  padding: 16px;
+  box-sizing: border-box;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-family: inherit;
+  width: 100%;
+  position: relative;
+}
+.peopi-component-network-row .initials,
+.peopi-component-network-row .avatar,
+.peopi-component-network-row .demo-photo-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50% !important;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--muted);
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.peopi-component-network-row .initials > img,
+.peopi-component-network-row .avatar > img,
+.peopi-component-network-row .demo-photo-avatar > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50% !important;
+  display: block;
+  z-index: 1;
+}
+.peopi-component-network-row .journey-person > div:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.peopi-component-network-row .verified-name-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  min-width: 0;
+}
+.peopi-component-network-row .verified-name-line strong {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.peopi-component-network-row .journey-person small {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-secondary);
+  margin-top: 2px;
+}
+.peopi-component-network-row .li-verified-badge {
+  display: inline-flex !important;
+  position: relative !important;
+  top: -0.48em !important;
+  vertical-align: baseline !important;
+  margin-left: 3px !important;
+  margin-right: 1px !important;
+  width: 13px !important;
+  height: 13px !important;
+  flex: 0 0 13px !important;
+  line-height: 0 !important;
+  color: #0a66c2;
+  align-items: center;
+  justify-content: center;
+}
+.peopi-component-network-row .li-verified-badge svg {
+  display: block !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+.peopi-component-network-row .journey-person button:not([role=switch]) {
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--muted);
+  color: var(--ink);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: background 150ms ease, transform 100ms ease;
+}
+.peopi-component-network-row .journey-person button:not([role=switch]):hover {
+  background: color-mix(in srgb, var(--ink) 8%, var(--muted));
+}
+.peopi-component-network-row .journey-person button:not([role=switch]):active {
+  transform: scale(0.97);
+}
+.peopi-component-network-row .network-unread-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  display: block;
+  z-index: 2;
+}
+.peopi-component-network-row .network-unread-dot {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--brand, #FF3300);
+  box-shadow: 0 0 0 2px var(--card, #FFFFFF);
+}
+@media (prefers-color-scheme: dark) {
+  .peopi-component-network-row .network-unread-dot {
+    box-shadow: 0 0 0 2px var(--card, #172033);
+  }
+}
+.peopi-component-network-row .network-unread-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--brand, #FF3300);
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0;
+  animation: peopi-unread-ripple 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+.peopi-component-network-row .network-unread-ring.ring-2 {
+  animation-delay: 1.2s;
+}
+@keyframes peopi-unread-ripple {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(2.2); opacity: 0.25; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .peopi-component-network-row .network-unread-ring {
+    display: none !important;
+    animation: none !important;
+  }
+}
+.peopi-component-network-row .sr-only,
+.peopi-component-network-row .network-unread-sr {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+`,
+
+  'activity-item': `
+/* Scoped Notification Activity Item Base Layout & Surface */
+.peopi-component-activity-item .activity-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg, 20px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  color: var(--ink);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.peopi-component-activity-item .activity-item:hover {
+  border-color: color-mix(in srgb, var(--brand, #FF3300) 35%, transparent);
+}
+.peopi-component-activity-item .activity-avatar-wrap {
+  position: relative;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+}
+.peopi-component-activity-item .activity-avatar {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50% !important;
+  font-size: 15px;
+  font-weight: 750;
+  display: grid;
+  place-items: center;
+  background: var(--muted);
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+.peopi-component-activity-item .activity-avatar > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50% !important;
+  display: block;
+  z-index: 1;
+}
+.peopi-component-activity-item .activity-avatar.system-avatar {
+  background: color-mix(in srgb, var(--brand, #FF3300) 12%, transparent);
+  color: var(--brand, #FF3300);
+}
+.peopi-component-activity-item .activity-avatar.system-avatar i,
+.peopi-component-activity-item .activity-avatar.system-avatar .ph {
+  font-size: 22px;
+  line-height: 1;
+}
+.peopi-component-activity-item .activity-body,
+.peopi-component-activity-item .activity-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.peopi-component-activity-item .activity-top-line,
+.peopi-component-activity-item .activity-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 2px;
+}
+.peopi-component-activity-item .activity-title,
+.peopi-component-activity-item .activity-top-line strong,
+.peopi-component-activity-item .activity-head strong {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 750;
+  color: var(--ink);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.peopi-component-activity-item .activity-time {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+  text-align: right;
+  line-height: 1.4;
+}
+.peopi-component-activity-item .activity-subtitle {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+.peopi-component-activity-item .activity-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+.peopi-component-activity-item .activity-btn-accept {
+  min-height: 44px;
+  height: 44px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 750;
+  font-family: inherit;
+  border-radius: 12px;
+  border: 1px solid var(--brand, #FF3300);
+  background: transparent;
+  color: var(--brand, #FF3300);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+.peopi-component-activity-item .activity-btn-accept:hover {
+  background: color-mix(in srgb, var(--brand, #FF3300) 12%, transparent);
+}
+.peopi-component-activity-item .activity-btn-decline {
+  min-height: 44px;
+  height: 44px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 750;
+  font-family: inherit;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--muted);
+  color: var(--ink-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+.peopi-component-activity-item .activity-btn-decline:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 8%, var(--muted));
+}
+`,
+
+  'list': `
+/* Scoped Settings Account Rows Base Layout & Surface (No internal row dividers) */
+.peopi-component-list .settings-group {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--line) 45%, transparent);
+  border-radius: var(--radius-lg, 22px);
+  padding: 18px 16px 10px;
+  margin: 0;
+  box-shadow: 0 4px 18px rgba(27, 36, 50, 0.027);
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-list .settings-label {
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.4px;
+  line-height: 1.5;
+  color: var(--ink-secondary);
+  margin-bottom: 7px;
+  text-transform: none;
+}
+.peopi-component-list .settings-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 14px 0;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: var(--ink);
+  font-family: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: opacity 0.15s ease;
+}
+.peopi-component-list .settings-item:hover {
+  opacity: 0.85;
+}
+.peopi-component-list .settings-ico {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  display: grid;
+  place-items: center;
+  align-self: flex-start;
+  margin-top: 3px;
+  color: var(--ink-secondary);
+}
+.peopi-component-list .settings-ico i,
+.peopi-component-list .settings-ico .ph {
+  font-size: 20px;
+  line-height: 1;
+}
+.peopi-component-list .settings-item > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.peopi-component-list .settings-item strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.peopi-component-list .settings-item small {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.peopi-component-list .settings-item > .ph,
+.peopi-component-list .settings-item > i:last-child {
+  font-size: 16px;
+  color: var(--ink-secondary);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+`,
+
+  // === FAMILY: component-profile (8) ===
+  'identity-card': `
+/* Profile Identity Card (Hero card with avatar, role, completion meter) */
+.peopi-component-identity-card .myprofile-identity-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 20px;
+  border-radius: var(--radius-lg, 20px);
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  color: var(--ink, #0F172A);
+}
+.peopi-component-identity-card .myprofile-hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.peopi-component-identity-card .myprofile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 800;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.peopi-component-identity-card .myprofile-summary {
+  flex: 1;
+  min-width: 0;
+}
+.peopi-component-identity-card h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-identity-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+  line-height: 1.4;
+}
+.peopi-component-identity-card .myprofile-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--ink-secondary, #64748B);
+  margin-top: 4px;
+}
+.peopi-component-identity-card .myprofile-completion {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--bg, #F8FAFC);
+  box-sizing: border-box;
+}
+.peopi-component-identity-card .completion-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink, #0F172A);
+  margin-bottom: 6px;
+}
+.peopi-component-identity-card .completion-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--muted, #F1F5F9);
+  overflow: hidden;
+}
+.peopi-component-identity-card .completion-track i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--brand, #FF3300);
+}
+`,
+
+  'avatar': `
+/* Profile Avatar (Circular container, photo & initials fallback) */
+.peopi-component-avatar .avatar,
+.peopi-component-avatar .myprofile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50% !important;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  flex-shrink: 0;
+}
+.peopi-component-avatar .avatar img,
+.peopi-component-avatar .myprofile-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50% !important;
+  display: block;
+  z-index: 1;
+}
+`,
+
+  'chip': `
+/* Skill & Interest Chips (High contrast tag, theme-aware outline) */
+.peopi-component-chip .myprofile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+.peopi-component-chip .myprofile-chip,
+.peopi-component-chip .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  color: var(--ink, #0F172A);
+  font-size: 13px;
+  font-weight: 650;
+  box-sizing: border-box;
+}
+`,
+
+  'profile-progress': `
+/* Profile Completion Card (Completion progress meter, percentage badge) */
+.peopi-component-profile-progress .myprofile-completion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+}
+.peopi-component-profile-progress .completion-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-profile-progress .completion-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--muted, #F1F5F9);
+  overflow: hidden;
+}
+.peopi-component-profile-progress .completion-track i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--brand, #FF3300);
+}
+`,
+
+  'profile-menu': `
+/* Grouped Navigation Menu (Theme-aware card, 54pt min row height) */
+.peopi-component-profile-menu .myprofile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.peopi-component-profile-menu .myprofile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 54px;
+  padding: 14px 18px;
+  border: 0;
+  background: transparent;
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+  text-align: left;
+  box-sizing: border-box;
+  transition: background 0.15s ease;
+}
+.peopi-component-profile-menu .myprofile-menu-item .ph:first-child {
+  font-size: 20px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-profile-menu .myprofile-menu-item .ph:last-child {
+  font-size: 16px;
+  color: var(--ink-secondary, #64748B);
+  margin-left: auto;
+}
+.peopi-component-profile-menu .myprofile-menu-item:hover {
+  background: var(--muted, #F1F5F9);
+}
+`,
+
+  'content-section': `
+/* Readable Content Section (Semantic heading, readable copy surface) */
+.peopi-component-content-section .myprofile-section {
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-content-section .myprofile-sectionhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.peopi-component-content-section .myprofile-sectionhead h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-content-section .myprofile-section p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-secondary, #64748B);
+}
+`,
+
+  'verified-badge': `
+/* LinkedIn Verified Trust Badge (True baseline superscript vector) */
+.peopi-component-verified-badge .li-verified-badge {
+  display: inline-flex !important;
+  position: relative !important;
+  top: -0.48em !important;
+  vertical-align: baseline !important;
+  margin-left: 3px !important;
+  margin-right: 1px !important;
+  width: 13px !important;
+  height: 13px !important;
+  flex: 0 0 13px !important;
+  line-height: 0 !important;
+  color: #0a66c2;
+  align-items: center;
+  justify-content: center;
+}
+.peopi-component-verified-badge .li-verified-badge svg {
+  display: block !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+`,
+
+  'profile-documents': `
+/* Document Attachment Grid (Responsive grid, encrypted/locked indicators) */
+.peopi-component-profile-documents .peopi-docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-profile-documents .peopi-doc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+}
+.peopi-component-profile-documents .peopi-doc-icon {
+  font-size: 24px;
+  color: var(--brand, #FF3300);
+}
+.peopi-component-profile-documents .peopi-doc-filename {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink, #0F172A);
+  overflow-wrap: break-word;
+}
+.peopi-component-profile-documents .peopi-doc-blurred {
+  filter: blur(4px);
+  user-select: none;
+}
+.peopi-component-profile-documents .peopi-doc-lock-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-secondary, #64748B);
+  margin-top: 4px;
+}
+`,
+
+  // === FAMILY: component-connections (3) ===
+  'connection-request': `
+/* Connection Request Card (Decision actions, 44pt touch height) */
+.peopi-component-connection-request .ds-connection-request-specimen {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-connection-request .journey-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-connection-request .initials {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.peopi-component-connection-request .person-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.peopi-component-connection-request .person-actions button {
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 750;
+  font-family: inherit;
+  cursor: pointer;
+  border: 0;
+  box-sizing: border-box;
+}
+.peopi-component-connection-request .person-actions button:first-child {
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+}
+.peopi-component-connection-request .person-actions button:last-child {
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+}
+`,
+
+  'chat-bubble': `
+/* Chat Message Bubbles (Sender brand pill vs recipient card surface) */
+.peopi-component-chat-bubble .chat-time-divider {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 8px 0;
+}
+.peopi-component-chat-bubble .chat-time-divider span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-secondary, #64748B);
+  background: var(--muted, #F1F5F9);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.peopi-component-chat-bubble .chat-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.peopi-component-chat-bubble .chat-row.sent,
+.peopi-component-chat-bubble .chat-row:has(.mine) {
+  justify-content: flex-end;
+}
+.peopi-component-chat-bubble .chat-row.received,
+.peopi-component-chat-bubble .chat-row:not(:has(.mine)) {
+  justify-content: flex-start;
+}
+.peopi-component-chat-bubble .chat-bubble {
+  max-width: 78%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.45;
+  box-sizing: border-box;
+}
+.peopi-component-chat-bubble .chat-bubble.mine,
+.peopi-component-chat-bubble .chat-row.sent .chat-bubble {
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  border-bottom-right-radius: 4px;
+}
+.peopi-component-chat-bubble .chat-bubble:not(.mine),
+.peopi-component-chat-bubble .chat-row.received .chat-bubble {
+  background: var(--card, #FFFFFF);
+  color: var(--ink, #0F172A);
+  border: 1px solid var(--line, #E2E8F0);
+  border-bottom-left-radius: 4px;
+}
+`,
+
+  'chat-composer': `
+/* Chat Message Composer (Pill input bar, circular 40pt submit trigger) */
+.peopi-component-chat-composer .chat-compose {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: 999px;
+  padding: 4px 6px 4px 16px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+.peopi-component-chat-composer .chat-compose input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  min-width: 0;
+}
+.peopi-component-chat-composer .chat-compose button {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+`,
+
+  // === FAMILY: component-privacy (7) ===
+  'privacy': `
+/* Presence Status Banner (Live discovery broadcast status, 44pt action) */
+.peopi-component-privacy .privacy-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: var(--radius-lg, 20px);
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-privacy .privacy-status-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.peopi-component-privacy .privacy-status-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--brand, #FF3300) 10%, transparent);
+  color: var(--brand, #FF3300);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.peopi-component-privacy .privacy-status strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 750;
+  margin-bottom: 2px;
+}
+.peopi-component-privacy .privacy-status small {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-secondary, #64748B);
+  line-height: 1.4;
+}
+.peopi-component-privacy .privacy-status button {
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+`,
+
+  'privacy-row': `
+/* Privacy Control Row (Theme-aware card, explanation copy, 38pt action) */
+.peopi-component-privacy-row .privacy-setting {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 60px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-privacy-row .privacy-setting-icon {
+  font-size: 20px;
+  color: var(--ink-secondary, #64748B);
+  flex-shrink: 0;
+}
+.peopi-component-privacy-row .privacy-setting-copy {
+  flex: 1;
+  min-width: 0;
+}
+.peopi-component-privacy-row .privacy-setting-copy strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink, #0F172A);
+  margin-bottom: 2px;
+}
+.peopi-component-privacy-row .privacy-setting-copy small {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+  line-height: 1.4;
+}
+.peopi-component-privacy-row .privacy-inline {
+  min-height: 38px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+`,
+
+  'verification-status': `
+/* Trust Signal Verification Panel (LinkedIn account state, action trigger) */
+.peopi-component-verification-status .verify-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 18px;
+  border-radius: var(--radius-lg, 20px);
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-verification-status .verify-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.peopi-component-verification-status .verify-icon.verify-linkedin {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #0077B5;
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.peopi-component-verification-status .verify-copy {
+  flex: 1;
+  min-width: 0;
+}
+.peopi-component-verification-status .verify-row strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 750;
+}
+.peopi-component-verification-status .verify-row small {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-verification-status .verify-explain {
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+  line-height: 1.45;
+  margin: 0;
+}
+.peopi-component-verification-status .verify-row button,
+.peopi-component-verification-status .verify-panel button {
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.peopi-component-verification-status .verify-primary {
+  border: 0;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+}
+.peopi-component-verification-status .verify-secondary {
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+}
+`,
+
+  'toast-notification': `
+/* Toast Notification Pill (Floating status pill, high-contrast dark surface) */
+.peopi-component-toast-notification .toast,
+.peopi-component-toast-notification .peopi-toast {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 650;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+}
+`,
+
+  'session-alert': `
+/* Proximity Alert Banner (Session countdown warning, dual action triggers) */
+.peopi-component-session-alert .session-alert,
+.peopi-component-session-alert .peopi-session-alert {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--brand, #FF3300) 10%, var(--card, #FFFFFF));
+  border: 1px solid color-mix(in srgb, var(--brand, #FF3300) 30%, transparent);
+  color: var(--ink, #0F172A);
+  box-sizing: border-box;
+}
+.peopi-component-session-alert .alert-icon {
+  font-size: 20px;
+  color: var(--brand, #FF3300);
+  flex-shrink: 0;
+}
+.peopi-component-session-alert .alert-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+.peopi-component-session-alert .alert-actions button {
+  border: 0;
+  background: transparent;
+  color: var(--brand, #FF3300);
+  font-weight: 750;
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+`,
+
+  'verification-step': `
+/* Verification Principles & Signals (Informative trust guidance block) */
+.peopi-component-verification-step .verify-principles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 18px;
+  border-radius: var(--radius-lg, 20px);
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-verification-step .verify-principles > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.peopi-component-verification-step .verify-principles i {
+  font-size: 22px;
+  color: var(--brand, #FF3300);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.peopi-component-verification-step .verify-principles p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-secondary, #64748B);
+}
+`,
+
+  'empty-state': `
+/* Zero-Data Empty State View (Dashed container, placeholder illustration) */
+.peopi-component-empty-state .journey-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  width: 100%;
+  padding: 36px 20px;
+  border-radius: var(--radius-lg, 20px);
+  background: var(--card, #FFFFFF);
+  border: 1px dashed var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-empty-state .journey-empty i {
+  font-size: 36px;
+  color: var(--ink-secondary, #64748B);
+  opacity: 0.6;
+}
+.peopi-component-empty-state .journey-empty strong {
+  font-size: 16px;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+}
+`,
+
+  // === FAMILY: component-overlays (4) ===
+  'sheet': `
+/* Profile Detail Bottom Sheet (Modal surface, grabber handle, scroll area) */
+.peopi-component-sheet .ds-sheet-specimen-root {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.peopi-component-sheet .sheet.profile-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 28px 28px 0 0;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-bottom: 0;
+  box-sizing: border-box;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
+  color: var(--ink, #0F172A);
+}
+.peopi-component-sheet .sheet-grabber {
+  width: 40px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line, #E2E8F0);
+  margin: 0 auto 8px;
+  flex-shrink: 0;
+}
+.peopi-component-sheet .privacyhint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-secondary, #64748B);
+  background: var(--muted, #F1F5F9);
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+.peopi-component-sheet .peopi-docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+.peopi-component-sheet .peopi-doc-card {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--bg, #F8FAFC);
+}
+`,
+
+  'dialog': `
+/* Confirmation Dialog Modal Sheet (Center surface, dual action buttons) */
+.peopi-component-dialog .sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 380px;
+  padding: 24px 20px;
+  border-radius: 24px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+  color: var(--ink, #0F172A);
+  margin: 0 auto;
+}
+.peopi-component-dialog .sheetclose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink-secondary, #64748B);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.peopi-component-dialog .sheet h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-dialog .sheet p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-dialog .sheet button.primary {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  font-weight: 750;
+  font-size: 15px;
+  cursor: pointer;
+}
+.peopi-component-dialog .sheet button.cancel {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  font-weight: 750;
+  font-size: 15px;
+  cursor: pointer;
+}
+`,
+
+  'exp-sheet': `
+/* Experience Editor Bottom Sheet (Modal surface, form inputs, save action) */
+.peopi-component-exp-sheet .ds-sheet-specimen-root {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.peopi-component-exp-sheet .sheet.exp-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 28px 28px 0 0;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-exp-sheet .sheet-grabber {
+  width: 40px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line, #E2E8F0);
+  margin: 0 auto 8px;
+}
+.peopi-component-exp-sheet .sheet h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+.peopi-component-exp-sheet .sheet input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--bg, #F8FAFC);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+.peopi-component-exp-sheet .journey-primary {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  font-weight: 750;
+  font-size: 15px;
+  cursor: pointer;
+}
+`,
+
+  'doc-sheet': `
+/* Document Attachment Bottom Sheet (Modal surface, encrypted file preview) */
+.peopi-component-doc-sheet .ds-sheet-specimen-root {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.peopi-component-doc-sheet .sheet.doc-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 28px 28px 0 0;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-doc-sheet .sheet-grabber {
+  width: 40px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line, #E2E8F0);
+  margin: 0 auto 8px;
+}
+.peopi-component-doc-sheet .sheet h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+.peopi-component-doc-sheet .doc-sheet-selected-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--muted, #F1F5F9);
+  border: 1px solid var(--line, #E2E8F0);
+  font-size: 14px;
+  font-weight: 650;
+}
+.peopi-component-doc-sheet .journey-primary {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  font-weight: 750;
+  font-size: 15px;
+  cursor: pointer;
+}
+`
+};
+
 function generateWebReference(compKey, activeVariantText, card) {
   const comp = (typeof peopiHandoffData !== 'undefined' && peopiHandoffData[compKey]) || { isStatic: true };
   const viewport = card ? card.querySelector('.ds-workbench-preview-viewport') : null;
@@ -10353,568 +12829,10 @@ function generateWebReference(compKey, activeVariantText, card) {
     '  }',
     '}'
   ];
-  if (compKey === 'profile-card') {
-    cssLines.push(
-      '',
-      '/* Connected Peer State: Suppress intent heading & text without reserved gaps */',
-      '.peopi-component-profile-card .profilecard.is-connected .profilecard-intent-label,',
-      '.peopi-component-profile-card .profilecard.is-connected #personintent,',
-      '.peopi-component-profile-card .profilecard.is-connected .peopi-personintent,',
-      '.peopi-component-profile-card .peopi-profilecard.is-connected .profilecard-intent-label,',
-      '.peopi-component-profile-card .peopi-profilecard.is-connected .peopi-personintent {',
-      '  display: none !important;',
-      '  margin: 0 !important;',
-      '  padding: 0 !important;',
-      '}',
-      '.peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,',
-      '.peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {',
-      '  margin: 0 !important;',
-      '  white-space: nowrap;',
-      '  font-size: 13px;',
-      '  line-height: 1.4;',
-      '  color: var(--ink);',
-      '}',
-      '',
-      '/* Responsive Footer Layout (< 295px container or <= 480px screen) */',
-      '@container (max-width: 295px) {',
-      '  .peopi-component-profile-card .profilecard .profilecard-footer,',
-      '  .peopi-component-profile-card .peopi-profilecard .profilecard-footer {',
-      '    flex-direction: column !important;',
-      '    align-items: stretch !important;',
-      '    gap: 12px !important;',
-      '  }',
-      '  .peopi-component-profile-card .profilecard .profilecard-status,',
-      '  .peopi-component-profile-card .peopi-profilecard .profilecard-status {',
-      '    width: 100% !important;',
-      '    min-width: 100% !important;',
-      '  }',
-      '  .peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,',
-      '  .peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {',
-      '    width: 100% !important;',
-      '    justify-content: flex-start !important;',
-      '  }',
-      '  .peopi-component-profile-card .profilecard .connect,',
-      '  .peopi-component-profile-card .peopi-profilecard .connect {',
-      '    width: 100% !important;',
-      '    margin-left: 0 !important;',
-      '    display: flex !important;',
-      '    align-items: center !important;',
-      '    justify-content: center !important;',
-      '    text-align: center !important;',
-      '    min-height: 44px !important;',
-      '  }',
-      '}',
-      '@media (max-width: 480px) {',
-      '  .peopi-component-profile-card .profilecard .profilecard-footer,',
-      '  .peopi-component-profile-card .peopi-profilecard .profilecard-footer {',
-      '    flex-direction: column !important;',
-      '    align-items: stretch !important;',
-      '    gap: 12px !important;',
-      '  }',
-      '  .peopi-component-profile-card .profilecard .profilecard-status,',
-      '  .peopi-component-profile-card .peopi-profilecard .profilecard-status {',
-      '    width: 100% !important;',
-      '    min-width: 100% !important;',
-      '  }',
-      '  .peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,',
-      '  .peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {',
-      '    width: 100% !important;',
-      '    justify-content: flex-start !important;',
-      '  }',
-      '  .peopi-component-profile-card .profilecard .connect,',
-      '  .peopi-component-profile-card .peopi-profilecard .connect {',
-      '    width: 100% !important;',
-      '    margin-left: 0 !important;',
-      '    display: flex !important;',
-      '    align-items: center !important;',
-      '    justify-content: center !important;',
-      '    text-align: center !important;',
-      '    min-height: 44px !important;',
-      '  }',
-      '}'
-    );
+  if (scopedComponentStyles[compKey]) {
+    cssLines.push(scopedComponentStyles[compKey].trim());
   }
-  if (compKey === 'network-row') {
-    cssLines.push(
-      '',
-      '/* Scoped Connection List Row Base Layout & Surface */',
-      '.peopi-component-network-row .journey-person {',
-      '  display: flex;',
-      '  align-items: center;',
-      '  gap: 12px;',
-      '  min-height: 80px;',
-      '  padding: 16px;',
-      '  box-sizing: border-box;',
-      '  background: var(--card);',
-      '  border-bottom: 1px solid var(--line);',
-      '  color: var(--ink);',
-      '  font-family: inherit;',
-      '  width: 100%;',
-      '  position: relative;',
-      '}',
-      '',
-      '/* Avatar Geometry: 48×48pt Circular Avatar & Image */',
-      '.peopi-component-network-row .initials,',
-      '.peopi-component-network-row .avatar,',
-      '.peopi-component-network-row .demo-photo-avatar {',
-      '  width: 48px;',
-      '  height: 48px;',
-      '  border-radius: 50% !important;',
-      '  display: grid;',
-      '  place-items: center;',
-      '  flex-shrink: 0;',
-      '  background: var(--muted);',
-      '  color: var(--ink);',
-      '  font-size: 16px;',
-      '  font-weight: 800;',
-      '  position: relative;',
-      '  overflow: hidden;',
-      '  isolation: isolate;',
-      '}',
-      '.peopi-component-network-row .initials > img,',
-      '.peopi-component-network-row .avatar > img,',
-      '.peopi-component-network-row .demo-photo-avatar > img {',
-      '  position: absolute;',
-      '  inset: 0;',
-      '  width: 100%;',
-      '  height: 100%;',
-      '  object-fit: cover;',
-      '  object-position: center;',
-      '  border-radius: 50% !important;',
-      '  display: block;',
-      '  z-index: 1;',
-      '}',
-      '',
-      '/* Text Hierarchy: Verified Name Line & Role Subtitle */',
-      '.peopi-component-network-row .journey-person > div:nth-child(2) {',
-      '  flex: 1;',
-      '  min-width: 0;',
-      '}',
-      '.peopi-component-network-row .verified-name-line {',
-      '  display: flex;',
-      '  align-items: baseline;',
-      '  gap: 0;',
-      '  min-width: 0;',
-      '}',
-      '.peopi-component-network-row .verified-name-line strong {',
-      '  display: inline-block;',
-      '  font-size: 16px;',
-      '  font-weight: 700;',
-      '  line-height: 1.4;',
-      '  color: var(--ink);',
-      '  overflow-wrap: anywhere;',
-      '  white-space: normal;',
-      '}',
-      '.peopi-component-network-row .journey-person small {',
-      '  display: block;',
-      '  font-size: 13px;',
-      '  line-height: 1.5;',
-      '  color: var(--ink-secondary);',
-      '  margin-top: 2px;',
-      '}',
-      '',
-      '/* LinkedIn Verified Trust Badge: True Baseline Superscript */',
-      '.peopi-component-network-row .li-verified-badge {',
-      '  display: inline-flex !important;',
-      '  position: relative !important;',
-      '  top: -0.48em !important;',
-      '  vertical-align: baseline !important;',
-      '  margin-left: 3px !important;',
-      '  margin-right: 1px !important;',
-      '  width: 13px !important;',
-      '  height: 13px !important;',
-      '  flex: 0 0 13px !important;',
-      '  line-height: 0 !important;',
-      '  color: #0a66c2;',
-      '  align-items: center;',
-      '  justify-content: center;',
-      '}',
-      '.peopi-component-network-row .li-verified-badge svg {',
-      '  display: block !important;',
-      '  width: 13px !important;',
-      '  height: 13px !important;',
-      '}',
-      '',
-      '/* Contextual Action Button (44pt Minimum Hit Target) */',
-      '.peopi-component-network-row .journey-person button:not([role=switch]) {',
-      '  min-height: 44px;',
-      '  font-size: 14px;',
-      '  font-weight: 700;',
-      '  font-family: inherit;',
-      '  padding: 10px 14px;',
-      '  border-radius: 14px;',
-      '  border: 0;',
-      '  background: var(--muted);',
-      '  color: var(--ink);',
-      '  cursor: pointer;',
-      '  flex-shrink: 0;',
-      '  position: relative;',
-      '  overflow: visible;',
-      '  display: inline-flex;',
-      '  align-items: center;',
-      '  justify-content: center;',
-      '  box-sizing: border-box;',
-      '  transition: background 150ms ease, transform 100ms ease;',
-      '}',
-      '.peopi-component-network-row .journey-person button:not([role=switch]):hover {',
-      '  background: color-mix(in srgb, var(--ink) 8%, var(--muted));',
-      '}',
-      '.peopi-component-network-row .journey-person button:not([role=switch]):active {',
-      '  transform: scale(0.97);',
-      '}',
-      '',
-      '/* Unread Notice Indicator: 8pt Orange Dot & Concentric Ripples */',
-      '.peopi-component-network-row .network-unread-indicator {',
-      '  position: absolute;',
-      '  top: -2px;',
-      '  right: -2px;',
-      '  width: 8px;',
-      '  height: 8px;',
-      '  pointer-events: none;',
-      '  display: block;',
-      '  z-index: 2;',
-      '}',
-      '.peopi-component-network-row .network-unread-dot {',
-      '  position: absolute;',
-      '  inset: 0;',
-      '  border-radius: 50%;',
-      '  background: var(--brand, #FF3300);',
-      '  box-shadow: 0 0 0 2px var(--card, #FFFFFF);',
-      '}',
-      '@media (prefers-color-scheme: dark) {',
-      '  .peopi-component-network-row .network-unread-dot {',
-      '    box-shadow: 0 0 0 2px var(--card, #172033);',
-      '  }',
-      '}',
-      '.peopi-component-network-row .network-unread-ring {',
-      '  position: absolute;',
-      '  inset: 0;',
-      '  border-radius: 50%;',
-      '  border: 1.5px solid var(--brand, #FF3300);',
-      '  box-sizing: border-box;',
-      '  pointer-events: none;',
-      '  opacity: 0;',
-      '  animation: peopi-unread-ripple 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;',
-      '}',
-      '.peopi-component-network-row .network-unread-ring.ring-2 {',
-      '  animation-delay: 1.2s;',
-      '}',
-      '@keyframes peopi-unread-ripple {',
-      '  0% { transform: scale(1); opacity: 0.8; }',
-      '  50% { transform: scale(2.2); opacity: 0.25; }',
-      '  100% { transform: scale(2.6); opacity: 0; }',
-      '}',
-      '@media (prefers-reduced-motion: reduce) {',
-      '  .peopi-component-network-row .network-unread-ring {',
-      '    display: none !important;',
-      '    animation: none !important;',
-      '  }',
-      '}',
-      '',
-      '/* Accessible Screen Reader Status */',
-      '.peopi-component-network-row .sr-only,',
-      '.peopi-component-network-row .network-unread-sr {',
-      '  position: absolute !important;',
-      '  width: 1px !important;',
-      '  height: 1px !important;',
-      '  padding: 0 !important;',
-      '  margin: -1px !important;',
-      '  overflow: hidden !important;',
-      '  clip: rect(0, 0, 0, 0) !important;',
-      '  white-space: nowrap !important;',
-      '  border: 0 !important;',
-      '}'
-    );
-  }
-  if (compKey === 'activity-item') {
-    cssLines.push(
-      '',
-      '/* Scoped Notification Activity Item Base Layout & Surface */',
-      '.peopi-component-activity-item .activity-item {',
-      '  position: relative;',
-      '  display: flex;',
-      '  align-items: flex-start;',
-      '  gap: 13px;',
-      '  padding: 16px;',
-      '  background: var(--card);',
-      '  border: 1px solid var(--line);',
-      '  border-radius: var(--radius-lg, 20px);',
-      '  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);',
-      '  color: var(--ink);',
-      '  font-family: inherit;',
-      '  width: 100%;',
-      '  box-sizing: border-box;',
-      '  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;',
-      '}',
-      '.peopi-component-activity-item .activity-item:hover {',
-      '  border-color: color-mix(in srgb, var(--brand, #FF3300) 35%, transparent);',
-      '}',
-      '',
-      '/* Avatar Geometry: 46×46pt Circular Avatar & Image */',
-      '.peopi-component-activity-item .activity-avatar-wrap {',
-      '  position: relative;',
-      '  flex: 0 0 46px;',
-      '  width: 46px;',
-      '  height: 46px;',
-      '}',
-      '.peopi-component-activity-item .activity-avatar {',
-      '  position: relative;',
-      '  width: 46px;',
-      '  height: 46px;',
-      '  border-radius: 50% !important;',
-      '  font-size: 15px;',
-      '  font-weight: 750;',
-      '  display: grid;',
-      '  place-items: center;',
-      '  background: var(--muted);',
-      '  color: var(--ink);',
-      '  overflow: hidden;',
-      '  isolation: isolate;',
-      '}',
-      '.peopi-component-activity-item .activity-avatar > img {',
-      '  position: absolute;',
-      '  inset: 0;',
-      '  width: 100%;',
-      '  height: 100%;',
-      '  object-fit: cover;',
-      '  object-position: center;',
-      '  border-radius: 50% !important;',
-      '  display: block;',
-      '  z-index: 1;',
-      '}',
-      '.peopi-component-activity-item .activity-avatar.system-avatar {',
-      '  background: color-mix(in srgb, var(--brand, #FF3300) 12%, transparent);',
-      '  color: var(--brand, #FF3300);',
-      '}',
-      '.peopi-component-activity-item .activity-avatar.system-avatar i,',
-      '.peopi-component-activity-item .activity-avatar.system-avatar .ph {',
-      '  font-size: 22px;',
-      '  line-height: 1;',
-      '}',
-      '',
-      '/* Flexible Body Layout */',
-      '.peopi-component-activity-item .activity-body,',
-      '.peopi-component-activity-item .activity-content {',
-      '  flex: 1;',
-      '  min-width: 0;',
-      '  display: flex;',
-      '  flex-direction: column;',
-      '}',
-      '',
-      '/* Explicit Name/Time Header: Separated & Right-Aligned Timestamp */',
-      '.peopi-component-activity-item .activity-top-line,',
-      '.peopi-component-activity-item .activity-head {',
-      '  display: flex;',
-      '  align-items: baseline;',
-      '  justify-content: space-between;',
-      '  gap: 10px;',
-      '  width: 100%;',
-      '  margin-bottom: 2px;',
-      '}',
-      '.peopi-component-activity-item .activity-title,',
-      '.peopi-component-activity-item .activity-top-line strong,',
-      '.peopi-component-activity-item .activity-head strong {',
-      '  flex: 1;',
-      '  min-width: 0;',
-      '  font-size: 15px;',
-      '  font-weight: 750;',
-      '  color: var(--ink);',
-      '  line-height: 1.4;',
-      '  overflow-wrap: anywhere;',
-      '  word-break: break-word;',
-      '}',
-      '.peopi-component-activity-item .activity-time {',
-      '  font-size: 11px;',
-      '  font-weight: 600;',
-      '  color: var(--ink-secondary);',
-      '  white-space: nowrap;',
-      '  flex-shrink: 0;',
-      '  margin-left: auto;',
-      '  text-align: right;',
-      '  line-height: 1.4;',
-      '}',
-      '',
-      '/* Subtitle */',
-      '.peopi-component-activity-item .activity-subtitle {',
-      '  font-size: 13px;',
-      '  color: var(--ink-secondary);',
-      '  line-height: 1.45;',
-      '  margin: 0;',
-      '}',
-      '',
-      '/* Decision Action Triggers: 44pt Touch Targets */',
-      '.peopi-component-activity-item .activity-actions {',
-      '  display: grid;',
-      '  grid-template-columns: 1fr 1fr;',
-      '  gap: 8px;',
-      '  margin-top: 10px;',
-      '  width: 100%;',
-      '}',
-      '.peopi-component-activity-item .activity-btn-accept {',
-      '  min-height: 44px;',
-      '  height: 44px;',
-      '  padding: 8px 16px;',
-      '  font-size: 13px;',
-      '  font-weight: 750;',
-      '  font-family: inherit;',
-      '  border-radius: 12px;',
-      '  border: 1px solid var(--brand, #FF3300);',
-      '  background: transparent;',
-      '  color: var(--brand, #FF3300);',
-      '  cursor: pointer;',
-      '  display: flex;',
-      '  align-items: center;',
-      '  justify-content: center;',
-      '  box-sizing: border-box;',
-      '  transition: all 0.15s ease;',
-      '}',
-      '.peopi-component-activity-item .activity-btn-accept:hover {',
-      '  background: color-mix(in srgb, var(--brand, #FF3300) 12%, transparent);',
-      '}',
-      '.peopi-component-activity-item .activity-btn-decline {',
-      '  min-height: 44px;',
-      '  height: 44px;',
-      '  padding: 8px 16px;',
-      '  font-size: 13px;',
-      '  font-weight: 750;',
-      '  font-family: inherit;',
-      '  border-radius: 12px;',
-      '  border: 1px solid var(--line);',
-      '  background: var(--muted);',
-      '  color: var(--ink-secondary);',
-      '  cursor: pointer;',
-      '  display: flex;',
-      '  align-items: center;',
-      '  justify-content: center;',
-      '  box-sizing: border-box;',
-      '  transition: all 0.15s ease;',
-      '}',
-      '.peopi-component-activity-item .activity-btn-decline:hover {',
-      '  color: var(--ink);',
-      '  background: color-mix(in srgb, var(--ink) 8%, var(--muted));',
-      '}'
-    );
-  }
-  if (compKey === 'list') {
-    cssLines.push(
-      '',
-      '/* Scoped Settings Account Rows Tokens & Surface */',
-      '.peopi-component-list {',
-      '  --bg: #F8F9FB;',
-      '  --card: #FFFFFF;',
-      '  --ink: #141922;',
-      '  --ink-secondary: #687386;',
-      '  --line: #DCE1E9;',
-      '  --muted: #E9ECF1;',
-      '  --radius-lg: 22px;',
-      '}',
-      '@media (prefers-color-scheme: dark) {',
-      '  .peopi-component-list {',
-      '    --bg: #141922;',
-      '    --card: #222A37;',
-      '    --ink: #F5F7FA;',
-      '    --ink-secondary: #A5AEBD;',
-      '    --line: #3D4658;',
-      '    --muted: #333B4B;',
-      '  }',
-      '}',
-      '',
-      '/* Scoped Settings Account Rows Base Layout & Surface (No internal row dividers) */',
-      '.peopi-component-list .settings-group {',
-      '  background: var(--card);',
-      '  border: 1px solid color-mix(in srgb, var(--line) 45%, transparent);',
-      '  border-radius: var(--radius-lg, 22px);',
-      '  padding: 18px 16px 10px;',
-      '  margin: 0;',
-      '  box-shadow: 0 4px 18px rgba(27, 36, 50, 0.027);',
-      '  width: 100%;',
-      '  box-sizing: border-box;',
-      '}',
-      '',
-      '/* Settings Group Category Label */',
-      '.peopi-component-list .settings-label {',
-      '  font-size: 13px;',
-      '  font-weight: 650;',
-      '  letter-spacing: 0.4px;',
-      '  line-height: 1.5;',
-      '  color: var(--ink-secondary);',
-      '  margin-bottom: 7px;',
-      '  text-transform: none;',
-      '}',
-      '',
-      '/* Settings Row Item Layout & Touch Target (56pt min-height, undivided surface) */',
-      '.peopi-component-list .settings-item {',
-      '  display: flex;',
-      '  align-items: center;',
-      '  gap: 10px;',
-      '  min-height: 56px;',
-      '  padding: 14px 0;',
-      '  width: 100%;',
-      '  border: 0;',
-      '  background: transparent;',
-      '  text-align: left;',
-      '  color: var(--ink);',
-      '  font-family: inherit;',
-      '  cursor: pointer;',
-      '  box-sizing: border-box;',
-      '  transition: opacity 0.15s ease;',
-      '}',
-      '.peopi-component-list .settings-item:hover {',
-      '  opacity: 0.85;',
-      '}',
-      '',
-      '/* Leading Icon Container (24×24pt) */',
-      '.peopi-component-list .settings-ico {',
-      '  width: 24px;',
-      '  height: 24px;',
-      '  min-width: 24px;',
-      '  display: grid;',
-      '  place-items: center;',
-      '  align-self: flex-start;',
-      '  margin-top: 3px;',
-      '  color: var(--ink-secondary);',
-      '}',
-      '.peopi-component-list .settings-ico i,',
-      '.peopi-component-list .settings-ico .ph {',
-      '  font-size: 20px;',
-      '  line-height: 1;',
-      '}',
-      '',
-      '/* Text Hierarchy: 15pt Title & 13pt Subtitle */',
-      '.peopi-component-list .settings-item > span:nth-child(2) {',
-      '  flex: 1;',
-      '  min-width: 0;',
-      '  display: flex;',
-      '  flex-direction: column;',
-      '}',
-      '.peopi-component-list .settings-item strong {',
-      '  font-size: 15px;',
-      '  font-weight: 700;',
-      '  color: var(--ink);',
-      '  line-height: 1.4;',
-      '  overflow-wrap: anywhere;',
-      '  word-break: break-word;',
-      '}',
-      '.peopi-component-list .settings-item small {',
-      '  font-size: 13px;',
-      '  font-weight: 400;',
-      '  color: var(--ink-secondary);',
-      '  line-height: 1.5;',
-      '  margin-top: 3px;',
-      '  overflow-wrap: anywhere;',
-      '  word-break: break-word;',
-      '}',
-      '',
-      '/* Trailing Navigation Chevron */',
-      '.peopi-component-list .settings-item > .ph,',
-      '.peopi-component-list .settings-item > i:last-child {',
-      '  font-size: 16px;',
-      '  color: var(--ink-secondary);',
-      '  flex-shrink: 0;',
-      '  margin-left: auto;',
-      '}'
-    );
-  }
+
   const cssTokensCode = cssLines.join('\n');
 
   const jsCode = comp.isStatic ? null : (comp.jsCode || ('// Interactive controller for ' + compKey));
@@ -10951,7 +12869,7 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
       '  <div class="activity-avatar-wrap">',
       '    <div class="activity-avatar demo-photo-avatar">',
       '      AM',
-      '      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Alex Morgan" loading="lazy">',
+      '      <img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy">',
       '    </div>',
       '  </div>',
       '  <div class="activity-body">',
@@ -11033,23 +12951,132 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
     ].join('\n');
   }
 
-  const scriptTag = jsCode ? ('<script>\n' + jsCode + '\n' +
-    'document.querySelectorAll(".peopi-instance").forEach(inst => {\n' +
-    '  if (typeof initIconButton === "function") initIconButton(inst.querySelector("button"));\n' +
-    '  if (typeof initSearchField === "function") initSearchField(inst);\n' +
-    '  if (typeof initChipsInput === "function") initChipsInput(inst);\n' +
-    '  if (typeof initDiscoveryFilter === "function") initDiscoveryFilter(inst);\n' +
-    '  if (typeof initBottomNav === "function") initBottomNav(inst);\n' +
-    '  if (typeof initSegmentedControl === "function") initSegmentedControl(inst);\n' +
-    '  if (typeof initRequestTabs === "function") initRequestTabs(inst);\n' +
-    '  if (typeof initChatComposer === "function") initChatComposer(inst);\n' +
-    '  if (typeof initVerificationStatus === "function") initVerificationStatus(inst);\n' +
-    '  if (typeof initBottomSheet === "function") initBottomSheet(inst);\n' +
-    '  if (typeof initConfirmDialog === "function") initConfirmDialog(inst);\n' +
-    '  if (typeof initExpSheet === "function") initExpSheet(inst);\n' +
-    '  if (typeof initDocSheet === "function") initDocSheet(inst);\n' +
-    '});\n' +
-    '</script>') : '';
+  // Standalone multi-instance client controller
+  const scriptTag = `<script>
+document.querySelectorAll('.peopi-instance').forEach(inst => {
+  // Bottom nav
+  inst.querySelectorAll('.nav').forEach(nav => {
+    const btns = nav.querySelectorAll('button');
+    const ind = nav.querySelector('.motion-nav-indicator');
+    const updateInd = (btn) => {
+      if (!ind || !btn) return;
+      ind.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
+      ind.style.width = btn.offsetWidth + 'px';
+    };
+    btns.forEach(b => {
+      b.addEventListener('click', () => {
+        btns.forEach(x => { x.classList.remove('current', 'active'); x.removeAttribute('aria-current'); });
+        b.classList.add('current', 'active');
+        b.setAttribute('aria-current', 'page');
+        updateInd(b);
+      });
+    });
+    const cur = nav.querySelector('button.current, button.active, button[aria-current="page"]') || btns[0];
+    if (cur) updateInd(cur);
+  });
+
+  // Segmented tabs
+  inst.querySelectorAll('.seg, .journey-tabs').forEach(seg => {
+    const btns = seg.querySelectorAll('button');
+    const ind = seg.querySelector('.motion-seg-indicator');
+    const updateInd = (btn) => {
+      if (!ind || !btn) return;
+      ind.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
+      ind.style.width = btn.offsetWidth + 'px';
+    };
+    btns.forEach(b => {
+      b.addEventListener('click', () => {
+        btns.forEach(x => { x.classList.remove('chosen', 'selected', 'active'); x.setAttribute('aria-selected', 'false'); });
+        b.classList.add('chosen', 'selected', 'active');
+        b.setAttribute('aria-selected', 'true');
+        updateInd(b);
+      });
+    });
+    const cur = seg.querySelector('button.chosen, button.selected, button.active, button[aria-selected="true"]') || btns[0];
+    if (cur) updateInd(cur);
+  });
+
+  // Switch
+  inst.querySelectorAll('button[role="switch"], .settings-toggle').forEach(sw => {
+    sw.addEventListener('click', () => {
+      const isChecked = sw.getAttribute('aria-checked') === 'true';
+      sw.setAttribute('aria-checked', String(!isChecked));
+      sw.classList.toggle('off', isChecked);
+    });
+  });
+
+  // Radio
+  inst.querySelectorAll('.option[role="radio"]').forEach(opt => {
+    opt.addEventListener('click', () => {
+      inst.querySelectorAll('.option[role="radio"]').forEach(o => {
+        o.classList.remove('chosen');
+        o.setAttribute('aria-checked', 'false');
+      });
+      opt.classList.add('chosen');
+      opt.setAttribute('aria-checked', 'true');
+    });
+  });
+
+  // Intent choice
+  inst.querySelectorAll('.journey-choice').forEach(choice => {
+    choice.addEventListener('click', () => {
+      const isSel = choice.classList.contains('selected');
+      choice.classList.toggle('selected', !isSel);
+      choice.setAttribute('aria-pressed', String(!isSel));
+    });
+  });
+
+  // Session duration
+  inst.querySelectorAll('.durations button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      inst.querySelectorAll('.durations button').forEach(b => b.classList.remove('chosen'));
+      btn.classList.add('chosen');
+    });
+  });
+
+  // Search field
+  inst.querySelectorAll('.network-search-box').forEach(box => {
+    const inp = box.querySelector('input');
+    const clr = box.querySelector('.network-search-clear');
+    if (inp && clr) {
+      inp.addEventListener('input', () => {
+        clr.classList.toggle('hide', !inp.value);
+        clr.style.display = inp.value ? 'flex' : 'none';
+      });
+      clr.addEventListener('click', () => {
+        inp.value = '';
+        clr.classList.add('hide');
+        clr.style.display = 'none';
+        inp.focus();
+      });
+    }
+  });
+
+  // Chat composer
+  inst.querySelectorAll('.chat-compose').forEach(form => {
+    const inp = form.querySelector('input');
+    const btn = form.querySelector('button');
+    if (inp && btn) {
+      inp.addEventListener('input', () => {
+        btn.disabled = !inp.value.trim();
+        btn.style.opacity = inp.value.trim() ? '1' : '0.45';
+      });
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        inp.value = '';
+        btn.disabled = true;
+        btn.style.opacity = '0.45';
+      });
+    }
+  });
+});
+</script>`;
+
+  if (htmlCodeB === htmlCode) {
+    htmlCodeB = htmlCodeB
+      .replace(/\bid="([^"]+)"/g, 'id="$1-inst2"')
+      .replace(/\bfor="([^"]+)"/g, 'for="$1-inst2"');
+  }
 
   const parts = [
     '<!DOCTYPE html>',
@@ -12363,7 +14390,7 @@ if (typeof window !== 'undefined') {
           } else {
             av.textContent = '';
             const img = document.createElement('img');
-            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80';
+            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://i.pravatar.cc/240?img=12';
             img.alt = 'Alex Morgan';
             av.replaceChildren(img);
           }
