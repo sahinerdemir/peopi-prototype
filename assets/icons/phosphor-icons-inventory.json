@@ -1,0 +1,23 @@
+{
+  "version": "2.1.2",
+  "family": "Phosphor Icons",
+  "style": "regular",
+  "svgIcons": [
+    "icon-compass.svg",
+    "icon-users-three.svg",
+    "icon-user.svg",
+    "icon-chat-circle-dots.svg",
+    "icon-bell.svg",
+    "icon-shield-check.svg",
+    "icon-gear.svg",
+    "icon-sliders.svg",
+    "icon-sparkle.svg",
+    "icon-arrow-left.svg",
+    "icon-arrow-right.svg",
+    "icon-check.svg",
+    "icon-x.svg",
+    "icon-map-trifold.svg",
+    "icon-list.svg"
+  ],
+  "usage": "All UI components use Phosphor Icons. Bundled SVGs provide offline vector fallbacks for native clients."
+}

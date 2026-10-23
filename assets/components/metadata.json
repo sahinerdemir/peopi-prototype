@@ -1,0 +1,1082 @@
+{
+  "bottom-nav__discover-active__light": {
+    "compKey": "bottom-nav",
+    "variant": "Discover Active",
+    "slug": "discover-active",
+    "theme": "light",
+    "filename": "component-bottom-nav-discover-active-light.png",
+    "bytes": 20478,
+    "width": 212.609375,
+    "height": 120
+  },
+  "bottom-nav__discover-active__dark": {
+    "compKey": "bottom-nav",
+    "variant": "Discover Active",
+    "slug": "discover-active",
+    "theme": "dark",
+    "filename": "component-bottom-nav-discover-active-dark.png",
+    "bytes": 20478,
+    "width": 212.609375,
+    "height": 120
+  },
+  "tabs__map-view__light": {
+    "compKey": "tabs",
+    "variant": "Map View",
+    "slug": "map-view",
+    "theme": "light",
+    "filename": "component-tabs-map-view-light.png",
+    "bytes": 10470,
+    "width": 170.171875,
+    "height": 120
+  },
+  "tabs__map-view__dark": {
+    "compKey": "tabs",
+    "variant": "Map View",
+    "slug": "map-view",
+    "theme": "dark",
+    "filename": "component-tabs-map-view-dark.png",
+    "bytes": 10470,
+    "width": 170.171875,
+    "height": 120
+  },
+  "bottom-nav__profile-active__light": {
+    "compKey": "bottom-nav",
+    "variant": "Profile Active",
+    "slug": "profile-active",
+    "theme": "light",
+    "filename": "component-bottom-nav-profile-active-light.png",
+    "bytes": 21094,
+    "width": 212.609375,
+    "height": 120
+  },
+  "bottom-nav__profile-active__dark": {
+    "compKey": "bottom-nav",
+    "variant": "Profile Active",
+    "slug": "profile-active",
+    "theme": "dark",
+    "filename": "component-bottom-nav-profile-active-dark.png",
+    "bytes": 20667,
+    "width": 212.609375,
+    "height": 120
+  },
+  "app-bar__default-bar__light": {
+    "compKey": "app-bar",
+    "variant": "Default Bar",
+    "slug": "default-bar",
+    "theme": "light",
+    "filename": "component-app-bar-default-bar-light.png",
+    "bytes": 10162,
+    "width": 212.609375,
+    "height": 120
+  },
+  "app-bar__default-bar__dark": {
+    "compKey": "app-bar",
+    "variant": "Default Bar",
+    "slug": "default-bar",
+    "theme": "dark",
+    "filename": "component-app-bar-default-bar-dark.png",
+    "bytes": 10162,
+    "width": 212.609375,
+    "height": 120
+  },
+  "bottom-nav__connections-active__light": {
+    "compKey": "bottom-nav",
+    "variant": "Connections Active",
+    "slug": "connections-active",
+    "theme": "light",
+    "filename": "component-bottom-nav-connections-active-light.png",
+    "bytes": 21096,
+    "width": 212.609375,
+    "height": 120
+  },
+  "bottom-nav__connections-active__dark": {
+    "compKey": "bottom-nav",
+    "variant": "Connections Active",
+    "slug": "connections-active",
+    "theme": "dark",
+    "filename": "component-bottom-nav-connections-active-dark.png",
+    "bytes": 20915,
+    "width": 212.609375,
+    "height": 120
+  },
+  "request-tabs__received-requests__light": {
+    "compKey": "request-tabs",
+    "variant": "Received Requests",
+    "slug": "received-requests",
+    "theme": "light",
+    "filename": "component-request-tabs-received-requests-light.png",
+    "bytes": 14088,
+    "width": 170.171875,
+    "height": 120
+  },
+  "request-tabs__received-requests__dark": {
+    "compKey": "request-tabs",
+    "variant": "Received Requests",
+    "slug": "received-requests",
+    "theme": "dark",
+    "filename": "component-request-tabs-received-requests-dark.png",
+    "bytes": 14088,
+    "width": 170.171875,
+    "height": 120
+  },
+  "primary-action__default__light": {
+    "compKey": "primary-action",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "light",
+    "filename": "component-primary-action-default-light.png",
+    "bytes": 9998,
+    "width": 170.171875,
+    "height": 120
+  },
+  "primary-action__default__dark": {
+    "compKey": "primary-action",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "dark",
+    "filename": "component-primary-action-default-dark.png",
+    "bytes": 9998,
+    "width": 170.171875,
+    "height": 120
+  },
+  "icon-button__default__light": {
+    "compKey": "icon-button",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "light",
+    "filename": "component-icon-button-default-light.png",
+    "bytes": 5620,
+    "width": 170.171875,
+    "height": 120
+  },
+  "icon-button__default__dark": {
+    "compKey": "icon-button",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "dark",
+    "filename": "component-icon-button-default-dark.png",
+    "bytes": 5620,
+    "width": 170.171875,
+    "height": 120
+  },
+  "quiet-action__default__light": {
+    "compKey": "quiet-action",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "light",
+    "filename": "component-quiet-action-default-light.png",
+    "bytes": 3451,
+    "width": 170.171875,
+    "height": 120
+  },
+  "quiet-action__default__dark": {
+    "compKey": "quiet-action",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "dark",
+    "filename": "component-quiet-action-default-dark.png",
+    "bytes": 3451,
+    "width": 170.171875,
+    "height": 120
+  },
+  "fab__default__light": {
+    "compKey": "fab",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "light",
+    "filename": "component-fab-default-light.png",
+    "bytes": 9068,
+    "width": 170.171875,
+    "height": 120
+  },
+  "fab__default__dark": {
+    "compKey": "fab",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "dark",
+    "filename": "component-fab-default-dark.png",
+    "bytes": 9068,
+    "width": 170.171875,
+    "height": 120
+  },
+  "social-auth__both-providers__light": {
+    "compKey": "social-auth",
+    "variant": "Both Providers",
+    "slug": "both-providers",
+    "theme": "light",
+    "filename": "component-social-auth-both-providers-light.png",
+    "bytes": 17556,
+    "width": 170.171875,
+    "height": 231
+  },
+  "social-auth__both-providers__dark": {
+    "compKey": "social-auth",
+    "variant": "Both Providers",
+    "slug": "both-providers",
+    "theme": "dark",
+    "filename": "component-social-auth-both-providers-dark.png",
+    "bytes": 17556,
+    "width": 170.171875,
+    "height": 231
+  },
+  "destructive-action__default__light": {
+    "compKey": "destructive-action",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "light",
+    "filename": "component-destructive-action-default-light.png",
+    "bytes": 8352,
+    "width": 170.171875,
+    "height": 120
+  },
+  "destructive-action__default__dark": {
+    "compKey": "destructive-action",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "dark",
+    "filename": "component-destructive-action-default-dark.png",
+    "bytes": 8352,
+    "width": 170.171875,
+    "height": 120
+  },
+  "profile-progress__in-progress-65__light": {
+    "compKey": "profile-progress",
+    "variant": "In Progress (65%)",
+    "slug": "in-progress-65",
+    "theme": "light",
+    "filename": "component-profile-progress-in-progress-65-light.png",
+    "bytes": 11775,
+    "width": 170.171875,
+    "height": 167
+  },
+  "profile-progress__in-progress-65__dark": {
+    "compKey": "profile-progress",
+    "variant": "In Progress (65%)",
+    "slug": "in-progress-65",
+    "theme": "dark",
+    "filename": "component-profile-progress-in-progress-65-dark.png",
+    "bytes": 11775,
+    "width": 170.171875,
+    "height": 167
+  },
+  "avatar__photo-avatar__light": {
+    "compKey": "avatar",
+    "variant": "Photo Avatar",
+    "slug": "photo-avatar",
+    "theme": "light",
+    "filename": "component-avatar-photo-avatar-light.png",
+    "bytes": 49187,
+    "width": 170.171875,
+    "height": 126
+  },
+  "avatar__photo-avatar__dark": {
+    "compKey": "avatar",
+    "variant": "Photo Avatar",
+    "slug": "photo-avatar",
+    "theme": "dark",
+    "filename": "component-avatar-photo-avatar-dark.png",
+    "bytes": 49187,
+    "width": 170.171875,
+    "height": 126
+  },
+  "verified-badge__linkedin-verified__light": {
+    "compKey": "verified-badge",
+    "variant": "LinkedIn Verified",
+    "slug": "linkedin-verified",
+    "theme": "light",
+    "filename": "component-verified-badge-linkedin-verified-light.png",
+    "bytes": 1676,
+    "width": 170.171875,
+    "height": 120
+  },
+  "verified-badge__linkedin-verified__dark": {
+    "compKey": "verified-badge",
+    "variant": "LinkedIn Verified",
+    "slug": "linkedin-verified",
+    "theme": "dark",
+    "filename": "component-verified-badge-linkedin-verified-dark.png",
+    "bytes": 1676,
+    "width": 170.171875,
+    "height": 120
+  },
+  "identity-card__complete-profile__light": {
+    "compKey": "identity-card",
+    "variant": "Complete Profile",
+    "slug": "complete-profile",
+    "theme": "light",
+    "filename": "component-identity-card-complete-profile-light.png",
+    "bytes": 41513,
+    "width": 170.171875,
+    "height": 1144.5
+  },
+  "identity-card__complete-profile__dark": {
+    "compKey": "identity-card",
+    "variant": "Complete Profile",
+    "slug": "complete-profile",
+    "theme": "dark",
+    "filename": "component-identity-card-complete-profile-dark.png",
+    "bytes": 41513,
+    "width": 170.171875,
+    "height": 1144.5
+  },
+  "chip__active-tag__light": {
+    "compKey": "chip",
+    "variant": "Active Tag",
+    "slug": "active-tag",
+    "theme": "light",
+    "filename": "component-chip-active-tag-light.png",
+    "bytes": 16784,
+    "width": 170.171875,
+    "height": 200.75
+  },
+  "chip__active-tag__dark": {
+    "compKey": "chip",
+    "variant": "Active Tag",
+    "slug": "active-tag",
+    "theme": "dark",
+    "filename": "component-chip-active-tag-dark.png",
+    "bytes": 16784,
+    "width": 170.171875,
+    "height": 200.75
+  },
+  "content-section__about-section__light": {
+    "compKey": "content-section",
+    "variant": "About Section",
+    "slug": "about-section",
+    "theme": "light",
+    "filename": "component-content-section-about-section-light.png",
+    "bytes": 27349,
+    "width": 170.171875,
+    "height": 288.375
+  },
+  "content-section__about-section__dark": {
+    "compKey": "content-section",
+    "variant": "About Section",
+    "slug": "about-section",
+    "theme": "dark",
+    "filename": "component-content-section-about-section-dark.png",
+    "bytes": 27349,
+    "width": 170.171875,
+    "height": 288.375
+  },
+  "profile-documents__locked-pre-connection__light": {
+    "compKey": "profile-documents",
+    "variant": "Locked (Pre-Connection)",
+    "slug": "locked-pre-connection",
+    "theme": "light",
+    "filename": "component-profile-documents-locked-pre-connection-light.png",
+    "bytes": 40171,
+    "width": 170.171875,
+    "height": 466.875
+  },
+  "profile-documents__locked-pre-connection__dark": {
+    "compKey": "profile-documents",
+    "variant": "Locked (Pre-Connection)",
+    "slug": "locked-pre-connection",
+    "theme": "dark",
+    "filename": "component-profile-documents-locked-pre-connection-dark.png",
+    "bytes": 40171,
+    "width": 170.171875,
+    "height": 466.875
+  },
+  "profile-menu__default-menu__light": {
+    "compKey": "profile-menu",
+    "variant": "Default Menu",
+    "slug": "default-menu",
+    "theme": "light",
+    "filename": "component-profile-menu-default-menu-light.png",
+    "bytes": 11625,
+    "width": 170.171875,
+    "height": 132
+  },
+  "profile-menu__default-menu__dark": {
+    "compKey": "profile-menu",
+    "variant": "Default Menu",
+    "slug": "default-menu",
+    "theme": "dark",
+    "filename": "component-profile-menu-default-menu-dark.png",
+    "bytes": 11625,
+    "width": 170.171875,
+    "height": 132
+  },
+  "profile-documents__unlocked-connected__light": {
+    "compKey": "profile-documents",
+    "variant": "Unlocked (Connected)",
+    "slug": "unlocked-connected",
+    "theme": "light",
+    "filename": "component-profile-documents-unlocked-connected-light.png",
+    "bytes": 40171,
+    "width": 170.171875,
+    "height": 466.875
+  },
+  "profile-documents__unlocked-connected__dark": {
+    "compKey": "profile-documents",
+    "variant": "Unlocked (Connected)",
+    "slug": "unlocked-connected",
+    "theme": "dark",
+    "filename": "component-profile-documents-unlocked-connected-dark.png",
+    "bytes": 40171,
+    "width": 170.171875,
+    "height": 466.875
+  },
+  "identity-card__incomplete-draft__light": {
+    "compKey": "identity-card",
+    "variant": "Incomplete Draft",
+    "slug": "incomplete-draft",
+    "theme": "light",
+    "filename": "component-identity-card-incomplete-draft-light.png",
+    "bytes": 33715,
+    "width": 170.171875,
+    "height": 1176.5
+  },
+  "identity-card__incomplete-draft__dark": {
+    "compKey": "identity-card",
+    "variant": "Incomplete Draft",
+    "slug": "incomplete-draft",
+    "theme": "dark",
+    "filename": "component-identity-card-incomplete-draft-dark.png",
+    "bytes": 36081,
+    "width": 170.171875,
+    "height": 1176.5
+  },
+  "intent-choice__selected__light": {
+    "compKey": "intent-choice",
+    "variant": "Selected",
+    "slug": "selected",
+    "theme": "light",
+    "filename": "component-intent-choice-selected-light.png",
+    "bytes": 57036,
+    "width": 170.171875,
+    "height": 615
+  },
+  "intent-choice__selected__dark": {
+    "compKey": "intent-choice",
+    "variant": "Selected",
+    "slug": "selected",
+    "theme": "dark",
+    "filename": "component-intent-choice-selected-dark.png",
+    "bytes": 57036,
+    "width": 170.171875,
+    "height": 615
+  },
+  "session-duration__60-min-default__light": {
+    "compKey": "session-duration",
+    "variant": "60 Min (Default)",
+    "slug": "60-min-default",
+    "theme": "light",
+    "filename": "component-session-duration-60-min-default-light.png",
+    "bytes": 16060,
+    "width": 170.171875,
+    "height": 120
+  },
+  "session-duration__60-min-default__dark": {
+    "compKey": "session-duration",
+    "variant": "60 Min (Default)",
+    "slug": "60-min-default",
+    "theme": "dark",
+    "filename": "component-session-duration-60-min-default-dark.png",
+    "bytes": 16060,
+    "width": 170.171875,
+    "height": 120
+  },
+  "discovery-filter__all-nearby__light": {
+    "compKey": "discovery-filter",
+    "variant": "All Nearby",
+    "slug": "all-nearby",
+    "theme": "light",
+    "filename": "component-discovery-filter-all-nearby-light.png",
+    "bytes": 50528,
+    "width": 212.609375,
+    "height": 477
+  },
+  "discovery-filter__all-nearby__dark": {
+    "compKey": "discovery-filter",
+    "variant": "All Nearby",
+    "slug": "all-nearby",
+    "theme": "dark",
+    "filename": "component-discovery-filter-all-nearby-dark.png",
+    "bytes": 50528,
+    "width": 212.609375,
+    "height": 477
+  },
+  "form-group__filled-form__light": {
+    "compKey": "form-group",
+    "variant": "Filled Form",
+    "slug": "filled-form",
+    "theme": "light",
+    "filename": "component-form-group-filled-form-light.png",
+    "bytes": 47550,
+    "width": 170.171875,
+    "height": 659.390625
+  },
+  "form-group__filled-form__dark": {
+    "compKey": "form-group",
+    "variant": "Filled Form",
+    "slug": "filled-form",
+    "theme": "dark",
+    "filename": "component-form-group-filled-form-dark.png",
+    "bytes": 47550,
+    "width": 170.171875,
+    "height": 659.390625
+  },
+  "text-field__filled-value__light": {
+    "compKey": "text-field",
+    "variant": "Filled Value",
+    "slug": "filled-value",
+    "theme": "light",
+    "filename": "component-text-field-filled-value-light.png",
+    "bytes": 85556,
+    "width": 170.171875,
+    "height": 1090.390625
+  },
+  "text-field__filled-value__dark": {
+    "compKey": "text-field",
+    "variant": "Filled Value",
+    "slug": "filled-value",
+    "theme": "dark",
+    "filename": "component-text-field-filled-value-dark.png",
+    "bytes": 85556,
+    "width": 170.171875,
+    "height": 1090.390625
+  },
+  "skills-chip-input__default-4-chips__light": {
+    "compKey": "skills-chip-input",
+    "variant": "Default (4 Chips)",
+    "slug": "default-4-chips",
+    "theme": "light",
+    "filename": "component-skills-chip-input-default-4-chips-light.png",
+    "bytes": 26625,
+    "width": 170.171875,
+    "height": 263
+  },
+  "skills-chip-input__default-4-chips__dark": {
+    "compKey": "skills-chip-input",
+    "variant": "Default (4 Chips)",
+    "slug": "default-4-chips",
+    "theme": "dark",
+    "filename": "component-skills-chip-input-default-4-chips-dark.png",
+    "bytes": 27365,
+    "width": 170.171875,
+    "height": 263
+  },
+  "switch__disabled-off__light": {
+    "compKey": "switch",
+    "variant": "Disabled (Off)",
+    "slug": "disabled-off",
+    "theme": "light",
+    "filename": "component-switch-disabled-off-light.png",
+    "bytes": 22344,
+    "width": 170.171875,
+    "height": 221.171875
+  },
+  "switch__disabled-off__dark": {
+    "compKey": "switch",
+    "variant": "Disabled (Off)",
+    "slug": "disabled-off",
+    "theme": "dark",
+    "filename": "component-switch-disabled-off-dark.png",
+    "bytes": 22344,
+    "width": 170.171875,
+    "height": 221.171875
+  },
+  "switch__enabled-on__light": {
+    "compKey": "switch",
+    "variant": "Enabled (On)",
+    "slug": "enabled-on",
+    "theme": "light",
+    "filename": "component-switch-enabled-on-light.png",
+    "bytes": 22459,
+    "width": 170.171875,
+    "height": 221.171875
+  },
+  "switch__enabled-on__dark": {
+    "compKey": "switch",
+    "variant": "Enabled (On)",
+    "slug": "enabled-on",
+    "theme": "dark",
+    "filename": "component-switch-enabled-on-dark.png",
+    "bytes": 22459,
+    "width": 170.171875,
+    "height": 221.171875
+  },
+  "text-field__default__light": {
+    "compKey": "text-field",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "light",
+    "filename": "component-text-field-default-light.png",
+    "bytes": 84020,
+    "width": 170.171875,
+    "height": 1090.390625
+  },
+  "text-field__default__dark": {
+    "compKey": "text-field",
+    "variant": "Default",
+    "slug": "default",
+    "theme": "dark",
+    "filename": "component-text-field-default-dark.png",
+    "bytes": 84020,
+    "width": 170.171875,
+    "height": 1090.390625
+  },
+  "search-field__empty-query__light": {
+    "compKey": "search-field",
+    "variant": "Empty Query",
+    "slug": "empty-query",
+    "theme": "light",
+    "filename": "component-search-field-empty-query-light.png",
+    "bytes": 9012,
+    "width": 170.171875,
+    "height": 120
+  },
+  "search-field__empty-query__dark": {
+    "compKey": "search-field",
+    "variant": "Empty Query",
+    "slug": "empty-query",
+    "theme": "dark",
+    "filename": "component-search-field-empty-query-dark.png",
+    "bytes": 9012,
+    "width": 170.171875,
+    "height": 120
+  },
+  "radio__selected__light": {
+    "compKey": "radio",
+    "variant": "Selected",
+    "slug": "selected",
+    "theme": "light",
+    "filename": "component-radio-selected-light.png",
+    "bytes": 21162,
+    "width": 170.171875,
+    "height": 271
+  },
+  "radio__selected__dark": {
+    "compKey": "radio",
+    "variant": "Selected",
+    "slug": "selected",
+    "theme": "dark",
+    "filename": "component-radio-selected-dark.png",
+    "bytes": 21162,
+    "width": 170.171875,
+    "height": 271
+  },
+  "profile-card__anonymous-preview__light": {
+    "compKey": "profile-card",
+    "variant": "Anonymous Preview",
+    "slug": "anonymous-preview",
+    "theme": "light",
+    "filename": "component-profile-card-anonymous-preview-light.png",
+    "bytes": 30178,
+    "width": 170.171875,
+    "height": 287.5625
+  },
+  "profile-card__anonymous-preview__dark": {
+    "compKey": "profile-card",
+    "variant": "Anonymous Preview",
+    "slug": "anonymous-preview",
+    "theme": "dark",
+    "filename": "component-profile-card-anonymous-preview-dark.png",
+    "bytes": 30178,
+    "width": 170.171875,
+    "height": 287.5625
+  },
+  "list__account-settings__light": {
+    "compKey": "list",
+    "variant": "Account Settings",
+    "slug": "account-settings",
+    "theme": "light",
+    "filename": "component-list-account-settings-light.png",
+    "bytes": 45674,
+    "width": 170.171875,
+    "height": 732.5
+  },
+  "list__account-settings__dark": {
+    "compKey": "list",
+    "variant": "Account Settings",
+    "slug": "account-settings",
+    "theme": "dark",
+    "filename": "component-list-account-settings-dark.png",
+    "bytes": 45674,
+    "width": 170.171875,
+    "height": 732.5
+  },
+  "list__privacy-legal__light": {
+    "compKey": "list",
+    "variant": "Privacy & Legal",
+    "slug": "privacy-legal",
+    "theme": "light",
+    "filename": "component-list-privacy-legal-light.png",
+    "bytes": 53263,
+    "width": 170.171875,
+    "height": 1112
+  },
+  "list__privacy-legal__dark": {
+    "compKey": "list",
+    "variant": "Privacy & Legal",
+    "slug": "privacy-legal",
+    "theme": "dark",
+    "filename": "component-list-privacy-legal-dark.png",
+    "bytes": 59393,
+    "width": 170.171875,
+    "height": 1112
+  },
+  "network-row__connected__light": {
+    "compKey": "network-row",
+    "variant": "Connected",
+    "slug": "connected",
+    "theme": "light",
+    "filename": "component-network-row-connected-light.png",
+    "bytes": 32109,
+    "width": 170.171875,
+    "height": 400.296875
+  },
+  "network-row__connected__dark": {
+    "compKey": "network-row",
+    "variant": "Connected",
+    "slug": "connected",
+    "theme": "dark",
+    "filename": "component-network-row-connected-dark.png",
+    "bytes": 32109,
+    "width": 170.171875,
+    "height": 400.296875
+  },
+  "activity-item__connection-request__light": {
+    "compKey": "activity-item",
+    "variant": "Connection Request",
+    "slug": "connection-request",
+    "theme": "light",
+    "filename": "component-activity-item-connection-request-light.png",
+    "bytes": 39107,
+    "width": 170.171875,
+    "height": 469.90625
+  },
+  "activity-item__connection-request__dark": {
+    "compKey": "activity-item",
+    "variant": "Connection Request",
+    "slug": "connection-request",
+    "theme": "dark",
+    "filename": "component-activity-item-connection-request-dark.png",
+    "bytes": 39107,
+    "width": 170.171875,
+    "height": 469.90625
+  },
+  "network-row__unread-notice__light": {
+    "compKey": "network-row",
+    "variant": "Unread Notice",
+    "slug": "unread-notice",
+    "theme": "light",
+    "filename": "component-network-row-unread-notice-light.png",
+    "bytes": 33008,
+    "width": 170.171875,
+    "height": 400.296875
+  },
+  "network-row__unread-notice__dark": {
+    "compKey": "network-row",
+    "variant": "Unread Notice",
+    "slug": "unread-notice",
+    "theme": "dark",
+    "filename": "component-network-row-unread-notice-dark.png",
+    "bytes": 33174,
+    "width": 170.171875,
+    "height": 400.296875
+  },
+  "session-alert__visible-5m-warning__light": {
+    "compKey": "session-alert",
+    "variant": "Visible (5m Warning)",
+    "slug": "visible-5m-warning",
+    "theme": "light",
+    "filename": "component-session-alert-visible-5m-warning-light.png",
+    "bytes": 27370,
+    "width": 170.171875,
+    "height": 238
+  },
+  "session-alert__visible-5m-warning__dark": {
+    "compKey": "session-alert",
+    "variant": "Visible (5m Warning)",
+    "slug": "visible-5m-warning",
+    "theme": "dark",
+    "filename": "component-session-alert-visible-5m-warning-dark.png",
+    "bytes": 27370,
+    "width": 170.171875,
+    "height": 238
+  },
+  "privacy__invisible-default__light": {
+    "compKey": "privacy",
+    "variant": "Invisible (Default)",
+    "slug": "invisible-default",
+    "theme": "light",
+    "filename": "component-privacy-invisible-default-light.png",
+    "bytes": 34897,
+    "width": 170.171875,
+    "height": 364.59375
+  },
+  "privacy__invisible-default__dark": {
+    "compKey": "privacy",
+    "variant": "Invisible (Default)",
+    "slug": "invisible-default",
+    "theme": "dark",
+    "filename": "component-privacy-invisible-default-dark.png",
+    "bytes": 34897,
+    "width": 170.171875,
+    "height": 364.59375
+  },
+  "privacy-row__hidden-off__light": {
+    "compKey": "privacy-row",
+    "variant": "Hidden Off",
+    "slug": "hidden-off",
+    "theme": "light",
+    "filename": "component-privacy-row-hidden-off-light.png",
+    "bytes": 33113,
+    "width": 170.171875,
+    "height": 327
+  },
+  "privacy-row__hidden-off__dark": {
+    "compKey": "privacy-row",
+    "variant": "Hidden Off",
+    "slug": "hidden-off",
+    "theme": "dark",
+    "filename": "component-privacy-row-hidden-off-dark.png",
+    "bytes": 33113,
+    "width": 170.171875,
+    "height": 327
+  },
+  "verification-status__unconnected__light": {
+    "compKey": "verification-status",
+    "variant": "Unconnected",
+    "slug": "unconnected",
+    "theme": "light",
+    "filename": "component-verification-status-unconnected-light.png",
+    "bytes": 51430,
+    "width": 170.171875,
+    "height": 447.6875
+  },
+  "verification-status__unconnected__dark": {
+    "compKey": "verification-status",
+    "variant": "Unconnected",
+    "slug": "unconnected",
+    "theme": "dark",
+    "filename": "component-verification-status-unconnected-dark.png",
+    "bytes": 51430,
+    "width": 170.171875,
+    "height": 447.6875
+  },
+  "verification-step__standard-principles__light": {
+    "compKey": "verification-step",
+    "variant": "Standard Principles",
+    "slug": "standard-principles",
+    "theme": "light",
+    "filename": "component-verification-step-standard-principles-light.png",
+    "bytes": 72952,
+    "width": 170.171875,
+    "height": 739.5
+  },
+  "verification-step__standard-principles__dark": {
+    "compKey": "verification-step",
+    "variant": "Standard Principles",
+    "slug": "standard-principles",
+    "theme": "dark",
+    "filename": "component-verification-step-standard-principles-dark.png",
+    "bytes": 72952,
+    "width": 170.171875,
+    "height": 739.5
+  },
+  "empty-state__no-requests__light": {
+    "compKey": "empty-state",
+    "variant": "No Requests",
+    "slug": "no-requests",
+    "theme": "light",
+    "filename": "component-empty-state-no-requests-light.png",
+    "bytes": 23493,
+    "width": 170.171875,
+    "height": 328.390625
+  },
+  "empty-state__no-requests__dark": {
+    "compKey": "empty-state",
+    "variant": "No Requests",
+    "slug": "no-requests",
+    "theme": "dark",
+    "filename": "component-empty-state-no-requests-dark.png",
+    "bytes": 23493,
+    "width": 170.171875,
+    "height": 328.390625
+  },
+  "empty-state__no-conversations__light": {
+    "compKey": "empty-state",
+    "variant": "No Conversations",
+    "slug": "no-conversations",
+    "theme": "light",
+    "filename": "component-empty-state-no-conversations-light.png",
+    "bytes": 28235,
+    "width": 170.171875,
+    "height": 323.59375
+  },
+  "empty-state__no-conversations__dark": {
+    "compKey": "empty-state",
+    "variant": "No Conversations",
+    "slug": "no-conversations",
+    "theme": "dark",
+    "filename": "component-empty-state-no-conversations-dark.png",
+    "bytes": 28235,
+    "width": 170.171875,
+    "height": 323.59375
+  },
+  "toast-notification__information__light": {
+    "compKey": "toast-notification",
+    "variant": "Information",
+    "slug": "information",
+    "theme": "light",
+    "filename": "component-toast-notification-information-light.png",
+    "bytes": 20815,
+    "width": 170.171875,
+    "height": 156
+  },
+  "toast-notification__information__dark": {
+    "compKey": "toast-notification",
+    "variant": "Information",
+    "slug": "information",
+    "theme": "dark",
+    "filename": "component-toast-notification-information-dark.png",
+    "bytes": 20815,
+    "width": 170.171875,
+    "height": 156
+  },
+  "sheet__anonymous-preview__light": {
+    "compKey": "sheet",
+    "variant": "Anonymous Preview",
+    "slug": "anonymous-preview",
+    "theme": "light",
+    "filename": "component-sheet-anonymous-preview-light.png",
+    "bytes": 107472,
+    "width": 212.609375,
+    "height": 760
+  },
+  "sheet__anonymous-preview__dark": {
+    "compKey": "sheet",
+    "variant": "Anonymous Preview",
+    "slug": "anonymous-preview",
+    "theme": "dark",
+    "filename": "component-sheet-anonymous-preview-dark.png",
+    "bytes": 107472,
+    "width": 212.609375,
+    "height": 760
+  },
+  "exp-sheet__add-experience__light": {
+    "compKey": "exp-sheet",
+    "variant": "Add Experience",
+    "slug": "add-experience",
+    "theme": "light",
+    "filename": "component-exp-sheet-add-experience-light.png",
+    "bytes": 85230,
+    "width": 212.609375,
+    "height": 760
+  },
+  "exp-sheet__add-experience__dark": {
+    "compKey": "exp-sheet",
+    "variant": "Add Experience",
+    "slug": "add-experience",
+    "theme": "dark",
+    "filename": "component-exp-sheet-add-experience-dark.png",
+    "bytes": 85230,
+    "width": 212.609375,
+    "height": 760
+  },
+  "dialog__go-invisible__light": {
+    "compKey": "dialog",
+    "variant": "Go Invisible?",
+    "slug": "go-invisible",
+    "theme": "light",
+    "filename": "component-dialog-go-invisible-light.png",
+    "bytes": 48940,
+    "width": 212.609375,
+    "height": 463.78125
+  },
+  "dialog__go-invisible__dark": {
+    "compKey": "dialog",
+    "variant": "Go Invisible?",
+    "slug": "go-invisible",
+    "theme": "dark",
+    "filename": "component-dialog-go-invisible-dark.png",
+    "bytes": 48940,
+    "width": 212.609375,
+    "height": 463.78125
+  },
+  "doc-sheet__standard-pdf__light": {
+    "compKey": "doc-sheet",
+    "variant": "Standard PDF",
+    "slug": "standard-pdf",
+    "theme": "light",
+    "filename": "component-doc-sheet-standard-pdf-light.png",
+    "bytes": 106973,
+    "width": 212.609375,
+    "height": 760
+  },
+  "doc-sheet__standard-pdf__dark": {
+    "compKey": "doc-sheet",
+    "variant": "Standard PDF",
+    "slug": "standard-pdf",
+    "theme": "dark",
+    "filename": "component-doc-sheet-standard-pdf-dark.png",
+    "bytes": 106952,
+    "width": 212.609375,
+    "height": 760
+  },
+  "connection-request__received-request__light": {
+    "compKey": "connection-request",
+    "variant": "Received Request",
+    "slug": "received-request",
+    "theme": "light",
+    "filename": "component-connection-request-received-request-light.png",
+    "bytes": 21097,
+    "width": 170.171875,
+    "height": 250.78125
+  },
+  "connection-request__received-request__dark": {
+    "compKey": "connection-request",
+    "variant": "Received Request",
+    "slug": "received-request",
+    "theme": "dark",
+    "filename": "component-connection-request-received-request-dark.png",
+    "bytes": 21097,
+    "width": 170.171875,
+    "height": 250.78125
+  },
+  "chat-bubble__full-thread__light": {
+    "compKey": "chat-bubble",
+    "variant": "Full Thread",
+    "slug": "full-thread",
+    "theme": "light",
+    "filename": "component-chat-bubble-full-thread-light.png",
+    "bytes": 31086,
+    "width": 170.171875,
+    "height": 366
+  },
+  "chat-bubble__full-thread__dark": {
+    "compKey": "chat-bubble",
+    "variant": "Full Thread",
+    "slug": "full-thread",
+    "theme": "dark",
+    "filename": "component-chat-bubble-full-thread-dark.png",
+    "bytes": 31086,
+    "width": 170.171875,
+    "height": 366
+  },
+  "chat-composer__default-empty__light": {
+    "compKey": "chat-composer",
+    "variant": "Default (Empty)",
+    "slug": "default-empty",
+    "theme": "light",
+    "filename": "component-chat-composer-default-empty-light.png",
+    "bytes": 11062,
+    "width": 170.171875,
+    "height": 120
+  },
+  "chat-composer__default-empty__dark": {
+    "compKey": "chat-composer",
+    "variant": "Default (Empty)",
+    "slug": "default-empty",
+    "theme": "dark",
+    "filename": "component-chat-composer-default-empty-dark.png",
+    "bytes": 11062,
+    "width": 170.171875,
+    "height": 120
+  }
+}
