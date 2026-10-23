@@ -10319,7 +10319,8 @@ function openOverview(viewId){
     'validation-plan': 'validation',
     'how-i-built-peopi-with-ai': 'built-with-ai',
     'ai': 'built-with-ai',
-    'behind-the-build': 'built-with-ai'
+    'behind-the-build': 'built-with-ai',
+    'beyond-peopi': 'built-with-ai'
   };
   if(aliases[viewId]) viewId = aliases[viewId];
   const views=['intro','problem','strategy','audience','scope-rules','user-journeys','validation','built-with-ai'];
