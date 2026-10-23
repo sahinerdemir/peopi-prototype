@@ -11840,3 +11840,30 @@
     order: 5;
   }
 }
+
+/* Discovery Profile Card: Connected Peer state suppresses intent heading and text with zero reserved gaps */
+.profilecard.is-connected .profilecard-intent-label,
+.profilecard.is-connected #personintent,
+.profilecard.is-connected [data-ds-source-id="personintent"],
+.profilecard.is-connected .peopi-personintent,
+[data-ds-source-id="profilecard"].is-connected .profilecard-intent-label,
+[data-ds-source-id="profilecard"].is-connected #personintent,
+[data-ds-source-id="profilecard"].is-connected [data-ds-source-id="personintent"],
+.peopi-profilecard.is-connected .profilecard-intent-label,
+.peopi-profilecard.is-connected .peopi-profilecard-intent-label,
+.peopi-profilecard.is-connected #personintent,
+.peopi-profilecard.is-connected .peopi-personintent {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.profilecard.is-connected .discovery-connected-hint,
+.profilecard.is-connected [data-ds-source-id="preview-connected-hint"],
+[data-ds-source-id="profilecard"].is-connected .discovery-connected-hint,
+[data-ds-source-id="profilecard"].is-connected [data-ds-source-id="preview-connected-hint"],
+.peopi-profilecard.is-connected .discovery-connected-hint,
+.peopi-profilecard.is-connected .peopi-discovery-connected-hint {
+  margin: 0 !important;
+}
+

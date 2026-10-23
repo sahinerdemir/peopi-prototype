@@ -285,6 +285,7 @@
 /* Connected profiles don't need the discovery intent in the map preview. */
 #active #profilecard.is-connected .profilecard-intent-label,
 #active #profilecard.is-connected #personintent{display:none!important}
+#active #profilecard.is-connected .discovery-connected-hint{margin:0}
 /* Shared Peopi screen-title typography and signature orange terminal dot. */
 #myprofile .myprofile-head h2,
 #active .active-discovery-brand,

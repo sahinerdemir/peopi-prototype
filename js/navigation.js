@@ -9705,11 +9705,11 @@ const peopiHandoffData = {
     "title": "Discovery Profile Card",
     "category": "Cards & Lists",
     "sourceScreen": "Discover (`#active #profilecard`)",
-    "purpose": "Nearby discovery profile preview card supporting anonymous initials view and full connected peer view.",
-    "tokens": "Width: min(393pt, 100%) · Radius: 24pt · Elevation: 0 12px 32px rgba(0,0,0,0.12) · Border: 1.5px solid var(--accent)",
+    "purpose": "Nearby discovery profile preview card supporting anonymous initials view (with discovery intent) and full connected peer view (with intent heading and text suppressed, showing connection status badge and View Profile action).",
+    "tokens": "Width: min(393pt, 100%) · Radius: 24pt · Elevation: 0 12px 32px rgba(0,0,0,0.12) · Border: 1.5px solid var(--accent) · Connected state: intent label and text completely suppressed via .is-connected with 0pt reserved gap; connected badge vertically aligned with CTA",
     "motion": "Lifts from below: 380ms lift on open, 240ms dismiss.",
     "flutterSemantics": "`Card` or `CupertinoPopupSurface` with `Semantics(label: \"Profile preview for Alex M.\")`.",
-    "privacy": "Unconnected contacts show initials only. Photo portraits unlock only after mutual connection acceptance.",
+    "privacy": "Unconnected contacts show initials and discovery intent only. Photo portraits unlock and discovery intent is suppressed only after mutual connection acceptance.",
     "serverAuth": "Server withholds full portrait CDN URLs until connection state is verified.",
     "isStatic": true
   },
@@ -10325,6 +10325,25 @@ function generateWebReference(compKey, activeVariantText, card) {
     '  }',
     '}'
   ];
+  if (compKey === 'profile-card') {
+    cssLines.push(
+      '',
+      '/* Connected Peer State: Suppress intent heading & text without reserved gaps */',
+      '.peopi-component-profile-card .profilecard.is-connected .profilecard-intent-label,',
+      '.peopi-component-profile-card .profilecard.is-connected #personintent,',
+      '.peopi-component-profile-card .profilecard.is-connected .peopi-personintent,',
+      '.peopi-component-profile-card .peopi-profilecard.is-connected .profilecard-intent-label,',
+      '.peopi-component-profile-card .peopi-profilecard.is-connected .peopi-personintent {',
+      '  display: none !important;',
+      '  margin: 0 !important;',
+      '  padding: 0 !important;',
+      '}',
+      '.peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,',
+      '.peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {',
+      '  margin: 0 !important;',
+      '}'
+    );
+  }
   const cssTokensCode = cssLines.join('\n');
 
   const jsCode = comp.isStatic ? null : (comp.jsCode || ('// Interactive controller for ' + compKey));
@@ -11418,6 +11437,10 @@ if (typeof window !== 'undefined') {
       } else if (comp === 'profile-card') {
         const isConn = variant.includes('connected');
         card.classList.toggle('is-connected', isConn);
+        const pCard = preview.querySelector('.profilecard, [data-ds-source-id="profilecard"], #profilecard');
+        if (pCard) {
+          pCard.classList.toggle('is-connected', isConn);
+        }
         const avatar = preview.querySelector('.avatar');
         if (avatar) {
           avatar.style.filter = 'none';
@@ -11427,7 +11450,7 @@ if (typeof window !== 'undefined') {
             avatar.style.backgroundColor = '';
             avatar.style.color = '';
             const img = document.createElement('img');
-            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80';
+            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://i.pravatar.cc/240?img=12';
             img.alt = 'Alex Morgan';
             avatar.replaceChildren(img);
           } else {
@@ -11449,19 +11472,28 @@ if (typeof window !== 'undefined') {
         if (roleEl) {
           roleEl.textContent = isConn ? 'Senior Product Designer · Studio Monolith' : 'Product designer · Startup';
         }
+        const intentLabel = preview.querySelector('.profilecard-intent-label');
         const intentEl = preview.querySelector('#personintent, [id$="personintent"], .intent-text');
+        if (intentLabel) {
+          intentLabel.style.display = isConn ? 'none' : '';
+          intentLabel.hidden = isConn;
+        }
         if (intentEl) {
-          intentEl.textContent = isConn ? 'Open to co-founder discussions' : 'Exploring new projects';
+          intentEl.style.display = isConn ? 'none' : '';
+          intentEl.hidden = isConn;
+          intentEl.textContent = isConn ? '' : 'Exploring new projects';
         }
         const hintEl = preview.querySelector('.discovery-connected-hint, #preview-connected-hint, [id$="preview-connected-hint"]');
         if (hintEl) {
           if (isConn) {
             hintEl.classList.remove('hide');
             hintEl.style.display = 'inline-flex';
+            hintEl.style.margin = '0';
             hintEl.innerHTML = '<i class="ph ph-check-circle" aria-hidden="true"></i><span>You\'re connected.</span>';
           } else {
             hintEl.classList.add('hide');
             hintEl.style.display = 'none';
+            hintEl.style.margin = '';
           }
         }
         const cta = preview.querySelector('button.connect');
