@@ -1,0 +1,626 @@
+{
+  "generatedAt": "2026-10-23T20:23:06.351Z",
+  "viewport": {
+    "width": 393,
+    "height": 852,
+    "scale": 1
+  },
+  "screens": {
+    "closed": {
+      "light": {
+        "filename": "screen-closed-light.png",
+        "bytes": 51723,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-closed-dark.png",
+        "bytes": 48564,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "setup": {
+      "light": {
+        "filename": "screen-setup-light.png",
+        "bytes": 20295,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-setup-dark.png",
+        "bytes": 19479,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "active": {
+      "light": {
+        "filename": "screen-active-light.png",
+        "bytes": 37116,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-active-dark.png",
+        "bytes": 37428,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "myprofile": {
+      "light": {
+        "filename": "screen-myprofile-light.png",
+        "bytes": 23634,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-myprofile-dark.png",
+        "bytes": 23628,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "editprofile": {
+      "light": {
+        "filename": "screen-editprofile-light.png",
+        "bytes": 22755,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-editprofile-dark.png",
+        "bytes": 23550,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "privacy": {
+      "light": {
+        "filename": "screen-privacy-light.png",
+        "bytes": 24816,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-privacy-dark.png",
+        "bytes": 25092,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "verification": {
+      "light": {
+        "filename": "screen-verification-light.png",
+        "bytes": 25869,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-verification-dark.png",
+        "bytes": 26379,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "appsettings": {
+      "light": {
+        "filename": "screen-appsettings-light.png",
+        "bytes": 22911,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-appsettings-dark.png",
+        "bytes": 23226,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "onboarding": {
+      "light": {
+        "filename": "screen-onboarding-light.png",
+        "bytes": 89751,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-onboarding-dark.png",
+        "bytes": 89910,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "welcome": {
+      "light": {
+        "filename": "screen-welcome-light.png",
+        "bytes": 43308,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-welcome-dark.png",
+        "bytes": 41841,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "auth": {
+      "light": {
+        "filename": "screen-auth-light.png",
+        "bytes": 18840,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-auth-dark.png",
+        "bytes": 18849,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "firstprofile": {
+      "light": {
+        "filename": "screen-firstprofile-light.png",
+        "bytes": 18156,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-firstprofile-dark.png",
+        "bytes": 18183,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "firstintent": {
+      "light": {
+        "filename": "screen-firstintent-light.png",
+        "bytes": 21969,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-firstintent-dark.png",
+        "bytes": 21828,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "permissions": {
+      "light": {
+        "filename": "screen-permissions-light.png",
+        "bytes": 17973,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-permissions-dark.png",
+        "bytes": 17751,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "recovery": {
+      "light": {
+        "filename": "screen-recovery-light.png",
+        "bytes": 14817,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-recovery-dark.png",
+        "bytes": 14760,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "network": {
+      "light": {
+        "filename": "screen-network-light.png",
+        "bytes": 31851,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-network-dark.png",
+        "bytes": 31659,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "requests": {
+      "light": {
+        "filename": "screen-requests-light.png",
+        "bytes": 15747,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-requests-dark.png",
+        "bytes": 15873,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "activity": {
+      "light": {
+        "filename": "screen-activity-light.png",
+        "bytes": 23307,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-activity-dark.png",
+        "bytes": 23847,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "messages": {
+      "light": {
+        "filename": "screen-messages-light.png",
+        "bytes": 23289,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-messages-dark.png",
+        "bytes": 23409,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "conversation": {
+      "light": {
+        "filename": "screen-conversation-light.png",
+        "bytes": 27144,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-conversation-dark.png",
+        "bytes": 27879,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "connectiondetail": {
+      "light": {
+        "filename": "screen-connectiondetail-light.png",
+        "bytes": 29031,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-connectiondetail-dark.png",
+        "bytes": 28650,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "hiddenconnections": {
+      "light": {
+        "filename": "screen-hiddenconnections-light.png",
+        "bytes": 28989,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-hiddenconnections-dark.png",
+        "bytes": 29199,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "blockedaccounts": {
+      "light": {
+        "filename": "screen-blockedaccounts-light.png",
+        "bytes": 18156,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-blockedaccounts-dark.png",
+        "bytes": 17931,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "reportuser": {
+      "light": {
+        "filename": "screen-reportuser-light.png",
+        "bytes": 21345,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-reportuser-dark.png",
+        "bytes": 21330,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "notifications": {
+      "light": {
+        "filename": "screen-notifications-light.png",
+        "bytes": 24729,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-notifications-dark.png",
+        "bytes": 24975,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "profile": {
+      "light": {
+        "filename": "screen-profile-light.png",
+        "bytes": 24348,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-profile-dark.png",
+        "bytes": 29853,
+        "clip": {
+          "x": 182,
+          "y": -161,
+          "width": 393,
+          "height": 852
+        }
+      }
+    },
+    "helpsupport": {
+      "light": {
+        "filename": "screen-helpsupport-light.png",
+        "bytes": 29118,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-helpsupport-dark.png",
+        "bytes": 29049,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    },
+    "aboutpeopi": {
+      "light": {
+        "filename": "screen-aboutpeopi-light.png",
+        "bytes": 24498,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      },
+      "dark": {
+        "filename": "screen-aboutpeopi-dark.png",
+        "bytes": 24507,
+        "clip": {
+          "x": 289,
+          "y": 72,
+          "width": 178,
+          "height": 385
+        }
+      }
+    }
+  }
+}
