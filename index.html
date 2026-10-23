@@ -2882,7 +2882,7 @@
                 How product principles and MVP boundaries translate into intentional, real-world user interactions.
               </p>
               <p class="dash-page-desc">
-                From an invisible baseline to temporary discovery, mutual consent, and persistent conversation, every interaction balances spontaneous local connection with personal privacy. This chapter traces verified prototype pathways and distinguishes demonstrated client interactions from production backend requirements.
+                From an invisible baseline to temporary discovery, mutual consent, and persistent conversation, every interaction balances spontaneous local connection with personal privacy. Tracing verified prototype pathways distinguishes demonstrated client interactions from production backend requirements.
               </p>
             </div>
           </header>
@@ -2894,7 +2894,7 @@
                 <span class="how-section-kicker">01 · PRIMARY USER JOURNEY</span>
                 <h2 class="how-section-title">From invisible baseline to unlocked conversation<span class="brand-dot">.</span></h2>
                 <p class="how-section-lead">
-                  The end-to-end pathway across Peopi's verified mobile routes, demonstrating deliberate user agency at every transition.
+                  The end-to-end pathway across Peopi's mobile routes, demonstrating deliberate user agency at each transition.
                 </p>
               </div>
             </div>
@@ -2961,7 +2961,7 @@
                     <div>
                       <h4 class="how-step-title">Invisible by Default (Closed Discovery, Screen 02.1)</h4>
                       <p class="how-step-desc">
-                        The user opens the app without revealing presence. Blurred map and aggregate zones indicate activity. Tapping "Show up" begins session setup. Client broadcasts zero live coordinates.
+                        The user opens the app without revealing presence. Blurred map areas indicate aggregate venue activity. Tapping "Show up" begins setup; the client broadcasts zero live coordinates.
                       </p>
                     </div>
                   </div>
@@ -2991,7 +2991,7 @@
                     <div>
                       <h4 class="how-step-title">Start Discovery Session (Session Setup, Screen 02.2)</h4>
                       <p class="how-step-desc">
-                        The user selects an immediate networking intent and a preset duration (30, 60 default, or 120 minutes). Tapping "Go visible" confirms visibility. Profile readiness requires full name, headline, bio, and at least one skill tag before broadcasting.
+                        The user selects a networking intent and duration (30, 60 default, or 120 minutes). Tapping "Go visible" confirms presence. Profile readiness requires full name, headline, bio, and one skill tag.
                       </p>
                     </div>
                   </div>
@@ -3004,7 +3004,7 @@
                     <div>
                       <h4 class="how-step-title">Explore Nearby Professionals (Active Discovery, Screen 02.3)</h4>
                       <p class="how-step-desc">
-                        The user scans active peers on a radar canvas showing approximate distance halos (~300m). Client APIs never receive raw coordinates. Unconnected profiles show initials avatars with portraits withheld. Tapping a pin opens their profile sheet.
+                        The user scans active peers on a radar canvas with approximate proximity halos and distance bands. Production architecture calculates proximity server-side rather than broadcasting raw GPS coordinates between peers. Unconnected profiles show initials-based avatars with portraits withheld. Tapping a pin opens the profile preview sheet.
                       </p>
                     </div>
                   </div>
@@ -3034,7 +3034,7 @@
                     <div>
                       <h4 class="how-step-title">Review Profile (Profile Preview, Screen 02.4)</h4>
                       <p class="how-step-desc">
-                        The user reviews professional headline, active projects, skill tags, and approximate distance. Direct contact details and messaging remain locked. Tapping "Request to connect" advances to the note composer.
+                        The user reviews headline, active projects, skills, and approximate proximity. Contact details and messaging remain locked. Tapping "Request to connect" opens the note composer.
                       </p>
                     </div>
                   </div>
@@ -3047,7 +3047,7 @@
                     <div>
                       <h4 class="how-step-title">Send Connection Request (Screen 02.4 / 03.2)</h4>
                       <p class="how-step-desc">
-                        The user composes an optional 140-character introduction note explaining why they want to connect. Confirming the request delivers it to the recipient's private queue without push alert spam. Senders can withdraw requests anytime before response.
+                        The user composes an optional 140-character note explaining connection intent. Sending delivers it to the recipient's private queue without push alert spam. Senders can cancel outgoing requests before response.
                       </p>
                     </div>
                   </div>
@@ -3060,7 +3060,7 @@
                     <div>
                       <h4 class="how-step-title">Mutual Acceptance (Requests Queue, Screen 03.2)</h4>
                       <p class="how-step-desc">
-                        The recipient reviews the sender's headline and note, then taps "Accept" (or "Decline"). Double opt-in invariant ensures direct messaging and full profiles unlock only after bilateral acceptance. Quiet decline sends zero rejection alerts. Transitions to My Network and 1:1 chat.
+                        The recipient reviews headline and note, then taps "Accept" or "Decline". Double opt-in ensures messaging and profiles unlock only upon bilateral acceptance. Declining quietly removes the request without rejection alerts; acceptance unlocks My Network and chat.
                       </p>
                     </div>
                   </div>
@@ -3090,7 +3090,7 @@
                     <div>
                       <h4 class="how-step-title">Chat &amp; Potential In-Person Meeting (Screens 04.1 &amp; 04.2)</h4>
                       <p class="how-step-desc">
-                        Direct messaging initiates with introduction context. Both parties coordinate a voluntary in-person meeting or follow up later. Conversations and connection records remain permanently saved in My Network.
+                        Direct messaging begins with introduction context. Both parties coordinate a voluntary meeting or follow up later. Accepted connections and chat threads persist in My Network after discovery ends unless removed or blocked.
                       </p>
                     </div>
                   </div>
@@ -3119,7 +3119,7 @@
                   <h4>Preset Durations &amp; Extension</h4>
                 </div>
                 <p>
-                  Sessions offer three preset durations: 30 minutes, 60 minutes (default), or 120 minutes, with one optional 30-minute extension. Custom durations are rejected to prevent continuous presence.
+                  Sessions offer three preset durations: 30, 60 (default), or 120 minutes. Users can apply an optional 30-minute extension before expiry. Custom durations are rejected to prevent continuous presence; capping extensions per session remains an open production policy.
                 </p>
               </div>
 
@@ -3129,7 +3129,7 @@
                   <h4>Manual Early Exit</h4>
                 </div>
                 <p>
-                  Tapping "Go invisible" ends discovery instantly. Broadcasting ceases and returns to the closed baseline without lingering presence tokens.
+                  Tapping "Go invisible" ends discovery immediately. Broadcasting ceases, returning to the closed baseline without lingering presence tokens.
                 </p>
               </div>
 
@@ -3139,7 +3139,7 @@
                   <h4>Automatic Expiration</h4>
                 </div>
                 <p>
-                  When the timer hits zero, visibility terminates automatically. Prototype simulation runs locally; production requires server-side time-to-live enforcement.
+                  When the timer hits zero, visibility terminates automatically. Prototype simulation runs locally; production requires authoritative server-side time-to-live enforcement independent of client clocks.
                 </p>
               </div>
 
@@ -3149,7 +3149,7 @@
                   <h4>Network Retention</h4>
                 </div>
                 <p>
-                  Discovery session termination affects live radar visibility only. Accepted connections, contact records, and message histories remain permanently saved and accessible in My Network (Screen 03.1).
+                  Discovery termination affects live radar visibility only. Accepted connections and chat histories persist in My Network (Screen 03.1), remaining accessible unless removed or blocked by either user.
                 </p>
               </div>
             </div>
@@ -3160,7 +3160,7 @@
                 <span class="how-continuity-kicker">CORE INVARIANT</span>
                 <h3 class="how-continuity-title" style="margin: 0 0 4px; font-size: 16px; font-weight: 800; color: #0F172A;">Discovery ends. Your network stays.</h3>
                 <p class="how-continuity-desc" style="margin: 0; font-size: 13px; line-height: 1.5; color: #475569;">
-                  Ending a session turns off proximity radar visibility. It never deletes connections or purges chat history. Pending requests remain in the recipient queue until acted upon or withdrawn by the sender.
+                  Ending a session disables live proximity visibility only without disconnecting accepted peers or clearing chat history. In the prototype, pending requests remain in the recipient queue until accepted, declined, or cancelled by the sender.
                 </p>
               </div>
             </div>
@@ -3199,7 +3199,7 @@
                     <div>
                       <h4 class="how-step-title">Active Discovery: Spatial Halos &amp; Initialed Avatars</h4>
                       <p class="how-step-desc">
-                        Active radar displays soft halos and distance bands (~300m). Raw coordinates are never transmitted. Unconnected profiles display initials avatars; full portraits remain locked.
+                        Active radar displays soft diffusion halos and distance bands without revealing indoor location. Spatial architecture avoids transmitting raw GPS coordinates between peers. Unconnected profiles show initials-based avatars with portraits withheld.
                       </p>
                     </div>
                   </div>
@@ -3224,9 +3224,9 @@
                       <h4 class="how-step-title">Established Connections: Hide My Presence, Mute, and Block</h4>
                       <p class="how-step-desc">
                         Peopi provides three distinct boundary controls for connected contacts:<br>
-                        • <strong>Hide My Presence:</strong> Conceals live radar visibility from a specific connection without notifying them. The connection, profile access, and past chat remain fully intact.<br>
-                        • <strong>Mute:</strong> Silences push notifications for incoming messages without altering visibility or connection status.<br>
-                        • <strong>Block:</strong> Terminates live discovery and halts communication. Post-block chat transcript retention is an open backend policy decision.
+                        • <strong>Hide My Presence:</strong> Conceals live radar visibility from a specific connection without notifying them. The connection and chat history remain intact unless removed or blocked.<br>
+                        • <strong>Mute:</strong> Silences message notifications without altering visibility or connection status.<br>
+                        • <strong>Block:</strong> Terminates discovery and communication. Post-block chat transcript retention is an open backend policy decision.
                       </p>
                     </div>
                   </div>
@@ -3256,7 +3256,7 @@
                 </div>
                 <h3>No Nearby Professionals</h3>
                 <div class="journey-alt-behavior">
-                  <strong>Observed Behavior:</strong> Peopi displays an honest empty state when no active members are in range, never manufacturing phantom pins or synthetic profiles.
+                  <strong>Observed Behavior:</strong> Displays an honest empty state when no active members are in range, never manufacturing phantom pins or synthetic profiles.
                 </div>
               </div>
 
@@ -3267,7 +3267,7 @@
                 </div>
                 <h3>Request Declined or Pending</h3>
                 <div class="journey-alt-behavior">
-                  <strong>Observed Behavior:</strong> Declined requests disappear silently without rejection alerts. Unanswered requests remain pending until resolved or withdrawn by the sender.
+                  <strong>Observed Behavior:</strong> In the prototype, declined requests disappear silently without rejection alerts. Unanswered requests remain pending until acted upon or cancelled by the sender. Whether pending requests should automatically expire remains an unconfirmed production policy.
                 </div>
               </div>
 
@@ -3278,7 +3278,7 @@
                 </div>
                 <h3>Session Expires Before Acceptance</h3>
                 <div class="journey-alt-behavior">
-                  <strong>Observed Behavior:</strong> If a session timer ends before a pending request is accepted, the user drops off live radar. The pending invitation remains in the recipient queue.
+                  <strong>Observed Behavior:</strong> When a session timer ends before acceptance, the user drops off live radar while invitations remain in the recipient queue.
                 </div>
               </div>
 
@@ -3312,7 +3312,7 @@
                 <div class="scope-card-icon"><i class="ph ph-device-mobile"></i></div>
                 <h3 class="scope-card-title">Demonstrated Prototype Behaviors</h3>
                 <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.5;color:#475569;">
-                  <li><strong>Verified Route Hierarchy:</strong> 23 mobile screens and sheets covering closed, setup, radar, preview, requests, and direct chat.</li>
+                  <li><strong>Verified Route Hierarchy:</strong> Mobile screens and contextual sheets covering closed discovery, session setup, radar map, preview, requests, and direct chat across core flows.</li>
                   <li><strong>Spatial &amp; Privacy UI Contracts:</strong> Approximate radar halos, initials avatars, and aggregate activity zones.</li>
                   <li><strong>Client-Side State Emulation:</strong> Local countdown timers, simulated request approval, and theme adaptation.</li>
                 </ul>
@@ -3322,9 +3322,9 @@
                 <div class="scope-card-icon featured"><i class="ph ph-cloud-check"></i></div>
                 <h3 class="scope-card-title">Production Backend Decisions (Pending)</h3>
                 <ul style="padding-left:18px;margin:8px 0 0;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.5;color:#475569;">
-                  <li><strong>Authoritative Server Timers:</strong> Server-side TTL enforcement to guarantee automatic session expiry independently of client clocks.</li>
+                  <li><strong>Authoritative Server Timers:</strong> Server-side TTL enforcement guaranteeing session expiry independent of client clocks.</li>
                   <li><strong>Ephemeral Spatial Indexing:</strong> Geohash proximity calculation with coordinate jittering; zero persistent raw location storage.</li>
-                  <li><strong>Real-Time Synchronization:</strong> Production WebSockets and push notifications for request delivery and message transport.</li>
+                  <li><strong>Real-Time Synchronization:</strong> WebSockets and push notifications for request delivery and message transport.</li>
                 </ul>
               </div>
             </div>
