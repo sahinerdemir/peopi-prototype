@@ -10286,11 +10286,28 @@ function normalizeHtmlForReference(rawHtml) {
   if (!rawHtml) return '';
   let clean = rawHtml
     .replace(/<p class="ds-specimen-feedback"[^>]*>.*?<\/p>/gi, '')
-    .replace(/id="ds-specimen-([^"]+)"/g, 'class="peopi-$1"')
     .replace(/\s*data-ds-source-id="[^"]*"/g, '')
     .replace(/\s*data-original-[a-z-]+="[^"]*"/g, '')
     .replace(/\b(ds-source-piece|ds-source-root|ds-live-specimen|ds-full-screen)\b/g, '')
     .trim();
+
+  // Merge id="ds-specimen-([^"]+)" safely into existing class attribute or add new class
+  clean = clean.replace(/<([a-zA-Z0-9-]+)([^>]*)>/g, (match, tag, attrs) => {
+    const idMatch = attrs.match(/\bid="ds-specimen-([^"]+)"/);
+    if (!idMatch) return match;
+    const specClass = 'peopi-' + idMatch[1];
+    let newAttrs = attrs.replace(/\bid="ds-specimen-[^"]*"/, '').trim();
+    if (newAttrs.includes('class="')) {
+      newAttrs = newAttrs.replace(/class="([^"]*)"/, (m, existingClasses) => {
+        const clsList = existingClasses.split(/\s+/).filter(Boolean);
+        if (!clsList.includes(specClass)) clsList.push(specClass);
+        return 'class="' + clsList.join(' ') + '"';
+      });
+    } else {
+      newAttrs = 'class="' + specClass + '" ' + newAttrs;
+    }
+    return '<' + tag + ' ' + newAttrs.trim() + '>';
+  });
 
   // Strip workbench phone container wrapper if wrapping the specimen root
   clean = clean.replace(/^\s*<div class="[^"]*\bphone\b[^"]*">\s*([\s\S]*?)\s*<\/div>\s*$/i, '$1').trim();
@@ -10604,39 +10621,136 @@ const scopedComponentStyles = {
 }
 `,
 
-  'text-field': `
-/* Form Input Fields (Explicit label and 16pt input preventing zoom) */
+    'text-field': `
+/* Grouped Edit Form Block (Theme-aware card, 16pt input sizing) */
+.peopi-component-text-field .editgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 20px;
+  border-radius: var(--radius-lg, 20px);
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+}
+.peopi-component-text-field .editgroup-head h3 {
+  margin: 0 0 6px 0;
+  font-size: 17px;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-text-field .editgroup-head p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-secondary, #64748B);
+}
 .peopi-component-text-field .editfield {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink-secondary, #64748B);
-  width: 100%;
-  margin-bottom: 12px;
-  box-sizing: border-box;
+  gap: 8px;
+}
+.peopi-component-text-field .editfield > label {
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--ink, #0F172A);
 }
 .peopi-component-text-field .editfield input,
-.peopi-component-text-field .editfield select,
-.peopi-component-text-field .editfield textarea {
-  width: 100%;
+.peopi-component-text-field .editfield textarea,
+.peopi-component-text-field .editfield select {
+  font-size: 16px;
+  line-height: 1.5;
   min-height: 48px;
   padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--line, #E2E8F0);
+  border: 1px solid var(--line, #CBD5E1);
+  border-radius: var(--radius-md, 14px);
   background: var(--card, #FFFFFF);
   color: var(--ink, #0F172A);
   font-family: inherit;
-  font-size: 16px;
   box-sizing: border-box;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  width: 100%;
+}
+.peopi-component-text-field .editfield textarea {
+  min-height: 110px;
+  resize: vertical;
 }
 .peopi-component-text-field .editfield input:focus,
-.peopi-component-text-field .editfield textarea:focus {
-  outline: none;
+.peopi-component-text-field .editfield textarea:focus,
+.peopi-component-text-field .editfield select:focus {
   border-color: var(--brand, #FF3300);
-  box-shadow: 0 0 0 3px rgba(255, 51, 0, 0.15);
+}
+.peopi-component-text-field .editfield > small {
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-text-field .skills-chip-input-wrap {
+  border: 1px solid var(--line, #CBD5E1);
+  border-radius: var(--radius-md, 14px);
+  padding: 10px 12px;
+  background: var(--card, #FFFFFF);
+  box-sizing: border-box;
+}
+.peopi-component-text-field .skills-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  min-height: 28px;
+}
+.peopi-component-text-field .skills-chip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px 5px 12px;
+  border-radius: 999px;
+  background: var(--muted, #F1F5F9);
+  border: 1px solid color-mix(in srgb, var(--line, #E2E8F0) 65%, transparent);
+  color: var(--ink, #0F172A);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.peopi-component-text-field .skills-chip-item button {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 0;
+  background: color-mix(in srgb, var(--ink, #0B0F19) 12%, transparent);
+  color: var(--sub, #64748B);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+.peopi-component-text-field .skills-chip-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px dashed color-mix(in srgb, var(--line, #E2E8F0) 65%, transparent);
+  padding-top: 9px;
+  margin-top: 8px;
+}
+.peopi-component-text-field .skills-chip-entry input {
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+.peopi-component-text-field .skills-chip-add-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 12px;
+  background: var(--accent, #FF3300);
+  color: #fff;
+  border: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
 }
 `,
 
@@ -10886,7 +11000,7 @@ const scopedComponentStyles = {
 }
 `,
 
-  'skills-chip-input': `
+    'skills-chip-input': `
 /* Skills Chip Input (Dismissible pills, text input with 16pt font) */
 .peopi-component-skills-chip-input .skills-chip-input-wrap {
   display: flex;
@@ -10902,48 +11016,91 @@ const scopedComponentStyles = {
 .peopi-component-skills-chip-input .skills-chip-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
+  min-height: 28px;
 }
 .peopi-component-skills-chip-input .skills-chip-item {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 5px 9px 5px 12px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--brand, #FF3300) 8%, var(--card, #FFFFFF));
-  border: 1px solid color-mix(in srgb, var(--brand, #FF3300) 25%, transparent);
+  background: var(--muted, #F1F5F9);
+  border: 1px solid color-mix(in srgb, var(--line, #E2E8F0) 65%, transparent);
   color: var(--ink, #0F172A);
   font-size: 13px;
-  font-weight: 650;
+  font-weight: 700;
+  line-height: 1.2;
 }
 .peopi-component-skills-chip-input .skills-chip-item button {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
   border: 0;
-  background: transparent;
-  cursor: pointer;
-  color: var(--ink-secondary, #64748B);
-  font-size: 16px;
+  background: color-mix(in srgb, var(--ink, #0B0F19) 12%, transparent);
+  color: var(--sub, #64748B);
+  font-size: 13px;
   line-height: 1;
+  cursor: pointer;
   padding: 0;
-  display: inline-flex;
-  align-items: center;
+  transition: all 0.12s ease;
 }
 .peopi-component-skills-chip-input .skills-chip-item button:hover {
-  color: var(--brand, #FF3300);
+  background: var(--accent, #FF3300);
+  color: #fff;
 }
 .peopi-component-skills-chip-input .skills-chip-entry {
   display: flex;
   align-items: center;
   gap: 8px;
+  border-top: 1px dashed color-mix(in srgb, var(--line, #E2E8F0) 65%, transparent);
+  padding-top: 9px;
 }
-.peopi-component-skills-chip-input .skills-chip-input-wrap input {
+.peopi-component-skills-chip-input .skills-chip-entry input {
   flex: 1;
-  border: 0;
+  border: 1px solid var(--line, #CBD5E1);
+  border-radius: 12px;
   background: transparent;
   color: var(--ink, #0F172A);
   font-family: inherit;
   font-size: 15px;
+  min-height: 40px;
+  padding: 8px 12px;
   outline: none;
-  padding: 6px;
+  box-sizing: border-box;
+}
+.peopi-component-skills-chip-input .skills-chip-entry input:focus {
+  border-color: var(--accent, #FF3300);
+}
+.peopi-component-skills-chip-input .skills-chip-add-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 12px;
+  background: var(--accent, #FF3300);
+  color: #fff;
+  border: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.peopi-component-skills-chip-input .skills-chip-add-btn:hover {
+  background: color-mix(in srgb, var(--accent, #FF3300) 85%, #000);
+}
+.peopi-component-skills-chip-input .skills-chip-add-btn i {
+  font-size: 18px;
+  font-weight: 700;
+}
+.peopi-component-skills-chip-input .skills-hint {
+  display: block;
+  font-size: 12px;
+  color: var(--sub, #64748B);
+  margin-top: 6px;
 }
 `,
 
@@ -10952,8 +11109,8 @@ const scopedComponentStyles = {
 .peopi-component-discovery-filter .discovery-filter-dialog {
   background: var(--card, #FFFFFF);
   border: 1px solid var(--line, #E2E8F0);
-  border-radius: var(--radius-lg, 20px);
-  padding: 18px;
+  border-radius: 26px;
+  padding: 22px;
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
@@ -10962,45 +11119,93 @@ const scopedComponentStyles = {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
-  font-size: 16px;
+  margin-bottom: 12px;
+  font-size: 18px;
   font-weight: 750;
   color: var(--ink, #0F172A);
 }
 .peopi-component-discovery-filter .discovery-filter-head button {
-  border: 0;
-  background: transparent;
-  color: var(--brand, #FF3300);
-  font-weight: 700;
-  font-size: 13px;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+  background: var(--muted, #F1F5F9) !important;
+  color: var(--ink-secondary, #64748B) !important;
+  display: grid !important;
+  place-items: center !important;
   cursor: pointer;
+  padding: 0 !important;
+}
+.peopi-component-discovery-filter .discovery-filter-dialog > p {
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+  margin: 0 0 16px;
+  line-height: 1.45;
 }
 .peopi-component-discovery-filter .discovery-filter-select-wrap {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-.peopi-component-discovery-filter .discovery-filter-select-wrap label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink-secondary, #64748B);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.peopi-component-discovery-filter .discovery-filter-select-wrap select {
   width: 100%;
-  min-height: 46px;
-  padding: 10px 14px;
-  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.peopi-component-discovery-filter .discovery-filter-dialog label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink, #0F172A);
+  margin: 12px 0 6px;
+}
+.peopi-component-discovery-filter .discovery-filter-dialog select {
+  width: 100%;
+  min-height: 50px;
+  height: 50px;
+  padding: 0 42px 0 16px;
+  border-radius: 15px;
   border: 1px solid var(--line, #E2E8F0);
   background: var(--bg, #F8FAFC);
   color: var(--ink, #0F172A);
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
   box-sizing: border-box;
+}
+.peopi-component-discovery-filter .discovery-filter-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--ink-secondary, #64748B);
+  font-size: 18px;
+}
+.peopi-component-discovery-filter .discovery-filter-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.peopi-component-discovery-filter .discovery-filter-actions button {
+  flex: 1;
+  min-height: 48px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.peopi-component-discovery-filter .discovery-filter-actions button:last-child {
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  border-color: var(--brand, #FF3300);
 }
 `,
 
@@ -11027,6 +11232,7 @@ const scopedComponentStyles = {
   flex: 1;
   min-height: 52px;
   border: 0;
+  border-radius: 999px;
   background: transparent;
   color: var(--ink-secondary, #64748B);
   font-family: inherit;
@@ -11084,6 +11290,7 @@ const scopedComponentStyles = {
   flex: 1;
   min-height: 40px;
   border: 0;
+  border-radius: 14px;
   background: transparent;
   color: var(--ink-secondary, #64748B);
   font-family: inherit;
@@ -11138,6 +11345,7 @@ const scopedComponentStyles = {
   flex: 1;
   min-height: 40px;
   border: 0;
+  border-radius: 14px;
   background: transparent;
   color: var(--ink-secondary, #64748B);
   font-family: inherit;
@@ -11217,8 +11425,8 @@ const scopedComponentStyles = {
   position: relative;
   background: var(--card, #FFFFFF);
   border: 1px solid var(--line, #E2E8F0);
-  border-radius: var(--radius-lg, 20px);
-  padding: 20px;
+  border-radius: 24px;
+  padding: 18px;
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
@@ -11228,15 +11436,18 @@ const scopedComponentStyles = {
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 0;
-  background: var(--muted, #F1F5F9);
-  color: var(--ink-secondary, #64748B);
-  display: grid;
-  place-items: center;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+  background: var(--muted, #F1F5F9) !important;
+  color: var(--ink-secondary, #64748B) !important;
+  display: grid !important;
+  place-items: center !important;
   cursor: pointer;
+  padding: 0 !important;
 }
 .peopi-component-profile-card .person {
   display: flex;
@@ -11274,9 +11485,30 @@ const scopedComponentStyles = {
 }
 .peopi-component-profile-card .person small {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-secondary, #64748B);
   margin-top: 2px;
+}
+.peopi-component-profile-card .li-verified-badge {
+  display: inline-flex !important;
+  position: relative !important;
+  top: -0.48em !important;
+  vertical-align: baseline !important;
+  margin-left: 3px !important;
+  margin-right: 1px !important;
+  width: 13px !important;
+  height: 13px !important;
+  flex: 0 0 13px !important;
+  line-height: 0 !important;
+  color: #0a66c2;
+  align-items: center;
+  justify-content: center;
+}
+.peopi-component-profile-card .li-verified-badge svg {
+  display: block !important;
+  width: 13px !important;
+  height: 13px !important;
 }
 .peopi-component-profile-card .profilecard-footer {
   display: flex;
@@ -11296,19 +11528,17 @@ const scopedComponentStyles = {
   font-weight: 750;
   font-size: 14px;
   cursor: pointer;
+  box-sizing: border-box;
 }
-/* Connected Peer State: Suppress intent heading & text without reserved gaps */
+/* Connected Peer State */
 .peopi-component-profile-card .profilecard.is-connected .profilecard-intent-label,
 .peopi-component-profile-card .profilecard.is-connected #personintent,
-.peopi-component-profile-card .profilecard.is-connected .peopi-personintent,
-.peopi-component-profile-card .peopi-profilecard.is-connected .profilecard-intent-label,
-.peopi-component-profile-card .peopi-profilecard.is-connected .peopi-personintent {
+.peopi-component-profile-card .profilecard.is-connected .peopi-personintent {
   display: none !important;
   margin: 0 !important;
   padding: 0 !important;
 }
-.peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,
-.peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {
+.peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint {
   margin: 0 !important;
   white-space: nowrap;
   font-size: 13px;
@@ -11316,30 +11546,13 @@ const scopedComponentStyles = {
   color: var(--ink);
 }
 @media (max-width: 480px) {
-  .peopi-component-profile-card .profilecard .profilecard-footer,
-  .peopi-component-profile-card .peopi-profilecard .profilecard-footer {
+  .peopi-component-profile-card .profilecard .profilecard-footer {
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 12px !important;
   }
-  .peopi-component-profile-card .profilecard .profilecard-status,
-  .peopi-component-profile-card .peopi-profilecard .profilecard-status {
+  .peopi-component-profile-card .profilecard .connect {
     width: 100% !important;
-    min-width: 100% !important;
-  }
-  .peopi-component-profile-card .profilecard.is-connected .discovery-connected-hint,
-  .peopi-component-profile-card .peopi-profilecard.is-connected .discovery-connected-hint {
-    width: 100% !important;
-    justify-content: flex-start !important;
-  }
-  .peopi-component-profile-card .profilecard .connect,
-  .peopi-component-profile-card .peopi-profilecard .connect {
-    width: 100% !important;
-    margin-left: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
     min-height: 44px !important;
   }
 }
@@ -11709,6 +11922,7 @@ const scopedComponentStyles = {
   padding: 14px 0;
   width: 100%;
   border: 0;
+  border-radius: 16px;
   background: transparent;
   text-align: left;
   color: var(--ink);
@@ -11769,34 +11983,36 @@ const scopedComponentStyles = {
 
   // === FAMILY: component-profile (8) ===
   'identity-card': `
-/* Profile Identity Card (Hero card with avatar, role, completion meter) */
+/* Profile Identity Card (Hero card with avatar, role, completion meter, edit pill) */
 .peopi-component-identity-card .myprofile-identity-card {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  padding: 20px;
-  border-radius: var(--radius-lg, 20px);
+  padding: 22px;
+  border-radius: 26px;
   background: var(--card, #FFFFFF);
   border: 1px solid var(--line, #E2E8F0);
   box-sizing: border-box;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 28px rgba(27, 36, 50, 0.04);
   color: var(--ink, #0F172A);
 }
 .peopi-component-identity-card .myprofile-hero {
   display: flex;
   align-items: center;
   gap: 16px;
+  text-align: left;
 }
 .peopi-component-identity-card .myprofile-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--muted, #F1F5F9);
-  color: var(--ink, #0F172A);
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  border-radius: 23px;
+  background: linear-gradient(140deg, #ffe8df, #ffc1a9);
+  color: #705457;
   display: grid;
   place-items: center;
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 800;
   flex-shrink: 0;
   overflow: hidden;
@@ -11805,44 +12021,48 @@ const scopedComponentStyles = {
   flex: 1;
   min-width: 0;
 }
-.peopi-component-identity-card h3 {
-  margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 800;
+.peopi-component-identity-card .myprofile-summary h3 {
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.6px;
+  margin: 0 0 5px;
   color: var(--ink, #0F172A);
+  overflow-wrap: anywhere;
 }
-.peopi-component-identity-card p {
-  margin: 0;
-  font-size: 13px;
+.peopi-component-identity-card .myprofile-summary p {
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0 0 7px;
   color: var(--ink-secondary, #64748B);
-  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .peopi-component-identity-card .myprofile-location {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--ink-secondary, #64748B);
-  margin-top: 4px;
 }
 .peopi-component-identity-card .myprofile-completion {
   width: 100%;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: var(--bg, #F8FAFC);
-  box-sizing: border-box;
+  margin-top: 14px;
 }
 .peopi-component-identity-card .completion-top {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-secondary, #64748B);
+  margin-bottom: 8px;
+}
+.peopi-component-identity-card .completion-top b {
   color: var(--ink, #0F172A);
-  margin-bottom: 6px;
+  font-weight: 700;
 }
 .peopi-component-identity-card .completion-track {
   width: 100%;
-  height: 6px;
+  height: 4px;
   border-radius: 999px;
   background: var(--muted, #F1F5F9);
   overflow: hidden;
@@ -11852,6 +12072,31 @@ const scopedComponentStyles = {
   height: 100%;
   border-radius: 999px;
   background: var(--brand, #FF3300);
+}
+.peopi-component-identity-card .myprofile-card-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 14px;
+  padding: 11px 15px;
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: 16px;
+  background: var(--muted, #F1F5F9);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+.peopi-component-identity-card .myprofile-card-edit:hover {
+  background: var(--card, #FFFFFF);
+  color: var(--brand, #FF3300);
+  border-color: var(--brand, #FF3300);
 }
 `,
 
@@ -11945,79 +12190,102 @@ const scopedComponentStyles = {
 }
 `,
 
-  'profile-menu': `
-/* Grouped Navigation Menu (Theme-aware card, 54pt min row height) */
+    'profile-menu': `
+/* Grouped Navigation Menu (Theme-aware card, 62px row height) */
 .peopi-component-profile-menu .myprofile-menu {
   display: flex;
   flex-direction: column;
   gap: 2px;
   width: 100%;
+  padding: 4px 14px;
+  border-radius: 22px;
   background: var(--card, #FFFFFF);
-  border: 1px solid var(--line, #E2E8F0);
-  border-radius: var(--radius-lg, 20px);
-  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--line, #E2E8F0) 45%, transparent);
+  box-shadow: 0 4px 16px rgba(27, 36, 50, 0.05);
   box-sizing: border-box;
 }
-.peopi-component-profile-menu .myprofile-menu-item {
+.peopi-component-profile-menu .myprofile-menu > button {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
-  min-height: 54px;
-  padding: 14px 18px;
+  min-height: 62px;
+  padding: 8px 0;
   border: 0;
+  border-radius: 16px;
   background: transparent;
-  color: var(--ink, #0F172A);
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 650;
-  cursor: pointer;
+  color: var(--ink, #0B0F19);
   text-align: left;
+  font: 600 16px Manrope, system-ui, sans-serif;
+  cursor: pointer;
   box-sizing: border-box;
-  transition: background 0.15s ease;
 }
-.peopi-component-profile-menu .myprofile-menu-item .ph:first-child {
-  font-size: 20px;
-  color: var(--ink-secondary, #64748B);
-}
-.peopi-component-profile-menu .myprofile-menu-item .ph:last-child {
-  font-size: 16px;
-  color: var(--ink-secondary, #64748B);
-  margin-left: auto;
-}
-.peopi-component-profile-menu .myprofile-menu-item:hover {
+.peopi-component-profile-menu .myprofile-menu-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
   background: var(--muted, #F1F5F9);
+  color: var(--accent, #FF3300);
+  font-size: 21px;
+  flex-shrink: 0;
+}
+.peopi-component-profile-menu .myprofile-menu > button > i:last-child {
+  margin-left: auto;
+  color: var(--sub, #64748B);
+  font-size: 17px;
 }
 `,
 
-  'content-section': `
+    'content-section': `
 /* Readable Content Section (Semantic heading, readable copy surface) */
 .peopi-component-content-section .myprofile-section {
-  background: var(--card, #FFFFFF);
-  border: 1px solid var(--line, #E2E8F0);
-  border-radius: var(--radius-lg, 20px);
   padding: 20px;
-  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--line, #E2E8F0) 45%, transparent);
+  border-radius: 22px;
+  background: var(--card, #FFFFFF);
+  box-shadow: 0 4px 16px rgba(27, 36, 50, 0.03);
   box-sizing: border-box;
-  color: var(--ink, #0F172A);
+  color: var(--ink, #0B0F19);
+  width: 100%;
 }
 .peopi-component-content-section .myprofile-sectionhead {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .peopi-component-content-section .myprofile-sectionhead h4 {
   margin: 0;
-  font-size: 16px;
-  font-weight: 750;
-  color: var(--ink, #0F172A);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.35px;
+  color: var(--ink, #0B0F19);
 }
-.peopi-component-content-section .myprofile-section p {
+.peopi-component-content-section .myprofile-section-action {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--line, #E2E8F0) 75%, transparent);
+  background: var(--card, #FFFFFF);
+  color: var(--sub, #64748B);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+.peopi-component-content-section .myprofile-section > p {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ink-secondary, #64748B);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--sub, #64748B);
 }
 `,
 
@@ -12045,8 +12313,55 @@ const scopedComponentStyles = {
 }
 `,
 
-  'profile-documents': `
+    'profile-documents': `
 /* Document Attachment Grid (Responsive grid, encrypted/locked indicators) */
+.peopi-component-profile-documents .myprofile-section {
+  padding: 20px;
+  border: 1px solid color-mix(in srgb, var(--line, #E2E8F0) 45%, transparent);
+  border-radius: 22px;
+  background: var(--card, #FFFFFF);
+  box-shadow: 0 4px 16px rgba(27, 36, 50, 0.03);
+  box-sizing: border-box;
+  color: var(--ink, #0B0F19);
+  width: 100%;
+}
+.peopi-component-profile-documents .myprofile-sectionhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.peopi-component-profile-documents .myprofile-sectionhead h4 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.35px;
+  color: var(--ink, #0B0F19);
+}
+.peopi-component-profile-documents .myprofile-section-action {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--line, #E2E8F0) 75%, transparent);
+  background: var(--card, #FFFFFF);
+  color: var(--sub, #64748B);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+.peopi-component-profile-documents .myprofile-section-sub {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--sub, #64748B);
+  margin: 0 0 14px 0;
+}
 .peopi-component-profile-documents .peopi-docs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -12064,29 +12379,46 @@ const scopedComponentStyles = {
   background: var(--card, #FFFFFF);
   border: 1px solid var(--line, #E2E8F0);
   box-sizing: border-box;
+  cursor: pointer;
 }
 .peopi-component-profile-documents .peopi-doc-icon {
-  font-size: 24px;
-  color: var(--brand, #FF3300);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 }
-.peopi-component-profile-documents .peopi-doc-filename {
-  font-size: 13px;
+.peopi-component-profile-documents .peopi-doc-icon.format-pdf {
+  background: rgba(239, 68, 68, 0.12);
+  color: #EF4444;
+}
+.peopi-component-profile-documents .peopi-doc-icon.format-docx {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3B82F6;
+}
+.peopi-component-profile-documents .peopi-doc-icon.format-png {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10B981;
+}
+.peopi-component-profile-documents .peopi-doc-title {
+  font-size: 14px;
   font-weight: 700;
-  color: var(--ink, #0F172A);
-  overflow-wrap: break-word;
+  color: var(--ink, #0B0F19);
 }
-.peopi-component-profile-documents .peopi-doc-blurred {
-  filter: blur(4px);
-  user-select: none;
-}
-.peopi-component-profile-documents .peopi-doc-lock-tag {
-  display: inline-flex;
+.peopi-component-profile-documents .peopi-doc-meta {
+  display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ink-secondary, #64748B);
-  margin-top: 4px;
+  font-size: 12px;
+  color: var(--sub, #64748B);
+}
+.peopi-component-profile-documents .peopi-doc-filename {
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 `,
 
@@ -12454,41 +12786,68 @@ const scopedComponentStyles = {
 }
 `,
 
-  'session-alert': `
+    'session-alert': `
 /* Proximity Alert Banner (Session countdown warning, dual action triggers) */
-.peopi-component-session-alert .session-alert,
-.peopi-component-session-alert .peopi-session-alert {
+.peopi-component-session-alert .session-alert {
   position: relative;
   display: flex;
-  align-items: center;
   gap: 12px;
-  width: 100%;
-  min-height: 52px;
-  padding: 12px 16px;
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--brand, #FF3300) 10%, var(--card, #FFFFFF));
-  border: 1px solid color-mix(in srgb, var(--brand, #FF3300) 30%, transparent);
-  color: var(--ink, #0F172A);
+  padding: 16px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: 22px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+  color: var(--ink, #0B0F19);
   box-sizing: border-box;
+  width: 100%;
 }
 .peopi-component-session-alert .alert-icon {
-  font-size: 20px;
-  color: var(--brand, #FF3300);
+  width: 31px;
+  height: 31px;
+  border-radius: 10px;
+  background: rgba(255, 51, 0, 0.1);
+  color: var(--accent, #FF3300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  font-size: 18px;
+}
+.peopi-component-session-alert .session-alert strong {
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink, #0B0F19);
+  display: block;
+}
+.peopi-component-session-alert .session-alert p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--sub, #64748B);
+  margin: 5px 0 11px;
 }
 .peopi-component-session-alert .alert-actions {
   display: flex;
-  gap: 10px;
-  margin-left: auto;
+  gap: 8px;
+  align-items: center;
 }
 .peopi-component-session-alert .alert-actions button {
+  font-size: 12px;
+  font-weight: 800;
   border: 0;
-  background: transparent;
-  color: var(--brand, #FF3300);
-  font-weight: 750;
-  font-size: 13px;
+  border-radius: 15px;
+  padding: 9px 14px;
+  min-height: 32px;
   cursor: pointer;
-  flex-shrink: 0;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+.peopi-component-session-alert .alert-actions button:first-child {
+  background: var(--accent, #FF3300);
+  color: #FFFFFF;
+}
+.peopi-component-session-alert .alert-actions button:last-child {
+  background: var(--muted, #F1F5F9);
+  color: var(--sub, #64748B);
 }
 `,
 
@@ -12556,19 +12915,40 @@ const scopedComponentStyles = {
 
   // === FAMILY: component-overlays (4) ===
   'sheet': `
-/* Profile Detail Bottom Sheet (Modal surface, grabber handle, scroll area) */
+/* Profile Detail Bottom Sheet (Complete Descendant Rules) */
+.peopi-component-sheet {
+  --brand: #FF3300;
+  --bg: #F8FAFC;
+  --card: #FFFFFF;
+  --ink: #0F172A;
+  --ink-secondary: #64748B;
+  --line: #E2E8F0;
+  --muted: #F1F5F9;
+  --radius-lg: 20px;
+}
+@media (prefers-color-scheme: dark) {
+  .peopi-component-sheet {
+    --bg: #0B0F19;
+    --card: #172033;
+    --ink: #F8FAFC;
+    --ink-secondary: #94A3B8;
+    --line: #334155;
+    --muted: #1E293B;
+  }
+}
 .peopi-component-sheet .ds-sheet-specimen-root {
   width: 100%;
   max-width: 420px;
   margin: 0 auto;
   box-sizing: border-box;
 }
-.peopi-component-sheet .sheet.profile-sheet {
+.peopi-component-sheet .sheet.profile-sheet,
+.peopi-component-sheet .profile-sheet {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
   width: 100%;
-  padding: 20px;
+  padding: 16px 20px 24px;
   border-radius: 28px 28px 0 0;
   background: var(--card, #FFFFFF);
   border: 1px solid var(--line, #E2E8F0);
@@ -12576,18 +12956,110 @@ const scopedComponentStyles = {
   box-sizing: border-box;
   box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
   color: var(--ink, #0F172A);
+  overflow: hidden;
 }
 .peopi-component-sheet .sheet-grabber {
   width: 40px;
   height: 5px;
   border-radius: 999px;
   background: var(--line, #E2E8F0);
-  margin: 0 auto 8px;
+  margin: 0 auto 12px;
   flex-shrink: 0;
+}
+.peopi-component-sheet .sheetclose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px !important;
+  height: 36px !important;
+  max-width: 36px !important;
+  min-width: 36px !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+  background: var(--muted, #F1F5F9) !important;
+  color: var(--ink-secondary, #64748B) !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0 !important;
+}
+.peopi-component-sheet .sheetclose .ph {
+  font-size: 18px;
+  line-height: 1;
+}
+.peopi-component-sheet .profile-sheet-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  max-height: 520px;
+  padding-right: 2px;
+}
+.peopi-component-sheet .profilehero {
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4px;
+}
+.peopi-component-sheet .anonavatar,
+.peopi-component-sheet .connection-avatar {
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px !important;
+  min-height: 72px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  margin: 0 auto 10px !important;
+  background: #e1c9c6;
+  color: #705457;
+  overflow: hidden;
+}
+.peopi-component-sheet .connection-profile-heading {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink, #0F172A);
+  margin: 0 0 4px;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+}
+.peopi-component-sheet .li-verified-badge {
+  display: inline-flex !important;
+  position: relative !important;
+  top: -0.48em !important;
+  vertical-align: baseline !important;
+  margin-left: 3px !important;
+  margin-right: 1px !important;
+  width: 13px !important;
+  height: 13px !important;
+  flex: 0 0 13px !important;
+  line-height: 0 !important;
+  color: #0a66c2;
+  align-items: center;
+  justify-content: center;
+}
+.peopi-component-sheet .li-verified-badge svg {
+  display: block !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+.peopi-component-sheet .profilehero p {
+  margin: 2px 0;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+  line-height: 1.4;
 }
 .peopi-component-sheet .privacyhint {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 12px;
   font-weight: 600;
@@ -12595,6 +13067,76 @@ const scopedComponentStyles = {
   background: var(--muted, #F1F5F9);
   padding: 8px 12px;
   border-radius: 12px;
+  margin-top: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-sheet .detailblock {
+  padding: 14px 16px;
+  background: var(--bg, #F8FAFC);
+  border-radius: 16px;
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+}
+.peopi-component-sheet .detailblock h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 750;
+  color: var(--ink-secondary, #64748B);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.peopi-component-sheet .detailblock p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-sheet .detailtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.peopi-component-sheet .detailtags span {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-sheet .peopi-exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.peopi-component-sheet .peopi-exp-card {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+}
+.peopi-component-sheet .peopi-exp-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-sheet .peopi-exp-company {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+  margin: 1px 0;
+}
+.peopi-component-sheet .peopi-exp-meta {
+  font-size: 12px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-sheet .peopi-exp-dot {
+  margin: 0 4px;
 }
 .peopi-component-sheet .peopi-docs-grid {
   display: grid;
@@ -12602,10 +13144,185 @@ const scopedComponentStyles = {
   gap: 10px;
 }
 .peopi-component-sheet .peopi-doc-card {
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  position: relative;
+}
+.peopi-component-sheet .peopi-doc-card.doc-locked .peopi-doc-blurred {
+  filter: blur(4px);
+  user-select: none;
+}
+.peopi-component-sheet .peopi-doc-icon {
+  font-size: 22px;
+  color: var(--brand, #FF3300);
+}
+.peopi-component-sheet .peopi-doc-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink, #0F172A);
+  display: block;
+}
+.peopi-component-sheet .peopi-doc-meta {
+  font-size: 11px;
+  color: var(--ink-secondary, #64748B);
+  display: block;
+}
+.peopi-component-sheet .peopi-doc-lock-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-secondary, #64748B);
+  margin-top: 4px;
+}
+.peopi-component-sheet .profile-request-composer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--bg, #F8FAFC);
+  border: 1px solid var(--line, #E2E8F0);
+  box-sizing: border-box;
+}
+.peopi-component-sheet .profile-request-composer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.peopi-component-sheet .profile-request-composer-title {
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.peopi-component-sheet .profile-request-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.peopi-component-sheet .prompt-chip {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--card, #FFFFFF);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink, #0F172A);
+  cursor: pointer;
+}
+.peopi-component-sheet .profile-request-note {
+  width: 100%;
+  min-height: 72px;
+  padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid var(--line, #E2E8F0);
-  background: var(--bg, #F8FAFC);
+  background: var(--card, #FFFFFF);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.peopi-component-sheet .profile-request-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-sheet .profile-sheet-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.peopi-component-sheet .profile-sheet-footer .primary,
+.peopi-component-sheet .profile-sheet-footer #requestFromProfile,
+.peopi-component-sheet .profile-sheet-footer .peopi-requestFromProfile {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--brand, #FF3300);
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 750;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+}
+.peopi-component-sheet .profiledisclaimer {
+  font-size: 11px;
+  color: var(--ink-secondary, #64748B);
+  text-align: center;
+  margin: 4px 0 0;
+}
+
+.peopi-component-sheet .profile-request-composer-cancel {
+  display: inline-grid;
+  place-items: center;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: color-mix(in srgb, var(--ink, #0B0F19) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink, #0B0F19) 10%, transparent);
+  color: var(--sub, #64748B);
+  cursor: pointer;
+  line-height: 1;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+.peopi-component-sheet .profile-request-composer-cancel i {
+  font-size: 13px !important;
+  line-height: 1 !important;
+}
+.peopi-component-sheet .journey-quiet {
+  min-height: 36px;
+  padding: 8px 14px;
+  background: transparent;
+  border: 0;
+  color: var(--sub, #64748B);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+.peopi-component-sheet .journey-quiet:hover {
+  color: var(--ink, #0B0F19);
+}
+.peopi-component-sheet .profile-cancel-request-btn {
+  width: 100%;
+  margin-top: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--sub, #64748B);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: center;
+  padding: 8px 12px;
 }
 `,
 
@@ -12685,15 +13402,17 @@ const scopedComponentStyles = {
   margin: 0 auto;
   box-sizing: border-box;
 }
-.peopi-component-exp-sheet .sheet.exp-sheet {
+.peopi-component-exp-sheet .sheet.exp-sheet,
+.peopi-component-exp-sheet .exp-sheet {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
   width: 100%;
-  padding: 20px;
+  padding: 16px 20px 24px;
   border-radius: 28px 28px 0 0;
   background: var(--card, #FFFFFF);
   border: 1px solid var(--line, #E2E8F0);
+  border-bottom: 0;
   box-sizing: border-box;
   color: var(--ink, #0F172A);
 }
@@ -12702,18 +13421,60 @@ const scopedComponentStyles = {
   height: 5px;
   border-radius: 999px;
   background: var(--line, #E2E8F0);
-  margin: 0 auto 8px;
+  margin: 0 auto 12px;
+  flex-shrink: 0;
 }
-.peopi-component-exp-sheet .sheet h3 {
-  margin: 0;
-  font-size: 18px;
+.peopi-component-exp-sheet .sheetclose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+  background: var(--muted, #F1F5F9) !important;
+  color: var(--ink-secondary, #64748B) !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0 !important;
+}
+.peopi-component-exp-sheet .exp-sheet-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.peopi-component-exp-sheet .exp-sheet-head h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
   font-weight: 800;
+  color: var(--ink, #0F172A);
 }
-.peopi-component-exp-sheet .sheet input {
+.peopi-component-exp-sheet .exp-sheet-head p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-exp-sheet .journey-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.peopi-component-exp-sheet .journey-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-exp-sheet .journey-field input,
+.peopi-component-exp-sheet .journey-field select {
   width: 100%;
-  min-height: 46px;
-  padding: 10px 14px;
-  border-radius: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
   border: 1px solid var(--line, #E2E8F0);
   background: var(--bg, #F8FAFC);
   color: var(--ink, #0F172A);
@@ -12721,16 +13482,49 @@ const scopedComponentStyles = {
   font-size: 15px;
   box-sizing: border-box;
 }
+.peopi-component-exp-sheet .exp-dates-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.peopi-component-exp-sheet .exp-date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.peopi-component-exp-sheet .exp-date-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-exp-sheet .exp-date-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--bg, #F8FAFC);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+.peopi-component-exp-sheet .exp-sheet-actions {
+  margin-top: 10px;
+}
 .peopi-component-exp-sheet .journey-primary {
   width: 100%;
-  min-height: 48px;
-  border-radius: 14px;
+  min-height: 50px;
+  border-radius: 16px;
   border: 0;
   background: var(--brand, #FF3300);
   color: #FFFFFF;
   font-weight: 750;
   font-size: 15px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 `,
 
@@ -12742,15 +13536,17 @@ const scopedComponentStyles = {
   margin: 0 auto;
   box-sizing: border-box;
 }
-.peopi-component-doc-sheet .sheet.doc-sheet {
+.peopi-component-doc-sheet .sheet.doc-sheet,
+.peopi-component-doc-sheet .doc-sheet {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
   width: 100%;
-  padding: 20px;
+  padding: 16px 20px 24px;
   border-radius: 28px 28px 0 0;
   background: var(--card, #FFFFFF);
   border: 1px solid var(--line, #E2E8F0);
+  border-bottom: 0;
   box-sizing: border-box;
   color: var(--ink, #0F172A);
 }
@@ -12759,34 +13555,131 @@ const scopedComponentStyles = {
   height: 5px;
   border-radius: 999px;
   background: var(--line, #E2E8F0);
-  margin: 0 auto 8px;
+  margin: 0 auto 12px;
 }
-.peopi-component-doc-sheet .sheet h3 {
-  margin: 0;
-  font-size: 18px;
+.peopi-component-doc-sheet .sheetclose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+  background: var(--muted, #F1F5F9) !important;
+  color: var(--ink-secondary, #64748B) !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0 !important;
+}
+.peopi-component-doc-sheet .doc-sheet-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.peopi-component-doc-sheet .doc-sheet-head h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
   font-weight: 800;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-doc-sheet .doc-sheet-head p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-doc-sheet .journey-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.peopi-component-doc-sheet .journey-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-doc-sheet .journey-field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line, #E2E8F0);
+  background: var(--bg, #F8FAFC);
+  color: var(--ink, #0F172A);
+  font-family: inherit;
+  font-size: 15px;
+  box-sizing: border-box;
 }
 .peopi-component-doc-sheet .doc-sheet-selected-file {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding: 12px 14px;
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--muted, #F1F5F9);
   border: 1px solid var(--line, #E2E8F0);
+  margin-top: 8px;
+}
+.peopi-component-doc-sheet .doc-sheet-selected-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.peopi-component-doc-sheet .doc-sheet-selected-info strong {
   font-size: 14px;
-  font-weight: 650;
+  font-weight: 750;
+  color: var(--ink, #0F172A);
+}
+.peopi-component-doc-sheet .doc-sheet-selected-info small {
+  font-size: 12px;
+  color: var(--ink-secondary, #64748B);
+}
+.peopi-component-doc-sheet .doc-sheet-change-file-btn {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  color: var(--ink, #0F172A);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.peopi-component-doc-sheet .edit-doc-upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 24px 16px;
+  border: 2px dashed var(--line, #E2E8F0);
+  border-radius: 18px;
+  background: var(--card, #FFFFFF);
+  color: var(--ink-secondary, #64748B);
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.peopi-component-doc-sheet .doc-sheet-actions {
+  margin-top: 10px;
 }
 .peopi-component-doc-sheet .journey-primary {
   width: 100%;
-  min-height: 48px;
-  border-radius: 14px;
+  min-height: 50px;
+  border-radius: 16px;
   border: 0;
   background: var(--brand, #FF3300);
   color: #FFFFFF;
   font-weight: 750;
   font-size: 15px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 `
 };
@@ -12827,6 +13720,44 @@ function generateWebReference(compKey, activeVariantText, card) {
     '    --line: #334155;',
     '    --muted: #1E293B;',
     '  }',
+    '}',
+    '',
+    '/* Global Verified Badge Sizing (prevents unstyled SVG expansion) */',
+    '.peopi-component-' + compKey + ' .li-verified-badge {',
+    '  display: inline-flex !important;',
+    '  position: relative !important;',
+    '  top: -0.48em !important;',
+    '  vertical-align: baseline !important;',
+    '  margin-left: 3px !important;',
+    '  margin-right: 1px !important;',
+    '  width: 13px !important;',
+    '  height: 13px !important;',
+    '  flex: 0 0 13px !important;',
+    '  line-height: 0 !important;',
+    '  color: #0a66c2 !important;',
+    '  align-items: center;',
+    '  justify-content: center;',
+    '}',
+    '.peopi-component-' + compKey + ' .li-verified-badge svg {',
+    '  display: block !important;',
+    '  width: 13px !important;',
+    '  height: 13px !important;',
+    '}',
+    '',
+    '/* Global Utility Classes */',
+    '.peopi-component-' + compKey + ' .hide {',
+    '  display: none !important;',
+    '}',
+    '.peopi-component-' + compKey + ' .sr-only {',
+    '  position: absolute;',
+    '  width: 1px;',
+    '  height: 1px;',
+    '  padding: 0;',
+    '  margin: -1px;',
+    '  overflow: hidden;',
+    '  clip: rect(0, 0, 0, 0);',
+    '  white-space: nowrap;',
+    '  border: 0;',
     '}'
   ];
   if (scopedComponentStyles[compKey]) {
@@ -12951,6 +13882,68 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
     ].join('\n');
   }
 
+  if (compKey === 'sheet') {
+    labelA = 'Instance A — Anonymous Preview';
+    labelB = 'Instance B — Connected Profile';
+
+    htmlCodeB = htmlCode
+      .replace(/A\.M\./g, 'Alex Morgan')
+      .replace(/<div class="privacyhint"[\s\S]*?<\/div>/g, '')
+      .replace(/class="peopi-doc-card doc-locked"/g, 'class="peopi-doc-card"')
+      .replace(/<span class="peopi-doc-lock-tag"[\s\S]*?<\/span>/g, '')
+      .replace(/Portfolio_2026\.pdf/g, 'Sahin_Erdemir_Resume.pdf')
+      .replace(/PDF · 3\.8 MB/g, 'PDF · 2.4 MB');
+  }
+
+  if (compKey === 'dialog') {
+    labelA = 'Instance A — Go Invisible?';
+    labelB = 'Instance B — Sign Out?';
+
+    htmlCodeB = htmlCode
+      .replace(/Go invisible\?/g, 'Sign out?')
+      .replace(/You'll become invisible immediately\.[^<]*/g, 'Are you sure you want to sign out of Peopi? Your session will end.')
+      .replace(/<button([^>]*)>Go invisible<\/button>/, '<button$1>Sign out</button>');
+  }
+
+  if (compKey === 'exp-sheet') {
+    labelA = 'Instance A — Add Experience';
+    labelB = 'Instance B — Edit Experience';
+
+    htmlCodeB = htmlCode
+      .replace(/Add experience/g, 'Edit experience')
+      .replace(/class="peopi-exp-sheet-title-input"([^>]*)>/, 'class="peopi-exp-sheet-title-input"$1 value="Senior Product Designer">')
+      .replace(/class="peopi-exp-sheet-company-input"([^>]*)>/, 'class="peopi-exp-sheet-company-input"$1 value="Studio Monolith">');
+  }
+
+  if (compKey === 'doc-sheet') {
+    labelA = 'Instance A — Standard PDF';
+    labelB = 'Instance B — Empty Upload';
+
+    // Instance A: show selected file, hide upload button
+    htmlCodeA = htmlCode
+      .replace(/class="([^"]*)\bdoc-sheet-selected-file\b([^"]*)"/g, (m, c1, c2) => {
+        const classes = (c1 + ' doc-sheet-selected-file ' + c2).split(/\s+/).filter(c => c && c !== 'hide');
+        return 'class="' + classes.join(' ') + '"';
+      })
+      .replace(/class="([^"]*)\bedit-doc-upload-btn\b([^"]*)"/g, (m, c1, c2) => {
+        const classes = (c1 + ' edit-doc-upload-btn ' + c2).split(/\s+/).filter(Boolean);
+        if (!classes.includes('hide')) classes.push('hide');
+        return 'class="' + classes.join(' ') + '"';
+      });
+
+    // Instance B: hide selected file, show upload button
+    htmlCodeB = htmlCode
+      .replace(/class="([^"]*)\bdoc-sheet-selected-file\b([^"]*)"/g, (m, c1, c2) => {
+        const classes = (c1 + ' doc-sheet-selected-file ' + c2).split(/\s+/).filter(Boolean);
+        if (!classes.includes('hide')) classes.push('hide');
+        return 'class="' + classes.join(' ') + '"';
+      })
+      .replace(/class="([^"]*)\bedit-doc-upload-btn\b([^"]*)"/g, (m, c1, c2) => {
+        const classes = (c1 + ' edit-doc-upload-btn ' + c2).split(/\s+/).filter(c => c && c !== 'hide');
+        return 'class="' + classes.join(' ') + '"';
+      });
+  }
+
   // Standalone multi-instance client controller
   const scriptTag = `<script>
 document.querySelectorAll('.peopi-instance').forEach(inst => {
@@ -13050,6 +14043,30 @@ document.querySelectorAll('.peopi-instance').forEach(inst => {
         inp.focus();
       });
     }
+  });
+
+  // Sheet close button feedback
+  inst.querySelectorAll('.sheetclose').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const s = btn.closest('.sheet');
+      if (s) {
+        s.style.transition = 'opacity 0.2s ease';
+        s.style.opacity = '0.5';
+        setTimeout(() => { s.style.opacity = '1'; }, 250);
+      }
+    });
+  });
+
+  // Prompt chip click adds to note textarea
+  inst.querySelectorAll('.prompt-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const parent = chip.closest('.profile-request-composer') || inst;
+      const ta = parent.querySelector('textarea, .profile-request-note');
+      if (ta) {
+        ta.value = chip.textContent.trim();
+        ta.focus();
+      }
+    });
   });
 
   // Chat composer
