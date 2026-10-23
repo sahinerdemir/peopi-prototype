@@ -10268,10 +10268,21 @@ function generateAiBrief(compKey, activeVariantText, card) {
 function normalizeHtmlForReference(rawHtml) {
   if (!rawHtml) return '';
   let clean = rawHtml
+    .replace(/<p class="ds-specimen-feedback"[^>]*>.*?<\/p>/gi, '')
     .replace(/id="ds-specimen-([^"]+)"/g, 'class="peopi-$1"')
-    .replace(/data-ds-source-id="[^"]*"/g, '')
-    .replace(/class="([^"]*)\bds-live-specimen\b([^"]*)"/g, 'class="$1$2"')
+    .replace(/\s*data-ds-source-id="[^"]*"/g, '')
+    .replace(/\s*data-original-aria-label="[^"]*"/g, '')
+    .replace(/\b(ds-source-piece|ds-source-root|ds-live-specimen|ds-full-screen)\b/g, '')
+    .trim();
+
+  // Strip workbench phone container wrapper if wrapping the specimen root
+  clean = clean.replace(/^\s*<div class="[^"]*\bphone\b[^"]*">\s*([\s\S]*?)\s*<\/div>\s*$/i, '$1').trim();
+
+  clean = clean
     .replace(/\s+class="\s*"/g, '')
+    .replace(/class="\s+/g, 'class="')
+    .replace(/\s+"/g, '"')
+    .replace(/>\s*</g, '>\n<')
     .trim();
 
   const lines = clean.split('\n').map(l => l.trim()).filter(Boolean);
@@ -10409,9 +10420,130 @@ function generateWebReference(compKey, activeVariantText, card) {
   if (compKey === 'network-row') {
     cssLines.push(
       '',
-      '/* Connection List Row & Relative Button Anchor */',
-      '.peopi-component-network-row .journey-person button:not([role=switch]) {',
+      '/* Scoped Connection List Row Base Layout & Surface */',
+      '.peopi-component-network-row .journey-person {',
+      '  display: flex;',
+      '  align-items: center;',
+      '  gap: 12px;',
+      '  min-height: 80px;',
+      '  padding: 16px;',
+      '  box-sizing: border-box;',
+      '  background: var(--card);',
+      '  border-bottom: 1px solid var(--line);',
+      '  color: var(--ink);',
+      '  font-family: inherit;',
+      '  width: 100%;',
       '  position: relative;',
+      '}',
+      '',
+      '/* Avatar Geometry: 48×48pt Circular Avatar & Image */',
+      '.peopi-component-network-row .initials,',
+      '.peopi-component-network-row .avatar,',
+      '.peopi-component-network-row .demo-photo-avatar {',
+      '  width: 48px;',
+      '  height: 48px;',
+      '  border-radius: 50% !important;',
+      '  display: grid;',
+      '  place-items: center;',
+      '  flex-shrink: 0;',
+      '  background: var(--muted);',
+      '  color: var(--ink);',
+      '  font-size: 16px;',
+      '  font-weight: 800;',
+      '  position: relative;',
+      '  overflow: hidden;',
+      '  isolation: isolate;',
+      '}',
+      '.peopi-component-network-row .initials > img,',
+      '.peopi-component-network-row .avatar > img,',
+      '.peopi-component-network-row .demo-photo-avatar > img {',
+      '  position: absolute;',
+      '  inset: 0;',
+      '  width: 100%;',
+      '  height: 100%;',
+      '  object-fit: cover;',
+      '  object-position: center;',
+      '  border-radius: 50% !important;',
+      '  display: block;',
+      '  z-index: 1;',
+      '}',
+      '',
+      '/* Text Hierarchy: Verified Name Line & Role Subtitle */',
+      '.peopi-component-network-row .journey-person > div:nth-child(2) {',
+      '  flex: 1;',
+      '  min-width: 0;',
+      '}',
+      '.peopi-component-network-row .verified-name-line {',
+      '  display: flex;',
+      '  align-items: baseline;',
+      '  gap: 0;',
+      '  min-width: 0;',
+      '}',
+      '.peopi-component-network-row .verified-name-line strong {',
+      '  display: inline-block;',
+      '  font-size: 16px;',
+      '  font-weight: 700;',
+      '  line-height: 1.4;',
+      '  color: var(--ink);',
+      '  overflow-wrap: anywhere;',
+      '  white-space: normal;',
+      '}',
+      '.peopi-component-network-row .journey-person small {',
+      '  display: block;',
+      '  font-size: 13px;',
+      '  line-height: 1.5;',
+      '  color: var(--ink-secondary);',
+      '  margin-top: 2px;',
+      '}',
+      '',
+      '/* LinkedIn Verified Trust Badge: True Baseline Superscript */',
+      '.peopi-component-network-row .li-verified-badge {',
+      '  display: inline-flex !important;',
+      '  position: relative !important;',
+      '  top: -0.48em !important;',
+      '  vertical-align: baseline !important;',
+      '  margin-left: 3px !important;',
+      '  margin-right: 1px !important;',
+      '  width: 13px !important;',
+      '  height: 13px !important;',
+      '  flex: 0 0 13px !important;',
+      '  line-height: 0 !important;',
+      '  color: #0a66c2;',
+      '  align-items: center;',
+      '  justify-content: center;',
+      '}',
+      '.peopi-component-network-row .li-verified-badge svg {',
+      '  display: block !important;',
+      '  width: 13px !important;',
+      '  height: 13px !important;',
+      '}',
+      '',
+      '/* Contextual Action Button (44pt Minimum Hit Target) */',
+      '.peopi-component-network-row .journey-person button:not([role=switch]) {',
+      '  min-height: 44px;',
+      '  font-size: 14px;',
+      '  font-weight: 700;',
+      '  font-family: inherit;',
+      '  padding: 10px 14px;',
+      '  border-radius: 14px;',
+      '  border: 0;',
+      '  background: var(--muted);',
+      '  color: var(--ink);',
+      '  cursor: pointer;',
+      '  flex-shrink: 0;',
+      '  position: relative;',
+      '  overflow: visible;',
+      '  display: inline-flex;',
+      '  align-items: center;',
+      '  justify-content: center;',
+      '  box-sizing: border-box;',
+      '  transition: background 150ms ease, transform 100ms ease;',
+      '}',
+      '.peopi-component-network-row .journey-person button:not([role=switch]):hover {',
+      '  background: color-mix(in srgb, var(--ink) 8%, var(--muted));',
+      '}',
+      '.peopi-component-network-row .journey-person button:not([role=switch]):active {',
+      '  transform: scale(0.97);',
       '}',
       '',
       '/* Unread Notice Indicator: 8pt Orange Dot & Concentric Ripples */',
@@ -10431,6 +10563,11 @@ function generateWebReference(compKey, activeVariantText, card) {
       '  border-radius: 50%;',
       '  background: var(--brand, #FF3300);',
       '  box-shadow: 0 0 0 2px var(--card, #FFFFFF);',
+      '}',
+      '@media (prefers-color-scheme: dark) {',
+      '  .peopi-component-network-row .network-unread-dot {',
+      '    box-shadow: 0 0 0 2px var(--card, #172033);',
+      '  }',
       '}',
       '.peopi-component-network-row .network-unread-ring {',
       '  position: absolute;',
@@ -10483,6 +10620,22 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
   const comp = (typeof peopiHandoffData !== 'undefined' && peopiHandoffData[compKey]) || { title: compKey, isStatic: true };
   const { htmlCode, cssTokensCode, jsCode } = generateWebReference(compKey, activeVariantText, card);
 
+  let htmlCodeA = htmlCode;
+  let htmlCodeB = htmlCode;
+  let labelA = 'Instance A';
+  let labelB = 'Instance B';
+
+  if (compKey === 'network-row') {
+    const connBtn = '<button type="button">View</button>';
+    const unreadBtn = '<button type="button" class="has-unread" aria-label="View profile for Alex Morgan (1 unread message)">View<span class="network-unread-indicator" aria-hidden="true"><span class="network-unread-dot"></span><span class="network-unread-ring ring-1" aria-hidden="true"></span><span class="network-unread-ring ring-2" aria-hidden="true"></span></span><span class="sr-only network-unread-sr">1 unread message</span></button>';
+
+    const baseRow = htmlCode.replace(/<button[\s\S]*?<\/button>/i, '__BTN__');
+    htmlCodeA = baseRow.replace('__BTN__', connBtn);
+    htmlCodeB = baseRow.replace('__BTN__', unreadBtn);
+    labelA = 'Instance A — Connected';
+    labelB = 'Instance B — Unread Notice';
+  }
+
   const scriptTag = jsCode ? ('<script>\n' + jsCode + '\n' +
     'document.querySelectorAll(".peopi-instance").forEach(inst => {\n' +
     '  if (typeof initIconButton === "function") initIconButton(inst.querySelector("button"));\n' +
@@ -10508,6 +10661,9 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
     '  <meta charset="UTF-8">',
     '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
     '  <title>Peopi Web Reference — ' + comp.title + '</title>',
+    '  <link rel="preconnect" href="https://fonts.googleapis.com">',
+    '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">',
     '  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">',
     '  <style>',
     '    :root {',
@@ -10521,8 +10677,18 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
     '      --radius-md: 14px;',
     '      --radius-pill: 999px;',
     '    }',
+    '    @media (prefers-color-scheme: dark) {',
+    '      :root {',
+    '        --bg: #0B0F19;',
+    '        --card: #172033;',
+    '        --ink: #F8FAFC;',
+    '        --ink-secondary: #94A3B8;',
+    '        --line: #334155;',
+    '        --muted: #1E293B;',
+    '      }',
+    '    }',
     '    body {',
-    '      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;',
+    '      font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;',
     '      background: var(--bg);',
     '      color: var(--ink);',
     '      padding: 40px 20px;',
@@ -10572,15 +10738,15 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
     '    </div>',
     '    <div class="demo-grid">',
     '      <div class="demo-card">',
-    '        <div class="demo-instance-label">Instance A</div>',
+    '        <div class="demo-instance-label">' + labelA + '</div>',
     '        <div class="peopi-instance instance-a peopi-component-' + compKey + '">',
-    htmlCode,
+    htmlCodeA,
     '        </div>',
     '      </div>',
     '      <div class="demo-card">',
-    '        <div class="demo-instance-label">Instance B</div>',
+    '        <div class="demo-instance-label">' + labelB + '</div>',
     '        <div class="peopi-instance instance-b peopi-component-' + compKey + '">',
-    htmlCode,
+    htmlCodeB,
     '        </div>',
     '      </div>',
     '    </div>',
