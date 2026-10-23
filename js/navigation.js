@@ -10142,6 +10142,35 @@ function animateSelectionCapsule(container, indicator, targetBtn, options = {}) 
   };
 }
 
+function cleanEmptyAttrs(el) {
+  if (!el) return;
+  if (el.hasAttribute('style') && !el.getAttribute('style')) el.removeAttribute('style');
+  if (el.hasAttribute('class') && !el.getAttribute('class')) el.removeAttribute('class');
+}
+
+function normalizeElementClasses(el) {
+  if (!el) return;
+  if (!el.className || el.classList.length === 0) {
+    el.removeAttribute('class');
+    return;
+  }
+  if (el.classList.length > 1) {
+    el.className = Array.from(el.classList).sort().join(' ');
+  }
+}
+
+function setWorkbenchVariantActive(card, target) {
+  if (!card) return;
+  const vBtns = card.querySelectorAll('.ds-variant-btn');
+  vBtns.forEach((b, i) => {
+    const isTarget = (typeof target === 'number') ? (i === target) : (b === target);
+    b.classList.remove('active', 'is-active');
+    if (isTarget) {
+      b.classList.add('active', 'is-active');
+    }
+  });
+}
+
 function selectBottomNav(nav, targetIndexOrBtn, options = {}) {
   if (!nav) return;
   const buttons = Array.from(nav.querySelectorAll('button'));
@@ -10158,6 +10187,7 @@ function selectBottomNav(nav, targetIndexOrBtn, options = {}) {
     } else {
       b.removeAttribute('aria-current');
     }
+    normalizeElementClasses(b);
   });
 
   let pill = nav.querySelector('.motion-nav-indicator');
@@ -10190,6 +10220,7 @@ function selectSegmented(seg, targetIndexOrBtn, options = {}) {
     b.classList.toggle('chosen', isTarget);
     b.classList.toggle('selected', isTarget);
     b.setAttribute('aria-selected', String(isTarget));
+    normalizeElementClasses(b);
   });
 
   let pill = seg.querySelector('.motion-seg-indicator');
@@ -13858,11 +13889,11 @@ function setProfileSheetState(root, isConnected) {
   } else {
     if (reqBtn) {
       reqBtn.classList.remove('hide');
-      reqBtn.style.display = '';
+      reqBtn.style.removeProperty('display');
+      cleanEmptyAttrs(reqBtn);
     }
     if (connActions) {
-      connActions.classList.add('hide');
-      connActions.style.display = 'none';
+      connActions.remove();
     }
   }
 }
@@ -13917,13 +13948,26 @@ function setProfileCardState(root, isConnected) {
   const intentLabel = root.querySelector('.profilecard-intent-label');
   const intentEl = root.querySelector('#personintent, [id$="personintent"], .intent-text');
   if (intentLabel) {
-    intentLabel.style.display = isConnected ? 'none' : '';
-    intentLabel.hidden = isConnected;
+    if (isConnected) {
+      intentLabel.style.display = 'none';
+      intentLabel.hidden = true;
+    } else {
+      intentLabel.style.removeProperty('display');
+      cleanEmptyAttrs(intentLabel);
+      intentLabel.hidden = false;
+    }
   }
   if (intentEl) {
-    intentEl.style.display = isConnected ? 'none' : '';
-    intentEl.hidden = isConnected;
-    intentEl.textContent = isConnected ? '' : 'Exploring new projects';
+    if (isConnected) {
+      intentEl.style.display = 'none';
+      intentEl.hidden = true;
+      intentEl.textContent = '';
+    } else {
+      intentEl.style.removeProperty('display');
+      cleanEmptyAttrs(intentEl);
+      intentEl.hidden = false;
+      intentEl.textContent = 'Exploring new projects';
+    }
   }
   const hintEl = root.querySelector('.discovery-connected-hint, #preview-connected-hint, [id$="preview-connected-hint"]');
   if (hintEl) {
@@ -13953,7 +13997,7 @@ function setDialogState(root, isSignOut) {
     if (btn) btn.textContent = 'Sign out';
   } else {
     if (titleEl) titleEl.textContent = 'Go invisible?';
-    if (textEl) textEl.textContent = 'You\'ll become invisible immediately. Existing connections remain available.';
+    if (textEl) textEl.textContent = 'You\'ll become invisible immediately. Existing connections and messages remain available.';
     if (btn) btn.textContent = 'Go invisible';
   }
 }
@@ -13979,11 +14023,11 @@ function setDocSheetState(root, isEmpty) {
   const fileBox = root.querySelector('.doc-sheet-selected-file, [id$="selected-box"]');
   const uploadBtn = root.querySelector('.edit-doc-upload-btn, [id$="upload-btn"]');
   if (isEmpty) {
-    if (fileBox) { fileBox.classList.add('hide'); fileBox.style.display = 'none'; }
-    if (uploadBtn) { uploadBtn.classList.remove('hide'); uploadBtn.style.display = 'flex'; }
+    if (fileBox) { fileBox.classList.add('hide'); fileBox.style.removeProperty('display'); cleanEmptyAttrs(fileBox); }
+    if (uploadBtn) { uploadBtn.classList.remove('hide'); uploadBtn.style.removeProperty('display'); cleanEmptyAttrs(uploadBtn); }
   } else {
-    if (fileBox) { fileBox.classList.remove('hide'); fileBox.style.display = 'flex'; }
-    if (uploadBtn) { uploadBtn.classList.add('hide'); uploadBtn.style.display = 'none'; }
+    if (fileBox) { fileBox.classList.remove('hide'); fileBox.style.removeProperty('display'); cleanEmptyAttrs(fileBox); }
+    if (uploadBtn) { uploadBtn.classList.add('hide'); uploadBtn.style.removeProperty('display'); cleanEmptyAttrs(uploadBtn); }
   }
 }
 
@@ -13992,8 +14036,15 @@ function setConnectionRequestState(root, isSent) {
   const row = root.querySelector('.request-received, .journey-person:first-child');
   const sent = root.querySelector('.request-sent, .journey-person:last-child');
   if (row && sent) {
-    row.style.display = isSent ? 'none' : 'flex';
-    sent.style.display = isSent ? 'flex' : 'none';
+    if (isSent) {
+      row.style.display = 'none';
+      sent.style.removeProperty('display');
+      cleanEmptyAttrs(sent);
+    } else {
+      row.style.removeProperty('display');
+      cleanEmptyAttrs(row);
+      sent.style.display = 'none';
+    }
   }
 }
 
@@ -14925,6 +14976,7 @@ if (typeof window !== 'undefined') {
    node.style.position='relative';
    node.style.inset='auto';
    node.style.margin='12px auto';
+   node.style.borderColor='rgba(255, 255, 255, 0.2)';
    return catalogSection('Toast Notification Pill','Global Shell',sourceSpecimen(null,{node}),'Floating status pill for transient feedback, action confirmation, and privacy mode notifications.','toast-notification');
   };
   peopiScreenSources['toast-notification']='Global Shell · Toast Notification Pill';
@@ -14953,6 +15005,7 @@ if (typeof window !== 'undefined') {
    wrapper.dataset.dsSourceId='doc-sheet';
    const sheetClone=document.querySelector('#doc-sheet .sheet').cloneNode(true);
    sheetClone.classList.remove('hide','screen');
+   setDocSheetState(sheetClone, false);
    wrapper.append(sheetClone);
    return catalogSection('Document Attachment Bottom Sheet','Overlays',sourceSpecimen(null,{node:wrapper,full:true}),'Modal bottom sheet for uploading, viewing, and locking sensitive portfolio documents and resumes.','doc-sheet');
   };
@@ -15234,29 +15287,774 @@ if (typeof window !== 'undefined') {
     selectSegmented(seg, activeBtn, { animate: false });
   };
 
-  // Helper to ensure EXACTLY one variant button is active across all classes
-  const setWorkbenchVariantActive = (card, target) => {
+  // Apply canonical workbench variant to card preview, variant buttons, and code box
+  function applyWorkbenchVariant(card, btnOrVariant, options = {}) {
     if (!card) return;
-    const vBtns = card.querySelectorAll('.ds-variant-btn');
-    vBtns.forEach((b, i) => {
-      const isTarget = (typeof target === 'number') ? (i === target) : (b === target);
-      b.classList.remove('active', 'is-active');
-      if (isTarget) {
-        b.classList.add('active', 'is-active');
-      }
-    });
-  };
+    window.applyWorkbenchVariant = applyWorkbenchVariant;
+    const vBtns = Array.from(card.querySelectorAll('.ds-variant-btn'));
+    let btn = null;
+    let variant = '';
+    if (typeof btnOrVariant === 'string') {
+      variant = btnOrVariant.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      btn = vBtns.find(b => b.dataset.variant === variant) || vBtns[0];
+    } else if (typeof btnOrVariant === 'number') {
+      btn = vBtns[btnOrVariant] || vBtns[0];
+      variant = btn ? btn.dataset.variant : '';
+    } else if (btnOrVariant) {
+      btn = btnOrVariant;
+      variant = btn.dataset.variant || '';
+    }
 
-  // Initial indicator sync across all live specimens in ds-content (NO entrance slide)
-  all('#ds-content .ds-workbench-card[data-component="bottom-nav"] .nav').forEach(nav => {
-    selectBottomNav(nav, 0, { animate: false });
-  });
-  all('#ds-content .ds-workbench-card[data-component="tabs"] .seg').forEach(seg => {
-    selectSegmented(seg, 0, { animate: false });
-  });
-  all('#ds-content .ds-workbench-card[data-component="request-tabs"] .journey-tabs').forEach(seg => {
-    selectSegmented(seg, 0, { animate: false });
-  });
+    if (btn) {
+      setWorkbenchVariantActive(card, btn);
+    }
+
+    const comp = card.dataset.component;
+    const preview = card.querySelector('.ds-workbench-preview-viewport');
+    if (!preview) return;
+
+    if (comp === 'primary-action' || comp === 'quiet-action' || comp === 'destructive-action') {
+      const actionBtn = preview.querySelector('button');
+      if (actionBtn) {
+        if (!actionBtn._origText) {
+          actionBtn._origText = actionBtn.innerHTML;
+        }
+        const isDis = variant.includes('disabled');
+        actionBtn.disabled = isDis;
+        if (isDis) {
+          actionBtn.style.opacity = '0.45';
+        } else {
+          actionBtn.style.removeProperty('opacity');
+        }
+        if (variant === 'loading') {
+          actionBtn.innerHTML = '<i class="ph ph-spinner ds-spin" style="margin-right:6px"></i> Opening session...';
+        } else {
+          actionBtn.innerHTML = actionBtn._origText;
+        }
+        if (variant.includes('hover') || variant.includes('danger')) {
+          if (comp === 'destructive-action') {
+            actionBtn.style.backgroundColor = '#dc2626';
+            actionBtn.style.color = '#ffffff';
+          } else {
+            actionBtn.style.filter = 'brightness(1.15)';
+          }
+        } else {
+          actionBtn.style.removeProperty('filter');
+          if (comp === 'destructive-action') {
+            actionBtn.style.removeProperty('background-color');
+            actionBtn.style.removeProperty('color');
+          }
+        }
+        cleanEmptyAttrs(actionBtn);
+      }
+    } else if (comp === 'icon-button' || comp === 'fab') {
+      const iconBtn = preview.querySelector('button');
+      if (iconBtn) {
+        if (variant.includes('active') || variant.includes('elevated') || variant.includes('raised')) {
+          iconBtn.classList.add('ds-demo-active');
+          iconBtn.style.transform = 'scale(1.08)';
+          iconBtn.style.boxShadow = '0 6px 18px rgba(255,51,0,0.3)';
+        } else {
+          iconBtn.classList.remove('ds-demo-active');
+          iconBtn.style.removeProperty('transform');
+          iconBtn.style.removeProperty('box-shadow');
+          cleanEmptyAttrs(iconBtn);
+        }
+      }
+    } else if (comp === 'social-auth') {
+      const googleBtn = preview.querySelector('[data-ds-source-id="auth-google"], #auth-google');
+      const appleBtn = preview.querySelector('[data-ds-source-id="auth-apple"], #auth-apple');
+      if (googleBtn) {
+        if (variant === 'apple-only') {
+          googleBtn.style.display = 'none';
+        } else {
+          googleBtn.style.removeProperty('display');
+          cleanEmptyAttrs(googleBtn);
+        }
+      }
+      if (appleBtn) {
+        if (variant === 'google-only') {
+          appleBtn.style.display = 'none';
+        } else {
+          appleBtn.style.removeProperty('display');
+          cleanEmptyAttrs(appleBtn);
+        }
+      }
+    } else if (comp === 'form-group') {
+      const inputs = preview.querySelectorAll('input');
+      if (variant.includes('empty')) {
+        inputs.forEach(inp => {
+          inp.value = '';
+          inp.removeAttribute('value');
+          inp.style.removeProperty('border-color');
+          inp.style.removeProperty('box-shadow');
+          cleanEmptyAttrs(inp);
+        });
+      } else if (variant.includes('filled')) {
+        const vals = ['Alex Morgan', 'Senior Product Designer', 'Miami, FL'];
+        inputs.forEach((inp, i) => {
+          if (vals[i]) {
+            inp.value = vals[i];
+            inp.setAttribute('value', vals[i]);
+          }
+          inp.style.removeProperty('border-color');
+          inp.style.removeProperty('box-shadow');
+          cleanEmptyAttrs(inp);
+        });
+      } else if (variant.includes('focus') && inputs[0]) {
+        if (!options.initial) inputs[0].focus();
+        inputs[0].style.borderColor = '#ff3300';
+        inputs[0].style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
+      }
+    } else if (comp === 'text-field') {
+      const inp = preview.querySelector('input');
+      if (inp) {
+        if (variant.includes('filled')) {
+          inp.value = 'Alex Morgan';
+          inp.setAttribute('value', 'Alex Morgan');
+          inp.style.removeProperty('border-color');
+          inp.style.removeProperty('box-shadow');
+          cleanEmptyAttrs(inp);
+        } else if (variant.includes('focus')) {
+          if (!options.initial) inp.focus();
+          inp.style.borderColor = '#ff3300';
+          inp.style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
+        } else {
+          inp.value = '';
+          inp.removeAttribute('value');
+          inp.style.removeProperty('border-color');
+          inp.style.removeProperty('box-shadow');
+          cleanEmptyAttrs(inp);
+        }
+      }
+    } else if (comp === 'search-field') {
+      const inp = preview.querySelector('input');
+      const clearBtn = preview.querySelector('.network-search-clear, button');
+      if (inp) {
+        if (variant.includes('filled')) {
+          inp.value = 'Product Designer';
+          inp.setAttribute('value', 'Product Designer');
+          inp.style.removeProperty('border-color');
+          cleanEmptyAttrs(inp);
+          if (clearBtn) {
+            clearBtn.classList.remove('hide');
+            clearBtn.style.removeProperty('display');
+            cleanEmptyAttrs(clearBtn);
+            normalizeElementClasses(clearBtn);
+          }
+        } else if (variant.includes('focus')) {
+          if (!options.initial) inp.focus();
+          inp.style.borderColor = '#ff3300';
+          if (clearBtn) {
+            clearBtn.classList.add('hide');
+            clearBtn.style.removeProperty('display');
+            cleanEmptyAttrs(clearBtn);
+            normalizeElementClasses(clearBtn);
+          }
+        } else {
+          inp.value = '';
+          inp.removeAttribute('value');
+          inp.style.removeProperty('border-color');
+          cleanEmptyAttrs(inp);
+          if (clearBtn) {
+            clearBtn.classList.add('hide');
+            clearBtn.style.removeProperty('display');
+            cleanEmptyAttrs(clearBtn);
+            normalizeElementClasses(clearBtn);
+          }
+        }
+      }
+    } else if (comp === 'radio') {
+      const optionsList = preview.querySelectorAll('.option');
+      const isSelected = (variant === 'selected');
+      optionsList.forEach((opt, idx) => {
+        const choose = isSelected && idx === 0;
+        opt.classList.toggle('chosen', choose);
+        opt.setAttribute('aria-checked', String(choose));
+        normalizeElementClasses(opt);
+      });
+    } else if (comp === 'session-duration') {
+      const durBtns = preview.querySelectorAll('.durations button, button');
+      durBtns.forEach((b, idx) => {
+        let isChosen = false;
+        if (variant.includes('30')) isChosen = (idx === 0);
+        else if (variant.includes('120')) isChosen = (idx === 2);
+        else isChosen = (idx === 1);
+        b.classList.toggle('chosen', isChosen);
+        b.setAttribute('aria-pressed', String(isChosen));
+        normalizeElementClasses(b);
+      });
+    } else if (comp === 'switch') {
+      const sw = preview.querySelector('[role="switch"], .settings-toggle');
+      if (sw) {
+        const isOff = variant.includes('off') || variant.includes('disabled');
+        sw.setAttribute('aria-checked', String(!isOff));
+        sw.classList.toggle('off', isOff);
+        normalizeElementClasses(sw);
+      }
+    } else if (comp === 'intent-choice') {
+      const choices = preview.querySelectorAll('.journey-choice');
+      const isSelected = (variant === 'selected');
+      choices.forEach((c, idx) => {
+        const choose = isSelected && (idx === 0 || idx === 3);
+        c.classList.toggle('selected', choose);
+        c.setAttribute('aria-pressed', String(choose));
+        normalizeElementClasses(c);
+      });
+    } else if (comp === 'skills-chip-input') {
+      const chipList = preview.querySelector('.skills-chip-list, [class*="chip-list"]');
+      const input = preview.querySelector('input');
+      const defaultSkills = ['Product Design', 'Figma', 'Design Systems', 'Prototyping'];
+      if (variant.includes('empty')) {
+        if (chipList) chipList.innerHTML = '';
+        if (input) {
+          input.value = '';
+          input.removeAttribute('value');
+          input.placeholder = 'Type a skill and press Enter...';
+          input.style.removeProperty('border-color');
+          input.style.removeProperty('box-shadow');
+          cleanEmptyAttrs(input);
+        }
+      } else if (variant.includes('focus')) {
+        if (chipList && !chipList.children.length) {
+          chipList.innerHTML = defaultSkills.map(s => 
+            '<span class="skills-chip-item"><span>' + s + '</span><button type="button" aria-label="Remove ' + s + '">×</button></span>'
+          ).join('');
+        }
+        if (input) {
+          if (!options.initial) input.focus();
+          input.placeholder = 'Type another skill and press Enter...';
+          input.style.borderColor = '#ff3300';
+          input.style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
+        }
+      } else {
+        // Default (4 Chips)
+        if (chipList) {
+          chipList.innerHTML = defaultSkills.map(s => 
+            '<span class="skills-chip-item"><span>' + s + '</span><button type="button" aria-label="Remove ' + s + '">×</button></span>'
+          ).join('');
+        }
+        if (input) {
+          input.value = '';
+          input.removeAttribute('value');
+          input.placeholder = 'Type a skill and press Enter...';
+          input.style.removeProperty('border-color');
+          input.style.removeProperty('box-shadow');
+          cleanEmptyAttrs(input);
+        }
+      }
+    } else if (comp === 'discovery-filter') {
+      const roleSel = preview.querySelector('select[id*="discovery-role"], select:first-of-type');
+      if (roleSel) {
+        let targetVal = 'all';
+        if (variant.includes('engineering')) targetVal = 'engineer';
+        else if (variant.includes('design')) targetVal = 'design';
+        else if (variant.includes('founders')) targetVal = 'founder';
+        roleSel.value = targetVal;
+        Array.from(roleSel.options).forEach(opt => {
+          if (opt.value === targetVal) opt.setAttribute('selected', '');
+          else opt.removeAttribute('selected');
+        });
+      }
+    } else if (comp === 'bottom-nav') {
+      const nav = preview.querySelector('.nav');
+      let activeIndex = 0;
+      if (variant === 'connections-active') activeIndex = 1;
+      else if (variant === 'profile-active') activeIndex = 2;
+      if (nav) selectBottomNav(nav, activeIndex, { animate: !options.initial && options.animate !== false, syncVariant: false });
+    } else if (comp === 'tabs') {
+      const seg = preview.querySelector('.seg');
+      const isMap = variant.includes('map');
+      if (seg) selectSegmented(seg, isMap ? 0 : 1, { animate: !options.initial && options.animate !== false, syncVariant: false });
+    } else if (comp === 'request-tabs') {
+      const seg = preview.querySelector('.journey-tabs');
+      const isRecv = variant.includes('received');
+      if (seg) selectSegmented(seg, isRecv ? 0 : 1, { animate: !options.initial && options.animate !== false, syncVariant: false });
+    } else if (comp === 'app-bar') {
+      const head = preview.querySelector('.myprofile-head, header');
+      if (head) {
+        head.style.removeProperty('background');
+        head.style.removeProperty('backdrop-filter');
+        head.style.removeProperty('box-shadow');
+        cleanEmptyAttrs(head);
+      }
+    } else if (comp === 'profile-card') {
+      const isConn = variant.includes('connected');
+      card.classList.toggle('is-connected', isConn);
+      setProfileCardState(preview, isConn);
+    } else if (comp === 'network-row') {
+      const row = preview.querySelector('.journey-person');
+      const isUnread = variant.toLowerCase().includes('unread');
+      if (row) {
+        const btn = row.querySelector('button');
+        const existingIndicator = row.querySelector('.network-unread-indicator');
+        const existingSr = row.querySelector('.network-unread-sr, .sr-only');
+        const legacyBadge = row.querySelector('.ds-network-unread-badge');
+        if (legacyBadge) legacyBadge.remove();
+        if (isUnread) {
+          if (btn) {
+            btn.classList.add('has-unread');
+            normalizeElementClasses(btn);
+            if (!btn._originalAriaLabel) {
+              btn._originalAriaLabel = btn.getAttribute('aria-label') || '';
+            }
+            const rawName = row.querySelector('strong')?.childNodes[0]?.textContent?.trim() || 'connection';
+            const baseLabel = btn._originalAriaLabel || ('View profile for ' + rawName);
+            btn.setAttribute('aria-label', baseLabel + ' (1 unread message)');
+            if (!existingIndicator) {
+              const indicator = document.createElement('span');
+              indicator.className = 'network-unread-indicator';
+              indicator.setAttribute('aria-hidden', 'true');
+              indicator.innerHTML = '<span class="network-unread-dot"></span><span class="network-unread-ring ring-1" aria-hidden="true"></span><span class="network-unread-ring ring-2" aria-hidden="true"></span>';
+              btn.append(indicator);
+            }
+            if (!existingSr) {
+              const sr = document.createElement('span');
+              sr.className = 'sr-only network-unread-sr';
+              sr.textContent = '1 unread message';
+              btn.append(sr);
+            }
+          }
+        } else {
+          if (existingIndicator) existingIndicator.remove();
+          if (existingSr) existingSr.remove();
+          if (btn) {
+            btn.classList.remove('has-unread');
+            cleanEmptyAttrs(btn);
+            if (btn._originalAriaLabel) {
+              btn.setAttribute('aria-label', btn._originalAriaLabel);
+            } else {
+              btn.removeAttribute('aria-label');
+            }
+            delete btn._originalAriaLabel;
+          }
+        }
+      }
+    } else if (comp === 'activity-item') {
+      const titleEl = preview.querySelector('.activity-title, .activity-top-line strong, .activity-head strong');
+      const sub = preview.querySelector('.activity-subtitle, [class*="subtitle"], p');
+      const timeEl = preview.querySelector('.activity-time');
+      const actions = preview.querySelector('.activity-actions, [class*="actions"]');
+      const av = preview.querySelector('.activity-avatar');
+
+      if (variant.includes('system')) {
+        if (titleEl && !titleEl._origTitle) {
+          titleEl._origTitle = titleEl.textContent;
+          titleEl.textContent = 'Nearby visibility session ended';
+        }
+        if (sub && !sub._origSub) {
+          sub._origSub = sub.textContent;
+          sub.textContent = 'Session ended automatically · 5m presence window expired';
+        }
+        if (timeEl && !timeEl._origTime) {
+          timeEl._origTime = timeEl.textContent;
+          timeEl.textContent = '1h ago';
+        }
+        if (av && !av._origHtml) {
+          av._origHtml = av.innerHTML;
+          av.innerHTML = '<i class="ph ph-bell" aria-hidden="true"></i>';
+          av.classList.add('system-avatar');
+        }
+        if (actions) actions.style.display = 'none';
+      } else {
+        if (titleEl && titleEl._origTitle) {
+          titleEl.textContent = titleEl._origTitle;
+          delete titleEl._origTitle;
+        }
+        if (sub && sub._origSub) {
+          sub.textContent = sub._origSub;
+          delete sub._origSub;
+        }
+        if (timeEl && timeEl._origTime) {
+          timeEl.textContent = timeEl._origTime;
+          delete timeEl._origTime;
+        }
+        if (av && av._origHtml) {
+          av.innerHTML = av._origHtml;
+          av.classList.remove('system-avatar');
+          cleanEmptyAttrs(av);
+          delete av._origHtml;
+        }
+        if (actions) {
+          actions.style.removeProperty('display');
+          cleanEmptyAttrs(actions);
+        }
+      }
+    } else if (comp === 'list') {
+      const group = preview.querySelector('.settings-group') || preview;
+      if (!group) return;
+
+      if (variant.includes('privacy') || variant.includes('legal')) {
+        if (!group._origHtml) {
+          group._origHtml = group.innerHTML;
+        }
+        group.innerHTML = [
+          '<div class="settings-label">PRIVACY & LEGAL</div>',
+          '<button class="settings-item" type="button" id="settings-privacy-policy">',
+          '  <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+          '  <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
+          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+          '</button>',
+          '<button class="settings-item" type="button" id="settings-terms">',
+          '  <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
+          '  <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
+          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+          '</button>',
+          '<button class="settings-item" type="button" id="settings-standards">',
+          '  <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
+          '  <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
+          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+          '</button>'
+        ].join('\n');
+      } else if (variant.includes('pref')) {
+        if (!group._origHtml) {
+          group._origHtml = group.innerHTML;
+        }
+        group.innerHTML = [
+          '<div class="settings-label">PREFERENCES</div>',
+          '<button class="settings-item" type="button" data-go="notifications">',
+          '  <span class="settings-ico"><i class="ph ph-bell-ringing" aria-hidden="true"></i></span>',
+          '  <span><strong>Notification preferences</strong><small>Choose your updates</small></span>',
+          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+          '</button>',
+          '<button class="settings-item" type="button" id="settings-appearance">',
+          '  <span class="settings-ico"><i class="ph ph-sun" aria-hidden="true"></i></span>',
+          '  <span><strong>Appearance</strong><small id="settings-appearance-label">Light mode</small></span>',
+          '  <i class="ph ph-arrows-clockwise" aria-hidden="true"></i>',
+          '</button>'
+        ].join('\n');
+      } else {
+        if (group._origHtml) {
+          group.innerHTML = group._origHtml;
+          delete group._origHtml;
+        }
+      }
+    } else if (comp === 'identity-card') {
+      const nameEl = preview.querySelector('#own-name, [id="own-name"], h3');
+      const titleEl = preview.querySelector('#own-title, [id="own-title"], p');
+      const avatarEl = preview.querySelector('.myprofile-avatar');
+      const fill = preview.querySelector('.completion-track i, .track i');
+      const pct = preview.querySelector('.completion-top b, b');
+      if (variant.includes('incomplete')) {
+        if (nameEl) nameEl.textContent = 'Your name';
+        if (titleEl) titleEl.textContent = 'Add your professional headline...';
+        if (avatarEl) avatarEl.textContent = 'YN';
+        if (fill) fill.style.width = '60%';
+        if (pct) pct.textContent = '60%';
+      } else {
+        if (nameEl) nameEl.textContent = 'Alex Morgan';
+        if (titleEl) titleEl.textContent = 'Product & Experience Designer';
+        if (avatarEl) avatarEl.textContent = 'AM';
+        if (fill) fill.style.width = '100%';
+        if (pct) pct.textContent = '100%';
+      }
+    } else if (comp === 'avatar') {
+      const av = preview.querySelector('.avatar, .myprofile-avatar');
+      if (av) {
+        if (variant.includes('initials')) {
+          av.querySelectorAll('img').forEach(im => im.remove());
+          av.textContent = 'AM';
+          av.style.backgroundColor = '#e1c9c6';
+          av.style.color = '#705457';
+        } else {
+          av.textContent = '';
+          const img = document.createElement('img');
+          img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://i.pravatar.cc/240?img=12';
+          img.alt = 'Alex Morgan';
+          img.loading = 'lazy';
+          av.replaceChildren(img);
+          av.style.removeProperty('background-color');
+          av.style.removeProperty('color');
+          cleanEmptyAttrs(av);
+        }
+      }
+    } else if (comp === 'chip') {
+      const chips = preview.querySelectorAll('.chip, .myprofile-chip, span');
+      if (variant.includes('active')) {
+        if (chips[0]) {
+          chips[0].style.borderColor = '#ff3300';
+          chips[0].style.backgroundColor = 'rgba(255, 51, 0, 0.08)';
+        }
+      } else if (chips[0]) {
+        chips[0].style.removeProperty('border-color');
+        chips[0].style.removeProperty('background-color');
+        cleanEmptyAttrs(chips[0]);
+      }
+    } else if (comp === 'profile-progress') {
+      const fill = preview.querySelector('.completion-track i, .track i, .completion-fill, [class*="fill"]');
+      const txt = preview.querySelector('.completion-top b, .complete-pct, b');
+      if (variant.includes('65')) {
+        if (fill) fill.style.width = '65%';
+        if (txt) txt.textContent = '65%';
+      } else {
+        if (fill) fill.style.width = '100%';
+        if (txt) txt.textContent = '100%';
+      }
+    } else if (comp === 'profile-menu') {
+      const items = preview.querySelectorAll('.myprofile-menu-item, button, .menu-row');
+      if (variant.includes('active')) {
+        if (items[0]) items[0].style.backgroundColor = 'rgba(255, 51, 0, 0.08)';
+      } else if (items[0]) {
+        items[0].style.removeProperty('background-color');
+        cleanEmptyAttrs(items[0]);
+      }
+    } else if (comp === 'content-section') {
+      const h3 = preview.querySelector('h3');
+      const p = preview.querySelector('p');
+      if (variant.includes('experience')) {
+        if (h3) h3.textContent = 'Experience';
+        if (p) p.textContent = 'Senior Product Designer at Studio Monolith (2023 — Present)';
+      } else {
+        if (h3) h3.textContent = 'About';
+        if (p) p.textContent = 'I turn messy early-stage ideas into clear product experiences.';
+      }
+    } else if (comp === 'verified-badge') {
+      const badge = preview.querySelector('.li-verified-badge');
+      if (badge) {
+        if (variant.includes('unverified')) {
+          badge.style.display = 'none';
+        } else {
+          badge.style.removeProperty('display');
+          cleanEmptyAttrs(badge);
+        }
+      }
+    } else if (comp === 'profile-documents') {
+      const isLocked = !variant.startsWith('unlocked') && variant.includes('locked');
+      const cards = preview.querySelectorAll('.peopi-doc-card');
+      const list = preview.querySelector('.peopi-docs-grid, #ds-specimen-myprofile-docs-list');
+      let lockHint = preview.querySelector('.connection-docs-locked-hint');
+      
+      const docSpecs = [
+        { title: 'CV / Resume', file: 'Sahin_Erdemir_Resume.pdf', ext: 'pdf', size: '2.4 MB' },
+        { title: 'One Pager', file: 'Product_Vision_OnePager.docx', ext: 'docx', size: '1.1 MB' },
+        { title: 'Portfolio Deck', file: 'Selected_Works_2026.png', ext: 'png', size: '4.8 MB' }
+      ];
+
+      cards.forEach((c, idx) => {
+        const info = c.querySelector('.peopi-doc-info');
+        const fileEl = c.querySelector('.peopi-doc-filename');
+        let lockTag = c.querySelector('.peopi-doc-lock-tag');
+        const spec = docSpecs[idx] || { title: 'Document', file: 'document.pdf', ext: 'pdf', size: '1.0 MB' };
+
+        c.classList.toggle('doc-locked', isLocked);
+        if (info) info.classList.toggle('peopi-doc-blurred', isLocked);
+
+        if (isLocked) {
+          c.setAttribute('aria-label', 'Attached document (Unlocks after connecting)');
+          if (fileEl) fileEl.textContent = '••••••••••••••••.' + spec.ext;
+          if (!lockTag) {
+            lockTag = document.createElement('div');
+            lockTag.className = 'peopi-doc-lock-tag';
+            lockTag.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i><span>Connect to view</span>';
+            c.appendChild(lockTag);
+          }
+        } else {
+          c.setAttribute('aria-label', spec.title + ' (' + spec.ext.toUpperCase() + ')');
+          if (fileEl) fileEl.textContent = spec.file;
+          if (lockTag) lockTag.remove();
+        }
+      });
+
+      if (isLocked) {
+        if (!lockHint && list) {
+          lockHint = document.createElement('p');
+          lockHint.className = 'connection-docs-locked-hint';
+          lockHint.style.cssText = 'margin-top:14px;font-size:12px;color:var(--ink-secondary,#64748B);display:flex;align-items:center;gap:6px;';
+          lockHint.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i> Documents unlock after connecting.';
+          list.after(lockHint);
+        }
+      } else {
+        if (lockHint) lockHint.remove();
+      }
+    } else if (comp === 'connection-request') {
+      const isSent = variant.includes('sent');
+      setConnectionRequestState(preview, isSent);
+    } else if (comp === 'chat-bubble') {
+      const rows = preview.querySelectorAll('.chat-row');
+      rows.forEach((r, idx) => {
+        if (variant === 'full-thread') {
+          r.style.removeProperty('display');
+          cleanEmptyAttrs(r);
+        } else if (variant === 'received-only') {
+          if (idx === 0) {
+            r.style.removeProperty('display');
+            cleanEmptyAttrs(r);
+          } else {
+            r.style.display = 'none';
+          }
+        } else if (variant === 'sent-only') {
+          if (idx === 1) {
+            r.style.removeProperty('display');
+            cleanEmptyAttrs(r);
+          } else {
+            r.style.display = 'none';
+          }
+        }
+      });
+    } else if (comp === 'chat-composer') {
+      const ta = preview.querySelector('input, textarea');
+      const sBtn = preview.querySelector('button[type="submit"], button.chat-send-btn, button:last-child');
+      if (variant.includes('typing')) {
+        const draft = 'Coffee near the main hall in 15 minutes? ☕';
+        if (ta) { ta.value = draft; ta.setAttribute('value', draft); }
+        if (sBtn) {
+          sBtn.disabled = false;
+          sBtn.removeAttribute('disabled');
+          sBtn.removeAttribute('style');
+          sBtn.style.opacity = '1';
+        }
+      } else {
+        if (ta) { ta.value = ''; ta.removeAttribute('value'); }
+        if (sBtn) {
+          sBtn.removeAttribute('style');
+          sBtn.removeAttribute('disabled');
+          sBtn.setAttribute('disabled', '');
+          sBtn.disabled = true;
+          sBtn.style.opacity = '0.5';
+        }
+      }
+    } else if (comp === 'privacy') {
+      const isVisible = variant.startsWith('visible') || variant === 'visible-open';
+      const dot = preview.querySelector('.dot');
+      const titleEl = preview.querySelector('#privacy-presence-title, [id="privacy-presence-title"], strong');
+      const descEl = preview.querySelector('#privacy-presence-description, [id="privacy-presence-description"], small');
+      const iconEl = preview.querySelector('.privacy-status-icon i, i');
+      const actionBtn = preview.querySelector('#privacy-presence-action, [id="privacy-presence-action"], button');
+      const statusBox = preview.querySelector('.privacy-status');
+
+      if (statusBox) statusBox.classList.toggle('status-live', isVisible);
+      if (dot) dot.classList.toggle('live', isVisible);
+
+      if (isVisible) {
+        if (titleEl) titleEl.textContent = 'Discovery is active';
+        if (descEl) descEl.textContent = 'Broadcasting approximate presence nearby · 45 min remaining.';
+        if (iconEl) iconEl.className = 'ph ph-broadcast';
+        if (actionBtn) actionBtn.innerHTML = 'Go invisible <i class="ph ph-eye-slash" aria-hidden="true"></i>';
+      } else {
+        if (titleEl) titleEl.textContent = 'Invisible by default';
+        if (descEl) descEl.textContent = 'You are currently invisible. Visible only when you choose to start a session.';
+        if (iconEl) iconEl.className = 'ph ph-eye-slash';
+        if (actionBtn) actionBtn.innerHTML = 'Discover <i class="ph ph-arrow-up-right" aria-hidden="true"></i>';
+      }
+    } else if (comp === 'privacy-row') {
+      const small = preview.querySelector('.privacy-setting-copy small, small');
+      const btn = preview.querySelector('.privacy-inline, button');
+      const isOff = variant.includes('off') || variant.includes('empty');
+      if (small) {
+        small.textContent = isOff
+          ? 'Hidden list is empty · Standard presence rules apply during active sessions.'
+          : '3 connections hidden · Presence concealed even during active discovery sessions.';
+      }
+      if (btn) {
+        if (isOff) {
+          btn.style.opacity = '0.6';
+        } else {
+          btn.style.removeProperty('opacity');
+          cleanEmptyAttrs(btn);
+        }
+      }
+    } else if (comp === 'verification-status') {
+      const isConnected = !variant.includes('unconnected') && variant.includes('connected');
+      const sub = preview.querySelector('#verify-linkedin-sub, [id="verify-linkedin-sub"], small');
+      const connectBtn = preview.querySelector('#verify-connect, [id="verify-connect"]');
+      const disconnectBtn = preview.querySelector('#verify-disconnect, [id="verify-disconnect"]');
+      const row = preview.querySelector('.verify-row');
+
+      if (sub) {
+        sub.textContent = isConnected ? 'Connected · Public profile linked' : 'Not connected';
+      }
+      if (connectBtn) {
+        connectBtn.classList.toggle('hide', isConnected);
+        if (isConnected) connectBtn.style.display = 'none';
+        else {
+          connectBtn.style.removeProperty('display');
+          cleanEmptyAttrs(connectBtn);
+        }
+      }
+      if (disconnectBtn) {
+        disconnectBtn.classList.toggle('hide', !isConnected);
+        if (isConnected) disconnectBtn.style.display = 'flex';
+        else {
+          disconnectBtn.style.removeProperty('display');
+          cleanEmptyAttrs(disconnectBtn);
+        }
+      }
+      if (row) {
+        row.classList.toggle('is-connected', isConnected);
+      }
+    } else if (comp === 'toast-notification') {
+      const toast = preview.querySelector('#toast, .toast, [data-ds-source-id="toast"]');
+      if (toast) {
+        if (variant === 'information') {
+          toast.textContent = 'Social sign-in is a UI demo. OAuth is not connected yet.';
+          toast.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        } else if (variant === 'success') {
+          toast.textContent = 'Connection request sent successfully!';
+          toast.style.borderColor = '#22b783';
+        } else if (variant === 'warning') {
+          toast.textContent = 'Location accuracy is reduced in Private Mode.';
+          toast.style.borderColor = '#eab308';
+        }
+      }
+    } else if (comp === 'session-alert') {
+      const alert = preview.querySelector('#session-alert, .session-alert, [data-ds-source-id="session-alert"]');
+      let dismissHint = preview.querySelector('.ds-alert-dismissed-hint');
+      if (variant === 'dismissed') {
+        if (alert) alert.style.display = 'none';
+        if (!dismissHint && preview) {
+          dismissHint = document.createElement('div');
+          dismissHint.className = 'ds-alert-dismissed-hint';
+          dismissHint.style.cssText = 'padding:24px 16px;text-align:center;color:#64748B;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;';
+          dismissHint.innerHTML = '<i class="ph ph-bell-slash" style="color:#ff3300;"></i><span>Alert dismissed · Location beacon remains active</span>';
+          preview.appendChild(dismissHint);
+        }
+      } else {
+        if (alert) {
+          alert.style.removeProperty('display');
+          cleanEmptyAttrs(alert);
+        }
+        if (dismissHint) dismissHint.remove();
+      }
+    } else if (comp === 'verification-step') {
+      const principles = preview.querySelector('.verify-principles');
+      if (principles) {
+        let fourth = principles.querySelector('.verify-principle-expanded');
+        const isExpanded = variant.includes('expanded');
+        if (isExpanded) {
+          if (!fourth) {
+            fourth = document.createElement('div');
+            fourth.className = 'verify-principle-expanded';
+            fourth.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i><span><strong>Pre-connection privacy</strong><small>Initials-based halos protect identity until mutual connection acceptance.</small></span>';
+            principles.appendChild(fourth);
+          }
+        } else {
+          if (fourth) fourth.remove();
+        }
+      }
+    } else if (comp === 'empty-state') {
+      const emptyBox = preview.querySelector('.journey-empty');
+      if (emptyBox) {
+        const isConv = variant.includes('conversations');
+        const title = isConv ? 'No active conversations' : 'No incoming requests';
+        const desc = isConv ? 'Your accepted connections will appear here.' : 'New introductions will appear here.';
+        emptyBox.innerHTML = '<i class="ph ph-users-three" aria-hidden="true"></i><strong>' + title + '</strong>' + desc;
+      }
+    } else if (comp === 'sheet') {
+      const isConn = variant.includes('connected');
+      setProfileSheetState(preview, isConn);
+    } else if (comp === 'dialog') {
+      const isSignOut = variant.includes('sign-out');
+      setDialogState(preview, isSignOut);
+    } else if (comp === 'exp-sheet') {
+      const isEdit = variant.includes('edit');
+      setExpSheetState(preview, isEdit);
+    } else if (comp === 'doc-sheet') {
+      const isEmpty = variant.includes('empty');
+      setDocSheetState(preview, isEmpty);
+    }
+
+    updateCardHandoff(card);
+  }
 
   // Handle window resizing to recalibrate indicators instantly without animating
   if (!window._dsWorkbenchResizeListener) {
@@ -15302,664 +16100,42 @@ if (typeof window !== 'undefined') {
   all('#ds-content .ds-workbench-card[data-component="radio"] .option').forEach(b => {
     b.addEventListener('click', () => {
       const card = b.closest('.ds-workbench-card');
-      const options = card.querySelectorAll('.option');
-      options.forEach(opt => {
-        const isTarget = (opt === b);
-        opt.classList.toggle('chosen', isTarget);
-        opt.setAttribute('aria-checked', String(isTarget));
-      });
-      setWorkbenchVariantActive(card, 0); // Selected
+      if (card) applyWorkbenchVariant(card, 0);
     });
   });
 
   all('#ds-content .ds-workbench-card[data-component="intent-choice"] .journey-choice').forEach(b => {
     b.addEventListener('click', () => {
       const card = b.closest('.ds-workbench-card');
+      if (!card) return;
       b.classList.toggle('selected');
       b.setAttribute('aria-pressed', String(b.classList.contains('selected')));
+      normalizeElementClasses(b);
       const hasAny = !!card.querySelector('.journey-choice.selected');
       setWorkbenchVariantActive(card, hasAny ? 0 : 1);
+      updateCardHandoff(card);
     });
   });
 
   all('#ds-content .ds-variant-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const card = btn.closest('.ds-workbench-card');
-      if (!card) return;
-      setWorkbenchVariantActive(card, btn);
-      const variant = btn.dataset.variant;
-      const comp = card.dataset.component;
-      const preview = card.querySelector('.ds-workbench-preview-viewport');
-      if (!preview) return;
-
-      if (comp === 'primary-action' || comp === 'quiet-action' || comp === 'destructive-action') {
-        const actionBtn = preview.querySelector('button');
-        if (actionBtn) {
-          actionBtn.dataset.origText = actionBtn.dataset.origText || actionBtn.innerHTML;
-          const isDis = variant.includes('disabled');
-          actionBtn.disabled = isDis;
-          actionBtn.style.opacity = isDis ? '0.45' : '';
-          if (variant === 'loading') {
-            actionBtn.innerHTML = '<i class="ph ph-spinner ds-spin" style="margin-right:6px"></i> Opening session...';
-          } else {
-            actionBtn.innerHTML = actionBtn.dataset.origText;
-          }
-          if (variant.includes('hover') || variant.includes('danger')) {
-            if (comp === 'destructive-action') {
-              actionBtn.style.backgroundColor = '#dc2626';
-              actionBtn.style.color = '#ffffff';
-            } else {
-              actionBtn.style.filter = 'brightness(1.15)';
-            }
-          } else {
-            actionBtn.style.filter = '';
-            if (comp === 'destructive-action') {
-              actionBtn.style.backgroundColor = '';
-              actionBtn.style.color = '';
-            }
-          }
-        }
-      } else if (comp === 'icon-button' || comp === 'fab') {
-        const iconBtn = preview.querySelector('button');
-        if (iconBtn) {
-          if (variant.includes('active') || variant.includes('elevated') || variant.includes('raised')) {
-            iconBtn.classList.add('ds-demo-active');
-            iconBtn.style.transform = 'scale(1.08)';
-            iconBtn.style.boxShadow = '0 6px 18px rgba(255,51,0,0.3)';
-          } else {
-            iconBtn.classList.remove('ds-demo-active');
-            iconBtn.style.transform = '';
-            iconBtn.style.boxShadow = '';
-          }
-        }
-      } else if (comp === 'social-auth') {
-        const googleBtn = preview.querySelector('[data-ds-source-id="auth-google"], #auth-google');
-        const appleBtn = preview.querySelector('[data-ds-source-id="auth-apple"], #auth-apple');
-        if (googleBtn) googleBtn.style.display = (variant === 'apple-only') ? 'none' : 'flex';
-        if (appleBtn) appleBtn.style.display = (variant === 'google-only') ? 'none' : 'flex';
-      } else if (comp === 'form-group') {
-        const inputs = preview.querySelectorAll('input');
-        if (variant.includes('empty')) {
-          inputs.forEach(inp => { inp.value = ''; inp.removeAttribute('value'); inp.style.borderColor = ''; inp.style.boxShadow = ''; });
-        } else if (variant.includes('filled')) {
-          const vals = ['Alex Morgan', 'Senior Product Designer', 'Miami, FL'];
-          inputs.forEach((inp, i) => {
-            if (vals[i]) {
-              inp.value = vals[i];
-              inp.setAttribute('value', vals[i]);
-            }
-            inp.style.borderColor = '';
-            inp.style.boxShadow = '';
-          });
-        } else if (variant.includes('focus') && inputs[0]) {
-          inputs[0].focus();
-          inputs[0].style.borderColor = '#ff3300';
-          inputs[0].style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
-        }
-      } else if (comp === 'text-field') {
-        const inp = preview.querySelector('input');
-        if (inp) {
-          if (variant.includes('filled')) {
-            inp.value = 'Alex Morgan';
-            inp.setAttribute('value', 'Alex Morgan');
-            inp.style.borderColor = '';
-            inp.style.boxShadow = '';
-          } else if (variant.includes('focus')) {
-            inp.focus();
-            inp.style.borderColor = '#ff3300';
-            inp.style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
-          } else {
-            inp.value = '';
-            inp.removeAttribute('value');
-            inp.style.borderColor = '';
-            inp.style.boxShadow = '';
-          }
-        }
-      } else if (comp === 'search-field') {
-        const inp = preview.querySelector('input');
-        const clearBtn = preview.querySelector('.network-search-clear, button');
-        if (inp) {
-          if (variant.includes('filled')) {
-            inp.value = 'Product Designer';
-            inp.setAttribute('value', 'Product Designer');
-            inp.style.borderColor = '';
-            if (clearBtn) clearBtn.style.display = 'flex';
-          } else if (variant.includes('focus')) {
-            inp.focus();
-            inp.style.borderColor = '#ff3300';
-          } else {
-            inp.value = '';
-            inp.removeAttribute('value');
-            inp.style.borderColor = '';
-            if (clearBtn) clearBtn.style.display = 'none';
-          }
-        }
-      } else if (comp === 'radio') {
-        const options = preview.querySelectorAll('.option');
-        const isSelected = (variant === 'selected');
-        options.forEach((opt, idx) => {
-          const choose = isSelected && idx === 0;
-          opt.classList.toggle('chosen', choose);
-          opt.setAttribute('aria-checked', String(choose));
-        });
-      } else if (comp === 'session-duration') {
-        const durBtns = preview.querySelectorAll('.durations button, button');
-        durBtns.forEach((b, idx) => {
-          if (variant.includes('30')) {
-            b.classList.toggle('chosen', idx === 0);
-          } else if (variant.includes('120')) {
-            b.classList.toggle('chosen', idx === 2);
-          } else {
-            b.classList.toggle('chosen', idx === 1);
-          }
-        });
-      } else if (comp === 'switch') {
-        const sw = preview.querySelector('[role="switch"], .settings-toggle');
-        if (sw) {
-          const isOff = variant.includes('off') || variant.includes('disabled');
-          sw.setAttribute('aria-checked', String(!isOff));
-          sw.classList.toggle('off', isOff);
-        }
-      } else if (comp === 'intent-choice') {
-        const choices = preview.querySelectorAll('.journey-choice');
-        const isSelected = (variant === 'selected');
-        choices.forEach((c, idx) => {
-          const choose = isSelected && (idx === 0 || idx === 3);
-          c.classList.toggle('selected', choose);
-          c.setAttribute('aria-pressed', String(choose));
-        });
-      } else if (comp === 'skills-chip-input') {
-        const chipList = preview.querySelector('.skills-chip-list, [class*="chip-list"]');
-        const input = preview.querySelector('input');
-        const defaultSkills = ['Product Design', 'Figma', 'Design Systems', 'Prototyping'];
-        if (variant.includes('empty')) {
-          if (chipList) chipList.innerHTML = '';
-          if (input) {
-            input.value = '';
-            input.removeAttribute('value');
-            input.placeholder = 'Type a skill and press Enter...';
-            input.style.borderColor = '';
-            input.style.boxShadow = '';
-          }
-        } else if (variant.includes('focus')) {
-          if (chipList && !chipList.children.length) {
-            chipList.innerHTML = defaultSkills.map(s => 
-              '<span class="skills-chip-item"><span>' + s + '</span><button type="button" aria-label="Remove ' + s + '">×</button></span>'
-            ).join('');
-          }
-          if (input) {
-            input.focus();
-            input.placeholder = 'Type another skill and press Enter...';
-            input.style.borderColor = '#ff3300';
-            input.style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
-          }
-        } else {
-          // Default (4 Chips)
-          if (chipList) {
-            chipList.innerHTML = defaultSkills.map(s => 
-              '<span class="skills-chip-item"><span>' + s + '</span><button type="button" aria-label="Remove ' + s + '">×</button></span>'
-            ).join('');
-          }
-          if (input) {
-            input.value = '';
-            input.removeAttribute('value');
-            input.placeholder = 'Type a skill and press Enter...';
-            input.style.borderColor = '';
-            input.style.boxShadow = '';
-          }
-        }
-      } else if (comp === 'discovery-filter') {
-        const roleSel = preview.querySelector('select[id*="discovery-role"], select:first-of-type');
-        if (roleSel) {
-          let targetVal = 'all';
-          if (variant.includes('engineering')) targetVal = 'engineer';
-          else if (variant.includes('design')) targetVal = 'design';
-          else if (variant.includes('founders')) targetVal = 'founder';
-          roleSel.value = targetVal;
-          Array.from(roleSel.options).forEach(opt => {
-            if (opt.value === targetVal) opt.setAttribute('selected', '');
-            else opt.removeAttribute('selected');
-          });
-          roleSel.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-      } else if (comp === 'bottom-nav') {
-        const nav = preview.querySelector('.nav');
-        let activeIndex = 0;
-        if (variant === 'connections-active') activeIndex = 1;
-        else if (variant === 'profile-active') activeIndex = 2;
-        if (nav) selectBottomNav(nav, activeIndex);
-      } else if (comp === 'tabs') {
-        const seg = preview.querySelector('.seg');
-        const isMap = variant.includes('map');
-        if (seg) selectSegmented(seg, isMap ? 0 : 1);
-      } else if (comp === 'request-tabs') {
-        const seg = preview.querySelector('.journey-tabs');
-        const isRecv = variant.includes('received');
-        if (seg) selectSegmented(seg, isRecv ? 0 : 1);
-      } else if (comp === 'app-bar') {
-        const head = preview.querySelector('.myprofile-head, header');
-        if (head) {
-          head.style.background = '';
-          head.style.backdropFilter = '';
-          head.style.boxShadow = '';
-        }
-      } else if (comp === 'profile-card') {
-        const isConn = variant.includes('connected');
-        card.classList.toggle('is-connected', isConn);
-        setProfileCardState(preview, isConn);
-      } else if (comp === 'network-row') {
-        const row = preview.querySelector('.journey-person');
-        const isUnread = variant.toLowerCase().includes('unread');
-        if (typeof setJourneyRowUnread === 'function') {
-          setJourneyRowUnread(row, isUnread);
-        } else if (row) {
-          const btn = row.querySelector('button');
-          const existingIndicator = row.querySelector('.network-unread-indicator');
-          const existingSr = row.querySelector('.network-unread-sr, .sr-only');
-          const legacyBadge = row.querySelector('.ds-network-unread-badge');
-          if (legacyBadge) legacyBadge.remove();
-          if (isUnread) {
-            if (btn) {
-              btn.classList.add('has-unread');
-              if (!btn.dataset.originalAriaLabel) {
-                btn.dataset.originalAriaLabel = btn.getAttribute('aria-label') || '';
-              }
-              const rawName = row.querySelector('strong')?.childNodes[0]?.textContent?.trim() || 'connection';
-              const baseLabel = btn.dataset.originalAriaLabel || ('View profile for ' + rawName);
-              btn.setAttribute('aria-label', baseLabel + ' (1 unread message)');
-              if (!existingIndicator) {
-                const indicator = document.createElement('span');
-                indicator.className = 'network-unread-indicator';
-                indicator.setAttribute('aria-hidden', 'true');
-                indicator.innerHTML = '<span class="network-unread-dot"></span><span class="network-unread-ring ring-1" aria-hidden="true"></span><span class="network-unread-ring ring-2" aria-hidden="true"></span>';
-                btn.append(indicator);
-              }
-              if (!existingSr) {
-                const sr = document.createElement('span');
-                sr.className = 'sr-only network-unread-sr';
-                sr.textContent = '1 unread message';
-                btn.append(sr);
-              }
-            }
-          } else {
-            if (existingIndicator) existingIndicator.remove();
-            if (existingSr) existingSr.remove();
-            if (btn) {
-              btn.classList.remove('has-unread');
-              if (btn.dataset.originalAriaLabel) {
-                btn.setAttribute('aria-label', btn.dataset.originalAriaLabel);
-              } else {
-                btn.removeAttribute('aria-label');
-              }
-              delete btn.dataset.originalAriaLabel;
-            }
-          }
-        }
-      } else if (comp === 'activity-item') {
-        const titleEl = preview.querySelector('.activity-title, .activity-top-line strong, .activity-head strong');
-        const sub = preview.querySelector('.activity-subtitle, [class*="subtitle"], p');
-        const timeEl = preview.querySelector('.activity-time');
-        const actions = preview.querySelector('.activity-actions, [class*="actions"]');
-        const av = preview.querySelector('.activity-avatar');
-
-        if (variant.includes('system')) {
-          if (titleEl && !titleEl.dataset.originalTitle) {
-            titleEl.dataset.originalTitle = titleEl.textContent;
-            titleEl.textContent = 'Nearby visibility session ended';
-          }
-          if (sub && !sub.dataset.originalSub) {
-            sub.dataset.originalSub = sub.textContent;
-            sub.textContent = 'Session ended automatically · 5m presence window expired';
-          }
-          if (timeEl && !timeEl.dataset.originalTime) {
-            timeEl.dataset.originalTime = timeEl.textContent;
-            timeEl.textContent = '1h ago';
-          }
-          if (av && !av.dataset.originalHtml) {
-            av.dataset.originalHtml = av.innerHTML;
-            av.innerHTML = '<i class="ph ph-bell" aria-hidden="true"></i>';
-            av.classList.add('system-avatar');
-          }
-          if (actions) actions.style.display = 'none';
-        } else {
-          if (titleEl && titleEl.dataset.originalTitle) {
-            titleEl.textContent = titleEl.dataset.originalTitle;
-            delete titleEl.dataset.originalTitle;
-          }
-          if (sub && sub.dataset.originalSub) {
-            sub.textContent = sub.dataset.originalSub;
-            delete sub.dataset.originalSub;
-          }
-          if (timeEl && timeEl.dataset.originalTime) {
-            timeEl.textContent = timeEl.dataset.originalTime;
-            delete timeEl.dataset.originalTime;
-          }
-          if (av && av.dataset.originalHtml) {
-            av.innerHTML = av.dataset.originalHtml;
-            av.classList.remove('system-avatar');
-            delete av.dataset.originalHtml;
-          }
-          if (actions) actions.style.display = '';
-        }
-      } else if (comp === 'list') {
-        const group = preview.querySelector('.settings-group') || preview;
-        if (!group) return;
-
-        if (variant.includes('privacy') || variant.includes('legal')) {
-          if (!group.dataset.originalHtml) {
-            group.dataset.originalHtml = group.innerHTML;
-          }
-          group.innerHTML = [
-            '<div class="settings-label">PRIVACY & LEGAL</div>',
-            '<button class="settings-item" type="button" id="settings-privacy-policy">',
-            '  <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
-            '  <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
-            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-            '</button>',
-            '<button class="settings-item" type="button" id="settings-terms">',
-            '  <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
-            '  <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
-            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-            '</button>',
-            '<button class="settings-item" type="button" id="settings-standards">',
-            '  <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
-            '  <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
-            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-            '</button>'
-          ].join('\n');
-        } else if (variant.includes('pref')) {
-          if (!group.dataset.originalHtml) {
-            group.dataset.originalHtml = group.innerHTML;
-          }
-          group.innerHTML = [
-            '<div class="settings-label">PREFERENCES</div>',
-            '<button class="settings-item" type="button" data-go="notifications">',
-            '  <span class="settings-ico"><i class="ph ph-bell-ringing" aria-hidden="true"></i></span>',
-            '  <span><strong>Notification preferences</strong><small>Choose your updates</small></span>',
-            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-            '</button>',
-            '<button class="settings-item" type="button" id="settings-appearance">',
-            '  <span class="settings-ico"><i class="ph ph-sun" aria-hidden="true"></i></span>',
-            '  <span><strong>Appearance</strong><small id="settings-appearance-label">Light mode</small></span>',
-            '  <i class="ph ph-arrows-clockwise" aria-hidden="true"></i>',
-            '</button>'
-          ].join('\n');
-        } else {
-          if (group.dataset.originalHtml) {
-            group.innerHTML = group.dataset.originalHtml;
-            delete group.dataset.originalHtml;
-          }
-        }
-      } else if (comp === 'identity-card') {
-        const nameEl = preview.querySelector('#own-name, [id$="own-name"], h3');
-        const titleEl = preview.querySelector('#own-title, [id$="own-title"], p');
-        const avatarEl = preview.querySelector('.myprofile-avatar');
-        const fill = preview.querySelector('.completion-track i, .track i');
-        const pct = preview.querySelector('.completion-top b, b');
-        if (variant.includes('incomplete')) {
-          if (nameEl) nameEl.textContent = 'Your name';
-          if (titleEl) titleEl.textContent = 'Add your professional headline...';
-          if (avatarEl) avatarEl.textContent = 'YN';
-          if (fill) fill.style.width = '60%';
-          if (pct) pct.textContent = '60%';
-        } else {
-          if (nameEl) nameEl.textContent = 'Alex Morgan';
-          if (titleEl) titleEl.textContent = 'Product & Experience Designer';
-          if (avatarEl) avatarEl.textContent = 'AM';
-          if (fill) fill.style.width = '100%';
-          if (pct) pct.textContent = '100%';
-        }
-      } else if (comp === 'avatar') {
-        const av = preview.querySelector('.avatar, .myprofile-avatar');
-        if (av) {
-          if (variant.includes('initials')) {
-            av.querySelectorAll('img').forEach(im => im.remove());
-            av.textContent = 'AM';
-            av.style.backgroundColor = '#e1c9c6';
-            av.style.color = '#705457';
-          } else {
-            av.textContent = '';
-            const img = document.createElement('img');
-            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://i.pravatar.cc/240?img=12';
-            img.alt = 'Alex Morgan';
-            av.replaceChildren(img);
-          }
-        }
-      } else if (comp === 'chip') {
-        const chips = preview.querySelectorAll('.chip, .myprofile-chip, span');
-        if (variant.includes('active')) {
-          if (chips[0]) {
-            chips[0].style.borderColor = '#ff3300';
-            chips[0].style.backgroundColor = 'rgba(255, 51, 0, 0.08)';
-          }
-        } else if (chips[0]) {
-          chips[0].style.borderColor = '';
-          chips[0].style.backgroundColor = '';
-        }
-      } else if (comp === 'profile-progress') {
-        const fill = preview.querySelector('.completion-track i, .track i, .completion-fill, [class*="fill"]');
-        const txt = preview.querySelector('.completion-top b, .complete-pct, b');
-        if (variant.includes('65')) {
-          if (fill) fill.style.width = '65%';
-          if (txt) txt.textContent = '65%';
-        } else {
-          if (fill) fill.style.width = '100%';
-          if (txt) txt.textContent = '100%';
-        }
-      } else if (comp === 'profile-menu') {
-        const items = preview.querySelectorAll('.myprofile-menu-item, button, .menu-row');
-        if (variant.includes('active')) {
-          if (items[0]) items[0].style.backgroundColor = 'rgba(255, 51, 0, 0.08)';
-        } else if (items[0]) {
-          items[0].style.backgroundColor = '';
-        }
-      } else if (comp === 'content-section') {
-        const h3 = preview.querySelector('h3');
-        const p = preview.querySelector('p');
-        if (variant.includes('experience')) {
-          if (h3) h3.textContent = 'Experience';
-          if (p) p.textContent = 'Senior Product Designer at Studio Monolith (2023 — Present)';
-        } else {
-          if (h3) h3.textContent = 'About';
-          if (p) p.textContent = 'I turn messy early-stage ideas into clear product experiences.';
-        }
-      } else if (comp === 'verified-badge') {
-        const badge = preview.querySelector('.li-verified-badge');
-        if (badge) {
-          badge.style.display = variant.includes('unverified') ? 'none' : 'inline-flex';
-        }
-      } else if (comp === 'profile-documents') {
-        const isLocked = !variant.startsWith('unlocked') && variant.includes('locked');
-        const cards = preview.querySelectorAll('.peopi-doc-card');
-        const list = preview.querySelector('.peopi-docs-grid, #ds-specimen-myprofile-docs-list');
-        let lockHint = preview.querySelector('.connection-docs-locked-hint');
-        
-        const docSpecs = [
-          { title: 'CV / Resume', file: 'Sahin_Erdemir_Resume.pdf', ext: 'pdf', size: '2.4 MB' },
-          { title: 'One Pager', file: 'Product_Vision_OnePager.docx', ext: 'docx', size: '1.1 MB' },
-          { title: 'Portfolio Deck', file: 'Selected_Works_2026.png', ext: 'png', size: '4.8 MB' }
-        ];
-
-        cards.forEach((c, idx) => {
-          const info = c.querySelector('.peopi-doc-info');
-          const fileEl = c.querySelector('.peopi-doc-filename');
-          let lockTag = c.querySelector('.peopi-doc-lock-tag');
-          const spec = docSpecs[idx] || { title: 'Document', file: 'document.pdf', ext: 'pdf', size: '1.0 MB' };
-
-          c.classList.toggle('doc-locked', isLocked);
-          if (info) info.classList.toggle('peopi-doc-blurred', isLocked);
-
-          if (isLocked) {
-            c.setAttribute('aria-label', 'Attached document (Unlocks after connecting)');
-            if (fileEl) fileEl.textContent = '••••••••••••••••.' + spec.ext;
-            if (!lockTag) {
-              lockTag = document.createElement('div');
-              lockTag.className = 'peopi-doc-lock-tag';
-              lockTag.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i><span>Connect to view</span>';
-              c.appendChild(lockTag);
-            }
-          } else {
-            c.setAttribute('aria-label', spec.title + ' (' + spec.ext.toUpperCase() + ')');
-            if (fileEl) fileEl.textContent = spec.file;
-            if (lockTag) lockTag.remove();
-          }
-        });
-
-        if (isLocked) {
-          if (!lockHint && list) {
-            lockHint = document.createElement('p');
-            lockHint.className = 'connection-docs-locked-hint';
-            lockHint.style.cssText = 'margin-top:14px;font-size:12px;color:var(--ink-secondary,#64748B);display:flex;align-items:center;gap:6px;';
-            lockHint.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i> Documents unlock after connecting.';
-            list.after(lockHint);
-          }
-        } else {
-          if (lockHint) lockHint.remove();
-        }
-      } else if (comp === 'connection-request') {
-        const row = preview.querySelector('.request-received, .journey-person:first-child');
-        const sent = preview.querySelector('.request-sent, .journey-person:last-child');
-        const isSent = variant.includes('sent');
-        if (row && sent) {
-          row.style.display = isSent ? 'none' : 'flex';
-          sent.style.display = isSent ? 'flex' : 'none';
-        }
-      } else if (comp === 'chat-bubble') {
-        const rows = preview.querySelectorAll('.chat-row');
-        rows.forEach((r, idx) => {
-          if (variant === 'full-thread') r.style.display = 'flex';
-          else if (variant === 'received-only') r.style.display = idx === 0 ? 'flex' : 'none';
-          else if (variant === 'sent-only') r.style.display = idx === 1 ? 'flex' : 'none';
-        });
-      } else if (comp === 'chat-composer') {
-        const ta = preview.querySelector('input, textarea');
-        const sBtn = preview.querySelector('button[type="submit"], button.chat-send-btn, button:last-child');
-        if (variant.includes('typing')) {
-          const draft = 'Coffee near the main hall in 15 minutes? ☕';
-          if (ta) { ta.value = draft; ta.setAttribute('value', draft); }
-          if (sBtn) { sBtn.disabled = false; sBtn.style.opacity = '1'; }
-        } else {
-          if (ta) { ta.value = ''; ta.removeAttribute('value'); }
-          if (sBtn) { sBtn.disabled = true; sBtn.style.opacity = '0.5'; }
-        }
-      } else if (comp === 'privacy') {
-        const isVisible = variant.startsWith('visible') || variant === 'visible-open';
-        const dot = preview.querySelector('.dot');
-        const titleEl = preview.querySelector('#privacy-presence-title, [id$="privacy-presence-title"], strong');
-        const descEl = preview.querySelector('#privacy-presence-description, [id$="privacy-presence-description"], small');
-        const iconEl = preview.querySelector('.privacy-status-icon i, i');
-        const actionBtn = preview.querySelector('#privacy-presence-action, [id$="privacy-presence-action"], button');
-        const statusBox = preview.querySelector('.privacy-status');
-
-        if (statusBox) statusBox.classList.toggle('status-live', isVisible);
-        if (dot) dot.classList.toggle('live', isVisible);
-
-        if (isVisible) {
-          if (titleEl) titleEl.textContent = 'Discovery is active';
-          if (descEl) descEl.textContent = 'Broadcasting approximate presence nearby · 45 min remaining.';
-          if (iconEl) iconEl.className = 'ph ph-broadcast';
-          if (actionBtn) actionBtn.innerHTML = 'Go invisible <i class="ph ph-eye-slash" aria-hidden="true"></i>';
-        } else {
-          if (titleEl) titleEl.textContent = 'Invisible by default';
-          if (descEl) descEl.textContent = 'You are currently invisible. Visible only when you choose to start a session.';
-          if (iconEl) iconEl.className = 'ph ph-eye-slash';
-          if (actionBtn) actionBtn.innerHTML = 'Discover <i class="ph ph-arrow-up-right" aria-hidden="true"></i>';
-        }
-      } else if (comp === 'privacy-row') {
-        const small = preview.querySelector('.privacy-setting-copy small, small');
-        const btn = preview.querySelector('.privacy-inline, button');
-        const isOff = variant.includes('off') || variant.includes('empty');
-        if (small) {
-          small.textContent = isOff
-            ? 'Hidden list is empty · Standard presence rules apply during active sessions.'
-            : '3 connections hidden · Presence concealed even during active discovery sessions.';
-        }
-        if (btn) {
-          btn.style.opacity = isOff ? '0.6' : '1';
-        }
-      } else if (comp === 'verification-status') {
-        const isConnected = !variant.includes('unconnected') && variant.includes('connected');
-        const sub = preview.querySelector('#verify-linkedin-sub, [id$="verify-linkedin-sub"], small');
-        const connectBtn = preview.querySelector('#verify-connect, [id$="verify-connect"]');
-        const disconnectBtn = preview.querySelector('#verify-disconnect, [id$="verify-disconnect"]');
-        const row = preview.querySelector('.verify-row');
-
-        if (sub) {
-          sub.textContent = isConnected ? 'Connected · Public profile linked' : 'Not connected';
-        }
-        if (connectBtn) {
-          connectBtn.classList.toggle('hide', isConnected);
-          connectBtn.style.display = isConnected ? 'none' : 'flex';
-        }
-        if (disconnectBtn) {
-          disconnectBtn.classList.toggle('hide', !isConnected);
-          disconnectBtn.style.display = isConnected ? 'flex' : 'none';
-        }
-        if (row) {
-          row.classList.toggle('is-connected', isConnected);
-        }
-      } else if (comp === 'toast-notification') {
-        const toast = preview.querySelector('#toast, .toast, [data-ds-source-id="toast"]');
-        if (toast) {
-          if (variant === 'information') {
-            toast.textContent = 'Social sign-in is a UI demo. OAuth is not connected yet.';
-            toast.style.borderColor = 'rgba(255,255,255,0.2)';
-          } else if (variant === 'success') {
-            toast.textContent = 'Connection request sent successfully!';
-            toast.style.borderColor = '#22b783';
-          } else if (variant === 'warning') {
-            toast.textContent = 'Location accuracy is reduced in Private Mode.';
-            toast.style.borderColor = '#eab308';
-          }
-        }
-      } else if (comp === 'session-alert') {
-        const alert = preview.querySelector('#session-alert, .session-alert, [data-ds-source-id="session-alert"]');
-        let dismissHint = preview.querySelector('.ds-alert-dismissed-hint');
-        if (variant === 'dismissed') {
-          if (alert) alert.style.display = 'none';
-          if (!dismissHint && preview) {
-            dismissHint = document.createElement('div');
-            dismissHint.className = 'ds-alert-dismissed-hint';
-            dismissHint.style.cssText = 'padding:24px 16px;text-align:center;color:#64748B;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;';
-            dismissHint.innerHTML = '<i class="ph ph-bell-slash" style="color:#ff3300;"></i><span>Alert dismissed · Location beacon remains active</span>';
-            preview.appendChild(dismissHint);
-          }
-        } else {
-          if (alert) alert.style.display = 'flex';
-          if (dismissHint) dismissHint.remove();
-        }
-      } else if (comp === 'verification-step') {
-        const note = preview.querySelector('.verify-step-guidance, p');
-        if (note) {
-          note.textContent = variant.includes('expanded')
-            ? 'Peer credentials require mutual LinkedIn profile verification and verified work email.'
-            : 'Pre-connection profiles protect identity with initials-based privacy halos.';
-        }
-      } else if (comp === 'empty-state') {
-        const strong = preview.querySelector('strong, h3');
-        const desc = preview.querySelector('p, span');
-        if (variant.includes('conversations')) {
-          if (strong) strong.textContent = 'No active conversations';
-          if (desc) desc.textContent = 'Your accepted connections will appear here.';
-        } else {
-          if (strong) strong.textContent = 'No incoming requests';
-          if (desc) desc.textContent = 'New introductions will appear here.';
-        }
-      } else if (comp === 'sheet') {
-        const isConn = variant.includes('connected');
-        setProfileSheetState(preview, isConn);
-      } else if (comp === 'dialog') {
-        const isSignOut = variant.includes('sign-out');
-        setDialogState(preview, isSignOut);
-      } else if (comp === 'exp-sheet') {
-        const isEdit = variant.includes('edit');
-        setExpSheetState(preview, isEdit);
-      } else if (comp === 'doc-sheet') {
-        const isEmpty = variant.includes('empty');
-        setDocSheetState(preview, isEmpty);
-      }
-      updateCardHandoff(card);
+      if (card) applyWorkbenchVariant(card, btn);
     });
+  });
+
+  // INITIAL STATE SYNCHRONIZATION ACROSS ALL WORKBENCH CARDS IN DS-CONTENT
+  all('#ds-content .ds-workbench-card').forEach(card => {
+    const activeBtn = card.querySelector('.ds-variant-btn.active, .ds-variant-btn.is-active') || card.querySelector('.ds-variant-btn');
+    try {
+      if (activeBtn) {
+        applyWorkbenchVariant(card, activeBtn, { initial: true, animate: false });
+      } else {
+        updateCardHandoff(card);
+      }
+    } catch (err) {
+      console.error('[SYNC ERROR]', card.dataset.component, err.message, err.stack);
+    }
   });
 
   // Wire up workbench code box tabs and copy actions across all cards in ds-content
