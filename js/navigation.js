@@ -9717,11 +9717,11 @@ const peopiHandoffData = {
     "title": "Connection List Row",
     "category": "Cards & Lists",
     "sourceScreen": "My Network (`#network`)",
-    "purpose": "Compact connection list row with avatar, name, headline, and contextual action button.",
-    "tokens": "Height: 72pt · Avatar: 48×48pt · Radius: 18pt · Font: 16pt Primary Row · 13pt Support",
-    "motion": "Press: 90ms / 220ms. Tap pushes child connection detail route.",
-    "flutterSemantics": "`CupertinoListTile` with `leading`, `title`, `subtitle`, and `trailing`.",
-    "privacy": "Displays established connections only.",
+    "purpose": "Compact connection list row with avatar, verified name line, professional role/headline, and contextual action button. Supports unread message notice via an upper-right calm ripple indicator on the View action button without text squeeze, label intrusion, or layout shift.",
+    "tokens": "Height: 80pt · Avatar: 48×48pt circular · Button: min-height 44pt · Radius: 14pt · Unread Dot: 8×8pt (accent #FF3300 with 2pt surface knockout) · Ripple Rings: 1.5pt accent stroke · Font: 16pt Primary Row · 13pt Support",
+    "motion": "Press: 90ms / 220ms. Ripple Animation: 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) concentric rings with 1.2s stagger. Reduced motion: ripple rings suppressed (display: none), presenting a calm static dot.",
+    "flutterSemantics": "`CupertinoListTile` / `ListTile` with `trailing: Stack(clipBehavior: Clip.none, children: [CupertinoButton(...), Positioned(top: -2, right: -2, child: UnreadRippleBadge(size: 8))])`. Screen reader announcement via button semantic label `View profile for Alex Morgan (1 unread message)`; ripple rings are marked `aria-hidden=\"true\"`.",
+    "privacy": "Displays established connections only. Unread indicator reflects direct peer messages.",
     "serverAuth": "Connection records fetched from authorized network cache.",
     "isStatic": true
   },
@@ -10403,6 +10403,72 @@ function generateWebReference(compKey, activeVariantText, card) {
       '    text-align: center !important;',
       '    min-height: 44px !important;',
       '  }',
+      '}'
+    );
+  }
+  if (compKey === 'network-row') {
+    cssLines.push(
+      '',
+      '/* Connection List Row & Relative Button Anchor */',
+      '.peopi-component-network-row .journey-person button:not([role=switch]) {',
+      '  position: relative;',
+      '}',
+      '',
+      '/* Unread Notice Indicator: 8pt Orange Dot & Concentric Ripples */',
+      '.peopi-component-network-row .network-unread-indicator {',
+      '  position: absolute;',
+      '  top: -2px;',
+      '  right: -2px;',
+      '  width: 8px;',
+      '  height: 8px;',
+      '  pointer-events: none;',
+      '  display: block;',
+      '  z-index: 2;',
+      '}',
+      '.peopi-component-network-row .network-unread-dot {',
+      '  position: absolute;',
+      '  inset: 0;',
+      '  border-radius: 50%;',
+      '  background: var(--brand, #FF3300);',
+      '  box-shadow: 0 0 0 2px var(--card, #FFFFFF);',
+      '}',
+      '.peopi-component-network-row .network-unread-ring {',
+      '  position: absolute;',
+      '  inset: 0;',
+      '  border-radius: 50%;',
+      '  border: 1.5px solid var(--brand, #FF3300);',
+      '  box-sizing: border-box;',
+      '  pointer-events: none;',
+      '  opacity: 0;',
+      '  animation: peopi-unread-ripple 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;',
+      '}',
+      '.peopi-component-network-row .network-unread-ring.ring-2 {',
+      '  animation-delay: 1.2s;',
+      '}',
+      '@keyframes peopi-unread-ripple {',
+      '  0% { transform: scale(1); opacity: 0.8; }',
+      '  50% { transform: scale(2.2); opacity: 0.25; }',
+      '  100% { transform: scale(2.6); opacity: 0; }',
+      '}',
+      '@media (prefers-reduced-motion: reduce) {',
+      '  .peopi-component-network-row .network-unread-ring {',
+      '    display: none !important;',
+      '    animation: none !important;',
+      '  }',
+      '}',
+      '',
+      '/* Accessible Screen Reader Status */',
+      '.peopi-component-network-row .sr-only,',
+      '.peopi-component-network-row .network-unread-sr {',
+      '  position: absolute !important;',
+      '  width: 1px !important;',
+      '  height: 1px !important;',
+      '  padding: 0 !important;',
+      '  margin: -1px !important;',
+      '  overflow: hidden !important;',
+      '  clip: rect(0, 0, 0, 0) !important;',
+      '  white-space: nowrap !important;',
+      '  border: 0 !important;',
       '}'
     );
   }
@@ -11562,17 +11628,51 @@ if (typeof window !== 'undefined') {
         if (cta) cta.textContent = 'View Profile ↗';
       } else if (comp === 'network-row') {
         const row = preview.querySelector('.journey-person');
-        let badge = preview.querySelector('.ds-network-unread-badge');
-        if (variant.includes('unread')) {
-          if (!badge && row) {
-            badge = document.createElement('span');
-            badge.className = 'ds-network-unread-badge';
-            badge.style.cssText = 'background:#ff3300;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:8px;';
-            badge.textContent = 'New message';
-            row.querySelector('strong')?.append(badge);
+        const isUnread = variant.toLowerCase().includes('unread');
+        if (typeof setJourneyRowUnread === 'function') {
+          setJourneyRowUnread(row, isUnread);
+        } else if (row) {
+          const btn = row.querySelector('button');
+          const existingIndicator = row.querySelector('.network-unread-indicator');
+          const existingSr = row.querySelector('.network-unread-sr, .sr-only');
+          const legacyBadge = row.querySelector('.ds-network-unread-badge');
+          if (legacyBadge) legacyBadge.remove();
+          if (isUnread) {
+            if (btn) {
+              btn.classList.add('has-unread');
+              if (!btn.dataset.originalAriaLabel) {
+                btn.dataset.originalAriaLabel = btn.getAttribute('aria-label') || '';
+              }
+              const rawName = row.querySelector('strong')?.childNodes[0]?.textContent?.trim() || 'connection';
+              const baseLabel = btn.dataset.originalAriaLabel || ('View profile for ' + rawName);
+              btn.setAttribute('aria-label', baseLabel + ' (1 unread message)');
+              if (!existingIndicator) {
+                const indicator = document.createElement('span');
+                indicator.className = 'network-unread-indicator';
+                indicator.setAttribute('aria-hidden', 'true');
+                indicator.innerHTML = '<span class="network-unread-dot"></span><span class="network-unread-ring ring-1" aria-hidden="true"></span><span class="network-unread-ring ring-2" aria-hidden="true"></span>';
+                btn.append(indicator);
+              }
+              if (!existingSr) {
+                const sr = document.createElement('span');
+                sr.className = 'sr-only network-unread-sr';
+                sr.textContent = '1 unread message';
+                btn.append(sr);
+              }
+            }
+          } else {
+            if (existingIndicator) existingIndicator.remove();
+            if (existingSr) existingSr.remove();
+            if (btn) {
+              btn.classList.remove('has-unread');
+              if (btn.dataset.originalAriaLabel) {
+                btn.setAttribute('aria-label', btn.dataset.originalAriaLabel);
+              } else {
+                btn.removeAttribute('aria-label');
+              }
+              delete btn.dataset.originalAriaLabel;
+            }
           }
-        } else if (badge) {
-          badge.remove();
         }
       } else if (comp === 'activity-item') {
         const sub = preview.querySelector('.activity-subtitle, [class*="subtitle"], p');
