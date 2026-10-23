@@ -11173,17 +11173,17 @@
 
 .ds-workbench-card {
   display: grid;
-  grid-template-columns: 42% 58%;
-  gap: 28px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 32px;
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 20px;
-  padding: 24px;
+  padding: 28px;
   margin-bottom: 28px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   min-width: 0;
-  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .ds-workbench-card:hover {
@@ -11192,7 +11192,7 @@
 }
 
 .ds-workbench-card--wide {
-  grid-template-columns: 48% 52%;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
 /* Left Column: Live Specimen Stage (Desktop) */
@@ -11208,6 +11208,7 @@
   padding: 20px;
   min-height: 200px;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 .ds-workbench-stage-header {
@@ -11246,8 +11247,9 @@
   grid-column: 2;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   min-width: 0;
+  box-sizing: border-box;
 }
 
 .ds-workbench-header {
@@ -11258,9 +11260,9 @@
 
 .ds-workbench-title-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -11270,6 +11272,9 @@
   letter-spacing: -0.02em !important;
   color: #111827 !important;
   margin: 0 !important;
+  flex: 1 1 200px;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .ds-classification-badge {

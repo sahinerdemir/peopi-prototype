@@ -9478,9 +9478,14 @@ function showDesign(key){
     'primary-action':['Default','Hover','Disabled','Loading'],
     'quiet-action':['Default','Hover','Disabled'],
     'icon-button':['Default','Active'],
-    'fab':['Default','Raised'],
+    'fab':['Default','Elevated'],
     'social-auth':['Both Providers','Google Only','Apple Only'],
-    'destructive-action':['Default','Hover / Warning','Disabled'],
+    'destructive-action':['Default','Hover / Danger','Disabled'],
+    'form-group':['Default (Empty)','Filled Form','Active Focus'],
+    'text-field':['Default','Filled Value','Active Focus'],
+    'search-field':['Empty Query','Filled Query','Active Focus'],
+    'radio':['Selected','Unselected'],
+    'session-duration':['60 Min (Default)','30 Min','120 Min'],
     'switch':['Enabled (On)','Disabled (Off)'],
     'intent-choice':['Selected','Unselected'],
     'skills-chip-input':['Default (4 Chips)','Active Focus','Empty State'],
@@ -9488,44 +9493,86 @@ function showDesign(key){
     'bottom-nav':['Discover Active','Connections Active','Profile Active'],
     'tabs':['Map View','List View'],
     'request-tabs':['Received Requests','Sent Requests'],
+    'app-bar':['Default Bar','Scrolled Surface'],
     'profile-card':['Anonymous Preview','Connected Peer'],
-    'network-row':['Connected','Unread Message'],
+    'network-row':['Connected','Unread Notice'],
     'activity-item':['Connection Request','System Notice'],
+    'list':['Account Settings','Privacy & Legal'],
+    'identity-card':['Complete Profile','Incomplete Draft'],
+    'avatar':['Photo Avatar','Initials Fallback'],
+    'chip':['Default','Active Tag'],
+    'profile-progress':['Complete (100%)','In Progress (65%)'],
+    'profile-menu':['Default Menu','Active Item'],
+    'content-section':['About Section','Experience Section'],
+    'verified-badge':['LinkedIn Verified','Unverified State'],
+    'profile-documents':['Unlocked (Connected)','Locked (Pre-Connection)'],
+    'connection-request':['Received Request','Sent Request'],
     'chat-bubble':['Full Thread','Received Only','Sent Only'],
-    'session-alert':['Visible (5m Warning)','Dismissed'],
-    'toast-notification':['Information','Success','Warning'],
+    'chat-composer':['Default (Empty)','Typing Draft'],
     'privacy':['Invisible (Default)','Visible (Open)'],
     'privacy-row':['Hidden On','Hidden Off'],
     'verification-status':['Unconnected','Connected & Verified'],
-    'verification-step':['Standard Guidelines','Expanded View'],
+    'toast-notification':['Information','Success','Warning'],
+    'session-alert':['Visible (5m Warning)','Dismissed'],
+    'verification-step':['Standard Principles','Expanded View'],
+    'empty-state':['No Requests','No Conversations'],
     'sheet':['Anonymous Preview','Connected Profile'],
     'dialog':['Go Invisible?','Sign Out?'],
     'exp-sheet':['Add Experience','Edit Experience'],
-    'doc-sheet':['Standard PDF','Locked Document']
+    'doc-sheet':['Standard PDF','Empty Upload']
    };
    
    const activeVariants=variants.length?variants:(variantMap[compKey]||[]);
    
    const a11yMap={
-    'primary-action':'Touch target: 50pt height (exceeds 44pt minimum) · Focus ring: 3px solid #FF3300 · WCAG AA contrast',
-    'quiet-action':'Touch target: 44pt minimum · Accessible contrast against light and dark stage surfaces',
-    'icon-button':'Explicit aria-label provided on button · 44×44pt bounding hit box',
-    'fab':'Floating elevation with 56×56pt bounding hit box · High contrast iconography',
-    'social-auth':'WCAG AA contrast · Native brand vector SVGs with aria-hidden · 48pt touch height',
+    'primary-action':'Touch target: 50pt height (>44pt minimum) · Focus ring: 3px solid #FF3300 · High-contrast text label',
+    'quiet-action':'Touch target: 44pt minimum · Accessible contrast against light and dark surfaces',
+    'icon-button':'Explicit aria-label provided on button · 44×44pt bounding touch area',
+    'fab':'Floating elevation with 56×56pt touch area · High contrast Phosphor icon',
+    'social-auth':'Native brand vector SVGs with aria-hidden · 48pt touch height · Accessible text label',
     'destructive-action':'Semantic danger color tokens · Destructive action confirmation semantics · 44pt touch height',
-    'switch':'Native hidden checkbox retains semantic checked state · Custom accessible slider track',
-    'intent-choice':'Role checkbox with visual indicator · 48pt touch height · Clear selected contrast',
+    'form-group':'Associated <label> elements · Explicit input types · 16pt font size preventing iOS zoom',
+    'text-field':'Explicit label and placeholder associations · 44pt touch target height',
+    'search-field':'Search input semantics · Clear button with aria-label · Visual magnifying glass indicator',
+    'radio':'Role radio with checked indicator · 44pt minimum touch area',
+    'session-duration':'Segmented duration group · aria-pressed toggling · 54pt touch target height',
+    'switch':'Native semantic switch role with aria-checked state · 44pt minimum hit target',
+    'intent-choice':'Role checkbox with visual indicator · 48pt touch height · High-contrast selected state',
     'skills-chip-input':'Dismissible chip tags with aria-label · 16pt input preventing iOS zoom · High contrast pills',
+    'discovery-filter':'Horizontal scroll container with 44pt touch pills · Selected filter pill indicator',
+    'bottom-nav':'Standard root tab navigation · aria-current="page" on active tab · 44pt minimum targets with 116pt bottom clearance',
+    'tabs':'Segmented view tabs · aria-selected state on active segment · Keyboard focusable with arrow navigation',
+    'request-tabs':'Segmented request filters · aria-selected state · 44pt touch targets',
+    'app-bar':'Header landmark semantics · Accessible icon button · Theme-aware header contrast',
+    'profile-card':'Role group · Privacy-first restricted identity before connection · Accessible action button',
+    'network-row':'Role listitem · Explicit action trigger with aria-label · High-contrast text hierarchy',
+    'activity-item':'Accessible notification item · Distinct decision actions with 44pt minimum height',
+    'list':'Semantic settings list group · 48pt row height · Keyboard focusable items',
+    'identity-card':'Profile landmark surface · Semantic avatar fallback with initials · High contrast text',
+    'avatar':'Profile avatar with alt description when photo present · Initials fallback with accessible text',
+    'chip':'High-contrast tag chip · Clear category differentiation · Readable typography',
+    'profile-progress':'Accessible progress meter · Percentage text label · High-contrast progress bar fill',
+    'profile-menu':'Grouped navigation menu · 62pt minimum row height · Distinct navigation icons',
+    'content-section':'Semantic section with h3 heading · Clean readable typography with 1.55 line height',
+    'verified-badge':'Accessible SVG badge with aria-label · Verified trust indicator with tooltip',
+    'profile-documents':'File format identification · Locked documents indicated with padlock icon and text label',
+    'connection-request':'Equal half-width 48pt decision buttons · Clear Accept and Decline accessible semantics',
+    'chat-bubble':'Conversational listitem semantics · Distinguishable sender vs peer surfaces with high contrast',
+    'chat-composer':'Single-line composer with textarea · Accessible send trigger with aria-label',
+    'privacy':'Status landmark with presence indicator · High-contrast informative copy',
+    'privacy-row':'44pt touch area · Semantic switch control · Explanatory subtitle for trust transparency',
+    'verification-status':'Grouped trust panel · Clear LinkedIn account connection state and action',
     'toast-notification':'Role status · aria-live polite · High-contrast translucent surface with instantaneous fade',
     'session-alert':'Role alertdialog · Distinct stay open and dismiss action triggers · High priority contrast',
-    'verification-step':'High-legibility informative copy · Clear verified trust signals · WCAG AA contrast',
-    'bottom-nav':'Standard root tab navigation · 44pt minimum targets with 116pt bottom clearance',
+    'verification-step':'High-legibility informative copy · Clear verified trust signals · Theme-aware surface',
+    'empty-state':'Informative illustration icon · Reassuring heading and guidance copy for zero-data state',
     'sheet':'Role dialog with aria-modal · Accessible grab handle · Trap focus with smooth sheet pan gesture',
-    'exp-sheet':'Full bottom modal sheet · Form validation on role/company inputs · Focus trap',
+    'dialog':'Role alertdialog · Explicit confirmation and cancel triggers with 48pt touch height',
+    'exp-sheet':'Full modal bottom sheet · Form validation on role/company inputs · Focus trap',
     'doc-sheet':'File attachment bottom sheet · Encrypted upload preview · Clear lock indicators'
    };
    
-   const defaultA11y=a11y||a11yMap[compKey]||'WCAG 2.1 Level AA compliant · 44pt minimum touch area · Theme-aware tokens';
+   const defaultA11y=a11y||a11yMap[compKey]||'44pt minimum touch target · Theme-aware surface tokens · Semantic interactive element with focus ring';
    const isWide=['sheet','dialog','exp-sheet','doc-sheet','bottom-nav','app-bar','discovery-filter'].includes(compKey);
    
    let controlsHtml='';
@@ -9542,6 +9589,7 @@ function showDesign(key){
    const descHtml=description?`<p class="ds-workbench-desc">${description}</p>`:'';
    
    return `<article class="ds-workbench-card${isWide?' ds-workbench-card--wide':''}" data-component="${compKey}">
+
     <div class="ds-workbench-preview-col">
      <div class="ds-workbench-stage-header">
       <span><i class="ph ph-device-mobile"></i> Mobile Specimen</span>
@@ -9948,140 +9996,580 @@ function showDesign(key){
  all('#ds-content .ds-range').forEach(input=>input.addEventListener('input',()=>{const output=input.closest('label')?.querySelector('.ds-range-value');if(output)output.textContent=input.value}));
  all('#ds-content .ds-toast-preview button').forEach(button=>button.addEventListener('click',()=>{button.closest('.ds-toast-preview').style.display='none'}));
  all('#ds-content .ds-icon-action, #ds-content .ds-fab').forEach(button=>button.addEventListener('click',()=>{button.classList.toggle('ds-demo-active');button.setAttribute('aria-pressed',String(button.classList.contains('ds-demo-active')))}));
- all('#ds-content .ds-variant-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-   const card=btn.closest('.ds-workbench-card');
-   if(!card)return;
-   card.querySelectorAll('.ds-variant-btn').forEach(b=>b.classList.toggle('active',b===btn));
-   const variant=btn.dataset.variant;
-   const comp=card.dataset.component;
-   const preview=card.querySelector('.ds-workbench-preview-viewport');
-   if(!preview)return;
-   if(comp==='primary-action'||comp==='quiet-action'||comp==='destructive-action'){
-     const actionBtn=preview.querySelector('button');
-     if(actionBtn){
-       actionBtn.disabled = variant.includes('disabled');
-       if(variant.includes('disabled')) actionBtn.style.opacity = '0.45';
-       else actionBtn.style.opacity = '';
-       if(variant==='loading'){
-         actionBtn.dataset.origText = actionBtn.dataset.origText || actionBtn.innerHTML;
-         actionBtn.innerHTML = '<i class="ph ph-spinner ds-spin" style="margin-right:6px"></i> Opening session...';
-       } else if(actionBtn.dataset.origText) {
-         actionBtn.innerHTML = actionBtn.dataset.origText;
-       }
-       if(variant.includes('hover')){
-         actionBtn.style.filter = 'brightness(1.15)';
-       } else {
-         actionBtn.style.filter = '';
-       }
-     }
-   } else if(comp==='icon-button'||comp==='fab'){
-     const iconBtn=preview.querySelector('button');
-     if(iconBtn){
-       if(variant.includes('active')||variant.includes('raised')){
-         iconBtn.classList.add('ds-demo-active');
-         iconBtn.style.transform = 'scale(1.08)';
-         iconBtn.style.boxShadow = '0 6px 16px rgba(0,0,0,0.2)';
-       } else {
-         iconBtn.classList.remove('ds-demo-active');
-         iconBtn.style.transform = '';
-         iconBtn.style.boxShadow = '';
-       }
-     }
-   } else if(comp==='social-auth'){
-     const googleBtn=preview.querySelector('[data-ds-source-id="auth-google"], #auth-google');
-     const appleBtn=preview.querySelector('[data-ds-source-id="auth-apple"], #auth-apple');
-     if(googleBtn) googleBtn.style.display = (variant==='apple-only')?'none':'flex';
-     if(appleBtn) appleBtn.style.display = (variant==='google-only')?'none':'flex';
-   } else if(comp==='switch'){
-     const sw=preview.querySelector('[role="switch"],.settings-toggle');
-     if(sw){
-       const isOff=variant.includes('off')||variant.includes('disabled');
-       sw.setAttribute('aria-checked', String(!isOff));
-       sw.classList.toggle('off', isOff);
-     }
-   } else if(comp==='intent-choice'){
-     const choices=preview.querySelectorAll('.journey-choice');
-     choices.forEach((c, idx)=>{
-       if(variant==='selected') c.classList.toggle('selected', idx===0);
-       else c.classList.remove('selected');
-     });
-   } else if(comp==='skills-chip-input'){
-     const chips=preview.querySelectorAll('.edit-skill-chip');
-     const input=preview.querySelector('.edit-skills-input');
-     if(variant.includes('empty')){
-       chips.forEach(c=>c.style.display='none');
-     } else {
-       chips.forEach(c=>c.style.display='inline-flex');
-     }
-     if(variant.includes('focus')&&input){
-       input.focus();
-       input.placeholder='Type another skill and press Enter...';
-     }
-   } else if(comp==='discovery-filter'){
-     const pills=preview.querySelectorAll('.discovery-filter-pill');
-     pills.forEach((p, idx)=>{
-       if(variant==='all-nearby') p.classList.toggle('is-selected', idx===0);
-       else if(variant==='engineering') p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('engine'));
-       else if(variant==='design') p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('design'));
-       else if(variant==='founders') p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('found'));
-     });
-   } else if(comp==='bottom-nav'){
-     const tabs=preview.querySelectorAll('.nav button, button');
-     tabs.forEach((t, idx)=>{
-       if(variant==='discover-active') t.classList.toggle('current', idx===0);
-       else if(variant==='connections-active') t.classList.toggle('current', idx===1);
-       else if(variant==='profile-active') t.classList.toggle('current', idx===2);
-     });
-   } else if(comp==='tabs'||comp==='request-tabs'){
-     const tabBtns=preview.querySelectorAll('.seg button, .journey-tabs button');
-     tabBtns.forEach((b, idx)=>{
-       if(variant.includes('map')||variant.includes('received')) b.classList.toggle('chosen', idx===0)||b.classList.toggle('selected', idx===0);
-       else b.classList.toggle('chosen', idx===1)||b.classList.toggle('selected', idx===1);
-     });
-   } else if(comp==='profile-card'){
-     const title=preview.querySelector('.name, .profilename, h3, strong');
-     const photo=preview.querySelector('.avatar, .journey-avatar, img');
-     if(variant==='connected-peer'){
-       if(title) title.textContent = 'Alex Morgan';
-       if(photo) photo.style.filter = 'none';
-     } else {
-       if(title) title.textContent = 'A.M.';
-       if(photo) photo.style.filter = 'blur(6px)';
-     }
-   } else if(comp==='session-alert'){
-     const alert=preview.querySelector('#session-alert, .session-alert, [data-ds-source-id="session-alert"]');
-     if(alert){
-       alert.style.display = variant==='dismissed' ? 'none' : 'flex';
-       alert.style.opacity = variant==='dismissed' ? '0' : '1';
-     }
-   } else if(comp==='toast-notification'){
-     const toast=preview.querySelector('#toast, .toast, [data-ds-source-id="toast"]');
-     if(toast){
-       if(variant==='information') toast.textContent='Social sign-in is a UI demo. OAuth is not connected yet.';
-       else if(variant==='success') toast.textContent='Connection request sent successfully!';
-       else if(variant==='warning') toast.textContent='Location accuracy is reduced in Private Mode.';
-     }
-   } else if(comp==='chat-bubble'){
-     const rows=preview.querySelectorAll('.chat-row');
-     rows.forEach((r, idx)=>{
-       if(variant==='full-thread') r.style.display='flex';
-       else if(variant==='received-only') r.style.display = idx===0?'flex':'none';
-       else if(variant==='sent-only') r.style.display = idx===1?'flex':'none';
-     });
-   } else if(comp==='sheet'){
-     const nameEl=preview.querySelector('#detailname, [id"detailname"]');
-     const hintEl=preview.querySelector('.privacyhint');
-     if(variant==='connected-profile'){
-       if(nameEl) nameEl.textContent='Alex Morgan ✓';
-       if(hintEl) hintEl.style.display='none';
-     } else {
-       if(nameEl) nameEl.textContent='A.M. ✓';
-       if(hintEl) hintEl.style.display='flex';
-     }
-   }
+  const updateSpecimenNavPill = (nav, activeBtn) => {
+    if (!nav) return;
+    let pill = nav.querySelector('.motion-nav-indicator');
+    if (!pill) {
+      pill = document.createElement('span');
+      pill.className = 'motion-nav-indicator';
+      pill.setAttribute('aria-hidden', 'true');
+      nav.prepend(pill);
+    }
+    const target = activeBtn || nav.querySelector('button.current');
+    if (!target) return;
+    const w = target.offsetWidth || (nav.offsetWidth ? nav.offsetWidth / 3 : 100);
+    const x = target.offsetLeft || 0;
+    pill.style.width = w + 'px';
+    pill.style.transform = `translateX(${x}px)`;
+  };
+
+  const updateSpecimenSegPill = (seg, activeBtn) => {
+    if (!seg) return;
+    let pill = seg.querySelector('.motion-seg-indicator');
+    if (!pill) {
+      pill = document.createElement('span');
+      pill.className = 'motion-seg-indicator';
+      pill.setAttribute('aria-hidden', 'true');
+      seg.prepend(pill);
+    }
+    const target = activeBtn || seg.querySelector('button.chosen, button.selected');
+    if (!target) return;
+    const w = target.offsetWidth || (seg.offsetWidth ? (seg.offsetWidth - 8) / 2 : 160);
+    const x = target.offsetLeft || 4;
+    pill.style.width = w + 'px';
+    pill.style.transform = `translateX(${x}px)`;
+  };
+
+  // Run initial indicator sync across all live specimens in ds-content
+  all('#ds-content .nav').forEach(nav => updateSpecimenNavPill(nav));
+  all('#ds-content .seg, #ds-content .journey-tabs').forEach(seg => updateSpecimenSegPill(seg));
+
+  // Direct click listeners inside specimens to synchronize variant controls
+  all('#ds-content .ds-workbench-card[data-component="bottom-nav"] .nav button').forEach(b => {
+    b.addEventListener('click', () => {
+      const nav = b.closest('.nav');
+      if (!nav) return;
+      nav.querySelectorAll('button').forEach(btn => {
+        const isTarget = (btn === b);
+        btn.classList.toggle('current', isTarget);
+        btn.setAttribute('aria-current', isTarget ? 'page' : 'false');
+      });
+      updateSpecimenNavPill(nav, b);
+      const card = b.closest('.ds-workbench-card');
+      const idx = [...nav.querySelectorAll('button')].indexOf(b);
+      const vBtns = card.querySelectorAll('.ds-variant-btn');
+      if (vBtns[idx]) {
+        vBtns.forEach((vb, i) => vb.classList.toggle('is-active', i === idx));
+      }
+    });
   });
- });
+
+  all('#ds-content .ds-workbench-card[data-component="tabs"] .seg button').forEach(b => {
+    b.addEventListener('click', () => {
+      const seg = b.closest('.seg');
+      if (!seg) return;
+      seg.querySelectorAll('button').forEach(btn => {
+        const isTarget = (btn === b);
+        btn.classList.toggle('chosen', isTarget);
+        btn.setAttribute('aria-selected', String(isTarget));
+      });
+      updateSpecimenSegPill(seg, b);
+      const card = b.closest('.ds-workbench-card');
+      const idx = [...seg.querySelectorAll('button')].indexOf(b);
+      const vBtns = card.querySelectorAll('.ds-variant-btn');
+      if (vBtns[idx]) {
+        vBtns.forEach((vb, i) => vb.classList.toggle('is-active', i === idx));
+      }
+    });
+  });
+
+  all('#ds-content .ds-variant-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.ds-workbench-card');
+      if (!card) return;
+      card.querySelectorAll('.ds-variant-btn').forEach(b => b.classList.toggle('active', b === btn));
+      const variant = btn.dataset.variant;
+      const comp = card.dataset.component;
+      const preview = card.querySelector('.ds-workbench-preview-viewport');
+      if (!preview) return;
+
+      if (comp === 'primary-action' || comp === 'quiet-action' || comp === 'destructive-action') {
+        const actionBtn = preview.querySelector('button');
+        if (actionBtn) {
+          actionBtn.dataset.origText = actionBtn.dataset.origText || actionBtn.innerHTML;
+          const isDis = variant.includes('disabled');
+          actionBtn.disabled = isDis;
+          actionBtn.style.opacity = isDis ? '0.45' : '';
+          if (variant === 'loading') {
+            actionBtn.innerHTML = '<i class="ph ph-spinner ds-spin" style="margin-right:6px"></i> Opening session...';
+          } else {
+            actionBtn.innerHTML = actionBtn.dataset.origText;
+          }
+          if (variant.includes('hover') || variant.includes('danger')) {
+            if (comp === 'destructive-action') {
+              actionBtn.style.backgroundColor = '#dc2626';
+              actionBtn.style.color = '#ffffff';
+            } else {
+              actionBtn.style.filter = 'brightness(1.15)';
+            }
+          } else {
+            actionBtn.style.filter = '';
+            if (comp === 'destructive-action') {
+              actionBtn.style.backgroundColor = '';
+              actionBtn.style.color = '';
+            }
+          }
+        }
+      } else if (comp === 'icon-button' || comp === 'fab') {
+        const iconBtn = preview.querySelector('button');
+        if (iconBtn) {
+          if (variant.includes('active') || variant.includes('elevated') || variant.includes('raised')) {
+            iconBtn.classList.add('ds-demo-active');
+            iconBtn.style.transform = 'scale(1.08)';
+            iconBtn.style.boxShadow = '0 6px 18px rgba(255,51,0,0.3)';
+          } else {
+            iconBtn.classList.remove('ds-demo-active');
+            iconBtn.style.transform = '';
+            iconBtn.style.boxShadow = '';
+          }
+        }
+      } else if (comp === 'social-auth') {
+        const googleBtn = preview.querySelector('[data-ds-source-id="auth-google"], #auth-google');
+        const appleBtn = preview.querySelector('[data-ds-source-id="auth-apple"], #auth-apple');
+        if (googleBtn) googleBtn.style.display = (variant === 'apple-only') ? 'none' : 'flex';
+        if (appleBtn) appleBtn.style.display = (variant === 'google-only') ? 'none' : 'flex';
+      } else if (comp === 'form-group') {
+        const inputs = preview.querySelectorAll('input');
+        if (variant.includes('empty')) {
+          inputs.forEach(inp => { inp.value = ''; inp.style.borderColor = ''; inp.style.boxShadow = ''; });
+        } else if (variant.includes('filled')) {
+          if (inputs[0]) inputs[0].value = 'Alex Morgan';
+          if (inputs[1]) inputs[1].value = 'Senior Product Designer';
+          if (inputs[2]) inputs[2].value = 'Miami, FL';
+          inputs.forEach(inp => { inp.style.borderColor = ''; inp.style.boxShadow = ''; });
+        } else if (variant.includes('focus') && inputs[0]) {
+          inputs[0].focus();
+          inputs[0].style.borderColor = '#ff3300';
+          inputs[0].style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
+        }
+      } else if (comp === 'text-field') {
+        const inp = preview.querySelector('input');
+        if (inp) {
+          if (variant.includes('filled')) {
+            inp.value = 'Alex Morgan';
+            inp.style.borderColor = '';
+            inp.style.boxShadow = '';
+          } else if (variant.includes('focus')) {
+            inp.focus();
+            inp.style.borderColor = '#ff3300';
+            inp.style.boxShadow = '0 0 0 3px rgba(255,51,0,0.15)';
+          } else {
+            inp.value = '';
+            inp.style.borderColor = '';
+            inp.style.boxShadow = '';
+          }
+        }
+      } else if (comp === 'search-field') {
+        const inp = preview.querySelector('input');
+        const clearBtn = preview.querySelector('.network-search-clear, button');
+        if (inp) {
+          if (variant.includes('filled')) {
+            inp.value = 'Product Designer';
+            inp.style.borderColor = '';
+            if (clearBtn) clearBtn.style.display = 'flex';
+          } else if (variant.includes('focus')) {
+            inp.focus();
+            inp.style.borderColor = '#ff3300';
+          } else {
+            inp.value = '';
+            inp.style.borderColor = '';
+            if (clearBtn) clearBtn.style.display = 'none';
+          }
+        }
+      } else if (comp === 'radio') {
+        const options = preview.querySelectorAll('.option');
+        options.forEach((opt, idx) => {
+          if (variant.includes('selected')) {
+            opt.classList.toggle('chosen', idx === 0);
+          } else {
+            opt.classList.remove('chosen');
+          }
+        });
+      } else if (comp === 'session-duration') {
+        const durBtns = preview.querySelectorAll('.durations button, button');
+        durBtns.forEach((b, idx) => {
+          if (variant.includes('30')) {
+            b.classList.toggle('chosen', idx === 0);
+          } else if (variant.includes('120')) {
+            b.classList.toggle('chosen', idx === 2);
+          } else {
+            b.classList.toggle('chosen', idx === 1);
+          }
+        });
+      } else if (comp === 'switch') {
+        const sw = preview.querySelector('[role="switch"], .settings-toggle');
+        if (sw) {
+          const isOff = variant.includes('off') || variant.includes('disabled');
+          sw.setAttribute('aria-checked', String(!isOff));
+          sw.classList.toggle('off', isOff);
+        }
+      } else if (comp === 'intent-choice') {
+        const choices = preview.querySelectorAll('.journey-choice');
+        choices.forEach((c, idx) => {
+          if (variant.includes('selected')) {
+            c.classList.toggle('selected', idx === 0);
+          } else {
+            c.classList.remove('selected');
+          }
+        });
+      } else if (comp === 'skills-chip-input') {
+        const chips = preview.querySelectorAll('.edit-skill-chip, .skills-chip-item');
+        const input = preview.querySelector('.edit-skills-input, input');
+        if (variant.includes('empty')) {
+          chips.forEach(c => c.style.display = 'none');
+        } else {
+          chips.forEach(c => c.style.display = 'inline-flex');
+        }
+        if (variant.includes('focus') && input) {
+          input.focus();
+          input.placeholder = 'Type another skill and press Enter...';
+        }
+      } else if (comp === 'discovery-filter') {
+        const pills = preview.querySelectorAll('.discovery-filter-pill');
+        pills.forEach((p, idx) => {
+          if (variant.includes('all')) p.classList.toggle('is-selected', idx === 0);
+          else if (variant.includes('engineering')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('engine'));
+          else if (variant.includes('design')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('design'));
+          else if (variant.includes('founders')) p.classList.toggle('is-selected', p.textContent.toLowerCase().includes('found'));
+        });
+      } else if (comp === 'bottom-nav') {
+        const nav = preview.querySelector('.nav');
+        const tabs = nav ? nav.querySelectorAll('button') : preview.querySelectorAll('button');
+        let activeIndex = 0;
+        if (variant === 'connections-active') activeIndex = 1;
+        else if (variant === 'profile-active') activeIndex = 2;
+        tabs.forEach((t, idx) => {
+          const isTarget = (idx === activeIndex);
+          t.classList.toggle('current', isTarget);
+          if (isTarget) t.setAttribute('aria-current', 'page');
+          else t.removeAttribute('aria-current');
+        });
+        if (nav) updateSpecimenNavPill(nav, tabs[activeIndex]);
+      } else if (comp === 'tabs') {
+        const seg = preview.querySelector('.seg');
+        const tabBtns = seg ? seg.querySelectorAll('button') : preview.querySelectorAll('button');
+        const isMap = variant.includes('map');
+        tabBtns.forEach((b, idx) => {
+          const isTarget = isMap ? (idx === 0) : (idx === 1);
+          b.classList.toggle('chosen', isTarget);
+          b.setAttribute('aria-selected', String(isTarget));
+        });
+        if (seg) updateSpecimenSegPill(seg, tabBtns[isMap ? 0 : 1]);
+      } else if (comp === 'request-tabs') {
+        const seg = preview.querySelector('.journey-tabs');
+        const tabBtns = seg ? seg.querySelectorAll('button') : preview.querySelectorAll('button');
+        const isRecv = variant.includes('received');
+        tabBtns.forEach((b, idx) => {
+          const isTarget = isRecv ? (idx === 0) : (idx === 1);
+          b.classList.toggle('chosen', isTarget);
+          b.classList.toggle('selected', isTarget);
+          b.setAttribute('aria-selected', String(isTarget));
+        });
+        if (seg) updateSpecimenSegPill(seg, tabBtns[isRecv ? 0 : 1]);
+      } else if (comp === 'app-bar') {
+        const head = preview.querySelector('.myprofile-head, header');
+        if (head) {
+          if (variant.includes('scrolled')) {
+            head.style.background = 'rgba(255, 255, 255, 0.88)';
+            head.style.backdropFilter = 'blur(16px)';
+            head.style.boxShadow = '0 2px 10px rgba(0,0,0,0.06)';
+          } else {
+            head.style.background = 'transparent';
+            head.style.backdropFilter = 'none';
+            head.style.boxShadow = 'none';
+          }
+        }
+      } else if (comp === 'profile-card') {
+        const isConn = variant.includes('connected');
+        card.classList.toggle('is-connected', isConn);
+        const avatar = preview.querySelector('.avatar');
+        if (avatar) {
+          avatar.style.filter = 'none';
+          if (isConn) {
+            avatar.className = 'avatar demo-photo-avatar';
+            avatar.textContent = '';
+            avatar.style.backgroundColor = '';
+            avatar.style.color = '';
+            const img = document.createElement('img');
+            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80';
+            img.alt = 'Alex Morgan';
+            avatar.replaceChildren(img);
+          } else {
+            avatar.className = 'avatar anonymous photo-private';
+            avatar.textContent = 'AM';
+            avatar.style.backgroundColor = '#e1c9c6';
+            avatar.style.color = '#705457';
+            avatar.querySelectorAll('img').forEach(im => im.remove());
+          }
+        }
+        const nameEl = preview.querySelector('#personname, [id$="personname"], strong');
+        if (nameEl) {
+          nameEl.textContent = isConn ? 'Alex Morgan' : 'A.M.';
+          if (isConn && typeof makeVerifiedBadge === 'function') {
+            nameEl.append(makeVerifiedBadge());
+          }
+        }
+        const roleEl = preview.querySelector('#personrole, [id$="personrole"], small');
+        if (roleEl) {
+          roleEl.textContent = isConn ? 'Senior Product Designer · Studio Monolith' : 'Product designer · Startup';
+        }
+        const intentEl = preview.querySelector('#personintent, [id$="personintent"], .intent-text');
+        if (intentEl) {
+          intentEl.textContent = isConn ? 'Open to co-founder discussions' : 'Exploring new projects';
+        }
+        const hintEl = preview.querySelector('.discovery-connected-hint, #preview-connected-hint, [id$="preview-connected-hint"]');
+        if (hintEl) {
+          if (isConn) {
+            hintEl.classList.remove('hide');
+            hintEl.style.display = 'inline-flex';
+            hintEl.innerHTML = '<i class="ph ph-check-circle" aria-hidden="true"></i><span>You\'re connected.</span>';
+          } else {
+            hintEl.classList.add('hide');
+            hintEl.style.display = 'none';
+          }
+        }
+        const cta = preview.querySelector('button.connect');
+        if (cta) cta.textContent = 'View Profile ↗';
+      } else if (comp === 'network-row') {
+        const row = preview.querySelector('.journey-person');
+        let badge = preview.querySelector('.ds-network-unread-badge');
+        if (variant.includes('unread')) {
+          if (!badge && row) {
+            badge = document.createElement('span');
+            badge.className = 'ds-network-unread-badge';
+            badge.style.cssText = 'background:#ff3300;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:8px;';
+            badge.textContent = 'New message';
+            row.querySelector('strong')?.append(badge);
+          }
+        } else if (badge) {
+          badge.remove();
+        }
+      } else if (comp === 'activity-item') {
+        const sub = preview.querySelector('.activity-subtitle, [class*="subtitle"], p');
+        const actions = preview.querySelector('.activity-actions, [class*="actions"]');
+        if (variant.includes('system')) {
+          if (sub) sub.textContent = 'Session ended automatically · 5m presence window expired';
+          if (actions) actions.style.display = 'none';
+        } else {
+          if (sub) sub.textContent = 'Sent you a connection request · Product Designer';
+          if (actions) actions.style.display = 'flex';
+        }
+      } else if (comp === 'list') {
+        const titleEl = preview.querySelector('.settings-group-title, h4, strong');
+        if (titleEl) {
+          titleEl.textContent = variant.includes('privacy') ? 'PRIVACY & SAFETY' : 'ACCOUNT SETTINGS';
+        }
+      } else if (comp === 'identity-card') {
+        const hl = preview.querySelector('.myprofile-headline, [id$="myprofile-headline"], small');
+        const fill = preview.querySelector('.completion-fill, [class*="fill"]');
+        if (variant.includes('incomplete')) {
+          if (hl) hl.textContent = 'Add your professional headline...';
+          if (fill) fill.style.width = '60%';
+        } else {
+          if (hl) hl.textContent = 'Product & Experience Designer · Miami, FL';
+          if (fill) fill.style.width = '100%';
+        }
+      } else if (comp === 'avatar') {
+        const av = preview.querySelector('.avatar, .myprofile-avatar');
+        if (av) {
+          if (variant.includes('initials')) {
+            av.querySelectorAll('img').forEach(im => im.remove());
+            av.textContent = 'AM';
+            av.style.backgroundColor = '#e1c9c6';
+            av.style.color = '#705457';
+          } else {
+            av.textContent = '';
+            const img = document.createElement('img');
+            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80';
+            img.alt = 'Alex Morgan';
+            av.replaceChildren(img);
+          }
+        }
+      } else if (comp === 'chip') {
+        const chips = preview.querySelectorAll('.chip, .myprofile-chip, span');
+        if (variant.includes('active')) {
+          if (chips[0]) {
+            chips[0].style.borderColor = '#ff3300';
+            chips[0].style.backgroundColor = 'rgba(255, 51, 0, 0.08)';
+          }
+        } else if (chips[0]) {
+          chips[0].style.borderColor = '';
+          chips[0].style.backgroundColor = '';
+        }
+      } else if (comp === 'profile-progress') {
+        const fill = preview.querySelector('.completion-fill, [class*="fill"]');
+        const txt = preview.querySelector('.completion-text, strong, span');
+        if (variant.includes('65')) {
+          if (fill) fill.style.width = '65%';
+          if (txt) txt.textContent = '65% Complete · Add bio';
+        } else {
+          if (fill) fill.style.width = '100%';
+          if (txt) txt.textContent = 'Profile Complete (100%)';
+        }
+      } else if (comp === 'profile-menu') {
+        const items = preview.querySelectorAll('.myprofile-menu-item, button, .menu-row');
+        if (variant.includes('active')) {
+          if (items[0]) items[0].style.backgroundColor = 'rgba(255, 51, 0, 0.08)';
+        } else if (items[0]) {
+          items[0].style.backgroundColor = '';
+        }
+      } else if (comp === 'content-section') {
+        const h3 = preview.querySelector('h3');
+        const p = preview.querySelector('p');
+        if (variant.includes('experience')) {
+          if (h3) h3.textContent = 'Experience';
+          if (p) p.textContent = 'Senior Product Designer at Studio Monolith (2023 — Present)';
+        } else {
+          if (h3) h3.textContent = 'About';
+          if (p) p.textContent = 'I turn messy early-stage ideas into clear product experiences.';
+        }
+      } else if (comp === 'verified-badge') {
+        const badge = preview.querySelector('.li-verified-badge');
+        if (badge) {
+          badge.style.display = variant.includes('unverified') ? 'none' : 'inline-flex';
+        }
+      } else if (comp === 'profile-documents') {
+        const cards = preview.querySelectorAll('.peopi-doc-card, .doc-card');
+        cards.forEach(c => {
+          c.classList.toggle('doc-locked', variant.includes('locked'));
+        });
+      } else if (comp === 'connection-request') {
+        const cards = preview.querySelectorAll('.journey-person');
+        if (variant.includes('sent')) {
+          if (cards[0]) cards[0].style.display = 'none';
+          if (cards[1]) cards[1].style.display = 'flex';
+        } else {
+          if (cards[0]) cards[0].style.display = 'flex';
+          if (cards[1]) cards[1].style.display = 'none';
+        }
+      } else if (comp === 'chat-bubble') {
+        const rows = preview.querySelectorAll('.chat-row');
+        rows.forEach((r, idx) => {
+          if (variant === 'full-thread') r.style.display = 'flex';
+          else if (variant === 'received-only') r.style.display = idx === 0 ? 'flex' : 'none';
+          else if (variant === 'sent-only') r.style.display = idx === 1 ? 'flex' : 'none';
+        });
+      } else if (comp === 'chat-composer') {
+        const ta = preview.querySelector('textarea, input');
+        const sBtn = preview.querySelector('button[type="submit"], button.chat-send-btn');
+        if (variant.includes('typing')) {
+          if (ta) ta.value = 'Coffee near the main hall in 15 minutes? ☕';
+          if (sBtn) { sBtn.disabled = false; sBtn.style.opacity = '1'; }
+        } else {
+          if (ta) ta.value = '';
+          if (sBtn) { sBtn.disabled = true; sBtn.style.opacity = '0.5'; }
+        }
+      } else if (comp === 'privacy') {
+        const dot = preview.querySelector('.dot');
+        const text = preview.querySelector('.privacy-text, p, strong');
+        if (variant.includes('visible')) {
+          if (dot) dot.classList.add('live');
+          if (text) text.textContent = 'Discovery is active · 45 min remaining';
+        } else {
+          if (dot) dot.classList.remove('live');
+          if (text) text.textContent = 'You are currently invisible.';
+        }
+      } else if (comp === 'privacy-row') {
+        const sw = preview.querySelector('[role="switch"]');
+        const isOn = variant.includes('on');
+        if (sw) {
+          sw.setAttribute('aria-checked', String(isOn));
+          sw.classList.toggle('off', !isOn);
+        }
+      } else if (comp === 'verification-status') {
+        const btn = preview.querySelector('button');
+        const isConn = variant.includes('connected');
+        if (btn) {
+          btn.textContent = isConn ? 'LinkedIn Connected ✓' : 'Connect LinkedIn';
+          btn.disabled = isConn;
+          btn.style.backgroundColor = isConn ? '#22b783' : '#0a66c2';
+        }
+      } else if (comp === 'toast-notification') {
+        const toast = preview.querySelector('#toast, .toast, [data-ds-source-id="toast"]');
+        if (toast) {
+          if (variant === 'information') {
+            toast.textContent = 'Social sign-in is a UI demo. OAuth is not connected yet.';
+            toast.style.borderColor = 'rgba(255,255,255,0.2)';
+          } else if (variant === 'success') {
+            toast.textContent = 'Connection request sent successfully!';
+            toast.style.borderColor = '#22b783';
+          } else if (variant === 'warning') {
+            toast.textContent = 'Location accuracy is reduced in Private Mode.';
+            toast.style.borderColor = '#eab308';
+          }
+        }
+      } else if (comp === 'session-alert') {
+        const alert = preview.querySelector('#session-alert, .session-alert, [data-ds-source-id="session-alert"]');
+        if (alert) {
+          alert.style.display = variant === 'dismissed' ? 'none' : 'flex';
+          alert.style.opacity = variant === 'dismissed' ? '0' : '1';
+        }
+      } else if (comp === 'verification-step') {
+        const note = preview.querySelector('.verify-step-guidance, p');
+        if (note) {
+          note.textContent = variant.includes('expanded')
+            ? 'Peer credentials require mutual LinkedIn profile verification and verified work email.'
+            : 'Pre-connection profiles protect identity with initials-based privacy halos.';
+        }
+      } else if (comp === 'empty-state') {
+        const strong = preview.querySelector('strong, h3');
+        const desc = preview.querySelector('p, span');
+        if (variant.includes('conversations')) {
+          if (strong) strong.textContent = 'No active conversations';
+          if (desc) desc.textContent = 'Your accepted connections will appear here.';
+        } else {
+          if (strong) strong.textContent = 'No incoming requests';
+          if (desc) desc.textContent = 'New introductions will appear here.';
+        }
+      } else if (comp === 'sheet') {
+        const nameEl = preview.querySelector('#detailname, [id$="detailname"]');
+        const hintEl = preview.querySelector('.privacyhint');
+        const docsContent = preview.querySelector('#detail-docs-content');
+        if (variant === 'connected-profile') {
+          if (nameEl) nameEl.textContent = 'Alex Morgan ✓';
+          if (hintEl) hintEl.style.display = 'none';
+          if (docsContent) docsContent.querySelectorAll('.peopi-doc-card').forEach(c => c.classList.remove('doc-locked'));
+        } else {
+          if (nameEl) nameEl.textContent = 'A.M. ✓';
+          if (hintEl) hintEl.style.display = 'flex';
+          if (docsContent) docsContent.querySelectorAll('.peopi-doc-card').forEach(c => c.classList.add('doc-locked'));
+        }
+      } else if (comp === 'dialog') {
+        const titleEl = preview.querySelector('h3, #modaltitle');
+        const textEl = preview.querySelector('p, #modaltext');
+        const btn = preview.querySelector('button.primary');
+        if (variant.includes('sign-out')) {
+          if (titleEl) titleEl.textContent = 'Sign out?';
+          if (textEl) textEl.textContent = 'Are you sure you want to sign out of Peopi? Your session will end.';
+          if (btn) btn.textContent = 'Sign out';
+        } else {
+          if (titleEl) titleEl.textContent = 'Go invisible?';
+          if (textEl) textEl.textContent = 'You\'ll become invisible immediately. Existing connections remain available.';
+          if (btn) btn.textContent = 'Go invisible';
+        }
+      } else if (comp === 'exp-sheet') {
+        const titleInp = preview.querySelector('#exp-sheet-title-input, [id$="title-input"]');
+        const compInp = preview.querySelector('#exp-sheet-company-input, [id$="company-input"]');
+        if (variant.includes('edit')) {
+          if (titleInp) titleInp.value = 'Senior Product Designer';
+          if (compInp) compInp.value = 'Studio Monolith';
+        } else {
+          if (titleInp) titleInp.value = '';
+          if (compInp) compInp.value = '';
+        }
+      } else if (comp === 'doc-sheet') {
+        const fileBox = preview.querySelector('.doc-sheet-selected-file, [id$="selected-box"]');
+        const uploadBtn = preview.querySelector('.edit-doc-upload-btn, [id$="upload-btn"]');
+        if (variant.includes('empty')) {
+          if (fileBox) { fileBox.classList.add('hide'); fileBox.style.display = 'none'; }
+          if (uploadBtn) { uploadBtn.style.display = 'flex'; }
+        } else {
+          if (fileBox) { fileBox.classList.remove('hide'); fileBox.style.display = 'flex'; }
+          if (uploadBtn) { uploadBtn.style.display = 'none'; }
+        }
+      }
+    });
+  });
  const copyHandler=async(button)=>{
   const text=(button.dataset.copy==='token-css')?tokenCss:button.dataset.copy;
   let copied=false;
