@@ -2318,7 +2318,7 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
   -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 116px),transparent 100%);
   mask-image:linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 116px),transparent 100%);
 }
-.phone :is(.settings-account strong,.settings-account small,.settings-item strong,.privacy-setting-copy strong,.detailblock p,.profilehero h3,.profilehero p,.verified-chat-name){overflow-wrap:anywhere}
+.phone :is(.settings-account strong,.settings-account small,.settings-item strong,.settings-item small,.privacy-setting-copy strong,.privacy-setting-copy small,.detailblock p,.profilehero h3,.profilehero p,.verified-chat-name){overflow-wrap:anywhere;word-break:break-word}
 
 /* Activity & Notifications feed */
 :is(#activity .activity-tabs, #messages .messages-tabs){margin-bottom:16px}

@@ -9741,10 +9741,10 @@ const peopiHandoffData = {
     "title": "Settings Account Rows",
     "category": "Cards & Lists",
     "sourceScreen": "Settings (`#appsettings .settings-group`)",
-    "purpose": "Settings row group with theme-aware rounded surface, icon, title, subtitle, and trailing chevron.",
-    "tokens": "Row height: 48pt minimum · Radius: 22pt · Divider: 1px subtle line",
+    "purpose": "Settings row group with theme-aware rounded surface, category label, leading icon, title, subtitle, and trailing chevron navigation trigger. Supports Account Settings (Edit profile, Verification, Privacy & safety) and Privacy & Legal (Privacy Policy, Terms of Service, Community & Safety Standards).",
+    "tokens": "Group radius: 22pt · Group padding: 18pt vertical, 16pt horizontal · Row height: 56pt minimum · Divider: 1px subtle line between rows · Icon: 24×24pt container (20pt glyph) · Title: 15pt bold · Subtitle: 13pt support · Trailing: 16pt caret chevron",
     "motion": "Tap pushes child route (360ms push, 320ms pop with interactive swipe back).",
-    "flutterSemantics": "`CupertinoListSection` and `CupertinoListTile` with trailing `CupertinoListTileChevron`.",
+    "flutterSemantics": "`CupertinoListSection.insetGrouped` with `CupertinoListTile(leading: Icon(...), title: Text(...), subtitle: Text(...), trailing: CupertinoListTileChevron())`.",
     "privacy": "Settings contain account preferences; sign-out clears credentials.",
     "serverAuth": "Synchronized with user account service.",
     "isStatic": true
@@ -10778,6 +10778,108 @@ function generateWebReference(compKey, activeVariantText, card) {
       '}'
     );
   }
+  if (compKey === 'list') {
+    cssLines.push(
+      '',
+      '/* Scoped Settings Account Rows Base Layout & Surface */',
+      '.peopi-component-list .settings-group {',
+      '  background: var(--card);',
+      '  border: 1px solid var(--line);',
+      '  border-radius: var(--radius-lg, 22px);',
+      '  padding: 18px 16px 10px;',
+      '  margin: 18px 0;',
+      '  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);',
+      '  width: 100%;',
+      '  box-sizing: border-box;',
+      '}',
+      '',
+      '/* Settings Group Category Label */',
+      '.peopi-component-list .settings-label {',
+      '  font-size: 13px;',
+      '  font-weight: 650;',
+      '  letter-spacing: 0.4px;',
+      '  line-height: 1.5;',
+      '  color: var(--ink-secondary);',
+      '  margin-bottom: 7px;',
+      '}',
+      '',
+      '/* Settings Row Item Layout & Touch Target (56pt min-height) */',
+      '.peopi-component-list .settings-item {',
+      '  display: flex;',
+      '  align-items: center;',
+      '  gap: 10px;',
+      '  min-height: 56px;',
+      '  padding: 14px 0;',
+      '  width: 100%;',
+      '  border: 0;',
+      '  border-bottom: 1px solid var(--line);',
+      '  background: transparent;',
+      '  text-align: left;',
+      '  color: var(--ink);',
+      '  font-family: inherit;',
+      '  cursor: pointer;',
+      '  box-sizing: border-box;',
+      '  transition: opacity 0.15s ease;',
+      '}',
+      '.peopi-component-list .settings-item:last-child {',
+      '  border-bottom: 0;',
+      '}',
+      '.peopi-component-list .settings-item:hover {',
+      '  opacity: 0.85;',
+      '}',
+      '',
+      '/* Leading Icon Container (24×24pt) */',
+      '.peopi-component-list .settings-ico {',
+      '  width: 24px;',
+      '  height: 24px;',
+      '  min-width: 24px;',
+      '  display: grid;',
+      '  place-items: center;',
+      '  align-self: flex-start;',
+      '  margin-top: 3px;',
+      '  color: var(--ink-secondary);',
+      '}',
+      '.peopi-component-list .settings-ico i,',
+      '.peopi-component-list .settings-ico .ph {',
+      '  font-size: 20px;',
+      '  line-height: 1;',
+      '}',
+      '',
+      '/* Text Hierarchy: 15pt Title & 13pt Subtitle */',
+      '.peopi-component-list .settings-item > span:nth-child(2) {',
+      '  flex: 1;',
+      '  min-width: 0;',
+      '  display: flex;',
+      '  flex-direction: column;',
+      '}',
+      '.peopi-component-list .settings-item strong {',
+      '  font-size: 15px;',
+      '  font-weight: 700;',
+      '  color: var(--ink);',
+      '  line-height: 1.4;',
+      '  overflow-wrap: anywhere;',
+      '  word-break: break-word;',
+      '}',
+      '.peopi-component-list .settings-item small {',
+      '  font-size: 13px;',
+      '  font-weight: 500;',
+      '  color: var(--ink-secondary);',
+      '  line-height: 1.5;',
+      '  margin-top: 3px;',
+      '  overflow-wrap: anywhere;',
+      '  word-break: break-word;',
+      '}',
+      '',
+      '/* Trailing Navigation Chevron */',
+      '.peopi-component-list .settings-item > .ph,',
+      '.peopi-component-list .settings-item > i:last-child {',
+      '  font-size: 16px;',
+      '  color: var(--ink-secondary);',
+      '  flex-shrink: 0;',
+      '  margin-left: auto;',
+      '}'
+    );
+  }
   const cssTokensCode = cssLines.join('\n');
 
   const jsCode = comp.isStatic ? null : (comp.jsCode || ('// Interactive controller for ' + compKey));
@@ -10845,6 +10947,53 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
       '    </div>',
       '    <p class="activity-subtitle">Session ended automatically · 5m presence window expired</p>',
       '  </div>',
+      '</div>'
+    ].join('\n');
+  }
+
+  if (compKey === 'list') {
+    labelA = 'Instance A — Account Settings';
+    labelB = 'Instance B — Privacy & Legal';
+
+    htmlCodeA = [
+      '<div class="settings-group">',
+      '  <div class="settings-label">ACCOUNT</div>',
+      '  <button type="button" class="settings-item" id="settings-profile">',
+      '    <span class="settings-ico"><i class="ph ph-user-circle-gear" aria-hidden="true"></i></span>',
+      '    <span><strong>Edit profile</strong><small>Your professional profile</small></span>',
+      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+      '  </button>',
+      '  <button type="button" class="settings-item" id="settings-verification">',
+      '    <span class="settings-ico"><i class="ph ph-seal-check" aria-hidden="true"></i></span>',
+      '    <span><strong>Verification</strong><small>Optional trust signals</small></span>',
+      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+      '  </button>',
+      '  <button type="button" class="settings-item" id="settings-privacy">',
+      '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+      '    <span><strong>Privacy & safety</strong><small>Visibility and safety</small></span>',
+      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+      '  </button>',
+      '</div>'
+    ].join('\n');
+
+    htmlCodeB = [
+      '<div class="settings-group">',
+      '  <div class="settings-label">PRIVACY & LEGAL</div>',
+      '  <button type="button" class="settings-item" id="settings-privacy-policy">',
+      '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+      '    <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
+      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+      '  </button>',
+      '  <button type="button" class="settings-item" id="settings-terms">',
+      '    <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
+      '    <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
+      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+      '  </button>',
+      '  <button type="button" class="settings-item" id="settings-standards">',
+      '    <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
+      '    <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
+      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+      '  </button>',
       '</div>'
     ].join('\n');
   }
@@ -12100,9 +12249,53 @@ if (typeof window !== 'undefined') {
           if (actions) actions.style.display = '';
         }
       } else if (comp === 'list') {
-        const titleEl = preview.querySelector('.settings-group-title, h4, strong');
-        if (titleEl) {
-          titleEl.textContent = variant.includes('privacy') ? 'PRIVACY & SAFETY' : 'ACCOUNT SETTINGS';
+        const group = preview.querySelector('.settings-group') || preview;
+        if (!group) return;
+
+        if (variant.includes('privacy') || variant.includes('legal')) {
+          if (!group.dataset.originalHtml) {
+            group.dataset.originalHtml = group.innerHTML;
+          }
+          group.innerHTML = [
+            '<div class="settings-label">PRIVACY & LEGAL</div>',
+            '<button class="settings-item" type="button" id="settings-privacy-policy">',
+            '  <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+            '  <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
+            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '</button>',
+            '<button class="settings-item" type="button" id="settings-terms">',
+            '  <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
+            '  <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
+            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '</button>',
+            '<button class="settings-item" type="button" id="settings-standards">',
+            '  <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
+            '  <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
+            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '</button>'
+          ].join('\n');
+        } else if (variant.includes('pref')) {
+          if (!group.dataset.originalHtml) {
+            group.dataset.originalHtml = group.innerHTML;
+          }
+          group.innerHTML = [
+            '<div class="settings-label">PREFERENCES</div>',
+            '<button class="settings-item" type="button" data-go="notifications">',
+            '  <span class="settings-ico"><i class="ph ph-bell-ringing" aria-hidden="true"></i></span>',
+            '  <span><strong>Notification preferences</strong><small>Choose your updates</small></span>',
+            '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '</button>',
+            '<button class="settings-item" type="button" id="settings-appearance">',
+            '  <span class="settings-ico"><i class="ph ph-sun" aria-hidden="true"></i></span>',
+            '  <span><strong>Appearance</strong><small id="settings-appearance-label">Light mode</small></span>',
+            '  <i class="ph ph-arrows-clockwise" aria-hidden="true"></i>',
+            '</button>'
+          ].join('\n');
+        } else {
+          if (group.dataset.originalHtml) {
+            group.innerHTML = group.dataset.originalHtml;
+            delete group.dataset.originalHtml;
+          }
         }
       } else if (comp === 'identity-card') {
         const nameEl = preview.querySelector('#own-name, [id$="own-name"], h3');
