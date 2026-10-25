@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T15:47:20.939Z",
+  "generatedAt": "2026-10-25T17:20:52.391Z",
   "viewport": {
     "width": 393,
     "height": 852,
@@ -25,17 +25,17 @@
       },
       "light": {
         "filename": "screen-closed-light.png",
-        "bytes": 158867,
+        "bytes": 158527,
         "width": 393,
         "height": 852,
-        "sha1": "526987bf44f854f9b405e31703e7e48035420562"
+        "sha1": "898c8cefeb7f5fe56df51f26be2c38332ca5953e"
       },
       "dark": {
         "filename": "screen-closed-dark.png",
-        "bytes": 140054,
+        "bytes": 137579,
         "width": 393,
         "height": 852,
-        "sha1": "89e4793cdfdd3eb009a8ec5300fb3f8623afe865"
+        "sha1": "43c18bcf7f08b9cdf522826455b5d85329b1a174"
       }
     },
     "setup": {
@@ -54,10 +54,10 @@
       },
       "light": {
         "filename": "screen-setup-light.png",
-        "bytes": 45558,
+        "bytes": 45596,
         "width": 393,
         "height": 852,
-        "sha1": "b0a983bc5efb3e73d85363d793ae373355cbd1b9"
+        "sha1": "8472f45dc14c26541cae8ad306c7670eb5a583d9"
       },
       "dark": {
         "filename": "screen-setup-dark.png",
@@ -77,24 +77,24 @@
       },
       "sourceFingerprint": "v2-1e31a9c4-16d7b664-12b86792-205ba47a-d981b0b1-1a6129ee",
       "scrollExtent": {
-        "scrollHeight": 0,
-        "clientHeight": 0,
+        "scrollHeight": 803,
+        "clientHeight": 803,
         "maxScrollY": 0,
         "hasOverflow": false
       },
       "light": {
         "filename": "screen-active-light.png",
-        "bytes": 107821,
+        "bytes": 107738,
         "width": 393,
         "height": 852,
-        "sha1": "2eaca72d5a2076e43ad725319335ff889928dffa"
+        "sha1": "82aeb892ab11567f9fac5b1d0b086e9f0459e482"
       },
       "dark": {
         "filename": "screen-active-dark.png",
-        "bytes": 111118,
+        "bytes": 111375,
         "width": 393,
         "height": 852,
-        "sha1": "b2e042f051d6a7c26296227f60d0249462165ef9"
+        "sha1": "720fdf296a5b92d280c840bf8fecb6f80e054b71"
       }
     },
     "myprofile": {
@@ -211,10 +211,10 @@
       },
       "dark": {
         "filename": "screen-verification-dark.png",
-        "bytes": 66975,
+        "bytes": 66974,
         "width": 393,
         "height": 852,
-        "sha1": "b92705a9a134b4fba6175a3946241abadc155bc8"
+        "sha1": "2b7f83f8be5097002d34159070b589d097175ae7"
       }
     },
     "appsettings": {
@@ -261,10 +261,10 @@
       },
       "light": {
         "filename": "screen-onboarding-light.png",
-        "bytes": 346648,
+        "bytes": 344900,
         "width": 393,
         "height": 852,
-        "sha1": "fa956669c9aa5bc1d42863c7db1a5bfb7045d4ee"
+        "sha1": "4ac541e098dd10f7821a77d2002e98b6f447a745"
       },
       "dark": {
         "filename": "screen-onboarding-dark.png",
@@ -292,17 +292,17 @@
       },
       "light": {
         "filename": "screen-welcome-light.png",
-        "bytes": 149338,
+        "bytes": 154433,
         "width": 393,
         "height": 852,
-        "sha1": "5ffc5a0278bebf31bf1e77e550c618742599928a"
+        "sha1": "a2b1343ab1aaa05ef797fc029354c79e552768eb"
       },
       "dark": {
         "filename": "screen-welcome-dark.png",
-        "bytes": 150911,
+        "bytes": 150779,
         "width": 393,
         "height": 852,
-        "sha1": "e6ed0c629c9f064634e3a1e848ba780a6544f03c"
+        "sha1": "8a354aed75d39461acf50c8133364181b85d82eb"
       }
     },
     "auth": {
@@ -319,10 +319,10 @@
       },
       "light": {
         "filename": "screen-auth-light.png",
-        "bytes": 42146,
+        "bytes": 46907,
         "width": 393,
         "height": 852,
-        "sha1": "7138b5398f9e1bd61cbef3f12e14cbe934d62249"
+        "sha1": "7f3d72404502c1bef87d32fe3a0ca22dd210a56a"
       },
       "dark": {
         "filename": "screen-auth-dark.png",
@@ -435,10 +435,10 @@
       },
       "light": {
         "filename": "screen-recovery-light.png",
-        "bytes": 37390,
+        "bytes": 35326,
         "width": 393,
         "height": 852,
-        "sha1": "d483d30e44ea8bdcd04df59b3efa1f7a328f9f35"
+        "sha1": "a4968ffcb6829dcc87041f2fa4255023823a19f7"
       },
       "dark": {
         "filename": "screen-recovery-dark.png",
@@ -519,10 +519,10 @@
       },
       "light": {
         "filename": "screen-activity-light.png",
-        "bytes": 67726,
+        "bytes": 58741,
         "width": 393,
         "height": 852,
-        "sha1": "db74f9e4c2f787037544c3bd8d58c819057d82bc"
+        "sha1": "5b3679b3ec271fa855fd1750974be893d213b144"
       },
       "dark": {
         "filename": "screen-activity-dark.png",
@@ -557,7 +557,7 @@
         "bytes": 64811,
         "width": 393,
         "height": 852,
-        "sha1": "af84ab7fbe9a78f7e31267cbad530175fd2bde97"
+        "sha1": "2d52004508004a5fe47cb519807382072907f761"
       }
     },
     "conversation": {
@@ -632,10 +632,10 @@
       },
       "light": {
         "filename": "screen-hiddenconnections-light.png",
-        "bytes": 90614,
+        "bytes": 85268,
         "width": 393,
         "height": 852,
-        "sha1": "e0b9cbc79cb25180b3649ae30b4ee2e90ab71798"
+        "sha1": "2a8dd5210f94954f09f65006f9671151ae325d7e"
       },
       "dark": {
         "filename": "screen-hiddenconnections-dark.png",
@@ -691,10 +691,10 @@
       },
       "light": {
         "filename": "screen-reportuser-light.png",
-        "bytes": 50899,
+        "bytes": 55129,
         "width": 393,
         "height": 852,
-        "sha1": "6a3476087754dd98f4d1dbb1bf25323ec11456f0"
+        "sha1": "38fc37b23f20db7a60ff0bd7a3c1c78835456820"
       },
       "dark": {
         "filename": "screen-reportuser-dark.png",
@@ -719,10 +719,10 @@
       },
       "light": {
         "filename": "screen-notifications-light.png",
-        "bytes": 63623,
+        "bytes": 70014,
         "width": 393,
         "height": 852,
-        "sha1": "df380ef7df629ad8d9b1b38b35644c5bbba31cd4"
+        "sha1": "637bdf3b2957a1845e9a0c322f4a796dd3ccd975"
       },
       "dark": {
         "filename": "screen-notifications-dark.png",
@@ -735,31 +735,33 @@
     "profile": {
       "demoData": {
         "personId": 2,
-        "name": "Alex Morgan",
-        "headline": "Founding Designer at Studio",
-        "approximateDistance": "~120m away",
-        "statusBadge": "Active now"
+        "name": "Sam K.",
+        "headline": "Startup Founder",
+        "sector": "Climate technology · Sustainability",
+        "role": "Founder · Climate tech",
+        "intent": "Looking to exchange ideas",
+        "statusBadge": "Photo & name hidden until connected"
       },
-      "sourceFingerprint": "v2-1ba82ba9-146febb7-95483f87-10b88df5-d981b0b1-17267b6a",
+      "sourceFingerprint": "v2-1ba82ba9-146febb7-95483f87-10b88df5-d981b0b1-a2e94ebb",
       "scrollExtent": {
-        "scrollHeight": 0,
-        "clientHeight": 0,
-        "maxScrollY": 0,
-        "hasOverflow": false
+        "scrollHeight": 1434,
+        "clientHeight": 681,
+        "maxScrollY": 753,
+        "hasOverflow": true
       },
       "light": {
         "filename": "screen-profile-light.png",
-        "bytes": 100740,
+        "bytes": 70607,
         "width": 393,
         "height": 852,
-        "sha1": "604a83fe9d8c1a26e58c0e8a4d2b6251f6637c45"
+        "sha1": "2acc147b8cb206252829ed8069939bf00867404b"
       },
       "dark": {
         "filename": "screen-profile-dark.png",
-        "bytes": 103662,
+        "bytes": 58930,
         "width": 393,
         "height": 852,
-        "sha1": "413910605910ea6f4ddd41017ce16a49d22dcaf4"
+        "sha1": "794648002ae46046dce9de30f6feef6f149829cc"
       }
     },
     "helpsupport": {
