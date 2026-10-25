@@ -2235,7 +2235,7 @@ const compFamilyTitleMap = {
 };
 
 const peopiScreensMetadata = {
-  "generatedAt": "2026-10-25T15:24:59.473Z",
+  "generatedAt": "2026-10-25T15:47:20.939Z",
   "viewport": {
     "width": 393,
     "height": 852,
@@ -2252,7 +2252,7 @@ const peopiScreensMetadata = {
         "sessionStatus": "idle",
         "nearbyAggregated": "Activity nearby"
       },
-      "sourceFingerprint": "v1-14e1d9cd-1d1cc85d-3f79e0d3",
+      "sourceFingerprint": "v2-14e1d9cd-1d1cc85d-f236cc3e-15487d53-d981b0b1-3f79e0d3",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2261,17 +2261,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-closed-light.png",
-        "bytes": 151954,
+        "bytes": 158867,
         "width": 393,
         "height": 852,
-        "sha1": "ab59091c1d7840f35b3b807e4017fde7526b6617"
+        "sha1": "526987bf44f854f9b405e31703e7e48035420562"
       },
       "dark": {
         "filename": "screen-closed-dark.png",
-        "bytes": 131833,
+        "bytes": 140054,
         "width": 393,
         "height": 852,
-        "sha1": "eb9198f826c0f3b87753f0400089ee839c0c2788"
+        "sha1": "89e4793cdfdd3eb009a8ec5300fb3f8623afe865"
       }
     },
     "setup": {
@@ -2281,7 +2281,7 @@ const peopiScreensMetadata = {
         "approximateRadius": "150m",
         "privacyDefault": "Invisible until start"
       },
-      "sourceFingerprint": "v1-15dd7aff-165f0a80-1fd80776",
+      "sourceFingerprint": "v2-15dd7aff-165f0a80-19a39d47-1891645d-d981b0b1-1fd80776",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2290,17 +2290,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-setup-light.png",
-        "bytes": 54409,
+        "bytes": 45558,
         "width": 393,
         "height": 852,
-        "sha1": "90e11fe16d98fed97717b44cc621a42c08d3a4ea"
+        "sha1": "b0a983bc5efb3e73d85363d793ae373355cbd1b9"
       },
       "dark": {
         "filename": "screen-setup-dark.png",
-        "bytes": 43581,
+        "bytes": 43557,
         "width": 393,
         "height": 852,
-        "sha1": "9da1ca3b5f3ddaaa927b2a666afae79489fc063f"
+        "sha1": "9e161e65a37024ba8f93e81069a5fb552cfc3c83"
       }
     },
     "active": {
@@ -2311,7 +2311,7 @@ const peopiScreensMetadata = {
         "activeMode": "Open networking",
         "selectedPersonId": 2
       },
-      "sourceFingerprint": "v1-1e31a9c4-16d7b664-1a6129ee",
+      "sourceFingerprint": "v2-1e31a9c4-16d7b664-12b86792-205ba47a-d981b0b1-1a6129ee",
       "scrollExtent": {
         "scrollHeight": 0,
         "clientHeight": 0,
@@ -2320,17 +2320,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-active-light.png",
-        "bytes": 107276,
+        "bytes": 107821,
         "width": 393,
         "height": 852,
-        "sha1": "dde255aa8b7009688f5e8076496d7be5a4a16ae0"
+        "sha1": "2eaca72d5a2076e43ad725319335ff889928dffa"
       },
       "dark": {
         "filename": "screen-active-dark.png",
-        "bytes": 111046,
+        "bytes": 111118,
         "width": 393,
         "height": 852,
-        "sha1": "3d21bb44988c47b4ee7828e47f6d41381c97ccd7"
+        "sha1": "b2e042f051d6a7c26296227f60d0249462165ef9"
       }
     },
     "myprofile": {
@@ -2343,7 +2343,7 @@ const peopiScreensMetadata = {
         "documentsCount": 3,
         "experienceCount": 2
       },
-      "sourceFingerprint": "v1-30fcc520-1edf9422-1dfa114e",
+      "sourceFingerprint": "v2-30fcc520-1edf9422-1af029c0-1c2bc919-d981b0b1-1dfa114e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2352,17 +2352,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-myprofile-light.png",
-        "bytes": 60418,
+        "bytes": 60408,
         "width": 393,
         "height": 852,
-        "sha1": "4314f2d4802c78e7bb5086a55875f8c9be49a436"
+        "sha1": "32d5e08ae0367ff3a1d2fd92daa963094f3f0ee0"
       },
       "dark": {
         "filename": "screen-myprofile-dark.png",
-        "bytes": 62157,
+        "bytes": 62131,
         "width": 393,
         "height": 852,
-        "sha1": "11a240f881f691c724add4e2491769d01f5fb4fa"
+        "sha1": "36ce44b737dcd7c46247882bc9b8049ac92e0dad"
       }
     },
     "editprofile": {
@@ -2372,7 +2372,7 @@ const peopiScreensMetadata = {
         "maxBioLength": 160,
         "skillsCount": 4
       },
-      "sourceFingerprint": "v1-2cd5118e-13fdd1e4-14a5ae62",
+      "sourceFingerprint": "v2-2cd5118e-13fdd1e4-ed132894-b3ecc561-d981b0b1-14a5ae62",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2381,10 +2381,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-editprofile-light.png",
-        "bytes": 68453,
+        "bytes": 59378,
         "width": 393,
         "height": 852,
-        "sha1": "6d21e2545b0ca2bc9ebaefa296ad0997a687abf5"
+        "sha1": "404081a89903f0d1e4d17fb7fabb0c8075887448"
       },
       "dark": {
         "filename": "screen-editprofile-dark.png",
@@ -2402,7 +2402,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "blockedCount": 0
       },
-      "sourceFingerprint": "v1-1c9acafb-7cf5a0f5-6c6990cd",
+      "sourceFingerprint": "v2-1c9acafb-7cf5a0f5-1583a9c3-a2d85e94-d981b0b1-6c6990cd",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2411,17 +2411,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-privacy-light.png",
-        "bytes": 73182,
+        "bytes": 61800,
         "width": 393,
         "height": 852,
-        "sha1": "9442e32ab52522d066eeb09613e011918d5c2289"
+        "sha1": "013f9068a626493c40ddbcb5eb3ae450aeded0b4"
       },
       "dark": {
         "filename": "screen-privacy-dark.png",
         "bytes": 64056,
         "width": 393,
         "height": 852,
-        "sha1": "1fdc70cbc01cd749d39f8728fb2a3e5176e31cad"
+        "sha1": "ce2a95ee9c2bd153d8b38421e7b9aafde079052a"
       }
     },
     "verification": {
@@ -2431,7 +2431,7 @@ const peopiScreensMetadata = {
         "trustTier": "standard",
         "badgeType": "seal-check"
       },
-      "sourceFingerprint": "v1-caca06f4-14a76c2c-1959f34c",
+      "sourceFingerprint": "v2-caca06f4-14a76c2c-7e24323a-15ce0c0d-d981b0b1-1959f34c",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2440,17 +2440,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-verification-light.png",
-        "bytes": 76357,
+        "bytes": 64939,
         "width": 393,
         "height": 852,
-        "sha1": "fdeae25f265a2e1711ecec41497675cfb31200fe"
+        "sha1": "8f99a744be4a7b9e50b117509c62459d70291b39"
       },
       "dark": {
         "filename": "screen-verification-dark.png",
-        "bytes": 66974,
+        "bytes": 66975,
         "width": 393,
         "height": 852,
-        "sha1": "2b7f83f8be5097002d34159070b589d097175ae7"
+        "sha1": "b92705a9a134b4fba6175a3946241abadc155bc8"
       }
     },
     "appsettings": {
@@ -2460,7 +2460,7 @@ const peopiScreensMetadata = {
         "locationPermission": "approximate",
         "appVersion": "v0.3.5"
       },
-      "sourceFingerprint": "v1-da78b379-1e0defcb-152798f6",
+      "sourceFingerprint": "v2-da78b379-1e0defcb-161a29bf-1c931fbf-d981b0b1-152798f6",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2469,17 +2469,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-appsettings-light.png",
-        "bytes": 67656,
+        "bytes": 58429,
         "width": 393,
         "height": 852,
-        "sha1": "cc9da2f5ae1ab47e26e9ddeb8d59312ed7c6515e"
+        "sha1": "a7fbeefbf36901c0be3360c84adeda5b737471e1"
       },
       "dark": {
         "filename": "screen-appsettings-dark.png",
-        "bytes": 60542,
+        "bytes": 60488,
         "width": 393,
         "height": 852,
-        "sha1": "8d9b327e619a6ea08eafc486bc705a22bac5c285"
+        "sha1": "084804aa484abfef798b489c613d49011713b854"
       }
     },
     "onboarding": {
@@ -2488,7 +2488,7 @@ const peopiScreensMetadata = {
         "totalSteps": 3,
         "headline": "Nearby networking, on your terms"
       },
-      "sourceFingerprint": "v1-1c608548-c10912c7-aab38f2f",
+      "sourceFingerprint": "v2-1c608548-c10912c7-14176c17-6add983f-d981b0b1-aab38f2f",
       "scrollExtent": {
         "scrollHeight": 852,
         "clientHeight": 852,
@@ -2497,10 +2497,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-onboarding-light.png",
-        "bytes": 330422,
+        "bytes": 346648,
         "width": 393,
         "height": 852,
-        "sha1": "441b443e390196ab4f6809e77dda27e9ddedbea4"
+        "sha1": "fa956669c9aa5bc1d42863c7db1a5bfb7045d4ee"
       },
       "dark": {
         "filename": "screen-onboarding-dark.png",
@@ -2519,7 +2519,7 @@ const peopiScreensMetadata = {
         ],
         "valueProp": "Privacy-first professional proximity"
       },
-      "sourceFingerprint": "v1-18b37954-cb328682-40bb3de5",
+      "sourceFingerprint": "v2-18b37954-cb328682-7c0a1fb7-78e8108c-d981b0b1-40bb3de5",
       "scrollExtent": {
         "scrollHeight": 852,
         "clientHeight": 852,
@@ -2528,17 +2528,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-welcome-light.png",
-        "bytes": 156684,
+        "bytes": 149338,
         "width": 393,
         "height": 852,
-        "sha1": "3223178aaa2f52ef1cb31328f1aa8731e6c549ee"
+        "sha1": "5ffc5a0278bebf31bf1e77e550c618742599928a"
       },
       "dark": {
         "filename": "screen-welcome-dark.png",
-        "bytes": 150815,
+        "bytes": 150911,
         "width": 393,
         "height": 852,
-        "sha1": "c91bfe4e805b539deecba4924c85ff926386b34e"
+        "sha1": "e6ed0c629c9f064634e3a1e848ba780a6544f03c"
       }
     },
     "auth": {
@@ -2546,7 +2546,7 @@ const peopiScreensMetadata = {
         "mode": "social-or-email",
         "termsAccepted": true
       },
-      "sourceFingerprint": "v1-13b82faf-16a5d62c-3b3af112",
+      "sourceFingerprint": "v2-13b82faf-16a5d62c-718e97cd-16d85d4a-d981b0b1-3b3af112",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2555,17 +2555,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-auth-light.png",
-        "bytes": 51221,
+        "bytes": 42146,
         "width": 393,
         "height": 852,
-        "sha1": "305df92cff6c23239fff4d6d1980a934a83ae292"
+        "sha1": "7138b5398f9e1bd61cbef3f12e14cbe934d62249"
       },
       "dark": {
         "filename": "screen-auth-dark.png",
-        "bytes": 43025,
+        "bytes": 43036,
         "width": 393,
         "height": 852,
-        "sha1": "b03a47a6dd43960170eff26836f3fd879d2d8756"
+        "sha1": "a1af5f16edbd3dd212893c3e413809da0e6fe86a"
       }
     },
     "firstprofile": {
@@ -2575,7 +2575,7 @@ const peopiScreensMetadata = {
         "city": "Miami, FL",
         "step": "01 / 02"
       },
-      "sourceFingerprint": "v1-1f00bbec-4cdc9fbb-1131cd87",
+      "sourceFingerprint": "v2-1f00bbec-4cdc9fbb-40ad05cd-1d943797-d981b0b1-1131cd87",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2584,10 +2584,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-firstprofile-light.png",
-        "bytes": 49749,
+        "bytes": 41203,
         "width": 393,
         "height": 852,
-        "sha1": "bd826d478571fc765669ccb7fa52ae4c6ee5d667"
+        "sha1": "59a059a74e29501387074cf34c5e8ee3b8c36210"
       },
       "dark": {
         "filename": "screen-firstprofile-dark.png",
@@ -2607,7 +2607,7 @@ const peopiScreensMetadata = {
         "customNote": "",
         "step": "02 / 02"
       },
-      "sourceFingerprint": "v1-8f2c6fb3-1a65d5a2-19f0c8a0",
+      "sourceFingerprint": "v2-8f2c6fb3-1a65d5a2-1bebef26-1050d4cc-d981b0b1-19f0c8a0",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2616,10 +2616,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-firstintent-light.png",
-        "bytes": 62048,
+        "bytes": 50220,
         "width": 393,
         "height": 852,
-        "sha1": "35a82ca53d0d0dd41523cc1ce89be361e85777d7"
+        "sha1": "40d9c44f31600c8dfabc5d0533096c66274727e3"
       },
       "dark": {
         "filename": "screen-firstintent-dark.png",
@@ -2635,7 +2635,7 @@ const peopiScreensMetadata = {
         "bluetoothPermission": "allowed",
         "notificationsPermission": "prompted"
       },
-      "sourceFingerprint": "v1-1f870a04-1c95541a-149b791e",
+      "sourceFingerprint": "v2-1f870a04-1c95541a-b3e0fce9-56700d7e-d981b0b1-149b791e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2644,10 +2644,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-permissions-light.png",
-        "bytes": 49376,
+        "bytes": 41131,
         "width": 393,
         "height": 852,
-        "sha1": "27e4dec0cdbfebb7af1da14538cb64969819c035"
+        "sha1": "2ee878e783e587158a297d036305e9c35d13512b"
       },
       "dark": {
         "filename": "screen-permissions-dark.png",
@@ -2662,7 +2662,7 @@ const peopiScreensMetadata = {
         "email": "designer@example.com",
         "sentCode": true
       },
-      "sourceFingerprint": "v1-e77954ce-15084f25-ce13a6b0",
+      "sourceFingerprint": "v2-e77954ce-15084f25-3f42a73b-8edd4570-d981b0b1-ce13a6b0",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2671,10 +2671,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-recovery-light.png",
-        "bytes": 37965,
+        "bytes": 37390,
         "width": 393,
         "height": 852,
-        "sha1": "7e340165987569024f66b0f36319a5425101394c"
+        "sha1": "d483d30e44ea8bdcd04df59b3efa1f7a328f9f35"
       },
       "dark": {
         "filename": "screen-recovery-dark.png",
@@ -2691,7 +2691,7 @@ const peopiScreensMetadata = {
         "pendingReceived": 2,
         "activeFilter": "all"
       },
-      "sourceFingerprint": "v1-c3ea478e-1c8cea18-11459b43",
+      "sourceFingerprint": "v2-c3ea478e-1c8cea18-a578b87f-f4829978-d981b0b1-11459b43",
       "scrollExtent": {
         "scrollHeight": 1638,
         "clientHeight": 715,
@@ -2700,17 +2700,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-network-light.png",
-        "bytes": 92526,
+        "bytes": 91727,
         "width": 393,
         "height": 852,
-        "sha1": "898aa156772015cac88209c5d4b1d51fa39e1d6d"
+        "sha1": "bcdac7e196c212c84427f21b68dbba9dcf6caa69"
       },
       "dark": {
         "filename": "screen-network-dark.png",
-        "bytes": 93381,
+        "bytes": 92607,
         "width": 393,
         "height": 852,
-        "sha1": "cdfb7cf243b7ba9594ae5f58c0dfef64f3d4e0e6"
+        "sha1": "9d7dc6d22ec22d0e33cfa18460c3c55bdd603d84"
       }
     },
     "requests": {
@@ -2719,7 +2719,7 @@ const peopiScreensMetadata = {
         "sentCount": 1,
         "activeTab": "received"
       },
-      "sourceFingerprint": "v1-19f6f13b-1a210d57-127eaf22",
+      "sourceFingerprint": "v2-19f6f13b-1a210d57-3e44d5e0-80625a71-d981b0b1-127eaf22",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2728,17 +2728,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-requests-light.png",
-        "bytes": 41733,
+        "bytes": 35466,
         "width": 393,
         "height": 852,
-        "sha1": "da8ba7758ade5c73d15b620e7b584128c4e52f8f"
+        "sha1": "322e27236b06d7a40799c5d1bd7d00223bfa02b2"
       },
       "dark": {
         "filename": "screen-requests-dark.png",
-        "bytes": 37392,
+        "bytes": 37418,
         "width": 393,
         "height": 852,
-        "sha1": "4f45507ff239789649f10b83d46c64e61da77885"
+        "sha1": "52a29c882f57893402bcf5bcbac5f4f83d3f6df2"
       }
     },
     "activity": {
@@ -2746,7 +2746,7 @@ const peopiScreensMetadata = {
         "recentInteractions": 5,
         "lastInteraction": "22m ago · Alex Morgan"
       },
-      "sourceFingerprint": "v1-17402c34-1315e5df-15df29d4",
+      "sourceFingerprint": "v2-17402c34-1315e5df-7b6b5b1e-102191d5-d981b0b1-15df29d4",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2755,17 +2755,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-activity-light.png",
-        "bytes": 68291,
+        "bytes": 67726,
         "width": 393,
         "height": 852,
-        "sha1": "1e3766e569346161d6b9a2a2d96c0a7f23e84f67"
+        "sha1": "db74f9e4c2f787037544c3bd8d58c819057d82bc"
       },
       "dark": {
         "filename": "screen-activity-dark.png",
-        "bytes": 60564,
+        "bytes": 60727,
         "width": 393,
         "height": 852,
-        "sha1": "53212e2a339f0c52674dea734449e6e8708b7bce"
+        "sha1": "e799a8813c26a4b9e2fc5dbc794bd5fae241291d"
       }
     },
     "messages": {
@@ -2774,7 +2774,7 @@ const peopiScreensMetadata = {
         "unreadTotal": 1,
         "activeThread": "Alex Morgan"
       },
-      "sourceFingerprint": "v1-12bb0986-85027798-36e523ad",
+      "sourceFingerprint": "v2-12bb0986-85027798-1867542a-cd38f172-d981b0b1-36e523ad",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2783,17 +2783,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-messages-light.png",
-        "bytes": 69538,
+        "bytes": 62916,
         "width": 393,
         "height": 852,
-        "sha1": "1e20605a9d20cf836f217aa69511aeda5537391e"
+        "sha1": "878c66a9406dd905590e32ce1cae0d6233aebbb4"
       },
       "dark": {
         "filename": "screen-messages-dark.png",
-        "bytes": 64049,
+        "bytes": 64811,
         "width": 393,
         "height": 852,
-        "sha1": "2770dbefbb4a713dbbedfab6387b225688890387"
+        "sha1": "af84ab7fbe9a78f7e31267cbad530175fd2bde97"
       }
     },
     "conversation": {
@@ -2803,26 +2803,26 @@ const peopiScreensMetadata = {
         "messagesCount": 8,
         "presenceStatus": "online"
       },
-      "sourceFingerprint": "v1-117acabd-91de8f31-11e7e46b",
+      "sourceFingerprint": "v2-117acabd-91de8f31-26fbb413-1ab78652-d981b0b1-11e7e46b",
       "scrollExtent": {
-        "scrollHeight": 836,
+        "scrollHeight": 2155,
         "clientHeight": 803,
-        "maxScrollY": 33,
+        "maxScrollY": 1352,
         "hasOverflow": true
       },
       "light": {
         "filename": "screen-conversation-light.png",
-        "bytes": 86575,
+        "bytes": 74489,
         "width": 393,
         "height": 852,
-        "sha1": "cfc9d2875f7a06d39389718267e7bed3a2a34a54"
+        "sha1": "238c9096490a6d001854c7fd994f2b94c2dbfb16"
       },
       "dark": {
         "filename": "screen-conversation-dark.png",
-        "bytes": 77229,
+        "bytes": 81453,
         "width": 393,
         "height": 852,
-        "sha1": "8ded1ee0b0567c1041abb7d4b9e02c3df53cf12f"
+        "sha1": "18f41fc3293dcb60bf72033f87a8de7ec3083cf5"
       }
     },
     "connectiondetail": {
@@ -2832,7 +2832,7 @@ const peopiScreensMetadata = {
         "sharedContext": "Tech Meetup Miami",
         "distanceApprox": "Near you (~120m)"
       },
-      "sourceFingerprint": "v1-1be55380-11d29107-1bdd579e",
+      "sourceFingerprint": "v2-1be55380-11d29107-15c8a7b3-4171f29f-d981b0b1-1bdd579e",
       "scrollExtent": {
         "scrollHeight": 2077,
         "clientHeight": 803,
@@ -2841,10 +2841,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-connectiondetail-light.png",
-        "bytes": 88066,
+        "bytes": 75716,
         "width": 393,
         "height": 852,
-        "sha1": "1057a88a42a61b1bc688569fbd5dfb7827516053"
+        "sha1": "e35cef39b7df9121088fad6d425b6c6ddb4bd2d6"
       },
       "dark": {
         "filename": "screen-connectiondetail-dark.png",
@@ -2859,7 +2859,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "explanatoryCopy": "Hidden profiles will not appear in discovery or suggestions."
       },
-      "sourceFingerprint": "v1-1ca7558b-138d5b4d-1b3736c4",
+      "sourceFingerprint": "v2-1ca7558b-138d5b4d-4593ef6b-1e50ac65-d981b0b1-1b3736c4",
       "scrollExtent": {
         "scrollHeight": 1753,
         "clientHeight": 803,
@@ -2868,17 +2868,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-hiddenconnections-light.png",
-        "bytes": 95824,
+        "bytes": 90614,
         "width": 393,
         "height": 852,
-        "sha1": "71fe2346258d04b50418f4bb1b85e329b3e17d91"
+        "sha1": "e0b9cbc79cb25180b3649ae30b4ee2e90ab71798"
       },
       "dark": {
         "filename": "screen-hiddenconnections-dark.png",
         "bytes": 87687,
         "width": 393,
         "height": 852,
-        "sha1": "fda384a31999c36b98749c88e7c40eb620a815f0"
+        "sha1": "3dc46b88d5bf5e7f285b27d7dab905186aebde0c"
       }
     },
     "blockedaccounts": {
@@ -2886,7 +2886,7 @@ const peopiScreensMetadata = {
         "blockedCount": 0,
         "explanatoryCopy": "Blocked users cannot see your proximity or send connection requests."
       },
-      "sourceFingerprint": "v1-1cbdc27c-154fb647-1d2ffa30",
+      "sourceFingerprint": "v2-1cbdc27c-154fb647-11d08c52-1e50ac65-d981b0b1-1d2ffa30",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2895,10 +2895,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-blockedaccounts-light.png",
-        "bytes": 49348,
+        "bytes": 41050,
         "width": 393,
         "height": 852,
-        "sha1": "8fc0c5d15ac086eb2f599669c9810e57dbe6cc30"
+        "sha1": "b0247a4603a479d6ff233c75ed1d7d13d0dbdaf8"
       },
       "dark": {
         "filename": "screen-blockedaccounts-dark.png",
@@ -2918,7 +2918,7 @@ const peopiScreensMetadata = {
           "Other"
         ]
       },
-      "sourceFingerprint": "v1-12d18e5a-1cef77b4-1b3b97c7",
+      "sourceFingerprint": "v2-12d18e5a-1cef77b4-b18a08c8-18722564-d981b0b1-1b3b97c7",
       "scrollExtent": {
         "scrollHeight": 878,
         "clientHeight": 803,
@@ -2927,10 +2927,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-reportuser-light.png",
-        "bytes": 59133,
+        "bytes": 50899,
         "width": 393,
         "height": 852,
-        "sha1": "b53ff41dc648a9bdab0f9b35fac0b6425be373c7"
+        "sha1": "6a3476087754dd98f4d1dbb1bf25323ec11456f0"
       },
       "dark": {
         "filename": "screen-reportuser-dark.png",
@@ -2946,7 +2946,7 @@ const peopiScreensMetadata = {
         "unreadCount": 1,
         "filter": "all"
       },
-      "sourceFingerprint": "v1-1c7c7650-98a8433c-b1e113b7",
+      "sourceFingerprint": "v2-1c7c7650-98a8433c-b38b3951-3c07d038-d981b0b1-b1e113b7",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2955,17 +2955,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-notifications-light.png",
-        "bytes": 75794,
+        "bytes": 63623,
         "width": 393,
         "height": 852,
-        "sha1": "0f3912c0d364ec8ed8d4f1beeb988651b578083d"
+        "sha1": "df380ef7df629ad8d9b1b38b35644c5bbba31cd4"
       },
       "dark": {
         "filename": "screen-notifications-dark.png",
-        "bytes": 63573,
+        "bytes": 63564,
         "width": 393,
         "height": 852,
-        "sha1": "b8f1d8044729ef667ca9bc23970fe3e659b57c1b"
+        "sha1": "14959d63cb0d9879ab205e2ba73339a27f233a5e"
       }
     },
     "profile": {
@@ -2976,7 +2976,7 @@ const peopiScreensMetadata = {
         "approximateDistance": "~120m away",
         "statusBadge": "Active now"
       },
-      "sourceFingerprint": "v1-1ba82ba9-146febb7-17267b6a",
+      "sourceFingerprint": "v2-1ba82ba9-146febb7-95483f87-10b88df5-d981b0b1-17267b6a",
       "scrollExtent": {
         "scrollHeight": 0,
         "clientHeight": 0,
@@ -2985,17 +2985,17 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-profile-light.png",
-        "bytes": 81851,
+        "bytes": 100740,
         "width": 393,
         "height": 852,
-        "sha1": "1fd9c9407a90344216d7a97d8778279128dc0fb1"
+        "sha1": "604a83fe9d8c1a26e58c0e8a4d2b6251f6637c45"
       },
       "dark": {
         "filename": "screen-profile-dark.png",
-        "bytes": 58930,
+        "bytes": 103662,
         "width": 393,
         "height": 852,
-        "sha1": "794648002ae46046dce9de30f6feef6f149829cc"
+        "sha1": "413910605910ea6f4ddd41017ce16a49d22dcaf4"
       }
     },
     "helpsupport": {
@@ -3004,7 +3004,7 @@ const peopiScreensMetadata = {
         "supportEmail": "support@peopi.app",
         "version": "v0.3.5"
       },
-      "sourceFingerprint": "v1-4933cc1a-1bde9c0a-dc603bdc",
+      "sourceFingerprint": "v2-4933cc1a-1bde9c0a-1576944e-67bbee38-d981b0b1-dc603bdc",
       "scrollExtent": {
         "scrollHeight": 2277,
         "clientHeight": 803,
@@ -3013,10 +3013,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-helpsupport-light.png",
-        "bytes": 85955,
+        "bytes": 73361,
         "width": 393,
         "height": 852,
-        "sha1": "08c165b8c1f2e828e046440779ad7528c24c7f81"
+        "sha1": "b3dbd543987de2ef8f2e296d0c075d12921b400a"
       },
       "dark": {
         "filename": "screen-helpsupport-dark.png",
@@ -3036,7 +3036,7 @@ const peopiScreensMetadata = {
           "Open Source Licenses"
         ]
       },
-      "sourceFingerprint": "v1-16ef0ee4-1c468357-68f5ce17",
+      "sourceFingerprint": "v2-16ef0ee4-1c468357-cd933303-3415fb49-d981b0b1-68f5ce17",
       "scrollExtent": {
         "scrollHeight": 1367,
         "clientHeight": 803,
@@ -3045,10 +3045,10 @@ const peopiScreensMetadata = {
       },
       "light": {
         "filename": "screen-aboutpeopi-light.png",
-        "bytes": 79363,
+        "bytes": 66351,
         "width": 393,
         "height": 852,
-        "sha1": "decd4ad25e475f9922276700472296401bed11d9"
+        "sha1": "a6cafb22aa45fbb107406250fa47adad830b17b3"
       },
       "dark": {
         "filename": "screen-aboutpeopi-dark.png",
@@ -3060,6 +3060,14 @@ const peopiScreensMetadata = {
     }
   }
 };
+
+const peopiScreenSourceMarkup = {};
+if (typeof document !== 'undefined') {
+  document.querySelectorAll('#phone > .screen, #phone > section, #profsheet').forEach(el => {
+    const id = el.id === 'profsheet' ? 'profile' : el.id;
+    peopiScreenSourceMarkup[id] = el.innerHTML.replace(/\s+/g, ' ').trim();
+  });
+}
 
 function computeHash(str) {
   let h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ str.length;
@@ -3073,12 +3081,29 @@ function computeHash(str) {
   return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16).padStart(12, '0');
 }
 
+function getStylesHash() {
+  let text = '';
+  if (typeof document !== 'undefined' && document.styleSheets) {
+    for (const s of document.styleSheets) {
+      if (s.href && (s.href.includes('tokens.css') || s.href.includes('mobile-screens.css') || s.href.includes('components.css') || s.href.includes('peopi-motion.css'))) {
+        try {
+          for (const r of s.cssRules) {
+            text += r.cssText;
+          }
+        } catch (e) {}
+      }
+    }
+  }
+  return computeHash(text).slice(0, 8);
+}
+
 function computeScreenSourceFingerprint(screenId) {
   const contract = (typeof PEOPI_SCREEN_CONTRACTS !== 'undefined' && PEOPI_SCREEN_CONTRACTS.screens && PEOPI_SCREEN_CONTRACTS.screens[screenId]) || {};
   const reg = (typeof peopiScreenRegistry !== 'undefined' && peopiScreenRegistry[screenId]) || {};
   const meta = (typeof peopiScreensMetadata !== 'undefined' && peopiScreensMetadata.screens && peopiScreensMetadata.screens[screenId]) || {};
   const demo = meta.demoData || {};
 
+  // 1. Contract Definition
   const contractPayload = JSON.stringify({
     code: contract.code,
     title: contract.title,
@@ -3089,7 +3114,9 @@ function computeScreenSourceFingerprint(screenId) {
     validation: contract.validation,
     motion: contract.motion
   });
+  const hContract = computeHash(contractPayload).slice(0, 8);
 
+  // 2. Registry & Structural Setup
   const regPayload = JSON.stringify({
     components: (reg.components || []).map(c => ({ k: c.key, v: c.variant, r: c.role })),
     screenSpecificElements: (reg.screenSpecificElements || []).map(e => ({ n: e.name, s: e.selector, p: e.purpose })),
@@ -3098,14 +3125,39 @@ function computeScreenSourceFingerprint(screenId) {
     routeType: reg.routeType,
     bottomClearance: reg.bottomClearance
   });
-
-  const demoPayload = JSON.stringify(demo);
-
-  const hContract = computeHash(contractPayload).slice(0, 8);
   const hReg = computeHash(regPayload).slice(0, 8);
+
+  // 3. Screen Implementation HTML / Markup Fragment (pristine snapshot or live)
+  let markupText = peopiScreenSourceMarkup[screenId] || '';
+  if (!markupText && typeof document !== 'undefined') {
+    const el = document.getElementById(screenId === 'profile' ? 'profsheet' : screenId);
+    if (el) {
+      markupText = el.innerHTML.replace(/\s+/g, ' ').trim();
+    }
+  }
+  const hMarkup = computeHash(markupText).slice(0, 8);
+
+  // 4. Component Briefs & Variant Specifications
+  let compBriefsSummary = '';
+  if (Array.isArray(reg.components)) {
+    compBriefsSummary = reg.components.map(c => {
+      let b = '';
+      if (typeof generateAiBrief === 'function') {
+        try { b = generateAiBrief(c.key, c.variant); } catch (e) {}
+      }
+      return c.key + ':' + c.variant + ':' + computeHash(b).slice(0, 8);
+    }).join('|');
+  }
+  const hComponents = computeHash(compBriefsSummary).slice(0, 8);
+
+  // 5. CSS Styles & Design/Motion Tokens
+  const hStyles = getStylesHash();
+
+  // 6. Deterministic Demo State
+  const demoPayload = JSON.stringify(demo);
   const hDemo = computeHash(demoPayload).slice(0, 8);
 
-  return `v1-${hContract}-${hReg}-${hDemo}`;
+  return `v2-${hContract}-${hReg}-${hMarkup}-${hComponents}-${hStyles}-${hDemo}`;
 }
 
 function checkScreenVisualFreshness(screenId) {
@@ -3137,7 +3189,7 @@ function checkScreenVisualFreshness(screenId) {
     return {
       isFresh: false,
       isStale: true,
-      reason: `Source fingerprint mismatch: live source (${liveFingerprint}) does not match recorded capture (${recordedFingerprint}). Screen contract, components, or demo state were altered.`,
+      reason: `Source fingerprint mismatch: live source (${liveFingerprint}) does not match recorded capture (${recordedFingerprint}). Screen HTML markup, component styling, tokens, or demo data were altered.`,
       liveFingerprint,
       recordedFingerprint
     };
@@ -3153,10 +3205,20 @@ function checkScreenVisualFreshness(screenId) {
     };
   }
 
+  if (meta.light?.width !== 393 || meta.light?.height !== 852 || meta.dark?.width !== 393 || meta.dark?.height !== 852) {
+    return {
+      isFresh: false,
+      isStale: true,
+      reason: `Screenshot dimensions do not match declared 393x852 viewport for screen "${screenId}"`,
+      liveFingerprint,
+      recordedFingerprint
+    };
+  }
+
   return {
     isFresh: true,
     isStale: false,
-    reason: 'Screen source contracts and visual screenshots are fully synchronized.',
+    reason: 'Screen source markup, component briefs, tokens, and visual screenshots are fully synchronized.',
     liveFingerprint,
     recordedFingerprint
   };
@@ -3181,11 +3243,11 @@ function generateScreenAiBrief(screenId) {
 
   const staleNotice = freshness.isStale
     ? `> [!CAUTION]
-> **STALE SCREENSHOTS DETECTED:** Screen definition, components, or demo state have changed since visual screenshots were recorded.
+> **STALE SCREENSHOTS DETECTED:** Screen markup, component styling, design tokens, or demo data have changed since visual screenshots were recorded.
 > - **Live Source Fingerprint:** \`${freshness.liveFingerprint}\`
 > - **Recorded Capture Fingerprint:** \`${freshness.recordedFingerprint || 'None'}\`
 > - **Staleness Cause:** ${freshness.reason}
-> Visual references may not match current contract rules. Re-run capture pipeline to synchronize.
+> Visual references may not match current styles or markup. Re-run capture pipeline to synchronize.
 
 `
     : '';
@@ -3443,7 +3505,8 @@ async function downloadScreenImplementationZip(screenId) {
   const reg = peopiScreenRegistry[screenId];
   if (!reg) throw new Error('Unknown screen: ' + screenId);
 
-  const freshness = checkScreenVisualFreshness(screenId);
+  let freshness = checkScreenVisualFreshness(screenId);
+  const meta = (typeof peopiScreensMetadata !== 'undefined' && peopiScreensMetadata.screens && peopiScreensMetadata.screens[screenId]) || {};
   const files = [];
   const failureList = [];
 
@@ -3459,14 +3522,34 @@ async function downloadScreenImplementationZip(screenId) {
     }
   }
 
-  async function addBinaryFile(name, url) {
+  async function addBinaryFile(name, url, expectedMeta) {
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const buf = await res.arrayBuffer();
-      files.push({ name, content: new Uint8Array(buf) });
+      const bytes = new Uint8Array(buf);
+
+      // Validate PNG binary headers and SHA1 against recorded metadata
+      if (name.endsWith('.png') && bytes.length >= 24) {
+        const view = new DataView(buf);
+        const w = view.getUint32(16, false);
+        const h = view.getUint32(20, false);
+        if (expectedMeta && expectedMeta.width && (w !== expectedMeta.width || h !== expectedMeta.height)) {
+          throw new Error(`Dimension mismatch for ${name}: expected ${expectedMeta.width}x${expectedMeta.height}, got ${w}x${h}`);
+        }
+
+        if (expectedMeta && expectedMeta.sha1 && crypto && crypto.subtle) {
+          const digestBuf = await crypto.subtle.digest('SHA-1', buf);
+          const actualSha1 = Array.from(new Uint8Array(digestBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+          if (actualSha1.toLowerCase() !== expectedMeta.sha1.toLowerCase()) {
+            throw new Error(`PNG checksum validation failure for ${name}: fetched SHA1 (${actualSha1}) does not match recorded metadata (${expectedMeta.sha1}). Visual captures are outdated.`);
+          }
+        }
+      }
+
+      files.push({ name, content: bytes });
     } catch (e) {
-      console.warn('Failed to load binary asset:', url, e);
+      console.warn('Failed or invalid binary asset:', url, e);
       failureList.push({ name, url, error: e.message });
     }
   }
@@ -3537,10 +3620,10 @@ async function downloadScreenImplementationZip(screenId) {
   ];
   await Promise.all(brandFiles.map(path => addBinaryFile(path, path)));
 
-  // 7. Screen screenshots (Light and Dark) & metadata
+  // 7. Screen screenshots (Light and Dark) with strict binary and SHA1 checksum validation against metadata
   await Promise.all([
-    addBinaryFile(`screenshots/screen-${screenId}-light.png`, `assets/screens/screen-${screenId}-light.png`),
-    addBinaryFile(`screenshots/screen-${screenId}-dark.png`, `assets/screens/screen-${screenId}-dark.png`),
+    addBinaryFile(`screenshots/screen-${screenId}-light.png`, `assets/screens/screen-${screenId}-light.png`, meta.light),
+    addBinaryFile(`screenshots/screen-${screenId}-dark.png`, `assets/screens/screen-${screenId}-dark.png`, meta.dark),
     addTextFile(`screenshots/metadata.json`, `assets/screens/metadata.json`)
   ]);
 
@@ -3581,17 +3664,19 @@ async function downloadScreenImplementationZip(screenId) {
   const screenBrief = generateScreenAiBrief(screenId);
   files.push({ name: 'README.md', content: screenBrief });
 
-  // 10. If freshness check failed (stale screenshots), record prominent warning notice
-  if (freshness.isStale) {
+  // 10. If freshness check failed OR checksum validation failed, record notice
+  const isStaleBundle = freshness.isStale || failureList.some(f => f.error && f.error.includes('validation failure'));
+  if (isStaleBundle) {
     const staleNoticeText = `STALE CAPTURE WARNING NOTICE
 ===========================
-The screenshots packaged in this bundle were captured against an older source definition.
-A source contract, registry component list, or demo state change occurred without re-running screenshot capture.
+The visual captures packaged in this bundle are OUT OF SYNC with the screen implementation or metadata.
+A change occurred in the screen HTML markup, component styling, tokens, or demo state without re-running screenshot capture.
 
 - Screen ID:                     ${screenId}
 - Live Source Fingerprint:       ${freshness.liveFingerprint}
 - Recorded Capture Fingerprint:  ${freshness.recordedFingerprint || 'None'}
 - Invalidation Reason:           ${freshness.reason}
+- Validation Failures:           ${failureList.length > 0 ? failureList.map(f => f.error).join('; ') : 'None'}
 
 DO NOT consider these screenshots authoritative for pixel-perfect implementation until re-captured.
 Run node scratch/capture_all_screens_393x852.mjs to synchronize visual captures with current code.
@@ -3604,6 +3689,10 @@ Run node scratch/capture_all_screens_393x852.mjs to synchronize visual captures 
     files: files.map(f => f.name),
     failureList
   });
+  if (isStaleBundle) {
+    manifest.isStale = true;
+    manifest.capturedWithFailures = true;
+  }
   files.push({ name: 'manifest.json', content: JSON.stringify(manifest, null, 2) });
 
   // 12. If any failure occurred, create notice file
@@ -3627,7 +3716,7 @@ Run node scratch/capture_all_screens_393x852.mjs to synchronize visual captures 
     URL.revokeObjectURL(url);
   }, 1000);
 
-  return { filesCount: files.length, failures: failureList.length, blobSize: blob.size, isStale: freshness.isStale };
+  return { filesCount: files.length, failures: failureList.length, blobSize: blob.size, isStale: isStaleBundle };
 }
 
 function openComponentWorkbench(familyKey, compKey) {
@@ -3791,7 +3880,6 @@ function updateScreenHandoffUi(key) {
     }
   }
 }
-
 
 function renderSpec(key){
  const d=specs[key];if(!d)return;
