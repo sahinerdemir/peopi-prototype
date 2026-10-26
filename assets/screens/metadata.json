@@ -16,7 +16,7 @@
         "sessionStatus": "idle",
         "nearbyAggregated": "Activity nearby"
       },
-      "sourceFingerprint": "v2-14e1d9cd-1d1cc85d-f236cc3e-15487d53-d981b0b1-3f79e0d3",
+      "sourceFingerprint": "v2-14e1d9cd-1d1cc85d-f236cc3e-ab39c8a4-d981b0b1-3f79e0d3",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -75,7 +75,7 @@
         "activeMode": "Open networking",
         "selectedPersonId": 2
       },
-      "sourceFingerprint": "v2-1e31a9c4-1af1dc13-12b86792-b637478d-d981b0b1-1a6129ee",
+      "sourceFingerprint": "v2-1e31a9c4-1af1dc13-12b86792-1367d2e3-d981b0b1-1a6129ee",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -107,7 +107,7 @@
         "documentsCount": 3,
         "experienceCount": 2
       },
-      "sourceFingerprint": "v2-30fcc520-b83e5678-1af029c0-ae086929-d981b0b1-1dfa114e",
+      "sourceFingerprint": "v2-30fcc520-b83e5678-1af029c0-196fd38f-d981b0b1-1dfa114e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -136,7 +136,7 @@
         "maxBioLength": 160,
         "skillsCount": 4
       },
-      "sourceFingerprint": "v2-2cd5118e-875d544c-ed132894-1edfcab5-d981b0b1-14a5ae62",
+      "sourceFingerprint": "v2-2cd5118e-875d544c-ed132894-99088af7-d981b0b1-14a5ae62",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -166,7 +166,7 @@
         "hiddenCount": 0,
         "blockedCount": 0
       },
-      "sourceFingerprint": "v2-1c9acafb-18c016c7-1583a9c3-159f7786-d981b0b1-6c6990cd",
+      "sourceFingerprint": "v2-1c9acafb-18c016c7-1583a9c3-9df2e531-d981b0b1-6c6990cd",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -224,7 +224,7 @@
         "locationPermission": "approximate",
         "appVersion": "v0.3.5"
       },
-      "sourceFingerprint": "v2-da78b379-131906d9-161a29bf-17f23e07-d981b0b1-152798f6",
+      "sourceFingerprint": "v2-da78b379-1938aac1-161a29bf-183c4ad4-d981b0b1-152798f6",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -455,7 +455,7 @@
         "pendingReceived": 2,
         "activeFilter": "all"
       },
-      "sourceFingerprint": "v2-c3ea478e-63476629-a578b87f-273f4355-d981b0b1-11459b43",
+      "sourceFingerprint": "v2-c3ea478e-63476629-a578b87f-4526bf0b-d981b0b1-11459b43",
       "scrollExtent": {
         "scrollHeight": 1638,
         "clientHeight": 715,
@@ -483,7 +483,7 @@
         "sentCount": 1,
         "activeTab": "received"
       },
-      "sourceFingerprint": "v2-19f6f13b-d3793b85-3e44d5e0-fb8f70a6-d981b0b1-127eaf22",
+      "sourceFingerprint": "v2-19f6f13b-d3793b85-3e44d5e0-1c282095-d981b0b1-127eaf22",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -510,7 +510,7 @@
         "recentInteractions": 5,
         "lastInteraction": "22m ago · Alex Morgan"
       },
-      "sourceFingerprint": "v2-17402c34-d40434d4-7b6b5b1e-7d9c4c8c-d981b0b1-15df29d4",
+      "sourceFingerprint": "v2-17402c34-13be93f4-7b6b5b1e-10be979a-d981b0b1-15df29d4",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -538,7 +538,7 @@
         "unreadTotal": 1,
         "activeThread": "Alex Morgan"
       },
-      "sourceFingerprint": "v2-12bb0986-109fe5e3-1867542a-1f3da5a3-d981b0b1-36e523ad",
+      "sourceFingerprint": "v2-12bb0986-1ec3264c-1867542a-f2c845a2-d981b0b1-36e523ad",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -567,7 +567,7 @@
         "messagesCount": 8,
         "presenceStatus": "online"
       },
-      "sourceFingerprint": "v2-117acabd-a289c0df-26fbb413-1ab78652-d981b0b1-11e7e46b",
+      "sourceFingerprint": "v2-117acabd-a289c0df-26fbb413-1734b525-d981b0b1-11e7e46b",
       "scrollExtent": {
         "scrollHeight": 2155,
         "clientHeight": 803,
@@ -596,7 +596,7 @@
         "sharedContext": "Tech Meetup Miami",
         "distanceApprox": "Near you (~120m)"
       },
-      "sourceFingerprint": "v2-1be55380-132a2653-15c8a7b3-282b68cc-d981b0b1-1bdd579e",
+      "sourceFingerprint": "v2-1be55380-132a2653-15c8a7b3-9c67669d-d981b0b1-1bdd579e",
       "scrollExtent": {
         "scrollHeight": 2077,
         "clientHeight": 803,
@@ -623,7 +623,7 @@
         "hiddenCount": 0,
         "explanatoryCopy": "Hidden profiles will not appear in discovery or suggestions."
       },
-      "sourceFingerprint": "v2-1ca7558b-1d04760d-4593ef6b-b5b9610b-d981b0b1-1b3736c4",
+      "sourceFingerprint": "v2-1ca7558b-a589e185-4593ef6b-de791566-d981b0b1-1b3736c4",
       "scrollExtent": {
         "scrollHeight": 1753,
         "clientHeight": 803,
@@ -682,7 +682,7 @@
           "Other"
         ]
       },
-      "sourceFingerprint": "v2-12d18e5a-1fa5d952-b18a08c8-207fb164-d981b0b1-1b3b97c7",
+      "sourceFingerprint": "v2-12d18e5a-1fa5d952-b18a08c8-1f371a78-d981b0b1-1b3b97c7",
       "scrollExtent": {
         "scrollHeight": 878,
         "clientHeight": 803,
@@ -742,7 +742,7 @@
         "intent": "Looking to exchange ideas",
         "statusBadge": "Photo & name hidden until connected"
       },
-      "sourceFingerprint": "v2-1ba82ba9-20cbf767-95483f87-156fdc7d-d981b0b1-a2e94ebb",
+      "sourceFingerprint": "v2-1ba82ba9-20cbf767-95483f87-1fe19346-d981b0b1-a2e94ebb",
       "scrollExtent": {
         "scrollHeight": 1434,
         "clientHeight": 681,
@@ -770,7 +770,7 @@
         "supportEmail": "support@peopi.app",
         "version": "v0.3.5"
       },
-      "sourceFingerprint": "v2-4933cc1a-18d8e21d-1576944e-67bbee38-d981b0b1-dc603bdc",
+      "sourceFingerprint": "v2-4933cc1a-1f7a18d0-1576944e-18f5ae7d-d981b0b1-dc603bdc",
       "scrollExtent": {
         "scrollHeight": 2277,
         "clientHeight": 803,
@@ -802,7 +802,7 @@
           "Open Source Licenses"
         ]
       },
-      "sourceFingerprint": "v2-16ef0ee4-e6f0f254-cd933303-1f68a370-d981b0b1-68f5ce17",
+      "sourceFingerprint": "v2-16ef0ee4-e6f0f254-cd933303-eeef9c21-d981b0b1-68f5ce17",
       "scrollExtent": {
         "scrollHeight": 1367,
         "clientHeight": 803,

@@ -627,30 +627,100 @@ function generateAiBrief(compKey, activeVariantText, card) {
 
   const a11yNote = card ? card.querySelector('.ds-notes-text')?.textContent.trim() : 'Touch target >= 44pt';
 
+  let titleDesc = comp.title;
   let sourceScreenDesc = comp.sourceScreen;
   let purposeDesc = comp.purpose;
+  let tokensDesc = comp.tokens;
+  let motionDesc = comp.motion;
   let flutterSemanticsDesc = comp.flutterSemantics;
+  let privacyDesc = comp.privacy;
+
   if (compKey === 'avatar') {
     if (activeVariantText && (activeVariantText.toLowerCase().includes('initials') || activeVariantText.toLowerCase().includes('fallback'))) {
+      titleDesc = 'Profile Initials Avatar';
       sourceScreenDesc = 'Professional Profile Sheet (`#profsheet .anonavatar`)';
       purposeDesc = 'Two-letter uppercase name abbreviation initials fallback displayed on theme-aware surface, preserving identity privacy during discovery while providing clear tactile presence.\n\n> [!NOTE]\n> **Variant Mapping:** When a user has not yet connected with a nearby peer, or does not have a photo uploaded, the initials fallback renders within a circular theme surface with high-contrast centered typography.';
+      tokensDesc = 'Size: 59×59pt · Radius: 999pt (50% circular) · Fallback text: 23pt ExtraBold (font-weight: 800) · Border: 1px solid var(--line) (measured at declared 393×852 logical viewport)';
       flutterSemanticsDesc = '`CircleAvatar` with `Semantics(label: "Profile initials fallback")`.';
     } else {
+      titleDesc = 'Profile Photo Avatar';
       sourceScreenDesc = 'My Profile (`#myprofile .myprofile-avatar`)';
       purposeDesc = 'Profile photo avatar with initials fallback and verified trust badge overlay.';
       flutterSemanticsDesc = '`CircleAvatar` with `Semantics(label: "Photo of Alex Morgan")`.';
     }
-  } else if (compKey === 'list') {
-    if (activeVariantText && (activeVariantText.toLowerCase().includes('privacy') || activeVariantText.toLowerCase().includes('legal'))) {
-      sourceScreenDesc = 'About Peopi / Legal & Compliance (`#aboutpeopi .journey-inline-links`)';
-      purposeDesc += '\n\n> [!NOTE]\n> **Variant Mapping:** This Privacy & Legal variant maps directly to authentic legal and compliance rows from `#aboutpeopi` (`Privacy Policy`, `Terms of Service`, `Community & Safety Standards`) displayed within a unified rounded group surface without internal dividers.';
+  } else if (compKey === 'request-tabs') {
+    if (activeVariantText === 'Conversations / All') {
+      titleDesc = 'Segmented Filter Tabs';
+      sourceScreenDesc = 'Messages (`#messages .messages-tabs`)';
+      purposeDesc = 'Segmented sliding pill filter toggle between active session Conversations and All direct message threads. Tapping a tab filters conversation rows instantaneously without page reload.';
+      tokensDesc = 'Container height: 44pt · Radius: 16pt · Indicator radius: 14pt · Background: var(--muted) · Font: 14pt SemiBold';
+      motionDesc = '260ms continuous background indicator glide (`cubic-bezier(0.2, 0.8, 0.2, 1)`).';
+      flutterSemanticsDesc = '`CupertinoSlidingSegmentedControl` with `Semantics(selected: isSelected, label: "Filter conversations")`.';
+      privacyDesc = 'Only messages from active nearby sessions or accepted connections are visible.';
+    } else if (activeVariantText === 'All / Requests') {
+      titleDesc = 'Segmented Notification Tabs';
+      sourceScreenDesc = 'Activity Notifications (`#activity .activity-tabs`)';
+      purposeDesc = 'Segmented sliding pill tab bar filtering notification feed between All updates and pending Connection Requests.';
+      tokensDesc = 'Container height: 44pt · Radius: 16pt · Indicator radius: 14pt · Background: var(--muted) · Font: 14pt SemiBold';
+      motionDesc = '260ms continuous background indicator glide (`cubic-bezier(0.2, 0.8, 0.2, 1)`).';
+      flutterSemanticsDesc = '`CupertinoSlidingSegmentedControl` with `Semantics(selected: isSelected, label: "Filter activity notifications")`.';
+      privacyDesc = 'Notification feed respects user privacy boundaries; requests can be accepted or dismissed.';
+    } else if (activeVariantText === 'All / Hidden') {
+      titleDesc = 'Segmented Privacy Tabs';
+      sourceScreenDesc = 'Hidden Connections (`#hiddenconnections .journey-tabs`)';
+      purposeDesc = 'Segmented sliding pill tab bar filtering connections between All members and Hidden presence peers.';
+      tokensDesc = 'Container height: 44pt · Radius: 16pt · Indicator radius: 14pt · Background: var(--muted) · Font: 14pt SemiBold';
+      motionDesc = '260ms continuous background indicator glide (`cubic-bezier(0.2, 0.8, 0.2, 1)`).';
+      flutterSemanticsDesc = '`CupertinoSlidingSegmentedControl` with `Semantics(selected: isSelected, label: "Filter hidden connections")`.';
+      privacyDesc = 'Allows managing invisible presence overrides on a per-connection basis without alerting the peer.';
     } else {
+      titleDesc = 'Segmented Request Tabs';
+      sourceScreenDesc = 'Requests (`#requests .journey-tabs`)';
+      purposeDesc = 'Segmented filter toggle between Received Requests and Sent Invitations with continuous 260ms sliding capsule.';
+    }
+  } else if (compKey === 'network-row') {
+    if (activeVariantText === 'Chat Thread') {
+      titleDesc = 'Chat Conversation Row';
+      sourceScreenDesc = 'Messages (`#messages #conversation-list .conversation-clickable-row`)';
+      purposeDesc = 'Interactive conversation list row displaying peer avatar, verified badge, recipient name, relative timestamp, latest message snippet with truncation, and unread notification badge dot. The entire surface is a clickable target (touch target >= 44pt) navigating directly into the active conversation thread without requiring a separate "View" button.';
+      tokensDesc = 'Height: 76pt minimum · Avatar: 48×48pt circular · Font: 16pt Primary Ink · Timestamp: 13pt Secondary · Snippet: 14pt Muted · Unread Dot: 8×8pt accent (#FF3300) · Padding: 12pt 16pt';
+      motionDesc = 'Press feedback: 90ms scale-down (0.985); Release / navigation transition: 220ms ease-out.';
+      flutterSemanticsDesc = '`CupertinoListTile` with `onTap` opening conversation route, `leading: CircleAvatar(...)`, `title: Text(name)`, `subtitle: Text(snippet)`, `trailing: Text(timestamp)`. Unread message status conveyed via semantic label.';
+      privacyDesc = 'Previews direct peer conversations. Snippets display only the most recent exchanged text.';
+    } else if (activeVariantText === 'Presence Control Row') {
+      titleDesc = 'Presence Control Row';
+      sourceScreenDesc = 'Hidden Connections (`#hiddenconnections .journey-person`)';
+      purposeDesc = 'Connection row with peer avatar, name, presence status label ("Presence visible" or "Presence hidden"), and explicit quiet action button to toggle visibility ("Hide presence" or "Unhide").';
+      tokensDesc = 'Height: 72pt · Avatar: 44×44pt circular · Button: min-height 44pt, border 1px solid var(--line) · Font: 15pt Name, 13pt Status';
+      motionDesc = 'Button press: 90ms / 220ms ease-out feedback.';
+      flutterSemanticsDesc = '`ListTile` with `trailing: OutlinedButton(label: "Hide presence")`.';
+      privacyDesc = 'Changes presence visibility on a 1-to-1 basis. Hiding presence suppresses discovery radar pings to this peer.';
+    } else {
+      titleDesc = 'Connection List Row';
+      sourceScreenDesc = 'My Network (`#network .network-person-card`)';
+      purposeDesc = comp.purpose;
+    }
+  } else if (compKey === 'list') {
+    if (activeVariantText === 'FAQ Accordion') {
+      titleDesc = 'FAQ Accordion Row';
+      sourceScreenDesc = 'Help & Support (`#helpsupport .help-faq-item`)';
+      purposeDesc = 'Expandable FAQ accordion row featuring category topic question, interactive chevron caret with 240ms rotation transition, and smoothly expanded rich response explanation text.';
+      tokensDesc = 'Item radius: 16pt · Minimum touch target: 52pt · Question: 15pt SemiBold · Answer: 14pt Regular · Chevron: 16pt Ph-Caret-Down · Surface: var(--card)';
+      motionDesc = 'Expand/Collapse: 240ms cubic-bezier(0.2, 0.8, 0.2, 1) accordion height expansion with 180deg caret rotation.';
+      flutterSemanticsDesc = '`ExpansionTile` with `title: Text(question)`, `children: [Text(answer)]`, explicit `isExpanded` accessibility announcement.';
+      privacyDesc = 'Static localized FAQ content; no personal data transmitted.';
+    } else if (activeVariantText && (activeVariantText.toLowerCase().includes('privacy') || activeVariantText.toLowerCase().includes('legal'))) {
+      titleDesc = 'Settings Account Rows (Privacy & Legal)';
+      sourceScreenDesc = 'About Peopi / Legal & Compliance (`#aboutpeopi .journey-inline-links`)';
+      purposeDesc = comp.purpose + '\n\n> [!NOTE]\n> **Variant Mapping:** This Privacy & Legal variant maps directly to authentic legal and compliance rows from `#aboutpeopi` (`Privacy Policy`, `Terms of Service`, `Community & Safety Standards`) displayed within a unified rounded group surface without internal dividers.';
+    } else {
+      titleDesc = 'Settings Account Rows';
       sourceScreenDesc = 'Settings / Account (`#appsettings .settings-group:nth-of-type(1)`)';
     }
   }
 
   const lines = [
-    '# Peopi Mobile Component Specification: ' + comp.title,
+    '# Peopi Mobile Component Specification: ' + titleDesc,
     '',
     '**Category:** ' + comp.category,
     '**Source Screen:** ' + sourceScreenDesc,
@@ -664,7 +734,7 @@ function generateAiBrief(compKey, activeVariantText, card) {
     '',
     '## 2. Layout & Design Tokens (Mobile pt vs Web px)',
     '- **Unit Standard:** Logical points (pt) on iOS / dp on Flutter (1pt = 1dp at 1x density). Never hardcode web CSS px in mobile widgets.',
-    '- **Specifications:** ' + comp.tokens,
+    '- **Specifications:** ' + tokensDesc,
     '- **Color Aliases:**',
     '  * Brand Accent: `--brand` (#FF3300)',
     '  * Surface Card: `--card` (#FFFFFF light / #172033 dark)',
@@ -675,7 +745,7 @@ function generateAiBrief(compKey, activeVariantText, card) {
       : '  * Divider Line: `--line` (#E2E8F0 light / #334155 dark)',
     '',
     '## 3. Motion & Transition Recipes',
-    '- **Interactive Recipe:** ' + comp.motion,
+    '- **Interactive Recipe:** ' + motionDesc,
     '- **Reduced Motion Fallback:** When system setting prefers reduced motion, cancel spatial translation and crossfade opacity over 120ms (`cubic-bezier(0.0, 0.0, 0.2, 1)`).',
     '- **State Commitment:** Active indicator commitments must occur synchronously with touch events to prevent UI lag.',
     '',
@@ -685,7 +755,7 @@ function generateAiBrief(compKey, activeVariantText, card) {
     '- **Active Prototype Contract:** ' + a11yNote,
     '',
     '## 5. Privacy & Server Authorization Contract',
-    comp.privacy ? ('> **PRIVACY RULE:** ' + comp.privacy) : '',
+    privacyDesc ? ('> **PRIVACY RULE:** ' + privacyDesc) : '',
     comp.serverAuth ? ('> **SERVER CONTRACT (Production Target):** ' + comp.serverAuth) : '',
     '> **PROTOTYPE SIMULATION:** Simulated in-memory client state. No live network requests or credentials are transmitted in this interactive prototype specification.',
     '',
@@ -1237,11 +1307,6 @@ const peopiScreenRegistry = {
         "role": "Grouped preference rows housed in theme-aware surfaces"
       },
       {
-        "key": "switch",
-        "variant": "Enabled (On)",
-        "role": "Toggle switches for notifications and haptics"
-      },
-      {
         "key": "destructive-action",
         "variant": "Default",
         "role": "'Sign out' / 'Delete account' red actions"
@@ -1703,7 +1768,7 @@ const peopiScreenRegistry = {
       },
       {
         "key": "request-tabs",
-        "variant": "Received Requests",
+        "variant": "All / Requests",
         "role": "All vs Requests notification filter tabs"
       },
       {
@@ -1767,12 +1832,12 @@ const peopiScreenRegistry = {
       },
       {
         "key": "request-tabs",
-        "variant": "Received Requests",
+        "variant": "Conversations / All",
         "role": "Conversations vs All segmented tabs"
       },
       {
         "key": "network-row",
-        "variant": "Unread Notice",
+        "variant": "Chat Thread",
         "role": "Conversation preview row with unread badge and snippet"
       },
       {
@@ -1939,13 +2004,13 @@ const peopiScreenRegistry = {
       },
       {
         "key": "request-tabs",
-        "variant": "Received Requests",
+        "variant": "All / Hidden",
         "role": "All vs Hidden segmented tabs"
       },
       {
         "key": "network-row",
-        "variant": "Connected",
-        "role": "Hidden member row with avatar and subtitle"
+        "variant": "Presence Control Row",
+        "role": "Hidden member presence toggle row with action button"
       },
       {
         "key": "avatar",
@@ -2140,7 +2205,7 @@ const peopiScreenRegistry = {
       },
       {
         "key": "list",
-        "variant": "Privacy & Legal",
+        "variant": "FAQ Accordion",
         "role": "Expandable accordion rows for FAQ questions and answers"
       },
       {
@@ -2238,7 +2303,7 @@ const peopiScreensMetadata = {
         "sessionStatus": "idle",
         "nearbyAggregated": "Activity nearby"
       },
-      "sourceFingerprint": "v2-14e1d9cd-1d1cc85d-f236cc3e-15487d53-d981b0b1-3f79e0d3",
+      "sourceFingerprint": "v2-14e1d9cd-1d1cc85d-f236cc3e-ab39c8a4-d981b0b1-3f79e0d3",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2297,7 +2362,7 @@ const peopiScreensMetadata = {
         "activeMode": "Open networking",
         "selectedPersonId": 2
       },
-      "sourceFingerprint": "v2-1e31a9c4-1af1dc13-12b86792-b637478d-d981b0b1-1a6129ee",
+      "sourceFingerprint": "v2-1e31a9c4-1af1dc13-12b86792-1367d2e3-d981b0b1-1a6129ee",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2329,7 +2394,7 @@ const peopiScreensMetadata = {
         "documentsCount": 3,
         "experienceCount": 2
       },
-      "sourceFingerprint": "v2-30fcc520-b83e5678-1af029c0-ae086929-d981b0b1-1dfa114e",
+      "sourceFingerprint": "v2-30fcc520-b83e5678-1af029c0-196fd38f-d981b0b1-1dfa114e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2358,7 +2423,7 @@ const peopiScreensMetadata = {
         "maxBioLength": 160,
         "skillsCount": 4
       },
-      "sourceFingerprint": "v2-2cd5118e-875d544c-ed132894-1edfcab5-d981b0b1-14a5ae62",
+      "sourceFingerprint": "v2-2cd5118e-875d544c-ed132894-99088af7-d981b0b1-14a5ae62",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2388,7 +2453,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "blockedCount": 0
       },
-      "sourceFingerprint": "v2-1c9acafb-18c016c7-1583a9c3-159f7786-d981b0b1-6c6990cd",
+      "sourceFingerprint": "v2-1c9acafb-18c016c7-1583a9c3-9df2e531-d981b0b1-6c6990cd",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2446,7 +2511,7 @@ const peopiScreensMetadata = {
         "locationPermission": "approximate",
         "appVersion": "v0.3.5"
       },
-      "sourceFingerprint": "v2-da78b379-131906d9-161a29bf-17f23e07-d981b0b1-152798f6",
+      "sourceFingerprint": "v2-da78b379-1938aac1-161a29bf-183c4ad4-d981b0b1-152798f6",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2677,7 +2742,7 @@ const peopiScreensMetadata = {
         "pendingReceived": 2,
         "activeFilter": "all"
       },
-      "sourceFingerprint": "v2-c3ea478e-63476629-a578b87f-273f4355-d981b0b1-11459b43",
+      "sourceFingerprint": "v2-c3ea478e-63476629-a578b87f-4526bf0b-d981b0b1-11459b43",
       "scrollExtent": {
         "scrollHeight": 1638,
         "clientHeight": 715,
@@ -2705,7 +2770,7 @@ const peopiScreensMetadata = {
         "sentCount": 1,
         "activeTab": "received"
       },
-      "sourceFingerprint": "v2-19f6f13b-d3793b85-3e44d5e0-fb8f70a6-d981b0b1-127eaf22",
+      "sourceFingerprint": "v2-19f6f13b-d3793b85-3e44d5e0-1c282095-d981b0b1-127eaf22",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2732,7 +2797,7 @@ const peopiScreensMetadata = {
         "recentInteractions": 5,
         "lastInteraction": "22m ago · Alex Morgan"
       },
-      "sourceFingerprint": "v2-17402c34-d40434d4-7b6b5b1e-7d9c4c8c-d981b0b1-15df29d4",
+      "sourceFingerprint": "v2-17402c34-13be93f4-7b6b5b1e-10be979a-d981b0b1-15df29d4",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2760,7 +2825,7 @@ const peopiScreensMetadata = {
         "unreadTotal": 1,
         "activeThread": "Alex Morgan"
       },
-      "sourceFingerprint": "v2-12bb0986-109fe5e3-1867542a-1f3da5a3-d981b0b1-36e523ad",
+      "sourceFingerprint": "v2-12bb0986-1ec3264c-1867542a-f2c845a2-d981b0b1-36e523ad",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2789,7 +2854,7 @@ const peopiScreensMetadata = {
         "messagesCount": 8,
         "presenceStatus": "online"
       },
-      "sourceFingerprint": "v2-117acabd-a289c0df-26fbb413-1ab78652-d981b0b1-11e7e46b",
+      "sourceFingerprint": "v2-117acabd-a289c0df-26fbb413-1734b525-d981b0b1-11e7e46b",
       "scrollExtent": {
         "scrollHeight": 2155,
         "clientHeight": 803,
@@ -2818,7 +2883,7 @@ const peopiScreensMetadata = {
         "sharedContext": "Tech Meetup Miami",
         "distanceApprox": "Near you (~120m)"
       },
-      "sourceFingerprint": "v2-1be55380-132a2653-15c8a7b3-282b68cc-d981b0b1-1bdd579e",
+      "sourceFingerprint": "v2-1be55380-132a2653-15c8a7b3-9c67669d-d981b0b1-1bdd579e",
       "scrollExtent": {
         "scrollHeight": 2077,
         "clientHeight": 803,
@@ -2845,7 +2910,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "explanatoryCopy": "Hidden profiles will not appear in discovery or suggestions."
       },
-      "sourceFingerprint": "v2-1ca7558b-1d04760d-4593ef6b-b5b9610b-d981b0b1-1b3736c4",
+      "sourceFingerprint": "v2-1ca7558b-a589e185-4593ef6b-de791566-d981b0b1-1b3736c4",
       "scrollExtent": {
         "scrollHeight": 1753,
         "clientHeight": 803,
@@ -2904,7 +2969,7 @@ const peopiScreensMetadata = {
           "Other"
         ]
       },
-      "sourceFingerprint": "v2-12d18e5a-1fa5d952-b18a08c8-207fb164-d981b0b1-1b3b97c7",
+      "sourceFingerprint": "v2-12d18e5a-1fa5d952-b18a08c8-1f371a78-d981b0b1-1b3b97c7",
       "scrollExtent": {
         "scrollHeight": 878,
         "clientHeight": 803,
@@ -2964,7 +3029,7 @@ const peopiScreensMetadata = {
         "intent": "Looking to exchange ideas",
         "statusBadge": "Photo & name hidden until connected"
       },
-      "sourceFingerprint": "v2-1ba82ba9-20cbf767-95483f87-156fdc7d-d981b0b1-a2e94ebb",
+      "sourceFingerprint": "v2-1ba82ba9-20cbf767-95483f87-1fe19346-d981b0b1-a2e94ebb",
       "scrollExtent": {
         "scrollHeight": 1434,
         "clientHeight": 681,
@@ -2992,7 +3057,7 @@ const peopiScreensMetadata = {
         "supportEmail": "support@peopi.app",
         "version": "v0.3.5"
       },
-      "sourceFingerprint": "v2-4933cc1a-18d8e21d-1576944e-67bbee38-d981b0b1-dc603bdc",
+      "sourceFingerprint": "v2-4933cc1a-1f7a18d0-1576944e-18f5ae7d-d981b0b1-dc603bdc",
       "scrollExtent": {
         "scrollHeight": 2277,
         "clientHeight": 803,
@@ -3024,7 +3089,7 @@ const peopiScreensMetadata = {
           "Open Source Licenses"
         ]
       },
-      "sourceFingerprint": "v2-16ef0ee4-e6f0f254-cd933303-1f68a370-d981b0b1-68f5ce17",
+      "sourceFingerprint": "v2-16ef0ee4-e6f0f254-cd933303-eeef9c21-d981b0b1-68f5ce17",
       "scrollExtent": {
         "scrollHeight": 1367,
         "clientHeight": 803,
@@ -17927,12 +17992,12 @@ if (typeof window !== 'undefined') {
     'discovery-filter':['All Nearby','Engineering','Design','Founders'],
     'bottom-nav':['Discover Active','Connections Active','Profile Active'],
     'tabs':['Map View','List View'],
-    'request-tabs':['Received Requests','Sent Requests'],
+    'request-tabs':['Received Requests','Sent Requests','Conversations / All','All / Requests','All / Hidden'],
     'app-bar':['Default Bar'],
     'profile-card':['Anonymous Preview','Connected Peer'],
-    'network-row':['Connected','Unread Notice'],
+    'network-row':['Connected','Chat Thread','Presence Control Row','Unread Notice'],
     'activity-item':['Connection Request','System Notice'],
-    'list':['Account Settings','Privacy & Legal'],
+    'list':['Account Settings','Privacy & Legal','FAQ Accordion'],
     'identity-card':['Complete Profile','Incomplete Draft'],
     'avatar':['Photo Avatar','Initials Fallback'],
     'chip':['Default','Active Tag'],
