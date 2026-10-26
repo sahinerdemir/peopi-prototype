@@ -629,7 +629,18 @@ function generateAiBrief(compKey, activeVariantText, card) {
 
   let sourceScreenDesc = comp.sourceScreen;
   let purposeDesc = comp.purpose;
-  if (compKey === 'list') {
+  let flutterSemanticsDesc = comp.flutterSemantics;
+  if (compKey === 'avatar') {
+    if (activeVariantText && (activeVariantText.toLowerCase().includes('initials') || activeVariantText.toLowerCase().includes('fallback'))) {
+      sourceScreenDesc = 'Professional Profile Sheet (`#profsheet .anonavatar`)';
+      purposeDesc = 'Two-letter uppercase name abbreviation initials fallback displayed on theme-aware surface, preserving identity privacy during discovery while providing clear tactile presence.\n\n> [!NOTE]\n> **Variant Mapping:** When a user has not yet connected with a nearby peer, or does not have a photo uploaded, the initials fallback renders within a circular theme surface with high-contrast centered typography.';
+      flutterSemanticsDesc = '`CircleAvatar` with `Semantics(label: "Profile initials fallback")`.';
+    } else {
+      sourceScreenDesc = 'My Profile (`#myprofile .myprofile-avatar`)';
+      purposeDesc = 'Profile photo avatar with initials fallback and verified trust badge overlay.';
+      flutterSemanticsDesc = '`CircleAvatar` with `Semantics(label: "Photo of Alex Morgan")`.';
+    }
+  } else if (compKey === 'list') {
     if (activeVariantText && (activeVariantText.toLowerCase().includes('privacy') || activeVariantText.toLowerCase().includes('legal'))) {
       sourceScreenDesc = 'About Peopi / Legal & Compliance (`#aboutpeopi .journey-inline-links`)';
       purposeDesc += '\n\n> [!NOTE]\n> **Variant Mapping:** This Privacy & Legal variant maps directly to authentic legal and compliance rows from `#aboutpeopi` (`Privacy Policy`, `Terms of Service`, `Community & Safety Standards`) displayed within a unified rounded group surface without internal dividers.';
@@ -670,7 +681,7 @@ function generateAiBrief(compKey, activeVariantText, card) {
     '',
     '## 4. Accessibility & Semantics',
     '- **Touch Target:** Minimum 44×44pt bounding box required for all interactive hit targets.',
-    '- **Flutter / iOS Semantics:** ' + comp.flutterSemantics,
+    '- **Flutter / iOS Semantics:** ' + flutterSemanticsDesc,
     '- **Active Prototype Contract:** ' + a11yNote,
     '',
     '## 5. Privacy & Server Authorization Contract',
@@ -778,11 +789,6 @@ const peopiScreenRegistry = {
     "privacyRule": "Selected intent is shared only during the active timed window.",
     "components": [
       {
-        "key": "icon-button",
-        "variant": "Default",
-        "role": "Close / Cancel header button"
-      },
-      {
         "key": "intent-choice",
         "variant": "Selected",
         "role": "Selectable networking intent tiles"
@@ -800,7 +806,7 @@ const peopiScreenRegistry = {
       {
         "key": "quiet-action",
         "variant": "Default",
-        "role": "'Not now' dismiss action"
+        "role": "'Not now' dismiss action and 'Discover' back button"
       }
     ],
     "screenSpecificElements": [
@@ -837,11 +843,6 @@ const peopiScreenRegistry = {
         "role": "'Go invisible' quick session termination action"
       },
       {
-        "key": "fab",
-        "variant": "Default",
-        "role": "Recenter map FAB floating above bottom navigation"
-      },
-      {
         "key": "discovery-filter",
         "variant": "All Nearby",
         "role": "Filter button with active filter counter badge"
@@ -850,11 +851,6 @@ const peopiScreenRegistry = {
         "key": "profile-card",
         "variant": "Anonymous Preview",
         "role": "Nearby professional summary card / list specimen"
-      },
-      {
-        "key": "session-alert",
-        "variant": "Visible (5m Warning)",
-        "role": "Interactive session expiration warning dialog/banner"
       },
       {
         "key": "bottom-nav",
@@ -882,6 +878,11 @@ const peopiScreenRegistry = {
         "name": "Proximity Beacon Radar Wave",
         "selector": ".discovery-pulse",
         "purpose": "Visual pulse wave anchored to user's approximate coordinate."
+      },
+      {
+        "name": "Approximate Location Badge",
+        "selector": "#discovery-location-notice",
+        "purpose": "Privacy pill confirming coordinates are fuzzed for safety."
       }
     ]
   },
@@ -891,14 +892,14 @@ const peopiScreenRegistry = {
     "section": "Discover",
     "routeType": "modal",
     "parent": "active",
-    "fixedAreas": "Grab handle, close button, and pinned bottom action button ('Request to connect' / 'Send message').",
-    "scrollAreas": "Scrollable profile body: headline, location, verified credential, bio, skills chips, and attached documents.",
+    "fixedAreas": "Grab handle, close button, and pinned bottom action button ('Request to connect ↗').",
+    "scrollAreas": "Scrollable profile body: headline, location, bio, looking for, skills chips, and attached document cards.",
     "bottomClearance": "Pinned action footer with 34pt bottom safe area.",
     "entryPoints": "Tap map pin or profile card in Active Discovery; tap member in network list.",
     "exitPoints": "Swipe down or tap close button to dismiss; send connection request; open attached document.",
     "backBehavior": "Dismisses profile sheet with spring settle and returns to active discovery view.",
     "presenceRule": "Displays public profile attributes while preserving unrevealed contact info until connected.",
-    "privacyRule": "Protected portrait and privacy teaser for strangers; full unblurred details for accepted connections.",
+    "privacyRule": "Anonymous initials avatar and privacy notice banner; name and photo hidden until connection is accepted.",
     "components": [
       {
         "key": "sheet",
@@ -906,19 +907,14 @@ const peopiScreenRegistry = {
         "role": "Draggable modal bottom sheet container with rounded top corners"
       },
       {
-        "key": "identity-card",
-        "variant": "Complete Profile",
-        "role": "Profile header with name, headline, location, and verified status"
-      },
-      {
         "key": "avatar",
-        "variant": "Photo Avatar",
-        "role": "Prominent profile avatar with fallback initials"
+        "variant": "Initials Fallback",
+        "role": "Anonymous initials avatar (SK initials) preserving privacy"
       },
       {
-        "key": "verified-badge",
-        "variant": "LinkedIn Verified",
-        "role": "LinkedIn verified credentials trust badge"
+        "key": "content-section",
+        "variant": "About Section",
+        "role": "Structured About, Looking For, and Experience sections"
       },
       {
         "key": "chip",
@@ -926,24 +922,14 @@ const peopiScreenRegistry = {
         "role": "Professional discipline and skill tags"
       },
       {
-        "key": "content-section",
-        "variant": "About Section",
-        "role": "Structured About and Experience sections"
-      },
-      {
         "key": "profile-documents",
         "variant": "Locked (Pre-Connection)",
         "role": "Encrypted document attachment preview (one-pager/resume)"
       },
       {
-        "key": "connection-request",
-        "variant": "Received Request",
-        "role": "Request to connect expandable composer"
-      },
-      {
         "key": "primary-action",
         "variant": "Default",
-        "role": "Primary action trigger ('Request to connect' / 'Message')"
+        "role": "Primary action trigger ('Request to connect ↗')"
       }
     ],
     "screenSpecificElements": [
@@ -951,6 +937,21 @@ const peopiScreenRegistry = {
         "name": "Modal Sheet Grab Handle",
         "selector": ".sheet-grabber",
         "purpose": "Accessible drag gesture pill for dismissing profile sheet."
+      },
+      {
+        "name": "Privacy Notice Banner",
+        "selector": "#detail-privacy-hint",
+        "purpose": "Shield notice informing user that full photo and name remain confidential until connection is accepted."
+      },
+      {
+        "name": "Modal Close Button",
+        "selector": "#closeprofile",
+        "purpose": "High-contrast circle button dismissing sheet and restoring active discovery."
+      },
+      {
+        "name": "Expandable Request Composer",
+        "selector": "#profile-request-composer",
+        "purpose": "Expandable personal note composer sheet with quick meetup prompt chips."
       }
     ]
   },
@@ -1015,9 +1016,9 @@ const peopiScreenRegistry = {
         "role": "User skills and industry chips"
       },
       {
-        "key": "profile-menu",
-        "variant": "Default Menu",
-        "role": "Settings and profile action menu triggers"
+        "key": "profile-documents",
+        "variant": "Unlocked (Connected)",
+        "role": "Attached documents list (Resume, One Pager, Portfolio Deck)"
       },
       {
         "key": "list",
@@ -1027,9 +1028,9 @@ const peopiScreenRegistry = {
     ],
     "screenSpecificElements": [
       {
-        "name": "Profile Completion Header",
-        "selector": ".completehead",
-        "purpose": "Dynamic headline tracking authenticated profile readiness percentage."
+        "name": "Section Edit Buttons",
+        "selector": ".myprofile-section-action",
+        "purpose": "Inline edit controls jumping to specific section in editor."
       }
     ]
   },
@@ -1039,14 +1040,14 @@ const peopiScreenRegistry = {
     "section": "Profile",
     "routeType": "push",
     "parent": "myprofile",
-    "fixedAreas": "Top app bar with Cancel / Save actions; avatar change overlay.",
-    "scrollAreas": "Text inputs for full name, headline, location, bio, interactive skills chip adder, and document attachment.",
-    "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'Edit profile' on My Profile screen.",
-    "exitPoints": "Save changes (updates profile and completeness score); Cancel (discards draft).",
-    "backBehavior": "Prompts to discard unsaved changes if form is dirty, then returns to My Profile.",
-    "presenceRule": "Local edits update mock state immediately upon saving.",
-    "privacyRule": "Publicly visible fields clearly indicated; email and private identifiers excluded from card.",
+    "fixedAreas": "Top app bar with Cancel and Save actions.",
+    "scrollAreas": "Avatar upload, text input form groups (Name, Headline, City, Bio), skills chip input, and document manager.",
+    "bottomClearance": "34pt bottom safe-area clearance.",
+    "entryPoints": "Tap 'Edit profile' button in My Profile view.",
+    "exitPoints": "Save changes; Cancel edits; Add work experience.",
+    "backBehavior": "Cancels unsaved edits and returns to My Profile view.",
+    "presenceRule": "Local client form modification; does not broadcast location.",
+    "privacyRule": "Permits configuring which details are visible pre-connection.",
     "components": [
       {
         "key": "app-bar",
@@ -1084,11 +1085,6 @@ const peopiScreenRegistry = {
         "role": "Document attachment and replacement dropzone"
       },
       {
-        "key": "exp-sheet",
-        "variant": "Add Experience",
-        "role": "Experience editor bottom sheet for adding/editing roles"
-      },
-      {
         "key": "primary-action",
         "variant": "Default",
         "role": "Header 'Save' confirmation button"
@@ -1101,9 +1097,9 @@ const peopiScreenRegistry = {
     ],
     "screenSpecificElements": [
       {
-        "name": "Avatar Edit Badge Trigger",
-        "selector": ".avatar-edit-overlay",
-        "purpose": "Camera overlay button triggering device photo picker."
+        "name": "Add Experience Trigger Button",
+        "selector": "#edit-add-exp-btn",
+        "purpose": "Action button launching experience modal bottom sheet."
       }
     ]
   },
@@ -1113,14 +1109,14 @@ const peopiScreenRegistry = {
     "section": "Profile",
     "routeType": "push",
     "parent": "myprofile",
-    "fixedAreas": "App bar with back button.",
-    "scrollAreas": "Presence state banner, grouped settings rows for Hidden Connections, Blocked Accounts, and Report Safety.",
-    "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'Privacy & safety' from My Profile or Settings.",
-    "exitPoints": "Hidden connections (05.5); Blocked accounts (05.6); Report concern; Back to Profile.",
-    "backBehavior": "Returns to parent screen without altering toggle commitments.",
-    "presenceRule": "Displays real-time toggle between invisible and visible mode.",
-    "privacyRule": "Guarantees mutual reveals only: you can never be seen by people you cannot see.",
+    "fixedAreas": "Top app bar with back navigation.",
+    "scrollAreas": "Invisible mode toggle, ghost presence controls, blocked accounts link, and safety principles.",
+    "bottomClearance": "116pt bottom fade extent.",
+    "entryPoints": "Tap 'Privacy & safety' row in My Profile or Settings.",
+    "exitPoints": "Back to My Profile; navigate to Hidden connections or Blocked accounts.",
+    "backBehavior": "Navigates back to My Profile preserving updated privacy states.",
+    "presenceRule": "Immediate commitment of visibility rules to device storage.",
+    "privacyRule": "Core privacy management center governing presence, fuzzy location, and blocking.",
     "components": [
       {
         "key": "app-bar",
@@ -1130,371 +1126,386 @@ const peopiScreenRegistry = {
       {
         "key": "privacy",
         "variant": "Invisible (Default)",
-        "role": "Live presence status indicator banner (Invisible / Active)"
+        "role": "Hero privacy status card controlling default stealth presence"
       },
       {
         "key": "privacy-row",
         "variant": "Hidden Off",
-        "role": "Grouped setting row with icon, title, description, and chevron"
-      },
-      {
-        "key": "list",
-        "variant": "Privacy & Legal",
-        "role": "Rounded group container housing privacy navigation rows"
+        "role": "Fine-grained presence visibility and stealth controls"
       },
       {
         "key": "switch",
         "variant": "Disabled (Off)",
-        "role": "Theme-aware toggle switch for discovery permissions"
+        "role": "Switch toggles for fine-grained presence visibility"
+      },
+      {
+        "key": "list",
+        "variant": "Privacy & Legal",
+        "role": "Grouped privacy settings and compliance sections"
+      },
+      {
+        "key": "bottom-nav",
+        "variant": "Profile Active",
+        "role": "Bottom navigation bar"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Privacy Principles Callout",
-        "selector": ".privacy-footnote",
-        "purpose": "Concise disclosure explaining mutual visibility guarantees."
+        "name": "Privacy Subtitle Header",
+        "selector": ".privacy-header-subtitle",
+        "purpose": "Contextual explanation of privacy guarantees and ephemeral storage."
       }
     ]
   },
   "verification": {
     "code": "05.7",
-    "title": "Identity Verification",
+    "title": "Verification",
     "section": "Profile",
     "routeType": "push",
     "parent": "myprofile",
-    "fixedAreas": "App bar with back navigation.",
-    "scrollAreas": "Verification status badge, LinkedIn connect button, 3-step trust walkthrough, and privacy guarantees.",
-    "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap verification badge on profile or row in Settings.",
-    "exitPoints": "Connect / Disconnect LinkedIn (simulated); Back to Settings.",
-    "backBehavior": "Returns to parent screen at current scroll position.",
-    "presenceRule": "Does not transmit OAuth tokens to third parties; validates credentials locally.",
-    "privacyRule": "Explains how verified status protects member safety without sharing external employment data.",
+    "fixedAreas": "Top app bar with back button.",
+    "scrollAreas": "Verification status card, trust tier benefits, integrity principles, and Connect LinkedIn trigger.",
+    "bottomClearance": "116pt bottom clearance.",
+    "entryPoints": "Tap verification card/badge in My Profile.",
+    "exitPoints": "Back to My Profile; connect LinkedIn OAuth flow.",
+    "backBehavior": "Returns to My Profile.",
+    "presenceRule": "Verification badges sync upon successful provider handshake.",
+    "privacyRule": "Verifies workplace/education signals without exposing private account credentials.",
     "components": [
       {
         "key": "app-bar",
         "variant": "Default Bar",
-        "role": "App bar with back button"
+        "role": "Top app bar with back navigation"
       },
       {
         "key": "verification-status",
         "variant": "Unconnected",
-        "role": "Prominent badge and headline showing verification state"
+        "role": "LinkedIn trust verification tier summary card"
       },
       {
         "key": "verified-badge",
         "variant": "LinkedIn Verified",
-        "role": "Authoritative green verified badge icon"
+        "role": "Verified checkmark emblem preview"
       },
       {
         "key": "verification-step",
         "variant": "Standard Principles",
-        "role": "Progress cards explaining OAuth linking and identity checks"
-      },
-      {
-        "key": "social-auth",
-        "variant": "Both Providers",
-        "role": "LinkedIn brand authorization CTA button"
+        "role": "3 verification principles and integrity requirements"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "Simulated verification completion button"
+        "role": "Primary 'Connect LinkedIn' action trigger"
+      },
+      {
+        "key": "bottom-nav",
+        "variant": "Profile Active",
+        "role": "Bottom navigation bar"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Trust & Privacy Guarantees Box",
-        "selector": ".verification-guarantee",
-        "purpose": "Explanation of credential isolation and zero data scraping."
+        "name": "Trust Tier Indicator Pill",
+        "selector": ".trust-tier-badge",
+        "purpose": "Current verified security tier level indicator."
       }
     ]
   },
   "appsettings": {
     "code": "05.3",
-    "title": "Application Settings",
-    "section": "Settings",
+    "title": "Settings",
+    "section": "Profile",
     "routeType": "push",
     "parent": "myprofile",
-    "fixedAreas": "Top app bar with back navigation.",
-    "scrollAreas": "Grouped lists for Account Settings, Notifications, Appearance (Dark Mode), and Support & Sign Out.",
-    "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap Settings icon on My Profile.",
-    "exitPoints": "Notifications preferences; Help & Support; About Peopi; Sign Out.",
+    "fixedAreas": "Top app bar with back navigation; bottom navigation bar.",
+    "scrollAreas": "Preference rows grouped by category: Notifications, Sound & Haptics, and Account actions.",
+    "bottomClearance": "116pt bottom fade extent.",
+    "entryPoints": "Tap gear icon button in My Profile app bar.",
+    "exitPoints": "Back to My Profile; sign out; delete account.",
     "backBehavior": "Returns to My Profile.",
-    "presenceRule": "Offline configuration screen.",
-    "privacyRule": "Account reset clears local storage tokens and returns to Welcome screen.",
+    "presenceRule": "Offline preferences; no location broadcast.",
+    "privacyRule": "Allows wiping cached session and credential state.",
     "components": [
       {
         "key": "app-bar",
         "variant": "Default Bar",
-        "role": "App bar with back navigation"
+        "role": "Header app bar with back navigation"
       },
       {
         "key": "list",
         "variant": "Account Settings",
-        "role": "Unified rounded group surface housing account navigation items without dividers"
+        "role": "Grouped preference rows housed in theme-aware surfaces"
       },
       {
         "key": "switch",
         "variant": "Enabled (On)",
-        "role": "Theme switch toggle (Light / Dark mode)"
+        "role": "Toggle switches for notifications and haptics"
       },
       {
         "key": "destructive-action",
         "variant": "Default",
-        "role": "'Sign Out / Reset Session' button with warning confirmation"
+        "role": "'Sign out' / 'Delete account' red actions"
+      },
+      {
+        "key": "bottom-nav",
+        "variant": "Profile Active",
+        "role": "Bottom navigation bar"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "App Version Disclosure",
-        "selector": ".settings-build-ver",
-        "purpose": "Client build number and release metadata."
+        "name": "App Version Footer",
+        "selector": ".settings-version-label",
+        "purpose": "Build number and legal entity notice."
       }
     ]
   },
   "onboarding": {
     "code": "01.1",
-    "title": "Onboarding Walkthrough",
+    "title": "Onboarding Intro",
     "section": "Onboarding",
-    "routeType": "journey",
+    "routeType": "push",
     "parent": null,
-    "fixedAreas": "Top bar with Skip action; bottom dot pagination indicators and Continue CTA.",
-    "scrollAreas": "Swipeable horizontal carousel featuring 3 slides: Proximity Discovery, Intentional Privacy, and Direct Connection.",
-    "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "App initial launch or tapping 'Discover Peopi' on Welcome screen.",
-    "exitPoints": "Skip or complete tour to reach Welcome screen or Email Auth.",
-    "backBehavior": "Returns to previous carousel slide or Welcome screen.",
-    "presenceRule": "Static educational tour; no location services queried.",
-    "privacyRule": "Introduces core privacy contract: invisible by default, mutual reveals.",
+    "fixedAreas": "Top skip button; bottom progress controls.",
+    "scrollAreas": "Value proposition slides and ambient photography illustrations.",
+    "bottomClearance": "34pt bottom clearance.",
+    "entryPoints": "First app launch.",
+    "exitPoints": "Welcome / Auth screen.",
+    "backBehavior": "Exits app on first slide.",
+    "presenceRule": "Stealth; no network activity.",
+    "privacyRule": "Introduces privacy-by-default and ephemeral proximity guarantees.",
     "components": [
-      {
-        "key": "quiet-action",
-        "variant": "Default",
-        "role": "'Skip' action button in top right corner"
-      },
       {
         "key": "content-section",
         "variant": "About Section",
-        "role": "Slide card container with illustration and narrative copy"
+        "role": "Onboarding value proposition and core philosophy"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Continue' and 'Get started' CTA button"
+        "role": "Primary 'Get started' onboarding progression CTA"
+      },
+      {
+        "key": "quiet-action",
+        "variant": "Default",
+        "role": "'Skip' / 'Already have an account' secondary link"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Pagination Indicator Dots",
+        "name": "Carousel Indicator Dots",
         "selector": ".onboarding-dots",
-        "purpose": "3-dot progress tracker showing active slide index."
-      },
-      {
-        "name": "Onboarding Vector Illustrations",
-        "selector": ".onboarding-slide-art",
-        "purpose": "Editorial artwork illustrating Discovery, Privacy, and Connection."
+        "purpose": "Paginated progress dots indicating current carousel index."
       }
     ]
   },
   "welcome": {
     "code": "01.0",
-    "title": "Welcome Screen",
+    "title": "Welcome / Value Prop",
     "section": "Onboarding",
-    "routeType": "journey",
-    "parent": null,
-    "fixedAreas": "Centered hero layout with wordmark, photography, value prop, and action buttons.",
-    "scrollAreas": "Non-scrolling fixed viewport on standard phones; compact scroll on short viewports.",
+    "routeType": "push",
+    "parent": "onboarding",
+    "fixedAreas": "Bottom pinned primary/quiet buttons.",
+    "scrollAreas": "Hero typography, tagline, and three value proposition cards.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "App launch or exiting Onboarding walkthrough.",
-    "exitPoints": "Tap 'Discover Peopi' to view onboarding; tap 'Have an account?' to enter Email Auth.",
-    "backBehavior": "Root onboarding entry.",
-    "presenceRule": "No active session or presence.",
-    "privacyRule": "Clear disclosure that discovering professionals is opt-in.",
+    "entryPoints": "Completion of onboarding slides or direct launch.",
+    "exitPoints": "Sign In / Sign Up choices.",
+    "backBehavior": "Returns to onboarding slides.",
+    "presenceRule": "Offline landing view.",
+    "privacyRule": "Pre-auth educational screen explaining mutual opt-in rules.",
     "components": [
+      {
+        "key": "content-section",
+        "variant": "About Section",
+        "role": "Value proposition pillars and introduction"
+      },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Discover Peopi' primary CTA button"
+        "role": "'Create account' primary CTA"
       },
       {
         "key": "quiet-action",
         "variant": "Default",
-        "role": "'Have an account? Sign in' quiet text button"
+        "role": "'Log in' secondary action"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Hero Conference Photography",
-        "selector": ".welcome-photo",
-        "purpose": "Miami networking event photography setting context."
-      },
-      {
-        "name": "Centered Peopi Brand Wordmark",
-        "selector": ".welcome-brand",
-        "purpose": "Primary brand mark with coral period accent."
+        "name": "Hero Brand Wordmark",
+        "selector": ".welcome-wordmark",
+        "purpose": "High-contrast SVG brand logotype."
       }
     ]
   },
   "auth": {
     "code": "01.2",
-    "title": "Email Authentication",
+    "title": "Authentication",
     "section": "Onboarding",
-    "routeType": "journey",
+    "routeType": "push",
     "parent": "welcome",
-    "fixedAreas": "Top header with back button.",
-    "scrollAreas": "Email input field, OTP 6-digit verification code input, resend button, and help link.",
-    "bottomClearance": "34pt bottom safe area or keyboard-avoiding offset.",
-    "entryPoints": "Tap 'Have an account?' or complete onboarding.",
-    "exitPoints": "Enter demo code (123456) to proceed to First Profile; tap Trouble signing in.",
+    "fixedAreas": "Top back button; pinned bottom privacy disclaimer.",
+    "scrollAreas": "Social login buttons (Google, Apple) and email input form.",
+    "bottomClearance": "34pt bottom safe area.",
+    "entryPoints": "Tap 'Create account' or 'Log in' from Welcome.",
+    "exitPoints": "First Profile Setup (01.3); Password recovery.",
     "backBehavior": "Returns to Welcome screen.",
-    "presenceRule": "Authentication stage; no live location active.",
-    "privacyRule": "Mock demo authentication validates format locally.",
+    "presenceRule": "Secure transport authentication session handshake.",
+    "privacyRule": "OAuth scopes restricted to verified identity signals; zero tracking cookies.",
     "components": [
       {
         "key": "icon-button",
         "variant": "Default",
-        "role": "Back arrow button in header"
+        "role": "Back icon button"
+      },
+      {
+        "key": "social-auth",
+        "variant": "Both Providers",
+        "role": "Google and Apple authentication buttons"
       },
       {
         "key": "form-group",
         "variant": "Filled Form",
-        "role": "Form field container with label and helper text"
+        "role": "Email address entry form group"
       },
       {
         "key": "text-field",
         "variant": "Default",
-        "role": "Email address and verification code input"
+        "role": "Email input field"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Continue with email' and 'Verify & continue' CTA"
+        "role": "'Continue with email' primary action"
       },
       {
         "key": "quiet-action",
         "variant": "Default",
-        "role": "'Resend demo code' text trigger"
+        "role": "Terms & Privacy disclaimer link"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "OTP 6-Digit Code Stage",
-        "selector": "#auth-code-stage",
-        "purpose": "Conditional OTP code reveal with test demo code reminder ('123456')."
+        "name": "Social Auth Divider",
+        "selector": ".auth-divider",
+        "purpose": "Segmented 'or' line separating social providers from email entry."
       }
     ]
   },
   "firstprofile": {
     "code": "01.3",
-    "title": "First Profile Setup",
+    "title": "Profile Setup Step 1",
     "section": "Onboarding",
-    "routeType": "journey",
+    "routeType": "push",
     "parent": "auth",
-    "fixedAreas": "Top header with step indicator (Step 01 / 02); pinned bottom continue CTA.",
-    "scrollAreas": "Full name, professional headline, and city input fields.",
+    "fixedAreas": "Step indicator header (01/02); pinned bottom Continue CTA.",
+    "scrollAreas": "Full name and headline text input fields.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Successful authentication on fresh account.",
-    "exitPoints": "Tap 'Continue' to proceed to First Intent (01.4).",
+    "entryPoints": "Successful authentication account creation.",
+    "exitPoints": "Intent Setup Step 2 (01.4).",
     "backBehavior": "Returns to Auth screen.",
-    "presenceRule": "Initial account creation.",
-    "privacyRule": "Requires basic fields before discovering professionals.",
+    "presenceRule": "Draft client state.",
+    "privacyRule": "Name and headline are staged locally before submission.",
     "components": [
       {
         "key": "form-group",
         "variant": "Filled Form",
-        "role": "Structured form fields with accessible labels"
+        "role": "Name and headline text input containers"
       },
       {
         "key": "text-field",
         "variant": "Default",
-        "role": "Full Name, Headline, and City text inputs"
+        "role": "Form input fields"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Continue' button advancing to Step 2"
+        "role": "'Continue' step progression CTA"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Journey Step Header",
-        "selector": ".journey-head",
-        "purpose": "Step counter displaying 'STEP 01 / 02' and introductory text."
+        "name": "Step Indicator Badge",
+        "selector": ".step-counter",
+        "purpose": "Visual pill indicating Step 1 of 2."
       }
     ]
   },
   "firstintent": {
     "code": "01.4",
-    "title": "First Intent Setup",
+    "title": "Intent Setup Step 2",
     "section": "Onboarding",
-    "routeType": "journey",
+    "routeType": "push",
     "parent": "firstprofile",
-    "fixedAreas": "Header with step indicator (Step 02 / 02); pinned bottom action button.",
-    "scrollAreas": "Multi-select grid of professional intent tiles.",
+    "fixedAreas": "Step indicator header (02/02); pinned bottom confirmation CTA.",
+    "scrollAreas": "Selectable intent cards grid.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Complete First Profile step 1.",
-    "exitPoints": "Tap 'Finish setup' to proceed to Just-in-Time Permissions.",
-    "backBehavior": "Returns to First Profile.",
-    "presenceRule": "Selects default intent for future discovery sessions.",
-    "privacyRule": "Intent is only broadcast when a discovery session is actively opened.",
+    "entryPoints": "Completion of Step 1.",
+    "exitPoints": "Permissions screen (01.6) or Invisible state (02.1).",
+    "backBehavior": "Returns to Step 1 preserving input fields.",
+    "presenceRule": "Initial networking preference committed to user profile.",
+    "privacyRule": "Selected intent determines matchmaking suggestions.",
     "components": [
       {
         "key": "intent-choice",
         "variant": "Selected",
-        "role": "Multi-select intent options (Meet new people, Find collaborators, etc.)"
+        "role": "Intent selection grid"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Finish setup' CTA button"
+        "role": "'Finish setup' / 'Start discovering' CTA"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Intent Multi-Choice Prompt",
-        "selector": ".journey-intro",
-        "purpose": "Explanation of how professional intents guide nearby relevance."
+        "name": "Intent Guidance Hint",
+        "selector": ".intent-guidance-copy",
+        "purpose": "Copy clarifying that intents can be changed at any time."
       }
     ]
   },
   "permissions": {
     "code": "01.6",
-    "title": "Permissions Notice",
+    "title": "App Permissions",
     "section": "Onboarding",
-    "routeType": "journey",
+    "routeType": "push",
     "parent": "firstintent",
-    "fixedAreas": "Header with back button; pinned bottom continue button.",
-    "scrollAreas": "Educational cards explaining Location and Notification permissions with privacy assurances.",
+    "fixedAreas": "Header with back/close; pinned bottom action buttons.",
+    "scrollAreas": "Permission benefit cards (Location, Notifications).",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Complete First Intent step.",
-    "exitPoints": "Tap 'Continue' to enter Discover in invisible mode.",
-    "backBehavior": "Returns to First Intent.",
-    "presenceRule": "Explains just-in-time permission requests before invoking OS dialogs.",
-    "privacyRule": "Guarantees location is never tracked in the background.",
+    "entryPoints": "Completion of initial setup.",
+    "exitPoints": "Invisible State (02.1).",
+    "backBehavior": "Dismisses permissions dialog or skips to main app.",
+    "presenceRule": "System location dialog prompt triggered upon confirmation.",
+    "privacyRule": "Location is requested as 'While Using the App' approximate beacon.",
     "components": [
       {
         "key": "icon-button",
         "variant": "Default",
-        "role": "Back navigation header button"
+        "role": "Back / close navigation button"
       },
       {
         "key": "content-section",
         "variant": "About Section",
-        "role": "Permission detail cards with security icons and privacy bullet points"
+        "role": "System permission explanatory cards"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Continue to Discovery' CTA button"
+        "role": "'Enable location' system permission prompt trigger"
+      },
+      {
+        "key": "quiet-action",
+        "variant": "Default",
+        "role": "'Maybe later' skip action"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Just-In-Time Assurance Banner",
-        "selector": ".journey-notice",
-        "purpose": "Guarantee that background location tracking is never used."
+        "name": "Permission Icon Badge",
+        "selector": ".permission-icon-shield",
+        "purpose": "Shield icon symbolizing approximate and secure permission access."
       }
     ]
   },
@@ -1502,48 +1513,43 @@ const peopiScreenRegistry = {
     "code": "01.5",
     "title": "Account Recovery",
     "section": "Onboarding",
-    "routeType": "journey",
+    "routeType": "push",
     "parent": "auth",
-    "fixedAreas": "Top header with back button.",
-    "scrollAreas": "Instructions, email input field, send recovery link CTA, and confirmation alert modal.",
+    "fixedAreas": "Top back button; pinned bottom recovery CTA.",
+    "scrollAreas": "Recovery instructions and email input form.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'Trouble signing in?' on Auth screen.",
-    "exitPoints": "Simulate recovery link dispatch; return to Auth screen.",
+    "entryPoints": "Tap 'Forgot password' or 'Trouble signing in' from Auth.",
+    "exitPoints": "Success confirmation; return to Auth.",
     "backBehavior": "Returns to Auth screen.",
-    "presenceRule": "Pre-auth recovery flow.",
-    "privacyRule": "Simulated email recovery dispatch; no email transmitted.",
+    "presenceRule": "Offline unauthenticated view.",
+    "privacyRule": "Passwordless magic link sent to registered email.",
     "components": [
       {
         "key": "icon-button",
         "variant": "Default",
-        "role": "Back arrow header button"
+        "role": "Header back button"
       },
       {
         "key": "form-group",
         "variant": "Filled Form",
-        "role": "Input group with field label"
+        "role": "Email recovery input group"
       },
       {
         "key": "text-field",
         "variant": "Default",
-        "role": "Email address text field"
+        "role": "Email input field"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Send recovery link' button"
-      },
-      {
-        "key": "dialog",
-        "variant": "Go Invisible?",
-        "role": "Confirmation modal dialog acknowledging simulated email dispatch"
+        "role": "'Send recovery link' primary action"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Recovery Assistance Note",
-        "selector": ".journey-hint",
-        "purpose": "Instructions on checking spam folders and demo recovery simulation."
+        "name": "Recovery Status Feedback",
+        "selector": ".recovery-feedback-msg",
+        "purpose": "Dynamic feedback text confirming email dispatch."
       }
     ]
   },
@@ -1553,162 +1559,103 @@ const peopiScreenRegistry = {
     "section": "Connections",
     "routeType": "root",
     "parent": null,
-    "fixedAreas": "Header with search field; filter tabs (All / Recent); bottom navigation bar.",
-    "scrollAreas": "Alphabetical or recent list of verified connections with avatars, headlines, and last active meta.",
-    "bottomClearance": "116pt bottom fade extent (70pt nav + 16pt inset + 30pt clearance).",
-    "entryPoints": "Tap Connections tab in bottom navigation.",
-    "exitPoints": "Tap connection to view Connection Detail (03.2); tap Requests badge; tap Discover or Profile tabs.",
-    "backBehavior": "Root destination; switching tabs preserves scroll.",
-    "presenceRule": "Displays connection presence states if mutual session is open.",
-    "privacyRule": "Connections can see mutual professional profiles; hidden contacts remain invisible.",
+    "fixedAreas": "Top app bar with search and action icons; bottom navigation bar.",
+    "scrollAreas": "Quick hub tiles (Requests, Hidden list), filter pills, and scrollable list of connected professionals.",
+    "bottomClearance": "116pt bottom fade extent.",
+    "entryPoints": "Tap Connections tab in bottom navigation bar.",
+    "exitPoints": "Connection Detail (03.2); Requests (03.3); Hidden connections (05.5).",
+    "backBehavior": "Root destination; maintains scroll position.",
+    "presenceRule": "Displays live connection badges and unread message indicators.",
+    "privacyRule": "Only approved connections appear in this list.",
     "components": [
       {
-        "key": "bottom-nav",
-        "variant": "Connections Active",
-        "role": "Root navigation bar with Connections tab active"
+        "key": "app-bar",
+        "variant": "Default Bar",
+        "role": "Top app bar with 'My network' heading"
+      },
+      {
+        "key": "icon-button",
+        "variant": "Default",
+        "role": "Header Messages & Notifications buttons with badges"
       },
       {
         "key": "search-field",
         "variant": "Empty Query",
-        "role": "Real-time search input for filtering network list"
+        "role": "Filter connections search input"
       },
       {
-        "key": "tabs",
-        "variant": "Map View",
-        "role": "Filter tabs for switching between All and Recent connections"
+        "key": "chip",
+        "variant": "Active Tag",
+        "role": "Filter pills for connection disciplines (All, Design, Engineering, Founders, AI / ML, Verified)"
       },
       {
         "key": "network-row",
         "variant": "Connected",
-        "role": "Connection list rows with avatar, headline, and message action"
+        "role": "Connection row items"
       },
       {
         "key": "avatar",
         "variant": "Photo Avatar",
-        "role": "Connection circular avatar photo"
+        "role": "Connection circular avatars"
       },
       {
         "key": "verified-badge",
         "variant": "LinkedIn Verified",
-        "role": "Verified identity badge indicator"
+        "role": "Verified badges in connection rows"
       },
       {
-        "key": "empty-state",
-        "variant": "No Requests",
-        "role": "Zero connections guidance card with discovery call-to-action"
+        "key": "bottom-nav",
+        "variant": "Connections Active",
+        "role": "Bottom navigation bar with Connections tab active"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Alphabetical Index Dividers",
-        "selector": ".network-alpha-header",
-        "purpose": "A-Z grouping headers organizing connection roster."
+        "name": "Network Hub Shortcut Tiles",
+        "selector": ".network-quick-hub",
+        "purpose": "Two-column action tiles navigating to Requests and Hidden lists with unread counters."
       }
     ]
   },
   "requests": {
     "code": "03.3",
-    "title": "Connection Requests",
+    "title": "Requests",
     "section": "Connections",
     "routeType": "push",
     "parent": "network",
-    "fixedAreas": "App bar with back button; tab switch (Received / Sent).",
-    "scrollAreas": "List of pending incoming invitations with Accept/Decline actions, or sent invitations with Cancel action.",
-    "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap Requests button in Network header or Activity feed.",
-    "exitPoints": "Accept or decline invitation; cancel sent request; Back to Network.",
-    "backBehavior": "Returns to parent screen.",
-    "presenceRule": "Pending requests do not reveal private presence until accepted.",
-    "privacyRule": "Declining an invitation removes it silently without notifying the sender.",
+    "fixedAreas": "Header with back navigation and segmented tab switcher; bottom navigation bar.",
+    "scrollAreas": "List of pending connection requests with personal notes and action buttons.",
+    "bottomClearance": "116pt bottom clearance.",
+    "entryPoints": "Tap 'Requests' tile in My Network.",
+    "exitPoints": "Accept or Decline request; View requester profile.",
+    "backBehavior": "Returns to My Network.",
+    "presenceRule": "Real-time sync of incoming/outgoing invitation state.",
+    "privacyRule": "Displays sender profile headline and optional note; full contact info withheld until accepted.",
     "components": [
       {
         "key": "app-bar",
         "variant": "Default Bar",
-        "role": "Top app bar with back navigation"
+        "role": "Header bar with back button"
       },
       {
         "key": "request-tabs",
         "variant": "Received Requests",
-        "role": "Segmented tabs switching between Received (with count) and Sent"
+        "role": "Received vs Sent requests segmented control"
       },
       {
         "key": "connection-request",
         "variant": "Received Request",
-        "role": "Invitation item card with sender note and action buttons"
+        "role": "Connection request card with sender bio"
       },
       {
         "key": "avatar",
         "variant": "Photo Avatar",
-        "role": "Sender avatar with verified badge"
+        "role": "Requester avatar"
       },
       {
         "key": "verified-badge",
         "variant": "LinkedIn Verified",
-        "role": "Verified badge icon"
-      },
-      {
-        "key": "empty-state",
-        "variant": "No Requests",
-        "role": "Zero requests placeholder illustration and copy"
-      },
-      {
-        "key": "primary-action",
-        "variant": "Default",
-        "role": "'Accept' connection request button"
-      },
-      {
-        "key": "quiet-action",
-        "variant": "Default",
-        "role": "'Decline' or 'Cancel' action button"
-      }
-    ],
-    "screenSpecificElements": [
-      {
-        "name": "Tab Counter Badges",
-        "selector": "#req-count-received",
-        "purpose": "Numeric pill indicators tracking pending request quantities."
-      }
-    ]
-  },
-  "activity": {
-    "code": "03.4",
-    "title": "Activity & Notifications",
-    "section": "Discover",
-    "routeType": "push",
-    "parent": "closed",
-    "fixedAreas": "App bar with back button; filter tabs (All / Requests).",
-    "scrollAreas": "Feed of connection requests, nearby alerts, and system notices with timestamps.",
-    "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap Notification bell icon in top brand bar.",
-    "exitPoints": "Respond inline to invitations; view request details; Back to Discover.",
-    "backBehavior": "Returns to Discover.",
-    "presenceRule": "Activity items generated during active sessions or connection events.",
-    "privacyRule": "Only mutual connection requests display full names.",
-    "components": [
-      {
-        "key": "app-bar",
-        "variant": "Default Bar",
-        "role": "App bar with back button"
-      },
-      {
-        "key": "tabs",
-        "variant": "Map View",
-        "role": "Filter tabs switching between All notices and pending Requests"
-      },
-      {
-        "key": "activity-item",
-        "variant": "Connection Request",
-        "role": "Activity row card with icon, timestamp, and inline action buttons"
-      },
-      {
-        "key": "avatar",
-        "variant": "Photo Avatar",
-        "role": "Member avatar in activity row"
-      },
-      {
-        "key": "verified-badge",
-        "variant": "LinkedIn Verified",
-        "role": "Verified status checkmark"
+        "role": "Requester verified badge"
       },
       {
         "key": "primary-action",
@@ -1719,45 +1666,109 @@ const peopiScreenRegistry = {
         "key": "quiet-action",
         "variant": "Default",
         "role": "Inline 'Decline' action button"
+      },
+      {
+        "key": "bottom-nav",
+        "variant": "Connections Active",
+        "role": "Bottom navigation bar"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Timeline Grouping Headers",
-        "selector": ".activity-date-heading",
-        "purpose": "Chronological section labels ('Today', 'Yesterday', 'Earlier')."
+        "name": "Personal Note Bubble",
+        "selector": ".request-personal-note",
+        "purpose": "Stylized quotation surface rendering sender's custom meetup message."
+      }
+    ]
+  },
+  "activity": {
+    "code": "03.4",
+    "title": "Activity / Notifications",
+    "section": "Activity",
+    "routeType": "push",
+    "parent": "closed",
+    "fixedAreas": "Header with back navigation and segmented filter tabs; bottom navigation bar.",
+    "scrollAreas": "Scrollable feed of system notifications, meetup reminders, and connection invites.",
+    "bottomClearance": "116pt bottom clearance.",
+    "entryPoints": "Tap notification bell icon in top brand bar.",
+    "exitPoints": "Tap notification to view profile/chat; back to previous screen.",
+    "backBehavior": "Returns to previous active screen.",
+    "presenceRule": "Client notification inbox with unread indicator badges.",
+    "privacyRule": "Auditable log of inbound connection attempts and visibility state changes.",
+    "components": [
+      {
+        "key": "app-bar",
+        "variant": "Default Bar",
+        "role": "Notifications header bar with back button"
+      },
+      {
+        "key": "request-tabs",
+        "variant": "Received Requests",
+        "role": "All vs Requests notification filter tabs"
+      },
+      {
+        "key": "activity-item",
+        "variant": "Connection Request",
+        "role": "Interactive notification items"
+      },
+      {
+        "key": "avatar",
+        "variant": "Photo Avatar",
+        "role": "Activity user avatar"
+      },
+      {
+        "key": "verified-badge",
+        "variant": "LinkedIn Verified",
+        "role": "Activity user verified badge"
+      },
+      {
+        "key": "primary-action",
+        "variant": "Default",
+        "role": "Notification action trigger"
+      },
+      {
+        "key": "quiet-action",
+        "variant": "Default",
+        "role": "Notification dismiss action"
+      },
+      {
+        "key": "bottom-nav",
+        "variant": "Connections Active",
+        "role": "Bottom navigation bar"
+      }
+    ],
+    "screenSpecificElements": [
+      {
+        "name": "Notification Category Badge",
+        "selector": ".activity-cat-badge",
+        "purpose": "Visual icon indicating notification type (invitation, alert, system)."
       }
     ]
   },
   "messages": {
     "code": "04.1",
     "title": "Messages List",
-    "section": "Messages",
-    "routeType": "root",
-    "parent": null,
-    "fixedAreas": "Header with title and search bar; segment tabs (Session / All); bottom navigation bar.",
-    "scrollAreas": "List of active conversation threads with unread indicators, snippets, and timestamps.",
-    "bottomClearance": "116pt bottom fade extent (70pt nav + 16pt inset + 30pt clearance).",
-    "entryPoints": "Tap Messages chat icon in top brand bar or bottom navigation.",
-    "exitPoints": "Tap conversation to enter thread (04.2); switch tabs.",
-    "backBehavior": "Root destination; preserves tab state.",
-    "presenceRule": "Displays 'Nearby now' indicator for active session connections.",
-    "privacyRule": "Direct messaging restricted to confirmed mutual connections.",
+    "section": "Conversations",
+    "routeType": "push",
+    "parent": "closed",
+    "fixedAreas": "Header with back navigation and Conversations/All switcher; bottom navigation bar.",
+    "scrollAreas": "Scrollable list of active and archived direct message threads.",
+    "bottomClearance": "116pt bottom clearance.",
+    "entryPoints": "Tap message bubble icon button in header bar.",
+    "exitPoints": "Tap conversation row to open chat; back to previous screen.",
+    "backBehavior": "Returns to previous active screen.",
+    "presenceRule": "Displays live connection badges and unread message indicators.",
+    "privacyRule": "Only mutual connections can send direct messages.",
     "components": [
       {
         "key": "app-bar",
         "variant": "Default Bar",
-        "role": "Messages header bar with search"
+        "role": "Messages header bar with back button"
       },
       {
-        "key": "search-field",
-        "variant": "Empty Query",
-        "role": "Search input for filtering chat threads"
-      },
-      {
-        "key": "tabs",
-        "variant": "Map View",
-        "role": "Segmented tabs for Current Session vs All Conversations"
+        "key": "request-tabs",
+        "variant": "Received Requests",
+        "role": "Conversations vs All segmented tabs"
       },
       {
         "key": "network-row",
@@ -1777,36 +1788,31 @@ const peopiScreenRegistry = {
       {
         "key": "bottom-nav",
         "variant": "Connections Active",
-        "role": "Root navigation bar with Connections tab active"
-      },
-      {
-        "key": "empty-state",
-        "variant": "No Conversations",
-        "role": "Zero messages placeholder copy"
+        "role": "Bottom navigation bar with Connections tab active"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Active Session Proximity Dot",
-        "selector": ".msg-status-dot",
-        "purpose": "Glowing green presence dot signaling an open nearby meetup window."
+        "name": "Unread Message Snippet",
+        "selector": ".conns-snippet",
+        "purpose": "Preview snippet of latest message with relative timestamp."
       }
     ]
   },
   "conversation": {
     "code": "04.2",
     "title": "Direct Conversation",
-    "section": "Messages",
+    "section": "Conversations",
     "routeType": "push",
     "parent": "messages",
-    "fixedAreas": "App bar with back button and recipient details; pinned bottom chat composer.",
-    "scrollAreas": "Scrollable message history with auto-scroll to bottom, meetup context prompt pills.",
-    "bottomClearance": "Keyboard-docked message input bar with 34pt bottom safe area.",
-    "entryPoints": "Tap conversation on Messages screen or tap Message CTA on profile.",
-    "exitPoints": "Send direct message; tap quick meetup prompt; Back to Messages.",
+    "fixedAreas": "Header with peer identity and more options; pinned bottom composer with quick prompts.",
+    "scrollAreas": "Scrollable chat message bubbles with timestamps and read receipts.",
+    "bottomClearance": "Pinned composer with 34pt bottom safe area.",
+    "entryPoints": "Tap conversation thread in Messages or 'Send message' from Connection Detail.",
+    "exitPoints": "Back to Messages; more options dropdown (View profile, export, hide, block).",
     "backBehavior": "Returns to Messages list.",
-    "presenceRule": "Proximity banner indicates if recipient is currently in an active discovery session nearby.",
-    "privacyRule": "End-to-end simulated messaging; no third-party telemetry.",
+    "presenceRule": "Online/nearby status pill for peer displayed in header.",
+    "privacyRule": "End-to-end client simulated chat; messages persist only in browser storage.",
     "components": [
       {
         "key": "app-bar",
@@ -1841,9 +1847,9 @@ const peopiScreenRegistry = {
     ],
     "screenSpecificElements": [
       {
-        "name": "In-Person Meetup Context Banner",
-        "selector": ".conversation-meetup-banner",
-        "purpose": "Proximity badge confirming both members are nearby with safety tips."
+        "name": "Chat Options Dropdown Menu",
+        "selector": "#conversation-menu",
+        "purpose": "Dropdown offering View Profile, Download Chat, Mute, Hide Presence, and Block actions."
       }
     ]
   },
@@ -1853,14 +1859,14 @@ const peopiScreenRegistry = {
     "section": "Connections",
     "routeType": "push",
     "parent": "network",
-    "fixedAreas": "App bar with back button and menu trigger.",
-    "scrollAreas": "Identity card, 'Message' primary action, presence visibility toggle, and destructive remove connection action.",
+    "fixedAreas": "Top app bar with back navigation; floating message FAB.",
+    "scrollAreas": "Full connected profile: photo avatar, verified status, bio, looking for, skills tags, work experience, documents, and manage connection links.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap any member row on Network screen.",
-    "exitPoints": "Direct message thread (04.2); Remove connection modal; Back to Network.",
-    "backBehavior": "Returns to Network list at preserved scroll position.",
-    "presenceRule": "Toggle allow user to hide live presence from this specific individual.",
-    "privacyRule": "Removing connection permanently deletes direct message thread and revokes presence.",
+    "entryPoints": "Tap connection item in My Network list.",
+    "exitPoints": "Back to network; Send message; Hide presence; Remove connection.",
+    "backBehavior": "Returns to My Network.",
+    "presenceRule": "Live presence visibility status pill.",
+    "privacyRule": "Displays complete unlocked profile information including documents and direct contact options.",
     "components": [
       {
         "key": "app-bar",
@@ -1868,46 +1874,41 @@ const peopiScreenRegistry = {
         "role": "Top app bar with back navigation"
       },
       {
-        "key": "identity-card",
-        "variant": "Complete Profile",
-        "role": "Connected member identity card with full professional bio"
-      },
-      {
         "key": "avatar",
         "variant": "Photo Avatar",
         "role": "Connection avatar image"
       },
       {
-        "key": "verified-badge",
-        "variant": "LinkedIn Verified",
-        "role": "Verified identity checkmark badge"
+        "key": "content-section",
+        "variant": "About Section",
+        "role": "Profile sections (About, Looking for, Skills, Experience, Documents)"
       },
       {
-        "key": "primary-action",
+        "key": "chip",
+        "variant": "Active Tag",
+        "role": "Skills tags in profile"
+      },
+      {
+        "key": "profile-documents",
+        "variant": "Unlocked (Connected)",
+        "role": "Connected documents grid"
+      },
+      {
+        "key": "list",
+        "variant": "Account Settings",
+        "role": "Manage connection actions (Send message, Hide active presence, Remove connection, Report or block)"
+      },
+      {
+        "key": "fab",
         "variant": "Default",
-        "role": "'Message' CTA initiating direct conversation"
-      },
-      {
-        "key": "privacy-row",
-        "variant": "Hidden Off",
-        "role": "Presence visibility control row"
-      },
-      {
-        "key": "switch",
-        "variant": "Disabled (Off)",
-        "role": "Presence override switch toggle"
-      },
-      {
-        "key": "destructive-action",
-        "variant": "Default",
-        "role": "'Remove Connection' red action button"
+        "role": "Send message floating action button"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Connection Date Stamp",
-        "selector": ".connection-date-meta",
-        "purpose": "Metadata displaying when mutual connection was accepted."
+        "name": "Connection Since Timestamp",
+        "selector": "#connection-since",
+        "purpose": "Contextual pill displaying date when connection was established."
       }
     ]
   },
@@ -1917,19 +1918,29 @@ const peopiScreenRegistry = {
     "section": "Profile",
     "routeType": "push",
     "parent": "privacy",
-    "fixedAreas": "App bar with back navigation.",
-    "scrollAreas": "Instructional header explaining visibility overrides, list of hidden members with 'Unhide' CTA.",
+    "fixedAreas": "App bar with back button.",
+    "scrollAreas": "Search bar, All vs Hidden tabs, and connection list with 'Hide presence' / 'Unhide' toggles.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'Hidden connections' row in Privacy settings.",
-    "exitPoints": "Unhide member (restores visibility without notification); Back to Privacy.",
-    "backBehavior": "Returns to Privacy settings.",
-    "presenceRule": "Hidden connections cannot see user when user is active in discovery.",
-    "privacyRule": "Unhiding is completely silent; no notification sent.",
+    "entryPoints": "Tap 'Hidden connections' row from Privacy or Network hub.",
+    "exitPoints": "Back to Privacy; Unhide member.",
+    "backBehavior": "Returns to previous screen.",
+    "presenceRule": "Immediately commits stealth presence overrides for specific members.",
+    "privacyRule": "Selected members cannot detect when you are nearby or visible in discovery.",
     "components": [
       {
         "key": "app-bar",
         "variant": "Default Bar",
         "role": "App bar with back button"
+      },
+      {
+        "key": "search-field",
+        "variant": "Empty Query",
+        "role": "Search connections input"
+      },
+      {
+        "key": "request-tabs",
+        "variant": "Received Requests",
+        "role": "All vs Hidden segmented tabs"
       },
       {
         "key": "network-row",
@@ -1944,19 +1955,14 @@ const peopiScreenRegistry = {
       {
         "key": "quiet-action",
         "variant": "Default",
-        "role": "'Unhide' action button"
-      },
-      {
-        "key": "empty-state",
-        "variant": "No Requests",
-        "role": "Empty state illustration and copy when no connections are hidden"
+        "role": "'Hide presence' / 'Unhide' action button"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Hidden Presence Guidance Card",
-        "selector": ".hidden-intro",
-        "purpose": "Explains that hidden members remain connections but never see your active presence."
+        "name": "Stealth Presence Notice",
+        "selector": ".journey-notice",
+        "purpose": "Clarification that hiding presence does not unfriend or block the member."
       }
     ]
   },
@@ -1966,14 +1972,14 @@ const peopiScreenRegistry = {
     "section": "Profile",
     "routeType": "push",
     "parent": "privacy",
-    "fixedAreas": "App bar with back navigation.",
-    "scrollAreas": "Explanation of blocking rules, list of blocked accounts with 'Unblock' CTA.",
+    "fixedAreas": "App bar with back button.",
+    "scrollAreas": "Blocked members list, informational guidance, and 'Need to report someone?' button.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'Blocked accounts' row in Privacy settings.",
-    "exitPoints": "Unblock member; Back to Privacy.",
+    "entryPoints": "Tap 'Blocked accounts' row from Privacy settings.",
+    "exitPoints": "Back to Privacy; Unblock member; Report member.",
     "backBehavior": "Returns to Privacy settings.",
-    "presenceRule": "Blocked members can never see user, find profile, or send messages.",
-    "privacyRule": "Unblocking restores normal visibility and profile viewing.",
+    "presenceRule": "Blocked users receive no location signals or connection pings.",
+    "privacyRule": "Zero interaction permitted between blocked parties.",
     "components": [
       {
         "key": "app-bar",
@@ -1981,31 +1987,21 @@ const peopiScreenRegistry = {
         "role": "App bar with back button"
       },
       {
-        "key": "network-row",
-        "variant": "Connected",
-        "role": "Blocked member row item"
-      },
-      {
-        "key": "avatar",
-        "variant": "Photo Avatar",
-        "role": "Blocked member avatar"
+        "key": "empty-state",
+        "variant": "No Requests",
+        "role": "Empty state when blocklist is empty"
       },
       {
         "key": "quiet-action",
         "variant": "Default",
-        "role": "'Unblock' action button"
-      },
-      {
-        "key": "empty-state",
-        "variant": "No Requests",
-        "role": "Empty state when blocklist is empty"
+        "role": "'Need to report someone?' button"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Blocking Enforcement Rules Card",
-        "selector": ".blocked-rules-card",
-        "purpose": "Details zero message, search, or radar discovery policy for blocked accounts."
+        "name": "Blocklist Boundary Guidance",
+        "selector": ".journey-notice",
+        "purpose": "Explains that unblocking someone does not automatically restore connections."
       }
     ]
   },
@@ -2013,21 +2009,21 @@ const peopiScreenRegistry = {
     "code": "05.8",
     "title": "Report Member",
     "section": "Profile",
-    "routeType": "modal",
-    "parent": "profile",
-    "fixedAreas": "App bar with Cancel trigger; pinned bottom submit action.",
-    "scrollAreas": "Contextual member identity card, radio options for report reason, additional details text field.",
-    "bottomClearance": "Pinned action footer with 34pt bottom safe area.",
-    "entryPoints": "Tap 'Report concern' from profile or connection detail.",
-    "exitPoints": "Submit report CTA (shows confirmation modal); Cancel back to profile.",
-    "backBehavior": "Dismisses modal without filing report.",
-    "presenceRule": "Safety action; does not alter discovery state.",
-    "privacyRule": "Reports are strictly confidential; reported user receives no notice.",
+    "routeType": "push",
+    "parent": "connectiondetail",
+    "fixedAreas": "Modal app bar with title and back action.",
+    "scrollAreas": "Target member card, reason selection dropdown, details textarea, and submit/block triggers.",
+    "bottomClearance": "34pt bottom safe area.",
+    "entryPoints": "Tap 'Report or block' from Connection Detail or chat menu.",
+    "exitPoints": "Submit report; Block contact; Cancel back.",
+    "backBehavior": "Returns to previous screen without submitting.",
+    "presenceRule": "Immediate severance of proximity visibility if block is selected.",
+    "privacyRule": "Confidential submission recorded for Trust & Safety review.",
     "components": [
       {
         "key": "app-bar",
         "variant": "Default Bar",
-        "role": "Modal app bar with title and cancel action"
+        "role": "Modal app bar with title and back action"
       },
       {
         "key": "identity-card",
@@ -2040,43 +2036,48 @@ const peopiScreenRegistry = {
         "role": "Target member avatar"
       },
       {
-        "key": "radio",
-        "variant": "Selected",
-        "role": "Report reason radio buttons (Harassment, Impersonation, Inappropriate, Other)"
+        "key": "form-group",
+        "variant": "Filled Form",
+        "role": "Form group container for reason select and details"
       },
       {
         "key": "text-field",
         "variant": "Default",
-        "role": "Optional explanation multi-line textarea"
+        "role": "Additional details textarea"
       },
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Submit report' CTA button"
+        "role": "'Preview report submission' CTA button"
+      },
+      {
+        "key": "quiet-action",
+        "variant": "Default",
+        "role": "'Block this contact' secondary action"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Target Member Snapshot Card",
-        "selector": ".report-target-summary",
-        "purpose": "Contextual summary card locking reported member identity to incident."
+        "name": "Local Safety Notice",
+        "selector": ".journey-notice",
+        "purpose": "Informs user that reports in this prototype remain local to the browser."
       }
     ]
   },
   "notifications": {
     "code": "05.9",
     "title": "Notification Preferences",
-    "section": "Settings",
+    "section": "Profile",
     "routeType": "push",
-    "parent": "appsettings",
-    "fixedAreas": "App bar with back navigation.",
-    "scrollAreas": "Grouped switches for Connection Requests, Session Reminders, Nearby Activity alerts, and test toast trigger.",
+    "parent": "privacy",
+    "fixedAreas": "Header with back navigation; pinned bottom Close action.",
+    "scrollAreas": "Push notification preference toggle rows (Connection requests, New messages, Reminders, Updates).",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'Notification preferences' in Settings.",
-    "exitPoints": "Toggle preferences; trigger test alert; Back to Settings.",
-    "backBehavior": "Returns to Settings.",
-    "presenceRule": "Controls local and push notification delivery.",
-    "privacyRule": "Preferences stored locally in app state.",
+    "entryPoints": "Tap 'Notification preferences' row from Privacy or Settings.",
+    "exitPoints": "Close back to previous screen.",
+    "backBehavior": "Returns to previous screen.",
+    "presenceRule": "Local client push permission preferences.",
+    "privacyRule": "Controls which event categories can wake up the app.",
     "components": [
       {
         "key": "app-bar",
@@ -2094,43 +2095,33 @@ const peopiScreenRegistry = {
         "role": "Push notification toggle switches"
       },
       {
-        "key": "list",
-        "variant": "Account Settings",
-        "role": "Rounded group container housing preference rows"
-      },
-      {
-        "key": "quiet-action",
+        "key": "primary-action",
         "variant": "Default",
-        "role": "'Trigger test notification' action button"
-      },
-      {
-        "key": "toast-notification",
-        "variant": "Information",
-        "role": "In-app notification toast banner preview"
+        "role": "'Close' primary completion action"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Simulated Push Notice Preview",
-        "selector": ".notif-test-preview",
-        "purpose": "Live interactive test stage firing simulated in-app notification toasts."
+        "name": "System Permissions Notice",
+        "selector": ".journey-notice",
+        "purpose": "Reminds user that system-level permissions govern banner display."
       }
     ]
   },
   "helpsupport": {
     "code": "06.1",
     "title": "Help & Support",
-    "section": "Settings",
+    "section": "Support",
     "routeType": "push",
-    "parent": "appsettings",
-    "fixedAreas": "App bar with back button; search input field.",
-    "scrollAreas": "FAQ category filter chips, expandable help article accordions, and Contact Support button.",
+    "parent": "myprofile",
+    "fixedAreas": "Help center app bar with back navigation.",
+    "scrollAreas": "Dynamic help topic search, category cards, expandable FAQ accordions, and Contact Support card.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'Help & Support' in Settings.",
-    "exitPoints": "Search FAQ topics; tap contact support; Back to Settings.",
+    "entryPoints": "Tap 'Help & Support' row in Settings.",
+    "exitPoints": "Back to Settings; Send support inquiry.",
     "backBehavior": "Returns to Settings.",
-    "presenceRule": "Static help documentation; offline available.",
-    "privacyRule": "Explains privacy mechanisms and zero-continuous-tracking guarantee.",
+    "presenceRule": "Read-only help documentation; zero proximity broadcast.",
+    "privacyRule": "Support inquiries handled confidentially without location logs.",
     "components": [
       {
         "key": "app-bar",
@@ -2145,7 +2136,7 @@ const peopiScreenRegistry = {
       {
         "key": "chip",
         "variant": "Active Tag",
-        "role": "FAQ topic category filter chips (Privacy, Connections, Safety)"
+        "role": "FAQ topic category cards"
       },
       {
         "key": "list",
@@ -2155,31 +2146,31 @@ const peopiScreenRegistry = {
       {
         "key": "primary-action",
         "variant": "Default",
-        "role": "'Contact Trust & Safety' support inquiry CTA"
+        "role": "'Send support inquiry' support inquiry CTA"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Topic Category Tile Grid",
+        "name": "Help Category Grid",
         "selector": ".help-categories-grid",
-        "purpose": "Topical quick-filter tiles routing users to specific privacy and safety articles."
+        "purpose": "Interactive category filter cards (Privacy, Connections, Safety, Profile)."
       }
     ]
   },
   "aboutpeopi": {
     "code": "06.2",
     "title": "About Peopi & Legal",
-    "section": "Settings",
+    "section": "Support",
     "routeType": "push",
-    "parent": "appsettings",
-    "fixedAreas": "App bar with back button.",
-    "scrollAreas": "Peopi brand logo hero, platform philosophy card, build version details, and grouped legal links (Privacy Policy, Terms of Service, Open Source Licenses).",
+    "parent": "myprofile",
+    "fixedAreas": "About Peopi App Bar with back navigation.",
+    "scrollAreas": "Hero brand emblem, philosophy and design values card, legal & compliance navigation rows, and product info table.",
     "bottomClearance": "34pt bottom safe area.",
-    "entryPoints": "Tap 'About Peopi' in Settings.",
-    "exitPoints": "Open Privacy Policy or Terms sheet; Back to Settings.",
+    "entryPoints": "Tap 'About Peopi' row in Settings.",
+    "exitPoints": "Back to Settings; Open Privacy Policy or Terms sheet.",
     "backBehavior": "Returns to Settings.",
-    "presenceRule": "Legal and platform disclosures.",
-    "privacyRule": "Guarantees in-app disclosure of data policies without external redirects.",
+    "presenceRule": "Static product documentation.",
+    "privacyRule": "Full transparent legal statements regarding ephemeral data and encryption.",
     "components": [
       {
         "key": "app-bar",
@@ -2195,18 +2186,13 @@ const peopiScreenRegistry = {
         "key": "list",
         "variant": "Privacy & Legal",
         "role": "Grouped legal and compliance rows without dividers"
-      },
-      {
-        "key": "doc-sheet",
-        "variant": "Standard PDF",
-        "role": "In-app document bottom sheet displaying full legal policy text"
       }
     ],
     "screenSpecificElements": [
       {
-        "name": "Brand Emblem Showcase Hero",
-        "selector": ".about-hero-emblem",
-        "purpose": "Centered brand mark with application edition tag and design manifesto."
+        "name": "Product Information Group",
+        "selector": ".about-info-group",
+        "purpose": "Version, build, headquarters, and support email specifications."
       }
     ]
   }
@@ -2281,7 +2267,7 @@ const peopiScreensMetadata = {
         "approximateRadius": "150m",
         "privacyDefault": "Invisible until start"
       },
-      "sourceFingerprint": "v2-15dd7aff-165f0a80-19a39d47-1891645d-d981b0b1-1fd80776",
+      "sourceFingerprint": "v2-15dd7aff-18c8864a-19a39d47-83c4ef6b-d981b0b1-1fd80776",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2311,7 +2297,7 @@ const peopiScreensMetadata = {
         "activeMode": "Open networking",
         "selectedPersonId": 2
       },
-      "sourceFingerprint": "v2-1e31a9c4-16d7b664-12b86792-205ba47a-d981b0b1-1a6129ee",
+      "sourceFingerprint": "v2-1e31a9c4-1af1dc13-12b86792-b637478d-d981b0b1-1a6129ee",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2343,7 +2329,7 @@ const peopiScreensMetadata = {
         "documentsCount": 3,
         "experienceCount": 2
       },
-      "sourceFingerprint": "v2-30fcc520-1edf9422-1af029c0-1c2bc919-d981b0b1-1dfa114e",
+      "sourceFingerprint": "v2-30fcc520-b83e5678-1af029c0-ae086929-d981b0b1-1dfa114e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2372,7 +2358,7 @@ const peopiScreensMetadata = {
         "maxBioLength": 160,
         "skillsCount": 4
       },
-      "sourceFingerprint": "v2-2cd5118e-13fdd1e4-ed132894-b3ecc561-d981b0b1-14a5ae62",
+      "sourceFingerprint": "v2-2cd5118e-875d544c-ed132894-1edfcab5-d981b0b1-14a5ae62",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2402,7 +2388,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "blockedCount": 0
       },
-      "sourceFingerprint": "v2-1c9acafb-7cf5a0f5-1583a9c3-a2d85e94-d981b0b1-6c6990cd",
+      "sourceFingerprint": "v2-1c9acafb-18c016c7-1583a9c3-159f7786-d981b0b1-6c6990cd",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2431,7 +2417,7 @@ const peopiScreensMetadata = {
         "trustTier": "standard",
         "badgeType": "seal-check"
       },
-      "sourceFingerprint": "v2-caca06f4-14a76c2c-7e24323a-15ce0c0d-d981b0b1-1959f34c",
+      "sourceFingerprint": "v2-caca06f4-77c026e1-7e24323a-b280c58b-d981b0b1-1959f34c",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2460,7 +2446,7 @@ const peopiScreensMetadata = {
         "locationPermission": "approximate",
         "appVersion": "v0.3.5"
       },
-      "sourceFingerprint": "v2-da78b379-1e0defcb-161a29bf-1c931fbf-d981b0b1-152798f6",
+      "sourceFingerprint": "v2-da78b379-131906d9-161a29bf-17f23e07-d981b0b1-152798f6",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2488,7 +2474,7 @@ const peopiScreensMetadata = {
         "totalSteps": 3,
         "headline": "Nearby networking, on your terms"
       },
-      "sourceFingerprint": "v2-1c608548-c10912c7-14176c17-6add983f-d981b0b1-aab38f2f",
+      "sourceFingerprint": "v2-1c608548-16f76ad8-14176c17-b1c1f7d5-d981b0b1-aab38f2f",
       "scrollExtent": {
         "scrollHeight": 852,
         "clientHeight": 852,
@@ -2519,7 +2505,7 @@ const peopiScreensMetadata = {
         ],
         "valueProp": "Privacy-first professional proximity"
       },
-      "sourceFingerprint": "v2-18b37954-cb328682-7c0a1fb7-78e8108c-d981b0b1-40bb3de5",
+      "sourceFingerprint": "v2-18b37954-1895b382-7c0a1fb7-b1c1f7d5-d981b0b1-40bb3de5",
       "scrollExtent": {
         "scrollHeight": 852,
         "clientHeight": 852,
@@ -2546,7 +2532,7 @@ const peopiScreensMetadata = {
         "mode": "social-or-email",
         "termsAccepted": true
       },
-      "sourceFingerprint": "v2-13b82faf-16a5d62c-718e97cd-16d85d4a-d981b0b1-3b3af112",
+      "sourceFingerprint": "v2-13b82faf-57b8b997-718e97cd-1fe9a4dd-d981b0b1-3b3af112",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2575,7 +2561,7 @@ const peopiScreensMetadata = {
         "city": "Miami, FL",
         "step": "01 / 02"
       },
-      "sourceFingerprint": "v2-1f00bbec-4cdc9fbb-40ad05cd-1d943797-d981b0b1-1131cd87",
+      "sourceFingerprint": "v2-1f00bbec-edb989ab-40ad05cd-1d943797-d981b0b1-1131cd87",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2607,7 +2593,7 @@ const peopiScreensMetadata = {
         "customNote": "",
         "step": "02 / 02"
       },
-      "sourceFingerprint": "v2-8f2c6fb3-1a65d5a2-1bebef26-1050d4cc-d981b0b1-19f0c8a0",
+      "sourceFingerprint": "v2-8f2c6fb3-1e5c2830-1bebef26-1050d4cc-d981b0b1-19f0c8a0",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2635,7 +2621,7 @@ const peopiScreensMetadata = {
         "bluetoothPermission": "allowed",
         "notificationsPermission": "prompted"
       },
-      "sourceFingerprint": "v2-1f870a04-1c95541a-b3e0fce9-56700d7e-d981b0b1-149b791e",
+      "sourceFingerprint": "v2-1f870a04-ebaf1818-b3e0fce9-b388a5dd-d981b0b1-149b791e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2662,7 +2648,7 @@ const peopiScreensMetadata = {
         "email": "designer@example.com",
         "sentCode": true
       },
-      "sourceFingerprint": "v2-e77954ce-15084f25-3f42a73b-8edd4570-d981b0b1-ce13a6b0",
+      "sourceFingerprint": "v2-e77954ce-18cf27d2-3f42a73b-196b462a-d981b0b1-ce13a6b0",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2691,7 +2677,7 @@ const peopiScreensMetadata = {
         "pendingReceived": 2,
         "activeFilter": "all"
       },
-      "sourceFingerprint": "v2-c3ea478e-1c8cea18-a578b87f-f4829978-d981b0b1-11459b43",
+      "sourceFingerprint": "v2-c3ea478e-63476629-a578b87f-273f4355-d981b0b1-11459b43",
       "scrollExtent": {
         "scrollHeight": 1638,
         "clientHeight": 715,
@@ -2719,7 +2705,7 @@ const peopiScreensMetadata = {
         "sentCount": 1,
         "activeTab": "received"
       },
-      "sourceFingerprint": "v2-19f6f13b-1a210d57-3e44d5e0-80625a71-d981b0b1-127eaf22",
+      "sourceFingerprint": "v2-19f6f13b-d3793b85-3e44d5e0-fb8f70a6-d981b0b1-127eaf22",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2746,7 +2732,7 @@ const peopiScreensMetadata = {
         "recentInteractions": 5,
         "lastInteraction": "22m ago · Alex Morgan"
       },
-      "sourceFingerprint": "v2-17402c34-1315e5df-7b6b5b1e-102191d5-d981b0b1-15df29d4",
+      "sourceFingerprint": "v2-17402c34-d40434d4-7b6b5b1e-7d9c4c8c-d981b0b1-15df29d4",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2774,7 +2760,7 @@ const peopiScreensMetadata = {
         "unreadTotal": 1,
         "activeThread": "Alex Morgan"
       },
-      "sourceFingerprint": "v2-12bb0986-85027798-1867542a-cd38f172-d981b0b1-36e523ad",
+      "sourceFingerprint": "v2-12bb0986-109fe5e3-1867542a-1f3da5a3-d981b0b1-36e523ad",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2803,7 +2789,7 @@ const peopiScreensMetadata = {
         "messagesCount": 8,
         "presenceStatus": "online"
       },
-      "sourceFingerprint": "v2-117acabd-91de8f31-26fbb413-1ab78652-d981b0b1-11e7e46b",
+      "sourceFingerprint": "v2-117acabd-a289c0df-26fbb413-1ab78652-d981b0b1-11e7e46b",
       "scrollExtent": {
         "scrollHeight": 2155,
         "clientHeight": 803,
@@ -2832,7 +2818,7 @@ const peopiScreensMetadata = {
         "sharedContext": "Tech Meetup Miami",
         "distanceApprox": "Near you (~120m)"
       },
-      "sourceFingerprint": "v2-1be55380-11d29107-15c8a7b3-4171f29f-d981b0b1-1bdd579e",
+      "sourceFingerprint": "v2-1be55380-132a2653-15c8a7b3-282b68cc-d981b0b1-1bdd579e",
       "scrollExtent": {
         "scrollHeight": 2077,
         "clientHeight": 803,
@@ -2859,7 +2845,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "explanatoryCopy": "Hidden profiles will not appear in discovery or suggestions."
       },
-      "sourceFingerprint": "v2-1ca7558b-138d5b4d-4593ef6b-1e50ac65-d981b0b1-1b3736c4",
+      "sourceFingerprint": "v2-1ca7558b-1d04760d-4593ef6b-b5b9610b-d981b0b1-1b3736c4",
       "scrollExtent": {
         "scrollHeight": 1753,
         "clientHeight": 803,
@@ -2886,7 +2872,7 @@ const peopiScreensMetadata = {
         "blockedCount": 0,
         "explanatoryCopy": "Blocked users cannot see your proximity or send connection requests."
       },
-      "sourceFingerprint": "v2-1cbdc27c-154fb647-11d08c52-1e50ac65-d981b0b1-1d2ffa30",
+      "sourceFingerprint": "v2-1cbdc27c-38176ead-11d08c52-9d17d2a1-d981b0b1-1d2ffa30",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2918,7 +2904,7 @@ const peopiScreensMetadata = {
           "Other"
         ]
       },
-      "sourceFingerprint": "v2-12d18e5a-1cef77b4-b18a08c8-18722564-d981b0b1-1b3b97c7",
+      "sourceFingerprint": "v2-12d18e5a-1fa5d952-b18a08c8-207fb164-d981b0b1-1b3b97c7",
       "scrollExtent": {
         "scrollHeight": 878,
         "clientHeight": 803,
@@ -2946,7 +2932,7 @@ const peopiScreensMetadata = {
         "unreadCount": 1,
         "filter": "all"
       },
-      "sourceFingerprint": "v2-1c7c7650-98a8433c-b38b3951-3c07d038-d981b0b1-b1e113b7",
+      "sourceFingerprint": "v2-1c7c7650-1dbad6fc-b38b3951-e2b8cfe2-d981b0b1-b1e113b7",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2978,7 +2964,7 @@ const peopiScreensMetadata = {
         "intent": "Looking to exchange ideas",
         "statusBadge": "Photo & name hidden until connected"
       },
-      "sourceFingerprint": "v2-1ba82ba9-146febb7-95483f87-10b88df5-d981b0b1-a2e94ebb",
+      "sourceFingerprint": "v2-1ba82ba9-20cbf767-95483f87-156fdc7d-d981b0b1-a2e94ebb",
       "scrollExtent": {
         "scrollHeight": 1434,
         "clientHeight": 681,
@@ -3006,7 +2992,7 @@ const peopiScreensMetadata = {
         "supportEmail": "support@peopi.app",
         "version": "v0.3.5"
       },
-      "sourceFingerprint": "v2-4933cc1a-1bde9c0a-1576944e-67bbee38-d981b0b1-dc603bdc",
+      "sourceFingerprint": "v2-4933cc1a-18d8e21d-1576944e-67bbee38-d981b0b1-dc603bdc",
       "scrollExtent": {
         "scrollHeight": 2277,
         "clientHeight": 803,
@@ -3038,7 +3024,7 @@ const peopiScreensMetadata = {
           "Open Source Licenses"
         ]
       },
-      "sourceFingerprint": "v2-16ef0ee4-1c468357-cd933303-3415fb49-d981b0b1-68f5ce17",
+      "sourceFingerprint": "v2-16ef0ee4-e6f0f254-cd933303-1f68a370-d981b0b1-68f5ce17",
       "scrollExtent": {
         "scrollHeight": 1367,
         "clientHeight": 803,
@@ -3062,7 +3048,6 @@ const peopiScreensMetadata = {
     }
   }
 };
-
 const peopiScreenSourceMarkup = {};
 if (typeof document !== 'undefined') {
   document.querySelectorAll('#phone > .screen, #phone > section, #profsheet').forEach(el => {

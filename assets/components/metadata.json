@@ -1186,5 +1186,27 @@
     "sha1": "48655a871dbb203ac06cb78a862410d94ee7a3ac",
     "width": 336.828125,
     "height": 120
+  },
+  "avatar__initials-fallback__light": {
+    "compKey": "avatar",
+    "variant": "Initials Fallback",
+    "slug": "initials-fallback",
+    "theme": "light",
+    "filename": "component-avatar-initials-fallback-light.png",
+    "bytes": 16658,
+    "sha1": "f6351bd7c0a52b22bb683dae1dce17b068b9ffc8",
+    "width": 661,
+    "height": 252
+  },
+  "avatar__initials-fallback__dark": {
+    "compKey": "avatar",
+    "variant": "Initials Fallback",
+    "slug": "initials-fallback",
+    "theme": "dark",
+    "filename": "component-avatar-initials-fallback-dark.png",
+    "bytes": 18202,
+    "sha1": "4548b33df7ade2a1fcd61fbf32eab1c74287c0f1",
+    "width": 661,
+    "height": 252
   }
 }
