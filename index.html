@@ -1,11 +1,78 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Peopi — UX Workspace v0.3.5</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='114' fill='%23FF3300'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='-apple-system, BlinkMacSystemFont, Manrope, sans-serif' font-weight='800' font-size='260px' fill='%23ffffff' letter-spacing='-6px'%3Ep.%3C/text%3E%3C/svg%3E"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/mobile-screens.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/case-study.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css"><link rel="stylesheet" href="peopi-motion.css">
+  <link rel="stylesheet" href="css/tokens.css?v=0.3.6-5891525">
+  <link rel="stylesheet" href="css/sidebar.css?v=0.3.6-5891525">
+  <link rel="stylesheet" href="css/layout.css?v=0.3.6-5891525">
+  <link rel="stylesheet" href="css/mobile-screens.css?v=0.3.6-5891525">
+  <link rel="stylesheet" href="css/components.css?v=0.3.6-5891525">
+  <link rel="stylesheet" href="css/case-study.css?v=0.3.6-5891525">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css"><link rel="stylesheet" href="peopi-motion.css?v=0.3.6-5891525">
+<style id="stage-toolbar-critical-css">
+/* Critical Stage Toolbar layout ensuring immediate CSSOM resolution across existing cached sessions */
+.stage-toolbar {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  z-index: 30;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: calc(100% - 44px);
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+.stage-toolbar > * {
+  pointer-events: auto;
+}
+.stage-toolbar > button,
+.stage-toolbar .preview-fullscreen-toggle,
+.stage-toolbar #stage-copy-screen-brief,
+.stage-toolbar #stage-download-screen-zip,
+.stage-toolbar #theme,
+.stage-toolbar #preview-fullscreen,
+.stage-toolbar #stage-notes-toggle {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .stage-toolbar {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+    max-width: calc(100% - 24px);
+  }
+}
+@media (max-width: 480px) {
+  .stage-toolbar {
+    top: 8px;
+    right: 8px;
+    gap: 4px;
+    max-width: calc(100% - 16px);
+  }
+}
+body.prototype-immersive .stage-toolbar {
+  position: fixed !important;
+  top: 22px !important;
+  right: 22px !important;
+  z-index: 10000;
+}
+body.prototype-immersive #stage-notes-toggle,
+body.prototype-immersive #stage-copy-screen-brief,
+body.prototype-immersive #stage-download-screen-zip,
+body.prototype-immersive #theme {
+  display: none !important;
+}
+body.prototype-immersive #preview-fullscreen {
+  right: 22px !important;
+  position: relative !important;
+}
+</style>
 </head><body class="dashboard-open"><div class="workspace">
 <aside class="sidebar" aria-label="Product case study navigation">
   <div class="workspace-brand">
@@ -4074,11 +4141,11 @@
   </div>
 </aside>
 </div>
-  <script src="js/app.js"></script>
-  <script src="js/discovery.js"></script>
-  <script src="js/profile.js"></script>
-  <script src="js/connections.js"></script>
-  <script src="js/messaging.js"></script>
-  <script src="js/navigation.js"></script>
-  <script src="peopi-motion.js"></script>
+  <script src="js/app.js?v=0.3.6-5891525"></script>
+  <script src="js/discovery.js?v=0.3.6-5891525"></script>
+  <script src="js/profile.js?v=0.3.6-5891525"></script>
+  <script src="js/connections.js?v=0.3.6-5891525"></script>
+  <script src="js/messaging.js?v=0.3.6-5891525"></script>
+  <script src="js/navigation.js?v=0.3.6-5891525"></script>
+  <script src="peopi-motion.js?v=0.3.6-5891525"></script>
 </body></html>
