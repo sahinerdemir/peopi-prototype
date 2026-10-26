@@ -226,6 +226,12 @@ function openProfile(){
  const sendMessage=$('#profile-send-message');if(sendMessage)sendMessage.onclick=()=>{setJourneyView(person);resetProfileComposer();$('#profsheet').classList.add('hide');go('conversation')};
  $('#profsheet .profile-sheet-scroll').scrollTop=0;
  $('#profsheet').classList.remove('hide');
+ if(typeof renderSpec==='function'){
+  renderSpec('profile');
+ }
+ if(typeof window!=='undefined'&&!window.isSyncingHash&&typeof window.setHash==='function'){
+  window.setHash('screen=profile');
+ }
 }
 let isComposingProfileRequest=false;
 function resetProfileComposer(){
@@ -287,8 +293,28 @@ $('#openDemoProfile').onclick=()=>{
   showPerson(2);
   openProfile();
 };
-$('#closeprofile').onclick=()=>{resetProfileComposer();$('#profsheet').classList.add('hide')};
-$('#profsheet').addEventListener('click',e=>{if(e.target===$('#profsheet')){resetProfileComposer();$('#profsheet').classList.add('hide')}});
+function closeProfileSheet(){
+  resetProfileComposer();
+  $('#profsheet').classList.add('hide');
+  const target=(typeof page!=='undefined'&&page)?page:'active';
+  if(typeof renderSpec==='function'){
+    renderSpec(target);
+  }
+  if(typeof window!=='undefined'&&!window.isSyncingHash&&typeof window.setHash==='function'){
+    window.setHash('screen='+target);
+  }
+}
+window.closeProfileSheet=closeProfileSheet;
+$('#closeprofile').onclick=closeProfileSheet;
+$('#profsheet').addEventListener('click',e=>{if(e.target===$('#profsheet')){closeProfileSheet();}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    const sheet=$('#profsheet');
+    if(sheet&&!sheet.classList.contains('hide')){
+      closeProfileSheet();
+    }
+  }
+});
 $('#requestFromProfile').onclick=handleProfileRequestClick;
 $('#profile-request-composer-cancel')?.addEventListener('click',()=>{
  resetProfileComposer();

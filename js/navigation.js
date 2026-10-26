@@ -3757,6 +3757,15 @@ function copyComponentBrief(compKey, activeVariant) {
   }
 }
 
+function getCurrentActiveScreen() {
+  const profsheet = document.getElementById('profsheet');
+  if (profsheet && !profsheet.classList.contains('hide')) {
+    return 'profile';
+  }
+  return (typeof page !== 'undefined' && page) ? page : 'closed';
+}
+window.getCurrentActiveScreen = getCurrentActiveScreen;
+
 function updateScreenHandoffUi(key) {
   const reg = peopiScreenRegistry[key];
   const freshness = checkScreenVisualFreshness(key);
@@ -3791,7 +3800,8 @@ function updateScreenHandoffUi(key) {
     if (!btn) return;
     btn.onclick = async () => {
       try {
-        const brief = generateScreenAiBrief(key);
+        const targetScreen = (typeof getCurrentActiveScreen === 'function') ? getCurrentActiveScreen() : key;
+        const brief = generateScreenAiBrief(targetScreen);
         if (navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(brief);
         }
@@ -3819,7 +3829,8 @@ function updateScreenHandoffUi(key) {
       btn.innerHTML = '<i class="ph ph-spinner ph-spin" aria-hidden="true"></i><span>Packaging...</span>';
       btn.disabled = true;
       try {
-        await downloadScreenImplementationZip(key);
+        const targetScreen = (typeof getCurrentActiveScreen === 'function') ? getCurrentActiveScreen() : key;
+        await downloadScreenImplementationZip(targetScreen);
       } catch (err) {
         console.error('Download failed:', err);
         alert('Failed to package screen bundle: ' + err.message);
@@ -4016,9 +4027,28 @@ document.querySelectorAll('[data-planned]').forEach(b=>b.onclick=()=>{
  document.querySelectorAll('.tree-link').forEach(x=>x.classList.toggle('selected',x===b));
 });
 const originalGo=go;
-go=function(to,dir){closeDashboard();originalGo(to,dir);if(to==='editprofile'&&typeof populateProfileEditor==='function')populateProfileEditor();if(to==='myprofile'&&typeof paintProfile==='function')paintProfile();if(typeof resetProfileComposer==='function')resetProfileComposer();$('#profsheet').classList.add('hide');renderSpec(to)};
+go=function(to,dir){
+  closeDashboard();
+  if(to==='profile'){
+    originalGo('active',dir);
+    if(typeof resetProfileComposer==='function')resetProfileComposer();
+    if(typeof showPerson==='function'){
+      const pId=(typeof person!=='undefined'&&person!=='own')?person:2;
+      showPerson(pId);
+    }
+    if(typeof openProfile==='function')openProfile();
+    renderSpec('profile');
+    return;
+  }
+  originalGo(to,dir);
+  if(to==='editprofile'&&typeof populateProfileEditor==='function')populateProfileEditor();
+  if(to==='myprofile'&&typeof paintProfile==='function')paintProfile();
+  if(typeof resetProfileComposer==='function')resetProfileComposer();
+  $('#profsheet').classList.add('hide');
+  renderSpec(to);
+};
 $('#openDemoProfile').addEventListener('click',()=>renderSpec('profile'));
-$('#closeprofile').addEventListener('click',()=>renderSpec(page));
+$('#closeprofile').addEventListener('click',()=>renderSpec(typeof getCurrentActiveScreen==='function'?getCurrentActiveScreen():page));
 function resizePhonePreview(){const stage=document.querySelector('.device-stage'),phone=document.getElementById('phone');if(!stage||!phone)return;const availableWidth=Math.max(200,stage.clientWidth-28),availableHeight=Math.max(300,stage.clientHeight-24);const scale=Math.min(availableWidth/393,availableHeight/852,1.18);phone.style.setProperty('--device-scale',String(Math.max(.35,scale)))}
 const fullscreenPreviewButton=document.getElementById('preview-fullscreen');
 const fullscreenPreviewArea=document.querySelector('.preview-area');
@@ -19690,14 +19720,17 @@ all('.ds-link').forEach(b=>b.addEventListener('click',()=>{closeDashboard();
  showDesign(b.dataset.ds);
 }));
 let isSyncingHash=false;
+window.isSyncingHash=false;
 function setHash(hashStr){
   const target='#'+hashStr.replace(/^#/,'');
   if(window.location.hash!==target){
     isSyncingHash=true;
+    window.isSyncingHash=true;
     window.location.hash=target;
-    requestAnimationFrame(()=>{isSyncingHash=false;});
+    requestAnimationFrame(()=>{isSyncingHash=false;window.isSyncingHash=false;});
   }
 }
+window.setHash=setHash;
 
 function openOverview(viewId){
   const aliases = {
@@ -19990,7 +20023,7 @@ document.addEventListener('click',e=>{
     return;
   }
 });
-function closeDesign(){document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;$('#ds-inspector').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(page);requestAnimationFrame(resizePhonePreview)}
+function closeDesign(){document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;$('#ds-inspector').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(typeof getCurrentActiveScreen==='function'?getCurrentActiveScreen():page);requestAnimationFrame(resizePhonePreview)}
 all('#tree .tree-link').forEach(b=>b.addEventListener('click',()=>{closeDashboard();if(document.body.classList.contains('ds-open')){closeDesign()}}));
 
 function parseHash(){
@@ -20020,6 +20053,7 @@ function parseHash(){
 function syncRouteFromHash(){
   const route=parseHash();
   isSyncingHash=true;
+  window.isSyncingHash=true;
   try{
     if(!route||route.type==='dashboard'){
       openOverview(route&&route.view&&route.view!=='changelog'?route.view:'intro');
@@ -20063,7 +20097,7 @@ function syncRouteFromHash(){
       go(route.id);
     }
   }finally{
-    requestAnimationFrame(()=>{isSyncingHash=false;});
+    requestAnimationFrame(()=>{isSyncingHash=false;window.isSyncingHash=false;});
   }
 }
 
