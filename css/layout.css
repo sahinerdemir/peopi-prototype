@@ -536,8 +536,14 @@ body.dark-theme .inspector-close-btn:hover,
   color: #FF3300;
 }
 
-/* Notes Toggle Button Styles */
-/* Top-right Controls: [Theme: 118px] [Fullscreen: 70px] [Notes Toggle: 22px] */
+/* Stage Top-Right Action Controls & Toolbar */
+/* Fallback absolute positioning: [Copy: 214px] [Bundle: 166px] [Theme: 118px] [Fullscreen: 70px] [Notes Toggle: 22px] */
+#stage-copy-screen-brief {
+  right: 214px !important;
+}
+#stage-download-screen-zip {
+  right: 166px !important;
+}
 #theme.ds-theme {
   right: 118px !important;
 }
@@ -553,12 +559,72 @@ body.notes-open .ds-stage-notes-btn {
   border-color: #ffd2c6 !important;
   color: #ff3300 !important;
 }
-body.prototype-immersive #preview-fullscreen {
+
+/* Dedicated flex toolbar container preventing overlaps and supporting responsive flow */
+.stage-toolbar {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: calc(100% - 44px);
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+.stage-toolbar > * {
+  pointer-events: auto;
+}
+.stage-toolbar > button,
+.stage-toolbar .preview-fullscreen-toggle,
+.stage-toolbar #stage-copy-screen-brief,
+.stage-toolbar #stage-download-screen-zip,
+.stage-toolbar #theme,
+.stage-toolbar #preview-fullscreen,
+.stage-toolbar #stage-notes-toggle {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .stage-toolbar {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+    max-width: calc(100% - 24px);
+  }
+}
+@media (max-width: 480px) {
+  .stage-toolbar {
+    top: 8px;
+    right: 8px;
+    gap: 4px;
+    max-width: calc(100% - 16px);
+  }
+}
+
+body.prototype-immersive .stage-toolbar {
+  position: fixed !important;
+  top: 22px !important;
   right: 22px !important;
+  z-index: 10000;
 }
 body.prototype-immersive #stage-notes-toggle,
+body.prototype-immersive #stage-copy-screen-brief,
+body.prototype-immersive #stage-download-screen-zip,
 body.prototype-immersive #theme {
   display: none !important;
+}
+body.prototype-immersive #preview-fullscreen {
+  right: 22px !important;
+  position: relative !important;
 }
 
 .ds-head-actions {

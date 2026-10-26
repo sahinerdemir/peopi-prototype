@@ -3852,13 +3852,45 @@ function updateScreenHandoffUi(key) {
       try {
         const targetScreen = (typeof getCurrentActiveScreen === 'function') ? getCurrentActiveScreen() : key;
         const brief = generateScreenAiBrief(targetScreen);
+        let copied = false;
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(brief);
+          try {
+            await navigator.clipboard.writeText(brief);
+            copied = true;
+          } catch (clipErr) {
+            // fall through to fallback
+          }
         }
+        if (!copied) {
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = brief;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            ta.style.top = '-9999px';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            copied = document.execCommand('copy');
+            document.body.removeChild(ta);
+          } catch (fallbackErr) {
+            console.warn('Clipboard fallback failed:', fallbackErr);
+          }
+        }
+        window.__lastCopiedBrief = brief;
         const originalHtml = btn.innerHTML;
-        btn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i><span>Copied Brief!</span>';
+        if (btn.id === 'stage-copy-screen-brief') {
+          btn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i>';
+          btn.setAttribute('title', 'Copied Brief!');
+        } else {
+          btn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i><span>Copied Brief!</span>';
+        }
         setTimeout(() => {
           btn.innerHTML = originalHtml;
+          if (btn.id === 'stage-copy-screen-brief') {
+            btn.setAttribute('title', 'Copy Screen Brief');
+          }
+          if (typeof refreshIcons === 'function') refreshIcons();
         }, 1800);
       } catch (err) {
         console.warn('Copy brief failed:', err);
@@ -3876,7 +3908,12 @@ function updateScreenHandoffUi(key) {
     if (!btn) return;
     btn.onclick = async () => {
       const originalHtml = btn.innerHTML;
-      btn.innerHTML = '<i class="ph ph-spinner ph-spin" aria-hidden="true"></i><span>Packaging...</span>';
+      if (btn.id === 'stage-download-screen-zip') {
+        btn.innerHTML = '<i class="ph ph-spinner ph-spin" aria-hidden="true"></i>';
+        btn.setAttribute('title', 'Packaging bundle...');
+      } else {
+        btn.innerHTML = '<i class="ph ph-spinner ph-spin" aria-hidden="true"></i><span>Packaging...</span>';
+      }
       btn.disabled = true;
       try {
         const targetScreen = (typeof getCurrentActiveScreen === 'function') ? getCurrentActiveScreen() : key;
@@ -3887,6 +3924,10 @@ function updateScreenHandoffUi(key) {
       } finally {
         btn.innerHTML = originalHtml;
         btn.disabled = false;
+        if (btn.id === 'stage-download-screen-zip') {
+          btn.setAttribute('title', 'Download Bundle');
+        }
+        if (typeof refreshIcons === 'function') refreshIcons();
       }
     };
   });
