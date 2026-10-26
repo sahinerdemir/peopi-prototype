@@ -1215,11 +1215,11 @@
     "slug": "conversations-all",
     "theme": "light",
     "filename": "component-request-tabs-conversations-all-light.png",
-    "sha1": "8281141e7a44846bb8934955291ce62ff269bc18",
-    "bytes": 8156,
-    "width": 577,
-    "height": 110,
-    "capturedAt": "2026-10-26T21:32:13.127Z"
+    "sha1": "402f85389832c11315990e25b21747e6de9a4c60",
+    "bytes": 11809,
+    "width": 365,
+    "height": 68,
+    "capturedAt": "2026-10-26T21:56:09.921Z"
   },
   "request-tabs__conversations-all__dark": {
     "compKey": "request-tabs",
@@ -1227,11 +1227,11 @@
     "slug": "conversations-all",
     "theme": "dark",
     "filename": "component-request-tabs-conversations-all-dark.png",
-    "sha1": "3139626c322359ecaae326cef76e095756739a78",
-    "bytes": 10336,
-    "width": 577,
-    "height": 110,
-    "capturedAt": "2026-10-26T21:32:13.508Z"
+    "sha1": "e7daac1c2d73c31f5ac48d343070cb99c446b19b",
+    "bytes": 12901,
+    "width": 365,
+    "height": 68,
+    "capturedAt": "2026-10-26T21:56:10.386Z"
   },
   "request-tabs__all-requests__light": {
     "compKey": "request-tabs",
@@ -1239,11 +1239,11 @@
     "slug": "all-requests",
     "theme": "light",
     "filename": "component-request-tabs-all-requests-light.png",
-    "sha1": "0c78c17fded5ce8787f67f998614afae219deb0d",
-    "bytes": 10290,
-    "width": 577,
-    "height": 110,
-    "capturedAt": "2026-10-26T21:32:13.890Z"
+    "sha1": "8aa32707f78b07deafe00c3cb3e09414bfd684c7",
+    "bytes": 11479,
+    "width": 365,
+    "height": 68,
+    "capturedAt": "2026-10-26T21:56:10.869Z"
   },
   "request-tabs__all-requests__dark": {
     "compKey": "request-tabs",
@@ -1251,11 +1251,11 @@
     "slug": "all-requests",
     "theme": "dark",
     "filename": "component-request-tabs-all-requests-dark.png",
-    "sha1": "ed1f985f33b66206ac1081e8715a4da21226aed8",
-    "bytes": 9628,
-    "width": 577,
-    "height": 110,
-    "capturedAt": "2026-10-26T21:32:14.274Z"
+    "sha1": "d516de6081acf01a323e2d00ce94e57175b1ba17",
+    "bytes": 12459,
+    "width": 365,
+    "height": 68,
+    "capturedAt": "2026-10-26T21:56:11.336Z"
   },
   "request-tabs__all-hidden__light": {
     "compKey": "request-tabs",
@@ -1263,11 +1263,11 @@
     "slug": "all-hidden",
     "theme": "light",
     "filename": "component-request-tabs-all-hidden-light.png",
-    "sha1": "4e3439740b1f3ecca124b7e97768fb4672e7dadc",
-    "bytes": 12036,
-    "width": 577,
-    "height": 110,
-    "capturedAt": "2026-10-26T21:32:14.659Z"
+    "sha1": "01814217412eed84e14a5a82c194b1aefe71edd3",
+    "bytes": 12494,
+    "width": 365,
+    "height": 68,
+    "capturedAt": "2026-10-26T21:56:11.819Z"
   },
   "request-tabs__all-hidden__dark": {
     "compKey": "request-tabs",
@@ -1275,11 +1275,11 @@
     "slug": "all-hidden",
     "theme": "dark",
     "filename": "component-request-tabs-all-hidden-dark.png",
-    "sha1": "1721da917babc1c798df80f547291cc13ef7caf4",
-    "bytes": 10338,
-    "width": 577,
-    "height": 110,
-    "capturedAt": "2026-10-26T21:32:15.040Z"
+    "sha1": "067468ed3c7a1b3a270e717ef12fbaaae3593f52",
+    "bytes": 13725,
+    "width": 365,
+    "height": 68,
+    "capturedAt": "2026-10-26T21:56:12.286Z"
   },
   "network-row__chat-thread__light": {
     "compKey": "network-row",
@@ -1287,11 +1287,11 @@
     "slug": "chat-thread",
     "theme": "light",
     "filename": "component-network-row-chat-thread-light.png",
-    "sha1": "11710b940426230bbb00ef364e263fed5821ba5c",
-    "bytes": 37576,
-    "width": 577,
-    "height": 192,
-    "capturedAt": "2026-10-26T21:32:15.429Z"
+    "sha1": "cac7c63e826c66269fb75e22a066b33f17685aad",
+    "bytes": 34419,
+    "width": 365,
+    "height": 114,
+    "capturedAt": "2026-10-26T21:56:12.773Z"
   },
   "network-row__chat-thread__dark": {
     "compKey": "network-row",
@@ -1299,11 +1299,11 @@
     "slug": "chat-thread",
     "theme": "dark",
     "filename": "component-network-row-chat-thread-dark.png",
-    "sha1": "256ac2b202bea511d20a2cd2047358f885511a67",
-    "bytes": 29123,
-    "width": 577,
-    "height": 192,
-    "capturedAt": "2026-10-26T21:32:15.809Z"
+    "sha1": "2a237fc5e91e519d548f5e1fa2b06b8086daafca",
+    "bytes": 34978,
+    "width": 365,
+    "height": 114,
+    "capturedAt": "2026-10-26T21:56:13.256Z"
   },
   "network-row__presence-control-row__light": {
     "compKey": "network-row",
@@ -1311,11 +1311,11 @@
     "slug": "presence-control-row",
     "theme": "light",
     "filename": "component-network-row-presence-control-row-light.png",
-    "sha1": "314d26260d310d8924e6da4606fcd46b44f44463",
-    "bytes": 27899,
-    "width": 577,
-    "height": 164,
-    "capturedAt": "2026-10-26T21:32:16.209Z"
+    "sha1": "3b42e5e3b0dceddb1bcada53f190b66112bd58e6",
+    "bytes": 27320,
+    "width": 365,
+    "height": 98,
+    "capturedAt": "2026-10-26T21:56:13.720Z"
   },
   "network-row__presence-control-row__dark": {
     "compKey": "network-row",
@@ -1323,11 +1323,11 @@
     "slug": "presence-control-row",
     "theme": "dark",
     "filename": "component-network-row-presence-control-row-dark.png",
-    "sha1": "c3281e7bad6e24edbb8de4a99dbfd03203f0a3d4",
-    "bytes": 23160,
-    "width": 577,
-    "height": 164,
-    "capturedAt": "2026-10-26T21:32:16.594Z"
+    "sha1": "01d4628ddfa81f5f6b2cdb4c5c35caaa4cb0d12c",
+    "bytes": 28246,
+    "width": 365,
+    "height": 98,
+    "capturedAt": "2026-10-26T21:56:14.187Z"
   },
   "list__faq-accordion__light": {
     "compKey": "list",
@@ -1335,11 +1335,11 @@
     "slug": "faq-accordion",
     "theme": "light",
     "filename": "component-list-faq-accordion-light.png",
-    "sha1": "9201d4e863ac74f6197035fa83674980d8a9991e",
-    "bytes": 89428,
-    "width": 577,
-    "height": 407,
-    "capturedAt": "2026-10-26T21:32:16.988Z"
+    "sha1": "dc9df1f021e25fbb67feb4830a69bee015605492",
+    "bytes": 58024,
+    "width": 365,
+    "height": 214,
+    "capturedAt": "2026-10-26T21:56:14.662Z"
   },
   "list__faq-accordion__dark": {
     "compKey": "list",
@@ -1347,10 +1347,10 @@
     "slug": "faq-accordion",
     "theme": "dark",
     "filename": "component-list-faq-accordion-dark.png",
-    "sha1": "f4a2f43e75e10db1803bbad51893cafd7fbc4527",
-    "bytes": 52096,
-    "width": 577,
-    "height": 407,
-    "capturedAt": "2026-10-26T21:32:17.367Z"
+    "sha1": "d3353389e42a0391745053e807a37649f35d44eb",
+    "bytes": 57338,
+    "width": 365,
+    "height": 214,
+    "capturedAt": "2026-10-26T21:56:15.169Z"
   }
 }
