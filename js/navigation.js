@@ -6201,19 +6201,22 @@ function initStoreGuideInteractions() {
       class: 'store-shot-orange',
       title: 'Meet what’s next.',
       sub: '01 / Discover · Verified Prototype',
-      content: '<div style="font-size:16px;font-weight:800;color:#fff;text-align:center;margin:auto;">Discovery Radar &amp; Proximity Sessions</div>'
+      imgSrc: 'assets/screens/screen-active-light.png',
+      alt: 'Peopi Proximity Discovery Screen'
     },
     {
       class: 'store-shot-light',
       title: 'Connect with intention.',
       sub: '02 / Connect · Verified Prototype',
-      content: '<div style="font-size:16px;font-weight:800;color:#141922;text-align:center;margin:auto;">Mutual Connection Requests &amp; Professional Profiles</div>'
+      imgSrc: 'assets/screens/screen-profile-light.png',
+      alt: 'Peopi Profile & Connection Screen'
     },
     {
       class: 'store-shot-dark',
       title: 'Stay in touch.',
       sub: '03 / Keep in touch · Verified Prototype',
-      content: '<div style="font-size:16px;font-weight:800;color:#fff;text-align:center;margin:auto;">Ephemeral 1:1 Direct Messaging</div>'
+      imgSrc: 'assets/screens/screen-conversation-dark.png',
+      alt: 'Peopi Direct Messaging Screen'
     }
   ];
 
@@ -6222,12 +6225,15 @@ function initStoreGuideInteractions() {
     if (!data || !lightbox || !lightboxBody) return;
     lightboxContent.className = 'store-lightbox-content ' + data.class;
     lightboxBody.innerHTML = `
-      <div>
-        <h2 style="font-size:clamp(24px,3.5vw,36px);font-weight:800;margin:0 0 6px;">${data.title}</h2>
-        <span style="font-size:12px;opacity:0.8;font-weight:600;">${data.sub}</span>
+      <div style="margin-bottom:12px;">
+        <h2 style="font-size:clamp(22px,3vw,30px);font-weight:800;margin:0 0 4px;letter-spacing:-0.03em;">${data.title}</h2>
+        <span style="font-size:12px;opacity:0.85;font-weight:600;">${data.sub}</span>
       </div>
-      ${data.content}
-      <div style="font-size:11.5px;opacity:0.75;text-align:center;">Press ESC or tap outside to close</div>
+      <div class="store-lightbox-phone-frame" style="width:78%;max-width:270px;margin:0 auto;border:3px solid rgba(255,255,255,0.25);border-bottom:0;border-radius:24px 24px 0 0;overflow:hidden;box-shadow:0 -4px 24px rgba(0,0,0,0.3);background:#fff;">
+        <div style="width:60px;height:8px;background:#1e293b;border-radius:0 0 6px 6px;margin:0 auto 4px;"></div>
+        <img src="${data.imgSrc}" alt="${data.alt}" style="width:100%;height:auto;display:block;border-radius:12px 12px 0 0;">
+      </div>
+      <div style="font-size:11.5px;opacity:0.75;text-align:center;margin-top:8px;">Press ESC or tap outside to close</div>
     `;
     lightbox.classList.add('open');
     closeBtn.focus();
@@ -11290,20 +11296,8 @@ function showDesign(key){
           <h3 class="store-screen-title">Meet what’s next<span style="color:#ffffff;">.</span></h3>
           <div class="store-mini-phone">
             <div class="store-mini-phone-notch"></div>
-            <div class="store-mini-screen-content" style="background:#f8fafc;color:#141922;">
-              <div style="font-weight:800;font-size:12px;color:#FF3300;text-align:center;">PEOPI DISCOVERY</div>
-              <div style="position:relative;height:120px;display:grid;place-items:center;">
-                <svg viewBox="0 0 100 100" style="width:100px;height:100px;">
-                  <circle cx="50" cy="50" r="45" fill="none" stroke="#FF3300" stroke-width="1" opacity="0.2"/>
-                  <circle cx="50" cy="50" r="28" fill="none" stroke="#FF3300" stroke-width="1.5" opacity="0.3"/>
-                  <circle cx="50" cy="50" r="14" fill="#FF3300" opacity="0.15"/>
-                  <circle cx="50" cy="50" r="5" fill="#FF3300"/>
-                  <circle cx="28" cy="35" r="7" fill="#64748b"/><text x="28" y="38" font-size="5" fill="#fff" text-anchor="middle">JS</text>
-                  <circle cx="72" cy="40" r="7" fill="#64748b"/><text x="72" y="43" font-size="5" fill="#fff" text-anchor="middle">MK</text>
-                  <circle cx="38" cy="75" r="7" fill="#64748b"/><text x="38" y="78" font-size="5" fill="#fff" text-anchor="middle">PR</text>
-                </svg>
-              </div>
-              <div style="font-size:9.5px;color:#64748b;text-align:center;">3 professionals nearby in active session</div>
+            <div class="store-mini-screen-content">
+              <img src="assets/screens/screen-active-light.png" alt="Peopi Proximity Discovery Screen" class="store-screen-img" loading="lazy">
             </div>
           </div>
         </div>
@@ -11319,12 +11313,8 @@ function showDesign(key){
           <h3 class="store-screen-title">Connect with intention<span class="brand-dot">.</span></h3>
           <div class="store-mini-phone">
             <div class="store-mini-phone-notch"></div>
-            <div class="store-mini-screen-content" style="background:#ffffff;color:#141922;text-align:center;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#e2e8f0;color:#334155;font-weight:800;font-size:13px;display:grid;place-items:center;margin:4px auto;">MK</div>
-              <div style="font-weight:800;font-size:12px;">Morgan K.</div>
-              <div style="font-size:9.5px;color:#64748b;">Product Designer · Open to connecting</div>
-              <div style="background:#fff3f0;border-radius:8px;padding:6px;font-size:9px;color:#FF3300;font-weight:700;margin-top:4px;">Coffee chat · Tech &amp; Design</div>
-              <div style="background:#FF3300;color:#fff;border-radius:8px;padding:6px;font-size:10px;font-weight:700;margin-top:6px;">Send request</div>
+            <div class="store-mini-screen-content">
+              <img src="assets/screens/screen-profile-light.png" alt="Peopi Connection Request Screen" class="store-screen-img" loading="lazy">
             </div>
           </div>
         </div>
@@ -11338,24 +11328,10 @@ function showDesign(key){
       <div class="store-screenshot-card">
         <div class="store-screen-viewport store-shot-dark" tabindex="0" role="button" data-zoom-store="2" aria-label="Zoom 03 / Keep in touch screenshot">
           <h3 class="store-screen-title">Stay in touch<span class="brand-dot">.</span></h3>
-          <div class="store-mini-phone">
-            <div class="store-mini-phone-notch"></div>
-            <div class="store-mini-screen-content" style="background:#141922;color:#ffffff;">
-              <div style="font-weight:800;font-size:12px;margin-bottom:4px;">Messages</div>
-              <div style="display:flex;align-items:center;gap:6px;padding:6px;background:#1e2532;border-radius:8px;">
-                <div style="width:22px;height:22px;border-radius:50%;background:#FF3300;font-size:8px;display:grid;place-items:center;">MK</div>
-                <div style="flex:1;min-width:0;text-align:left;">
-                  <div style="font-weight:700;font-size:9.5px;">Morgan K.</div>
-                  <div style="font-size:8px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Great meeting you at the conference!</div>
-                </div>
-              </div>
-              <div style="display:flex;align-items:center;gap:6px;padding:6px;background:#1e2532;border-radius:8px;margin-top:4px;">
-                <div style="width:22px;height:22px;border-radius:50%;background:#334155;font-size:8px;display:grid;place-items:center;">JS</div>
-                <div style="flex:1;min-width:0;text-align:left;">
-                  <div style="font-weight:700;font-size:9.5px;">Jamie S.</div>
-                  <div style="font-size:8px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Let’s catch up for coffee next week.</div>
-                </div>
-              </div>
+          <div class="store-mini-phone dark-bezel">
+            <div class="store-mini-phone-notch dark-notch"></div>
+            <div class="store-mini-screen-content">
+              <img src="assets/screens/screen-conversation-dark.png" alt="Peopi Direct Messaging Screen" class="store-screen-img" loading="lazy">
             </div>
           </div>
         </div>
@@ -11383,11 +11359,8 @@ function showDesign(key){
             <h3 class="store-feature-headline">Professional connections, closer to you<span style="color:#ffffff;">.</span></h3>
           </div>
           <div class="store-feature-phone-peek">
-            <div style="font-size:9px;font-weight:800;color:#FF3300;text-align:center;">PEOPI</div>
-            <div style="display:flex;justify-content:center;margin:6px 0;">
-              <span style="width:16px;height:16px;border-radius:50%;background:#FF3300;display:inline-block;"></span>
-            </div>
-            <div style="font-size:8px;color:#64748b;text-align:center;">Nearby discovery</div>
+            <div class="store-mini-phone-notch" style="width:40px;height:6px;background:#1e293b;border-radius:0 0 5px 5px;margin:2px auto 4px;"></div>
+            <img src="assets/screens/screen-active-light.png" alt="Peopi Discovery Screen" class="store-peek-img" loading="lazy">
           </div>
         </div>
         <div class="store-feature-foot">
@@ -11887,7 +11860,7 @@ function showDesign(key){
               <div class="press-ui-prof-name">Alex L.</div>
               <div class="press-ui-prof-title">Product professional</div>
               <div class="press-ui-prof-badge"><i class="ph ph-check-circle"></i> Open to connecting</div>
-              <button type="button" class="press-ui-prof-btn">Edit profile</button>
+              <div class="press-ui-prof-btn">Edit profile</div>
               <div class="press-ui-prof-menu">
                 <div class="press-ui-prof-row">
                   <div class="press-ui-prof-row-left"><i class="ph ph-shield-check" style="color:#FF3300;"></i> My intent</div>

@@ -634,8 +634,8 @@ body.prototype-immersive #preview-fullscreen {
   flex-shrink: 0;
 }
 .ds-notes-btn {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   border: 1px solid #d7dce4;
