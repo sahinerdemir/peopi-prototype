@@ -24,6 +24,9 @@ body{background:#f4f5f7;color:#1c2635}
 body.dark .sidebar,body.dark-theme .sidebar,[data-theme="dark"] .sidebar,.sidebar.dark{background:#171e28!important;border-right-color:#283141!important}
 body.dark .category-group,body.dark-theme .category-group,[data-theme="dark"] .category-group,.sidebar.dark .category-group{background:#171e28!important;border-bottom-color:#283141!important}
 body.dark .category-children,body.dark-theme .category-children,[data-theme="dark"] .category-children,.sidebar.dark .category-children{background:#171e28!important}
+body.dark .workspace-brand,body.dark-theme .workspace-brand,[data-theme="dark"] .workspace-brand,.sidebar.dark .workspace-brand,body:has(#ds-workspace.ds-dark) .workspace-brand,body:has(#ds-workspace.dark) .workspace-brand{border-bottom-color:#283141!important}
+body.dark .workspace-brand strong,body.dark-theme .workspace-brand strong,[data-theme="dark"] .workspace-brand strong,.sidebar.dark .workspace-brand strong,body:has(#ds-workspace.ds-dark) .workspace-brand strong,body:has(#ds-workspace.dark) .workspace-brand strong{color:#f8fafc!important}
+body.dark .workspace-brand small,body.dark-theme .workspace-brand small,[data-theme="dark"] .workspace-brand small,.sidebar.dark .workspace-brand small,body:has(#ds-workspace.ds-dark) .workspace-brand small,body:has(#ds-workspace.dark) .workspace-brand small{color:#94a3b8!important}
 body.dark .category-toggle,body.dark-theme .category-toggle,[data-theme="dark"] .category-toggle,.sidebar.dark .category-toggle{color:#94a3b8}
 body.dark .category-toggle:hover,body.dark-theme .category-toggle:hover,[data-theme="dark"] .category-toggle:hover,.sidebar.dark .category-toggle:hover{background:rgba(255,255,255,.05);color:#f8fafc}
 body.dark .category-toggle .cat-num,body.dark-theme .category-toggle .cat-num,[data-theme="dark"] .category-toggle .cat-num,.sidebar.dark .category-toggle .cat-num{color:#94a3b8}

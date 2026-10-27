@@ -841,6 +841,26 @@ body.notes-open #dash-notes-toggle i {
     color: #ff3300 !important;
   }
 
+  body.dark .mobile-menu-toggle,
+  body.dark-theme .mobile-menu-toggle,
+  [data-theme="dark"] .mobile-menu-toggle,
+  body:has(#ds-workspace.ds-dark) .mobile-menu-toggle,
+  body:has(#ds-workspace.dark) .mobile-menu-toggle {
+    background: #222a37 !important;
+    border-color: #374151 !important;
+    color: #f8fafc !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+  }
+  body.dark .mobile-menu-toggle:hover,
+  body.dark-theme .mobile-menu-toggle:hover,
+  [data-theme="dark"] .mobile-menu-toggle:hover,
+  body:has(#ds-workspace.ds-dark) .mobile-menu-toggle:hover,
+  body:has(#ds-workspace.dark) .mobile-menu-toggle:hover {
+    background: #2d3748 !important;
+    border-color: #4b5563 !important;
+    color: #ffffff !important;
+  }
+
   /* Slide-over Hamburger Navigation Drawer */
   .sidebar-nav-scroll {
     position: fixed !important;
