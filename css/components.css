@@ -96,10 +96,24 @@
 #ds-workspace.dark .ds-export{background:#252e3a;border:1px solid #343e4d;color:#f2f4f7}
 #ds-workspace.ds-dark .ds-export:hover,
 #ds-workspace.dark .ds-export:hover{background:#ff3300;border-color:#ff3300;color:#fff}
+#ds-workspace.ds-dark .motion-replay-row button,
+#ds-workspace.dark .motion-replay-row button,
 #ds-workspace.ds-dark .motion-download,
 #ds-workspace.dark .motion-download{background:#252e3a!important;border:1px solid #343e4d!important;color:#f2f4f7!important}
+#ds-workspace.ds-dark .motion-replay-row button i.ph,
+#ds-workspace.dark .motion-replay-row button i.ph,
+#ds-workspace.ds-dark .motion-download i.ph,
+#ds-workspace.dark .motion-download i.ph{color:inherit!important}
+#ds-workspace.ds-dark .motion-replay-row button:hover,
+#ds-workspace.dark .motion-replay-row button:hover,
 #ds-workspace.ds-dark .motion-download:hover,
-#ds-workspace.dark .motion-download:hover{background:#343e4d!important;border-color:#475569!important}
+#ds-workspace.dark .motion-download:hover{background:#343e4d!important;border-color:#ff3300!important;color:#ffffff!important}
+#ds-workspace.ds-dark .motion-replay-row button:focus-visible,
+#ds-workspace.dark .motion-replay-row button:focus-visible,
+#ds-workspace.ds-dark .motion-download:focus-visible,
+#ds-workspace.dark .motion-download:focus-visible{outline:2px solid #ff3300!important;outline-offset:2px!important}
+#ds-workspace.ds-dark .motion-replay-row button[aria-pressed="true"],
+#ds-workspace.dark .motion-replay-row button[aria-pressed="true"]{background:#ff3300!important;border-color:#ff3300!important;color:#ffffff!important}
 #ds-workspace.ds-dark .ds-code-preview,
 #ds-workspace.dark .ds-code-preview{background:#0d1117;border-color:#343e4d;color:#f5f7fa}
 #ds-workspace.ds-dark .dash-subcard,

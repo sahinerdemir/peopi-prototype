@@ -30,13 +30,33 @@
 #active #listview .listitem-connected{border-color:rgba(255,51,0,.48)}
 .phone.dark #active #listview .listitem-connected{border-color:rgba(255,90,45,.65)}
 .motion-replay-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
-.motion-replay-row button,.motion-download{padding:12px 20px;min-height:44px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:700 13px Manrope;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:fit-content;max-width:100%;align-self:flex-start;box-sizing:border-box}
+.motion-replay-row button,.motion-download{padding:12px 20px;min-height:44px;border:1px solid var(--line,#dce1e9);border-radius:999px;background:var(--card,#ffffff);color:var(--ink,#141922);font:700 13px Manrope,sans-serif;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:fit-content;max-width:100%;align-self:flex-start;box-sizing:border-box;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease}
+.motion-replay-row button i.ph,.motion-download i.ph{color:inherit}
+.motion-replay-row button:hover,.motion-download:hover{background:#f1f5f9;border-color:#ff3300;color:#ff3300;transform:translateY(-1px)}
+.motion-replay-row button:focus-visible,.motion-download:focus-visible{outline:2px solid #ff3300;outline-offset:2px}
+.motion-replay-row button[aria-pressed="true"]{background:#ff3300!important;border-color:#ff3300!important;color:#ffffff!important}
 .motion-preview{position:relative;height:260px;width:min(393px,100%);overflow:hidden;border-radius:24px;background:var(--muted);padding:24px;color:var(--ink)}
 .motion-preview-card{position:absolute;inset:55px 24px 24px;border-radius:22px;padding:24px;background:var(--card);box-shadow:0 12px 32px #14192212;display:flex;flex-direction:column;justify-content:space-between}
 .motion-preview-card strong{font-size:22px;letter-spacing:-.6px}.motion-preview-card p{font-size:12px;line-height:1.6;color:var(--sub)}
-.motion-preview-card button{border:0;background:var(--accent);color:#fff;padding:14px;border-radius:999px;font-weight:800}
+.motion-preview-card button{border:0;background:var(--accent);color:#fff;padding:14px;border-radius:999px;font-weight:800;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s ease,transform .15s ease}
+.motion-preview-card button:hover{background:#e62e00;transform:scale(.98)}
+.motion-preview-card button:focus-visible{outline:2px solid #ffffff;outline-offset:2px}
 .motion-contract{font:12px/1.8 Manrope;color:var(--sub)}
 #ds-workspace.ds-dark .motion-preview{--card:#222a37;--ink:#f5f7fa;--sub:#a5aebd;--muted:#141922;--line:#3d4658}
+#ds-workspace.ds-dark .motion-replay-row button,
+#ds-workspace.dark .motion-replay-row button,
+#ds-workspace.ds-dark .motion-download,
+#ds-workspace.dark .motion-download{background:#252e3a;border-color:#343e4d;color:#f2f4f7}
+#ds-workspace.ds-dark .motion-replay-row button:hover,
+#ds-workspace.dark .motion-replay-row button:hover,
+#ds-workspace.ds-dark .motion-download:hover,
+#ds-workspace.dark .motion-download:hover{background:#343e4d;border-color:#ff3300;color:#ffffff}
+#ds-workspace.ds-dark .motion-replay-row button:focus-visible,
+#ds-workspace.dark .motion-replay-row button:focus-visible,
+#ds-workspace.ds-dark .motion-download:focus-visible,
+#ds-workspace.dark .motion-download:focus-visible{outline:2px solid #ff3300;outline-offset:2px}
+#ds-workspace.ds-dark .motion-replay-row button[aria-pressed="true"],
+#ds-workspace.dark .motion-replay-row button[aria-pressed="true"]{background:#ff3300!important;border-color:#ff3300!important;color:#ffffff!important}
 @media(prefers-reduced-motion:reduce){.phone .motion-pressable:active:not(:disabled){transform:none}.phone .motion-pressable{transition:none}#phone *,#phone *:before,#phone *:after{animation:none!important;scroll-behavior:auto!important}}
 .phone.motion-reduced .motion-pressable:active{transform:none!important}.phone.motion-reduced .motion-pressable{transition:none}
 
