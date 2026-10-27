@@ -11469,6 +11469,7 @@
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: 32px;
+  align-items: start;
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 20px;
@@ -11487,6 +11488,7 @@
 
 .ds-workbench-card--wide {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
 }
 
 /* Left Column: Live Specimen Stage (Desktop) */
@@ -11494,13 +11496,14 @@
   grid-column: 1;
   position: sticky;
   top: 24px;
+  align-self: start;
   display: flex;
   flex-direction: column;
   background: #f8fafc;
   border: 1px solid #edf2f7;
   border-radius: 16px;
   padding: 20px;
-  min-height: 200px;
+  min-height: auto;
   box-sizing: border-box;
   min-width: 0;
 }
@@ -11529,7 +11532,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 120px;
+  min-height: 80px;
 }
 
 .ds-workbench-preview-viewport .ds-live-specimen {
