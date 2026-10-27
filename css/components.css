@@ -10637,12 +10637,22 @@
 }
 @media (max-width: 640px) {
   .annotated-comp-stage {
-    padding: 32px 120px 32px 16px;
+    padding: 24px 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .annotated-card {
-    max-width: 260px;
+    max-width: 100%;
+    width: 100%;
+  }
+  .shadow-theme-panel {
+    padding: 20px 14px;
+  }
+  .shadow-items-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .tokens-quick-grid {
     grid-template-columns: 1fr;
@@ -11930,6 +11940,119 @@
   }
 }
 
+@media (max-width: 1100px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 768px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 420px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+}
+.peopi-icons-guide .ds-icon-tile {
+  border: 1px solid #e1e5eb;
+  border-radius: 14px;
+  min-height: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #273241;
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+.peopi-icons-guide .ds-icon-tile:hover {
+  border-color: #ff3300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 51, 0, 0.08);
+}
+.peopi-icons-guide .ds-icon-tile:focus-visible {
+  outline: 2px solid #ff3300;
+  outline-offset: 2px;
+}
+.peopi-icons-guide .ds-icon-tile .ph {
+  font-size: 24px;
+  line-height: 1;
+  min-height: 24px;
+  color: #141922;
+}
+.peopi-icons-guide .ds-icon-tile span {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile {
+  background: #222a37;
+  color: #f5f7fa;
+  border-color: #3d4658;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile:hover,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile:hover {
+  border-color: #ff3300;
+  background: #2a3444;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile .ph,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile .ph {
+  color: #f5f7fa;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile span,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile span {
+  color: #94a3b8;
+}
+
+/* 2. Tokens & Export content-sized download action */
+.motion-download {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  align-self: flex-start !important;
+  min-height: 44px !important;
+  padding: 12px 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. Standard touch targets & responsive bounding */
+.color-export-btn,
+.foundation-export-btn,
+.foundation-link-pill,
+.ds-interactive-focus-btn {
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+}
+
+.peopi-foundation-guide,
+.peopi-layout-guide,
+.peopi-accessibility-guide,
+.peopi-color-guide {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+.ds-code-preview {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  box-sizing: border-box !important;
+}
+
+
 @media (max-width: 480px) {
   .profilecard .profilecard-footer,
   #active #profilecard .profilecard-footer,
@@ -11966,5 +12089,148 @@
     min-height: 44px !important;
   }
 }
+
+/* ==========================================================================
+   Phase 01: Design System Layout & Visual Consistency Contracts
+   ========================================================================== */
+
+/* 1. Full-width Icons & Iconography Foundation Layout */
+.peopi-icons-guide {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.peopi-icons-guide .foundation-section {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.icons-gallery-wrapper {
+  width: 100%;
+  margin-top: 16px;
+  box-sizing: border-box;
+}
+.peopi-icons-guide .ds-icons-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 1100px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 768px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 420px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+}
+.peopi-icons-guide .ds-icon-tile {
+  border: 1px solid #e1e5eb;
+  border-radius: 14px;
+  min-height: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #273241;
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+.peopi-icons-guide .ds-icon-tile:hover {
+  border-color: #ff3300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 51, 0, 0.08);
+}
+.peopi-icons-guide .ds-icon-tile:focus-visible {
+  outline: 2px solid #ff3300;
+  outline-offset: 2px;
+}
+.peopi-icons-guide .ds-icon-tile .ph {
+  font-size: 24px;
+  line-height: 1;
+  min-height: 24px;
+  color: #141922;
+}
+.peopi-icons-guide .ds-icon-tile span {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile {
+  background: #222a37;
+  color: #f5f7fa;
+  border-color: #3d4658;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile:hover,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile:hover {
+  border-color: #ff3300;
+  background: #2a3444;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile .ph,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile .ph {
+  color: #f5f7fa;
+}
+#ds-workspace.ds-dark .peopi-icons-guide .ds-icon-tile span,
+#ds-workspace.dark .peopi-icons-guide .ds-icon-tile span {
+  color: #94a3b8;
+}
+
+/* 2. Tokens & Export content-sized download action */
+.motion-download {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  align-self: flex-start !important;
+  min-height: 44px !important;
+  padding: 12px 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. Standard touch targets & responsive bounding */
+.color-export-btn,
+.foundation-export-btn,
+.foundation-link-pill,
+.ds-interactive-focus-btn {
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+}
+
+.peopi-foundation-guide,
+.peopi-layout-guide,
+.peopi-accessibility-guide,
+.peopi-color-guide {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+.ds-code-preview {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  box-sizing: border-box !important;
+}
+
 
 
