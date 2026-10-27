@@ -15095,6 +15095,89 @@ const scopedComponentStyles = {
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+/* Scoped Chat Thread Conversation Row */
+.peopi-component-network-row .conversation-clickable-row {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.peopi-component-network-row .conversation-clickable-row:hover {
+  background: color-mix(in srgb, var(--brand, #FF3300) 4%, var(--card));
+}
+.peopi-component-network-row .conversation-clickable-row:active {
+  transform: scale(0.985);
+}
+.peopi-component-network-row .conversation-clickable-row .verified-name-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+.peopi-component-network-row .conversation-clickable-row .verified-name-line strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  overflow: visible;
+  white-space: nowrap;
+}
+.peopi-component-network-row .conversation-time-meta {
+  margin-left: auto;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  letter-spacing: -0.1px;
+  flex-shrink: 0;
+}
+.peopi-component-network-row .conversation-clickable-row:has(.activity-unread-dot) .conversation-time-meta {
+  margin-right: 12px;
+}
+.peopi-component-network-row .activity-unread-dot {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand, #FF3300);
+  box-shadow: 0 0 6px var(--brand, #FF3300);
+}
+
+/* Scoped Presence Control Quiet Action Button */
+.peopi-component-network-row .journey-person button.journey-presence-btn {
+  min-height: 36px;
+  height: 36px;
+  width: 36px;
+  min-width: 36px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  background: var(--card);
+  color: var(--ink-secondary);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.peopi-component-network-row .journey-person button.journey-presence-btn:hover {
+  background: var(--muted);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.peopi-component-network-row .journey-person button.journey-presence-btn:active {
+  transform: scale(0.92);
+}
+.peopi-component-network-row .journey-person button.journey-presence-btn.is-hidden {
+  background: color-mix(in srgb, var(--brand, #FF3300) 12%, var(--card));
+  border-color: color-mix(in srgb, var(--brand, #FF3300) 45%, transparent);
+  color: var(--brand, #FF3300);
+}
 `,
 
   'activity-item': `
@@ -15339,6 +15422,69 @@ const scopedComponentStyles = {
   color: var(--ink-secondary);
   flex-shrink: 0;
   margin-left: auto;
+}
+
+/* Scoped FAQ Accordion Group & Expandable Items */
+.peopi-component-list .help-faq-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-list .help-faq-item {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+.peopi-component-list .help-faq-q {
+  width: 100%;
+  padding: 15px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  font-size: 14.5px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.35;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.peopi-component-list .help-faq-q .ph {
+  font-size: 16px;
+  color: var(--ink-secondary);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  flex-shrink: 0;
+}
+.peopi-component-list .help-faq-item.open .help-faq-q .ph {
+  transform: rotate(180deg);
+  color: var(--brand, #FF3300);
+}
+.peopi-component-list .help-faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.24s cubic-bezier(0.16, 1, 0.3, 1), padding 0.24s ease;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+.peopi-component-list .help-faq-item.open .help-faq-a {
+  max-height: 400px;
+  padding: 0 16px 16px;
+}
+.peopi-component-list .help-faq-a p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+  margin: 0;
 }
 `,
 
@@ -17466,9 +17612,141 @@ function generateWebReference(compKey, activeVariantText, card) {
 
   const cssTokensCode = cssLines.join('\n');
 
-  const jsCode = comp.isStatic ? null : (comp.jsCode || ('// Interactive controller for ' + compKey));
+  let jsCode = comp.isStatic ? null : (comp.jsCode || ('// Interactive controller for ' + compKey));
+  let isStatic = comp.isStatic;
 
-  return { htmlCode, cssTokensCode, jsCode, isStatic: comp.isStatic };
+  if (compKey === 'request-tabs') {
+    isStatic = false;
+    jsCode = `// Scoped Segmented Request Tabs Controller
+function initSegmentedTabs(container, onSelect) {
+  if (!container) return;
+  let pill = container.querySelector('.motion-seg-indicator');
+  if (!pill) {
+    pill = document.createElement('span');
+    pill.className = 'motion-seg-indicator';
+    pill.setAttribute('aria-hidden', 'true');
+    container.prepend(pill);
+  }
+  const buttons = Array.from(container.querySelectorAll('button'));
+
+  function updateIndicator(btn, animate) {
+    const fromX = container._pillX;
+    const fromW = container._pillW;
+    const toX = btn.offsetLeft;
+    const toW = btn.offsetWidth;
+    container._pillX = toX;
+    container._pillW = toW;
+    pill.style.width = toW + 'px';
+    pill.style.transform = 'translateX(' + toX + 'px)';
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (animate && fromX !== undefined && fromX !== toX) {
+      if (reduced) {
+        pill.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 120 });
+      } else {
+        pill.animate(
+          [{ transform: 'translateX(' + fromX + 'px)', width: fromW + 'px' },
+           { transform: 'translateX(' + toX + 'px)', width: toW + 'px' }],
+          { duration: 260, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' }
+        );
+      }
+    }
+  }
+
+  const active = container.querySelector('button.chosen, button.selected') || buttons[0];
+  if (active) updateIndicator(active, false);
+
+  buttons.forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => {
+        b.classList.remove('chosen', 'selected');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('chosen');
+      if (container.classList.contains('journey-tabs')) btn.classList.add('selected');
+      btn.setAttribute('aria-selected', 'true');
+      updateIndicator(btn, true);
+      if (typeof onSelect === 'function') onSelect(idx, btn);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    const curr = container.querySelector('button.chosen, button.selected');
+    if (curr) updateIndicator(curr, false);
+  });
+}`;
+  } else if (compKey === 'network-row') {
+    isStatic = false;
+    if (activeVariantText === 'Chat Thread') {
+      jsCode = `// Scoped Chat Thread Row Controller
+function initChatThreadRow(container, onOpen) {
+  if (!container) return;
+  const row = container.querySelector('.conversation-clickable-row') || container;
+  row.addEventListener('click', () => {
+    if (typeof onOpen === 'function') onOpen();
+  });
+  row.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (typeof onOpen === 'function') onOpen();
+    }
+  });
+}`;
+    } else if (activeVariantText === 'Presence Control Row') {
+      jsCode = `// Scoped Presence Control Row Controller
+function initPresenceControlRow(container, onToggle) {
+  if (!container) return;
+  const btn = container.querySelector('.journey-presence-btn');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const row = btn.closest('.journey-person');
+    const isHidden = btn.classList.contains('is-hidden');
+    btn.classList.toggle('is-hidden', !isHidden);
+    btn.setAttribute('aria-label', isHidden ? 'Hide presence' : 'Unhide presence');
+    btn.setAttribute('title', isHidden ? 'Hide presence' : 'Unhide presence');
+    const icon = btn.querySelector('.ph');
+    if (icon) icon.className = isHidden ? 'ph ph-eye' : 'ph ph-eye-slash';
+    if (row) {
+      const sub = row.querySelector('small');
+      if (sub) sub.textContent = isHidden ? 'Presence visible' : 'Presence hidden';
+    }
+    if (typeof onToggle === 'function') onToggle(!isHidden);
+  });
+}`;
+    } else {
+      jsCode = `// Scoped Connection List Row Controller
+function initConnectionRow(container, onAction) {
+  if (!container) return;
+  const btn = container.querySelector('button');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    if (typeof onAction === 'function') onAction();
+  });
+}`;
+    }
+  } else if (compKey === 'list') {
+    if (activeVariantText === 'FAQ Accordion') {
+      isStatic = false;
+      jsCode = `// Scoped FAQ Accordion Controller
+function initFaqAccordion(container) {
+  if (!container) return;
+  container.querySelectorAll('.help-faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.help-faq-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('open');
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+}`;
+    } else {
+      isStatic = true;
+      jsCode = null;
+    }
+  }
+
+  return { htmlCode, cssTokensCode, jsCode, isStatic };
 }
 
 function generateStandaloneHtml(compKey, activeVariantText, card) {
@@ -17480,106 +17758,373 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
   let labelA = 'Instance A';
   let labelB = 'Instance B';
 
-  if (compKey === 'network-row') {
-    const connBtn = '<button type="button">View</button>';
-    const unreadBtn = '<button type="button" class="has-unread" aria-label="View profile for Alex Morgan (1 unread message)">View<span class="network-unread-indicator" aria-hidden="true"><span class="network-unread-dot"></span><span class="network-unread-ring ring-1" aria-hidden="true"></span><span class="network-unread-ring ring-2" aria-hidden="true"></span></span><span class="sr-only network-unread-sr">1 unread message</span></button>';
-
-    const baseRow = htmlCode.replace(/<button[\s\S]*?<\/button>/i, '__BTN__');
-    htmlCodeA = baseRow.replace('__BTN__', connBtn);
-    htmlCodeB = baseRow.replace('__BTN__', unreadBtn);
-    labelA = 'Instance A — Connected';
-    labelB = 'Instance B — Unread Notice';
+  if (compKey === 'request-tabs') {
+    if (activeVariantText === 'Conversations / All') {
+      labelA = 'Instance A — Conversations Selected';
+      labelB = 'Instance B — All Selected';
+      htmlCodeA = [
+        '<div class="journey-tabs messages-tabs" role="tablist" aria-label="Messages Filter">',
+        '  <button type="button" class="selected chosen" data-messages-tab="current" role="tab" aria-selected="true">Conversations</button>',
+        '  <button type="button" data-messages-tab="all" role="tab" aria-selected="false">All</button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-tabs messages-tabs" role="tablist" aria-label="Messages Filter">',
+        '  <button type="button" data-messages-tab="current" role="tab" aria-selected="false">Conversations</button>',
+        '  <button type="button" class="selected chosen" data-messages-tab="all" role="tab" aria-selected="true">All</button>',
+        '</div>'
+      ].join('\n');
+    } else if (activeVariantText === 'All / Requests') {
+      labelA = 'Instance A — All Selected';
+      labelB = 'Instance B — Requests Selected';
+      htmlCodeA = [
+        '<div class="journey-tabs activity-tabs" role="tablist" aria-label="Activity Filter">',
+        '  <button type="button" class="selected chosen" data-activity-tab="all" role="tab" aria-selected="true">All</button>',
+        '  <button type="button" data-activity-tab="requests" role="tab" aria-selected="false">Requests</button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-tabs activity-tabs" role="tablist" aria-label="Activity Filter">',
+        '  <button type="button" data-activity-tab="all" role="tab" aria-selected="false">All</button>',
+        '  <button type="button" class="selected chosen" data-activity-tab="requests" role="tab" aria-selected="true">Requests</button>',
+        '</div>'
+      ].join('\n');
+    } else if (activeVariantText === 'All / Hidden') {
+      labelA = 'Instance A — All Selected';
+      labelB = 'Instance B — Hidden Selected';
+      htmlCodeA = [
+        '<div class="journey-tabs hidden-tabs" id="hidden-tabs-inst1" role="tablist" aria-label="Hidden Connections Filter">',
+        '  <button type="button" class="selected chosen" data-hidden-tab="all" role="tab" aria-selected="true">All (1)</button>',
+        '  <button type="button" data-hidden-tab="hidden" role="tab" aria-selected="false">Hidden (0)</button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-tabs hidden-tabs" id="hidden-tabs-inst2" role="tablist" aria-label="Hidden Connections Filter">',
+        '  <button type="button" data-hidden-tab="all" role="tab" aria-selected="false">All (1)</button>',
+        '  <button type="button" class="selected chosen" data-hidden-tab="hidden" role="tab" aria-selected="true">Hidden (0)</button>',
+        '</div>'
+      ].join('\n');
+    } else if (activeVariantText === 'Sent Requests') {
+      labelA = 'Instance A — Sent Requests (Sent Selected)';
+      labelB = 'Instance B — Received Requests (Received Selected)';
+      htmlCodeA = [
+        '<div class="journey-tabs" id="requests-tabs-inst1" role="tablist" aria-label="Requests Filter">',
+        '  <button type="button" data-request-tab="received" role="tab" aria-selected="false">Received (1)</button>',
+        '  <button type="button" class="selected chosen" data-request-tab="sent" role="tab" aria-selected="true">Sent (0)</button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-tabs" id="requests-tabs-inst2" role="tablist" aria-label="Requests Filter">',
+        '  <button type="button" class="selected chosen" data-request-tab="received" role="tab" aria-selected="true">Received (1)</button>',
+        '  <button type="button" data-request-tab="sent" role="tab" aria-selected="false">Sent (0)</button>',
+        '</div>'
+      ].join('\n');
+    } else {
+      labelA = 'Instance A — Received Requests (Received Selected)';
+      labelB = 'Instance B — Sent Requests (Sent Selected)';
+      htmlCodeA = [
+        '<div class="journey-tabs" id="requests-tabs-inst1" role="tablist" aria-label="Requests Filter">',
+        '  <button type="button" class="selected chosen" data-request-tab="received" role="tab" aria-selected="true">Received (1)</button>',
+        '  <button type="button" data-request-tab="sent" role="tab" aria-selected="false">Sent (0)</button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-tabs" id="requests-tabs-inst2" role="tablist" aria-label="Requests Filter">',
+        '  <button type="button" data-request-tab="received" role="tab" aria-selected="false">Received (1)</button>',
+        '  <button type="button" class="selected chosen" data-request-tab="sent" role="tab" aria-selected="true">Sent (0)</button>',
+        '</div>'
+      ].join('\n');
+    }
   }
 
-  if (compKey === 'activity-item') {
-    labelA = 'Instance A — Connection Request';
-    labelB = 'Instance B — System Notice';
+  if (compKey === 'network-row') {
+    const badgeSvg = '<span class="li-verified-badge" title="LinkedIn connected (demo)" aria-label="LinkedIn connected — demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0.8 14.5 2.6 17.6 2.4 19 5.2 21.8 6.6 21.6 9.7 23.2 12 21.6 14.3 21.8 17.4 19 18.8 17.6 21.6 14.5 21.4 12 23.2 9.5 21.4 6.4 21.6 5 18.8 2.2 17.4 2.4 14.3 0.8 12 2.4 9.7 2.2 6.6 5 5.2 6.4 2.4 9.5 2.6Z"/><path d="m7.3 12.1 3.1 3.1 6.5-6.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 
-    htmlCodeA = [
-      '<div class="activity-item">',
-      '  <div class="activity-avatar-wrap">',
-      '    <div class="activity-avatar demo-photo-avatar">',
-      '      AM',
-      '      <img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy">',
-      '    </div>',
-      '  </div>',
-      '  <div class="activity-body">',
-      '    <div class="activity-top-line">',
-      '      <strong class="activity-title">Alex Morgan</strong>',
-      '      <time class="activity-time">10m ago</time>',
-      '    </div>',
-      '    <p class="activity-subtitle">Sent you a connection request · Product Designer</p>',
-      '    <div class="activity-actions">',
-      '      <button type="button" class="activity-btn-accept">Accept</button>',
-      '      <button type="button" class="activity-btn-decline">Decline</button>',
-      '    </div>',
-      '  </div>',
-      '</div>'
-    ].join('\n');
-
-    htmlCodeB = [
-      '<div class="activity-item">',
-      '  <div class="activity-avatar-wrap">',
-      '    <div class="activity-avatar system-avatar">',
-      '      <i class="ph ph-bell" aria-hidden="true"></i>',
-      '    </div>',
-      '  </div>',
-      '  <div class="activity-body">',
-      '    <div class="activity-top-line">',
-      '      <strong class="activity-title">Nearby visibility session ended</strong>',
-      '      <time class="activity-time">1h ago</time>',
-      '    </div>',
-      '    <p class="activity-subtitle">Session ended automatically · 5m presence window expired</p>',
-      '  </div>',
-      '</div>'
-    ].join('\n');
+    if (activeVariantText === 'Chat Thread') {
+      labelA = 'Instance A — Unread Thread (Alex Morgan)';
+      labelB = 'Instance B — Read Thread (Jordan Lee)';
+      htmlCodeA = [
+        '<div class="journey-person conversation-clickable-row" role="button" tabindex="0" aria-label="Open conversation with Alex Morgan">',
+        '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Alex Morgan</strong>' + badgeSvg,
+        '      <span class="conversation-time-meta">42m ago</span>',
+        '    </div>',
+        '    <small>Coffee near the main hall in 15 minutes? ☕</small>',
+        '  </div>',
+        '  <span class="activity-unread-dot" aria-label="Unread message"></span>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-person conversation-clickable-row" role="button" tabindex="0" aria-label="Open conversation with Jordan Lee">',
+        '  <div class="initials demo-photo-avatar">JL<img src="https://i.pravatar.cc/240?img=33" alt="Jordan Lee" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Jordan Lee</strong>',
+        '      <span class="conversation-time-meta">2h ago</span>',
+        '    </div>',
+        '    <small>Catch you near the demo booth 👋</small>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+    } else if (activeVariantText === 'Presence Control Row') {
+      labelA = 'Instance A — Presence Visible';
+      labelB = 'Instance B — Presence Hidden';
+      htmlCodeA = [
+        '<div class="journey-person">',
+        '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Alex Morgan</strong>' + badgeSvg,
+        '    </div>',
+        '    <small>Presence visible</small>',
+        '  </div>',
+        '  <button type="button" class="journey-presence-btn journey-row-icon-btn" aria-label="Hide presence" title="Hide presence">',
+        '    <i class="ph ph-eye" aria-hidden="true"></i>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-person">',
+        '  <div class="initials demo-photo-avatar">JL<img src="https://i.pravatar.cc/240?img=33" alt="Jordan Lee" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Jordan Lee</strong>',
+        '    </div>',
+        '    <small>Presence hidden</small>',
+        '  </div>',
+        '  <button type="button" class="journey-presence-btn journey-row-icon-btn is-hidden" aria-label="Unhide presence" title="Unhide presence">',
+        '    <i class="ph ph-eye-slash" aria-hidden="true"></i>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+    } else if (activeVariantText === 'Unread Notice') {
+      labelA = 'Instance A — Unread Notice (Alex Morgan)';
+      labelB = 'Instance B — Connected (Jordan Lee)';
+      htmlCodeA = [
+        '<div class="journey-person">',
+        '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Alex Morgan</strong>' + badgeSvg,
+        '    </div>',
+        '    <small>Senior Product Designer</small>',
+        '  </div>',
+        '  <button type="button" class="has-unread" aria-label="View profile for Alex Morgan (1 unread message)">',
+        '    View',
+        '    <span class="network-unread-indicator" aria-hidden="true">',
+        '      <span class="network-unread-dot"></span>',
+        '      <span class="network-unread-ring ring-1" aria-hidden="true"></span>',
+        '      <span class="network-unread-ring ring-2" aria-hidden="true"></span>',
+        '    </span>',
+        '    <span class="sr-only network-unread-sr">1 unread message</span>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-person">',
+        '  <div class="initials demo-photo-avatar">JL<img src="https://i.pravatar.cc/240?img=33" alt="Jordan Lee" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Jordan Lee</strong>',
+        '    </div>',
+        '    <small>Software Engineer · AI</small>',
+        '  </div>',
+        '  <button type="button" aria-label="View profile for Jordan Lee">View</button>',
+        '</div>'
+      ].join('\n');
+    } else {
+      labelA = 'Instance A — Connected (Alex Morgan)';
+      labelB = 'Instance B — Unread Notice (Jordan Lee)';
+      htmlCodeA = [
+        '<div class="journey-person">',
+        '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Alex Morgan</strong>' + badgeSvg,
+        '    </div>',
+        '    <small>Senior Product Designer</small>',
+        '  </div>',
+        '  <button type="button" aria-label="View profile for Alex Morgan">View</button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="journey-person">',
+        '  <div class="initials demo-photo-avatar">JL<img src="https://i.pravatar.cc/240?img=33" alt="Jordan Lee" loading="lazy"></div>',
+        '  <div>',
+        '    <div class="verified-name-line">',
+        '      <strong>Jordan Lee</strong>',
+        '    </div>',
+        '    <small>Software Engineer · AI</small>',
+        '  </div>',
+        '  <button type="button" class="has-unread" aria-label="View profile for Jordan Lee (1 unread message)">',
+        '    View',
+        '    <span class="network-unread-indicator" aria-hidden="true">',
+        '      <span class="network-unread-dot"></span>',
+        '      <span class="network-unread-ring ring-1" aria-hidden="true"></span>',
+        '      <span class="network-unread-ring ring-2" aria-hidden="true"></span>',
+        '    </span>',
+        '    <span class="sr-only network-unread-sr">1 unread message</span>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+    }
   }
 
   if (compKey === 'list') {
-    labelA = 'Instance A — Account Settings';
-    labelB = 'Instance B — Privacy & Legal';
-
-    htmlCodeA = [
-      '<div class="settings-group">',
-      '  <div class="settings-label">ACCOUNT</div>',
-      '  <button type="button" class="settings-item" id="settings-profile">',
-      '    <span class="settings-ico"><i class="ph ph-user-circle-gear" aria-hidden="true"></i></span>',
-      '    <span><strong>Edit profile</strong><small>Your professional profile</small></span>',
-      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
-      '  </button>',
-      '  <button type="button" class="settings-item" id="settings-verification">',
-      '    <span class="settings-ico"><i class="ph ph-seal-check" aria-hidden="true"></i></span>',
-      '    <span><strong>Verification</strong><small>Optional trust signals</small></span>',
-      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
-      '  </button>',
-      '  <button type="button" class="settings-item" id="settings-privacy">',
-      '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
-      '    <span><strong>Privacy & safety</strong><small>Visibility and safety</small></span>',
-      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
-      '  </button>',
-      '</div>'
-    ].join('\n');
-
-    htmlCodeB = [
-      '<div class="settings-group">',
-      '  <div class="settings-label">PRIVACY & LEGAL</div>',
-      '  <button type="button" class="settings-item" id="settings-privacy-policy">',
-      '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
-      '    <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
-      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
-      '  </button>',
-      '  <button type="button" class="settings-item" id="settings-terms">',
-      '    <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
-      '    <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
-      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
-      '  </button>',
-      '  <button type="button" class="settings-item" id="settings-standards">',
-      '    <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
-      '    <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
-      '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
-      '  </button>',
-      '</div>'
-    ].join('\n');
+    if (activeVariantText === 'FAQ Accordion') {
+      labelA = 'Instance A — Question 1 Expanded (Invisible by Default)';
+      labelB = 'Instance B — Question 2 Expanded (GPS / Proximity)';
+      htmlCodeA = [
+        '<div class="help-faq-group">',
+        '  <div class="help-faq-item open" data-cat="privacy">',
+        '    <button type="button" class="help-faq-q" aria-expanded="true">',
+        '      <span>How does "Invisible by Default" work?</span>',
+        '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+        '    </button>',
+        '    <div class="help-faq-a">',
+        '      <p>You remain invisible to all nearby members until you intentionally start a discovery session. Each session requires choosing a clear networking goal and duration (30 min, 1 hour, or 2 hours). When time expires, you automatically return to invisible mode.</p>',
+        '    </div>',
+        '  </div>',
+        '  <div class="help-faq-item" data-cat="privacy">',
+        '    <button type="button" class="help-faq-q" aria-expanded="false">',
+        '      <span>Can anyone see my exact address or GPS pin?</span>',
+        '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+        '    </button>',
+        '    <div class="help-faq-a">',
+        '      <p>Never. Peopi calculates approximate proximity within a randomized radius. Exact coordinates are never broadcast to other users, shared with third parties, or logged on servers.</p>',
+        '    </div>',
+        '  </div>',
+        '  <div class="help-faq-item" data-cat="safety">',
+        '    <button type="button" class="help-faq-q" aria-expanded="false">',
+        '      <span>Recommendations for safe in-person meetups</span>',
+        '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+        '    </button>',
+        '    <div class="help-faq-a">',
+        '      <p>Always arrange first meetings in public, populated spaces such as open cafes, hotel lobbies, or conference lounges. Share approximate location only, and feel free to end sessions or go invisible anytime with one tap.</p>',
+        '    </div>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="help-faq-group">',
+        '  <div class="help-faq-item" data-cat="privacy">',
+        '    <button type="button" class="help-faq-q" aria-expanded="false">',
+        '      <span>How does "Invisible by Default" work?</span>',
+        '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+        '    </button>',
+        '    <div class="help-faq-a">',
+        '      <p>You remain invisible to all nearby members until you intentionally start a discovery session. Each session requires choosing a clear networking goal and duration (30 min, 1 hour, or 2 hours). When time expires, you automatically return to invisible mode.</p>',
+        '    </div>',
+        '  </div>',
+        '  <div class="help-faq-item open" data-cat="privacy">',
+        '    <button type="button" class="help-faq-q" aria-expanded="true">',
+        '      <span>Can anyone see my exact address or GPS pin?</span>',
+        '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+        '    </button>',
+        '    <div class="help-faq-a">',
+        '      <p>Never. Peopi calculates approximate proximity within a randomized radius. Exact coordinates are never broadcast to other users, shared with third parties, or logged on servers.</p>',
+        '    </div>',
+        '  </div>',
+        '  <div class="help-faq-item" data-cat="safety">',
+        '    <button type="button" class="help-faq-q" aria-expanded="false">',
+        '      <span>Recommendations for safe in-person meetups</span>',
+        '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+        '    </button>',
+        '    <div class="help-faq-a">',
+        '      <p>Always arrange first meetings in public, populated spaces such as open cafes, hotel lobbies, or conference lounges. Share approximate location only, and feel free to end sessions or go invisible anytime with one tap.</p>',
+        '    </div>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+    } else if (activeVariantText === 'Privacy & Legal') {
+      labelA = 'Instance A — Privacy & Legal';
+      labelB = 'Instance B — Account Settings';
+      htmlCodeA = [
+        '<div class="settings-group">',
+        '  <div class="settings-label">PRIVACY & LEGAL</div>',
+        '  <button type="button" class="settings-item" id="settings-privacy-policy">',
+        '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+        '    <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-terms">',
+        '    <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
+        '    <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-standards">',
+        '    <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
+        '    <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="settings-group">',
+        '  <div class="settings-label">ACCOUNT</div>',
+        '  <button type="button" class="settings-item" id="settings-profile-b">',
+        '    <span class="settings-ico"><i class="ph ph-user-circle-gear" aria-hidden="true"></i></span>',
+        '    <span><strong>Edit profile</strong><small>Your professional profile</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-verification-b">',
+        '    <span class="settings-ico"><i class="ph ph-seal-check" aria-hidden="true"></i></span>',
+        '    <span><strong>Verification</strong><small>Optional trust signals</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-privacy-b">',
+        '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+        '    <span><strong>Privacy & safety</strong><small>Visibility and safety</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+    } else {
+      labelA = 'Instance A — Account Settings';
+      labelB = 'Instance B — Privacy & Legal';
+      htmlCodeA = [
+        '<div class="settings-group">',
+        '  <div class="settings-label">ACCOUNT</div>',
+        '  <button type="button" class="settings-item" id="settings-profile">',
+        '    <span class="settings-ico"><i class="ph ph-user-circle-gear" aria-hidden="true"></i></span>',
+        '    <span><strong>Edit profile</strong><small>Your professional profile</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-verification">',
+        '    <span class="settings-ico"><i class="ph ph-seal-check" aria-hidden="true"></i></span>',
+        '    <span><strong>Verification</strong><small>Optional trust signals</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-privacy">',
+        '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+        '    <span><strong>Privacy & safety</strong><small>Visibility and safety</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+      htmlCodeB = [
+        '<div class="settings-group">',
+        '  <div class="settings-label">PRIVACY & LEGAL</div>',
+        '  <button type="button" class="settings-item" id="settings-privacy-policy">',
+        '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+        '    <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-terms">',
+        '    <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
+        '    <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '  <button type="button" class="settings-item" id="settings-standards">',
+        '    <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
+        '    <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
+        '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+        '  </button>',
+        '</div>'
+      ].join('\n');
+    }
   }
 
   if (compKey === 'profile-card') {
@@ -17831,6 +18376,34 @@ document.querySelectorAll('.peopi-instance').forEach(inst => {
         btn.style.opacity = '0.45';
       });
     }
+  });
+
+  // FAQ Accordion toggle
+  inst.querySelectorAll('.help-faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.help-faq-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('open');
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // Presence Control toggle
+  inst.querySelectorAll('.journey-presence-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.journey-person');
+      const isHidden = btn.classList.contains('is-hidden');
+      btn.classList.toggle('is-hidden', !isHidden);
+      btn.setAttribute('aria-label', isHidden ? 'Hide presence' : 'Unhide presence');
+      btn.setAttribute('title', isHidden ? 'Hide presence' : 'Unhide presence');
+      const icon = btn.querySelector('.ph');
+      if (icon) icon.className = isHidden ? 'ph ph-eye' : 'ph ph-eye-slash';
+      if (row) {
+        const sub = row.querySelector('small');
+        if (sub) sub.textContent = isHidden ? 'Presence visible' : 'Presence hidden';
+      }
+    });
   });
 });
 </script>`;
@@ -18902,9 +19475,40 @@ if (typeof window !== 'undefined') {
       const isMap = variant.includes('map');
       if (seg) selectSegmented(seg, isMap ? 0 : 1, { animate: !options.initial && options.animate !== false, syncVariant: false });
     } else if (comp === 'request-tabs') {
-      const seg = preview.querySelector('.journey-tabs');
-      const isRecv = variant.includes('received');
-      if (seg) selectSegmented(seg, isRecv ? 0 : 1, { animate: !options.initial && options.animate !== false, syncVariant: false });
+      let seg = preview.querySelector('.journey-tabs');
+      if (seg) {
+        let newHtml = '';
+        let targetIdx = 0;
+        if (variant === 'conversations-all' || variant.includes('conversation')) {
+          newHtml = '<div class="journey-tabs messages-tabs" role="tablist" aria-label="Messages Filter"><button type="button" class="selected chosen" data-messages-tab="current" role="tab" aria-selected="true">Conversations</button><button type="button" data-messages-tab="all" role="tab" aria-selected="false">All</button></div>';
+          targetIdx = 0;
+        } else if (variant === 'all-requests' || (variant.includes('all') && variant.includes('request'))) {
+          newHtml = '<div class="journey-tabs activity-tabs" role="tablist" aria-label="Activity Filter"><button type="button" class="selected chosen" data-activity-tab="all" role="tab" aria-selected="true">All</button><button type="button" data-activity-tab="requests" role="tab" aria-selected="false">Requests</button></div>';
+          targetIdx = 0;
+        } else if (variant === 'all-hidden' || (variant.includes('all') && variant.includes('hidden'))) {
+          newHtml = '<div class="journey-tabs hidden-tabs" id="hidden-tabs" role="tablist" aria-label="Hidden Connections Filter"><button type="button" class="selected chosen" data-hidden-tab="all" role="tab" aria-selected="true">All (1)</button><button type="button" data-hidden-tab="hidden" role="tab" aria-selected="false">Hidden (0)</button></div>';
+          targetIdx = 0;
+        } else if (variant === 'sent-requests' || variant.includes('sent')) {
+          newHtml = '<div class="journey-tabs" id="requests-tabs" role="tablist" aria-label="Requests Filter"><button type="button" data-request-tab="received" role="tab" aria-selected="false">Received (1)</button><button type="button" class="selected chosen" data-request-tab="sent" role="tab" aria-selected="true">Sent (0)</button></div>';
+          targetIdx = 1;
+        } else {
+          // received-requests (default)
+          newHtml = '<div class="journey-tabs" id="requests-tabs" role="tablist" aria-label="Requests Filter"><button type="button" class="selected chosen" data-request-tab="received" role="tab" aria-selected="true">Received (1)</button><button type="button" data-request-tab="sent" role="tab" aria-selected="false">Sent (0)</button></div>';
+          targetIdx = 0;
+        }
+        const temp = document.createElement('div');
+        temp.innerHTML = newHtml;
+        const newSeg = temp.firstElementChild;
+        seg.replaceWith(newSeg);
+        selectSegmented(newSeg, targetIdx, { animate: !options.initial && options.animate !== false, syncVariant: false });
+
+        newSeg.querySelectorAll('button').forEach((b, idx) => {
+          b.addEventListener('click', () => {
+            selectSegmented(newSeg, idx, { animate: true, syncVariant: false });
+            updateCardHandoff(card);
+          });
+        });
+      }
     } else if (comp === 'app-bar') {
       const head = preview.querySelector('.myprofile-head, header');
       if (head) {
@@ -18918,51 +19522,95 @@ if (typeof window !== 'undefined') {
       card.classList.toggle('is-connected', isConn);
       setProfileCardState(preview, isConn);
     } else if (comp === 'network-row') {
-      const row = preview.querySelector('.journey-person');
-      const isUnread = variant.toLowerCase().includes('unread');
+      let row = preview.querySelector('.journey-person');
       if (row) {
-        const btn = row.querySelector('button');
-        const existingIndicator = row.querySelector('.network-unread-indicator');
-        const existingSr = row.querySelector('.network-unread-sr, .sr-only');
-        const legacyBadge = row.querySelector('.ds-network-unread-badge');
-        if (legacyBadge) legacyBadge.remove();
-        if (isUnread) {
-          if (btn) {
-            btn.classList.add('has-unread');
-            normalizeElementClasses(btn);
-            if (!btn._originalAriaLabel) {
-              btn._originalAriaLabel = btn.getAttribute('aria-label') || '';
-            }
-            const rawName = row.querySelector('strong')?.childNodes[0]?.textContent?.trim() || 'connection';
-            const baseLabel = btn._originalAriaLabel || ('View profile for ' + rawName);
-            btn.setAttribute('aria-label', baseLabel + ' (1 unread message)');
-            if (!existingIndicator) {
-              const indicator = document.createElement('span');
-              indicator.className = 'network-unread-indicator';
-              indicator.setAttribute('aria-hidden', 'true');
-              indicator.innerHTML = '<span class="network-unread-dot"></span><span class="network-unread-ring ring-1" aria-hidden="true"></span><span class="network-unread-ring ring-2" aria-hidden="true"></span>';
-              btn.append(indicator);
-            }
-            if (!existingSr) {
-              const sr = document.createElement('span');
-              sr.className = 'sr-only network-unread-sr';
-              sr.textContent = '1 unread message';
-              btn.append(sr);
-            }
-          }
+        const badgeSvg = '<span class="li-verified-badge" title="LinkedIn connected (demo)" aria-label="LinkedIn connected — demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0.8 14.5 2.6 17.6 2.4 19 5.2 21.8 6.6 21.6 9.7 23.2 12 21.6 14.3 21.8 17.4 19 18.8 17.6 21.6 14.5 21.4 12 23.2 9.5 21.4 6.4 21.6 5 18.8 2.2 17.4 2.4 14.3 0.8 12 2.4 9.7 2.2 6.6 5 5.2 6.4 2.4 9.5 2.6Z"/><path d="m7.3 12.1 3.1 3.1 6.5-6.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+
+        let newHtml = '';
+        if (variant === 'chat-thread' || variant.includes('chat')) {
+          newHtml = [
+            '<div class="journey-person conversation-clickable-row" role="button" tabindex="0" aria-label="Open conversation with Alex Morgan">',
+            '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+            '  <div>',
+            '    <div class="verified-name-line">',
+            '      <strong>Alex Morgan</strong>' + badgeSvg,
+            '      <span class="conversation-time-meta">42m ago</span>',
+            '    </div>',
+            '    <small>Coffee near the main hall in 15 minutes? ☕</small>',
+            '  </div>',
+            '  <span class="activity-unread-dot" aria-label="Unread message"></span>',
+            '</div>'
+          ].join('\n');
+        } else if (variant === 'presence-control-row' || variant.includes('presence')) {
+          newHtml = [
+            '<div class="journey-person">',
+            '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+            '  <div>',
+            '    <div class="verified-name-line">',
+            '      <strong>Alex Morgan</strong>' + badgeSvg,
+            '    </div>',
+            '    <small>Presence visible</small>',
+            '  </div>',
+            '  <button type="button" class="journey-presence-btn journey-row-icon-btn" aria-label="Hide presence" title="Hide presence">',
+            '    <i class="ph ph-eye" aria-hidden="true"></i>',
+            '  </button>',
+            '</div>'
+          ].join('\n');
+        } else if (variant === 'unread-notice' || variant.includes('unread')) {
+          newHtml = [
+            '<div class="journey-person">',
+            '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+            '  <div>',
+            '    <div class="verified-name-line">',
+            '      <strong>Alex Morgan</strong>' + badgeSvg,
+            '    </div>',
+            '    <small>Senior Product Designer</small>',
+            '  </div>',
+            '  <button type="button" class="has-unread" aria-label="View profile for Alex Morgan (1 unread message)">',
+            '    View',
+            '    <span class="network-unread-indicator" aria-hidden="true">',
+            '      <span class="network-unread-dot"></span>',
+            '      <span class="network-unread-ring ring-1" aria-hidden="true"></span>',
+            '      <span class="network-unread-ring ring-2" aria-hidden="true"></span>',
+            '    </span>',
+            '    <span class="sr-only network-unread-sr">1 unread message</span>',
+            '  </button>',
+            '</div>'
+          ].join('\n');
         } else {
-          if (existingIndicator) existingIndicator.remove();
-          if (existingSr) existingSr.remove();
-          if (btn) {
-            btn.classList.remove('has-unread');
-            cleanEmptyAttrs(btn);
-            if (btn._originalAriaLabel) {
-              btn.setAttribute('aria-label', btn._originalAriaLabel);
-            } else {
-              btn.removeAttribute('aria-label');
-            }
-            delete btn._originalAriaLabel;
-          }
+          // Connected (default)
+          newHtml = [
+            '<div class="journey-person">',
+            '  <div class="initials demo-photo-avatar">AM<img src="https://i.pravatar.cc/240?img=12" alt="Alex Morgan" loading="lazy"></div>',
+            '  <div>',
+            '    <div class="verified-name-line">',
+            '      <strong>Alex Morgan</strong>' + badgeSvg,
+            '    </div>',
+            '    <small>Senior Product Designer</small>',
+            '  </div>',
+            '  <button type="button" aria-label="View profile for Alex Morgan">View</button>',
+            '</div>'
+          ].join('\n');
+        }
+
+        const temp = document.createElement('div');
+        temp.innerHTML = newHtml;
+        const newRow = temp.firstElementChild;
+        row.replaceWith(newRow);
+
+        const presBtn = newRow.querySelector('.journey-presence-btn');
+        if (presBtn) {
+          presBtn.addEventListener('click', () => {
+            const isHidden = presBtn.classList.contains('is-hidden');
+            presBtn.classList.toggle('is-hidden', !isHidden);
+            presBtn.setAttribute('aria-label', isHidden ? 'Hide presence' : 'Unhide presence');
+            presBtn.setAttribute('title', isHidden ? 'Hide presence' : 'Unhide presence');
+            const icon = presBtn.querySelector('.ph');
+            if (icon) icon.className = isHidden ? 'ph ph-eye' : 'ph ph-eye-slash';
+            const sub = newRow.querySelector('small');
+            if (sub) sub.textContent = isHidden ? 'Presence visible' : 'Presence hidden';
+            updateCardHandoff(card);
+          });
         }
       }
     } else if (comp === 'activity-item') {
@@ -19016,53 +19664,101 @@ if (typeof window !== 'undefined') {
         }
       }
     } else if (comp === 'list') {
-      const group = preview.querySelector('.settings-group') || preview;
-      if (!group) return;
+      let targetEl = preview.querySelector('.settings-group, .help-faq-group') || preview;
+      if (targetEl) {
+        let newHtml = '';
+        if (variant === 'faq-accordion' || variant.includes('faq') || variant.includes('accordion')) {
+          newHtml = [
+            '<div class="help-faq-group">',
+            '  <div class="help-faq-item open" data-cat="privacy">',
+            '    <button type="button" class="help-faq-q" aria-expanded="true">',
+            '      <span>How does "Invisible by Default" work?</span>',
+            '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+            '    </button>',
+            '    <div class="help-faq-a">',
+            '      <p>You remain invisible to all nearby members until you intentionally start a discovery session. Each session requires choosing a clear networking goal and duration (30 min, 1 hour, or 2 hours). When time expires, you automatically return to invisible mode.</p>',
+            '    </div>',
+            '  </div>',
+            '  <div class="help-faq-item" data-cat="privacy">',
+            '    <button type="button" class="help-faq-q" aria-expanded="false">',
+            '      <span>Can anyone see my exact address or GPS pin?</span>',
+            '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+            '    </button>',
+            '    <div class="help-faq-a">',
+            '      <p>Never. Peopi calculates approximate proximity within a randomized radius. Exact coordinates are never broadcast to other users, shared with third parties, or logged on servers.</p>',
+            '    </div>',
+            '  </div>',
+            '  <div class="help-faq-item" data-cat="safety">',
+            '    <button type="button" class="help-faq-q" aria-expanded="false">',
+            '      <span>Recommendations for safe in-person meetups</span>',
+            '      <i class="ph ph-caret-down" aria-hidden="true"></i>',
+            '    </button>',
+            '    <div class="help-faq-a">',
+            '      <p>Always arrange first meetings in public, populated spaces such as open cafes, hotel lobbies, or conference lounges. Share approximate location only, and feel free to end sessions or go invisible anytime with one tap.</p>',
+            '    </div>',
+            '  </div>',
+            '</div>'
+          ].join('\n');
+        } else if (variant === 'privacy-legal' || variant.includes('privacy') || variant.includes('legal')) {
+          newHtml = [
+            '<div class="settings-group">',
+            '  <div class="settings-label">PRIVACY & LEGAL</div>',
+            '  <button class="settings-item" type="button" id="settings-privacy-policy">',
+            '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+            '    <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
+            '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '  </button>',
+            '  <button class="settings-item" type="button" id="settings-terms">',
+            '    <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
+            '    <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
+            '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '  </button>',
+            '  <button class="settings-item" type="button" id="settings-standards">',
+            '    <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
+            '    <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
+            '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '  </button>',
+            '</div>'
+          ].join('\n');
+        } else {
+          // Account Settings (default)
+          newHtml = [
+            '<div class="settings-group">',
+            '  <div class="settings-label">ACCOUNT</div>',
+            '  <button type="button" class="settings-item" id="settings-profile">',
+            '    <span class="settings-ico"><i class="ph ph-user-circle-gear" aria-hidden="true"></i></span>',
+            '    <span><strong>Edit profile</strong><small>Your professional profile</small></span>',
+            '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '  </button>',
+            '  <button type="button" class="settings-item" id="settings-verification">',
+            '    <span class="settings-ico"><i class="ph ph-seal-check" aria-hidden="true"></i></span>',
+            '    <span><strong>Verification</strong><small>Optional trust signals</small></span>',
+            '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '  </button>',
+            '  <button type="button" class="settings-item" id="settings-privacy">',
+            '    <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
+            '    <span><strong>Privacy & safety</strong><small>Visibility and safety</small></span>',
+            '    <i class="ph ph-caret-right" aria-hidden="true"></i>',
+            '  </button>',
+            '</div>'
+          ].join('\n');
+        }
 
-      if (variant.includes('privacy') || variant.includes('legal')) {
-        if (!group._origHtml) {
-          group._origHtml = group.innerHTML;
-        }
-        group.innerHTML = [
-          '<div class="settings-label">PRIVACY & LEGAL</div>',
-          '<button class="settings-item" type="button" id="settings-privacy-policy">',
-          '  <span class="settings-ico"><i class="ph ph-shield-check" aria-hidden="true"></i></span>',
-          '  <span><strong>Privacy Policy</strong><small>Data protection, zero ads, no GPS logging</small></span>',
-          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-          '</button>',
-          '<button class="settings-item" type="button" id="settings-terms">',
-          '  <span class="settings-ico"><i class="ph ph-file-text" aria-hidden="true"></i></span>',
-          '  <span><strong>Terms of Service</strong><small>Professional conduct & community safety</small></span>',
-          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-          '</button>',
-          '<button class="settings-item" type="button" id="settings-standards">',
-          '  <span class="settings-ico"><i class="ph ph-handshake" aria-hidden="true"></i></span>',
-          '  <span><strong>Community & Safety Standards</strong><small>Zero harassment, respectful networking</small></span>',
-          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-          '</button>'
-        ].join('\n');
-      } else if (variant.includes('pref')) {
-        if (!group._origHtml) {
-          group._origHtml = group.innerHTML;
-        }
-        group.innerHTML = [
-          '<div class="settings-label">PREFERENCES</div>',
-          '<button class="settings-item" type="button" data-go="notifications">',
-          '  <span class="settings-ico"><i class="ph ph-bell-ringing" aria-hidden="true"></i></span>',
-          '  <span><strong>Notification preferences</strong><small>Choose your updates</small></span>',
-          '  <i class="ph ph-caret-right" aria-hidden="true"></i>',
-          '</button>',
-          '<button class="settings-item" type="button" id="settings-appearance">',
-          '  <span class="settings-ico"><i class="ph ph-sun" aria-hidden="true"></i></span>',
-          '  <span><strong>Appearance</strong><small id="settings-appearance-label">Light mode</small></span>',
-          '  <i class="ph ph-arrows-clockwise" aria-hidden="true"></i>',
-          '</button>'
-        ].join('\n');
-      } else {
-        if (group._origHtml) {
-          group.innerHTML = group._origHtml;
-          delete group._origHtml;
-        }
+        const temp = document.createElement('div');
+        temp.innerHTML = newHtml;
+        const newGroup = temp.firstElementChild;
+        targetEl.replaceWith(newGroup);
+
+        newGroup.querySelectorAll('.help-faq-q').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const item = btn.closest('.help-faq-item');
+            if (!item) return;
+            const isOpen = item.classList.contains('open');
+            item.classList.toggle('open', !isOpen);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+            updateCardHandoff(card);
+          });
+        });
       }
     } else if (comp === 'identity-card') {
       const nameEl = preview.querySelector('#own-name, [id="own-name"], h3');
