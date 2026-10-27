@@ -14694,50 +14694,81 @@ const scopedComponentStyles = {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 48px;
-  background: var(--muted, #F1F5F9);
-  border-radius: 999px;
+  max-width: 360px;
+  margin: 0 auto;
+  min-height: 52px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #DCE1E9);
+  border-radius: 18px;
   padding: 4px;
   box-sizing: border-box;
+  box-shadow: 0 4px 18px rgba(27, 36, 50, 0.027);
+  isolation: isolate;
 }
 .peopi-component-request-tabs .journey-tabs button {
   position: relative;
   z-index: 1;
   flex: 1;
-  min-height: 40px;
+  min-height: 44px;
   border: 0;
   border-radius: 14px;
-  background: transparent;
-  color: var(--ink-secondary, #64748B);
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--ink-secondary, #687386);
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   cursor: pointer;
-  transition: color 0.18s ease;
+  padding: 10px;
+  transition: color 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .peopi-component-request-tabs .journey-tabs button.chosen,
 .peopi-component-request-tabs .journey-tabs button.selected,
 .peopi-component-request-tabs .journey-tabs button.active,
 .peopi-component-request-tabs .journey-tabs button[aria-selected="true"] {
-  color: var(--ink, #0F172A);
+  color: #FFFFFF !important;
 }
 .peopi-component-request-tabs .journey-tabs .motion-seg-indicator {
   position: absolute;
   top: 4px;
   bottom: 4px;
-  border-radius: 999px;
-  background: var(--card, #FFFFFF);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  left: 0;
+  border-radius: 14px;
+  background: var(--brand, #FF3300);
+  box-shadow: 0 3px 12px rgba(255, 51, 0, 0.28);
   transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), width 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
   z-index: 0;
+  pointer-events: none;
+  will-change: transform, width, opacity;
+}
+@media (prefers-color-scheme: dark) {
+  .peopi-component-request-tabs .journey-tabs {
+    background: var(--card, #222A37);
+    border-color: var(--line, #3D4658);
+  }
+  .peopi-component-request-tabs .journey-tabs button {
+    color: var(--ink-secondary, #A5AEBD);
+  }
+  .peopi-component-request-tabs .journey-tabs button.chosen,
+  .peopi-component-request-tabs .journey-tabs button.selected,
+  .peopi-component-request-tabs .journey-tabs button.active,
+  .peopi-component-request-tabs .journey-tabs button[aria-selected="true"] {
+    color: #FFFFFF !important;
+  }
+  .peopi-component-request-tabs .journey-tabs .motion-seg-indicator {
+    box-shadow: 0 4px 16px rgba(255, 90, 45, 0.35);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .peopi-component-request-tabs .journey-tabs .motion-seg-indicator {
-    transition: opacity 120ms ease;
+    transition: opacity 120ms ease !important;
+  }
+  .peopi-component-request-tabs .journey-tabs button {
+    transition: none !important;
   }
 }
 `,
@@ -17656,13 +17687,19 @@ function initSegmentedTabs(container, onSelect) {
     }
   }
 
-  const active = container.querySelector('button.chosen, button.selected') || buttons[0];
-  if (active) updateIndicator(active, false);
+  const active = container.querySelector('button.chosen, button.selected, button[aria-selected="true"]') || buttons[0];
+  if (active) {
+    updateIndicator(active, false);
+    requestAnimationFrame(() => updateIndicator(active, false));
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => updateIndicator(active, false));
+    }
+  }
 
   buttons.forEach((btn, idx) => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => {
-        b.classList.remove('chosen', 'selected');
+        b.classList.remove('chosen', 'selected', 'active');
         b.setAttribute('aria-selected', 'false');
       });
       btn.classList.add('chosen');
@@ -17674,7 +17711,7 @@ function initSegmentedTabs(container, onSelect) {
   });
 
   window.addEventListener('resize', () => {
-    const curr = container.querySelector('button.chosen, button.selected');
+    const curr = container.querySelector('button.chosen, button.selected, button[aria-selected="true"]');
     if (curr) updateIndicator(curr, false);
   });
 }`;
@@ -17767,12 +17804,14 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
       labelB = 'Instance B — All Selected';
       htmlCodeA = [
         '<div class="journey-tabs messages-tabs" role="tablist" aria-label="Messages Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" class="selected chosen" data-messages-tab="current" role="tab" aria-selected="true">Conversations</button>',
         '  <button type="button" data-messages-tab="all" role="tab" aria-selected="false">All</button>',
         '</div>'
       ].join('\n');
       htmlCodeB = [
         '<div class="journey-tabs messages-tabs" role="tablist" aria-label="Messages Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" data-messages-tab="current" role="tab" aria-selected="false">Conversations</button>',
         '  <button type="button" class="selected chosen" data-messages-tab="all" role="tab" aria-selected="true">All</button>',
         '</div>'
@@ -17782,12 +17821,14 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
       labelB = 'Instance B — Requests Selected';
       htmlCodeA = [
         '<div class="journey-tabs activity-tabs" role="tablist" aria-label="Activity Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" class="selected chosen" data-activity-tab="all" role="tab" aria-selected="true">All</button>',
         '  <button type="button" data-activity-tab="requests" role="tab" aria-selected="false">Requests</button>',
         '</div>'
       ].join('\n');
       htmlCodeB = [
         '<div class="journey-tabs activity-tabs" role="tablist" aria-label="Activity Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" data-activity-tab="all" role="tab" aria-selected="false">All</button>',
         '  <button type="button" class="selected chosen" data-activity-tab="requests" role="tab" aria-selected="true">Requests</button>',
         '</div>'
@@ -17797,12 +17838,14 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
       labelB = 'Instance B — Hidden Selected';
       htmlCodeA = [
         '<div class="journey-tabs hidden-tabs" id="hidden-tabs-inst1" role="tablist" aria-label="Hidden Connections Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" class="selected chosen" data-hidden-tab="all" role="tab" aria-selected="true">All (1)</button>',
         '  <button type="button" data-hidden-tab="hidden" role="tab" aria-selected="false">Hidden (0)</button>',
         '</div>'
       ].join('\n');
       htmlCodeB = [
         '<div class="journey-tabs hidden-tabs" id="hidden-tabs-inst2" role="tablist" aria-label="Hidden Connections Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" data-hidden-tab="all" role="tab" aria-selected="false">All (1)</button>',
         '  <button type="button" class="selected chosen" data-hidden-tab="hidden" role="tab" aria-selected="true">Hidden (0)</button>',
         '</div>'
@@ -17812,12 +17855,14 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
       labelB = 'Instance B — Received Requests (Received Selected)';
       htmlCodeA = [
         '<div class="journey-tabs" id="requests-tabs-inst1" role="tablist" aria-label="Requests Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" data-request-tab="received" role="tab" aria-selected="false">Received (1)</button>',
         '  <button type="button" class="selected chosen" data-request-tab="sent" role="tab" aria-selected="true">Sent (0)</button>',
         '</div>'
       ].join('\n');
       htmlCodeB = [
         '<div class="journey-tabs" id="requests-tabs-inst2" role="tablist" aria-label="Requests Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" class="selected chosen" data-request-tab="received" role="tab" aria-selected="true">Received (1)</button>',
         '  <button type="button" data-request-tab="sent" role="tab" aria-selected="false">Sent (0)</button>',
         '</div>'
@@ -17827,12 +17872,14 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
       labelB = 'Instance B — Sent Requests (Sent Selected)';
       htmlCodeA = [
         '<div class="journey-tabs" id="requests-tabs-inst1" role="tablist" aria-label="Requests Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" class="selected chosen" data-request-tab="received" role="tab" aria-selected="true">Received (1)</button>',
         '  <button type="button" data-request-tab="sent" role="tab" aria-selected="false">Sent (0)</button>',
         '</div>'
       ].join('\n');
       htmlCodeB = [
         '<div class="journey-tabs" id="requests-tabs-inst2" role="tablist" aria-label="Requests Filter">',
+        '  <span class="motion-seg-indicator" aria-hidden="true"></span>',
         '  <button type="button" data-request-tab="received" role="tab" aria-selected="false">Received (1)</button>',
         '  <button type="button" class="selected chosen" data-request-tab="sent" role="tab" aria-selected="true">Sent (0)</button>',
         '</div>'
@@ -18264,23 +18311,59 @@ document.querySelectorAll('.peopi-instance').forEach(inst => {
 
   // Segmented tabs
   inst.querySelectorAll('.seg, .journey-tabs').forEach(seg => {
-    const btns = seg.querySelectorAll('button');
-    const ind = seg.querySelector('.motion-seg-indicator');
-    const updateInd = (btn) => {
+    let ind = seg.querySelector('.motion-seg-indicator');
+    if (!ind) {
+      ind = document.createElement('span');
+      ind.className = 'motion-seg-indicator';
+      ind.setAttribute('aria-hidden', 'true');
+      seg.prepend(ind);
+    }
+    const btns = Array.from(seg.querySelectorAll('button'));
+    const updateInd = (btn, animate = false) => {
       if (!ind || !btn) return;
-      ind.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
-      ind.style.width = btn.offsetWidth + 'px';
+      const toX = btn.offsetLeft;
+      const toW = btn.offsetWidth;
+      if (toW === 0) return;
+      const fromX = seg._pillX;
+      const fromW = seg._pillW;
+      seg._pillX = toX;
+      seg._pillW = toW;
+      ind.style.width = toW + 'px';
+      ind.style.transform = 'translateX(' + toX + 'px)';
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (animate && fromX !== undefined && fromX !== toX) {
+        if (reduced) {
+          ind.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 120 });
+        } else {
+          ind.animate(
+            [{ transform: 'translateX(' + fromX + 'px)', width: fromW + 'px' },
+             { transform: 'translateX(' + toX + 'px)', width: toW + 'px' }],
+            { duration: 260, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' }
+          );
+        }
+      }
     };
     btns.forEach(b => {
       b.addEventListener('click', () => {
         btns.forEach(x => { x.classList.remove('chosen', 'selected', 'active'); x.setAttribute('aria-selected', 'false'); });
         b.classList.add('chosen', 'selected', 'active');
         b.setAttribute('aria-selected', 'true');
-        updateInd(b);
+        updateInd(b, true);
       });
     });
     const cur = seg.querySelector('button.chosen, button.selected, button.active, button[aria-selected="true"]') || btns[0];
-    if (cur) updateInd(cur);
+    if (cur) {
+      updateInd(cur, false);
+      requestAnimationFrame(() => updateInd(cur, false));
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => updateInd(cur, false));
+      }
+    }
+    window.addEventListener('resize', () => {
+      const active = seg.querySelector('button.chosen, button.selected, button.active, button[aria-selected="true"]');
+      if (active) updateInd(active, false);
+    });
   });
 
   // Switch
