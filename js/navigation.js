@@ -15105,6 +15105,9 @@ const scopedComponentStyles = {
 .peopi-component-network-row .conversation-clickable-row:hover {
   background: color-mix(in srgb, var(--brand, #FF3300) 4%, var(--card));
 }
+.peopi-component-network-row .conversation-clickable-row.is-active {
+  background: color-mix(in srgb, var(--brand, #FF3300) 6%, var(--card));
+}
 .peopi-component-network-row .conversation-clickable-row:active {
   transform: scale(0.985);
 }
@@ -18356,6 +18359,25 @@ document.querySelectorAll('.peopi-instance').forEach(inst => {
       if (ta) {
         ta.value = chip.textContent.trim();
         ta.focus();
+      }
+    });
+  });
+
+  // Chat thread row click / open thread
+  inst.querySelectorAll('.conversation-clickable-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const dot = row.querySelector('.activity-unread-dot');
+      if (dot) dot.remove();
+      row.classList.add('is-active');
+      row.setAttribute('data-opened', 'true');
+    });
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const dot = row.querySelector('.activity-unread-dot');
+        if (dot) dot.remove();
+        row.classList.add('is-active');
+        row.setAttribute('data-opened', 'true');
       }
     });
   });
