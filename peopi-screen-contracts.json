@@ -17,8 +17,8 @@
         "selection"
       ],
       "rules": [
-        "Start invisible; show no individual pins, identities or exact coordinates. Display subtle aggregated activity zones only.",
-        "Feature marketing-oriented blurred map backdrop with central beacon ripples, floating intent speech bubble, and aggregated activity indicators.",
+        "Start invisible; show no individual pins, identities or exact coordinates of other nearby peers. Display subtle aggregated activity zones only ('Activity nearby'). The central hero visibly displays the user's own profile photo avatar and verified identity checkmark badge.",
+        "Feature marketing-oriented blurred map backdrop with central beacon ripples, floating intent speech bubble ('Meaningful connections'), and aggregated activity indicators.",
         "Show up opens session setup; it does not start sharing yet."
       ],
       "validation": [
@@ -31,6 +31,14 @@
         "Discover tab crossfades in place; concentric beacon wave rings pulse gently without distracting from primary action.",
         "Speech bubble floats subtly; reduced motion switches to static state.",
         "Show up pushes Start session; nothing is shared until Go visible is confirmed."
+      ],
+      "purpose": "Provide a safe, calm overview of nearby professional activity without exposing the user's own presence or requiring real-time sharing.",
+      "actions": [
+        "Inspect approximate nearby area and activity status badge ('Activity nearby').",
+        "View profile completion card with live score (65%) and navigate to profile completion.",
+        "Tap 'Show up' or hero area to open Session Setup (02.2).",
+        "Access top messages and notifications counters (1 unread notification; 0 unread messages).",
+        "Switch between Discover, Connections, and Profile root navigation tabs."
       ]
     },
     "setup": {
@@ -55,6 +63,13 @@
         "Pure horizontal push transition preserves full surface opacity without text collision.",
         "Intent and duration chips use press feedback; the selection commits instantly.",
         "Go visible returns to the active map; Not now pops back to the invisible state."
+      ],
+      "purpose": "Let members choose their immediate networking intent and duration before broadcasting active presence.",
+      "actions": [
+        "Select a networking intent (Meet new people, Explore collaboration, Share ideas).",
+        "Pick bounded visibility duration preset: 30 minutes, 60 minutes (default), or 120 minutes.",
+        "Tap 'Go visible' to trigger profile introduction check and initiate active session.",
+        "Tap 'Not now' or Back button to return to Invisible state without sharing presence."
       ]
     },
     "active": {
@@ -85,6 +100,16 @@
         "Nearby people appear as one group fade, never card by card.",
         "Map drag uses direct pointer manipulation with 0.45s spring-damped return and clamped rubber-band bounds.",
         "Privacy beacon radiates continuous 3.6s expanding radar waves, disabled under prefers-reduced-motion."
+      ],
+      "purpose": "Allow members to explore and filter nearby professionals and open their professional profile previews.",
+      "actions": [
+        "Switch between Map and List representations.",
+        "Pan and drag map canvas with elastic boundary resistance.",
+        "Tap floating recenter button to smoothly return to user's location.",
+        "Select nearby professional pins to view profile card preview.",
+        "Open discovery filters dialog to filter by professional specialty or intent.",
+        "Adjust or reset filters via the filters dialog.",
+        "Tap 'Go invisible' to terminate the session early via confirmation modal."
       ]
     },
     "myprofile": {
@@ -116,6 +141,14 @@
       "motionNotes": [
         "Profile tab crossfades in place and keeps its scroll position.",
         "Completeness bar animates only when its value changes, not on every visit."
+      ],
+      "purpose": "Show members how their professional profile appears to others and provide access to editing, documents, and privacy controls.",
+      "actions": [
+        "Inspect personal identity card with calculated Profile Strength percentage.",
+        "Tap 'Edit profile' to modify bio, headline, city, skills, experience, and attachments.",
+        "Tap Edit shortcut on Experience or Documents sections to jump to respective editors.",
+        "Tap 'Privacy & safety' menu item to open Privacy controls (05.3).",
+        "Tap top settings icon to open App Settings (05.5)."
       ]
     },
     "editprofile": {
@@ -141,6 +174,16 @@
       "motionNotes": [
         "Save commits immediately, then pops to My profile.",
         "Inline validation fades in under the field; the form does not jump."
+      ],
+      "purpose": "Allow members to update their profile details, manage role history via bottom sheets, and attach documents with unsaved changes protection.",
+      "actions": [
+        "Edit Full name, Professional headline, City / area, and About me.",
+        "Select Networking intent and optional context goals.",
+        "Add skills via interactive chip input (type + Enter / Add button; click \u00d7 to remove; max 8).",
+        "Add or edit past experience roles via dedicated bottom sheet (#exp-sheet).",
+        "Attach or manage credentials and documents via dedicated bottom sheet (#doc-sheet).",
+        "Tap Save changes to commit updates to local profile.",
+        "Tap Back or Discard changes (protected by unsaved changes confirmation modal)."
       ]
     },
     "privacy": {
@@ -164,6 +207,16 @@
       "motionNotes": [
         "Hidden connections, Blocked accounts, Report and Notifications push as child routes and pop back here.",
         "The visibility card updates its text in place; it never re-enters."
+      ],
+      "purpose": "Provide clear, transparent visibility controls, distinguishing mutable user preferences from fixed architectural protections.",
+      "actions": [
+        "Review live visibility status (Invisible by default).",
+        "Review immutable protections: Approximate area only (Always on), Timed visibility (Always on).",
+        "Manage Hidden connections list.",
+        "Toggle Connection requests and Session reminders preferences.",
+        "Access Blocked people management (05.3.2).",
+        "Access Report a concern interface (05.3.3).",
+        "Tap Back to return to My profile."
       ]
     },
     "verification": {
@@ -187,6 +240,14 @@
       "motionNotes": [
         "LinkedIn panel updates in place with short feedback.",
         "Returning from external sign-in does not replay the push."
+      ],
+      "purpose": "Allow members to build trust through optional signals while maintaining clear distinctions between account linking and identity verification.",
+      "actions": [
+        "Review verified LinkedIn connection status.",
+        "Tap 'Connect LinkedIn' to simulate OAuth linking.",
+        "Tap 'Disconnect demo connection' to reset verified state.",
+        "Review core trust principles explaining how trust operates on Peopi.",
+        "Tap Back to return to My profile."
       ]
     },
     "appsettings": {
@@ -210,6 +271,16 @@
       "motionNotes": [
         "Notifications pushes as a child route; Back restores this list at the same scroll.",
         "Sign out removes identity surfaces immediately, then routes to Welcome."
+      ],
+      "purpose": "Provide a central hub for configuring application preferences, theme appearance, and accessing account tools.",
+      "actions": [
+        "Navigate to Edit profile, Verification, or Privacy & safety.",
+        "Toggle Session reminders and Connection requests switches.",
+        "Tap 'Appearance' to cycle between System, Light mode, and Dark mode.",
+        "Open Notification preferences (05.5.1).",
+        "Access Help & support and About dialogs.",
+        "Tap Sign out to view prototype session notice.",
+        "Tap Back to return to My profile."
       ]
     },
     "onboarding": {
@@ -233,6 +304,13 @@
       "motionNotes": [
         "Horizontal slide transitions between steps with smooth pagination pill expansion.",
         "Skip or Get Started routes to Welcome without duplicate transitions."
+      ],
+      "purpose": "Educate new members on spontaneous proximity, privacy by default, and purposeful networking before account creation.",
+      "actions": [
+        "Swipe left or tap 'Continue' to advance through 3 illustrated slides.",
+        "Tap 'Skip' to proceed directly to Sign In (01.3).",
+        "Slide 3 'Get started' button routes directly to Sign In (01.3).",
+        "Tap 'I already have an account' to proceed to Sign In (01.3)."
       ]
     },
     "welcome": {
@@ -256,6 +334,12 @@
       "motionNotes": [
         "The background atmosphere is static; only the action group lifts in once.",
         "Create account and Sign in push Auth."
+      ],
+      "purpose": "Serve as an alternative visual brand portal communicating the core philosophy: Good things start with showing up.",
+      "actions": [
+        "Tap 'Discover Peopi' to start onboarding (01.2).",
+        "Tap 'I already have an account' to sign in (01.3).",
+        "Inspect orbiting avatars representing diverse creative specialties."
       ]
     },
     "auth": {
@@ -279,6 +363,15 @@
       "motionNotes": [
         "Moving between email and code steps crossfades the form group; the keyboard stays up.",
         "Recovery and First profile are pushed; Back keeps the entered email."
+      ],
+      "purpose": "Authenticate users securely with social providers or passwordless email verification code.",
+      "actions": [
+        "Tap 'Continue with Google' or 'Continue with Apple' (demonstrated via UI notice).",
+        "Enter email address and tap 'Continue with email'.",
+        "Enter 6-digit verification code (demo code: 123456).",
+        "Tap 'Resend demo code' if code was not received.",
+        "Tap 'Trouble signing in?' to navigate to Account Recovery (01.3.1).",
+        "Tap Back button to return to previous screen."
       ]
     },
     "firstprofile": {
@@ -302,6 +395,14 @@
       "motionNotes": [
         "Continue pushes Intent; Back keeps the typed values.",
         "Field errors fade in place; no shake animations."
+      ],
+      "purpose": "Collect only the minimum viable professional information (Name, Headline, City) so users can enter the app quickly without unnecessary friction.",
+      "actions": [
+        "Enter Full name (required).",
+        "Enter Professional headline (required).",
+        "Enter City or area (required).",
+        "Tap 'Continue' to proceed to Intent setup (01.5).",
+        "Tap Back to return to Sign In."
       ]
     },
     "firstintent": {
@@ -325,6 +426,13 @@
       "motionNotes": [
         "Selecting an option uses press scale plus a checkmark crossfade.",
         "Finish setup pushes Permissions; Back preserves the selections."
+      ],
+      "purpose": "Allow new members to select multiple networking goals to shape their future discovery sessions.",
+      "actions": [
+        "Select one or more networking purposes using checkbox controls.",
+        "Toggle between Meet new people, Explore collaborations, Share ideas, Find co-founders, etc.",
+        "Tap 'Finish setup' to complete onboarding and enter the application.",
+        "Tap Back to return to Profile setup."
       ]
     },
     "permissions": {
@@ -348,6 +456,12 @@
       "motionNotes": [
         "Each card updates in place after the system prompt returns.",
         "Finishing onboarding switches to the Discover root; Back does not reopen onboarding."
+      ],
+      "purpose": "Explain how location and notifications are used, ensuring members understand permissions are requested only when needed.",
+      "actions": [
+        "Read approximate location privacy explanation.",
+        "Read notification preferences explanation.",
+        "Tap 'Continue to Discover' to enter the main app."
       ]
     },
     "recovery": {
@@ -371,6 +485,15 @@
       "motionNotes": [
         "Sending shows short confirmation feedback; no email is sent in the demo.",
         "Back pops to Auth with the entered email preserved."
+      ],
+      "purpose": "Provide a clean, trustworthy recovery mechanism for members who lost access to their account email.",
+      "actions": [
+        "Enter registered account email address.",
+        "Tap 'Send recovery link'.",
+        "View confirmation card displaying entered target email.",
+        "Tap 'Resend recovery link' to re-trigger email.",
+        "Tap 'Change email' to return to input form.",
+        "Tap Back to return to Sign in."
       ]
     },
     "network": {
@@ -394,6 +517,15 @@
       "motionNotes": [
         "Network tab crossfades in place; search text and scroll are preserved.",
         "Requests, Messages and person rows push child routes."
+      ],
+      "purpose": "Provide access to all accepted professional connections, quick management hubs, and real-time search.",
+      "actions": [
+        "Search connections dynamically by name, role, or skill.",
+        "Filter connections by Specialty pills (All, Design, Engineering, Founders, AI, Verified).",
+        "Tap compact 'Requests' hub card to manage pending introductions.",
+        "Tap compact 'Hidden list' hub card to manage presence visibility.",
+        "Tap any connection card to view Connection Detail (03.1.1).",
+        "Tap message icon on a connection card to jump directly to chat thread."
       ]
     },
     "requests": {
@@ -418,6 +550,14 @@
       "motionNotes": [
         "Received/Sent switch crossfades the list; the capsule slides.",
         "An accepted, declined or cancelled row leaves on its own; the rest of the list does not replay."
+      ],
+      "purpose": "Allow members to review incoming invitations, make accept/decline decisions, and track sent requests.",
+      "actions": [
+        "Switch between 'Received (N)' and 'Sent (N)' tabs.",
+        "Accept an incoming request (adds to network, unlocks chat, removes request).",
+        "Decline an incoming request (removes request).",
+        "Cancel a pending sent request.",
+        "If Sent tab is empty, tap 'Explore nearby professionals' to navigate to Discover."
       ]
     },
     "activity": {
@@ -444,6 +584,13 @@
         "Segmented filter capsule slides smoothly across All, Requests and Messages with 260ms selection curve.",
         "Crossfade between notification categories; inline action dismisses target card cleanly.",
         "Push and pop transitions honor standard 360/320ms curves with 120ms reduced-motion ceiling."
+      ],
+      "purpose": "Consolidate connection invitations and session status alerts in a single reverse-chronological timeline.",
+      "actions": [
+        "Filter feed between 'All' and 'Requests'.",
+        "Accept or decline incoming requests directly in the activity item.",
+        "Tap system notification to jump to relevant target screen (Setup or Edit Profile).",
+        "Tap Back to return to previous screen."
       ]
     },
     "messages": {
@@ -468,6 +615,13 @@
         "Segmented tab switch moves the indicator with selection timing; rows filter in place.",
         "Rows render without an entrance animation; tapping a row pushes Conversation.",
         "Returning restores scroll and updates only the changed preview."
+      ],
+      "purpose": "Provide quick, reliable access to direct message conversations with accepted professional connections.",
+      "actions": [
+        "Switch between 'Conversations' and 'All' tabs.",
+        "Tap any conversation row to open the thread directly.",
+        "View last message snippet, timestamp, and unread dot indicator.",
+        "Access top navigation or bottom tabs."
       ]
     },
     "conversation": {
@@ -492,6 +646,14 @@
       "motionNotes": [
         "Only the newly sent bubble lifts in; history never replays.",
         "Fixed-height pill composer with horizontal scrolling text; latest message stays visible above."
+      ],
+      "purpose": "Enable secure, contextual messaging between confirmed connections with quick in-person meetup suggestions.",
+      "actions": [
+        "Compose and send text messages up to 2000 characters.",
+        "Tap quick meetup prompt pills to insert suggestions into draft input without auto-sending.",
+        "Tap coffee meetup button in composer to view meeting prompts.",
+        "Open '\u2026' conversation options menu to View Profile, Download Chat, Hide Presence, or Block.",
+        "Tap Back to return to Messages inbox."
       ]
     },
     "connectiondetail": {
@@ -517,6 +679,16 @@
       "motionNotes": [
         "Message pushes Conversation; Back returns to the same scroll position.",
         "Hide, remove and report results update in place with short feedback."
+      ],
+      "purpose": "Review a confirmed connection's complete professional background, verified credentials, and manage presence privacy.",
+      "actions": [
+        "Inspect full name, sharp photo, headline, sector, bio, and what they are looking for.",
+        "Inspect full list of skills and past experience roles with toggle.",
+        "Inspect attached documents and credentials (downloadable for confirmed connections).",
+        "Tap floating 'Message' action button to open 1-on-1 Conversation.",
+        "Tap '\u2026' menu button to access presence and relationship management options.",
+        "Toggle 'Hide my active presence' to conceal future live sessions from this specific person.",
+        "Tap Back to return to My Network."
       ]
     },
     "hiddenconnections": {
@@ -540,6 +712,14 @@
       "motionNotes": [
         "Unhiding removes the row with a single fade; the person is not notified.",
         "Back pops to Privacy & safety with the count updated in place."
+      ],
+      "purpose": "Allow members to hide their active nearby presence from specific confirmed connections while keeping connection and messaging intact.",
+      "actions": [
+        "Search connections by name or role.",
+        "Switch between 'All (N)' and 'Hidden (N)' tabs.",
+        "Tap the presence icon button on a connection to conceal active sessions from them.",
+        "Tap again to restore normal active presence visibility.",
+        "Tap Back to return to Privacy & safety."
       ]
     },
     "blockedaccounts": {
@@ -563,6 +743,13 @@
       "motionNotes": [
         "Unblock removes the row with a single fade; other rows settle without jumping.",
         "Back pops to Privacy & safety."
+      ],
+      "purpose": "Allow members to review and unblock previously blocked accounts with clear expectations about relationship state.",
+      "actions": [
+        "Review list of blocked accounts.",
+        "Tap 'Unblock' to remove an account from blocklist.",
+        "Tap 'Need to report someone?' to open Report screen.",
+        "Tap Back to return to Privacy & safety."
       ]
     },
     "reportuser": {
@@ -586,6 +773,15 @@
       "motionNotes": [
         "Submit shows short confirmation feedback, then pops to the previous screen.",
         "Report and block stay separate; neither animates the other."
+      ],
+      "purpose": "Provide a responsible safety reporting workflow allowing users to flag safety concerns and optionally block contacts.",
+      "actions": [
+        "Target member card is displayed directly from active profile/interaction context.",
+        "Select a reporting reason (starts unselected with prompt).",
+        "Enter optional additional details explaining what happened.",
+        "Tap 'Preview report submission' to preview report submission.",
+        "Tap 'Block [Member Name]' to block user immediately.",
+        "Tap Back to return to previous screen."
       ]
     },
     "notifications": {
@@ -609,6 +805,14 @@
       "motionNotes": [
         "Switches animate only their thumb; the value commits on tap.",
         "Back and Save return to the screen that opened it: Settings or Privacy & safety."
+      ],
+      "purpose": "Allow members to customize which notification categories they receive with instant local persistence.",
+      "actions": [
+        "Toggle Connection requests notifications.",
+        "Toggle New messages notifications.",
+        "Toggle Session reminders notifications.",
+        "Toggle Product updates notifications.",
+        "Tap 'Close' to return to Settings."
       ]
     },
     "profile": {
@@ -636,6 +840,16 @@
       "motionNotes": [
         "Interactive swipe-down dismisses the sheet.",
         "Request state changes in place inside the sheet; focus returns to the opening card on dismiss."
+      ],
+      "purpose": "Provide meaningful context on a professional's background, skills, and projects to support purposeful connection decisions.",
+      "actions": [
+        "Review headline, sector, bio, and what they are looking for.",
+        "Inspect skills and interests tags.",
+        "Review past experience entries with 'Show all experience' toggle.",
+        "Review attached documents preview (blurred for unconnected visitors).",
+        "For unconnected contacts: compose custom note and tap 'Request to connect'.",
+        "For connected contacts: tap primary 'Send Message' or secondary 'Go to profile'.",
+        "Dismiss sheet to return to Active Discovery."
       ]
     },
     "helpsupport": {
@@ -659,6 +873,14 @@
       "motionNotes": [
         "Smooth accordion height expansion with ease-out curve.",
         "Push/pop navigation with Settings; Back restores Settings at same scroll."
+      ],
+      "purpose": "Provide clear guidance on Peopi's ephemeral discovery model, privacy guarantees, trust & safety principles, and offer responsive support.",
+      "actions": [
+        "Search help articles and FAQs with live keyword filtering.",
+        "Filter FAQs by category: Privacy & presence, Connections & chat, Trust & safety, Profile & identity.",
+        "Expand and collapse FAQ accordions for detailed answers.",
+        "Tap 'Contact support' to trigger a direct encrypted assistance request.",
+        "Tap Back to return to Settings."
       ]
     },
     "aboutpeopi": {
@@ -682,6 +904,13 @@
       "motionNotes": [
         "Push/pop screen transitions.",
         "Back restores Settings at same scroll."
+      ],
+      "purpose": "Articulate Peopi's mission of intentional, consent-driven professional discovery while providing transparent access to legal policies, licenses, and product provenance.",
+      "actions": [
+        "Inspect product version, build number, and environment information.",
+        "Read Peopi's three core pillars: Intentional Visibility, Approximate Proximity, and Mutual Consent.",
+        "Review Privacy Policy, Terms of Service, and Open Source Licenses via interactive sheets.",
+        "Tap Back to return to Settings."
       ]
     }
   },

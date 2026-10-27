@@ -31,10 +31,10 @@ const specs={
   "summary": "Primary discovery landing screen when live presence broadcasting is turned off.",
   "purpose": "Provide a safe, calm overview of nearby professional activity without exposing the user's own presence or requiring real-time sharing.",
   "actions": [
-   "Inspect approximate nearby area and count badge (7 nearby).",
+   "Inspect approximate nearby area and activity status badge ('Activity nearby').",
    "View profile completion card with live score and navigate to profile completion.",
    "Tap 'Show up' or hero area to open Session Setup (02.2).",
-   "Access top messages and notifications counters.",
+   "Access top messages and notifications counters (1 unread notification; 0 unread messages).",
    "Switch between Discover, Connections, and Profile root navigation tabs."
   ],
   "states": [
@@ -45,7 +45,7 @@ const specs={
   ],
   "rules": [
    "Strictly invisible by default; no background broadcasting or pinging.",
-   "No individual markers, photos, verification badges, or identities revealed while in invisible state; subtle abstract aggregated activity zones indicate general nearby density without revealing individual locations or counts.",
+   "No individual markers, photos, verification badges, or identities of other nearby peers are revealed while in invisible state; subtle abstract aggregated activity zones indicate general nearby density without revealing individual locations or counts. The central hero visibly displays the user's own photo avatar and verified badge.",
    "Location is strictly approximate; Collins Ave/Biscayne Blvd map grid is illustrative.",
    "Creating an account, completing profile, or viewing the screen never turns visibility on."
   ],
@@ -63,7 +63,7 @@ const specs={
    "Touch targets adhere to minimum 44pt accessible dimensions."
   ],
   "integration": [
-   "Nearby professional count is illustrative; real client requires server-side geohashing query.",
+   "Nearby activity indicator is illustrative; real client requires server-side geohashing query.",
    "Completeness indicator computes from saved local demo profile fields; backend sync required.",
    "Permissions are not triggered until explicit session setup confirmation."
   ]

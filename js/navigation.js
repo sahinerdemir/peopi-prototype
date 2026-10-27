@@ -780,14 +780,15 @@ const peopiScreenRegistry = {
     "section": "Discover",
     "routeType": "root",
     "parent": null,
+    "purpose": "Provide a safe, calm overview of nearby professional activity without exposing the user's own presence or requiring real-time sharing.",
     "fixedAreas": "Top brand bar with action icons (Messages, Notifications) and bottom floating navigation bar (70pt height, 16pt inset).",
     "scrollAreas": "Central discovery stage with animated wave pulses, intent bubble, profile completeness surface, and primary 'Show up' CTA.",
     "bottomClearance": "116pt bottom fade extent (70pt nav + 16pt inset + 30pt content clearance) plus safe end scroll padding.",
     "entryPoints": "App launch, session timeout, or tapping Discover in root navigation bar.",
     "exitPoints": "Session Setup (02.2) via 'Show up' CTA; Connections tab; Profile tab; Messages / Notifications.",
     "backBehavior": "Root destination; system back has no effect or exits app on Android.",
-    "presenceRule": "Strictly invisible by default. No background location broadcasts, pings, or individual pin exposures.",
-    "privacyRule": "Aggregated nearby count indicator only ('7 nearby'); individual names, avatars, and verified statuses remain hidden.",
+    "presenceRule": "Strictly invisible by default. No background location broadcasts, pings, or individual pin exposures until explicitly starting an active session via 'Show up'.",
+    "privacyRule": "Aggregated nearby activity indicator only ('Activity nearby'); other nearby peers' individual names, avatars, and verified statuses remain strictly hidden. The central hero visibly displays the user's own profile photo avatar and verified identity checkmark badge, surrounded by approximate activity heatmap zones.",
     "components": [
       {
         "key": "bottom-nav",
@@ -802,7 +803,7 @@ const peopiScreenRegistry = {
       {
         "key": "icon-button",
         "variant": "Default",
-        "role": "Header Message & Notification icon buttons with unread badges"
+        "role": "Header Message & Notification icon buttons (Notification active with '1' unread badge; Messages badge hidden)"
       },
       {
         "key": "profile-progress",
@@ -812,7 +813,7 @@ const peopiScreenRegistry = {
       {
         "key": "avatar",
         "variant": "Photo Avatar",
-        "role": "Center hero user avatar with verified badge anchor"
+        "role": "Center hero user avatar displaying user's own photo with verified checkmark anchor"
       },
       {
         "key": "verified-badge",
@@ -824,12 +825,12 @@ const peopiScreenRegistry = {
       {
         "name": "Floating Intent Speech Bubble",
         "selector": ".closed-intent-bubble",
-        "purpose": "Contextual status pill displaying user's active session networking goal ('Meet new people') above center radar beacon."
+        "purpose": "Contextual status pill displaying user's active session networking goal ('Meaningful connections') above the center hero avatar beacon."
       },
       {
         "name": "Concentric Hero Radar Waves",
         "selector": ".closed-waves-wrap",
-        "purpose": "Ambient concentric radar pulse rings expanding outward from the user avatar."
+        "purpose": "Ambient concentric radar pulse rings expanding outward from the user's central hero beacon."
       },
       {
         "name": "Aggregated Activity Zones",
@@ -882,7 +883,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Session Setup Header",
-        "selector": ".setup-head",
+        "selector": ".setup .title, .setup .desc",
         "purpose": "Title and instructional guidance copy for configuring intentional visibility."
       }
     ]
@@ -941,12 +942,12 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Interactive Pannable Map Canvas",
-        "selector": "#active-map",
+        "selector": "#mapview #map-canvas",
         "purpose": "Gesture-pannable map canvas with bound drag spring returns and custom location markers."
       },
       {
         "name": "Proximity Beacon Radar Wave",
-        "selector": ".discovery-pulse",
+        "selector": ".map-radar-pulse",
         "purpose": "Visual pulse wave anchored to user's approximate coordinate."
       },
       {
@@ -1168,7 +1169,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Add Experience Trigger Button",
-        "selector": "#edit-add-exp-btn",
+        "selector": "#btn-open-add-exp",
         "purpose": "Action button launching experience modal bottom sheet."
       }
     ]
@@ -1222,7 +1223,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Privacy Subtitle Header",
-        "selector": ".privacy-header-subtitle",
+        "selector": ".privacy-header span, .privacy-intro p",
         "purpose": "Contextual explanation of privacy guarantees and ephemeral storage."
       }
     ]
@@ -1276,7 +1277,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Trust Tier Indicator Pill",
-        "selector": ".trust-tier-badge",
+        "selector": ".verify-emblem, .verify-panel .verify-icon",
         "purpose": "Current verified security tier level indicator."
       }
     ]
@@ -1320,7 +1321,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "App Version Footer",
-        "selector": ".settings-version-label",
+        "selector": ".settings-disclaimer",
         "purpose": "Build number and legal entity notice."
       }
     ]
@@ -1398,7 +1399,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Hero Brand Wordmark",
-        "selector": ".welcome-wordmark",
+        "selector": ".welcome-center",
         "purpose": "High-contrast SVG brand logotype."
       }
     ]
@@ -1452,7 +1453,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Social Auth Divider",
-        "selector": ".auth-divider",
+        "selector": ".auth-or-divider",
         "purpose": "Segmented 'or' line separating social providers from email entry."
       }
     ]
@@ -1491,7 +1492,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Step Indicator Badge",
-        "selector": ".step-counter",
+        "selector": ".journey-head small",
         "purpose": "Visual pill indicating Step 1 of 2."
       }
     ]
@@ -1525,7 +1526,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Intent Guidance Hint",
-        "selector": ".intent-guidance-copy",
+        "selector": ".journey-intro p",
         "purpose": "Copy clarifying that intents can be changed at any time."
       }
     ]
@@ -1569,7 +1570,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Permission Icon Badge",
-        "selector": ".permission-icon-shield",
+        "selector": ".permissions-list .journey-card",
         "purpose": "Shield icon symbolizing approximate and secure permission access."
       }
     ]
@@ -1613,7 +1614,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Recovery Status Feedback",
-        "selector": ".recovery-feedback-msg",
+        "selector": "#recovery-result-stage .recovery-sent-card",
         "purpose": "Dynamic feedback text confirming email dispatch."
       }
     ]
@@ -1741,7 +1742,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Personal Note Bubble",
-        "selector": ".request-personal-note",
+        "selector": "#request-list .journey-person small",
         "purpose": "Stylized quotation surface rendering sender's custom meetup message."
       }
     ]
@@ -1805,7 +1806,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Notification Category Badge",
-        "selector": ".activity-cat-badge",
+        "selector": "#activity-list, .activity-tabs",
         "purpose": "Visual icon indicating notification type (invitation, alert, system)."
       }
     ]
@@ -1859,7 +1860,7 @@ const peopiScreenRegistry = {
     "screenSpecificElements": [
       {
         "name": "Unread Message Snippet",
-        "selector": ".conns-snippet",
+        "selector": "#conversation-list .journey-person small",
         "purpose": "Preview snippet of latest message with relative timestamp."
       }
     ]
@@ -2303,7 +2304,7 @@ const peopiScreensMetadata = {
         "sessionStatus": "idle",
         "nearbyAggregated": "Activity nearby"
       },
-      "sourceFingerprint": "v2-14e1d9cd-1d1cc85d-f236cc3e-ab39c8a4-d981b0b1-3f79e0d3",
+      "sourceFingerprint": "v2-9b4e928f-1c353e13-f236cc3e-ab39c8a4-d981b0b1-3f79e0d3",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2332,7 +2333,7 @@ const peopiScreensMetadata = {
         "approximateRadius": "150m",
         "privacyDefault": "Invisible until start"
       },
-      "sourceFingerprint": "v2-15dd7aff-18c8864a-19a39d47-83c4ef6b-d981b0b1-1fd80776",
+      "sourceFingerprint": "v2-13e364b5-17953769-19a39d47-83c4ef6b-d981b0b1-1fd80776",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2362,7 +2363,7 @@ const peopiScreensMetadata = {
         "activeMode": "Open networking",
         "selectedPersonId": 2
       },
-      "sourceFingerprint": "v2-1e31a9c4-1af1dc13-12b86792-1367d2e3-d981b0b1-1a6129ee",
+      "sourceFingerprint": "v2-e58d5025-6b411b8d-12b86792-1367d2e3-d981b0b1-1a6129ee",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2394,7 +2395,7 @@ const peopiScreensMetadata = {
         "documentsCount": 3,
         "experienceCount": 2
       },
-      "sourceFingerprint": "v2-30fcc520-b83e5678-1af029c0-196fd38f-d981b0b1-1dfa114e",
+      "sourceFingerprint": "v2-149cea43-b83e5678-1af029c0-196fd38f-d981b0b1-1dfa114e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2423,7 +2424,7 @@ const peopiScreensMetadata = {
         "maxBioLength": 160,
         "skillsCount": 4
       },
-      "sourceFingerprint": "v2-2cd5118e-875d544c-ed132894-99088af7-d981b0b1-14a5ae62",
+      "sourceFingerprint": "v2-dcb8fbda-111171a4-ed132894-99088af7-d981b0b1-14a5ae62",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2453,7 +2454,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "blockedCount": 0
       },
-      "sourceFingerprint": "v2-1c9acafb-18c016c7-1583a9c3-9df2e531-d981b0b1-6c6990cd",
+      "sourceFingerprint": "v2-1dec6209-138587d1-1583a9c3-9df2e531-d981b0b1-6c6990cd",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2482,7 +2483,7 @@ const peopiScreensMetadata = {
         "trustTier": "standard",
         "badgeType": "seal-check"
       },
-      "sourceFingerprint": "v2-caca06f4-77c026e1-7e24323a-b280c58b-d981b0b1-1959f34c",
+      "sourceFingerprint": "v2-4f90fc81-149edc75-7e24323a-b280c58b-d981b0b1-1959f34c",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2511,7 +2512,7 @@ const peopiScreensMetadata = {
         "locationPermission": "approximate",
         "appVersion": "v0.3.5"
       },
-      "sourceFingerprint": "v2-da78b379-1938aac1-161a29bf-183c4ad4-d981b0b1-152798f6",
+      "sourceFingerprint": "v2-104b3934-15854ee3-161a29bf-183c4ad4-d981b0b1-152798f6",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2539,7 +2540,7 @@ const peopiScreensMetadata = {
         "totalSteps": 3,
         "headline": "Nearby networking, on your terms"
       },
-      "sourceFingerprint": "v2-1c608548-16f76ad8-14176c17-b1c1f7d5-d981b0b1-aab38f2f",
+      "sourceFingerprint": "v2-7e8a0f98-16f76ad8-14176c17-b1c1f7d5-d981b0b1-aab38f2f",
       "scrollExtent": {
         "scrollHeight": 852,
         "clientHeight": 852,
@@ -2570,7 +2571,7 @@ const peopiScreensMetadata = {
         ],
         "valueProp": "Privacy-first professional proximity"
       },
-      "sourceFingerprint": "v2-18b37954-1895b382-7c0a1fb7-b1c1f7d5-d981b0b1-40bb3de5",
+      "sourceFingerprint": "v2-1650b63a-169abfb5-7c0a1fb7-b1c1f7d5-d981b0b1-40bb3de5",
       "scrollExtent": {
         "scrollHeight": 852,
         "clientHeight": 852,
@@ -2597,7 +2598,7 @@ const peopiScreensMetadata = {
         "mode": "social-or-email",
         "termsAccepted": true
       },
-      "sourceFingerprint": "v2-13b82faf-57b8b997-718e97cd-1fe9a4dd-d981b0b1-3b3af112",
+      "sourceFingerprint": "v2-72f7a17a-18638757-718e97cd-1fe9a4dd-d981b0b1-3b3af112",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2626,7 +2627,7 @@ const peopiScreensMetadata = {
         "city": "Miami, FL",
         "step": "01 / 02"
       },
-      "sourceFingerprint": "v2-1f00bbec-edb989ab-40ad05cd-1d943797-d981b0b1-1131cd87",
+      "sourceFingerprint": "v2-cd852947-225de71f-40ad05cd-1d943797-d981b0b1-1131cd87",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2658,7 +2659,7 @@ const peopiScreensMetadata = {
         "customNote": "",
         "step": "02 / 02"
       },
-      "sourceFingerprint": "v2-8f2c6fb3-1e5c2830-1bebef26-1050d4cc-d981b0b1-19f0c8a0",
+      "sourceFingerprint": "v2-933d1c4b-13da90ad-1bebef26-1050d4cc-d981b0b1-19f0c8a0",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2686,7 +2687,7 @@ const peopiScreensMetadata = {
         "bluetoothPermission": "allowed",
         "notificationsPermission": "prompted"
       },
-      "sourceFingerprint": "v2-1f870a04-ebaf1818-b3e0fce9-b388a5dd-d981b0b1-149b791e",
+      "sourceFingerprint": "v2-168d215d-6af36739-b3e0fce9-b388a5dd-d981b0b1-149b791e",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2713,7 +2714,7 @@ const peopiScreensMetadata = {
         "email": "designer@example.com",
         "sentCode": true
       },
-      "sourceFingerprint": "v2-e77954ce-18cf27d2-3f42a73b-196b462a-d981b0b1-ce13a6b0",
+      "sourceFingerprint": "v2-13e5dc5b-147b8737-3f42a73b-196b462a-d981b0b1-ce13a6b0",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2742,7 +2743,7 @@ const peopiScreensMetadata = {
         "pendingReceived": 2,
         "activeFilter": "all"
       },
-      "sourceFingerprint": "v2-c3ea478e-63476629-a578b87f-4526bf0b-d981b0b1-11459b43",
+      "sourceFingerprint": "v2-aa6df867-63476629-a578b87f-4526bf0b-d981b0b1-11459b43",
       "scrollExtent": {
         "scrollHeight": 1638,
         "clientHeight": 715,
@@ -2770,7 +2771,7 @@ const peopiScreensMetadata = {
         "sentCount": 1,
         "activeTab": "received"
       },
-      "sourceFingerprint": "v2-19f6f13b-d3793b85-3e44d5e0-1c282095-d981b0b1-127eaf22",
+      "sourceFingerprint": "v2-1b122bfe-1fefb60f-3e44d5e0-1c282095-d981b0b1-127eaf22",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2797,7 +2798,7 @@ const peopiScreensMetadata = {
         "recentInteractions": 5,
         "lastInteraction": "22m ago · Alex Morgan"
       },
-      "sourceFingerprint": "v2-17402c34-13be93f4-7b6b5b1e-10be979a-d981b0b1-15df29d4",
+      "sourceFingerprint": "v2-a7b18043-a98a3357-7b6b5b1e-10be979a-d981b0b1-15df29d4",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2825,7 +2826,7 @@ const peopiScreensMetadata = {
         "unreadTotal": 1,
         "activeThread": "Alex Morgan"
       },
-      "sourceFingerprint": "v2-12bb0986-1ec3264c-1867542a-f2c845a2-d981b0b1-36e523ad",
+      "sourceFingerprint": "v2-24f90feb-1917db7b-1867542a-f2c845a2-d981b0b1-36e523ad",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2854,7 +2855,7 @@ const peopiScreensMetadata = {
         "messagesCount": 8,
         "presenceStatus": "online"
       },
-      "sourceFingerprint": "v2-117acabd-a289c0df-26fbb413-1734b525-d981b0b1-11e7e46b",
+      "sourceFingerprint": "v2-17f67b26-a289c0df-26fbb413-1734b525-d981b0b1-11e7e46b",
       "scrollExtent": {
         "scrollHeight": 2155,
         "clientHeight": 803,
@@ -2883,7 +2884,7 @@ const peopiScreensMetadata = {
         "sharedContext": "Tech Meetup Miami",
         "distanceApprox": "Near you (~120m)"
       },
-      "sourceFingerprint": "v2-1be55380-132a2653-15c8a7b3-9c67669d-d981b0b1-1bdd579e",
+      "sourceFingerprint": "v2-d06835f1-132a2653-15c8a7b3-9c67669d-d981b0b1-1bdd579e",
       "scrollExtent": {
         "scrollHeight": 2077,
         "clientHeight": 803,
@@ -2910,7 +2911,7 @@ const peopiScreensMetadata = {
         "hiddenCount": 0,
         "explanatoryCopy": "Hidden profiles will not appear in discovery or suggestions."
       },
-      "sourceFingerprint": "v2-1ca7558b-a589e185-4593ef6b-de791566-d981b0b1-1b3736c4",
+      "sourceFingerprint": "v2-28250f84-a589e185-4593ef6b-de791566-d981b0b1-1b3736c4",
       "scrollExtent": {
         "scrollHeight": 1753,
         "clientHeight": 803,
@@ -2937,7 +2938,7 @@ const peopiScreensMetadata = {
         "blockedCount": 0,
         "explanatoryCopy": "Blocked users cannot see your proximity or send connection requests."
       },
-      "sourceFingerprint": "v2-1cbdc27c-38176ead-11d08c52-9d17d2a1-d981b0b1-1d2ffa30",
+      "sourceFingerprint": "v2-14a990c9-38176ead-11d08c52-9d17d2a1-d981b0b1-1d2ffa30",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -2969,7 +2970,7 @@ const peopiScreensMetadata = {
           "Other"
         ]
       },
-      "sourceFingerprint": "v2-12d18e5a-1fa5d952-b18a08c8-1f371a78-d981b0b1-1b3b97c7",
+      "sourceFingerprint": "v2-18622331-1fa5d952-b18a08c8-1f371a78-d981b0b1-1b3b97c7",
       "scrollExtent": {
         "scrollHeight": 878,
         "clientHeight": 803,
@@ -2997,7 +2998,7 @@ const peopiScreensMetadata = {
         "unreadCount": 1,
         "filter": "all"
       },
-      "sourceFingerprint": "v2-1c7c7650-1dbad6fc-b38b3951-e2b8cfe2-d981b0b1-b1e113b7",
+      "sourceFingerprint": "v2-15aacdbf-1dbad6fc-b38b3951-e2b8cfe2-d981b0b1-b1e113b7",
       "scrollExtent": {
         "scrollHeight": 803,
         "clientHeight": 803,
@@ -3029,7 +3030,7 @@ const peopiScreensMetadata = {
         "intent": "Looking to exchange ideas",
         "statusBadge": "Photo & name hidden until connected"
       },
-      "sourceFingerprint": "v2-1ba82ba9-20cbf767-95483f87-1fe19346-d981b0b1-a2e94ebb",
+      "sourceFingerprint": "v2-461bb3cf-20cbf767-95483f87-1fe19346-d981b0b1-a2e94ebb",
       "scrollExtent": {
         "scrollHeight": 1434,
         "clientHeight": 681,
@@ -3057,7 +3058,7 @@ const peopiScreensMetadata = {
         "supportEmail": "support@peopi.app",
         "version": "v0.3.5"
       },
-      "sourceFingerprint": "v2-4933cc1a-1f7a18d0-1576944e-18f5ae7d-d981b0b1-dc603bdc",
+      "sourceFingerprint": "v2-1612ee1b-1f7a18d0-1576944e-18f5ae7d-d981b0b1-dc603bdc",
       "scrollExtent": {
         "scrollHeight": 2277,
         "clientHeight": 803,
@@ -3089,7 +3090,7 @@ const peopiScreensMetadata = {
           "Open Source Licenses"
         ]
       },
-      "sourceFingerprint": "v2-16ef0ee4-e6f0f254-cd933303-eeef9c21-d981b0b1-68f5ce17",
+      "sourceFingerprint": "v2-15da654c-e6f0f254-cd933303-eeef9c21-d981b0b1-68f5ce17",
       "scrollExtent": {
         "scrollHeight": 1367,
         "clientHeight": 803,
@@ -3339,10 +3340,10 @@ ${staleNotice}**Screen ID:** \`${screenId}\`
 ---
 
 ## 1. Product Purpose & Primary Actions
-${screen.privacyRule}
+${screen.purpose || contract.purpose || (typeof specs !== 'undefined' && specs[screenId]?.purpose) || screen.privacyRule}
 
 ### Primary User Actions:
-${(contract.actions || [
+${((contract.actions && contract.actions.length) ? contract.actions : (typeof specs !== 'undefined' && specs[screenId]?.actions) ? specs[screenId].actions : [
   'Interact with primary on-screen CTA.',
   'Navigate to parent or adjacent root tabs.',
   'Preserve state on dismissal.'
