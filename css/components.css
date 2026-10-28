@@ -5126,11 +5126,43 @@
 /* ==========================================================================
    Dark Mode Overrides via #ds-workspace.ds-dark
    ========================================================================== */
-#ds-workspace.ds-dark .peopi-store-guide {
+#ds-workspace.ds-dark #ds-content:has(.peopi-store-guide),
+#ds-content.ds-dark:has(.peopi-store-guide) {
+  background: var(--ds-dark-bg, #10151d);
+  border-radius: 24px;
+  padding: 28px;
+  border: 1px solid var(--ds-dark-border, #343e4d);
+  box-sizing: border-box;
+}
+@media (max-width: 640px) {
+  #ds-workspace.ds-dark #ds-content:has(.peopi-store-guide),
+  #ds-content.ds-dark:has(.peopi-store-guide) {
+    padding: 16px;
+    border-radius: 18px;
+  }
+}
+#ds-workspace.ds-dark .peopi-store-guide,
+#ds-content.ds-dark .peopi-store-guide {
   --ink: #f2f4f7;
   --card: #1b222d;
   --line: #343e4d;
   --sub: #94a3b8;
+  background: var(--ds-dark-bg, #10151d);
+}
+#ds-workspace.ds-dark .store-section-title-wrap h2 {
+  color: #f2f4f7 !important;
+}
+#ds-workspace.ds-dark .store-section-title-wrap p {
+  color: #94a3b8 !important;
+}
+#ds-workspace.ds-dark .store-shot-foot span {
+  color: #94a3b8 !important;
+}
+#ds-workspace:not(.ds-dark) #ds-content:has(.peopi-store-guide),
+#ds-workspace:not(.ds-dark) .peopi-store-guide {
+  background: transparent;
+  padding: 0;
+  border: none;
 }
 #ds-workspace.ds-dark .store-icon-grid,
 #ds-workspace.ds-dark .store-desc-card,
@@ -12362,8 +12394,11 @@
   .ds-workbench-preview-col {
     padding: 12px 10px !important;
   }
-  #ds-content .ds-live-specimen.phone {
+  #ds-content .ds-live-specimen.phone:not(.ds-full-screen) {
     padding: 14px 12px !important;
+  }
+  #ds-content .ds-live-specimen.phone.ds-full-screen {
+    padding: 0 !important;
   }
 }
 
