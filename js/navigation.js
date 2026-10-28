@@ -6079,20 +6079,21 @@ ${fontDef}
 <rect width="1024" height="500" fill="#FF3300"/>
 <circle cx="980" cy="460" r="320" fill="#FF4411" opacity="0.35"/>
 <g id="brand-text">
-  <text x="76" y="160" fill="#FFFFFF" font-size="76" font-weight="800" letter-spacing="-4">peopi<tspan fill="#FFFFFF">.</tspan></text>
-  <text x="76" y="270" fill="#FFFFFF" font-size="44" font-weight="800" letter-spacing="-2">
+  <rect x="76" y="82" width="174" height="26" rx="13" fill="rgba(255,255,255,0.2)"/>
+  <text x="90" y="99" fill="#FFFFFF" font-family="'Manrope', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1">GOOGLE PLAY FEATURE</text>
+  <text x="76" y="175" fill="#FFFFFF" font-family="'Manrope', system-ui, sans-serif" font-size="72" font-weight="800" letter-spacing="-4">peopi<tspan fill="#FFFFFF">.</tspan></text>
+  <text x="76" y="260" fill="#FFFFFF" font-family="'Manrope', system-ui, sans-serif" font-size="42" font-weight="800" letter-spacing="-2">
     <tspan x="76" dy="0">Professional connections,</tspan>
-    <tspan x="76" dy="55">closer to you.</tspan>
+    <tspan x="76" dy="52">closer to you.</tspan>
   </text>
+  <text x="76" y="370" fill="rgba(255,255,255,0.92)" font-family="'Manrope', system-ui, sans-serif" font-size="19" font-weight="600" letter-spacing="-0.5">Proximity discovery for real-world professional intent.</text>
 </g>
-<g id="phone-showcase" transform="translate(670, 60) rotate(5)" filter="url(#phone-shadow)">
+<g id="phone-showcase" transform="translate(670, 65) rotate(4)" filter="url(#phone-shadow)">
   <!-- Outer Bezel Frame -->
   <rect x="0" y="0" width="280" height="560" rx="38" fill="#1E293B" stroke="#0F172A" stroke-width="2"/>
   <!-- Phone Screen with Authentic Product Capture -->
   <rect x="8" y="8" width="264" height="540" rx="30" fill="#FFFFFF"/>
   <image href="data:image/png;base64,${PEOPI_SCREEN_ACTIVE_LIGHT_B64}" xlink:href="data:image/png;base64,${PEOPI_SCREEN_ACTIVE_LIGHT_B64}" x="8" y="8" width="264" height="540" preserveAspectRatio="xMidYMin slice" clip-path="url(#screen-clip)"/>
-  <!-- Dynamic Island Notch -->
-  <rect x="100" y="15" width="80" height="12" rx="6" fill="#1E293B"/>
   <!-- Screen Gloss Border -->
   <rect x="8" y="8" width="264" height="540" rx="30" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
 </g>
@@ -6252,9 +6253,8 @@ function initStoreGuideInteractions() {
         <h2 style="font-size:clamp(22px,3vw,30px);font-weight:800;margin:0 0 4px;letter-spacing:-0.03em;">${data.title}</h2>
         <span style="font-size:12px;opacity:0.85;font-weight:600;">${data.sub}</span>
       </div>
-      <div class="store-lightbox-phone-frame" style="width:78%;max-width:270px;margin:0 auto;border:3px solid rgba(255,255,255,0.25);border-bottom:0;border-radius:24px 24px 0 0;overflow:hidden;box-shadow:0 -4px 24px rgba(0,0,0,0.3);background:#fff;">
-        <div style="width:60px;height:8px;background:#1e293b;border-radius:0 0 6px 6px;margin:0 auto 4px;"></div>
-        <img src="${data.imgSrc}" alt="${data.alt}" style="width:100%;height:auto;display:block;border-radius:12px 12px 0 0;">
+      <div class="store-lightbox-phone-frame" style="width:78%;max-width:270px;margin:0 auto;border:3px solid rgba(255,255,255,0.25);border-bottom:0;border-radius:24px 24px 0 0;overflow:hidden;box-shadow:0 -4px 24px rgba(0,0,0,0.3);background:#fff;padding:3px 3px 0 3px;">
+        <img src="${data.imgSrc}" alt="${data.alt}" style="width:100%;height:auto;display:block;border-radius:20px 20px 0 0;">
       </div>
       <div style="font-size:11.5px;opacity:0.75;text-align:center;margin-top:8px;">Press ESC or tap outside to close</div>
     `;
@@ -11316,9 +11316,10 @@ function showDesign(key){
       <!-- Screenshot 01: Discover -->
       <div class="store-screenshot-card">
         <div class="store-screen-viewport store-shot-orange" tabindex="0" role="button" data-zoom-store="0" aria-label="Zoom 01 / Discover screenshot">
-          <h3 class="store-screen-title">Meet what’s next<span style="color:#ffffff;">.</span></h3>
+          <div class="store-screen-headline-wrap">
+            <h3 class="store-screen-title">Meet what’s next<span style="color:#ffffff;">.</span></h3>
+          </div>
           <div class="store-mini-phone">
-            <div class="store-mini-phone-notch"></div>
             <div class="store-mini-screen-content">
               <img src="assets/screens/screen-active-light.png" alt="Peopi Proximity Discovery Screen" class="store-screen-img" loading="lazy">
             </div>
@@ -11333,9 +11334,10 @@ function showDesign(key){
       <!-- Screenshot 02: Connect -->
       <div class="store-screenshot-card">
         <div class="store-screen-viewport store-shot-light" tabindex="0" role="button" data-zoom-store="1" aria-label="Zoom 02 / Connect screenshot">
-          <h3 class="store-screen-title">Connect with intention<span class="brand-dot">.</span></h3>
+          <div class="store-screen-headline-wrap">
+            <h3 class="store-screen-title">Connect with intention<span class="brand-dot">.</span></h3>
+          </div>
           <div class="store-mini-phone">
-            <div class="store-mini-phone-notch"></div>
             <div class="store-mini-screen-content">
               <img src="assets/screens/screen-profile-light.png" alt="Peopi Connection Request Screen" class="store-screen-img" loading="lazy">
             </div>
@@ -11350,9 +11352,10 @@ function showDesign(key){
       <!-- Screenshot 03: Keep in touch -->
       <div class="store-screenshot-card">
         <div class="store-screen-viewport store-shot-dark" tabindex="0" role="button" data-zoom-store="2" aria-label="Zoom 03 / Keep in touch screenshot">
-          <h3 class="store-screen-title">Stay in touch<span class="brand-dot">.</span></h3>
+          <div class="store-screen-headline-wrap">
+            <h3 class="store-screen-title">Stay in touch<span class="brand-dot">.</span></h3>
+          </div>
           <div class="store-mini-phone dark-bezel">
-            <div class="store-mini-phone-notch dark-notch"></div>
             <div class="store-mini-screen-content">
               <img src="assets/screens/screen-conversation-dark.png" alt="Peopi Direct Messaging Screen" class="store-screen-img" loading="lazy">
             </div>
@@ -11378,17 +11381,22 @@ function showDesign(key){
       <div class="store-feature-banner-card">
         <div class="store-feature-banner">
           <div class="store-feature-text">
-            <div class="store-feature-logo">peopi<span style="color:#ffffff;">.</span></div>
+            <div class="store-feature-brand-row">
+              <div class="store-feature-logo">peopi<span style="color:#ffffff;">.</span></div>
+              <span class="store-feature-badge">Google Play Feature</span>
+            </div>
             <h3 class="store-feature-headline">Professional connections, closer to you<span style="color:#ffffff;">.</span></h3>
+            <p class="store-feature-sub">Proximity discovery for real-world professional intent.</p>
           </div>
           <div class="store-feature-phone-peek">
-            <div class="store-mini-phone-notch" style="width:40px;height:6px;background:#1e293b;border-radius:0 0 5px 5px;margin:2px auto 4px;"></div>
-            <img src="assets/screens/screen-active-light.png" alt="Peopi Discovery Screen" class="store-peek-img" loading="lazy">
+            <div class="store-feature-phone-inner">
+              <img src="assets/screens/screen-active-light.png" alt="Peopi Discovery Screen" class="store-peek-img" loading="lazy">
+            </div>
           </div>
         </div>
         <div class="store-feature-foot">
-          <span>Google Play feature graphic / 1024 × 500 px</span>
-          <span>True aspect-ratio: 1024 / 500</span>
+          <span>Google Play feature graphic · 1024 × 500 px standard</span>
+          <span>Full canvas in download · Preview cropped for compact editorial layout</span>
         </div>
       </div>
 
