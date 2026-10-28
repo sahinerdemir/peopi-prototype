@@ -1250,7 +1250,7 @@ const peopiScreenRegistry = {
       },
       {
         "key": "verification-status",
-        "variant": "Unconnected",
+        "variant": "Not connected",
         "role": "LinkedIn trust verification tier summary card"
       },
       {
@@ -8219,12 +8219,11 @@ function showDesign(key){
         <div class="spacing-ex-stage">
           <div class="spacing-specimen-inline">
             <span class="specimen-icon-circle"><i class="ph ph-user"></i></span>
-            <div class="spacing-dimension-v">
-              <span class="dimension-line"></span>
-              <span class="dimension-pill">8px</span>
-              <span class="dimension-line"></span>
-            </div>
             <strong class="specimen-person-name">Alex Morgan</strong>
+            <div class="spacing-dimension-outside" aria-hidden="true">
+              <span class="dimension-pill">8px</span>
+              <span class="dimension-endpoints"></span>
+            </div>
           </div>
         </div>
         <p class="spacing-ex-note">Pairs icons with labels in chips, buttons and list items without crowding.</p>
@@ -12638,12 +12637,11 @@ function showDesign(key){
         <div class="spacing-ex-stage">
           <div class="spacing-specimen-inline">
             <span class="specimen-icon-circle"><i class="ph ph-user"></i></span>
-            <div class="spacing-dimension-v">
-              <span class="dimension-line"></span>
-              <span class="dimension-pill">8px</span>
-              <span class="dimension-line"></span>
-            </div>
             <strong class="specimen-person-name">Alex Morgan</strong>
+            <div class="spacing-dimension-outside" aria-hidden="true">
+              <span class="dimension-pill">8px</span>
+              <span class="dimension-endpoints"></span>
+            </div>
           </div>
         </div>
         <p class="spacing-ex-note">Pairs icons with labels in chips, buttons and list items without crowding.</p>
@@ -14850,6 +14848,11 @@ const scopedComponentStyles = {
   align-items: center;
   gap: 14px;
   margin-bottom: 14px;
+  min-width: 0;
+}
+.peopi-component-profile-card .person > div {
+  flex: 1;
+  min-width: 0;
 }
 .peopi-component-profile-card .avatar {
   width: 56px;
@@ -14878,13 +14881,22 @@ const scopedComponentStyles = {
   font-size: 17px;
   font-weight: 800;
   color: var(--ink, #0F172A);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
-.peopi-component-profile-card .person small {
+.peopi-component-profile-card .person small,
+.peopi-component-profile-card #personrole {
   display: block;
   font-size: 14px;
   line-height: 1.5;
   color: var(--ink-secondary, #64748B);
   margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 .peopi-component-profile-card .li-verified-badge {
   display: inline-flex !important;
@@ -15575,11 +15587,14 @@ const scopedComponentStyles = {
   overflow-wrap: anywhere;
 }
 .peopi-component-identity-card .myprofile-summary p {
-  font-size: 15px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.4;
   margin: 0 0 7px;
   color: var(--ink-secondary, #64748B);
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 .peopi-component-identity-card .myprofile-location {
   display: inline-flex;
@@ -15649,19 +15664,22 @@ const scopedComponentStyles = {
 /* Profile Avatar (Circular container, photo & initials fallback) */
 .peopi-component-avatar .avatar,
 .peopi-component-avatar .myprofile-avatar {
-  width: 56px;
-  height: 56px;
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  max-width: 64px !important;
   border-radius: 50% !important;
   background: var(--muted, #F1F5F9);
   color: var(--ink, #0F172A);
   display: grid;
   place-items: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   position: relative;
   overflow: hidden;
   isolation: isolate;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 .peopi-component-avatar .avatar img,
 .peopi-component-avatar .myprofile-avatar img {
@@ -15672,7 +15690,7 @@ const scopedComponentStyles = {
   object-fit: cover;
   border-radius: 50% !important;
   display: block;
-  z-index: 1;
+  z-index: 2;
 }
 `,
 
@@ -16299,8 +16317,11 @@ const scopedComponentStyles = {
 }
 .peopi-component-verification-status .verify-primary {
   border: 0;
-  background: var(--brand, #FF3300);
+  background: #0a66c2;
   color: #FFFFFF;
+}
+.peopi-component-verification-status .verify-primary:hover {
+  background: #004182;
 }
 .peopi-component-verification-status .verify-secondary {
   border: 1px solid var(--line, #E2E8F0);
@@ -16310,24 +16331,86 @@ const scopedComponentStyles = {
 `,
 
   'toast-notification': `
-/* Toast Notification Pill (Floating status pill, high-contrast dark surface) */
-.peopi-component-toast-notification .toast,
-.peopi-component-toast-notification .peopi-toast {
+/* Toast Notification Card (Transient status feedback, role status, polite aria-live) */
+.peopi-component-toast-notification .peopi-toast-card,
+.peopi-component-toast-notification .toast {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.9);
-  color: #FFFFFF;
-  font-size: 13px;
-  font-weight: 650;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  margin: 12px auto;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--card, #FFFFFF);
+  border: 1px solid var(--line, #E2E8F0);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
+  text-align: left;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.peopi-component-toast-notification .toast-icon-tile {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.peopi-component-toast-notification .toast-icon-info {
+  background: rgba(10, 102, 194, 0.14);
+  color: #0a66c2;
+}
+.peopi-component-toast-notification .toast-icon-success {
+  background: rgba(16, 185, 129, 0.14);
+  color: #10b981;
+}
+.peopi-component-toast-notification .toast-icon-warning {
+  background: rgba(245, 158, 11, 0.14);
+  color: #d97706;
+}
+.peopi-component-toast-notification .toast-content {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  padding-top: 1px;
+}
+.peopi-component-toast-notification .toast-title {
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.35;
+  color: var(--ink, #0F172A);
+  margin: 0 0 3px;
+}
+.peopi-component-toast-notification .toast-desc {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-secondary, #64748B);
+  margin: 0;
+}
+.peopi-component-toast-notification .toast-dismiss-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  margin: -10px -10px -10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-secondary, #64748B);
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 17px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.peopi-component-toast-notification .toast-dismiss-btn:hover {
+  color: var(--ink, #0F172A);
+  background: var(--muted, #F1F5F9);
 }
 `,
 
@@ -18726,19 +18809,19 @@ if (typeof window !== 'undefined') {
     'avatar':['Photo Avatar','Initials Fallback'],
     'chip':['Default','Active Tag'],
     'profile-progress':['Complete (100%)','In Progress (65%)'],
-    'profile-menu':['Default Menu','Active Item'],
+    'profile-menu':['Default Menu'],
     'content-section':['About Section','Experience Section'],
-    'verified-badge':['LinkedIn Verified','Unverified State'],
+    'verified-badge':['LinkedIn Verified'],
     'profile-documents':['Unlocked (Connected)','Locked (Pre-Connection)'],
     'connection-request':['Received Request','Sent Request'],
     'chat-bubble':['Full Thread','Received Only','Sent Only'],
     'chat-composer':['Default (Empty)','Typing Draft'],
     'privacy':['Invisible (Default)','Visible (Open)'],
     'privacy-row':['Hidden On','Hidden Off'],
-    'verification-status':['Unconnected','LinkedIn Connected'],
+    'verification-status':['Not connected','LinkedIn Connected'],
     'toast-notification':['Information','Success','Warning'],
-    'session-alert':['Visible (5m Warning)','Dismissed'],
-    'verification-step':['Standard Principles','Expanded View'],
+    'session-alert':['Visible (5m Warning)'],
+    'verification-step':['Standard Principles'],
     'empty-state':['No Requests','No Conversations'],
     'sheet':['Anonymous Preview','Connected Profile'],
     'dialog':['Go Invisible?','Sign Out?'],
@@ -19041,23 +19124,56 @@ if (typeof window !== 'undefined') {
   };
   peopiScreenSources['skills-chip-input']='Skills · Skills Chip Input';
   samples['toast-notification']=()=>{
-   const node=document.querySelector('#toast').cloneNode(true);
-   node.textContent='Social sign-in is a UI demo. OAuth is not connected yet.';
-   node.classList.remove('hide');
-   node.style.position='relative';
-   node.style.inset='auto';
-   node.style.margin='12px auto';
-   node.style.borderColor='rgba(255, 255, 255, 0.2)';
-   return catalogSection('Toast Notification Pill','Global Shell',sourceSpecimen(null,{node}),'Floating status pill for transient feedback, action confirmation, and privacy mode notifications.','toast-notification');
+   const node=document.createElement('div');
+   node.className='peopi-toast-card toast';
+   node.setAttribute('role','status');
+   node.setAttribute('aria-live','polite');
+   node.innerHTML=`<div class="toast-icon-tile toast-icon-info" aria-hidden="true"><i class="ph ph-info"></i></div><div class="toast-content"><div class="toast-title">Information notice</div><div class="toast-desc">Social sign-in is a UI demo. OAuth is not connected yet.</div></div><button type="button" class="toast-dismiss-btn" aria-label="Dismiss notification" title="Dismiss"><i class="ph ph-x" aria-hidden="true"></i></button>`;
+   const dismissBtn=node.querySelector('.toast-dismiss-btn');
+   if(dismissBtn){
+     dismissBtn.addEventListener('click',(e)=>{
+       e.stopPropagation();
+       node.style.opacity='0';
+       node.style.transform='translateY(-6px)';
+       setTimeout(()=>{ node.style.display='none'; }, 180);
+     });
+   }
+   return catalogSection('Toast Notification Pill','Global Shell',sourceSpecimen(null,{node}),'Floating status feedback pill for transient alerts, confirmations, and system notifications.','toast-notification');
   };
   peopiScreenSources['toast-notification']='Global Shell · Toast Notification Pill';
   samples['session-alert']=()=>{
-   const node=document.querySelector('#session-alert').cloneNode(true);
-   node.classList.remove('hide');
-   node.style.position='relative';
-   node.style.inset='auto';
-   node.style.margin='8px auto';
-   return catalogSection('Proximity Alert Banner','Discover',sourceSpecimen(null,{node}),'Interactive session expiration warning prompting users to extend discovery presence or dismiss before invisibility kicks in.','session-alert');
+   const alertNode=document.querySelector('#session-alert').cloneNode(true);
+   alertNode.classList.remove('hide');
+   alertNode.style.position='relative';
+   alertNode.style.inset='auto';
+   alertNode.style.margin='8px auto';
+
+   const wrapper=document.createElement('div');
+   wrapper.className='ds-session-alert-wrapper';
+   wrapper.style.cssText='width:100%;display:flex;flex-direction:column;align-items:center;';
+   wrapper.appendChild(alertNode);
+
+   const resetBtn=document.createElement('button');
+   resetBtn.type='button';
+   resetBtn.className='ds-alert-reset-btn';
+   resetBtn.style.cssText='display:none;margin-top:10px;padding:8px 16px;min-height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;';
+   resetBtn.textContent='Reset banner preview';
+   wrapper.appendChild(resetBtn);
+
+   const dismissBtn=alertNode.querySelector('#dismiss-alert, button:last-child');
+   if(dismissBtn){
+     dismissBtn.addEventListener('click',()=>{
+       alertNode.style.display='none';
+       resetBtn.style.display='inline-flex';
+     });
+   }
+   resetBtn.addEventListener('click',()=>{
+     alertNode.style.display='flex';
+     alertNode.style.removeProperty('display');
+     resetBtn.style.display='none';
+   });
+
+   return catalogSection('Proximity Alert Banner','Discover',sourceSpecimen(null,{node:wrapper}),'Interactive session expiration warning prompting users to extend discovery presence or dismiss before invisibility kicks in.','session-alert');
   };
   peopiScreenSources['session-alert']='Discover · Proximity Alert Banner';
   samples['exp-sheet']=()=>{
@@ -19121,7 +19237,15 @@ if (typeof window !== 'undefined') {
    return catalogSection('Chat Message Bubbles','Conversation',container.outerHTML,'Conversation bubbles for asynchronous direct messaging between mutually connected users.','chat-bubble');
   };
   samples['profile-progress']=()=>{const node=document.querySelector('#myprofile .myprofile-completion').cloneNode(true);const host=document.createElement('div');host.className='myprofile-identity-card';host.append(node);return catalogSection('Profile Completion Card','My Profile',sourceSpecimen(null,{node:host}),'','profile-progress');};
-  samples['verified-badge']=()=>catalogSection('Verified Trust Badge','Discover, My Profile',sourceSpecimen(null,{node:makeVerifiedBadge()}),'','verified-badge');
+  samples['verified-badge']=()=>{
+   const row=document.createElement('div');
+   row.className='verified-badge-sample-row';
+   row.style.cssText='display:inline-flex;align-items:center;gap:8px;font-size:17px;font-weight:800;color:var(--ink);';
+   const name=document.createElement('span');
+   name.textContent='Alex Morgan';
+   row.append(name, makeVerifiedBadge());
+   return catalogSection('Verified Trust Badge','Discover, My Profile',sourceSpecimen(null,{node:row}),'','verified-badge');
+  };
   samples['profile-documents']=()=>catalogSection('Document Attachment Grid','My Profile',sourceSpecimen('#myprofile #myprofile-docs-section'),'','profile-documents');
   peopiScreenSources['profile-documents']='My Profile · Document Attachment Grid';
   samples['network-row']=()=>catalogSection('Connection List Row','My Network',sourceSpecimen(null,{node:journeyRow(journeyPerson(journey.connections[0]||0),null,{label:'View',onClick:()=>{}})}),'','network-row');
@@ -19946,17 +20070,17 @@ if (typeof window !== 'undefined') {
       const av = preview.querySelector('.avatar, .myprofile-avatar');
       if (av) {
         if (variant.includes('initials')) {
-          av.querySelectorAll('img').forEach(im => im.remove());
+          av.replaceChildren();
           av.textContent = 'AM';
           av.style.backgroundColor = '#e1c9c6';
           av.style.color = '#705457';
         } else {
-          av.textContent = '';
+          av.replaceChildren();
           const img = document.createElement('img');
           img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[0]) || 'https://i.pravatar.cc/240?img=12';
           img.alt = 'Alex Morgan';
           img.loading = 'lazy';
-          av.replaceChildren(img);
+          av.appendChild(img);
           av.style.removeProperty('background-color');
           av.style.removeProperty('color');
           cleanEmptyAttrs(av);
@@ -19986,12 +20110,10 @@ if (typeof window !== 'undefined') {
       }
     } else if (comp === 'profile-menu') {
       const items = preview.querySelectorAll('.myprofile-menu-item, button, .menu-row');
-      if (variant.includes('active')) {
-        if (items[0]) items[0].style.backgroundColor = 'rgba(255, 51, 0, 0.08)';
-      } else if (items[0]) {
-        items[0].style.removeProperty('background-color');
-        cleanEmptyAttrs(items[0]);
-      }
+      items.forEach(it => {
+        it.style.removeProperty('background-color');
+        cleanEmptyAttrs(it);
+      });
     } else if (comp === 'content-section') {
       const h3 = preview.querySelector('h3');
       const p = preview.querySelector('p');
@@ -20005,12 +20127,8 @@ if (typeof window !== 'undefined') {
     } else if (comp === 'verified-badge') {
       const badge = preview.querySelector('.li-verified-badge');
       if (badge) {
-        if (variant.includes('unverified')) {
-          badge.style.display = 'none';
-        } else {
-          badge.style.removeProperty('display');
-          cleanEmptyAttrs(badge);
-        }
+        badge.style.removeProperty('display');
+        cleanEmptyAttrs(badge);
       }
     } else if (comp === 'profile-documents') {
       const isLocked = !variant.startsWith('unlocked') && variant.includes('locked');
@@ -20148,10 +20266,10 @@ if (typeof window !== 'undefined') {
         }
       }
     } else if (comp === 'verification-status') {
-      const isConnected = !variant.includes('unconnected') && variant.includes('connected');
-      const sub = preview.querySelector('#verify-linkedin-sub, [id="verify-linkedin-sub"], small');
-      const connectBtn = preview.querySelector('#verify-connect, [id="verify-connect"]');
-      const disconnectBtn = preview.querySelector('#verify-disconnect, [id="verify-disconnect"]');
+      const isConnected = variant.includes('linkedin connected') || (variant.includes('connected') && !variant.includes('not'));
+      const sub = preview.querySelector('#verify-linkedin-sub, [data-ds-source-id="verify-linkedin-sub"], [id$="verify-linkedin-sub"], small');
+      const connectBtn = preview.querySelector('#verify-connect, [data-ds-source-id="verify-connect"], [id$="verify-connect"]');
+      const disconnectBtn = preview.querySelector('#verify-disconnect, [data-ds-source-id="verify-disconnect"], [id$="verify-disconnect"]');
       const row = preview.querySelector('.verify-row');
 
       if (sub) {
@@ -20164,66 +20282,82 @@ if (typeof window !== 'undefined') {
           connectBtn.style.removeProperty('display');
           cleanEmptyAttrs(connectBtn);
         }
+        if (!connectBtn._dsWired) {
+          connectBtn._dsWired = true;
+          connectBtn.addEventListener('click', () => {
+            const card = connectBtn.closest('.ds-workbench-card');
+            if (card) applyWorkbenchVariant(card, 1);
+          });
+        }
       }
       if (disconnectBtn) {
         disconnectBtn.classList.toggle('hide', !isConnected);
         if (isConnected) disconnectBtn.style.display = 'flex';
         else {
-          disconnectBtn.style.removeProperty('display');
-          cleanEmptyAttrs(disconnectBtn);
+          disconnectBtn.style.display = 'none';
+        }
+        if (!disconnectBtn._dsWired) {
+          disconnectBtn._dsWired = true;
+          disconnectBtn.addEventListener('click', () => {
+            const card = disconnectBtn.closest('.ds-workbench-card');
+            if (card) applyWorkbenchVariant(card, 0);
+          });
         }
       }
       if (row) {
         row.classList.toggle('is-connected', isConnected);
       }
     } else if (comp === 'toast-notification') {
-      const toast = preview.querySelector('#toast, .toast, [data-ds-source-id="toast"]');
+      const toast = preview.querySelector('.peopi-toast-card, .toast');
       if (toast) {
-        if (variant === 'information') {
-          toast.textContent = 'Social sign-in is a UI demo. OAuth is not connected yet.';
-          toast.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-        } else if (variant === 'success') {
-          toast.textContent = 'Connection request sent successfully!';
-          toast.style.borderColor = '#22b783';
-        } else if (variant === 'warning') {
-          toast.textContent = 'Location accuracy is reduced in Private Mode.';
-          toast.style.borderColor = '#eab308';
+        toast.style.display = 'flex';
+        toast.style.opacity = '1';
+        toast.style.transform = 'none';
+
+        const iconTile = toast.querySelector('.toast-icon-tile');
+        const iconI = toast.querySelector('.toast-icon-tile i');
+        const titleEl = toast.querySelector('.toast-title');
+        const descEl = toast.querySelector('.toast-desc');
+
+        if (variant.includes('information')) {
+          if (iconTile) iconTile.className = 'toast-icon-tile toast-icon-info';
+          if (iconI) iconI.className = 'ph ph-info';
+          if (titleEl) titleEl.textContent = 'Information notice';
+          if (descEl) descEl.textContent = 'Social sign-in is a UI demo. OAuth is not connected yet.';
+        } else if (variant.includes('success')) {
+          if (iconTile) iconTile.className = 'toast-icon-tile toast-icon-success';
+          if (iconI) iconI.className = 'ph ph-check';
+          if (titleEl) titleEl.textContent = 'Request sent';
+          if (descEl) descEl.textContent = 'Connection request sent successfully to Alex Morgan.';
+        } else if (variant.includes('warning')) {
+          if (iconTile) iconTile.className = 'toast-icon-tile toast-icon-warning';
+          if (iconI) iconI.className = 'ph ph-warning';
+          if (titleEl) titleEl.textContent = 'Location accuracy';
+          if (descEl) descEl.textContent = 'Location accuracy is reduced in Private Mode.';
+        }
+
+        const dismissBtn = toast.querySelector('.toast-dismiss-btn');
+        if (dismissBtn && !dismissBtn._dsWired) {
+          dismissBtn._dsWired = true;
+          dismissBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-6px)';
+            setTimeout(() => { toast.style.display = 'none'; }, 180);
+          });
         }
       }
     } else if (comp === 'session-alert') {
-      const alert = preview.querySelector('#session-alert, .session-alert, [data-ds-source-id="session-alert"]');
-      let dismissHint = preview.querySelector('.ds-alert-dismissed-hint');
-      if (variant === 'dismissed') {
-        if (alert) alert.style.display = 'none';
-        if (!dismissHint && preview) {
-          dismissHint = document.createElement('div');
-          dismissHint.className = 'ds-alert-dismissed-hint';
-          dismissHint.style.cssText = 'padding:24px 16px;text-align:center;color:#64748B;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;';
-          dismissHint.innerHTML = '<i class="ph ph-bell-slash" style="color:#ff3300;"></i><span>Alert dismissed · Location beacon remains active</span>';
-          preview.appendChild(dismissHint);
-        }
-      } else {
-        if (alert) {
-          alert.style.removeProperty('display');
-          cleanEmptyAttrs(alert);
-        }
-        if (dismissHint) dismissHint.remove();
+      const alert = preview.querySelector('#session-alert, .session-alert');
+      if (alert) {
+        alert.style.removeProperty('display');
+        cleanEmptyAttrs(alert);
       }
     } else if (comp === 'verification-step') {
       const principles = preview.querySelector('.verify-principles');
       if (principles) {
-        let fourth = principles.querySelector('.verify-principle-expanded');
-        const isExpanded = variant.includes('expanded');
-        if (isExpanded) {
-          if (!fourth) {
-            fourth = document.createElement('div');
-            fourth.className = 'verify-principle-expanded';
-            fourth.innerHTML = '<i class="ph ph-lock-key" aria-hidden="true"></i><span><strong>Pre-connection privacy</strong><small>Initials-based halos protect identity until mutual connection acceptance.</small></span>';
-            principles.appendChild(fourth);
-          }
-        } else {
-          if (fourth) fourth.remove();
-        }
+        const fourth = principles.querySelector('.verify-principle-expanded');
+        if (fourth) fourth.remove();
       }
     } else if (comp === 'empty-state') {
       const emptyBox = preview.querySelector('.journey-empty');

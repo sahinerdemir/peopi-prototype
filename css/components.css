@@ -9762,9 +9762,47 @@
 
 /* Specimen Details inside Examples */
 .spacing-specimen-inline {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  position: relative;
+  padding: 24px 0 6px;
+}
+.spacing-dimension-outside {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  width: 8px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+.spacing-dimension-outside .dimension-pill {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #FF3300;
+  background: #FFF7F3;
+  border: 1px solid #FFE4D6;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+.spacing-dimension-outside .dimension-endpoints {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-left: 1.5px solid #FF3300;
+  border-right: 1.5px solid #FF3300;
+  border-bottom: 1px solid #FF3300;
 }
 .specimen-icon-circle {
   width: 32px;
@@ -9775,6 +9813,7 @@
   display: grid;
   place-items: center;
   font-size: 16px;
+  flex-shrink: 0;
 }
 .spacing-dimension-v {
   display: flex;
@@ -9808,7 +9847,8 @@
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 12px;
-  padding: 20px;
+  padding: 24px;
+  box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9969,28 +10009,68 @@
   top: 12px;
   transform: translate(100%, -50%);
 }
-.top-pad-badge::before { left: -14px; }
+.top-pad-badge::before {
+  left: auto;
+  right: 100%;
+  width: 24px;
+}
 
 .icon-gap-badge {
   right: -24px;
-  top: 48px;
+  top: 46px;
   transform: translate(100%, -50%);
 }
-.icon-gap-badge::before { left: -14px; }
+.icon-gap-badge::before {
+  left: auto;
+  right: 100%;
+  width: calc(100% + 236px);
+  max-width: 250px;
+  border-bottom: 1px dashed rgba(255, 51, 0, 0.4);
+}
+.icon-gap-badge::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 5px);
+  right: calc(100% + 242px);
+  width: 8px;
+  height: 10px;
+  border-left: 1.5px solid #FF3300;
+  border-right: 1.5px solid #FF3300;
+  pointer-events: none;
+}
 
 .content-gap-badge {
   right: -24px;
-  top: 118px;
+  top: 76px;
   transform: translate(100%, -50%);
 }
-.content-gap-badge::before { left: -14px; }
+.content-gap-badge::before {
+  left: auto;
+  right: 100%;
+  width: 24px;
+}
+.content-gap-badge::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 8px);
+  right: calc(100% + 24px);
+  width: 1px;
+  height: 16px;
+  border-top: 1.5px solid #FF3300;
+  border-bottom: 1.5px solid #FF3300;
+  pointer-events: none;
+}
 
 .bottom-pad-badge {
   right: -24px;
   bottom: 12px;
   transform: translate(100%, 50%);
 }
-.bottom-pad-badge::before { left: -14px; }
+.bottom-pad-badge::before {
+  left: auto;
+  right: 100%;
+  width: 24px;
+}
 
 #annotated-component-wrap:not(.show-measurements) .annot-badge,
 #annotated-component-wrap:not(.show-measurements) .annotated-pad-zone {
@@ -12269,6 +12349,34 @@
   container-name: profilecard;
 }
 
+/* Profile Avatar (Circular container, photo & initials fallback) */
+.ds-workbench-card[data-component="avatar"] .avatar,
+.ds-workbench-card[data-component="avatar"] .myprofile-avatar,
+.peopi-component-avatar .avatar,
+.peopi-component-avatar .myprofile-avatar {
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  max-width: 64px !important;
+  border-radius: 50% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: grid !important;
+  place-items: center !important;
+  box-sizing: border-box !important;
+}
+.ds-workbench-card[data-component="avatar"] img,
+.peopi-component-avatar img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+  z-index: 2 !important;
+}
+
 /* Discovery Profile Card: Connected Peer state suppresses intent heading and text with zero reserved gaps */
 .profilecard.is-connected .profilecard-intent-label,
 .profilecard.is-connected #personintent,
@@ -12333,20 +12441,20 @@
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1360px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+@media (max-width: 1080px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+@media (max-width: 680px) {
   .peopi-icons-guide .ds-icons-grid {
     grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-@media (max-width: 768px) {
-  .peopi-icons-guide .ds-icons-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-@media (max-width: 420px) {
-  .peopi-icons-guide .ds-icons-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
+    gap: 6px !important;
   }
 }
 .peopi-icons-guide .ds-icon-tile {
@@ -12508,25 +12616,25 @@
 }
 .peopi-icons-guide .ds-icons-grid {
   display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 12px !important;
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 10px !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
-@media (max-width: 1100px) {
+@media (max-width: 1360px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+@media (max-width: 1080px) {
+  .peopi-icons-guide .ds-icons-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+@media (max-width: 680px) {
   .peopi-icons-guide .ds-icons-grid {
     grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-@media (max-width: 768px) {
-  .peopi-icons-guide .ds-icons-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-@media (max-width: 420px) {
-  .peopi-icons-guide .ds-icons-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
+    gap: 6px !important;
   }
 }
 .peopi-icons-guide .ds-icon-tile {
