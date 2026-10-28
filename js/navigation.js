@@ -7349,6 +7349,9 @@ function initFoundationInteractions() {
     const avatar = card ? card.querySelector('.annotated-avatar') : null;
     const meta = card ? card.querySelector('.annotated-meta') : null;
     const badge = card ? card.querySelector('.icon-gap-badge') : null;
+    const topBadge = card ? card.querySelector('.top-pad-badge') : null;
+    const botBadge = card ? card.querySelector('.bottom-pad-badge') : null;
+    const contentBadge = card ? card.querySelector('.content-gap-badge') : null;
     const svg = card ? card.querySelector('.annotated-spacing-svg') : null;
     if (!card || !avatar || !meta || !svg) return;
 
@@ -7363,13 +7366,15 @@ function initFoundationInteractions() {
     const tickTop = avatarRect.top - cardRect.top - 6;
     const tickBottom = tickTop + 14;
     const barY = tickTop + 7;
-    const routeY = 8;
 
-    const badgeRect = badge ? badge.getBoundingClientRect() : null;
-    const badgeY = badgeRect ? badgeRect.top + badgeRect.height / 2 - cardRect.top : 46;
-    const cardRight = cardRect.width;
-    const channelX = cardRight - 10;
-    const badgeLeft = badgeRect ? badgeRect.left - cardRect.left : cardRight + 24;
+    const isMobile = window.innerWidth <= 640;
+
+    let mobileSvgGroup = svg.querySelector('.annotated-svg-mobile-connectors');
+    if (!mobileSvgGroup) {
+      mobileSvgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      mobileSvgGroup.setAttribute('class', 'annotated-svg-mobile-connectors');
+      svg.appendChild(mobileSvgGroup);
+    }
 
     const tickLeft = svg.querySelector('.tick-left');
     const tickRight = svg.querySelector('.tick-right');
@@ -7394,8 +7399,51 @@ function initFoundationInteractions() {
       tickBar.setAttribute('x2', x2);
       tickBar.setAttribute('y2', barY);
     }
-    if (leaderRoute) {
-      leaderRoute.setAttribute('d', `M ${xCenter} ${barY} L ${xCenter} ${routeY} L ${channelX} ${routeY} L ${channelX} ${badgeY} L ${badgeLeft} ${badgeY}`);
+
+    if (isMobile) {
+      // Mobile: straight vertical leader from 8px gap up to icon-gap-badge
+      if (leaderRoute) {
+        leaderRoute.setAttribute('d', `M ${xCenter} ${barY} L ${xCenter} -14`);
+      }
+
+      const cardH = cardRect.height;
+      const topPadRect = topBadge ? topBadge.getBoundingClientRect() : null;
+      const botPadRect = botBadge ? botBadge.getBoundingClientRect() : null;
+      const contentRect = contentBadge ? contentBadge.getBoundingClientRect() : null;
+
+      const topPadCenterX = topPadRect ? (topPadRect.left + topPadRect.width / 2 - cardRect.left) : (cardRect.width - 55);
+      const botPadCenterX = botPadRect ? (botPadRect.left + botPadRect.width / 2 - cardRect.left) : (cardRect.width - 55);
+      const leftChannelX = 12;
+
+      mobileSvgGroup.innerHTML = `
+        <!-- Top Pad vertical leader with horizontal tick in top 24px zone -->
+        <line x1="${topPadCenterX}" y1="-14" x2="${topPadCenterX}" y2="12" stroke="#FF3300" stroke-width="1" stroke-dasharray="3 2.5"/>
+        <line x1="${topPadCenterX - 8}" y1="12" x2="${topPadCenterX + 8}" y2="12" stroke="#FF3300" stroke-width="1.5"/>
+
+        <!-- Bottom Pad vertical leader with horizontal tick in bottom 24px zone -->
+        <line x1="${botPadCenterX}" y1="${cardH - 12}" x2="${botPadCenterX}" y2="${cardH + 14}" stroke="#FF3300" stroke-width="1" stroke-dasharray="3 2.5"/>
+        <line x1="${botPadCenterX - 8}" y1="${cardH - 12}" x2="${botPadCenterX + 8}" y2="${cardH - 12}" stroke="#FF3300" stroke-width="1.5"/>
+
+        <!-- Content Gap 16px bracket in left channel (x=12), routed cleanly down outside bio and button to badge -->
+        <line x1="${leftChannelX - 4}" y1="68" x2="${leftChannelX + 4}" y2="68" stroke="#FF3300" stroke-width="1.5"/>
+        <line x1="${leftChannelX - 4}" y1="84" x2="${leftChannelX + 4}" y2="84" stroke="#FF3300" stroke-width="1.5"/>
+        <line x1="${leftChannelX}" y1="68" x2="${leftChannelX}" y2="84" stroke="#FF3300" stroke-width="1.5"/>
+        <line x1="${leftChannelX}" y1="84" x2="${leftChannelX}" y2="${cardH + 14}" stroke="#FF3300" stroke-width="1" stroke-dasharray="3 2.5"/>
+        <line x1="${leftChannelX}" y1="${cardH + 14}" x2="${contentRect ? contentRect.left - cardRect.left : 52}" y2="${cardH + 14}" stroke="#FF3300" stroke-width="1" stroke-dasharray="3 2.5"/>
+      `;
+    } else {
+      // Desktop & Tablet (>640px): preserved right-side gutter leader routing
+      mobileSvgGroup.innerHTML = '';
+      const routeY = 8;
+      const badgeRect = badge ? badge.getBoundingClientRect() : null;
+      const badgeY = badgeRect ? badgeRect.top + badgeRect.height / 2 - cardRect.top : 46;
+      const cardRight = cardRect.width;
+      const channelX = cardRight - 10;
+      const badgeLeft = badgeRect ? badgeRect.left - cardRect.left : cardRight + 24;
+
+      if (leaderRoute) {
+        leaderRoute.setAttribute('d', `M ${xCenter} ${barY} L ${xCenter} ${routeY} L ${channelX} ${routeY} L ${channelX} ${badgeY} L ${badgeLeft} ${badgeY}`);
+      }
     }
   }
 
