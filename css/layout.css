@@ -321,14 +321,25 @@ body.ds-open .workspace{align-items:stretch}
 .ds-head-title{font-size:clamp(28px,3.2vw,36px)!important;font-weight:800!important;letter-spacing:-0.03em!important;color:var(--text-primary, #0F172A)!important;margin:0 0 6px!important;line-height:1.15!important}
 .ds-head p,
 .ds-head-desc{font-size:13.5px!important;color:var(--text-secondary, #64748B)!important;margin:0!important;line-height:1.5!important}
-#ds-workspace.ds-dark .ds-head h1,
-#ds-workspace.ds-dark .ds-head-title,
-#ds-workspace.dark .ds-head h1,
-#ds-workspace.dark .ds-head-title{color:#F8FAFC!important}
-#ds-workspace.ds-dark .ds-head p,
-#ds-workspace.ds-dark .ds-head-desc,
-#ds-workspace.dark .ds-head p,
-#ds-workspace.dark .ds-head-desc{color:#94A3B8!important}
+/* ds-head workspace panel header ALWAYS remains light */
+.ds-head,
+#ds-workspace .ds-head {
+  background: transparent !important;
+}
+.ds-head .ds-head-kicker,
+#ds-workspace .ds-head-kicker {
+  color: #FF3300 !important;
+}
+.ds-head .ds-head-title,
+#ds-workspace .ds-head-title,
+#ds-workspace .ds-head h1 {
+  color: #0F172A !important;
+}
+.ds-head .ds-head-desc,
+#ds-workspace .ds-head-desc,
+#ds-workspace .ds-head p {
+  color: var(--text-secondary, #64748B) !important;
+}
 #ds-back{background:white;border:1px solid #dce1e9;padding:11px 14px;border-radius:12px;white-space:nowrap;font-size:12px;font-weight:800}
 #ds-content{max-width:100%;width:100%;margin:0 auto;display:grid;gap:18px;box-sizing:border-box}
 .ds-panel{background:white;border:1px solid #dce1e9;border-radius:22px;padding:26px}
@@ -841,25 +852,7 @@ body.notes-open #dash-notes-toggle i {
     color: #ff3300 !important;
   }
 
-  body.dark .mobile-menu-toggle,
-  body.dark-theme .mobile-menu-toggle,
-  [data-theme="dark"] .mobile-menu-toggle,
-  body:has(#ds-workspace.ds-dark) .mobile-menu-toggle,
-  body:has(#ds-workspace.dark) .mobile-menu-toggle {
-    background: #222a37 !important;
-    border-color: #374151 !important;
-    color: #f8fafc !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
-  }
-  body.dark .mobile-menu-toggle:hover,
-  body.dark-theme .mobile-menu-toggle:hover,
-  [data-theme="dark"] .mobile-menu-toggle:hover,
-  body:has(#ds-workspace.ds-dark) .mobile-menu-toggle:hover,
-  body:has(#ds-workspace.dark) .mobile-menu-toggle:hover {
-    background: #2d3748 !important;
-    border-color: #4b5563 !important;
-    color: #ffffff !important;
-  }
+
 
   /* Slide-over Hamburger Navigation Drawer */
   .sidebar-nav-scroll {

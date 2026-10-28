@@ -6910,64 +6910,7 @@
   max-width: 740px !important;
 }
 
-#dashboard-workspace.ds-dark .dash-page-title,
-#dashboard-workspace.dash-dark .dash-page-title,
-#dashboard-workspace.dark .dash-page-title,
-#ds-workspace.ds-dark .dash-page-title,
-#ds-workspace.ds-dark .ds-head-title,
-#ds-workspace.ds-dark .ds-head h1,
-#ds-workspace.dark .dash-page-title,
-#ds-workspace.dark .ds-head-title,
-#ds-workspace.dark .ds-head h1 {
-  color: #F8FAFC !important;
-}
 
-#dashboard-workspace.ds-dark .dash-page-lead,
-#dashboard-workspace.dash-dark .dash-page-lead,
-#dashboard-workspace.dark .dash-page-lead,
-#ds-workspace.ds-dark .dash-page-lead,
-#ds-workspace.dark .dash-page-lead {
-  color: #F1F5F9 !important;
-}
-
-#dashboard-workspace.ds-dark .dash-page-desc,
-#dashboard-workspace.dash-dark .dash-page-desc,
-#dashboard-workspace.dark .dash-page-desc,
-#dashboard-workspace.ds-dark .overview-sub,
-#dashboard-workspace.dash-dark .overview-sub,
-#dashboard-workspace.dark .overview-sub,
-#ds-workspace.ds-dark .dash-page-desc,
-#ds-workspace.ds-dark .overview-sub,
-#ds-workspace.ds-dark .ds-head-desc,
-#ds-workspace.ds-dark .ds-head p,
-#ds-workspace.dark .dash-page-desc,
-#ds-workspace.dark .overview-sub,
-#ds-workspace.dark .ds-head-desc,
-#ds-workspace.dark .ds-head p {
-  color: #94A3B8 !important;
-}
-
-#dashboard-workspace.ds-dark .brand-dot,
-#dashboard-workspace.dash-dark .brand-dot,
-#dashboard-workspace.dark .brand-dot,
-#ds-workspace.ds-dark .brand-dot,
-#ds-workspace.dark .brand-dot {
-  color: #FF3300 !important;
-}
-
-#dashboard-workspace.ds-dark .dash-page-kicker,
-#dashboard-workspace.dash-dark .dash-page-kicker,
-#dashboard-workspace.dark .dash-page-kicker,
-#ds-workspace.ds-dark .dash-page-kicker,
-#ds-workspace.ds-dark .ds-head-kicker,
-#ds-workspace.ds-dark .ds-head small,
-#ds-workspace.ds-dark #ds-kicker,
-#ds-workspace.dark .dash-page-kicker,
-#ds-workspace.dark .ds-head-kicker,
-#ds-workspace.dark .ds-head small,
-#ds-workspace.dark #ds-kicker {
-  color: #FF3300 !important;
-}
 
 /* Full-width editorial intro container (680–760px reading measure) */
 .dash-page-intro {

@@ -41,33 +41,17 @@
 .ds-screen-ref{width:min(100%,340px);min-height:450px;padding:20px;border:1px solid #e4e7ec;border-radius:28px;background:#fff;display:flex;flex-direction:column;gap:14px}.ds-screen-ref>strong{font-size:24px;letter-spacing:-1px}.ds-screen-ref>strong span{color:#ff3300}.ds-screen-ref h3{font-size:24px;line-height:1.2;margin:0}.ds-ref-map{background:repeating-linear-gradient(35deg,#eef1f3 0 35px,#e2e6e9 36px 38px,#eef1f3 39px 70px);border-radius:18px;min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;padding:14px}.ds-ref-map span{background:white;border-radius:30px;padding:9px;font-size:11px}.ds-ref-map strong{font-size:11px;background:white;padding:9px;border-radius:30px}.ds-ref-map small{font-size:10px}.ds-ref-primary{border:0;background:#ff3300;color:white;border-radius:13px;padding:15px;font:800 12px Manrope;cursor:pointer}.ds-ref-card{max-width:420px;border:1px solid #e4e7ec;border-radius:18px;padding:20px;display:grid;gap:12px}.ds-ref-card h3{margin:0}.ds-ref-card p{font-size:12px;color:#687386}.ds-ref-line{display:flex;align-items:center;justify-content:space-between;gap:12px}.ds-ref-line input{accent-color:#ff3300;width:20px;height:20px}.ds-ref-track{height:7px;border-radius:10px;background:#e4e7ec;overflow:hidden}.ds-ref-track i{display:block;background:#ff3300;width:65%;height:100%}.ds-peopi-duration{display:flex;gap:10px;flex-wrap:wrap}.ds-peopi-duration button{border:1px solid #e4e7ec;border-radius:12px;background:white;padding:12px 16px;cursor:pointer}.ds-peopi-duration button.active{background:#ff3300;border-color:#ff3300;color:white}
 
 /* Design system theme preview — scoped to documentation, independent of phone theme */
-.ds-mode-switch{width:44px;height:44px;display:grid;place-items:center;border:1px solid #d7dce4;border-radius:12px;background:#fff;color:#263044;cursor:pointer;box-shadow:0 3px 12px #0000000d;transition:all .15s ease;padding:0;flex:none}
-.ds-mode-switch:hover{background:#f1f3f7}
-.ds-mode-switch .ph{font-size:19px;color:#263044}
-#ds-workspace.ds-dark .ds-mode-switch{background:#252e3a;border-color:#343e4d;color:#f2f4f7;box-shadow:0 3px 12px rgba(0,0,0,.25)}
-#ds-workspace.ds-dark .ds-mode-switch:hover{background:#343e4d}
-#ds-workspace.ds-dark .ds-mode-switch .ph{color:#f2f4f7}
+.ds-mode-switch{width:44px;height:44px;display:grid;place-items:center;border:1px solid #d7dce4!important;border-radius:12px;background:#fff!important;color:#263044!important;cursor:pointer;box-shadow:0 3px 12px #0000000d!important;transition:all .15s ease;padding:0;flex:none}
+.ds-mode-switch:hover{background:#f1f3f7!important}
+.ds-mode-switch .ph{font-size:19px;color:#263044!important}
 .ds-mode-switch:focus-visible{outline:3px solid #ff3300;outline-offset:2px}
-#ds-workspace.ds-dark,
-#ds-workspace.dark{--ds-dark-bg:#10151d;--ds-dark-surface:#1b222d;--ds-dark-border:#343e4d;--ds-dark-text:#f2f4f7;--ds-dark-muted:#a9b4c3;--ink:#f2f4f7;--sub:#a9b4c3;--text-primary:#f2f4f7;--text-secondary:#a9b4c3;background:var(--ds-dark-bg);color:var(--ds-dark-text)}
-#ds-workspace.ds-dark .ds-head h1,
-#ds-workspace.ds-dark .ds-head-title,
-#ds-workspace.ds-dark .dash-page-title,
-#ds-workspace.dark .ds-head h1,
-#ds-workspace.dark .ds-head-title,
-#ds-workspace.dark .dash-page-title{color:#F8FAFC!important}
-#ds-workspace.ds-dark .ds-head p,
-#ds-workspace.ds-dark .ds-head-desc,
-#ds-workspace.ds-dark .overview-sub,
-#ds-workspace.ds-dark .ds-panel p,
-#ds-workspace.dark .ds-head p,
-#ds-workspace.dark .ds-head-desc,
-#ds-workspace.dark .overview-sub,
-#ds-workspace.dark .ds-panel p{color:var(--ds-dark-muted, #94A3B8)!important}
+#ds-workspace{background:var(--canvas,#f8f9fb)!important;color:var(--text-primary,#0F172A)!important}
+#ds-workspace.ds-dark #ds-content,
+#ds-content.ds-dark{--ds-dark-bg:#10151d;--ds-dark-surface:#1b222d;--ds-dark-border:#343e4d;--ds-dark-text:#f2f4f7;--ds-dark-muted:#a9b4c3;--ink:#f2f4f7;--sub:#a9b4c3;--text-primary:#f2f4f7;--text-secondary:#a9b4c3;color:var(--ds-dark-text)}
 #ds-workspace.ds-dark .ds-panel h2,
 #ds-workspace.dark .ds-panel h2{color:#F8FAFC!important}
 #ds-workspace.ds-dark .ds-panel,#ds-workspace.ds-dark .ds-ref-card,#ds-workspace.ds-dark .ds-screen-ref,#ds-workspace.ds-dark .ds-sample-card,#ds-workspace.ds-dark .ds-peopi-progress,#ds-workspace.ds-dark .ds-peopi-phone,#ds-workspace.ds-dark .ds-dialog-demo,#ds-workspace.ds-dark .ds-sheet,#ds-workspace.ds-dark .ds-choice-field,#ds-workspace.ds-dark .ds-peopi-settings,#ds-workspace.ds-dark .ds-peopi-notice{background:var(--ds-dark-surface);color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
-#ds-workspace.ds-dark .ds-mode-switch,#ds-workspace.ds-dark .ds-icon-action,#ds-workspace.ds-dark .ds-details summary,#ds-workspace.ds-dark .ds-menu-list,#ds-workspace.ds-dark .ds-color,#ds-workspace.ds-dark .ds-segment,#ds-workspace.ds-dark .ds-bottom-nav,#ds-workspace.ds-dark .ds-app-bar,#ds-workspace.ds-dark .ds-rail,#ds-workspace.ds-dark .ds-list-demo,#ds-workspace.ds-dark .ds-accordion,#ds-workspace.ds-dark .ds-carousel>div,#ds-workspace.ds-dark .ds-pill-tag:not(.orange):not(.dark),#ds-workspace.ds-dark .ds-peopi-duration button:not(.active),#ds-workspace.ds-dark .ds-chat-preview .incoming{background:#252e3a;color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
+#ds-workspace.ds-dark .ds-icon-action,#ds-workspace.ds-dark .ds-details summary,#ds-workspace.ds-dark .ds-menu-list,#ds-workspace.ds-dark .ds-color,#ds-workspace.ds-dark .ds-segment,#ds-workspace.ds-dark .ds-bottom-nav,#ds-workspace.ds-dark .ds-app-bar,#ds-workspace.ds-dark .ds-rail,#ds-workspace.ds-dark .ds-list-demo,#ds-workspace.ds-dark .ds-accordion,#ds-workspace.ds-dark .ds-carousel>div,#ds-workspace.ds-dark .ds-pill-tag:not(.orange):not(.dark),#ds-workspace.ds-dark .ds-peopi-duration button:not(.active),#ds-workspace.ds-dark .ds-chat-preview .incoming{background:#252e3a;color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
 #ds-workspace.ds-dark .ds-form-grid input,#ds-workspace.ds-dark .ds-form-grid select,#ds-workspace.ds-dark .ds-form-grid textarea,#ds-workspace.ds-dark .ds-field input,#ds-workspace.ds-dark .ds-field select,#ds-workspace.ds-dark .ds-field textarea{background:#252e3a;color:var(--ds-dark-text);border-color:var(--ds-dark-border)}
 #ds-workspace.ds-dark input::placeholder,#ds-workspace.ds-dark textarea::placeholder{color:#a9b4c3}
 #ds-workspace.ds-dark .ds-tabs button,#ds-workspace.ds-dark .ds-menu-list button,#ds-workspace.ds-dark .ds-segment button,#ds-workspace.ds-dark .ds-bottom-nav button,#ds-workspace.ds-dark .ds-rail button{color:var(--ds-dark-muted)}

@@ -731,6 +731,15 @@ function applyAppearance(mode){
   else if(mode === 'light') isDark = false;
   else isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   $('#phone')?.classList.toggle('dark', isDark);
+  window.peopiAllowedThemePreference = isDark ? 'dark' : 'light';
+  document.body.classList.remove('dark');
+  const dsModeBtn = document.getElementById('ds-mode-switch');
+  if (dsModeBtn) {
+    dsModeBtn.setAttribute('aria-pressed', String(isDark));
+    dsModeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    dsModeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    dsModeBtn.innerHTML = isDark ? '<i class="ph ph-sun" aria-hidden="true"></i>' : '<i class="ph ph-moon" aria-hidden="true"></i>';
+  }
   const themeBtn = $('#theme');
   if(themeBtn){
     themeBtn.innerHTML = isDark ? '<i class="ph ph-sun" aria-hidden="true"></i>' : '<i class="ph ph-moon" aria-hidden="true"></i>';

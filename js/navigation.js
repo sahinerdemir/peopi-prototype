@@ -7409,10 +7409,13 @@ function initFoundationInteractions() {
 }
 
 
+window.peopiAllowedThemePreference = window.peopiAllowedThemePreference || 'light';
+
 function showDesign(key){
  const item=dsData[key];if(!item)return;
  const isBrand = ['logo','business','social','voice','presentation','store','photo','email','press'].includes(key);
  const isComponent = key.startsWith('component-') || ['buttons','inputs'].includes(key);
+ const isAllowedThemeCategory = isBrand || isComponent;
  openCategory(isBrand ? 'cat-brand' : (isComponent ? 'cat-components' : 'cat-design'));
  document.querySelectorAll('.dash-doc-link').forEach(b=>{
   b.classList.remove('selected');
@@ -7423,11 +7426,41 @@ function showDesign(key){
   featCard.classList.remove('is-active');
   featCard.setAttribute('aria-current', 'false');
  }
- document.body.classList.add('ds-open');$('#ds-workspace').hidden=false;$('#ds-inspector').hidden=false;
+ document.body.classList.add('ds-open');
+ document.body.classList.remove('dark');
+ $('#ds-workspace').hidden=false;$('#ds-inspector').hidden=false;
  $('#ds-workspace').classList.toggle('view-color', key === 'color');
  $('#ds-workspace').classList.toggle('view-components', isComponent);
  if(key === 'icons') key = 'icons-library';
  $('#ds-title').textContent=item[0];$('#ds-description').textContent=item[1];
+
+ // Theme boundary enforcement: Theme controls & dark content ONLY in BRANDING, COMPONENTS, SCREENS
+ const dsModeBtn = document.getElementById('ds-mode-switch');
+ if (isAllowedThemeCategory) {
+  if (dsModeBtn) {
+   dsModeBtn.style.display = '';
+   dsModeBtn.removeAttribute('hidden');
+   dsModeBtn.setAttribute('aria-hidden', 'false');
+   const isDark = (window.peopiAllowedThemePreference === 'dark');
+   dsModeBtn.setAttribute('aria-pressed', String(isDark));
+   dsModeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+   dsModeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+   dsModeBtn.innerHTML = isDark ? '<i class="ph ph-sun" aria-hidden="true"></i>' : '<i class="ph ph-moon" aria-hidden="true"></i>';
+  }
+  const isDark = (window.peopiAllowedThemePreference === 'dark');
+  $('#ds-workspace')?.classList.toggle('ds-dark', isDark);
+  $('#ds-content')?.classList.toggle('ds-dark', isDark);
+ } else {
+  // Light-only categories: Design System (Foundations & Developer Documentation)
+  if (dsModeBtn) {
+   dsModeBtn.style.display = 'none';
+   dsModeBtn.setAttribute('hidden', '');
+   dsModeBtn.setAttribute('aria-hidden', 'true');
+  }
+  $('#ds-workspace')?.classList.remove('ds-dark');
+  $('#ds-content')?.classList.remove('ds-dark');
+  // Preserved preference window.peopiAllowedThemePreference is NOT modified!
+ }
  const existingSmKitBtn = document.getElementById('ds-sm-mediakit-btn');
  if(key === 'social'){
   if(!existingSmKitBtn){
@@ -20789,13 +20822,24 @@ const dsModeButton=$('#ds-mode-switch');
 if(dsModeButton){
  dsModeButton.addEventListener('click',()=>{
   const dark=$('#ds-workspace').classList.toggle('ds-dark');
-  document.body.classList.toggle('dark',dark);
+  window.peopiAllowedThemePreference = dark ? 'dark' : 'light';
+  $('#ds-content')?.classList.toggle('ds-dark', dark);
+  document.body.classList.remove('dark');
   all('#ds-content .ds-live-specimen').forEach(el=>el.classList.toggle('dark',dark));
   dsModeButton.setAttribute('aria-pressed',String(dark));
   dsModeButton.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
   dsModeButton.title=dark?'Switch to light mode':'Switch to dark mode';
   dsModeButton.innerHTML=dark?'<i class="ph ph-sun" aria-hidden="true"></i>':'<i class="ph ph-moon" aria-hidden="true"></i>';
   refreshIcons();
+  const phone = $('#phone');
+  if (phone) phone.classList.toggle('dark', dark);
+  const themeBtn = $('#theme');
+  if (themeBtn) {
+    themeBtn.setAttribute('aria-pressed', String(dark));
+    themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeBtn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    themeBtn.innerHTML = dark ? '<i class="ph ph-sun" aria-hidden="true"></i>' : '<i class="ph ph-moon" aria-hidden="true"></i>';
+  }
  });
 }
 all('.ds-link').forEach(b=>b.addEventListener('click',()=>{closeDashboard();
@@ -21109,7 +21153,25 @@ document.addEventListener('click',e=>{
     return;
   }
 });
-function closeDesign(){document.body.classList.remove('ds-open');$('#ds-workspace').hidden=true;$('#ds-inspector').hidden=true;all('.ds-link').forEach(b=>b.classList.remove('selected'));renderSpec(typeof getCurrentActiveScreen==='function'?getCurrentActiveScreen():page);requestAnimationFrame(resizePhonePreview)}
+function closeDesign(){
+  document.body.classList.remove('ds-open');
+  document.body.classList.remove('dark');
+  $('#ds-workspace').hidden=true;
+  $('#ds-inspector').hidden=true;
+  all('.ds-link').forEach(b=>b.classList.remove('selected'));
+  const isDark = (window.peopiAllowedThemePreference === 'dark');
+  const phone = $('#phone');
+  if (phone) phone.classList.toggle('dark', isDark);
+  const themeBtn = $('#theme');
+  if (themeBtn) {
+    themeBtn.setAttribute('aria-pressed', String(isDark));
+    themeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    themeBtn.innerHTML = isDark ? '<i class="ph ph-sun" aria-hidden="true"></i>' : '<i class="ph ph-moon" aria-hidden="true"></i>';
+  }
+  renderSpec(typeof getCurrentActiveScreen==='function'?getCurrentActiveScreen():page);
+  requestAnimationFrame(resizePhonePreview);
+}
 all('#tree .tree-link').forEach(b=>b.addEventListener('click',()=>{closeDashboard();if(document.body.classList.contains('ds-open')){closeDesign()}}));
 
 function parseHash(){
@@ -21145,8 +21207,9 @@ function syncRouteFromHash(){
       openOverview(route&&route.view&&route.view!=='changelog'?route.view:'intro');
     }else if(route.type==='ds'){
       closeDashboard();
-      if(route.params&&(route.params.get('mode')==='dark'||route.params.get('dark')==='true')) { $('#ds-workspace').classList.add('ds-dark'); document.body.classList.add('dark'); }
-      else if(route.params&&route.params.get('mode')==='light') { $('#ds-workspace').classList.remove('ds-dark'); document.body.classList.remove('dark'); }
+      if(route.params&&(route.params.get('mode')==='dark'||route.params.get('dark')==='true')) { window.peopiAllowedThemePreference = 'dark'; }
+      else if(route.params&&route.params.get('mode')==='light') { window.peopiAllowedThemePreference = 'light'; }
+      document.body.classList.remove('dark');
       showDesign(route.id);
       if(route.params&&route.params.has('target')){
         const targetId=route.params.get('target');
