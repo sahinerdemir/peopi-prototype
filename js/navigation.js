@@ -17807,11 +17807,29 @@ function setDocSheetState(root, isEmpty) {
   const fileBox = root.querySelector('.doc-sheet-selected-file, [id$="selected-box"]');
   const uploadBtn = root.querySelector('.edit-doc-upload-btn, [id$="upload-btn"]');
   if (isEmpty) {
-    if (fileBox) { fileBox.classList.add('hide'); fileBox.style.removeProperty('display'); cleanEmptyAttrs(fileBox); }
-    if (uploadBtn) { uploadBtn.classList.remove('hide'); uploadBtn.style.removeProperty('display'); cleanEmptyAttrs(uploadBtn); }
+    if (fileBox) {
+      fileBox.classList.add('hide');
+      fileBox.hidden = true;
+      fileBox.style.setProperty('display', 'none', 'important');
+    }
+    if (uploadBtn) {
+      uploadBtn.classList.remove('hide');
+      uploadBtn.hidden = false;
+      uploadBtn.style.setProperty('display', 'flex', 'important');
+      cleanEmptyAttrs(uploadBtn);
+    }
   } else {
-    if (fileBox) { fileBox.classList.remove('hide'); fileBox.style.removeProperty('display'); cleanEmptyAttrs(fileBox); }
-    if (uploadBtn) { uploadBtn.classList.add('hide'); uploadBtn.style.removeProperty('display'); cleanEmptyAttrs(uploadBtn); }
+    if (fileBox) {
+      fileBox.classList.remove('hide');
+      fileBox.hidden = false;
+      fileBox.style.setProperty('display', 'flex', 'important');
+      cleanEmptyAttrs(fileBox);
+    }
+    if (uploadBtn) {
+      uploadBtn.classList.add('hide');
+      uploadBtn.hidden = true;
+      uploadBtn.style.setProperty('display', 'none', 'important');
+    }
   }
 }
 

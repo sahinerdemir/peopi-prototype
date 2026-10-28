@@ -2342,8 +2342,9 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .phone #doc-sheet .doc-sheet-head h3{font-size:21px;font-weight:800;color:var(--ink);margin:0 0 4px;line-height:1.25}
 .phone #doc-sheet .doc-sheet-head p{font-size:13.5px;color:var(--sub);margin:0;line-height:1.45}
 .phone #doc-sheet .journey-field{margin-bottom:12px}
-.phone #doc-sheet .doc-sheet-selected-file,
-.ds-sheet-specimen-root .doc-sheet-selected-file{width:100%!important;box-sizing:border-box!important;margin-top:8px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;padding:10px 12px!important;background:var(--card)!important;border:1.5px dashed var(--accent)!important;border-radius:16px!important;margin-bottom:10px!important;transition:background 0.15s;min-width:0!important}
+.phone #doc-sheet .doc-sheet-selected-file:not(.hide):not([hidden]),
+.ds-sheet-specimen-root .doc-sheet-selected-file:not(.hide):not([hidden]),
+.phone :is(#doc-sheet, .doc-sheet) .doc-sheet-selected-file:not(.hide):not([hidden]){width:100%!important;box-sizing:border-box!important;margin-top:8px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;padding:10px 12px!important;background:var(--card)!important;border:1.5px dashed var(--accent)!important;border-radius:16px!important;margin-bottom:10px!important;transition:background 0.15s;min-width:0!important}
 .phone #doc-sheet .doc-sheet-selected-file:hover,
 .ds-sheet-specimen-root .doc-sheet-selected-file:hover{background:#f1f1f1!important}
 .phone.dark #doc-sheet .doc-sheet-selected-file,
@@ -2352,6 +2353,21 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .phone.dark #doc-sheet .doc-sheet-selected-file:hover,
 .phone.dark .ds-sheet-specimen-root .doc-sheet-selected-file:hover,
 #ds-workspace.ds-dark .ds-sheet-specimen-root .doc-sheet-selected-file:hover{background:#252e3d!important}
+.phone #doc-sheet .doc-sheet-selected-file.hide,
+.ds-sheet-specimen-root .doc-sheet-selected-file.hide,
+.phone #doc-sheet .doc-sheet-selected-file[hidden],
+.ds-sheet-specimen-root .doc-sheet-selected-file[hidden],
+.phone :is(#doc-sheet, .doc-sheet) .doc-sheet-selected-file.hide,
+.phone :is(#doc-sheet, .doc-sheet) .doc-sheet-selected-file[hidden]{display:none!important}
+.phone #doc-sheet .edit-doc-upload-btn:not(.hide):not([hidden]),
+.ds-sheet-specimen-root .edit-doc-upload-btn:not(.hide):not([hidden]),
+.phone :is(#doc-sheet, .doc-sheet) .edit-doc-upload-btn:not(.hide):not([hidden]){display:flex!important}
+.phone #doc-sheet .edit-doc-upload-btn.hide,
+.ds-sheet-specimen-root .edit-doc-upload-btn.hide,
+.phone #doc-sheet .edit-doc-upload-btn[hidden],
+.ds-sheet-specimen-root .edit-doc-upload-btn[hidden],
+.phone :is(#doc-sheet, .doc-sheet) .edit-doc-upload-btn.hide,
+.phone :is(#doc-sheet, .doc-sheet) .edit-doc-upload-btn[hidden]{display:none!important}
 .phone #doc-sheet .peopi-doc-icon,
 .ds-sheet-specimen-root .peopi-doc-icon{width:36px!important;height:36px!important;flex:0 0 36px!important;border-radius:10px!important;display:grid!important;place-items:center!important}
 .phone #doc-sheet .doc-sheet-selected-info,
@@ -2362,7 +2378,10 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .ds-sheet-specimen-root .doc-sheet-selected-info small{font-size:11.5px!important;color:var(--sub)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;display:block!important;line-height:1.3!important}
 .phone #doc-sheet .doc-sheet-change-file-btn,
 .ds-sheet-specimen-root .doc-sheet-change-file-btn,
-.phone .sheet .doc-sheet-change-file-btn{font-size:12px!important;font-weight:700!important;padding:5px 12px!important;min-height:30px!important;height:30px!important;border-radius:999px!important;background:var(--card)!important;border:1px solid var(--line)!important;color:var(--ink)!important;cursor:pointer!important;flex:0 0 auto!important;flex-shrink:0!important;align-self:center!important;line-height:1!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;transition:all 0.15s ease!important}
+.phone .sheet .doc-sheet-change-file-btn{position:relative!important;font-size:12px!important;font-weight:700!important;padding:5px 12px!important;min-height:30px!important;height:30px!important;border-radius:999px!important;background:var(--card)!important;border:1px solid var(--line)!important;color:var(--ink)!important;cursor:pointer!important;flex:0 0 auto!important;flex-shrink:0!important;align-self:center!important;line-height:1!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;transition:all 0.15s ease!important}
+.phone #doc-sheet .doc-sheet-change-file-btn::before,
+.ds-sheet-specimen-root .doc-sheet-change-file-btn::before,
+.phone .sheet .doc-sheet-change-file-btn::before{content:""!important;position:absolute!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;min-width:44px!important;min-height:44px!important;width:100%!important;height:44px!important;pointer-events:auto!important}
 .phone #doc-sheet .doc-sheet-change-file-btn:hover,
 .ds-sheet-specimen-root .doc-sheet-change-file-btn:hover,
 .phone .sheet .doc-sheet-change-file-btn:hover{border-color:var(--accent)!important;color:var(--accent)!important}
