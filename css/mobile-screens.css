@@ -182,7 +182,30 @@
 #active #profilecard #personintent{display:block;background:none;border:0;border-radius:0;padding:0;margin:0;color:var(--sub);font-size:10px;line-height:1.45}
 #active #profilecard #viewprofile{float:none;margin:0;flex-shrink:0;white-space:nowrap}
 #active #profilecard .person{min-width:0}
-#active #profilecard .person > div{min-width:0;flex:1}
+#active #profilecard .person > div:not(.avatar){min-width:0;flex:1}
+#active #profilecard .person > .avatar,
+#active #profilecard .avatar,
+.profilecard .avatar {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px !important;
+  flex: 0 0 42px !important;
+  flex-grow: 0 !important;
+  flex-shrink: 0 !important;
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+}
+#active #profilecard .person > .avatar img,
+#active #profilecard .avatar img,
+.profilecard .avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
 #active #profilecard #personrole{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;display:block}
 /* Temporary map pin distribution: keep portraits clear of the bottom profile card. */
 #active #mapview .pin.p1{top:calc(19% + 150px)}

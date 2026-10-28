@@ -4141,7 +4141,7 @@ go=function(to,dir){
 };
 $('#openDemoProfile').addEventListener('click',()=>renderSpec('profile'));
 $('#closeprofile').addEventListener('click',()=>renderSpec(typeof getCurrentActiveScreen==='function'?getCurrentActiveScreen():page));
-function resizePhonePreview(){const stage=document.querySelector('.device-stage'),phone=document.getElementById('phone');if(!stage||!phone)return;const availableWidth=Math.max(200,stage.clientWidth-28),availableHeight=Math.max(300,stage.clientHeight-24);const scale=Math.min(availableWidth/393,availableHeight/852,1.18);phone.style.setProperty('--device-scale',String(Math.max(.35,scale)))}
+function resizePhonePreview(){const stage=document.querySelector('.device-stage'),phone=document.getElementById('phone');if(!stage||!phone)return;const toolbar=stage.querySelector('.stage-toolbar');const tbH=(toolbar&&window.innerWidth<=768&&window.getComputedStyle(toolbar).display!=='none')?(toolbar.offsetHeight+8):0;const availableWidth=Math.max(200,stage.clientWidth-20),availableHeight=Math.max(300,stage.clientHeight-16-tbH);const scale=Math.min(availableWidth/393,availableHeight/852,1.18);phone.style.setProperty('--device-scale',String(Math.max(.35,scale)))}
 const fullscreenPreviewButton=document.getElementById('preview-fullscreen');
 const fullscreenPreviewArea=document.querySelector('.preview-area');
 function setPrototypeImmersive(enabled){
@@ -14883,23 +14883,29 @@ const scopedComponentStyles = {
   margin-bottom: 14px;
   min-width: 0;
 }
-.peopi-component-profile-card .person > div {
+.peopi-component-profile-card .person > div:not(.avatar) {
   flex: 1;
   min-width: 0;
 }
+.peopi-component-profile-card .person > .avatar,
 .peopi-component-profile-card .avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px !important;
+  flex: 0 0 42px !important;
+  flex-grow: 0 !important;
+  flex-shrink: 0 !important;
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
   background: var(--muted, #F1F5F9);
   color: var(--ink, #0F172A);
   display: grid;
   place-items: center;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 800;
   position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
+  overflow: hidden !important;
 }
 .peopi-component-profile-card .avatar img {
   position: absolute;

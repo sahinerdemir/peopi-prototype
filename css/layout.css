@@ -606,16 +606,31 @@ body.notes-open .ds-stage-notes-btn {
 }
 @media (max-width: 768px) {
   .stage-toolbar {
-    top: 12px;
-    right: 12px;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    margin: 4px 12px 6px auto !important;
     gap: 6px;
     max-width: calc(100% - 24px);
+    align-self: flex-end !important;
+    z-index: 30;
+  }
+  .device-stage {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 4px 10px 14px !important;
+    overflow-y: auto !important;
+  }
+  .device-stage .phone {
+    transform-origin: top center !important;
+    flex-shrink: 0 !important;
   }
 }
 @media (max-width: 480px) {
   .stage-toolbar {
-    top: 8px;
-    right: 8px;
+    margin: 4px 8px 6px auto !important;
     gap: 4px;
     max-width: calc(100% - 16px);
   }

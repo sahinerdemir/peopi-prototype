@@ -1,8 +1,8 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Peopi — UX Workspace v0.3.5</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='114' fill='%23FF3300'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='-apple-system, BlinkMacSystemFont, Manrope, sans-serif' font-weight='800' font-size='260px' fill='%23ffffff' letter-spacing='-6px'%3Ep.%3C/text%3E%3C/svg%3E"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css?v=55cd422e47">
   <link rel="stylesheet" href="css/sidebar.css?v=dde03c267e">
-  <link rel="stylesheet" href="css/layout.css?v=efd10afc5c">
-  <link rel="stylesheet" href="css/mobile-screens.css?v=fea92fd895">
+  <link rel="stylesheet" href="css/layout.css?v=7e55c3bef7">
+  <link rel="stylesheet" href="css/mobile-screens.css?v=5c186d0c80">
   <link rel="stylesheet" href="css/components.css?v=d05e838917">
   <link rel="stylesheet" href="css/case-study.css?v=9e6517d06f">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css"><link rel="stylesheet" href="peopi-motion.css?v=543894ab96">
@@ -42,16 +42,31 @@
 }
 @media (max-width: 768px) {
   .stage-toolbar {
-    top: 12px;
-    right: 12px;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    margin: 4px 12px 6px auto !important;
     gap: 6px;
     max-width: calc(100% - 24px);
+    align-self: flex-end !important;
+    z-index: 30;
+  }
+  .device-stage {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 4px 10px 14px !important;
+    overflow-y: auto !important;
+  }
+  .device-stage .phone {
+    transform-origin: top center !important;
+    flex-shrink: 0 !important;
   }
 }
 @media (max-width: 480px) {
   .stage-toolbar {
-    top: 8px;
-    right: 8px;
+    margin: 4px 8px 6px auto !important;
     gap: 4px;
     max-width: calc(100% - 16px);
   }
@@ -4146,6 +4161,6 @@ body.prototype-immersive #preview-fullscreen {
   <script src="js/profile.js?v=13b8eee977"></script>
   <script src="js/connections.js?v=91ba8697b8"></script>
   <script src="js/messaging.js?v=cabc530fd5"></script>
-  <script src="js/navigation.js?v=23cdbc43e7"></script>
+  <script src="js/navigation.js?v=850d7ff513"></script>
   <script src="peopi-motion.js?v=a7c599e818"></script>
 </body></html>
