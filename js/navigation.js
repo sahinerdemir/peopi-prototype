@@ -17682,6 +17682,36 @@ function setConnectionRequestState(root, isSent) {
   }
 }
 
+function setVerificationStatusState(root, isConnected) {
+  if (!root) return;
+  const sub = root.querySelector('#verify-linkedin-sub, [data-ds-source-id="verify-linkedin-sub"], [id$="verify-linkedin-sub"], small');
+  const connectBtn = root.querySelector('#verify-connect, [data-ds-source-id="verify-connect"], [id$="verify-connect"], .verify-primary');
+  const disconnectBtn = root.querySelector('#verify-disconnect, [data-ds-source-id="verify-disconnect"], [id$="verify-disconnect"], .verify-secondary');
+  const row = root.querySelector('.verify-row');
+
+  if (sub) {
+    sub.textContent = isConnected ? 'Connected · Public profile linked' : 'Not connected';
+  }
+  if (connectBtn) {
+    connectBtn.classList.toggle('hide', isConnected);
+    if (isConnected) connectBtn.style.display = 'none';
+    else {
+      connectBtn.style.removeProperty('display');
+      cleanEmptyAttrs(connectBtn);
+    }
+  }
+  if (disconnectBtn) {
+    disconnectBtn.classList.toggle('hide', !isConnected);
+    if (isConnected) disconnectBtn.style.display = 'flex';
+    else {
+      disconnectBtn.style.display = 'none';
+    }
+  }
+  if (row) {
+    row.classList.toggle('is-connected', isConnected);
+  }
+}
+
 function applyStateToHtml(htmlString, stateFn, stateParam) {
   if (typeof document === 'undefined') return htmlString;
   const div = document.createElement('div');
@@ -18408,6 +18438,24 @@ function generateStandaloneHtml(compKey, activeVariantText, card) {
     } else {
       htmlCodeA = applyStateToHtml(htmlCode, setConnectionRequestState, false);
       htmlCodeB = applyStateToHtml(htmlCode, setConnectionRequestState, true);
+    }
+  }
+
+  if (compKey === 'verification-status') {
+    labelA = 'Instance A — Not Connected';
+    labelB = 'Instance B — LinkedIn Connected';
+    if (card && card.querySelector('.ds-workbench-preview-viewport')) {
+      const vp = card.querySelector('.ds-workbench-preview-viewport');
+      const cloneA = vp.cloneNode(true);
+      setVerificationStatusState(cloneA, false);
+      htmlCodeA = normalizeHtmlForReference(cloneA.innerHTML);
+
+      const cloneB = vp.cloneNode(true);
+      setVerificationStatusState(cloneB, true);
+      htmlCodeB = normalizeHtmlForReference(cloneB.innerHTML);
+    } else {
+      htmlCodeA = applyStateToHtml(htmlCode, setVerificationStatusState, false);
+      htmlCodeB = applyStateToHtml(htmlCode, setVerificationStatusState, true);
     }
   }
 
@@ -19486,6 +19534,9 @@ if (typeof window !== 'undefined') {
    if(feedback){feedback.hidden=false;feedback.textContent='Dismiss profile sheet · close preview';}
    return;
   }
+  if(button.closest('.session-alert, .ds-session-alert-wrapper, .verify-panel, [data-component="session-alert"], [data-component="verification-status"], [data-component="toast-notification"]')){
+   return;
+  }
   if(button.matches('.seg button,.durations button,.option,.nav button,.journey-tabs button')){
    const selector=button.matches('.option')?'.option':'button';
    const active=button.matches('.nav button')?'current':button.matches('.journey-tabs button')?'selected':'chosen';
@@ -20310,6 +20361,12 @@ if (typeof window !== 'undefined') {
       const connectBtn = preview.querySelector('#verify-connect, [data-ds-source-id="verify-connect"], [id$="verify-connect"]');
       const disconnectBtn = preview.querySelector('#verify-disconnect, [data-ds-source-id="verify-disconnect"], [id$="verify-disconnect"]');
       const row = preview.querySelector('.verify-row');
+      const feedback = card.querySelector('.ds-specimen-feedback') || preview.querySelector('.ds-specimen-feedback');
+
+      if (feedback) {
+        feedback.hidden = true;
+        feedback.textContent = '';
+      }
 
       if (sub) {
         sub.textContent = isConnected ? 'Connected · Public profile linked' : 'Not connected';
@@ -20323,9 +20380,11 @@ if (typeof window !== 'undefined') {
         }
         if (!connectBtn._dsWired) {
           connectBtn._dsWired = true;
-          connectBtn.addEventListener('click', () => {
-            const card = connectBtn.closest('.ds-workbench-card');
-            if (card) applyWorkbenchVariant(card, 1);
+          connectBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const c = connectBtn.closest('.ds-workbench-card');
+            if (c) applyWorkbenchVariant(c, 1);
           });
         }
       }
@@ -20337,9 +20396,11 @@ if (typeof window !== 'undefined') {
         }
         if (!disconnectBtn._dsWired) {
           disconnectBtn._dsWired = true;
-          disconnectBtn.addEventListener('click', () => {
-            const card = disconnectBtn.closest('.ds-workbench-card');
-            if (card) applyWorkbenchVariant(card, 0);
+          disconnectBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const c = disconnectBtn.closest('.ds-workbench-card');
+            if (c) applyWorkbenchVariant(c, 0);
           });
         }
       }
@@ -20387,10 +20448,83 @@ if (typeof window !== 'undefined') {
         }
       }
     } else if (comp === 'session-alert') {
-      const alert = preview.querySelector('#session-alert, .session-alert');
+      const alert = preview.querySelector('#session-alert, .session-alert, #ds-specimen-session-alert, [data-ds-source-id="session-alert"]');
+      const dismissBtn = preview.querySelector('#ds-specimen-dismiss-alert, #dismiss-alert, [data-ds-source-id="dismiss-alert"], button:last-child');
+      const extendBtn = preview.querySelector('#ds-specimen-extend-session, #extend-session, [data-ds-source-id="extend-session"], button:first-child');
+      const resetBtn = preview.querySelector('.ds-alert-reset-btn');
+      const feedback = card.querySelector('.ds-specimen-feedback') || preview.querySelector('.ds-specimen-feedback');
+
+      if (feedback) {
+        feedback.hidden = true;
+        feedback.textContent = '';
+      }
+
       if (alert) {
         alert.style.removeProperty('display');
+        alert.hidden = false;
         cleanEmptyAttrs(alert);
+      }
+      if (resetBtn) {
+        resetBtn.style.setProperty('display', 'none', 'important');
+        resetBtn.hidden = true;
+      }
+
+      const hideAlertShowReset = () => {
+        if (alert) {
+          alert.style.setProperty('display', 'none', 'important');
+          alert.hidden = true;
+        }
+        if (resetBtn) {
+          resetBtn.style.setProperty('display', 'inline-flex', 'important');
+          resetBtn.hidden = false;
+        }
+        if (feedback) {
+          feedback.hidden = true;
+          feedback.textContent = '';
+        }
+      };
+
+      const restoreAlertHideReset = () => {
+        if (alert) {
+          alert.style.removeProperty('display');
+          alert.hidden = false;
+          cleanEmptyAttrs(alert);
+        }
+        if (resetBtn) {
+          resetBtn.style.setProperty('display', 'none', 'important');
+          resetBtn.hidden = true;
+        }
+        if (feedback) {
+          feedback.hidden = true;
+          feedback.textContent = '';
+        }
+      };
+
+      if (dismissBtn && !dismissBtn._dsAlertWired) {
+        dismissBtn._dsAlertWired = true;
+        dismissBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          hideAlertShowReset();
+        });
+      }
+
+      if (extendBtn && !extendBtn._dsAlertWired) {
+        extendBtn._dsAlertWired = true;
+        extendBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          hideAlertShowReset();
+        });
+      }
+
+      if (resetBtn && !resetBtn._dsAlertWired) {
+        resetBtn._dsAlertWired = true;
+        resetBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          restoreAlertHideReset();
+        });
       }
     } else if (comp === 'verification-step') {
       const principles = preview.querySelector('.verify-principles');
@@ -21119,6 +21253,83 @@ all('.dash-sitemap-filter-pill').forEach(btn=>{
     });
   });
 });
+
+// Dedicated capture-phase specimen interaction handlers preventing generic fallback caption overrides
+document.addEventListener('click', e => {
+  const dismissBtn = e.target.closest('#ds-specimen-dismiss-alert, [data-ds-source-id="dismiss-alert"], .peopi-dismiss-alert');
+  if (dismissBtn && dismissBtn.closest('#workbench-session-alert, .ds-session-alert-wrapper')) {
+    e.stopPropagation();
+    e.preventDefault();
+    const wrapper = dismissBtn.closest('#workbench-session-alert, .ds-session-alert-wrapper');
+    const alert = wrapper.querySelector('#ds-specimen-session-alert, .session-alert');
+    const reset = wrapper.querySelector('.ds-alert-reset-btn');
+    const card = wrapper.closest('.ds-workbench-card');
+    const feedback = card ? card.querySelector('.ds-specimen-feedback') : null;
+    if (alert) {
+      alert.style.setProperty('display', 'none', 'important');
+      alert.hidden = true;
+    }
+    if (reset) {
+      reset.style.setProperty('display', 'inline-flex', 'important');
+      reset.hidden = false;
+    }
+    if (feedback) {
+      feedback.hidden = true;
+      feedback.textContent = '';
+    }
+    return;
+  }
+
+  const resetBtn = e.target.closest('.ds-alert-reset-btn');
+  if (resetBtn && resetBtn.closest('#workbench-session-alert, .ds-session-alert-wrapper')) {
+    e.stopPropagation();
+    e.preventDefault();
+    const wrapper = resetBtn.closest('#workbench-session-alert, .ds-session-alert-wrapper');
+    const alert = wrapper.querySelector('#ds-specimen-session-alert, .session-alert');
+    const card = wrapper.closest('.ds-workbench-card');
+    const feedback = card ? card.querySelector('.ds-specimen-feedback') : null;
+    if (alert) {
+      alert.style.removeProperty('display');
+      alert.hidden = false;
+      cleanEmptyAttrs(alert);
+    }
+    resetBtn.style.setProperty('display', 'none', 'important');
+    resetBtn.hidden = true;
+    if (feedback) {
+      feedback.hidden = true;
+      feedback.textContent = '';
+    }
+    return;
+  }
+
+  const verifyConnectBtn = e.target.closest('#ds-specimen-verify-connect, [data-ds-source-id="verify-connect"]');
+  if (verifyConnectBtn && verifyConnectBtn.closest('#workbench-verification-status')) {
+    e.stopPropagation();
+    e.preventDefault();
+    const card = verifyConnectBtn.closest('.ds-workbench-card');
+    if (card) applyWorkbenchVariant(card, 1);
+    const feedback = card ? card.querySelector('.ds-specimen-feedback') : null;
+    if (feedback) {
+      feedback.hidden = true;
+      feedback.textContent = '';
+    }
+    return;
+  }
+
+  const verifyDisconnectBtn = e.target.closest('#ds-specimen-verify-disconnect, [data-ds-source-id="verify-disconnect"]');
+  if (verifyDisconnectBtn && verifyDisconnectBtn.closest('#workbench-verification-status')) {
+    e.stopPropagation();
+    e.preventDefault();
+    const card = verifyDisconnectBtn.closest('.ds-workbench-card');
+    if (card) applyWorkbenchVariant(card, 0);
+    const feedback = card ? card.querySelector('.ds-specimen-feedback') : null;
+    if (feedback) {
+      feedback.hidden = true;
+      feedback.textContent = '';
+    }
+    return;
+  }
+}, true);
 
 document.addEventListener('click',e=>{
   const viewBtn=e.target.closest('#dashboard-workspace [data-view]');
