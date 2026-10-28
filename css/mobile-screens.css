@@ -325,7 +325,7 @@
 #auth .auth-social-btn svg{width:19px;height:19px;flex:none}
 #auth .auth-or-divider{display:flex;align-items:center;gap:12px;margin:0 0 15px;color:var(--sub);font-size:10px;white-space:nowrap}
 #auth .auth-or-divider:before,#auth .auth-or-divider:after{content:"";height:1px;flex:1;background:var(--line)}
-#auth .journey-notice{white-space:nowrap}
+#auth .journey-notice{white-space:normal;overflow-wrap:anywhere}
 /* Connected profiles don't need the discovery intent in the map preview. */
 #active #profilecard.is-connected .profilecard-intent-label,
 #active #profilecard.is-connected #personintent{display:none!important}
@@ -1210,7 +1210,8 @@ body.prototype-immersive .preview-fullscreen-toggle:hover{background:#303030}
 .phone.dark .onboarding-dot {
   background: rgba(255, 255, 255, 0.18);
 }
-.onboarding-dot.active {
+.onboarding-dot.active,
+.phone.dark .onboarding-dot.active {
   width: 24px;
   background: #FF3300;
 }
@@ -2380,6 +2381,9 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .phone #connectiondetail #connection-privacy-hint{padding:15px;min-height:52px;gap:8px;flex-wrap:wrap}.phone #connectiondetail #connection-privacy-hint>span,.phone #connectiondetail #connection-privacy-hint .connection-since{font-size:13px;line-height:1.5;white-space:normal}
 .phone .onepager{font-size:15px;min-height:44px;padding:10px 0}
 
+
+.phone #notifications .journey-body{padding-bottom:max(36px,env(safe-area-inset-bottom,36px))}
+.phone #notifications #notifications-done{min-height:48px;font-size:14px;margin-bottom:8px}
 
 /* ID-bearing legacy page rules must not override shared scroll clearance. */
 .phone .screen:has(>.nav):is(#requests,#messages,#activity,#editprofile,#privacy,#verification,#appsettings,#myprofile)>:is(.journey-body,.myprofile-scroll,.editprofile-scroll,.privacy-scroll,.verify-scroll,.settings-scroll){padding-bottom:140px;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 116px),transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 116px),transparent 100%)}
