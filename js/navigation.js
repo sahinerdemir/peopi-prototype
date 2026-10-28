@@ -7339,7 +7339,78 @@ function initFoundationInteractions() {
       const textSpan = btnToggle.querySelector('span');
       if (textSpan) textSpan.textContent = isActive ? 'Hide measurements' : 'Show measurements';
       toast(isActive ? 'Measurement lines visible' : 'Measurement lines hidden');
+      if (isActive) updateAnnotatedSpacingMeasurements();
     });
+  }
+
+  // Dynamic sub-pixel alignment of 8px icon gap annotation
+  function updateAnnotatedSpacingMeasurements() {
+    const card = document.querySelector('.annotated-card');
+    const avatar = card ? card.querySelector('.annotated-avatar') : null;
+    const meta = card ? card.querySelector('.annotated-meta') : null;
+    const badge = card ? card.querySelector('.icon-gap-badge') : null;
+    const svg = card ? card.querySelector('.annotated-spacing-svg') : null;
+    if (!card || !avatar || !meta || !svg) return;
+
+    const cardRect = card.getBoundingClientRect();
+    const avatarRect = avatar.getBoundingClientRect();
+    const metaRect = meta.getBoundingClientRect();
+
+    const x1 = avatarRect.right - cardRect.left;
+    const x2 = metaRect.left - cardRect.left;
+    const xCenter = (x1 + x2) / 2;
+
+    const tickTop = avatarRect.top - cardRect.top - 6;
+    const tickBottom = tickTop + 14;
+    const barY = tickTop + 7;
+    const routeY = 8;
+
+    const badgeRect = badge ? badge.getBoundingClientRect() : null;
+    const badgeY = badgeRect ? badgeRect.top + badgeRect.height / 2 - cardRect.top : 46;
+    const cardRight = cardRect.width;
+    const channelX = cardRight - 10;
+    const badgeLeft = badgeRect ? badgeRect.left - cardRect.left : cardRight + 24;
+
+    const tickLeft = svg.querySelector('.tick-left');
+    const tickRight = svg.querySelector('.tick-right');
+    const tickBar = svg.querySelector('.tick-bar');
+    const leaderRoute = svg.querySelector('.leader-route');
+
+    if (tickLeft) {
+      tickLeft.setAttribute('x1', x1);
+      tickLeft.setAttribute('y1', tickTop);
+      tickLeft.setAttribute('x2', x1);
+      tickLeft.setAttribute('y2', tickBottom);
+    }
+    if (tickRight) {
+      tickRight.setAttribute('x1', x2);
+      tickRight.setAttribute('y1', tickTop);
+      tickRight.setAttribute('x2', x2);
+      tickRight.setAttribute('y2', tickBottom);
+    }
+    if (tickBar) {
+      tickBar.setAttribute('x1', x1);
+      tickBar.setAttribute('y1', barY);
+      tickBar.setAttribute('x2', x2);
+      tickBar.setAttribute('y2', barY);
+    }
+    if (leaderRoute) {
+      leaderRoute.setAttribute('d', `M ${xCenter} ${barY} L ${xCenter} ${routeY} L ${channelX} ${routeY} L ${channelX} ${badgeY} L ${badgeLeft} ${badgeY}`);
+    }
+  }
+
+  updateAnnotatedSpacingMeasurements();
+  if (window.ResizeObserver) {
+    const card = document.querySelector('.annotated-card');
+    if (card && !card._roWired) {
+      card._roWired = true;
+      const ro = new ResizeObserver(() => updateAnnotatedSpacingMeasurements());
+      ro.observe(card);
+    }
+  }
+  if (!window._spacingResizeWired) {
+    window._spacingResizeWired = true;
+    window.addEventListener('resize', updateAnnotatedSpacingMeasurements);
   }
 
   const setupKeyCopy = (el, doCopy) => {
@@ -8335,6 +8406,14 @@ function showDesign(key){
           <div class="annotated-pad-zone pad-right"></div>
 
           <!-- Dimension Annotations -->
+          <svg class="annotated-spacing-svg" aria-hidden="true">
+            <g class="annotated-svg-icon-gap">
+              <line class="tick-left" x1="68" y1="18" x2="68" y2="32" stroke="#FF3300" stroke-width="1.5" stroke-linecap="round"/>
+              <line class="tick-right" x1="76" y1="18" x2="76" y2="32" stroke="#FF3300" stroke-width="1.5" stroke-linecap="round"/>
+              <line class="tick-bar" x1="68" y1="25" x2="76" y2="25" stroke="#FF3300" stroke-width="1.5"/>
+              <path class="leader-route" fill="none" stroke="#FF3300" stroke-width="1" stroke-dasharray="3 2.5"/>
+            </g>
+          </svg>
           <div class="annot-badge top-pad-badge">24px padding</div>
           <div class="annot-badge icon-gap-badge">8px icon gap</div>
           <div class="annot-badge content-gap-badge">16px content gap</div>
@@ -12753,6 +12832,14 @@ function showDesign(key){
           <div class="annotated-pad-zone pad-right"></div>
 
           <!-- Dimension Annotations -->
+          <svg class="annotated-spacing-svg" aria-hidden="true">
+            <g class="annotated-svg-icon-gap">
+              <line class="tick-left" x1="68" y1="18" x2="68" y2="32" stroke="#FF3300" stroke-width="1.5" stroke-linecap="round"/>
+              <line class="tick-right" x1="76" y1="18" x2="76" y2="32" stroke="#FF3300" stroke-width="1.5" stroke-linecap="round"/>
+              <line class="tick-bar" x1="68" y1="25" x2="76" y2="25" stroke="#FF3300" stroke-width="1.5"/>
+              <path class="leader-route" fill="none" stroke="#FF3300" stroke-width="1" stroke-dasharray="3 2.5"/>
+            </g>
+          </svg>
           <div class="annot-badge top-pad-badge">24px padding</div>
           <div class="annot-badge icon-gap-badge">8px icon gap</div>
           <div class="annot-badge content-gap-badge">16px content gap</div>
@@ -14385,6 +14472,14 @@ const scopedComponentStyles = {
   flex-shrink: 0;
   transition: all 0.15s ease;
 }
+.peopi-component-intent-choice .journey-choice .intent-checkbox i,
+.peopi-component-intent-choice .journey-choice .intent-checkbox [class*="ph"] {
+  opacity: 0;
+  visibility: hidden;
+  color: transparent;
+  transform: scale(0.5);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.15s ease;
+}
 .peopi-component-intent-choice .journey-choice.selected {
   border-color: var(--brand, #FF3300);
   background: color-mix(in srgb, var(--brand, #FF3300) 5%, var(--card, #FFFFFF));
@@ -14393,6 +14488,13 @@ const scopedComponentStyles = {
   border-color: var(--brand, #FF3300);
   background: var(--brand, #FF3300);
   color: #FFFFFF;
+}
+.peopi-component-intent-choice .journey-choice.selected .intent-checkbox i,
+.peopi-component-intent-choice .journey-choice.selected .intent-checkbox [class*="ph"] {
+  opacity: 1;
+  visibility: visible;
+  color: #FFFFFF;
+  transform: scale(1);
 }
 `,
 

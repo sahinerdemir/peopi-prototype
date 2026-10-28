@@ -1897,8 +1897,12 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .connection-cover-label .ph{font-size:13px;font-size:13px;}
 .connection-meta .ph{font-size:15px;font-size:15px;color:var(--accent);flex-shrink:0}
 /* Intent setup: checkmark only for selected choices */
-#on-intent-options .journey-choice .ph{visibility:visible}
-#on-intent-options .journey-choice .ph{font-size:18px;font-size:18px;flex:0 0 18px}
+#on-intent-options .journey-choice.selected .ph,
+#on-intent-options .journey-choice.selected i,
+#on-intent-options .journey-choice.selected [class*="ph"]{visibility:visible}
+#on-intent-options .journey-choice .ph,
+#on-intent-options .journey-choice i,
+#on-intent-options .journey-choice [class*="ph"]{font-size:18px;flex:0 0 18px}
 #connectiondetail .connection-confirmed .ph{font-size:18px;font-size:18px;flex:none;color:var(--accent)}
 #active .sessionfoot .ph{font-size:15px;font-size:15px;color:var(--accent);flex:none}
 #active #mapview .discovery-location-notice .ph{font-size:15px;font-size:15px;flex:0 0 15px;color:var(--accent)}
@@ -2122,12 +2126,14 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .phone #on-intent-options .journey-choice{border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;background:transparent;min-height:56px;padding:15px 18px;font-size:16px;font-weight:500;display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left;color:var(--ink);transition:background .15s ease}
 .phone #on-intent-options .journey-choice:last-child{border-bottom:0}
 .phone #on-intent-options .journey-choice.selected{background:transparent;font-weight:700}
-.phone #on-intent-options .intent-checkbox{width:26px;height:26px;min-width:26px;min-height:26px;border-radius:8px;border:2px solid color-mix(in srgb,var(--line) 70%,var(--ink) 25%);background:color-mix(in srgb,var(--card) 90%,transparent);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box;transition:all .2s cubic-bezier(.2,.8,.2,1);color:#fff}
+.phone #on-intent-options .intent-checkbox{width:26px;height:26px;min-width:26px;min-height:26px;border-radius:8px;border:2px solid color-mix(in srgb,var(--line) 70%,var(--ink) 25%);background:color-mix(in srgb,var(--card) 90%,transparent);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box;transition:all .2s cubic-bezier(.2,.8,.2,1);color:transparent}
 .phone #on-intent-options .journey-choice:hover .intent-checkbox{border-color:color-mix(in srgb,var(--accent) 60%,var(--line))}
 .phone #on-intent-options .journey-choice.selected .intent-checkbox{background:var(--accent);border-color:var(--accent);color:#fff}
-.phone #on-intent-options .intent-checkbox .ph{font-size:16px;line-height:1;color:#fff;opacity:0;transform:scale(.5);transition:transform .2s cubic-bezier(.2,.8,.2,1),opacity .15s ease;visibility:visible}
-.phone #on-intent-options .journey-choice.selected .intent-checkbox .ph{opacity:1;transform:scale(1)}
-.phone.dark #on-intent-options .intent-checkbox{border-color:color-mix(in srgb,var(--line) 65%,#fff 25%);background:rgba(255,255,255,.05)}
+.phone #on-intent-options .intent-checkbox i,
+.phone #on-intent-options .intent-checkbox [class*="ph"]{font-size:16px;line-height:1;color:transparent;opacity:0;visibility:hidden;transform:scale(.5);transition:transform .2s cubic-bezier(.2,.8,.2,1),opacity .15s ease}
+.phone #on-intent-options .journey-choice.selected .intent-checkbox i,
+.phone #on-intent-options .journey-choice.selected .intent-checkbox [class*="ph"]{color:#fff;opacity:1;visibility:visible;transform:scale(1)}
+.phone.dark #on-intent-options .intent-checkbox{border-color:color-mix(in srgb,var(--line) 65%,#fff 25%);background:rgba(255,255,255,.05);color:transparent}
 .phone.dark #on-intent-options .journey-choice.selected .intent-checkbox{background:var(--accent);border-color:var(--accent);color:#fff}
 .phone .journey-empty{font-size:15px;line-height:1.6;padding:28px 18px;background:var(--card);border-radius:22px;box-shadow:var(--ui-shadow);margin-top:14px}.phone .journey-empty strong{font-size:18px;margin-bottom:8px}
 .phone #notification-list .journey-person{gap:12px}.phone #notification-list .journey-person>div{flex:1;min-width:0}
