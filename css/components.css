@@ -12390,6 +12390,13 @@
   display: grid !important;
   place-items: center !important;
   box-sizing: border-box !important;
+  color: #141922 !important;
+}
+.ds-workbench-card .demo-photo-avatar.photo-no-image,
+.ds-live-specimen .demo-photo-avatar.photo-no-image,
+.peopi-component-network-row .demo-photo-avatar.photo-no-image,
+.peopi-component-avatar .demo-photo-avatar.photo-no-image {
+  color: #141922 !important;
 }
 .ds-workbench-card[data-component="avatar"] img,
 .peopi-component-avatar img {

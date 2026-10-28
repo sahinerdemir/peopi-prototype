@@ -20313,7 +20313,7 @@ if (typeof window !== 'undefined') {
           av.replaceChildren();
           av.textContent = 'AM';
           av.style.backgroundColor = '#e1c9c6';
-          av.style.color = '#705457';
+          av.style.color = '#141922';
         } else {
           av.replaceChildren();
           const img = document.createElement('img');

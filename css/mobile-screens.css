@@ -108,8 +108,26 @@
 #profsheet .sheetclose{position:absolute;top:18px;right:16px;z-index:12;float:none;margin:0}
 #profsheet .sheeteyebrow{padding-top:9px}
 /* No photo means a crisp initials avatar, regardless of connection status. */
-.demo-photo-avatar.photo-no-image{filter:none!important;backdrop-filter:none!important}
-.demo-photo-avatar.photo-no-image:after{display:none!important}
+.demo-photo-avatar.photo-no-image,
+.initials.demo-photo-avatar.photo-no-image,
+.activity-avatar.demo-photo-avatar.photo-no-image,
+.avatar.demo-photo-avatar.photo-no-image,
+.journey-person .initials.photo-no-image,
+.network-person-card .initials.photo-no-image,
+.chat-peer .initials.photo-no-image,
+.report-target-card .initials.photo-no-image,
+.phone.dark .demo-photo-avatar.photo-no-image,
+.phone.dark .initials.demo-photo-avatar.photo-no-image,
+.phone.dark .activity-avatar.demo-photo-avatar.photo-no-image,
+.phone.dark .journey-person .initials.photo-no-image,
+.phone.dark .network-person-card .initials.photo-no-image {
+  filter: none !important;
+  backdrop-filter: none !important;
+  color: #141922 !important;
+}
+.demo-photo-avatar.photo-no-image:after {
+  display: none !important;
+}
 /* Connection detail uses the same visual language and spacing as the professional sheet. */
 #connectiondetail .journey-body{padding:22px 24px 38px}
 #connectiondetail .connection-profile{padding:0}
