@@ -209,15 +209,15 @@ function toast(message,actionText,actionFn,customType,customTitle){
     } else if(msgStr.includes('cancelled')||msgStr.includes('declined')){
       titleStr='Request updated';
       typeStr=typeStr||'warning';
-    } else if(msgStr.includes('blocked')||msgStr.includes('Blocked')){
-      titleStr='Contact blocked';
-      typeStr=typeStr||'warning';
-    } else if(msgStr.includes('unhidden')||msgStr.includes('Unhidden')){
-      titleStr='Presence restored';
-      typeStr=typeStr||'success';
     } else if(msgStr.includes('Unblocked')||msgStr.includes('unblocked')){
       titleStr='Account unblocked';
       typeStr=typeStr||'success';
+    } else if(msgStr.includes('unhidden')||msgStr.includes('Unhidden')){
+      titleStr='Presence restored';
+      typeStr=typeStr||'success';
+    } else if(msgStr.includes('blocked')||msgStr.includes('Blocked')){
+      titleStr='Contact blocked';
+      typeStr=typeStr||'warning';
     } else if(msgStr.includes('stay open')||msgStr.includes('minutes')){
       titleStr='Session extended';
       typeStr=typeStr||'info';

@@ -186,10 +186,19 @@ function paintDemoPortrait(el,id){
     el.classList.toggle('connection-pin',connected);
     el.setAttribute('aria-label',(connected?'Your connection: ':'Nearby professional: ')+(connected?full.name:full.initial));
   }
-  el.style.backgroundColor=full.color;
+  const isAnonTarget = el.classList.contains('anonymous') || el.id === 'avatar' || el.classList.contains('anonavatar');
+  if(!isAnonTarget){
+    el.style.backgroundColor=full.color;
+  }else{
+    el.style.removeProperty('background-color');
+  }
   el.textContent=full.initial;
   if(!photoUrl){
-    el.style.color='#141922';
+    if(isAnonTarget){
+      el.style.removeProperty('color');
+    }else{
+      el.style.color='#141922';
+    }
   }else{
     el.style.removeProperty('color');
   }
@@ -202,7 +211,7 @@ function paintDemoPortrait(el,id){
       photo.remove();
       el.classList.remove('photo-private');
       el.classList.add('photo-no-image');
-      el.style.color='#141922';
+      if(!isAnonTarget) el.style.color='#141922';
     };
     el.append(photo);
   }

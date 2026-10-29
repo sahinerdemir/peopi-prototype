@@ -125,6 +125,30 @@
   backdrop-filter: none !important;
   color: #141922 !important;
 }
+
+/* Fallback avatar & anonymous initials contrast: >=4.5:1 across themes */
+.anonymous,
+.anonavatar,
+#avatar,
+#active #profilecard #avatar,
+.avatar.anonymous,
+.discovery-list-avatar.anonymous {
+  background: var(--muted) !important;
+  color: var(--ink, #141922) !important;
+}
+
+.phone.dark .anonymous,
+.phone.dark .anonavatar,
+.phone.dark #avatar,
+.phone.dark #active #profilecard #avatar,
+.phone.dark .avatar.anonymous,
+.phone.dark .discovery-list-avatar.anonymous,
+.phone.dark .demo-photo-avatar.photo-private.photo-no-image.anonymous,
+.phone.dark .avatar.demo-photo-avatar.photo-no-image,
+.phone.dark #avatar.demo-photo-avatar.photo-no-image {
+  background: var(--muted) !important;
+  color: var(--ink, #f5f7fa) !important;
+}
 .demo-photo-avatar.photo-no-image:after {
   display: none !important;
 }
