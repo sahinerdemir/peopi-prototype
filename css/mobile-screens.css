@@ -2446,10 +2446,118 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 
 .phone #profsheet .profilehero .connection-profile-heading p,.phone #profsheet .profilehero #detailrole{font-size:15px;line-height:1.5}
 .phone #profsheet .profiledisclaimer{font-size:13px;line-height:1.6}
-.phone #profsheet #detail-privacy-hint.connected-hint{padding:10px 14px;min-height:52px;white-space:normal;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.phone #profsheet #detail-privacy-hint.connected-hint>span{font-size:13px;line-height:1.4;white-space:normal;flex:1}
-.phone #profsheet #detail-privacy-hint.connected-hint .profile-message-link{position:static;transform:none;min-height:32px;height:32px;margin:0 0 0 auto!important;margin-top:0!important;padding:0 14px;border-radius:999px;background:#fff;color:var(--accent);font:750 12px Manrope,system-ui,sans-serif;letter-spacing:-.15px;line-height:32px;box-shadow:0 2px 6px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);text-decoration:none}
-.phone.dark #profsheet #detail-privacy-hint.connected-hint .profile-message-link{background:#fff;color:var(--accent)}
+/* Profile Sheet Single Aligned Status Bar: Left connected status, Right dynamic network preview */
+.phone #profsheet .profile-status-bar,
+.ds-sheet-specimen-root .profile-status-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  margin: 6px 0 12px !important;
+  padding: 0 !important;
+  min-height: 28px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.phone #profsheet .privacyhint,
+.ds-sheet-specimen-root .privacyhint {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--sub) !important;
+  white-space: nowrap !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.phone #profsheet .privacyhint.connected-hint,
+.ds-sheet-specimen-root .privacyhint.connected-hint {
+  color: var(--ink) !important;
+  font-weight: 650 !important;
+  min-height: unset !important;
+  padding: 0 !important;
+}
+
+.phone #profsheet .privacyhint i,
+.ds-sheet-specimen-root .privacyhint i {
+  font-size: 15px !important;
+  flex: 0 0 15px !important;
+  line-height: 1 !important;
+  color: var(--sub) !important;
+}
+
+.phone #profsheet .privacyhint.connected-hint i,
+.ds-sheet-specimen-root .privacyhint.connected-hint i {
+  color: var(--accent) !important;
+}
+
+.phone #profsheet .profile-network-preview,
+.ds-sheet-specimen-root .profile-network-preview {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+.phone #profsheet .profile-network-preview.hide,
+.ds-sheet-specimen-root .profile-network-preview.hide {
+  display: none !important;
+}
+
+.phone #profsheet .profile-network-avatars,
+.ds-sheet-specimen-root .profile-network-avatars {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+.phone #profsheet .profile-network-avatars img,
+.ds-sheet-specimen-root .profile-network-avatars img {
+  width: 20px !important;
+  height: 20px !important;
+  flex: 0 0 20px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 1.5px solid var(--card) !important;
+  background: var(--muted) !important;
+  margin-left: -6px !important;
+  display: block !important;
+}
+
+.phone #profsheet .profile-network-avatars img:first-child,
+.ds-sheet-specimen-root .profile-network-avatars img:first-child {
+  margin-left: 0 !important;
+}
+
+.phone #profsheet .profile-network-total,
+.ds-sheet-specimen-root .profile-network-total {
+  font-size: 11.5px !important;
+  font-weight: 650 !important;
+  color: var(--sub) !important;
+  white-space: nowrap !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.phone #profsheet .profile-message-link,
+.ds-sheet-specimen-root .profile-message-link {
+  display: none !important;
+}
 .phone #connectiondetail #connection-privacy-hint{padding:15px;min-height:52px;gap:8px;flex-wrap:wrap}.phone #connectiondetail #connection-privacy-hint>span,.phone #connectiondetail #connection-privacy-hint .connection-since{font-size:13px;line-height:1.5;white-space:normal}
 .phone .onepager{font-size:15px;min-height:44px;padding:10px 0}
 
@@ -3969,9 +4077,7 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 
 /* Item 10: ProfileDetailBottomSheet compact status line and authentic typography */
 .phone #detail .privacyhint,
-.phone #connectiondetail .privacyhint,
-.phone #profsheet .privacyhint,
-.ds-sheet-specimen-root .privacyhint {
+.phone #connectiondetail .privacyhint {
   font-size: 12.5px !important;
   line-height: 1.45 !important;
   padding: 0 !important;
@@ -3986,12 +4092,32 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
   color: var(--sub) !important;
 }
 .phone #detail .privacyhint i,
-.phone #connectiondetail .privacyhint i,
-.phone #profsheet .privacyhint i,
-.ds-sheet-specimen-root .privacyhint i {
+.phone #connectiondetail .privacyhint i {
   font-size: 15px !important;
   margin-top: 2px !important;
   flex-shrink: 0 !important;
+}
+.phone #profsheet .profile-status-bar .privacyhint,
+.ds-sheet-specimen-root .profile-status-bar .privacyhint {
+  font-size: 12.5px !important;
+  line-height: 1.3 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: var(--sub) !important;
+}
+.phone #profsheet .profile-status-bar .privacyhint i,
+.ds-sheet-specimen-root .profile-status-bar .privacyhint i {
+  font-size: 15px !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
 }
 .phone #detail .privacyhint.connected-hint i,
 .phone #connectiondetail .privacyhint.connected-hint i,

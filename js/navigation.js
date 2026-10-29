@@ -16893,31 +16893,89 @@ const scopedComponentStyles = {
   font-weight: 750;
   color: var(--ink, #0F172A);
 }
+.peopi-component-sheet .profile-status-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  margin: 6px 20px 10px !important;
+  padding: 0 !important;
+  min-height: 28px !important;
+  box-sizing: border-box !important;
+}
 .peopi-component-sheet .privacyhint {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  background: var(--muted, #F1F5F9);
-  border-radius: 12px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--ink-secondary, #64748B);
-  margin: 4px 20px 8px;
-  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--ink-secondary, #64748B) !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
 }
 .peopi-component-sheet .privacyhint .ph {
-  font-size: 17px;
-  flex-shrink: 0;
-  color: var(--ink-secondary, #64748B);
+  font-size: 15px !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+  color: var(--ink-secondary, #64748B) !important;
 }
 .peopi-component-sheet .privacyhint.connected-hint {
-  background: var(--brand-light, rgba(255, 51, 0, 0.08));
-  color: var(--brand, #FF3300);
-  font-weight: 600;
+  background: transparent !important;
+  color: var(--ink, #0F172A) !important;
+  font-weight: 650 !important;
+  min-height: unset !important;
 }
 .peopi-component-sheet .privacyhint.connected-hint .ph {
-  color: var(--brand, #FF3300);
+  color: var(--brand, #FF3300) !important;
+}
+.peopi-component-sheet .profile-network-preview {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  flex: 0 0 auto !important;
+}
+.peopi-component-sheet .profile-network-preview.hide {
+  display: none !important;
+}
+.peopi-component-sheet .profile-network-avatars {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+}
+.peopi-component-sheet .profile-network-avatars img {
+  width: 20px !important;
+  height: 20px !important;
+  flex: 0 0 20px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 1.5px solid var(--card, #FFFFFF) !important;
+  background: var(--muted, #F1F5F9) !important;
+  margin-left: -6px !important;
+  display: block !important;
+}
+.peopi-component-sheet .profile-network-avatars img:first-child {
+  margin-left: 0 !important;
+}
+.peopi-component-sheet .profile-network-total {
+  font-size: 11.5px !important;
+  font-weight: 650 !important;
+  color: var(--ink-secondary, #64748B) !important;
+  white-space: nowrap !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .peopi-component-sheet .detailblock {
   padding: 12px 20px;
@@ -17606,13 +17664,40 @@ function setProfileSheetState(root, isConnected) {
     if (isConnected) {
       hintEl.className = 'privacyhint connected-hint peopi-detail-privacy-hint';
       hintEl.classList.remove('hide');
-      hintEl.style.display = 'flex';
-      hintEl.innerHTML = '<i class="ph ph-check-circle" aria-hidden="true"></i><span>You\'re connected. Direct messaging is open.</span>';
+      hintEl.style.removeProperty('display');
+      hintEl.innerHTML = '<i class="ph ph-check-circle" aria-hidden="true" style="color:var(--accent)!important;"></i><span>You\'re connected.</span>';
     } else {
       hintEl.className = 'privacyhint peopi-detail-privacy-hint';
       hintEl.classList.remove('hide');
-      hintEl.style.display = 'flex';
+      hintEl.style.removeProperty('display');
       hintEl.innerHTML = '<i class="ph ph-shield-check" aria-hidden="true"></i><span>Photo and name hidden until connected.</span>';
+    }
+  }
+
+  // Connection count
+  const countEl = root.querySelector('#detail-connection-count, [id$="detail-connection-count"], .profile-network-preview');
+  if (countEl) {
+    if (isConnected) {
+      countEl.classList.remove('hide');
+      countEl.style.removeProperty('display');
+      let stack = countEl.querySelector('.profile-network-avatars');
+      if (stack) {
+        if (!stack.children.length) {
+          [0, 1, 7, 8].forEach(mId => {
+            const img = document.createElement('img');
+            img.src = (typeof demoPortraits !== 'undefined' && demoPortraits[mId]) || '';
+            img.alt = '';
+            stack.appendChild(img);
+          });
+        }
+      }
+      const total = countEl.querySelector('.profile-network-total') || countEl.querySelector('span:last-child') || countEl.querySelector('span');
+      if (total) total.textContent = '128 connections';
+    } else {
+      countEl.classList.add('hide');
+      countEl.style.display = 'none';
+      const stack = countEl.querySelector('.profile-network-avatars');
+      if (stack) stack.replaceChildren();
     }
   }
 

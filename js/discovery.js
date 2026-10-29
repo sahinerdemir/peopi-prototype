@@ -315,7 +315,7 @@ function paintConnectionCount(selector,id,connected){
  if(!connected){if(stack)stack.replaceChildren();return;}
  const numId=Number(id)||0;
  (el.querySelector('.profile-network-total')||el.querySelector('span')).textContent=(demoConnectionCounts[numId]||84)+' connections';
- if(stack&&!stack.children.length){[0,1,7,8,9].forEach(mId=>{const img=document.createElement('img');img.src=demoPortraits[mId]||'';img.alt='';stack.appendChild(img);});}
+ if(stack&&!stack.children.length){[0,1,7,8].forEach(mId=>{const img=document.createElement('img');img.src=demoPortraits[mId]||'';img.alt='';stack.appendChild(img);});}
 }
 
 function openProfile(){
@@ -337,7 +337,7 @@ function openProfile(){
  if(privHint){
    privHint.classList.toggle('connected-hint',connected);
    privHint.innerHTML=connected
-     ?'<i class="ph ph-check-circle" aria-hidden="true" style="color:var(--accent)!important;"></i><span>You\'re connected.</span><button type="button" class="profile-message-link" id="profile-send-message">Send Message</button>'
+     ?'<i class="ph ph-check-circle" aria-hidden="true" style="color:var(--accent)!important;"></i><span>You\'re connected.</span>'
      :'<i class="ph ph-shield-check" aria-hidden="true"></i><span>Photo and name hidden until connected.</span>';
  }
  refreshIcons();
@@ -431,13 +431,6 @@ function openProfile(){
   }
   if(cancelBtn)cancelBtn.classList.add('hide');
  }
- const sendMessage=$('#profile-send-message');
- if(sendMessage)sendMessage.onclick=()=>{
-  setJourneyView(person);
-  resetProfileComposer();
-  $('#profsheet').classList.add('hide');
-  go('conversation');
- };
  $('#profsheet .profile-sheet-scroll').scrollTop=0;
  $('#profsheet').classList.remove('hide');
  if(typeof renderSpec==='function'){
