@@ -2178,7 +2178,9 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .phone #active #profilecard{border-radius:24px;padding:18px;box-shadow:var(--ui-shadow)}.phone #active #profilecard .person strong{font-size:17px}.phone #active #profilecard .person small{font-size:14px;line-height:1.5}.phone #active #profilecard .profilecard-footer{border:0;padding-top:0;gap:10px}.phone #active #profilecard .profilecard-status{font-size:13px;line-height:1.5}.phone #active #profilecard .connect{font-size:14px;min-height:44px;padding:10px 14px}.phone #active #profilecard .profilecard-close{width:30px;height:30px;top:14px;right:14px}.phone #active .session-alert{border-radius:22px;padding:18px;font-size:14px}.phone #active .session-alert p{font-size:14px;line-height:1.5}.phone #active .session-alert button{min-height:44px;font-size:14px}
 .phone .discovery-filter-dialog{border-radius:26px;padding:22px;max-height:calc(100% - 32px);overflow:auto;background:var(--card)}.phone .discovery-filter-dialog>p{font-size:14px;line-height:1.5}.phone .discovery-filter-dialog label{font-size:14px}.phone .discovery-filter-dialog select{font-size:16px;min-height:52px;border-radius:15px;padding-right:44px!important}.phone .discovery-filter-select-wrap{position:relative;width:100%;display:flex;align-items:center}.phone .discovery-filter-arrow{position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--sub);font-size:18px}.phone .discovery-filter-head strong{font-size:20px}.phone .discovery-filter-head button{width:30px;height:30px;min-width:30px;min-height:30px}.phone .discovery-filter-actions button{min-height:48px;font-size:15px;border-radius:16px}
 .phone .sheet{position:relative;border-radius:28px 28px 0 0}.phone .sheet h3{font-size:23px;line-height:1.3}.phone .sheet button:not(.sheetclose):not(.profile-message-link):not(.profile-request-composer-cancel):not(.prompt-chip):not(.doc-sheet-change-file-btn){font-size:15px;min-height:48px;border-radius:16px}.phone #profsheet .sheetclose{width:30px;height:30px;position:absolute;top:18px;right:16px;z-index:12}.phone #profsheet .sheetclose:hover{background:#fff;color:var(--accent);border-color:var(--accent)}.phone.dark #profsheet .sheetclose:hover{background:var(--card);color:var(--accent);border-color:var(--accent)}.phone #modal .sheetclose{width:30px;height:30px;position:absolute;top:18px;right:18px;z-index:12}.phone #profsheet .profile-sheet-scroll{padding:10px 22px 0;background:var(--bg);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24px,#000 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 24px,#000 100%)}.phone #profsheet .sheet-grabber{background:var(--bg)}
-.phone .profile-sheet-footer{flex:0 0 auto;padding:14px 22px max(20px,env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line);transition:padding 0.22s cubic-bezier(0.16,1,0.3,1)}
+.phone .profile-sheet-footer{flex:0 0 auto;padding:14px 22px max(20px,env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line);position:relative;z-index:30;transition:padding 0.22s cubic-bezier(0.16,1,0.3,1)}
+.phone .profile-request-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:25;border-radius:28px 28px 0 0;cursor:pointer;pointer-events:auto;transition:opacity 0.2s cubic-bezier(0.16,1,0.3,1)}
+.phone.dark .profile-request-backdrop{background:rgba(0,0,0,0.65)}
 .phone .profile-sheet-footer .primary{margin:0}
 .phone .profile-sheet-footer .profiledisclaimer{font-size:13px;color:var(--sub);text-align:center;margin:10px 0 0;line-height:1.4}
 .phone .profile-request-composer{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;animation:composerSlideUp 0.22s cubic-bezier(0.16,1,0.3,1) forwards}
@@ -3972,7 +3974,49 @@ body:not(.notes-open).dashboard-open .workspace{grid-template-columns:340px minm
 .phone #connectiondetail .privacyhint.connection-confirmed i,
 .phone #profsheet .privacyhint.connected-hint i,
 .ds-sheet-specimen-root .privacyhint.connected-hint i {
-  color: #10b981 !important;
+  color: #FF3300 !important;
+}
+
+/* Item 3: Tariq Benali & Connection Detail compact status spacing */
+.phone #connectiondetail .privacyhint.connection-confirmed,
+.phone #connectiondetail #connection-privacy-hint {
+  margin: 12px 0 0 !important;
+  padding: 0 4px !important;
+  min-height: unset !important;
+}
+.phone #connectiondetail .profile-network-preview,
+.phone #connectiondetail #connection-connection-count {
+  margin: 14px 0 0 !important;
+  padding: 0 4px !important;
+}
+.phone #connectiondetail .detailblock:first-of-type {
+  margin-top: 16px !important;
+}
+
+/* Item 6: Mobile Screen Toast Pill positioning */
+.phone #toast.toast {
+  position: absolute !important;
+  top: 56px !important;
+  left: 14px !important;
+  right: 14px !important;
+  z-index: 60 !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+}
+.phone #toast.toast.hide {
+  display: none !important;
+}
+.phone #toast .peopi-toast-card {
+  pointer-events: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
 }
 .phone #detailrole,
 .phone #connection-headline,

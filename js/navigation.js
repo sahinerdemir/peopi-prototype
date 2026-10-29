@@ -21617,12 +21617,9 @@ function syncRouteFromHash(){
       }
       if(route.id==='profile'){
         go('active');
-        const pId=route.params&&route.params.has('person')?Number(route.params.get('person')):2;
-        if(typeof journey!=='undefined'){
-          delete journey.requests[pId];
-          if(journey.requestNotes)delete journey.requestNotes[pId];
-          saveJourney();
-        }
+        const pId = route.params && route.params.has('person')
+          ? Number(route.params.get('person'))
+          : (typeof person === 'number' && person !== null ? person : 2);
         showPerson(pId);
         openProfile();
         renderSpec('profile');

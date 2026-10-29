@@ -626,7 +626,7 @@ function renderActivity(){
   box.replaceChildren();
   all('#activity [data-activity-tab]').forEach(b=>b.classList.toggle('selected',b.dataset.activityTab===activityTab));
   const items=[];
-  const reqOffsets=[8,25,50,110,210,380,700,1300,2600,4200];
+  const reqOffsets=[8,25,50,110,210,380,700,1300,2600,4200,5600,7200,9000];
   journey.requestTimes=journey.requestTimes||{};
   const reqPeople=demoPeople.filter(p=>!journey.blocked.includes(p.id)&&journey.requests[p.id]==='received');
   reqPeople.forEach((p,idx)=>{
@@ -641,6 +641,10 @@ function renderActivity(){
   items.push({type:'system',icon:'clock',timestamp:sys1Ts,time:formatActivityTime(sys1Ts),title:'Nearby visibility session ended',subtitle:'Your timed discovery session expired. You are now invisible by default.',target:'setup'});
   const sys2Ts=Date.now()-185*60000;
   items.push({type:'system',icon:'sparkle',timestamp:sys2Ts,time:formatActivityTime(sys2Ts),title:'Profile completeness recommendation',subtitle:'Add skills and project details to strengthen your discovery matches.',target:'editprofile'});
+  const sys3Ts=Date.now()-360*60000;
+  items.push({type:'system',icon:'seal-check',timestamp:sys3Ts,time:formatActivityTime(sys3Ts),title:'LinkedIn credentials signal verified',subtitle:'LinkedIn badge confirmed. Exact professional credentials remain private.',target:'verification'});
+  const sys4Ts=Date.now()-1440*60000;
+  items.push({type:'system',icon:'shield-check',timestamp:sys4Ts,time:formatActivityTime(sys4Ts),title:'Weekly privacy report ready',subtitle:'Zero coordinates logged. Your discovery sessions remained ephemeral.',target:'privacy'});
 
   items.sort((a,b)=>b.timestamp-a.timestamp);
 

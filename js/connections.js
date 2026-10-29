@@ -1,14 +1,212 @@
 /* End-to-end prototype state and interactions */
-const demoPeople=[{id:0,name:'Alex Morgan',anonymous:'Alex M.',role:'Product designer · Startup',verified:true},{id:1,name:'Jordan Lee',anonymous:'Jordan L.',role:'Software engineer · AI',verified:false},{id:2,name:'Sam Kim',anonymous:'Sam K.',role:'Founder · Climate tech',verified:false},{id:3,name:'Taylor Brooks',anonymous:'Taylor B.',role:'Brand strategist · Creative',verified:false},{id:4,name:'Casey Rivera',anonymous:'Casey R.',role:'Growth lead · SaaS',verified:false},{id:5,name:'Morgan Patel',anonymous:'Morgan P.',role:'Architect · Urban design',verified:false},{id:6,name:'Riley Chen',anonymous:'Riley C.',role:'Investor · Climate',verified:true},{id:7,name:'Elena Rostova',anonymous:'Elena R.',role:'Staff ML engineer · Autonomous AI',verified:true},{id:8,name:'Marcus Vance',anonymous:'Marcus V.',role:'Principal product architect · FinTech',verified:false},{id:9,name:'Maya Lin',anonymous:'Maya L.',role:'Creative director · Brand & Type',verified:false},{id:10,name:'David Park',anonymous:'David P.',role:'Head of engineering · Distributed systems',verified:true},{id:11,name:'Sofia Al-Mansoor',anonymous:'Sofia A.',role:'Partner · Climate VC',verified:true},{id:12,name:'Lucas Thorne',anonymous:'Lucas T.',role:'Senior iOS engineer · Swift & UX',verified:false},{id:13,name:'Nadia O\'Connor',anonymous:'Nadia O.',role:'Chief of staff · Series B',verified:false},{id:14,name:'Tariq Benali',anonymous:'Tariq B.',role:'Robotics engineer · Hardware',verified:false},{id:15,name:'Chloe Dubois',anonymous:'Chloe D.',role:'Product lead · HealthTech',verified:false},{id:16,name:'Aris Thorne',anonymous:'Aris T.',role:'Design systems architect · Mobile',verified:true},{id:17,name:'Zeynep Kaya',anonymous:'Zeynep K.',role:'Senior data scientist · Generative NLP',verified:false},{id:18,name:'Liam O\'Sullivan',anonymous:'Liam O.',role:'VP of product · Enterprise SaaS',verified:false},{id:19,name:'Hanna Lindqvist',anonymous:'Hanna L.',role:'Spatial audio engineer · AR/VR',verified:false},{id:20,name:'Kenji Takahashi',anonymous:'Kenji T.',role:'Security lead · Zero-trust',verified:true}];
+const demoPeople=[
+  {id:0,name:'Alex Morgan',anonymous:'Alex M.',role:'Product designer · Startup',verified:true},
+  {id:1,name:'Jordan Lee',anonymous:'Jordan L.',role:'Software engineer · AI',verified:false},
+  {id:2,name:'Sam Kim',anonymous:'Sam K.',role:'Founder · Climate tech',verified:false},
+  {id:3,name:'Taylor Brooks',anonymous:'Taylor B.',role:'Brand strategist · Creative',verified:false},
+  {id:4,name:'Casey Rivera',anonymous:'Casey R.',role:'Growth lead · SaaS',verified:false},
+  {id:5,name:'Morgan Patel',anonymous:'Morgan P.',role:'Architect · Urban design',verified:false},
+  {id:6,name:'Riley Chen',anonymous:'Riley C.',role:'Investor · Climate',verified:true},
+  {id:7,name:'Elena Rostova',anonymous:'Elena R.',role:'Staff ML engineer · Autonomous AI',verified:true},
+  {id:8,name:'Marcus Vance',anonymous:'Marcus V.',role:'Principal product architect · FinTech',verified:false},
+  {id:9,name:'Maya Lin',anonymous:'Maya L.',role:'Creative director · Brand & Type',verified:false},
+  {id:10,name:'David Park',anonymous:'David P.',role:'Head of engineering · Distributed systems',verified:true},
+  {id:11,name:'Sofia Al-Mansoor',anonymous:'Sofia A.',role:'Partner · Climate VC',verified:true},
+  {id:12,name:'Lucas Thorne',anonymous:'Lucas T.',role:'Senior iOS engineer · Swift & UX',verified:false},
+  {id:13,name:'Nadia O\'Connor',anonymous:'Nadia O.',role:'Chief of staff · Series B',verified:false},
+  {id:14,name:'Tariq Benali',anonymous:'Tariq B.',role:'Robotics engineer · Hardware',verified:false},
+  {id:15,name:'Chloe Dubois',anonymous:'Chloe D.',role:'Product lead · HealthTech',verified:false},
+  {id:16,name:'Aris Thorne',anonymous:'Aris T.',role:'Design systems architect · Mobile',verified:true},
+  {id:17,name:'Zeynep Kaya',anonymous:'Zeynep K.',role:'Senior data scientist · Generative NLP',verified:false},
+  {id:18,name:'Liam O\'Sullivan',anonymous:'Liam O.',role:'VP of product · Enterprise SaaS',verified:false},
+  {id:19,name:'Hanna Lindqvist',anonymous:'Hanna L.',role:'Spatial audio engineer · AR/VR',verified:false},
+  {id:20,name:'Kenji Takahashi',anonymous:'Kenji T.',role:'Security lead · Zero-trust',verified:true},
+  {id:21,name:'Nina Rostova',anonymous:'Nina R.',role:'Staff Product Manager · AI',verified:true},
+  {id:22,name:'Mateo Silva',anonymous:'Mateo S.',role:'Cloud Infrastructure Lead · DevTools',verified:false},
+  {id:23,name:'Aisha Morales',anonymous:'Aisha M.',role:'Principal UX Researcher · FinTech',verified:true},
+  {id:24,name:'Soren Nielsen',anonymous:'Soren N.',role:'Systems Programmer · Rust & WebAssembly',verified:false},
+  {id:25,name:'Priya Sharma',anonymous:'Priya S.',role:'Staff Data Engineer · Streaming Analytics',verified:true},
+  {id:26,name:'Julian Vance',anonymous:'Julian V.',role:'Industrial Designer · Connected Hardware',verified:false},
+  {id:27,name:'Mei Zhang',anonymous:'Mei Z.',role:'Frontend Architect · Design Systems',verified:true},
+  {id:28,name:'Callum Fraser',anonymous:'Callum F.',role:'DevOps & SRE Lead · Cloud Native',verified:false},
+  {id:29,name:'Ananya Rao',anonymous:'Ananya R.',role:'Machine Learning Scientist · Healthcare',verified:true},
+  {id:30,name:'Gabriel Costa',anonymous:'Gabriel C.',role:'Brand & Creative Director · Studio',verified:false},
+  {id:31,name:'Freya Lind',anonymous:'Freya L.',role:'Spatial Computing Engineer · AR/VR',verified:false},
+  {id:32,name:'Leo Zhang',anonymous:'Leo Z.',role:'Security Analyst · Threat Intelligence',verified:true},
+  {id:33,name:'Yasmin Khan',anonymous:'Yasmin K.',role:'Product Marketing Lead · Developer Tools',verified:false},
+  {id:34,name:'Oliver Hayes',anonymous:'Oliver H.',role:'Backend Engineer · Distributed Go',verified:true},
+  {id:35,name:'Clara Dupont',anonymous:'Clara D.',role:'Biotech Founder · Synthetic Biology',verified:false},
+  {id:36,name:'Damian Cruz',anonymous:'Damian C.',role:'VP Engineering · Distributed Teams',verified:true},
+  {id:37,name:'Leila Abbasi',anonymous:'Leila A.',role:'Accessibility & Interaction Designer',verified:false},
+  {id:38,name:'Stefan Becker',anonymous:'Stefan B.',role:'Robotics Perception Engineer',verified:true},
+  {id:39,name:'Tara Montgomery',anonymous:'Tara M.',role:'Climate Tech Investor · Early Stage',verified:false},
+  {id:40,name:'Hiroshi Sato',anonymous:'Hiroshi S.',role:'Acoustic DSP Engineer · Audio UX',verified:true},
+  {id:41,name:'Camille Laurent',anonymous:'Camille L.',role:'Head of Growth · Consumer Mobile',verified:false},
+  {id:42,name:'Devon Thorne',anonymous:'Devon T.',role:'Growth Marketing · Ad Networks',verified:false},
+  {id:43,name:'Bianca Rossi',anonymous:'Bianca R.',role:'Crypto Trader · Web3 Outreach',verified:false},
+  {id:44,name:'Austin Miller',anonymous:'Austin M.',role:'Lead Generation Specialist',verified:false},
+  {id:45,name:'Selina Gomez',anonymous:'Selina G.',role:'Commercial Cold Outreach Lead',verified:false},
+  {id:46,name:'Viktor Petrov',anonymous:'Viktor P.',role:'Affiliate Marketing Consultant',verified:false},
+  {id:47,name:'Nadine Schultz',anonymous:'Nadine S.',role:'Automated Bot Campaigns',verified:false},
+  {id:48,name:'Trevor Bell',anonymous:'Trevor B.',role:'Outreach & Spam Operator',verified:false},
+  {id:49,name:'Alistair Wong',anonymous:'Alistair W.',role:'Unsolicited Sales Representative',verified:false}
+];
 const default20Connections=[0,1,7,8,9,10,11,12,13,14,15,16,17,18,19];
 const default20Dates={0:'2025-06-12',1:'2025-07-04',7:'2026-01-10',8:'2026-02-14',9:'2026-03-01',10:'2026-03-22',11:'2026-04-18',12:'2026-05-09',13:'2026-06-14',14:'2026-07-01',15:'2026-08-11',16:'2026-09-03',17:'2026-09-20',18:'2026-10-02',19:'2026-10-09'};
-const journeyKey='peopi-journey-v1';let journey={requests:{20:'received'},connections:[...default20Connections],connectionDates:{...default20Dates},hidden:[],muted:[],blocked:[],chats:{},notifications:{connection:true,messages:true,session:true,product:false},currentPerson:0,requestTab:'received'};try{const saved=JSON.parse(localStorage.getItem(journeyKey)||'null');if(saved&&typeof saved==='object')journey={...journey,...saved};if(!Array.isArray(journey.muted))journey.muted=[];journey.requestTab='received'}catch(e){}
-try{if(!localStorage.getItem('peopi-map-two-connections-v3')){journey.connections=[...default20Connections];journey.requests={20:'received'};journey.connectionDates={...default20Dates};[2,3,4,5,6].forEach(id=>{delete journey.requests?.[id];delete journey.requestNotes?.[id];});localStorage.setItem('peopi-map-two-connections-v3','1');localStorage.setItem(journeyKey,JSON.stringify(journey))}}catch(e){}
-function saveJourney(){try{const toSave={...journey};delete toSave.requestTab;localStorage.setItem(journeyKey,JSON.stringify(toSave))}catch(e){}if(typeof updateNotifBadge==='function')updateNotifBadge()}function journeyPerson(id){const p=demoPeople.find(p=>p.id===Number(id))||demoPeople[0];return {...p,name:journey.connections.includes(p.id)?p.name:p.anonymous}}function journeyEmpty(title,desc){return '<div class="journey-empty"><i class="ph ph-users-three" aria-hidden="true"></i><strong>'+title+'</strong>'+desc+'</div>'}function makeVerifiedBadge(){const badge=document.createElement('span');badge.className='li-verified-badge';badge.title='LinkedIn connected (demo)';badge.setAttribute('aria-label','LinkedIn connected — demo');badge.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0.8 14.5 2.6 17.6 2.4 19 5.2 21.8 6.6 21.6 9.7 23.2 12 21.6 14.3 21.8 17.4 19 18.8 17.6 21.6 14.5 21.4 12 23.2 9.5 21.4 6.4 21.6 5 18.8 2.2 17.4 2.4 14.3 0.8 12 2.4 9.7 2.2 6.6 5 5.2 6.4 2.4 9.5 2.6Z"/><path d="m7.3 12.1 3.1 3.1 6.5-6.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';return badge}
-function markVerifiedName(el,id){el.querySelectorAll('.li-verified-badge').forEach(x=>x.remove());if(demoPeople[id]?.verified)el.append(makeVerifiedBadge())}
+const defaultRequests={
+  20:'received',21:'received',22:'received',23:'received',24:'received',25:'received',26:'received',27:'received',28:'received',29:'received',30:'received',
+  31:'sent',32:'sent',33:'sent',34:'sent',35:'sent',36:'sent',37:'sent',38:'sent',39:'sent',40:'sent',41:'sent'
+};
+const defaultRequestNotes={
+  20:'Hey! Let\'s connect on local encryption protocols.',
+  21:'Loved your side project on modular workflows! ☕',
+  22:'Are you open to comparing notes on scalable backend architectures?',
+  23:'Saw your profile nearby. Would love to exchange UX research ideas! 🤝',
+  24:'Building low-latency networking tools. Open to collaborating!',
+  25:'Heading to the tech talk nearby—free for a 15m chat? ⏱️',
+  26:'Would love to discuss hardware perception and industrial robotics.',
+  27:'Excited to share thoughts on design systems and variable typography! 💡',
+  28:'Working on zero-downtime deployments. Let\'s connect!',
+  29:'Collaborating on healthcare AI models—let\'s grab a coffee nearby! ☕',
+  30:'Great portfolio! Open to quick coffee nearby? ☕',
+  31:'Excited about spatial audio and immersive UI!',
+  32:'Let\'s connect on zero-trust privacy infrastructure.',
+  33:'Would love to discuss developer go-to-market strategies!',
+  34:'Sharing notes on distributed systems and Go.',
+  35:'Inspiring work in computational biology.',
+  36:'Open to comparing cloud-native infrastructure approaches.',
+  37:'Would love to connect on mobile accessibility standards! 🤝',
+  38:'Let\'s talk mechatronics and actuator firmware.',
+  39:'Sharing early product metrics and climate tech ideas.',
+  40:'Excited to exchange ideas on acoustic room simulation!',
+  41:'Let\'s chat about organic growth loops.'
+};
+const defaultHidden=[7,8,9,10,11,12,13,15];
+const defaultBlocked=[42,43,44,45,46,47,48,49];
+
+const journeyKey='peopi-journey-v2';
+let journey={
+  requests:{...defaultRequests},
+  requestNotes:{...defaultRequestNotes},
+  connections:[...default20Connections],
+  connectionDates:{...default20Dates},
+  hidden:[...defaultHidden],
+  muted:[],
+  blocked:[...defaultBlocked],
+  chats:{},
+  notifications:{connection:true,messages:true,session:true,product:false},
+  currentPerson:0,
+  requestTab:'received'
+};
+try{
+  const saved=JSON.parse(localStorage.getItem(journeyKey)||'null');
+  if(saved&&typeof saved==='object'){
+    journey={...journey,...saved};
+  }
+  if(!Array.isArray(journey.muted))journey.muted=[];
+  if(!Array.isArray(journey.hidden)||journey.hidden.length<5)journey.hidden=[...defaultHidden];
+  if(!Array.isArray(journey.blocked)||journey.blocked.length<5)journey.blocked=[...defaultBlocked];
+  if(!Array.isArray(journey.connections)||journey.connections.length<5)journey.connections=[...default20Connections];
+  if(!journey.requests||typeof journey.requests!=='object'||Object.keys(journey.requests).length<10){
+    journey.requests={...defaultRequests};
+    journey.requestNotes={...defaultRequestNotes};
+  }
+  journey.requestTab='received';
+}catch(e){}
+
+function getPeerRelation(id){
+  const numId=Number(id);
+  if(typeof journey==='undefined'){
+    return { status:'unknown', isConnected:false, isPendingSent:false, isPendingReceived:false, isBlocked:false };
+  }
+  if(Array.isArray(journey.blocked)&&journey.blocked.map(Number).includes(numId)){
+    return { status:'blocked', isConnected:false, isPendingSent:false, isPendingReceived:false, isBlocked:true };
+  }
+  if(Array.isArray(journey.connections)&&journey.connections.map(Number).includes(numId)){
+    return { status:'connected', isConnected:true, isPendingSent:false, isPendingReceived:false, isBlocked:false };
+  }
+  const req=(journey.requests&&(journey.requests[numId]||journey.requests[String(numId)]))||null;
+  if(req==='sent'){
+    return { status:'sent', isConnected:false, isPendingSent:true, isPendingReceived:false, isBlocked:false };
+  }
+  if(req==='received'){
+    return { status:'received', isConnected:false, isPendingSent:false, isPendingReceived:true, isBlocked:false };
+  }
+  return { status:'unknown', isConnected:false, isPendingSent:false, isPendingReceived:false, isBlocked:false };
+}
+window.getPeerRelation=getPeerRelation;
+
+function saveJourney(){
+  try{
+    const toSave={...journey};
+    delete toSave.requestTab;
+    localStorage.setItem(journeyKey,JSON.stringify(toSave));
+  }catch(e){}
+  if(typeof updateNotifBadge==='function')updateNotifBadge();
+}
+
+function journeyPerson(id){
+  const numId=Number(id);
+  const p=demoPeople.find(p=>p.id===numId)||(demoPeople[0]||{id:0,name:'Alex Morgan',anonymous:'Alex M.',role:'Product designer · Startup',verified:true});
+  const rel=getPeerRelation(numId);
+  return {...p,name:rel.isConnected?p.name:p.anonymous};
+}
+
+function journeyEmpty(title,desc){return '<div class="journey-empty"><i class="ph ph-users-three" aria-hidden="true"></i><strong>'+title+'</strong>'+desc+'</div>'}
+function makeVerifiedBadge(){const badge=document.createElement('span');badge.className='li-verified-badge';badge.title='LinkedIn connected (demo)';badge.setAttribute('aria-label','LinkedIn connected — demo');badge.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0.8 14.5 2.6 17.6 2.4 19 5.2 21.8 6.6 21.6 9.7 23.2 12 21.6 14.3 21.8 17.4 19 18.8 17.6 21.6 14.5 21.4 12 23.2 9.5 21.4 6.4 21.6 5 18.8 2.2 17.4 2.4 14.3 0.8 12 2.4 9.7 2.2 6.6 5 5.2 6.4 2.4 9.5 2.6Z"/><path d="m7.3 12.1 3.1 3.1 6.5-6.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';return badge}
+function markVerifiedName(el,id){el.querySelectorAll('.li-verified-badge').forEach(x=>x.remove());if(demoPeople[Number(id)]?.verified)el.append(makeVerifiedBadge())}
+
 /* Demo portraits: photos become sharp only for accepted connections. */
-const demoPortraits=['https://i.pravatar.cc/240?img=12','https://i.pravatar.cc/240?img=47','https://i.pravatar.cc/240?img=33','https://i.pravatar.cc/240?img=49','https://i.pravatar.cc/240?img=15','https://i.pravatar.cc/240?img=44','https://i.pravatar.cc/240?img=68','https://i.pravatar.cc/240?img=25','https://i.pravatar.cc/240?img=11','https://i.pravatar.cc/240?img=38','https://i.pravatar.cc/240?img=53','https://i.pravatar.cc/240?img=45','https://i.pravatar.cc/240?img=60','https://i.pravatar.cc/240?img=20','https://i.pravatar.cc/240?img=59','https://i.pravatar.cc/240?img=42','https://i.pravatar.cc/240?img=64','https://i.pravatar.cc/240?img=32','https://i.pravatar.cc/240?img=67','https://i.pravatar.cc/240?img=29','https://i.pravatar.cc/240?img=56'];
-function paintDemoPortrait(el,id){if(!el)return;const full=people[id]||people[0];el.classList.add('demo-photo-avatar');const connected=journey.connections.includes(Number(id));const photoUrl=connected?(demoPortraits[id]||null):null;el.classList.toggle('photo-private',!connected);el.classList.toggle('photo-no-image',!photoUrl);if(el.matches('#mapview .pin')){el.classList.toggle('connection-pin',connected);el.setAttribute('aria-label',(connected?'Your connection: ':'Nearby professional: ')+(connected?full.name:full.initial));}el.style.backgroundColor=full.color;el.textContent=full.initial;if(!photoUrl){el.style.color='#141922';}else{el.style.removeProperty('color');}if(photoUrl){const photo=document.createElement('img');photo.src=photoUrl;photo.alt='';photo.loading='lazy';photo.onerror=()=>{photo.remove();el.classList.remove('photo-private');el.classList.add('photo-no-image');el.style.color='#141922';};el.append(photo)}}
+const demoPortraits=[
+  'https://i.pravatar.cc/240?img=12','https://i.pravatar.cc/240?img=47','https://i.pravatar.cc/240?img=33','https://i.pravatar.cc/240?img=49',
+  'https://i.pravatar.cc/240?img=15','https://i.pravatar.cc/240?img=44','https://i.pravatar.cc/240?img=68','https://i.pravatar.cc/240?img=25',
+  'https://i.pravatar.cc/240?img=11','https://i.pravatar.cc/240?img=38','https://i.pravatar.cc/240?img=53','https://i.pravatar.cc/240?img=45',
+  'https://i.pravatar.cc/240?img=60','https://i.pravatar.cc/240?img=20','https://i.pravatar.cc/240?img=59','https://i.pravatar.cc/240?img=42',
+  'https://i.pravatar.cc/240?img=64','https://i.pravatar.cc/240?img=32','https://i.pravatar.cc/240?img=67','https://i.pravatar.cc/240?img=29',
+  'https://i.pravatar.cc/240?img=56','https://i.pravatar.cc/240?img=36','https://i.pravatar.cc/240?img=57','https://i.pravatar.cc/240?img=41',
+  'https://i.pravatar.cc/240?img=51','https://i.pravatar.cc/240?img=43','https://i.pravatar.cc/240?img=52','https://i.pravatar.cc/240?img=31',
+  'https://i.pravatar.cc/240?img=55','https://i.pravatar.cc/240?img=48','https://i.pravatar.cc/240?img=54','https://i.pravatar.cc/240?img=39',
+  'https://i.pravatar.cc/240?img=61','https://i.pravatar.cc/240?img=35','https://i.pravatar.cc/240?img=62','https://i.pravatar.cc/240?img=28',
+  'https://i.pravatar.cc/240?img=63','https://i.pravatar.cc/240?img=26','https://i.pravatar.cc/240?img=65','https://i.pravatar.cc/240?img=24',
+  'https://i.pravatar.cc/240?img=69','https://i.pravatar.cc/240?img=23','https://i.pravatar.cc/240?img=70','https://i.pravatar.cc/240?img=17',
+  'https://i.pravatar.cc/240?img=18','https://i.pravatar.cc/240?img=16','https://i.pravatar.cc/240?img=14','https://i.pravatar.cc/240?img=13',
+  'https://i.pravatar.cc/240?img=9','https://i.pravatar.cc/240?img=8'
+];
+function paintDemoPortrait(el,id){
+  if(!el)return;
+  const numId=Number(id);
+  const full=people[numId]||people[0];
+  el.classList.add('demo-photo-avatar');
+  const rel=getPeerRelation(numId);
+  const connected=rel.isConnected;
+  const photoUrl=connected?(demoPortraits[numId]||null):null;
+  el.classList.toggle('photo-private',!connected);
+  el.classList.toggle('photo-no-image',!photoUrl);
+  if(el.matches('#mapview .pin')){
+    el.classList.toggle('connection-pin',connected);
+    el.setAttribute('aria-label',(connected?'Your connection: ':'Nearby professional: ')+(connected?full.name:full.initial));
+  }
+  el.style.backgroundColor=full.color;
+  el.textContent=full.initial;
+  if(!photoUrl){
+    el.style.color='#141922';
+  }else{
+    el.style.removeProperty('color');
+  }
+  if(photoUrl){
+    const photo=document.createElement('img');
+    photo.src=photoUrl;
+    photo.alt='';
+    photo.loading='lazy';
+    photo.onerror=()=>{
+      photo.remove();
+      el.classList.remove('photo-private');
+      el.classList.add('photo-no-image');
+      el.style.color='#141922';
+    };
+    el.append(photo);
+  }
+}
 function refreshMapPortraits(){document.querySelectorAll('#mapview .pin[data-person]').forEach(el=>{const id=Number(el.dataset.person);const badge=el.querySelector('.pin-verified');paintDemoPortrait(el,id);if(badge)el.append(badge)});document.querySelectorAll('#listview .listitem').forEach(el=>{const id=Number(el.dataset.listperson);paintDemoPortrait(el.querySelector('.avatar'),id)})}
 refreshMapPortraits();
 function setJourneyRowUnread(row,isUnread){if(!row)return;const btn=row.querySelector('button');const existingIndicator=row.querySelector('.network-unread-indicator');const existingSr=row.querySelector('.network-unread-sr,.sr-only');const legacyBadge=row.querySelector('.ds-network-unread-badge');if(legacyBadge)legacyBadge.remove();if(isUnread){if(btn){btn.classList.add('has-unread');if(!btn.dataset.originalAriaLabel){btn.dataset.originalAriaLabel=btn.getAttribute('aria-label')||'';}const rawName=row.querySelector('strong')?.childNodes[0]?.textContent?.trim()||'connection';const baseLabel=btn.dataset.originalAriaLabel||('View profile for '+rawName);btn.setAttribute('aria-label',baseLabel+' (1 unread message)');if(!existingIndicator){const indicator=document.createElement('span');indicator.className='network-unread-indicator';indicator.setAttribute('aria-hidden','true');indicator.innerHTML='<span class="network-unread-dot"></span><span class="network-unread-ring ring-1" aria-hidden="true"></span><span class="network-unread-ring ring-2" aria-hidden="true"></span>';btn.append(indicator);}if(!existingSr){const sr=document.createElement('span');sr.className='sr-only network-unread-sr';sr.textContent='1 unread message';btn.append(sr);}}}else{if(existingIndicator)existingIndicator.remove();if(existingSr)existingSr.remove();if(btn){btn.classList.remove('has-unread');if(btn.dataset.originalAriaLabel){btn.setAttribute('aria-label',btn.dataset.originalAriaLabel);}else{btn.removeAttribute('aria-label');}delete btn.dataset.originalAriaLabel;}}}
@@ -139,6 +337,9 @@ function renderRequests(){
     if(received){
       const acceptBtn=document.createElement('button');
       acceptBtn.type='button';
+      acceptBtn.className='activity-btn-accept';
+      acceptBtn.setAttribute('data-action','accept');
+      acceptBtn.setAttribute('data-person',p.id);
       acceptBtn.textContent='Accept';
       acceptBtn.onclick=()=>{
         journey.connections.push(p.id);
@@ -157,6 +358,9 @@ function renderRequests(){
       };
       const declineBtn=document.createElement('button');
       declineBtn.type='button';
+      declineBtn.className='activity-btn-decline';
+      declineBtn.setAttribute('data-action','decline');
+      declineBtn.setAttribute('data-person',p.id);
       declineBtn.textContent='Decline';
       declineBtn.onclick=()=>{
         delete journey.requests[p.id];
@@ -172,6 +376,8 @@ function renderRequests(){
       row.append(acts);
     } else {
       const cancelBtn=cancelRequestButton(p.name);
+      cancelBtn.setAttribute('data-action','cancel');
+      cancelBtn.setAttribute('data-person',p.id);
       cancelBtn.onclick=()=>{
         modal('Cancel request?', 'Are you sure you want to cancel your connection request to '+p.name+'?', 'Cancel request', ()=>{
           delete journey.requests[p.id];
@@ -188,51 +394,60 @@ function renderRequests(){
     box.append(row);
   });
 }
-$('#connection-message-fab').addEventListener('click',()=>{if(journey.connections.includes(journey.currentPerson))go('conversation')});function renderConnectionDetail(){const id=journey.currentPerson,p=journeyPerson(id),full=people[id]||people[0];const since=journey.connectionDates?.[id]||({0:'2025-06-12',1:'2026-02-18'})[id]||null;const sinceEl=$('#connection-since');sinceEl.textContent=since?'Since '+new Date(since+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'';$('#connection-privacy-hint').classList.toggle('hide',!journey.connections.includes(id));$('#connection-message-fab').classList.toggle('hide',!journey.connections.includes(id));paintConnectionCount('#connection-connection-count',id,journey.connections.includes(id));paintDemoPortrait($('#connection-avatar'),id);$('#connection-name').textContent=journey.connections.includes(id)?full.name:journeyPerson(id).name;markVerifiedName($('#connection-name'),id);$('#connection-headline').textContent=full.headline;$('#connection-sector').textContent=full.sector;$('#connection-intent').textContent=full.intent;$('#connection-bio').textContent=full.bio;$('#connection-looking').textContent=full.looking;const skills=$('#connection-skills');skills.replaceChildren(...full.skills.map(skill=>{const tag=document.createElement('span');tag.textContent=skill;return tag}));$('#connection-project').classList.toggle('hide',!full.project);$('#connection-project-name').textContent=full.project||'';$('#connection-project-desc').textContent=full.projectdesc||'';$('#connectiondetail .journey-card[data-go="conversation"]').disabled=!journey.connections.includes(id);const hide=$('#connectiondetail .journey-card[data-go="hiddenconnections"]');hide.querySelector('strong').textContent=journey.hidden.includes(id)?'Manage hidden presence':'Hide my active presence';renderConnectionDocs(id);renderConnectionExperience(id);refreshIcons()}let currentHiddenTab = 'all';
+$('#connection-message-fab').addEventListener('click',()=>{if(journey.connections.includes(journey.currentPerson))go('conversation')});function renderConnectionDetail(){const id=journey.currentPerson,p=journeyPerson(id),full=people[id]||people[0];const since=journey.connectionDates?.[id]||({0:'2025-06-12',1:'2026-02-18'})[id]||null;const sinceEl=$('#connection-since');sinceEl.textContent=since?'Since '+new Date(since+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'';$('#connection-privacy-hint').classList.toggle('hide',!journey.connections.includes(id));$('#connection-message-fab').classList.toggle('hide',!journey.connections.includes(id));paintConnectionCount('#connection-connection-count',id,journey.connections.includes(id));paintDemoPortrait($('#connection-avatar'),id);$('#connection-name').textContent=journey.connections.includes(id)?full.name:journeyPerson(id).name;markVerifiedName($('#connection-name'),id);$('#connection-headline').textContent=full.headline;$('#connection-sector').textContent=full.sector;$('#connection-intent').textContent=full.intent;$('#connection-bio').textContent=full.bio;$('#connection-looking').textContent=full.looking;const skills=$('#connection-skills');skills.replaceChildren(...full.skills.map(skill=>{const tag=document.createElement('span');tag.textContent=skill;return tag}));$('#connection-project').classList.toggle('hide',!full.project);$('#connection-project-name').textContent=full.project||'';$('#connection-project-desc').textContent=full.projectdesc||'';$('#connectiondetail .journey-card[data-go="conversation"]').disabled=!journey.connections.includes(id);const hide=$('#connectiondetail .journey-card[data-go="hiddenconnections"]');hide.querySelector('strong').textContent=journey.hidden.includes(id)?'Manage hidden presence':'Hide my active presence';renderConnectionDocs(id);renderConnectionExperience(id);refreshIcons()}
 function renderHidden(){
   const box=$('#hidden-list');if(!box)return;
   box.replaceChildren();
   const q = ($('#hidden-search')?.value || '').trim().toLowerCase();
-  all('#hidden-tabs button').forEach(b => b.classList.toggle('selected', b.dataset.hiddenTab === currentHiddenTab));
-  const allPs = journey.connections.map(journeyPerson);
-  const hiddenCount = journey.hidden?.length || 0;
-  const countAllEl = $('#hidden-count-all'); if(countAllEl) countAllEl.textContent = allPs.length;
-  const countHidEl = $('#hidden-count-hidden'); if(countHidEl) countHidEl.textContent = hiddenCount;
-  let ps = allPs.filter(p => {
+  const hiddenIds = (journey.hidden || []).filter(id => journey.connections.includes(id));
+  const ps = hiddenIds.map(journeyPerson).filter(p => {
     if(q && !p.name.toLowerCase().includes(q) && !p.role.toLowerCase().includes(q)) return false;
-    if(currentHiddenTab === 'hidden') return journey.hidden.includes(p.id);
     return true;
   });
   if(!ps.length){
-    box.innerHTML=journeyEmpty('No connections found', currentHiddenTab === 'hidden' ? 'No connections are currently hidden.' : 'Once you connect, choose who can see your active discovery presence.');
+    box.innerHTML=journeyEmpty('No hidden connections', q ? 'No hidden connections match your search.' : 'Connections whose presence you hide from nearby radar will appear here.');
     return;
   }
   ps.forEach(p=>{
-    const isHidden = journey.hidden.includes(p.id);
-    const statusText = isHidden ? 'Presence hidden' : 'Presence visible';
-    const row = journeyRow(p, statusText, {
-      icon: isHidden ? 'ph-eye-slash' : 'ph-eye',
-      className: 'journey-presence-btn' + (isHidden ? ' is-hidden' : ''),
-      ariaLabel: isHidden ? 'Unhide presence' : 'Hide presence',
-      title: isHidden ? 'Unhide presence' : 'Hide presence',
+    const row = journeyRow(p, 'Presence hidden from nearby radar', {
+      label: 'Unhide',
+      className: 'journey-quiet-action-btn',
+      ariaLabel: 'Unhide presence for ' + p.name,
+      title: 'Unhide presence for ' + p.name,
       onClick: id => {
-        journey.hidden = journey.hidden.includes(id) ? journey.hidden.filter(x => x !== id) : [...journey.hidden, id];
+        journey.hidden = journey.hidden.filter(x => x !== id);
         saveJourney();
         renderHidden();
         renderNetwork();
+        toast('Presence unhidden for ' + p.name);
       }
     });
-    if(isHidden) row.classList.add('is-hidden-connection');
+    row.classList.add('is-hidden-connection');
     box.append(row);
   });
 }
 $('#hidden-search')?.addEventListener('input', renderHidden);
-all('#hidden-tabs button').forEach(b => {
-  b.addEventListener('click', () => {
-    currentHiddenTab = b.dataset.hiddenTab;
-    renderHidden();
-  });
-});function renderBlocked(){const box=$('#blocked-list');box.replaceChildren();const ps=journey.blocked.map(journeyPerson);if(!ps.length){box.innerHTML=journeyEmpty('No blocked accounts','People you block will appear here.');return}ps.forEach(p=>box.append(journeyRow(p,'Blocked in this demo',{label:'Unblock',onClick:id=>{journey.blocked=journey.blocked.filter(x=>x!==id);saveJourney();renderBlocked()}})))}function renderNotifications(){const box=$('#notification-list');box.replaceChildren();for(const [key,title,desc] of [['connection','Connection requests','Invitations and acceptance updates'],['messages','New messages','Updates from your connections'],['session','Session reminders','Reminder before visibility ends'],['product','Product updates','Occasional feature announcements']]){const row=document.createElement('div');row.className='journey-person';const info=document.createElement('div');info.style.flex='1';const strong=document.createElement('strong');strong.textContent=title;const small=document.createElement('small');small.textContent=desc;info.append(strong,small);const toggle=document.createElement('button');toggle.className='settings-toggle'+(journey.notifications[key]?'':' off');toggle.setAttribute('role','switch');toggle.setAttribute('aria-checked',String(!!journey.notifications[key]));toggle.setAttribute('aria-label',title);toggle.innerHTML='<i></i>';toggle.onclick=()=>{journey.notifications[key]=!journey.notifications[key];if(key==='session'){privacyPrefs.reminders=journey.notifications[key];try{localStorage.setItem('peopi-demo-privacy',JSON.stringify(privacyPrefs))}catch(e){}paintPrivacy();paintSettings()}if(key==='connection'){privacyPrefs.requests=journey.notifications[key];try{localStorage.setItem('peopi-demo-privacy',JSON.stringify(privacyPrefs))}catch(e){}paintPrivacy();paintSettings()}saveJourney();renderNotifications()};row.append(info,toggle);box.append(row)}}let onboardingSlideIndex = 0;
+function renderBlocked(){
+  const box=$('#blocked-list');if(!box)return;
+  box.replaceChildren();
+  const ps=(journey.blocked||[]).map(journeyPerson);
+  if(!ps.length){
+    box.innerHTML=journeyEmpty('No blocked accounts','People you block will appear here.');
+    return;
+  }
+  ps.forEach(p=>box.append(journeyRow(p,'Blocked in this demo',{
+    label:'Unblock',
+    className:'journey-quiet-action-btn',
+    ariaLabel:'Unblock ' + p.name,
+    title:'Unblock ' + p.name,
+    onClick:id=>{
+      journey.blocked=journey.blocked.filter(x=>x!==id);
+      saveJourney();
+      renderBlocked();
+      toast('Unblocked ' + p.name);
+    }
+  })));
+}function renderNotifications(){const box=$('#notification-list');box.replaceChildren();for(const [key,title,desc] of [['connection','Connection requests','Invitations and acceptance updates'],['messages','New messages','Updates from your connections'],['session','Session reminders','Reminder before visibility ends'],['product','Product updates','Occasional feature announcements']]){const row=document.createElement('div');row.className='journey-person';const info=document.createElement('div');info.style.flex='1';const strong=document.createElement('strong');strong.textContent=title;const small=document.createElement('small');small.textContent=desc;info.append(strong,small);const toggle=document.createElement('button');toggle.className='settings-toggle'+(journey.notifications[key]?'':' off');toggle.setAttribute('role','switch');toggle.setAttribute('aria-checked',String(!!journey.notifications[key]));toggle.setAttribute('aria-label',title);toggle.innerHTML='<i></i>';toggle.onclick=()=>{journey.notifications[key]=!journey.notifications[key];if(key==='session'){privacyPrefs.reminders=journey.notifications[key];try{localStorage.setItem('peopi-demo-privacy',JSON.stringify(privacyPrefs))}catch(e){}paintPrivacy();paintSettings()}if(key==='connection'){privacyPrefs.requests=journey.notifications[key];try{localStorage.setItem('peopi-demo-privacy',JSON.stringify(privacyPrefs))}catch(e){}paintPrivacy();paintSettings()}saveJourney();renderNotifications()};row.append(info,toggle);box.append(row)}}let onboardingSlideIndex = 0;
 const totalOnboardingSlides = 3;
 function goToOnboardingSlide(idx){
   if(idx < 0) idx = 0;
